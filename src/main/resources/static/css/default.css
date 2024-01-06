@@ -73,3 +73,19 @@ p.item-title {
     word-spacing: 9px;
 }
 
+.scroll-list {
+    margin-top: 10px;
+}
+
+.scroll-button {
+    padding: 10px;
+    padding-bottom: 5px;
+
+    border-style: none;
+    border-radius: 4px;
+}
+
+.scroll-image {
+    height: 50px;
+}
+
