@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
+.item-info {
+    width: 300px;
+    /*border: 2px solid darkblue;*/
+    border: 1px solid black;
+
+    background-color: rgba(45, 41, 122, 0.73);
+}
+
+p.item-title {
+    font-family: "Apple Braille";
+    font-size: 20px;
+    color: white;
+    margin-top: 7px;
+    margin-bottom: 11px;
+    margin-bottom: 11px;
+}
+
+/*이미지 - 요구능력치 블록*/
+.image-and-status {
+    width: auto;
+    text-align: left;
+    display: inline-block;
+
+    /*border: 1px solid white;*/
+}
+
+/*아이템 이미지 부분*/
+.item-image {
+    /*display: inline-block;*/
+    background-color: white;
+    /*border: 1px solid black;*/
+
+    padding: 10px;
+    margin-top: 0px;
+    margin-right: 13px;
+    margin-left: 13px;
+
+    vertical-align: top;
+}
+
+/*요구 능력치 부분*/
+.required-status {
+    font-size: 15px;
+    color: white;
+    display: inline-block;
+    /*border: 1px solid white;*/
+
+    width: auto;
+}
+
+.required-status p {
+    font-family: 'Pixelify Sans';
+    line-height: 3px;
+    margin-top: 3px;
+}
+
+.item-status {
+    color: rgba(143, 145, 183);
+}
+
+.etc-info {
+    line-height: 6px;
+    text-align: center;
+    font-family: 'Noto Sans KR';
+    color: white;
+
+    horiz-align: center;
+}
+
+.job {
+    word-spacing: 9px;
+}
+
