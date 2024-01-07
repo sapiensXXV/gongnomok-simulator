@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
+
+.item-info-container {
+    text-align: left;
+}
+
 .item-info {
     width: 300px;
     /*border: 2px solid darkblue;*/
@@ -20,6 +25,13 @@ p.item-title {
     margin-top: 7px;
     margin-bottom: 11px;
     margin-bottom: 11px;
+}
+
+.item-container {
+    /*text-align: left;*/
+    /*vertical-align: top;*/
+    /*display: inline-block;*/
+    overflow: hidden;
 }
 
 /*이미지 - 요구능력치 블록*/
@@ -74,15 +86,50 @@ p.item-title {
     horiz-align: center;
 }
 
+.item-option-btn-container {
+    /*font-family: "Noto Sans KR";*/
+    /*!*display: flex;*!*/
+    /*align-items: center;*/
+    /*margin: 3px;*/
+    /*vertical-align: top;*/
+    /*!*text-align: left;*!*/
+
+    /*display: inline-block;*/
+    /*text-align: center;*/
+}
+
+.item-option-btn {
+    font-family: "Noto Sans KR";
+    display: inline-block;
+    margin-top: 3px;
+    margin-right: 2px;
+}
+
 .job {
     word-spacing: 9px;
 }
 
 .scroll-list {
+
     margin-top: 10px;
 }
 
+.scroll-btn-container {
+    vertical-align: top;
+    /*border: 1px solid #cccccc;*/
+
+    display: inline-block;
+    text-align: left;
+
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    line-height: 6px;
+
+    padding: 3px;
+}
+
 .scroll-button {
+    vertical-align: top;
     padding: 10px;
     padding-bottom: 5px;
 

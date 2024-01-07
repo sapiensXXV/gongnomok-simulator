@@ -81,26 +81,19 @@ hundredPercentButton.addEventListener('click', function () {
     let availableCount = parseInt(availableCountObject.innerHTML)
     let upgradedCount = parseInt(upgradedCountObject.innerHTML);
 
-    if (availableCount <= 0) return
+    if (availableCount <= 0) {
+        alert('강화 횟수를 초과하였습니다!')
+        return
+    }
 
     // 100 퍼센트는 무조건 성공
+    glovePowerObject.innerHTML = (glovePower + 1).toString()
     success(glovePowerTextObject, upgradedCount, glovePower + 1);
-
     reduceCount(availableCountObject)
 });
 
 resetButton.addEventListener('click', function () {
-    let glovePowerObject = document.getElementById('work-glove-power')
-    let glovePowerTextObject = document.getElementById('work-glove-power-text')
-    let availableCountObject = document.getElementById('work-glove-upgrade-available-count')
-
-    // changeColor(workGloveTitle, 0)
-    workGloveTitle.style.color = "white"
-    glovePowerObject.innerHTML = '0'
-    glovePowerTextObject.hidden = true
-    availableCountObject.innerHTML = '5'
-    upgradedCountObject.innerHTML = '0'
-    titleAdditionalObject.hidden = true
+    resetItem();
 });
 
 function success(glovePowerTextObject, upgradedCount, newGlovePower) {
@@ -117,5 +110,19 @@ function success(glovePowerTextObject, upgradedCount, newGlovePower) {
 function fail() {
     failSound.currentTime = 0
     failSound.play()
+}
+
+function resetItem() {
+    let glovePowerObject = document.getElementById('work-glove-power')
+    let glovePowerTextObject = document.getElementById('work-glove-power-text')
+    let availableCountObject = document.getElementById('work-glove-upgrade-available-count')
+
+    // changeColor(workGloveTitle, 0)
+    workGloveTitle.style.color = "white"
+    glovePowerObject.innerHTML = '0'
+    glovePowerTextObject.hidden = true
+    availableCountObject.innerHTML = '5'
+    upgradedCountObject.innerHTML = '0'
+    titleAdditionalObject.hidden = true
 }
 
