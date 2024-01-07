@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/default.css">
 <body>
     <div class="item-info">
-        <p align="middle" class="item-title">노가다 목장갑</p>
+        <p id="work-glove-title" class="item-title">
+            노가다 목장갑<span id="work-glove-additional" hidden="hidden"> (+<span id="work-glove-upgraded-count">0</span>)</span></p>
 
         <!-- 아이템 이미지, 필요 능력치-->
         <div class="image-and-status" >
@@ -33,23 +34,29 @@
             <p class="job">초보자  전사  마법사  궁수  도적  해적</p>
             <hr>
             <p>장비분류 : 장갑</p>
-            <p id="power" class="power">공격력 : +11</p>
-            <p id="physical-defence" class="physical-defence">물리방어력 : +3</p>
-            <p>업그레이드 가능 횟수 : 0</p>
+            <p hidden="hidden" id="work-glove-power-text">공격력 : +<span id="work-glove-power">0</span></p>
+            <p>물리방어력 : +<span id="work-glove-physical-defence">3</span></p>
+            <p>업그레이드 가능 횟수 : <span id="work-glove-upgrade-available-count">5</span></p>
 
         </div>
     </div>
 
     <div class="scroll-list">
-        <button id="10-percent-button" class ="scroll-button" type="button">
+        <button id="work-glove-10-percent-button" class ="scroll-button" type="button">
             <img class="scroll-image" src="img/scroll/10.png">
         </button>
-        <button id="60-percent-button" class ="scroll-button" type="button">
+        <button id="work-glove-60-percent-button" class ="scroll-button" type="button">
             <img class="scroll-image" src="img/scroll/60.png">
         </button>
-        <button id="100-percent-button" class ="scroll-button" type="button">
+        <button id="work-glove-100-percent-button" class ="scroll-button" type="button">
             <img class="scroll-image" src="img/scroll/100.png">
         </button>
+        <button id="work-glove-reset-button" class ="scroll-button" type="button">
+            <img class="scroll-image" src="img/etc/reset.svg">
+        </button>
     </div>
+
+
+    <script type="module" src="js/work-glove.js"></script>
 </body>
 </html>

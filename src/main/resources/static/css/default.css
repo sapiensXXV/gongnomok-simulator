@@ -9,8 +9,12 @@
 }
 
 p.item-title {
+    text-align: center;
+
     font-family: "Apple Braille";
     font-size: 20px;
+    font-weight: bold;
+
     color: white;
     margin-top: 7px;
     margin-bottom: 11px;
@@ -89,3 +93,6 @@ p.item-title {
     height: 50px;
 }
 
+.nomok-power {
+    display: inline-block;
+}
