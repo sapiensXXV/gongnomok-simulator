@@ -16,6 +16,7 @@
             <div class="required-status">
                 <div class="user-status">
                     <p>REQ LEV : 10</p>
+                    <p>REQ STR : 0</p>
                     <p>REQ DEX : 0</p>
                     <p>REQ INT : 0</p>
                     <p>REQ LUK : 0</p>
@@ -56,7 +57,64 @@
         </button>
     </div>
 
+    <hr>
+
+    <div class="item-info">
+        <p id="dark-avarice-title" class="item-title">
+            다크 보닌<span id="dark-avarice-additional" hidden="hidden"> (+<span id="dark-avarice-upgraded-count">0</span>)</span></p>
+
+        <!-- 아이템 이미지, 필요 능력치-->
+        <div class="image-and-status" >
+            <img class="item-image" src="img/weapon/dark-avarice.png" width="60" height="60">
+            <div class="required-status">
+                <div class="user-status">
+                    <p>REQ LEV : 40</p>
+                    <p>REQ STR : 0</p>
+                    <p>REQ DEX : 80</p>
+                    <p>REQ INT : 0</p>
+                    <p>REQ LUK : 120</p>
+                    <p>REQ POP : -</p>
+                </div>
+                <div class="item-status">
+                    <p>REQ LEV: - </p>
+                    <p>REQ EXP: - </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!--착용가능 직업, 실제 능력치-->
+        <div class="etc-info">
+            <p class="job"><span style="color:red">초보자  전사  마법사  궁수</span>  도적  <span style="color:red">해적</span></p>
+            <hr>
+            <p>장비분류 : 아대</p>
+            <p>공격속도: 4</p>
+            <p>물리공격력: +22</p>
+            <p>물리방어력 : +4</p>
+            <p>LUK : +3</p>
+            <p>업그레이드 가능 횟수 : <span id="dark-avarice-upgrade-available-count">7</span></p>
+
+        </div>
+    </div>
+
+    <div class="scroll-list">
+        <button id="dark-avarice-10-percent-button" class ="scroll-button" type="button">
+            <img class="scroll-image" src="img/scroll/10.png">
+        </button>
+        <button id="dark-avarice-60-percent-button" class ="scroll-button" type="button">
+            <img class="scroll-image" src="img/scroll/60.png">
+        </button>
+        <button id="dark-avarice-100-percent-button" class ="scroll-button" type="button">
+            <img class="scroll-image" src="img/scroll/100.png">
+        </button>
+        <button id="dark-avarice-reset-button" class ="scroll-button" type="button">
+            <img class="scroll-image" src="img/etc/reset.svg">
+        </button>
+    </div>
+
 
     <script type="module" src="js/work-glove.js"></script>
+    <script type="modele" src="js/dark-avarice.js"></script>
+
 </body>
 </html>
