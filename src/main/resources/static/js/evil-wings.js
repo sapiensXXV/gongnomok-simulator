@@ -38,7 +38,7 @@ oneUpperOptionBtn.addEventListener('click', function() {
     let mgAtk = document.getElementById('evil-wings-mg-atk');
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 81;
-    defaultPhyAtk = 54
+    defaultPhyAtk = 54;
     reset();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
@@ -48,7 +48,7 @@ twoUpperOptionBtn.addEventListener('click', function() {
     let mgAtk = document.getElementById('evil-wings-mg-atk');
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 82;
-    defaultPhyAtk = 55
+    defaultPhyAtk = 55;
     reset();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
@@ -58,7 +58,7 @@ threeUpperOptionBtn.addEventListener('click', function() {
     let mgAtk = document.getElementById('evil-wings-mg-atk');
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 83;
-    defaultPhyAtk = 56
+    defaultPhyAtk = 56;
     reset();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
