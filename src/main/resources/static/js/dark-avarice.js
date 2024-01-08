@@ -9,6 +9,12 @@ let defaultLuk = 4;
 let defaultAvailableCount = 7;
 let defaultAcc = 0;
 
+let timer = null;
+
+let gloveImgPath = '../img/weapon/work-glove.png';
+let successGifPath = '../gif/success.gif';
+let failureGifPath = '../gif/failure.gif';
+
 // 옵션 버튼
 let normalOptionBtn = document.getElementById('dark-avarice-normal-option-btn');
 let oneUpperOptionBtn = document.getElementById('dark-avarice-one-upper-option-btn');
@@ -148,6 +154,7 @@ function success(pyAtk, acc, luk) {
 
     util.playSuccessSound();
     reduceAvailableCount(availableCount);
+    playSuccessEffect()
 }
 
 
@@ -156,6 +163,7 @@ function fail() {
     reduceAvailableCount(availableCount);
     console.log('fail!')
     util.playFailureSound()
+    playFailEffect()
 }
 
 function reduceAvailableCount(availableCount) {
@@ -170,4 +178,26 @@ function checkAvailableCount() {
         return false;
     }
     return true;
+}
+
+function playSuccessEffect() {
+    clearTimeout(timer);
+    let gifImg = document.getElementById('dark-avarice-gif-img');
+    gifImg.hidden = false;
+    gifImg.src = successGifPath;
+    timer = setTimeout(function () {
+        gifImg.src = gloveImgPath
+        gifImg.hidden = true;
+    }, 1000);
+}
+
+function playFailEffect() {
+    clearTimeout(timer);
+    let gifImg = document.getElementById('dark-avarice-gif-img');
+    gifImg.hidden = false;
+    gifImg.src = failureGifPath;
+    timer = setTimeout(function () {
+        gifImg.src = gloveImgPath
+        gifImg.hidden = true;
+    }, 1000);
 }

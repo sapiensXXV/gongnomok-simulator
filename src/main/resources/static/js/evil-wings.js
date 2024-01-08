@@ -7,6 +7,12 @@ let defaultMgAtk = 80;
 let defaultAvailableCount = 7;
 let defaultAcc = 0;
 
+let gloveImgPath = '../img/weapon/work-glove.png';
+let successGifPath = '../gif/success.gif';
+let failureGifPath = '../gif/failure.gif';
+
+let timer = null;
+
 // 옵션 버튼
 let normalOptionBtn = document.getElementById('evil-wings-normal-option-btn');
 let oneUpperOptionBtn = document.getElementById('evil-wings-one-upper-option-btn');
@@ -168,6 +174,7 @@ function success(mgAtk, intV, mgDef) {
     //sound
     util.playSuccessSound(); // 강화성공 소리 재생
     reduceAvailableCount(availableCount); // 강화 가능횟수 감소
+    playSuccessEffect()
 }
 
 
@@ -177,6 +184,7 @@ function fail() {
     let availableCount = document.getElementById('evil-wings-upgrade-available-count');
     reduceAvailableCount(availableCount);
     util.playFailureSound()
+    playFailEffect()
 }
 
 function reduceAvailableCount(availableCount) {
@@ -191,4 +199,26 @@ function checkAvailableCount() {
         return false;
     }
     return true;
+}
+
+function playSuccessEffect() {
+    clearTimeout(timer);
+    let gifImg = document.getElementById('evil-wings-gif-img');
+    gifImg.hidden = false;
+    gifImg.src = successGifPath;
+    timer = setTimeout(function () {
+        gifImg.src = gloveImgPath
+        gifImg.hidden = true;
+    }, 1000);
+}
+
+function playFailEffect() {
+    clearTimeout(timer);
+    let gifImg = document.getElementById('evil-wings-gif-img');
+    gifImg.hidden = false;
+    gifImg.src = failureGifPath;
+    timer = setTimeout(function () {
+        gifImg.src = gloveImgPath
+        gifImg.hidden = true;
+    }, 1000);
 }

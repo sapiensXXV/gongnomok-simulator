@@ -8,6 +8,11 @@ const resetButton = document.getElementById('work-glove-reset-button')
 
 let defaultAtk = 0
 
+let gloveImgPath = '../img/weapon/work-glove.png';
+let successGifPath = '../gif/success.gif';
+let failureGifPath = '../gif/failure.gif';
+let timer = null;
+
 tenPercentButton.addEventListener('click', function () {
     if (!checkAvailableCount()) return;
     if (util.getRandomResult(10)) {
@@ -52,6 +57,8 @@ function success(atk) {
     util.changeColor(titleElem, parseInt(gloveAtkElem.textContent) - defaultAtk);
     util.playSuccessSound();
     reduceCount(availableCnt)
+
+    playSuccessEffect()
 }
 
 function fail() {
@@ -59,6 +66,7 @@ function fail() {
     let availableCnt = document.getElementById('work-glove-upgrade-available-count')
     util.playFailureSound();
     reduceCount(availableCnt)
+    playFailEffect()
 }
 
 function resetItem() {
@@ -85,5 +93,27 @@ function checkAvailableCount() {
         return false;
     }
     return true;
+}
+
+function playSuccessEffect() {
+    clearTimeout(timer);
+    let gifImg = document.getElementById('work-glove-gif-img');
+    gifImg.hidden = false;
+    gifImg.src = successGifPath;
+    timer = setTimeout(function () {
+        gifImg.src = gloveImgPath
+        gifImg.hidden = true;
+    }, 1000);
+}
+
+function playFailEffect() {
+    clearTimeout(timer);
+    let gifImg = document.getElementById('work-glove-gif-img');
+    gifImg.hidden = false;
+    gifImg.src = failureGifPath;
+    timer = setTimeout(function () {
+        gifImg.src = gloveImgPath
+        gifImg.hidden = true;
+    }, 1000);
 }
 

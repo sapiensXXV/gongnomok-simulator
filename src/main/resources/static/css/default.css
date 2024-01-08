@@ -41,12 +41,13 @@ p.item-title {
     width: auto;
     text-align: left;
     display: inline-block;
-
 }
 
-/*아이템 이미지 부분*/
-.item-image {
+.tmp-container {
+    display: inline-block;
     background-color: #CBC1CC;
+    width: 60px;
+    height: 60px;
 
     padding: 10px;
     margin-top: 0px;
@@ -54,6 +55,26 @@ p.item-title {
     margin-left: 13px;
 
     vertical-align: top;
+}
+
+.img-container {
+    /*display: inline-block;*/
+    /*float: left;*/
+    /*position: absol;*/
+    position: relative;
+}
+
+/*아이템 이미지 부분*/
+.item-image {
+    position: absolute;
+    /*background-color: #CBC1CC;*/
+
+    /*padding: 10px;*/
+    /*margin-top: 0px;*/
+    /*margin-right: 13px;*/
+    /*margin-left: 13px;*/
+
+    /*vertical-align: top;*/
 }
 
 /*요구 능력치 부분*/
