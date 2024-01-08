@@ -6,7 +6,7 @@ export function getRandomResult(percentage) {
 }
 
 export function reduceCount(object) {
-    object.innerHTML = (parseInt(object.innerHTML) - 1).toString()
+    object.textContent = (parseInt(object.textContent) - 1).toString()
 }
 
 export function changeColor(object, value) {
@@ -25,13 +25,14 @@ export function changeColor(object, value) {
 
 export function playFailureSound() {
     let failMp3 = new Audio('../sound/scroll/fail.mp3');
-    failMp3.volume = 0.3
+    failMp3.volume = 0.2
     failMp3.currentTime = 0;
     failMp3.play();
 }
+
 export function playSuccessSound() {
     let successMp3 = new Audio('../sound/scroll/success.mp3');
-    successMp3.volume = 0.3
+    successMp3.volume = 0.2
     successMp3.currentTime = 0;
     successMp3.play();
 }
