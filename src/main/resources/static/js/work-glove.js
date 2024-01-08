@@ -1,8 +1,4 @@
-import { getRandomResult } from "./util.js";
-import { reduceCount } from "./util.js";
-import { changeColor } from "./util.js";
-
-// import "./util.js";
+import * as util from "./util.js";
 
 const tenPercentButton =  document.getElementById('work-glove-10-percent-button')
 const sixtyPercentButton =  document.getElementById('work-glove-60-percent-button')
@@ -12,10 +8,6 @@ const workGloveTitle = document.getElementById('work-glove-title')
 
 let upgradedCountObject = document.getElementById('work-glove-upgraded-count');
 let titleAdditionalObject = document.getElementById('work-glove-additional');
-
-//audio
-let successSound = new Audio('../sound/scroll/success.mp3')
-let failSound = new Audio('../sound/scroll/fail.mp3')
 
 /**
  * 1. 업그레이드 가능 횟수가 남아있는지 확인한다.
@@ -34,18 +26,17 @@ tenPercentButton.addEventListener('click', function () {
 
     if (availableCount <= 0) return
 
-    let result = getRandomResult(10);
+    let result = util.getRandomResult(10);
     console.log('강화성공=[' + result + ']')
 
     // 강화 성공시 공격력 증가
     if (result) {
-        glovePowerObject.innerHTML = (glovePower + 3).toString()
+        glovePowerObject.textContent = (glovePower + 3).toString()
         success(glovePowerTextObject, upgradedCount, glovePower + 3);
     } else {
         fail()
     }
-
-    reduceCount(availableCountObject)
+    util.reduceCount(availableCountObject)
 });
 
 
@@ -59,7 +50,7 @@ sixtyPercentButton.addEventListener('click', function () {
 
     if (availableCount <= 0) return
 
-    let result = getRandomResult(60);
+    let result = util.getRandomResult(60);
     console.log('강화성공=[' + result + ']')
 
     // 강화 성공시 공격력 증가
@@ -70,7 +61,7 @@ sixtyPercentButton.addEventListener('click', function () {
         fail();
     }
 
-    reduceCount(availableCountObject)
+    util.reduceCount(availableCountObject)
 });
 
 hundredPercentButton.addEventListener('click', function () {
@@ -89,7 +80,7 @@ hundredPercentButton.addEventListener('click', function () {
     // 100 퍼센트는 무조건 성공
     glovePowerObject.innerHTML = (glovePower + 1).toString()
     success(glovePowerTextObject, upgradedCount, glovePower + 1);
-    reduceCount(availableCountObject)
+    util.reduceCount(availableCountObject)
 });
 
 resetButton.addEventListener('click', function () {
@@ -97,19 +88,16 @@ resetButton.addEventListener('click', function () {
 });
 
 function success(glovePowerTextObject, upgradedCount, newGlovePower) {
-    glovePowerTextObject.hidden = false
-    titleAdditionalObject.hidden = false
+    glovePowerTextObject.hidden = false;
+    titleAdditionalObject.hidden = false;
 
     upgradedCountObject.innerHTML = (upgradedCount + 1).toString();
-    changeColor(workGloveTitle, newGlovePower)
-
-    successSound.currentTime = 0
-    successSound.play()
+    util.changeColor(workGloveTitle, newGlovePower);
+    util.playSuccessSound();
 }
 
 function fail() {
-    failSound.currentTime = 0
-    failSound.play()
+    util.playFailureSound();
 }
 
 function resetItem() {

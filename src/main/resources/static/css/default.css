@@ -68,8 +68,9 @@ p.item-title {
 }
 
 .required-status p {
-    font-family: 'Pixelify Sans';
-    line-height: 3px;
+    font-family: 'Noto Sans KR','Pixelify Sans';
+    font-size: 13px;
+    line-height: 4px;
     margin-top: 3px;
 }
 

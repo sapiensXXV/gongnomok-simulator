@@ -1,10 +1,5 @@
-// import { getRandomResult } from "../util.js";
-// import { changeColor } from "../util.js";
-// import { playFailureSound } from "../util.js";
-// import { playSuccessSound } from "../util.js";
-
-import * as util from "../util.js";
-import {changeColor} from "../util.js";
+import * as util from "./util.js";
+// import {changeColor} from "./util.js";
 
 // 속성 값들
 let defaultAtkSpeed = 4;
@@ -93,6 +88,18 @@ resetBtn.addEventListener('click', function () {
  * 공용 함수
  */
 function reset() {
+    /**
+     * 초기화 해야할 내용
+     * 1. 물리공격력
+     * 2. 물리 방어력
+     * 3. 럭
+     * 4. 업그레이드 가능 횟수
+     * 5. 명중률
+     * 6. 타이틀 강화 성공횟수
+     *
+     * - 명중률은 기본 옵션에 없으므로 숨김처리
+     * - 타이틀의 강화횟수를 0으로 만들고 숨김처리
+     */
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     let darkAvariceDef = document.getElementById('dark-avarice-phy-def');
     let darkAvariceLuk = document.getElementById('dark-avarice-luk');
@@ -112,7 +119,7 @@ function reset() {
     additionalElem.hidden = true;
 
     let title = document.getElementById('dark-avarice-title');
-    changeColor(title, parseInt(darkAvariceAtk.textContent) - defaultPhysicAtk);
+    util.changeColor(title, parseInt(darkAvariceAtk.textContent) - defaultPhysicAtk);
     upgradedCount.textContent = '0'
 }
 
@@ -132,14 +139,13 @@ function success(pyAtk, acc, luk) {
     lukElem.textContent = (parseInt(lukElem.textContent) + luk).toString();
 
     upgradedCountElem.textContent = (parseInt(upgradedCountElem.textContent) + 1).toString();
-    // util.changeColor(title, parseInt(upgradedCountElem.textContent) + 1);
     util.changeColor(title, parseInt(pyAtkElem.textContent) - defaultPhysicAtk)
     additionalElem.hidden = false;
 
     if (parseInt(accElem.textContent) !== 0) {
         accElemText.hidden = false;
     }
-    //sound
+
     util.playSuccessSound();
     reduceAvailableCount(availableCount);
 }
