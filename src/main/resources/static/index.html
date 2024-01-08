@@ -8,232 +8,236 @@
 <link rel="stylesheet" href="css/default.css">
 <body>
     <div class="item-container">
-        <div class="item-info">
-            <p id="work-glove-title" class="item-title">
-                노가다 목장갑<span id="work-glove-additional" hidden="hidden"> (+<span id="work-glove-upgraded-count">0</span>)</span></p>
+        <!--노가다 목장갑-->
+        <div class="item">
+            <div class="item-info">
+                <p id="work-glove-title" class="item-title">
+                    노가다 목장갑<span id="work-glove-additional" hidden="hidden"> (+<span id="work-glove-upgraded-count">0</span>)</span></p>
 
-            <!-- 아이템 이미지, 필요 능력치-->
-            <div class="image-and-status" >
-                <img class="item-image" src="img/weapon/work-glove.png" width="60" height="60">
-                <div class="required-status">
-                    <div class="user-status">
-                        <p>REQ LEV : 10</p>
-                        <p>REQ STR : 0</p>
-                        <p>REQ DEX : 0</p>
-                        <p>REQ INT : 0</p>
-                        <p>REQ LUK : 0</p>
-                        <p>REQ POP : -</p>
-                    </div>
-                    <div class="item-status">
-                        <p>ITEM LEV: - </p>
-                        <p>ITEM EXP: - </p>
-                    </div>
+                <!-- 아이템 이미지, 필요 능력치-->
+                <div class="image-and-status" >
+                    <img class="item-image" src="img/weapon/work-glove.png" width="60" height="60">
+                    <div class="required-status">
+                        <div class="user-status">
+                            <p>REQ LEV : 10</p>
+                            <p>REQ STR : 0</p>
+                            <p>REQ DEX : 0</p>
+                            <p>REQ INT : 0</p>
+                            <p>REQ LUK : 0</p>
+                            <p>REQ POP : -</p>
+                        </div>
+                        <div class="item-status">
+                            <p>ITEM LEV: - </p>
+                            <p>ITEM EXP: - </p>
+                        </div>
 
+                    </div>
+                </div>
+
+                <!--착용가능 직업, 실제 능력치-->
+                <div class="etc-info">
+                    <p class="job">초보자  전사  마법사  궁수  도적  해적</p>
+                    <hr>
+                    <p>장비분류 : 장갑</p>
+                    <p hidden="hidden" id="work-glove-power-text">공격력 : +<span id="work-glove-power">0</span></p>
+                    <p>물리방어력 : +<span id="work-glove-physical-defence">3</span></p>
+                    <p>업그레이드 가능 횟수 : <span id="work-glove-upgrade-available-count">5</span></p>
                 </div>
             </div>
 
-            <!--착용가능 직업, 실제 능력치-->
-            <div class="etc-info">
-                <p class="job">초보자  전사  마법사  궁수  도적  해적</p>
-                <hr>
-                <p>장비분류 : 장갑</p>
-                <p hidden="hidden" id="work-glove-power-text">공격력 : +<span id="work-glove-power">0</span></p>
-                <p>물리방어력 : +<span id="work-glove-physical-defence">3</span></p>
-                <p>업그레이드 가능 횟수 : <span id="work-glove-upgrade-available-count">5</span></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="scroll-list">
-        <div class="scroll-btn-container">
-            <button id="work-glove-10-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/10.png">
-            </button>
-            <p>장공10%</p>
-            <p>물리공격력+3</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="work-glove-60-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/60.png">
-            </button>
-            <p>장공60%</p>
-            <p>물리공격력+2</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="work-glove-100-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/100.png">
-            </button>
-            <p>장공100%</p>
-            <p>물리공격력+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="work-glove-reset-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/etc/reset.svg">
-            </button>
-        </div>
-    </div>
-
-    <hr>
-    <div class="item-info-container">
-        <div class="item-info">
-            <p id="dark-avarice-title" class="item-title">
-                다크 보닌<span id="dark-avarice-additional" hidden="hidden"> (+<span id="dark-avarice-upgraded-count">0</span>)</span></p>
-
-            <!-- 아이템 이미지, 필요 능력치-->
-            <div class="image-and-status" >
-                <img class="item-image" src="img/weapon/dark-avarice.png" width="60" height="60">
-                <div class="required-status">
-                    <div class="user-status">
-                        <p>REQ LEV : 40</p>
-                        <p>REQ STR : 0</p>
-                        <p>REQ DEX : 80</p>
-                        <p>REQ INT : 0</p>
-                        <p>REQ LUK : 120</p>
-                        <p>REQ POP : -</p>
-                    </div>
-                    <div class="item-status">
-                        <p>ITEM LEV: - </p>
-                        <p>ITEM EXP: - </p>
-                    </div>
-
+            <div class="scroll-list">
+                <div class="scroll-btn-container">
+                    <button id="work-glove-10-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/10.png">
+                    </button>
+                    <p>장공10%</p>
+                    <p>물리공격력+3</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="work-glove-60-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/60.png">
+                    </button>
+                    <p>장공60%</p>
+                    <p>물리공격력+2</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="work-glove-100-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/100.png">
+                    </button>
+                    <p>장공100%</p>
+                    <p>물리공격력+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="work-glove-reset-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/etc/reset.svg">
+                    </button>
                 </div>
             </div>
+        </div>
 
-            <!--착용가능 직업, 실제 능력치-->
-            <div class="etc-info">
-                <p class="job"><span style="color:red">초보자  전사  마법사  궁수</span>  도적  <span style="color:red">해적</span></p>
-                <hr>
-                <p>장비 분류 : 아대</p>
-                <p>공격속도 : 4</p>
-                <p id="dark-avarice-acc-text" hidden="hidden">명중률 : +<span id="dark-avarice-acc">0</span></p>
-                <p>물리 공격력 : +<span id="dark-avarice-phy-atk">22</span></p>
-                <p>물리 방어력 : +<span id="dark-avarice-phy-def">4</span></p>
-                <p>LUK : +<span id="dark-avarice-luk">3</span></p>
-                <p>업그레이드 가능 횟수 : <span id="dark-avarice-upgrade-available-count">7</span></p>
-            </div>
-        </div>
-        <div class="item-option-btn-container">
-            <button id="dark-avarice-normal-option-btn" class="item-option-btn" type="button">정옵</button>
-            <button id="dark-avarice-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
-            <button id="dark-avarice-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
-            <button id="dark-avarice-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
-        </div>
-    </div>
+        <!--다크 보닌-->
+        <div class="item">
+            <div class="item-info">
+                <p id="dark-avarice-title" class="item-title">
+                    다크 보닌<span id="dark-avarice-additional" hidden="hidden"> (+<span id="dark-avarice-upgraded-count">0</span>)</span></p>
 
-    <div class="scroll-list">
-        <div class="scroll-btn-container">
-            <button id="dark-avarice-10-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/10.png">
-            </button>
-            <p>아공10%</p>
-            <p>물리공격력+5</p>
-            <p>명중률+3</p>
-            <p>LUK+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="dark-avarice-60-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/60.png">
-            </button>
-            <p>아공60%</p>
-            <p>물리공격력+2</p>
-            <p>명중률+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="dark-avarice-100-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/100.png">
-            </button>
-            <p>아공100%</p>
-            <p>물리공격력+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="dark-avarice-reset-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/etc/reset.svg">
-            </button>
-        </div>
-    </div>
+                <!-- 아이템 이미지, 필요 능력치-->
+                <div class="image-and-status" >
+                    <img class="item-image" src="img/weapon/dark-avarice.png" width="60" height="60">
+                    <div class="required-status">
+                        <div class="user-status">
+                            <p>REQ LEV : 40</p>
+                            <p>REQ STR : 0</p>
+                            <p>REQ DEX : 80</p>
+                            <p>REQ INT : 0</p>
+                            <p>REQ LUK : 120</p>
+                            <p>REQ POP : -</p>
+                        </div>
+                        <div class="item-status">
+                            <p>ITEM LEV: - </p>
+                            <p>ITEM EXP: - </p>
+                        </div>
 
-    <hr>
-
-    <div class="item-info-container">
-        <div class="item-info">
-            <p id="evil-wings-title" class="item-title">
-                이블 윙즈<span id="evil-wings-additional" hidden="hidden"> (+<span id="evil-wings-upgraded-count">0</span>)</span></p>
-
-            <!-- 아이템 이미지, 필요 능력치-->
-            <div class="image-and-status" >
-                <img class="item-image" src="img/weapon/evil-wings.png" width="60" height="60">
-                <div class="required-status">
-                    <div class="user-status">
-                        <p>REQ LEV : 65</p>
-                        <p>REQ STR : 0</p>
-                        <p>REQ DEX : 80</p>
-                        <p>REQ INT : 198</p>
-                        <p>REQ LUK : 68</p>
-                        <p>REQ POP : 0</p>
                     </div>
-                    <div class="item-status">
-                        <p>ITEM LEV: - </p>
-                        <p>ITEM EXP: - </p>
-                    </div>
+                </div>
 
+                <!--착용가능 직업, 실제 능력치-->
+                <div class="etc-info">
+                    <p class="job"><span style="color:red">초보자  전사  마법사  궁수</span>  도적  <span style="color:red">해적</span></p>
+                    <hr>
+                    <p>장비 분류 : 아대</p>
+                    <p>공격속도 : 4</p>
+                    <p id="dark-avarice-acc-text" hidden="hidden">명중률 : +<span id="dark-avarice-acc">0</span></p>
+                    <p>물리 공격력 : +<span id="dark-avarice-phy-atk">22</span></p>
+                    <p>물리 방어력 : +<span id="dark-avarice-phy-def">4</span></p>
+                    <p>LUK : +<span id="dark-avarice-luk">3</span></p>
+                    <p>업그레이드 가능 횟수 : <span id="dark-avarice-upgrade-available-count">7</span></p>
                 </div>
             </div>
+            <div class="item-option-btn-container">
+                <button id="dark-avarice-normal-option-btn" class="item-option-btn" type="button">정옵</button>
+                <button id="dark-avarice-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
+                <button id="dark-avarice-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
+                <button id="dark-avarice-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
+            </div>
 
-            <!--착용가능 직업, 실제 능력치-->
-            <div class="etc-info">
-                <p class="job"><span style="color:red">초보자  전사</span>  마법사  <span style="color:red">궁수  도적  해적</span></p>
-                <hr>
-                <p>장비 분류 : 스태프</p>
-                <p>공격속도 : 4</p>
-<!--                <p id="evil-wings-acc-text" hidden="hidden">명중률 : +<span id="evil-wings-acc">0</span></p>-->
-                <p>물리 공격력 : +<span id="evil-wings-phy-atk">53</span></p>
-                <p>마법 공격력 : +<span id="evil-wings-mg-atk">80</span></p>
-                <p id="evil-wings-mg-def-info" hidden="hidden">마법 방어력 : +<span id="evil-wings-mg-def"></span></p>
-                <p id="evil-wings-int-info" hidden="hidden">INT : +<span id="evil-wings-int">0</span></p>
-                <p>업그레이드 가능 횟수 : <span id="evil-wings-upgrade-available-count">7</span></p>
+
+            <div class="scroll-list">
+                <div class="scroll-btn-container">
+                    <button id="dark-avarice-10-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/10.png">
+                    </button>
+                    <p>아공10%</p>
+                    <p>물리공격력+5</p>
+                    <p>명중률+3</p>
+                    <p>LUK+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="dark-avarice-60-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/60.png">
+                    </button>
+                    <p>아공60%</p>
+                    <p>물리공격력+2</p>
+                    <p>명중률+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="dark-avarice-100-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/100.png">
+                    </button>
+                    <p>아공100%</p>
+                    <p>물리공격력+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="dark-avarice-reset-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/etc/reset.svg">
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="item-option-btn-container">
-            <button id="evil-wings-normal-option-btn" class="item-option-btn" type="button">정옵</button>
-            <button id="evil-wings-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
-            <button id="evil-wings-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
-            <button id="evil-wings-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
-            <button id="evil-wings-four-upper-option-btn" class="item-option-btn" type="button">4상옵</button>
-            <button id="evil-wings-five-upper-option-btn" class="item-option-btn" type="button">5상옵</button>
+
+        <!--이블 윙즈-->
+        <div class="item">
+            <div class="item-info">
+                <p id="evil-wings-title" class="item-title">
+                    이블 윙즈<span id="evil-wings-additional" hidden="hidden"> (+<span id="evil-wings-upgraded-count">0</span>)</span></p>
+
+                <!-- 아이템 이미지, 필요 능력치-->
+                <div class="image-and-status" >
+                    <img class="item-image" src="img/weapon/evil-wings.png" width="60" height="60">
+                    <div class="required-status">
+                        <div class="user-status">
+                            <p>REQ LEV : 65</p>
+                            <p>REQ STR : 0</p>
+                            <p>REQ DEX : 80</p>
+                            <p>REQ INT : 198</p>
+                            <p>REQ LUK : 68</p>
+                            <p>REQ POP : 0</p>
+                        </div>
+                        <div class="item-status">
+                            <p>ITEM LEV: - </p>
+                            <p>ITEM EXP: - </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--착용가능 직업, 실제 능력치-->
+                <div class="etc-info">
+                    <p class="job"><span style="color:red">초보자  전사</span>  마법사  <span style="color:red">궁수  도적  해적</span></p>
+                    <hr>
+                    <p>장비 분류 : 스태프</p>
+                    <p>공격속도 : 4</p>
+                    <!--                <p id="evil-wings-acc-text" hidden="hidden">명중률 : +<span id="evil-wings-acc">0</span></p>-->
+                    <p>물리 공격력 : +<span id="evil-wings-phy-atk">53</span></p>
+                    <p>마법 공격력 : +<span id="evil-wings-mg-atk">80</span></p>
+                    <p id="evil-wings-mg-def-info" hidden="hidden">마법 방어력 : +<span id="evil-wings-mg-def"></span></p>
+                    <p id="evil-wings-int-info" hidden="hidden">INT : +<span id="evil-wings-int">0</span></p>
+                    <p>업그레이드 가능 횟수 : <span id="evil-wings-upgrade-available-count">7</span></p>
+                </div>
+            </div>
+            <div class="item-option-btn-container">
+                <button id="evil-wings-normal-option-btn" class="item-option-btn" type="button">정옵</button>
+                <button id="evil-wings-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
+                <button id="evil-wings-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
+                <button id="evil-wings-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
+                <button id="evil-wings-four-upper-option-btn" class="item-option-btn" type="button">4상옵</button>
+                <button id="evil-wings-five-upper-option-btn" class="item-option-btn" type="button">5상옵</button>
+            </div>
+
+            <div class="scroll-list">
+                <div class="scroll-btn-container">
+                    <button id="evil-wings-10-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/10.png">
+                    </button>
+                    <p>스마공10%</p>
+                    <p>마법공격력+5</p>
+                    <p>INT+3</p>
+                    <p>마법방어력+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="evil-wings-60-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/60.png">
+                    </button>
+                    <p>스마공60%</p>
+                    <p>마법공격력+2</p>
+                    <p>INT+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="evil-wings-100-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/scroll/100.png">
+                    </button>
+                    <p>스마공100%</p>
+                    <p>마법공격력+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="evil-wings-reset-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="img/etc/reset.svg">
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="scroll-list">
-        <div class="scroll-btn-container">
-            <button id="evil-wings-10-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/10.png">
-            </button>
-            <p>스마공10%</p>
-            <p>마법공격력+5</p>
-            <p>INT+3</p>
-            <p>마법방어력+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="evil-wings-60-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/60.png">
-            </button>
-            <p>스마공60%</p>
-            <p>마법공격력+2</p>
-            <p>INT+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="evil-wings-100-percent-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/scroll/100.png">
-            </button>
-            <p>스마공100%</p>
-            <p>마법공격력+1</p>
-        </div>
-        <div class="scroll-btn-container">
-            <button id="evil-wings-reset-button" class ="scroll-button" type="button">
-                <img class="scroll-image" src="img/etc/reset.svg">
-            </button>
-        </div>
-    </div>
 
 
     <script type="module" src="./js/work-glove.js"></script>
