@@ -82,7 +82,7 @@ hundredPercentButton.addEventListener('click', function () {
     let upgradedCount = parseInt(upgradedCountObject.innerHTML);
 
     if (availableCount <= 0) {
-        alert('강화 횟수를 초과하였습니다!')
+        alert('강화 횟수를 초과하였습니다')
         return
     }
 

@@ -1,6 +1,3 @@
-let successMp3 = new Audio('../sound/scroll/success.mp3');
-let failMp3 = new Audio('../sound/scroll/fail.mp3');
-
 export function getRandomResult(percentage) {
     const count = percentage / 10;
     let result = Math.floor(Math.random() * 10 + 1);
@@ -11,10 +8,6 @@ export function getRandomResult(percentage) {
 export function reduceCount(object) {
     object.innerHTML = (parseInt(object.innerHTML) - 1).toString()
 }
-
-// const reduceCount = function(countObject) {
-//     countObject.innerHTML = (parseInt(countObject.innerHTML) - 1).toString()
-// }
 
 export function changeColor(object, value) {
     if (value <= 0){
@@ -30,12 +23,16 @@ export function changeColor(object, value) {
     }
 }
 
+export function playFailureSound() {
+    let failMp3 = new Audio('../sound/scroll/fail.mp3');
+    failMp3.volume = 0.3
+    failMp3.currentTime = 0;
+    failMp3.play();
+}
 export function playSuccessSound() {
+    let successMp3 = new Audio('../sound/scroll/success.mp3');
+    successMp3.volume = 0.3
     successMp3.currentTime = 0;
     successMp3.play();
 }
 
-export function playFailSound() {
-    failMp3.currentTime = 0;
-    failMp3.play();
-}
