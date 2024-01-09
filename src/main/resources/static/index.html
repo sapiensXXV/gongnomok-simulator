@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="css/custom/default.css">
 
 <body>
+    <div class="guide-img-container">
+        <!--가이드 이미지 넣기-->
+    </div>
     <div class="item-container">
         <!--노가다 목장갑-->
         <div class="item">
@@ -80,18 +83,30 @@
                 </div>
             </div>
 
-            <div class="item--price-calculator-container">
+            <div class="item-price-calculator-container">
                 <div class="item-price-input">
-                    <label>10% 가격: </label>
+                    <label for="work-glove-10-price">10% 가격: </label>
                     <input type="text" id="work-glove-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
+                    <span class="scroll-use-info">
+                        <span id="work-glove-10-success-cnt">0</span>장 /
+                        <span id="work-glove-10-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-input">
-                    <label>60% 가격: </label>
+                    <label for="work-glove-60-price">60% 가격: </label>
                     <input type="text" id="work-glove-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
+                    <span class="scroll-use-info">
+                        <span id="work-glove-60-success-cnt">0</span>장 /
+                        <span id="work-glove-60-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-input">
-                    <label>100% 가격: </label>
-                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
+                    <label for="work-glove-100-price">100% 가격: </label>
+                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0">
+                    <span class="scroll-use-info">
+                        <span id="work-glove-100-success-cnt">0</span>장 /
+                        <span id="work-glove-100-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-info">
                     <div class="item-price-result">
@@ -187,18 +202,30 @@
                     </button>
                 </div>
             </div>
-            <div class="item--price-calculator-container">
+            <div class="item-price-calculator-container">
                 <div class="item-price-input">
-                    <label>10% 가격: </label>
+                    <label for="dark-avarice-10-price">10% 가격: </label>
                     <input type="text" id="dark-avarice-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
+                    <span class="scroll-use-info">
+                        <span id="dark-avarice-10-success-cnt">0</span>장 /
+                        <span id="dark-avarice-10-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-input">
-                    <label>60% 가격: </label>
+                    <label for="dark-avarice-60-price">60% 가격: </label>
                     <input type="text" id="dark-avarice-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
+                    <span class="scroll-use-info">
+                        <span id="dark-avarice-60-success-cnt">0</span>장 /
+                        <span id="dark-avarice-60-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-input">
-                    <label>100% 가격: </label>
+                    <label for="dark-avarice-100-price">100% 가격: </label>
                     <input type="text" id="dark-avarice-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
+                    <span class="scroll-use-info">
+                        <span id="dark-avarice-100-success-cnt">0</span>장 /
+                        <span id="dark-avarice-100-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-info">
                     <div class="item-price-result">
@@ -295,18 +322,30 @@
                     </button>
                 </div>
             </div>
-            <div class="item--price-calculator-container">
+            <div class="item-price-calculator-container">
                 <div class="item-price-input">
-                    <label>10% 가격: </label>
-                    <input type="text" id="evil-wings-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateEvilWingsTotalPrice()">
+                    <label for="evil-wings-10-price">10% 가격: </label>
+                    <input type="text" id="evil-wings-10-price" placeholder=" 가격을 입력하세요" value="0" >
+                    <span class="scroll-use-info">
+                        <span id="evil-wings-10-success-cnt">0</span>장 /
+                        <span id="evil-wings-10-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-input">
-                    <label>60% 가격: </label>
-                    <input type="text" id="evil-wings-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateEvilWingsTotalPrice()">
+                    <label for="evil-wings-60-price">60% 가격: </label>
+                    <input type="text" id="evil-wings-60-price" placeholder=" 가격을 입력하세요" value="0">
+                    <span class="scroll-use-info">
+                        <span id="evil-wings-60-success-cnt">0</span>장 /
+                        <span id="evil-wings-60-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-input">
-                    <label>100% 가격: </label>
-                    <input type="text" id="evil-wings-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateEvilWingsTotalPrice()">
+                    <label for="evil-wings-100-price">100% 가격: </label>
+                    <input type="text" id="evil-wings-100-price" placeholder=" 가격을 입력하세요" value="0">
+                    <span class="scroll-use-info">
+                        <span id="evil-wings-100-success-cnt">0</span>장 /
+                        <span id="evil-wings-100-used-cnt">0</span>장
+                    </span>
                 </div>
                 <div class="item-price-info">
                     <div class="item-price-result">

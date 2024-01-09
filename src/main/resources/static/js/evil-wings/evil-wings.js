@@ -7,7 +7,7 @@ let defaultMgAtk = 80;
 let defaultAvailableCount = 7;
 let defaultAcc = 0;
 
-let gloveImgPath = '../img/weapon/work-glove.png';
+let evilWingsImgPath = '../img/weapon/evil-wings.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 
@@ -27,6 +27,11 @@ let sixtyPerBtn = document.getElementById('evil-wings-60-percent-button');
 let hundredPerBtn = document.getElementById('evil-wings-100-percent-button');
 let resetBtn = document.getElementById('evil-wings-reset-button');
 
+// 주문서 시도 횟수
+let evilWingsTenTrial = 0;
+let evilWingsSixtyTrial = 0;
+let evilWingsHundredTrial = 0;
+
 /**
  * 옵션 버튼 이벤트 리스너
  */
@@ -35,7 +40,7 @@ normalOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 80;
     defaultPhyAtk = 53
-    reset();
+    resetItem();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -45,7 +50,7 @@ oneUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 81;
     defaultPhyAtk = 54;
-    reset();
+    resetItem();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -55,7 +60,7 @@ twoUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 82;
     defaultPhyAtk = 55;
-    reset();
+    resetItem();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -65,7 +70,7 @@ threeUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 83;
     defaultPhyAtk = 56;
-    reset();
+    resetItem();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -75,7 +80,7 @@ fourUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 84;
     defaultPhyAtk = 57
-    reset();
+    resetItem();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -85,7 +90,7 @@ fiveUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 85;
     defaultPhyAtk = 58
-    reset();
+    resetItem();
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -97,34 +102,49 @@ fiveUpperOptionBtn.addEventListener('click', function() {
 tenPerBtn.addEventListener('click', function() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(10)) {
-        success(5, 3, 1);
+        success(5, 3, 1, 10);
     } else {
         fail()
     }
+
+    let usedCnt = document.getElementById('evil-wings-10-used-cnt');
+    evilWingsTenTrial++;
+    usedCnt.textContent = evilWingsTenTrial.toString();
+    recalculateEvilWingsTotalPrice();
 })
 
 sixtyPerBtn.addEventListener('click', function() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(60)) {
-        success(2, 1, 0);
+        success(2, 1, 0, 60);
     } else {
         fail();
     }
+
+    let usedCnt = document.getElementById('evil-wings-60-used-cnt');
+    evilWingsSixtyTrial++;
+    usedCnt.textContent = evilWingsSixtyTrial.toString();
+    recalculateEvilWingsTotalPrice();
 });
 
 hundredPerBtn.addEventListener('click', function () {
     if (!checkAvailableCount()) return
-    success(1, 0, 0);
+    success(1, 0, 0, 100);
+
+    let usedCnt = document.getElementById('evil-wings-100-used-cnt');
+    evilWingsHundredTrial++;
+    usedCnt.textContent = evilWingsHundredTrial.toString();
+    recalculateEvilWingsTotalPrice();
 });
 
 resetBtn.addEventListener('click', function () {
-    reset();
+    resetItem();
 });
 
 /**
  * 공용 함수
  */
-function reset() {
+function resetItem() {
     let phyAtk = document.getElementById('evil-wings-phy-atk'); // 물리공격력
     let mgAtk = document.getElementById('evil-wings-mg-atk'); // 마법공격력
     let intV = document.getElementById('evil-wings-int'); // INT
@@ -145,14 +165,13 @@ function reset() {
     util.changeColor(title, parseInt(mgAtk.textContent) - defaultMgAtk);
 }
 
-function success(mgAtk, intV, mgDef) {
+function success(mgAtk, intV, mgDef, percent) {
     console.log(' scroll success');
 
     let upgradedCountElem = document.getElementById('evil-wings-upgraded-count');
     let additionalElem = document.getElementById('evil-wings-additional');
     let title = document.getElementById('evil-wings-title');
     let availableCount = document.getElementById('evil-wings-upgrade-available-count');
-
     let mgAtkElem = document.getElementById('evil-wings-mg-atk');
     let intElem = document.getElementById('evil-wings-int');
     let mgDefElem = document.getElementById('evil-wings-mg-def');
@@ -174,7 +193,22 @@ function success(mgAtk, intV, mgDef) {
     //sound
     util.playSuccessSound(); // 강화성공 소리 재생
     reduceAvailableCount(availableCount); // 강화 가능횟수 감소
+    addSuccessCnt(percent)
+
     playSuccessEffect()
+}
+
+function addSuccessCnt(percent) {
+    if (percent === 10) {
+        let successCnt = document.getElementById('evil-wings-10-success-cnt');
+        successCnt.textContent = (parseInt(successCnt.textContent) + 1).toString();
+    } else if (percent === 60) {
+        let successCnt = document.getElementById('evil-wings-60-success-cnt');
+        successCnt.textContent = (parseInt(successCnt.textContent) + 1).toString();
+    } else if (percent === 100) {
+        let successCnt = document.getElementById('evil-wings-100-success-cnt');
+        successCnt.textContent = (parseInt(successCnt.textContent) + 1).toString();
+    }
 }
 
 
@@ -207,7 +241,7 @@ function playSuccessEffect() {
     gifImg.hidden = false;
     gifImg.src = successGifPath;
     timer = setTimeout(function () {
-        gifImg.src = gloveImgPath
+        gifImg.src = evilWingsImgPath
         gifImg.hidden = true;
     }, 1000);
 }
@@ -218,7 +252,73 @@ function playFailEffect() {
     gifImg.hidden = false;
     gifImg.src = failureGifPath;
     timer = setTimeout(function () {
-        gifImg.src = gloveImgPath
+        gifImg.src = evilWingsImgPath
         gifImg.hidden = true;
     }, 1000);
+}
+
+/**
+ * 주문서 총 사용가격관련 로직
+ */
+
+let evilWingsTenInput = document.getElementById('evil-wings-10-price'); // 10퍼센트 가격
+let evilWingsSixtyInput = document.getElementById('evil-wings-60-price'); // 60퍼센트 가격
+let evilWingsHundredInput = document.getElementById('evil-wings-100-price'); // 100퍼센트 가격
+let evilWingsPriceResetBtn = document.getElementById('evil-wings-price-reset-btn') // 리셋 버튼
+
+evilWingsTenInput.oninput = () => {
+    recalculateEvilWingsTotalPrice();
+}
+
+evilWingsSixtyInput.oninput = () => {
+    recalculateEvilWingsTotalPrice();
+}
+
+evilWingsHundredInput.oninput = () => {
+    recalculateEvilWingsTotalPrice();
+}
+
+function recalculateEvilWingsTotalPrice() {
+    let tenInputElem = document.getElementById('evil-wings-10-price');
+    let sixtyInputElem = document.getElementById('evil-wings-60-price');
+    let hundredInputElem = document.getElementById('evil-wings-100-price');
+    let usedPriceElem = document.getElementById('evil-wings-total-used-price');
+
+    let tenInput = parseInt(tenInputElem.value);
+    let sixtyInput = parseInt(sixtyInputElem.value);
+    let hundredInput = parseInt(hundredInputElem.value);
+
+    usedPriceElem.textContent = (
+        tenInput * evilWingsTenTrial +
+        sixtyInput * evilWingsSixtyTrial +
+        hundredInput * evilWingsHundredTrial
+    ).toLocaleString();
+}
+
+/**
+ * 가격 리셋 로직
+ */
+evilWingsPriceResetBtn.addEventListener('click', function () {
+    resetWorkGlovePrice()
+});
+
+function resetWorkGlovePrice() {
+    let tenSuccessCnt = document.getElementById('evil-wings-10-success-cnt');
+    let sixtySuccessCnt = document.getElementById('evil-wings-60-success-cnt');
+    let hundredSuccessCnt = document.getElementById('evil-wings-100-success-cnt');
+    let tenUsedCnt = document.getElementById('evil-wings-10-used-cnt');
+    let sixtyUsedCnt = document.getElementById('evil-wings-60-used-cnt');
+    let hundredUsedCnt = document.getElementById('evil-wings-100-used-cnt');
+
+    tenSuccessCnt.textContent = '0';
+    sixtySuccessCnt.textContent = '0';
+    hundredSuccessCnt.textContent = '0';
+    tenUsedCnt.textContent = '0';
+    sixtyUsedCnt.textContent = '0';
+    hundredUsedCnt.textContent = '0';
+
+    evilWingsTenTrial = 0;
+    evilWingsSixtyTrial = 0;
+    evilWingsHundredTrial = 0;
+    recalculateEvilWingsTotalPrice();
 }

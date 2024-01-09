@@ -27,27 +27,32 @@ let sixtyPerBtn = document.getElementById('dark-avarice-60-percent-button');
 let hundredPerBtn = document.getElementById('dark-avarice-100-percent-button');
 let resetBtn = document.getElementById('dark-avarice-reset-button');
 
+// 주문서 시도 횟수
+let darkAvariceTenTrial = 0;
+let darkAvariceSixtyTrial = 0;
+let darkAvariceHundredTrial = 0;
+
 /**
  * 옵션 버튼 이벤트 리스너
  */
 normalOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     defaultPhysicAtk = 22
-    reset();
+    resetItem();
     darkAvariceAtk.textContent = defaultPhysicAtk.toString()
 });
 
 oneUpperOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     defaultPhysicAtk = 23
-    reset();
+    resetItem();
     darkAvariceAtk.textContent = (defaultPhysicAtk).toString()
 });
 
 twoUpperOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     defaultPhysicAtk = 24
-    reset();
+    resetItem();
     darkAvariceAtk.textContent = (defaultPhysicAtk).toString()
 });
 
@@ -55,7 +60,7 @@ threeUpperOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     let darkAvariceLuk = document.getElementById('dark-avarice-luk');
     defaultPhysicAtk = 25
-    reset();
+    resetItem();
     darkAvariceAtk.textContent = (defaultPhysicAtk).toString();
     darkAvariceLuk.textContent = (defaultLuk + 1).toString();
 });
@@ -66,46 +71,49 @@ threeUpperOptionBtn.addEventListener('click', function() {
 tenPerBtn.addEventListener('click', function() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(10)) {
-        success(5, 3, 1);
+        success(5, 3, 1, 10);
     } else {
         fail()
     }
+
+    let usedCnt = document.getElementById('dark-avarice-10-used-cnt');
+    darkAvariceTenTrial++
+    usedCnt.textContent = darkAvariceTenTrial.toString();
+    recalculateDarkAvariceTotalPrice();
 })
 
 sixtyPerBtn.addEventListener('click', function() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(60)) {
-        success(2, 1, 0);
+        success(2, 1, 0, 60);
     } else {
         fail();
     }
+
+    let usedCnt = document.getElementById('dark-avarice-60-used-cnt');
+    darkAvariceSixtyTrial++
+    usedCnt.textContent = darkAvariceSixtyTrial.toString();
+    recalculateDarkAvariceTotalPrice();
 });
 
 hundredPerBtn.addEventListener('click', function () {
     if (!checkAvailableCount()) return
-    success(1, 0, 0);
+    success(1, 0, 0, 100);
+
+    let usedCnt = document.getElementById('dark-avarice-100-used-cnt');
+    darkAvariceHundredTrial++
+    usedCnt.textContent = darkAvariceHundredTrial.toString();
+    recalculateDarkAvariceTotalPrice();
 });
 
 resetBtn.addEventListener('click', function () {
-    reset();
+    resetItem();
 });
 
 /**
  * 공용 함수
  */
-function reset() {
-    /**
-     * 초기화 해야할 내용
-     * 1. 물리공격력
-     * 2. 물리 방어력
-     * 3. 럭
-     * 4. 업그레이드 가능 횟수
-     * 5. 명중률
-     * 6. 타이틀 강화 성공횟수
-     *
-     * - 명중률은 기본 옵션에 없으므로 숨김처리
-     * - 타이틀의 강화횟수를 0으로 만들고 숨김처리
-     */
+function resetItem() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     let darkAvariceDef = document.getElementById('dark-avarice-phy-def');
     let darkAvariceLuk = document.getElementById('dark-avarice-luk');
@@ -123,14 +131,14 @@ function reset() {
     darkAvariceAcc.textContent = defaultAcc.toString()
     darkAvariceAccText.hidden = true; // 숨김. 주문서를 바르기 전에는 없는 옵션
     additionalElem.hidden = true;
+    upgradedCount.textContent = '0'
 
     let title = document.getElementById('dark-avarice-title');
     util.changeColor(title, parseInt(darkAvariceAtk.textContent) - defaultPhysicAtk);
-    upgradedCount.textContent = '0'
 }
 
-function success(pyAtk, acc, luk) {
-    console.log('success');
+function success(pyAtk, acc, luk, percent) {
+    console.log('scroll success');
     let upgradedCountElem = document.getElementById('dark-avarice-upgraded-count');
     let additionalElem = document.getElementById('dark-avarice-additional');
     let pyAtkElem = document.getElementById('dark-avarice-phy-atk');
@@ -152,16 +160,30 @@ function success(pyAtk, acc, luk) {
         accElemText.hidden = false;
     }
 
-    util.playSuccessSound();
-    reduceAvailableCount(availableCount);
-    playSuccessEffect()
+    util.playSuccessSound(); // 성공 소리재생
+    reduceAvailableCount(availableCount); // 업그레이드 가능 횟수 감소
+    addSuccessCnt(percent) // 성공 카운트 증가
+    playSuccessEffect() // 성공시 소리 재생
 }
 
+function addSuccessCnt(percent) {
+    if (percent === 10) {
+        let successCnt = document.getElementById('dark-avarice-10-success-cnt');
+        successCnt.textContent = (parseInt(successCnt.textContent) + 1).toString();
+    } else if (percent === 60) {
+        let successCnt = document.getElementById('dark-avarice-60-success-cnt');
+        successCnt.textContent = (parseInt(successCnt.textContent) + 1).toString();
+    } else if (percent === 100) {
+        let successCnt = document.getElementById('dark-avarice-100-success-cnt');
+        successCnt.textContent = (parseInt(successCnt.textContent) + 1).toString();
+    }
+}
 
 function fail() {
+    console.log('scroll fail')
+
     let availableCount = document.getElementById('dark-avarice-upgrade-available-count');
     reduceAvailableCount(availableCount);
-    console.log('fail!')
     util.playFailureSound()
     playFailEffect()
 }
@@ -200,4 +222,70 @@ function playFailEffect() {
         gifImg.src = gloveImgPath
         gifImg.hidden = true;
     }, 1000);
+}
+
+/**
+ * 주문서 총 사용가격 로직
+ */
+
+let darkAvariceTenInput = document.getElementById('dark-avarice-10-price'); // 10퍼센트 가격
+let darkAvariceSixtyInput = document.getElementById('dark-avarice-60-price'); // 60퍼센트 가격
+let darkAvariceHundredInput = document.getElementById('dark-avarice-100-price'); // 100퍼센트 가격
+let darkAvaricePriceResetBtn = document.getElementById('dark-avarice-price-reset-btn') // 리셋 버튼
+
+darkAvariceTenInput.oninput = () => {
+    recalculateDarkAvariceTotalPrice();
+}
+
+darkAvariceSixtyInput.oninput = () => {
+    recalculateDarkAvariceTotalPrice();
+}
+
+darkAvariceHundredInput.oninput = () => {
+    recalculateDarkAvariceTotalPrice();
+}
+
+function recalculateDarkAvariceTotalPrice() {
+    let tenInputElem = document.getElementById('dark-avarice-10-price');
+    let sixtyInputElem = document.getElementById('dark-avarice-60-price');
+    let hundredInputElem = document.getElementById('dark-avarice-100-price');
+    let usedPriceElem = document.getElementById('dark-avarice-total-used-price');
+
+    let tenInput = parseInt(tenInputElem.value);
+    let sixtyInput = parseInt(sixtyInputElem.value);
+    let hundredInput = parseInt(hundredInputElem.value);
+
+    usedPriceElem.textContent = (
+        tenInput * darkAvariceTenTrial +
+        sixtyInput * darkAvariceSixtyTrial +
+        hundredInput * darkAvariceHundredTrial
+    ).toLocaleString();
+}
+
+/**
+ * 주문서 총 가격 리셋 로직
+ */
+darkAvaricePriceResetBtn.addEventListener('click', function () {
+    resetWorkGlovePrice()
+});
+
+function resetWorkGlovePrice() {
+    let tenSuccessCnt = document.getElementById('dark-avarice-10-success-cnt');
+    let sixtySuccessCnt = document.getElementById('dark-avarice-60-success-cnt');
+    let hundredSuccessCnt = document.getElementById('dark-avarice-100-success-cnt');
+    let tenUsedCnt = document.getElementById('dark-avarice-10-used-cnt');
+    let sixtyUsedCnt = document.getElementById('dark-avarice-60-used-cnt');
+    let hundredUsedCnt = document.getElementById('dark-avarice-100-used-cnt');
+
+    tenSuccessCnt.textContent = '0';
+    sixtySuccessCnt.textContent = '0';
+    hundredSuccessCnt.textContent = '0';
+    tenUsedCnt.textContent = '0';
+    sixtyUsedCnt.textContent = '0';
+    hundredUsedCnt.textContent = '0';
+
+    darkAvariceTenTrial = 0;
+    darkAvariceSixtyTrial = 0;
+    darkAvariceHundredTrial = 0;
+    recalculateDarkAvariceTotalPrice();
 }
