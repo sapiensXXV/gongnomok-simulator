@@ -13,6 +13,12 @@ let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 let timer = null;
 
+// 주문서 시도 횟수 메소리셋버튼을 누르면 이 값들만 0으로 만들어주면 된다
+let tenTrial = 0;
+let sixtyTrial = 0;
+let hundredTrial = 0;
+
+
 tenPercentButton.addEventListener('click', function () {
     if (!checkAvailableCount()) return;
     if (util.getRandomResult(10)) {
@@ -60,6 +66,7 @@ function success(atk) {
 
     playSuccessEffect()
 }
+
 
 function fail() {
     console.log('scroll fail');

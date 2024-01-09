@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>강화 시뮬레이터</title>
+    <title>메이플 주문서 시뮬레이터</title>
     <link rel="icon" href="./10-raw.png">
 </head>
-<link rel="stylesheet" href="css/default.css">
+<!--<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/custom/default.css">
+
 <body>
     <div class="item-container">
         <!--노가다 목장갑-->
@@ -13,7 +15,6 @@
             <div class="item-info">
                 <p id="work-glove-title" class="item-title">
                     노가다 목장갑<span id="work-glove-additional" hidden="hidden"> (+<span id="work-glove-upgraded-count">0</span>)</span></p>
-
                 <!-- 아이템 이미지, 필요 능력치-->
                 <div class="image-and-status" >
                     <div class="tmp-container">
@@ -78,7 +79,29 @@
                     </button>
                 </div>
             </div>
+            <div class="item--price-calculator-container">
+                <div class="item-price-input">
+                    <label>10% 가격: </label>
+                    <input type="text" id="work-glove-10-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-input">
+                    <label>60% 가격: </label>
+                    <input type="text" id="work-glove-60-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-input">
+                    <label>100% 가격: </label>
+                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-info">
+                    <div class="item-price-result">
+                        <img src ="img/etc/meso.png" width="30px" height="30px">
+                        <span id="work-glove-total-used-price">0</span>
+                    </div>
+                    <button class="item-price-result-btn" id="work-glove-price-reset-btn">리셋</button>
+                </div>
+            </div>
         </div>
+
 
         <!--다크 보닌-->
         <div class="item">
@@ -132,7 +155,6 @@
                 <button id="dark-avarice-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
             </div>
 
-
             <div class="scroll-list">
                 <div class="scroll-btn-container">
                     <button id="dark-avarice-10-percent-button" class ="scroll-button" type="button">
@@ -162,6 +184,27 @@
                     <button id="dark-avarice-reset-button" class ="scroll-button" type="button">
                         <img class="scroll-image" src="img/etc/reset.svg">
                     </button>
+                </div>
+            </div>
+            <div class="item--price-calculator-container">
+                <div class="item-price-input">
+                    <label>10% 가격: </label>
+                    <input type="text" id="dark-avarice-10-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-input">
+                    <label>60% 가격: </label>
+                    <input type="text" id="dark-avarice-60-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-input">
+                    <label>100% 가격: </label>
+                    <input type="text" id="dark-avarice-100-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-info">
+                    <div class="item-price-result">
+                        <img src ="img/etc/meso.png" width="30px" height="30px">
+                        <span id="dark-avarice-total-used-price">0</span>
+                    </div>
+                    <button class="item-price-result-btn" id="dark-avarice-price-reset-btn">리셋</button>
                 </div>
             </div>
         </div>
@@ -249,6 +292,27 @@
                     <button id="evil-wings-reset-button" class ="scroll-button" type="button">
                         <img class="scroll-image" src="img/etc/reset.svg">
                     </button>
+                </div>
+            </div>
+            <div class="item--price-calculator-container">
+                <div class="item-price-input">
+                    <label>10% 가격: </label>
+                    <input type="text" id="evil-wings-10-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-input">
+                    <label>60% 가격: </label>
+                    <input type="text" id="evil-wings-60-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-input">
+                    <label>100% 가격: </label>
+                    <input type="text" id="evil-wings-100-price" placeholder=" 가격을 입력하세요" value="0">
+                </div>
+                <div class="item-price-info">
+                    <div class="item-price-result">
+                        <img src ="img/etc/meso.png" width="30px" height="30px">
+                        <span id="evil-wings-total-used-price">0</span>
+                    </div>
+                    <button class="item-price-result-btn" id="evil-wings-price-reset-btn">리셋</button>
                 </div>
             </div>
         </div>

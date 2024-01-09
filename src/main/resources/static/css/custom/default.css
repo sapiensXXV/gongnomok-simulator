@@ -159,9 +159,73 @@ p.item-title {
 }
 
 .scroll-image {
-    height: 47px;
+    height: 44px;
 }
 
 .nomok-power {
     display: inline-block;
 }
+
+.item--price-calculator-container {
+    font-size: 15px;
+    font-family: "Noto Sans KR";
+}
+
+.item-price-input {
+    margin-bottom: 3px;
+}
+
+.item-price-input label {
+    display: inline-block;
+    text-align: left;
+    width: 80px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.item-price-input input {
+    width: 200px;
+    height: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.item-price-info {
+    margin-top: 10px;
+    display: flex
+}
+
+.item-price-result {
+    display: flex;
+    width: 265px
+
+}
+
+.item-price-result img {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.item-price-result button {
+    float: right;
+    font-weight: bold;
+}
+
+
+.item-price-result span {
+    font-size: 18px;
+
+}
+
+item-price-result #work-glove-reset-btn {
+    display: inline-block;
+    float: right;
+}
+
+.item--price-calculator-container input {
+    height: 18px;
+    border: #0d6efd solid 1px;
+    border-radius: 5px;
+}
+
+
