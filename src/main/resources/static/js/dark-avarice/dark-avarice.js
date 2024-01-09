@@ -1,4 +1,4 @@
-import * as util from "./util.js";
+import * as util from "../util.js";
 // import {changeColor} from "./util.js";
 
 // 속성 값들

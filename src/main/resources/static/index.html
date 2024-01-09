@@ -79,18 +79,19 @@
                     </button>
                 </div>
             </div>
+
             <div class="item--price-calculator-container">
                 <div class="item-price-input">
                     <label>10% 가격: </label>
-                    <input type="text" id="work-glove-10-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="work-glove-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
                 </div>
                 <div class="item-price-input">
                     <label>60% 가격: </label>
-                    <input type="text" id="work-glove-60-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="work-glove-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
                 </div>
                 <div class="item-price-input">
                     <label>100% 가격: </label>
-                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
                 </div>
                 <div class="item-price-info">
                     <div class="item-price-result">
@@ -189,15 +190,15 @@
             <div class="item--price-calculator-container">
                 <div class="item-price-input">
                     <label>10% 가격: </label>
-                    <input type="text" id="dark-avarice-10-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="dark-avarice-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
                 </div>
                 <div class="item-price-input">
                     <label>60% 가격: </label>
-                    <input type="text" id="dark-avarice-60-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="dark-avarice-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
                 </div>
                 <div class="item-price-input">
                     <label>100% 가격: </label>
-                    <input type="text" id="dark-avarice-100-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="dark-avarice-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
                 </div>
                 <div class="item-price-info">
                     <div class="item-price-result">
@@ -297,15 +298,15 @@
             <div class="item--price-calculator-container">
                 <div class="item-price-input">
                     <label>10% 가격: </label>
-                    <input type="text" id="evil-wings-10-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="evil-wings-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateEvilWingsTotalPrice()">
                 </div>
                 <div class="item-price-input">
                     <label>60% 가격: </label>
-                    <input type="text" id="evil-wings-60-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="evil-wings-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateEvilWingsTotalPrice()">
                 </div>
                 <div class="item-price-input">
                     <label>100% 가격: </label>
-                    <input type="text" id="evil-wings-100-price" placeholder=" 가격을 입력하세요" value="0">
+                    <input type="text" id="evil-wings-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateEvilWingsTotalPrice()">
                 </div>
                 <div class="item-price-info">
                     <div class="item-price-result">
@@ -318,9 +319,12 @@
         </div>
     </div>
 
-    <script type="module" src="./js/work-glove.js"></script>
-    <script type="module" src="./js/dark-avarice.js"></script>
-    <script type="module" src="./js/evil-wings.js"></script>
+    <script type="module" src="./js/work-glove/work-glove.js"></script>
+    <script type="module" src="./js/dark-avarice/dark-avarice.js"></script>
+    <script type="module" src="./js/evil-wings/evil-wings.js"></script>
+    <script type="text/javascript" src="./js/work-glove/price.js"></script>
+    <script type="text/javascript" src="./js/dark-avarice/price.js"></script>
+    <script type="text/javascript" src="./js/evil-wings/price.js"></script>
 
 </body>
 </html>

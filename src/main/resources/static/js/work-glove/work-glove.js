@@ -1,10 +1,13 @@
-import * as util from "./util.js";
-import {reduceCount} from "./util.js";
+import * as util from "../util.js";
+import {reduceCount} from "../util.js";
 
-const tenPercentButton =  document.getElementById('work-glove-10-percent-button')
-const sixtyPercentButton =  document.getElementById('work-glove-60-percent-button')
-const hundredPercentButton =  document.getElementById('work-glove-100-percent-button')
-const resetButton = document.getElementById('work-glove-reset-button')
+/**
+ * 주문서 버튼
+ */
+let tenPercentButton =  document.getElementById('work-glove-10-percent-button')
+let sixtyPercentButton =  document.getElementById('work-glove-60-percent-button')
+let hundredPercentButton =  document.getElementById('work-glove-100-percent-button')
+let resetButton = document.getElementById('work-glove-reset-button')
 
 let defaultAtk = 0
 
@@ -13,11 +16,7 @@ let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 let timer = null;
 
-// 주문서 시도 횟수 메소리셋버튼을 누르면 이 값들만 0으로 만들어주면 된다
-let tenTrial = 0;
-let sixtyTrial = 0;
-let hundredTrial = 0;
-
+let priceResetBtn = document.getElementById('work-glove-price-reset-btn');
 
 tenPercentButton.addEventListener('click', function () {
     if (!checkAvailableCount()) return;
@@ -46,6 +45,22 @@ resetButton.addEventListener('click', function () {
     resetItem();
 });
 
+/**
+ * 가격입력 텍스트 변화 이벤트
+ */
+
+// export function reCalculateTotalPay() {
+//     let tenInput = document.getElementById('work-glove-10-price').value;
+//     let sixtyInput = document.getElementById('work-glove-60-price').value;
+//     let hundredInput = document.getElementById('work-glove-100-price').value;
+//
+//     console.log(typeof tenInput);
+// }
+
+/**
+ * function
+ */
+
 function success(atk) {
     console.log('scroll success');
     let gloveAtkElem = document.getElementById('work-glove-power')
@@ -66,7 +81,6 @@ function success(atk) {
 
     playSuccessEffect()
 }
-
 
 function fail() {
     console.log('scroll fail');
