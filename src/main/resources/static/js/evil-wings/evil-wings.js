@@ -144,7 +144,7 @@ resetBtn.addEventListener('click', function () {
 /**
  * 공용 함수
  */
-function resetItem() {
+export function resetItem() {
     let phyAtk = document.getElementById('evil-wings-phy-atk'); // 물리공격력
     let mgAtk = document.getElementById('evil-wings-mg-atk'); // 마법공격력
     let intV = document.getElementById('evil-wings-int'); // INT
@@ -162,7 +162,9 @@ function resetItem() {
     additionalTitle.hidden = true
 
     let title = document.getElementById('evil-wings-title');
+    let alertTxt = document.getElementById('evil-wings-available-alert-txt');
     util.changeColor(title, parseInt(mgAtk.textContent) - defaultMgAtk);
+    alertTxt.hidden = true;
 }
 
 function success(mgAtk, intV, mgDef, percent) {
@@ -228,8 +230,9 @@ function reduceAvailableCount(availableCount) {
 function checkAvailableCount() {
     let availableCount = document.getElementById('evil-wings-upgrade-available-count');
     let count = parseInt(availableCount.textContent);
+    let alertTxt = document.getElementById('evil-wings-available-alert-txt');
     if (count <= 0) {
-        alert('강화 횟수를 초과하였습니다');
+        alertTxt.hidden = false;
         return false;
     }
     return true;

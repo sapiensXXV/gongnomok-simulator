@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@700&display=swap');
+
+.header-container {
+    text-align: center;
+}
+
+.header-container img {
+    display: inline-block;
+}
+
+.simulator-guide summary {
+    font-family: 'IBM Plex Sans KR';
+    font-size: 22px;
+}
 
 .item-info-container {
     text-align: left;
@@ -128,6 +142,12 @@ p.item-title {
 
 .job {
     word-spacing: 9px;
+}
+
+.available-alert-text {
+    font-family: "Noto Sans KR";
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .scroll-list {

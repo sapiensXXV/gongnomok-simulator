@@ -113,7 +113,8 @@ resetBtn.addEventListener('click', function () {
 /**
  * 공용 함수
  */
-function resetItem() {
+export function resetItem() {
+
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     let darkAvariceDef = document.getElementById('dark-avarice-phy-def');
     let darkAvariceLuk = document.getElementById('dark-avarice-luk');
@@ -134,7 +135,9 @@ function resetItem() {
     upgradedCount.textContent = '0'
 
     let title = document.getElementById('dark-avarice-title');
+    let alertTxt = document.getElementById('dark-avarice-available-alert-txt');
     util.changeColor(title, parseInt(darkAvariceAtk.textContent) - defaultPhysicAtk);
+    alertTxt.hidden = true;
 }
 
 function success(pyAtk, acc, luk, percent) {
@@ -195,8 +198,9 @@ function reduceAvailableCount(availableCount) {
 function checkAvailableCount() {
     let availableCount = document.getElementById('dark-avarice-upgrade-available-count');
     let count = parseInt(availableCount.textContent);
+    let alertTxt = document.getElementById('dark-avarice-available-alert-txt');
     if (count <= 0) {
-        alert('강화 횟수를 초과하였습니다');
+        alertTxt.hidden = false;
         return false;
     }
     return true;

@@ -66,7 +66,7 @@ resetButton.addEventListener('click', function () {
     resetItem();
 });
 
-function resetItem() {
+export function resetItem() {
     let atkElem = document.getElementById('work-glove-power')
     let atkInfoElem = document.getElementById('work-glove-power-text')
     let availableCntElem = document.getElementById('work-glove-upgrade-available-count')
@@ -81,6 +81,9 @@ function resetItem() {
     availableCntElem.textContent = '5'
     upgradedCntElem.textContent = '0'
     titleAdditionalObject.hidden = true
+
+    let alertTxt = document.getElementById('work-glove-available-alert-txt');
+    alertTxt.hidden = true;
 }
 
 /**
@@ -132,8 +135,9 @@ function fail() {
 
 function checkAvailableCount() {
     let availableCount = document.getElementById('work-glove-upgrade-available-count');
+    let alertTxt = document.getElementById('work-glove-available-alert-txt');
     if (parseInt(availableCount.textContent) <= 0) {
-        alert('강화 횟수를 초과하였습니다');
+        alertTxt.hidden = false;
         return false;
     }
     return true;
