@@ -2,11 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@700&display=swap');
 
+
 .header-container {
     text-align: center;
 }
 
 .header-container img {
+    display: inline-block;
+}
+
+.guide-img-container {
+    text-align: center;
+}
+
+.guide-img-container img {
     display: inline-block;
 }
 
@@ -17,6 +26,7 @@
 
 .item-info-container {
     text-align: left;
+    border: 1px black solid;
 }
 
 .item-info {
@@ -42,7 +52,8 @@ p.item-title {
 }
 
 .item-container {
-
+    display: flex;
+    justify-content: center;
 }
 
 .item {

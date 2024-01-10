@@ -1,4 +1,4 @@
-import * as util from "../util.js";
+import * as util from "../../global/util.js";
 
 // 속성 값들
 let defaultAtkSpeed = 4;
@@ -34,6 +34,14 @@ let evilWingsCnt = 1;
 let evilWingsTenTrial = 0;
 let evilWingsSixtyTrial = 0;
 let evilWingsHundredTrial = 0;
+
+// R 핫키 이벤트, 아이템 상태 초기화
+window.addEventListener('keydown', (e) => {
+    let input = e.key;
+    if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
+        resetItem(true)
+    }
+});
 
 /**
  * 옵션 버튼 이벤트 리스너

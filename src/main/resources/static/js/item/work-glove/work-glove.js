@@ -1,5 +1,5 @@
-import * as util from "../util.js";
-import {reduceCount} from "../util.js";
+import * as util from "../../global/util.js";
+import {reduceCount} from "../../global/util.js";
 
 /**
  * 주문서 버튼
@@ -23,6 +23,15 @@ let workGloveCnt = 1;
 let workGloveTenTrial = 0;
 let workGloveSixtyTrial = 0;
 let workGloveHundredTrial = 0;
+
+// R 핫키 이벤트, 아이템 상태 초기화
+window.addEventListener('keydown', (e) => {
+    let input = e.key;
+    if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
+        resetItem(true)
+    }
+});
+
 
 tenPercentButton.addEventListener('click', function () {
     if (!checkAvailableCount()) return;
@@ -173,13 +182,13 @@ function playFailEffect() {
 /**
  * 주문서 총 사용가격관련 로직
  */
-let evilWingsPriceInput = document.getElementById('work-glove-price'); // 아이템 가격
+let workGlovePriceInput = document.getElementById('work-glove-price'); // 아이템 가격
 let workGloveTenInput = document.getElementById('work-glove-10-price'); // 10퍼센트 가격
 let workGloveSixtyInput = document.getElementById('work-glove-60-price'); // 60퍼센트 가격
 let workGloveHundredInput = document.getElementById('work-glove-100-price'); // 100퍼센트 가격
 let workGlovePriceResetBtn = document.getElementById('work-glove-price-reset-btn') // 리셋 버튼
 
-evilWingsPriceInput.oninput = () => {
+workGlovePriceInput.oninput = () => {
     recalculateWorkGloveTotalPrice()
 }
 

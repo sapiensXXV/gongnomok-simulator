@@ -1,5 +1,4 @@
-import * as util from "../util.js";
-// import {changeColor} from "./util.js";
+import * as util from "../../global/util.js";
 
 // 속성 값들
 let defaultAtkSpeed = 4;
@@ -34,6 +33,14 @@ let darkAvariceCnt = 1;
 let darkAvariceTenTrial = 0;
 let darkAvariceSixtyTrial = 0;
 let darkAvariceHundredTrial = 0;
+
+// R 핫키 이벤트, 아이템 상태 초기화
+window.addEventListener('keydown', (e) => {
+    let input = e.key;
+    if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
+        resetItem(true)
+    }
+});
 
 /**
  * 옵션 버튼 이벤트 리스너

@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>메이플 주문서 시뮬레이터</title>
+
     <link rel="icon" href="./img/weapon/work-glove.png">
+    <link rel="stylesheet" href="css/custom/default.css">
+    <link rel="stylesheet" href="css/custom/item-link.css">
+
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready( function() {
@@ -12,392 +16,30 @@
         });
     </script>
 </head>
-<!--<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">-->
-<link rel="stylesheet" href="css/custom/default.css">
 
 <body>
-    <script type="module" src="./js/global.js"></script>
     <div id="headers"></div>
-    <div class="item-container">
-        <!--노가다 목장갑-->
-        <div class="item">
-            <div class="item-info">
-                <p id="work-glove-title" class="item-title">
-                    노가다 목장갑<span id="work-glove-additional" hidden="hidden"> (+<span id="work-glove-upgraded-count">0</span>)</span></p>
-                <!-- 아이템 이미지, 필요 능력치-->
-                <div class="image-and-status" >
-                    <div class="tmp-container">
-                        <div class="img-container" id="work-glove-img-container">
-                            <img class="item-image" src="img/weapon/work-glove.png" width="60" height="60">
-                            <img class="item-image" id="work-glove-gif-img" src="img/weapon/work-glove.png"  width="60" height="90" hidden="hidden">
-                        </div>
-                    </div>
-                    <div class="required-status">
-                        <div class="user-status">
-                            <p>REQ LEV : 10</p>
-                            <p>REQ STR : 0</p>
-                            <p>REQ DEX : 0</p>
-                            <p>REQ INT : 0</p>
-                            <p>REQ LUK : 0</p>
-                            <p>REQ POP : -</p>
-                        </div>
-                        <div class="item-status">
-                            <p>ITEM LEV: - </p>
-                            <p>ITEM EXP: - </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!--착용가능 직업, 실제 능력치-->
-                <div class="etc-info">
-                    <p class="job">초보자  전사  마법사  궁수  도적  해적</p>
-                    <hr>
-                    <p>장비분류 : 장갑</p>
-                    <p hidden="hidden" id="work-glove-power-text">공격력 : +<span id="work-glove-power">0</span></p>
-                    <p>물리방어력 : +<span id="work-glove-physical-defence">3</span></p>
-                    <p>업그레이드 가능 횟수 : <span id="work-glove-upgrade-available-count">5</span></p>
-                </div>
+    <!--링크 아이콘-->
+    <div class="link-btn-container">
+        <button type="button" onclick="location.href='/armor/work-glove'">
+            <div class="link-btn-info">
+                <img src="img/weapon/work-glove.png"><br>
+                <span>노가다 목장갑</span>
             </div>
-            <div hidden="hidden" class="available-alert-text" id="work-glove-available-alert-txt">
-                <span style="color:#d03333">강화 횟수를 초과하였습니다.</span>
+        </button>
+        <button type="button" onclick="location.href='/weapon/dark-avarice'">
+            <div class="link-btn-info">
+                <img src="img/weapon/dark-avarice.png"><br>
+                <span>다크 보닌</span>
             </div>
-            <div class="scroll-list">
-                <div class="scroll-btn-container">
-                    <button id="work-glove-10-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/10.png">
-                    </button>
-                    <p>장공10%</p>
-                    <p>물리공격력+3</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="work-glove-60-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/60.png">
-                    </button>
-                    <p>장공60%</p>
-                    <p>물리공격력+2</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="work-glove-100-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/100.png">
-                    </button>
-                    <p>장공100%</p>
-                    <p>물리공격력+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="work-glove-reset-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/etc/reset.svg">
-                    </button>
-                </div>
+        </button>
+        <button type="button" onclick="location.href='/weapon/evil-wings'">
+            <div class="link-btn-info">
+                <img src="img/weapon/evil-wings.png"><br>
+                <span>이블 윙즈</span>
             </div>
-            <div class="item-price-calculator-container" >
-                <div class="item-price-input">
-                    <label for="work-glove-price">아이템 가격:</label>
-                    <input type="text" id="work-glove-price" placeholder="가격을 입력하세요" value="0">
-                    <span class="item-buy-cnt">
-                        <span id="work-glove-cnt">1</span>개
-                    </span>
-                </div>
-            </div>
-            <div class="scroll-price-calculator-container">
-                <div class="scroll-price-input">
-                    <label for="work-glove-10-price">10% 가격: </label>
-                    <input type="text" id="work-glove-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
-                    <span class="scroll-use-info">
-                        <span id="work-glove-10-success-cnt">0</span>장 /
-                        <span id="work-glove-10-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-input">
-                    <label for="work-glove-60-price">60% 가격: </label>
-                    <input type="text" id="work-glove-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateWorkGloveTotalPrice()">
-                    <span class="scroll-use-info">
-                        <span id="work-glove-60-success-cnt">0</span>장 /
-                        <span id="work-glove-60-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-input">
-                    <label for="work-glove-100-price">100% 가격: </label>
-                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0">
-                    <span class="scroll-use-info">
-                        <span id="work-glove-100-success-cnt">0</span>장 /
-                        <span id="work-glove-100-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-info">
-                    <div class="scroll-price-result">
-                        <img src ="img/etc/meso.png" width="30px" height="30px">
-                        <span id="work-glove-total-used-price">0</span>
-                    </div>
-                    <button class="item-price-result-btn" id="work-glove-price-reset-btn">리셋</button>
-                </div>
-            </div>
-        </div>
-
-        <!--다크 보닌-->
-        <div class="item">
-            <div class="item-info">
-                <p id="dark-avarice-title" class="item-title">
-                    다크 보닌<span id="dark-avarice-additional" hidden="hidden"> (+<span id="dark-avarice-upgraded-count">0</span>)</span></p>
-
-                <!-- 아이템 이미지, 필요 능력치-->
-                <div class="image-and-status" >
-                    <div class="tmp-container">
-                        <div class="img-container">
-                            <img class="item-image" src="img/weapon/dark-avarice.png" width="60" height="60">
-                            <img class="item-image" id="dark-avarice-gif-img" src="img/weapon/work-glove.png"  width="60" height="90" hidden="hidden">
-                        </div>
-                    </div>
-
-                    <div class="required-status">
-                        <div class="user-status">
-                            <p>REQ LEV : 40</p>
-                            <p>REQ STR : 0</p>
-                            <p>REQ DEX : 80</p>
-                            <p>REQ INT : 0</p>
-                            <p>REQ LUK : 120</p>
-                            <p>REQ POP : -</p>
-                        </div>
-                        <div class="item-status">
-                            <p>ITEM LEV: - </p>
-                            <p>ITEM EXP: - </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!--착용가능 직업, 실제 능력치-->
-                <div class="etc-info">
-                    <p class="job"><span style="color:red">초보자  전사  마법사  궁수</span>  도적  <span style="color:red">해적</span></p>
-                    <hr>
-                    <p>장비 분류 : 아대</p>
-                    <p>공격속도 : 4</p>
-                    <p id="dark-avarice-acc-text" hidden="hidden">명중률 : +<span id="dark-avarice-acc">0</span></p>
-                    <p>물리 공격력 : +<span id="dark-avarice-phy-atk">22</span></p>
-                    <p>물리 방어력 : +<span id="dark-avarice-phy-def">4</span></p>
-                    <p>LUK : +<span id="dark-avarice-luk">3</span></p>
-                    <p>업그레이드 가능 횟수 : <span id="dark-avarice-upgrade-available-count">7</span></p>
-                </div>
-            </div>
-            <div class="item-option-btn-container">
-                <button id="dark-avarice-normal-option-btn" class="item-option-btn" type="button">정옵</button>
-                <button id="dark-avarice-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
-                <button id="dark-avarice-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
-                <button id="dark-avarice-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
-            </div>
-            <div hidden="hidden" class="available-alert-text" id="dark-avarice-available-alert-txt">
-                <span style="color:#d03333">강화 횟수를 초과하였습니다.</span>
-            </div>
-            <div class="scroll-list">
-                <div class="scroll-btn-container">
-                    <button id="dark-avarice-10-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/10.png">
-                    </button>
-                    <p>아공10%</p>
-                    <p>물리공격력+5</p>
-                    <p>명중률+3</p>
-                    <p>LUK+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="dark-avarice-60-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/60.png">
-                    </button>
-                    <p>아공60%</p>
-                    <p>물리공격력+2</p>
-                    <p>명중률+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="dark-avarice-100-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/100.png">
-                    </button>
-                    <p>아공100%</p>
-                    <p>물리공격력+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="dark-avarice-reset-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/etc/reset.svg">
-                    </button>
-                </div>
-            </div>
-            <div class="item-price-calculator-container" >
-                <div class="item-price-input">
-                    <label for="dark-avarice-price">아이템 가격:</label>
-                    <input type="text" id="dark-avarice-price" placeholder="가격을 입력하세요" value="0">
-                    <span class="item-buy-cnt">
-                        <span id="dark-avarice-cnt">1</span>개
-                    </span>
-                </div>
-            </div>
-            <div class="scroll-price-calculator-container">
-                <div class="scroll-price-input">
-                    <label for="dark-avarice-10-price">10% 가격: </label>
-                    <input type="text" id="dark-avarice-10-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
-                    <span class="scroll-use-info">
-                        <span id="dark-avarice-10-success-cnt">0</span>장 /
-                        <span id="dark-avarice-10-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-input">
-                    <label for="dark-avarice-60-price">60% 가격: </label>
-                    <input type="text" id="dark-avarice-60-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
-                    <span class="scroll-use-info">
-                        <span id="dark-avarice-60-success-cnt">0</span>장 /
-                        <span id="dark-avarice-60-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-input">
-                    <label for="dark-avarice-100-price">100% 가격: </label>
-                    <input type="text" id="dark-avarice-100-price" placeholder=" 가격을 입력하세요" value="0" oninput="recalculateDarkAvariceTotalPrice()">
-                    <span class="scroll-use-info">
-                        <span id="dark-avarice-100-success-cnt">0</span>장 /
-                        <span id="dark-avarice-100-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-info">
-                    <div class="scroll-price-result">
-                        <img src ="img/etc/meso.png" width="30px" height="30px">
-                        <span id="dark-avarice-total-used-price">0</span>
-                    </div>
-                    <button class="item-price-result-btn" id="dark-avarice-price-reset-btn">리셋</button>
-                </div>
-            </div>
-        </div>
-
-        <!--이블 윙즈-->
-        <div class="item">
-            <div class="item-info">
-                <p id="evil-wings-title" class="item-title">
-                    이블 윙즈<span id="evil-wings-additional" hidden="hidden"> (+<span id="evil-wings-upgraded-count">0</span>)</span></p>
-
-                <!-- 아이템 이미지, 필요 능력치-->
-                <div class="image-and-status" >
-                    <div class="tmp-container">
-                        <div class="img-container">
-                            <img class="item-image" src="img/weapon/evil-wings.png" width="60" height="60">
-                            <img class="item-image" id="evil-wings-gif-img" src="img/weapon/work-glove.png"  width="60" height="90" hidden="hidden">
-                        </div>
-                    </div>
-                    <div class="required-status">
-                        <div class="user-status">
-                            <p>REQ LEV : 65</p>
-                            <p>REQ STR : 0</p>
-                            <p>REQ DEX : 80</p>
-                            <p>REQ INT : 198</p>
-                            <p>REQ LUK : 68</p>
-                            <p>REQ POP : 0</p>
-                        </div>
-                        <div class="item-status">
-                            <p>ITEM LEV: - </p>
-                            <p>ITEM EXP: - </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!--착용가능 직업, 실제 능력치-->
-                <div class="etc-info">
-                    <p class="job"><span style="color:red">초보자  전사</span>  마법사  <span style="color:red">궁수  도적  해적</span></p>
-                    <hr>
-                    <p>장비 분류 : 스태프</p>
-                    <p>공격속도 : 4</p>
-                    <!--                <p id="evil-wings-acc-text" hidden="hidden">명중률 : +<span id="evil-wings-acc">0</span></p>-->
-                    <p>물리 공격력 : +<span id="evil-wings-phy-atk">53</span></p>
-                    <p>마법 공격력 : +<span id="evil-wings-mg-atk">80</span></p>
-                    <p id="evil-wings-mg-def-info" hidden="hidden">마법 방어력 : +<span id="evil-wings-mg-def"></span></p>
-                    <p id="evil-wings-int-info" hidden="hidden">INT : +<span id="evil-wings-int">0</span></p>
-                    <p>업그레이드 가능 횟수 : <span id="evil-wings-upgrade-available-count">7</span></p>
-                </div>
-            </div>
-            <div class="item-option-btn-container">
-                <button id="evil-wings-normal-option-btn" class="item-option-btn" type="button">정옵</button>
-                <button id="evil-wings-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
-                <button id="evil-wings-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
-                <button id="evil-wings-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
-                <button id="evil-wings-four-upper-option-btn" class="item-option-btn" type="button">4상옵</button>
-                <button id="evil-wings-five-upper-option-btn" class="item-option-btn" type="button">5상옵</button>
-            </div>
-            <div hidden="hidden" class="available-alert-text" id="evil-wings-available-alert-txt">
-                <span style="color:#d03333">강화 횟수를 초과하였습니다.</span>
-            </div>
-            <div class="scroll-list">
-                <div class="scroll-btn-container">
-                    <button id="evil-wings-10-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/10.png">
-                    </button>
-                    <p>스마공10%</p>
-                    <p>마법공격력+5</p>
-                    <p>INT+3</p>
-                    <p>마법방어력+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="evil-wings-60-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/60.png">
-                    </button>
-                    <p>스마공60%</p>
-                    <p>마법공격력+2</p>
-                    <p>INT+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="evil-wings-100-percent-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/scroll/100.png">
-                    </button>
-                    <p>스마공100%</p>
-                    <p>마법공격력+1</p>
-                </div>
-                <div class="scroll-btn-container">
-                    <button id="evil-wings-reset-button" class ="scroll-button" type="button">
-                        <img class="scroll-image" src="img/etc/reset.svg">
-                    </button>
-                </div>
-            </div>
-            <div class="item-price-calculator-container" >
-                <div class="item-price-input">
-                    <label for="evil-wings-price">아이템 가격:</label>
-                    <input type="text" id="evil-wings-price" placeholder="가격을 입력하세요" value="0">
-                    <span class="item-buy-cnt">
-                        <span id="evil-wings-cnt">1</span>개
-                    </span>
-                </div>
-            </div>
-            <div class="scroll-price-calculator-container">
-                <div class="scroll-price-input">
-                    <label for="evil-wings-10-price">10% 가격: </label>
-                    <input type="text" id="evil-wings-10-price" placeholder=" 가격을 입력하세요" value="0" >
-                    <span class="scroll-use-info">
-                        <span id="evil-wings-10-success-cnt">0</span>장 /
-                        <span id="evil-wings-10-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-input">
-                    <label for="evil-wings-60-price">60% 가격: </label>
-                    <input type="text" id="evil-wings-60-price" placeholder=" 가격을 입력하세요" value="0">
-                    <span class="scroll-use-info">
-                        <span id="evil-wings-60-success-cnt">0</span>장 /
-                        <span id="evil-wings-60-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-input">
-                    <label for="evil-wings-100-price">100% 가격: </label>
-                    <input type="text" id="evil-wings-100-price" placeholder=" 가격을 입력하세요" value="0">
-                    <span class="scroll-use-info">
-                        <span id="evil-wings-100-success-cnt">0</span>장 /
-                        <span id="evil-wings-100-used-cnt">0</span>장
-                    </span>
-                </div>
-                <div class="scroll-price-info">
-                    <div class="scroll-price-result">
-                        <img src ="img/etc/meso.png" width="30px" height="30px">
-                        <span id="evil-wings-total-used-price">0</span>
-                    </div>
-                    <button class="scroll-price-result-btn" id="evil-wings-price-reset-btn">리셋</button>
-                </div>
-            </div>
-        </div>
+        </button>
     </div>
-
-    <script type="module" src="./js/work-glove/work-glove.js"></script>
-    <script type="module" src="./js/dark-avarice/dark-avarice.js"></script>
-    <script type="module" src="./js/evil-wings/evil-wings.js"></script>
 
 
 </body>

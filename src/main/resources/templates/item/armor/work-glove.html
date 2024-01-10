@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>노가다 목장갑</title>
+    <link rel="icon" href="/img/weapon/work-glove.png">
+    <link rel="stylesheet" href="/css/custom/default.css">
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#headers").load('/common/header.html');
+            $("#footers").load("/common/footer.html");
+        });
+    </script>
+</head>
+<body>
+    <div id="headers"></div>
+    <div class="item-container">
+        <!--노가다 목장갑-->
+        <div class="item">
+            <div class="item-info">
+                <p id="work-glove-title" class="item-title">
+                    노가다 목장갑<span id="work-glove-additional" hidden="hidden"> (+<span id="work-glove-upgraded-count">0</span>)</span></p>
+                <!-- 아이템 이미지, 필요 능력치-->
+                <div class="image-and-status" >
+                    <div class="tmp-container">
+                        <div class="img-container" id="work-glove-img-container">
+                            <img class="item-image" src="/img/weapon/work-glove.png" width="60" height="60">
+                            <img class="item-image" id="work-glove-gif-img" src="/img/weapon/work-glove.png"  width="60" height="90" hidden="hidden">
+                        </div>
+                    </div>
+                    <div class="required-status">
+                        <div class="user-status">
+                            <p>REQ LEV : 10</p>
+                            <p>REQ STR : 0</p>
+                            <p>REQ DEX : 0</p>
+                            <p>REQ INT : 0</p>
+                            <p>REQ LUK : 0</p>
+                            <p>REQ POP : -</p>
+                        </div>
+                        <div class="item-status">
+                            <p>ITEM LEV: - </p>
+                            <p>ITEM EXP: - </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--착용가능 직업, 실제 능력치-->
+                <div class="etc-info">
+                    <p class="job">초보자  전사  마법사  궁수  도적  해적</p>
+                    <hr>
+                    <p>장비분류 : 장갑</p>
+                    <p hidden="hidden" id="work-glove-power-text">공격력 : +<span id="work-glove-power">0</span></p>
+                    <p>물리방어력 : +<span id="work-glove-physical-defence">3</span></p>
+                    <p>업그레이드 가능 횟수 : <span id="work-glove-upgrade-available-count">5</span></p>
+                </div>
+            </div>
+            <div hidden="hidden" class="available-alert-text" id="work-glove-available-alert-txt">
+                <span style="color:#d03333">강화 횟수를 초과하였습니다.</span>
+            </div>
+            <div class="scroll-list">
+                <div class="scroll-btn-container">
+                    <button id="work-glove-10-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="../../img/scroll/10.png">
+                    </button>
+                    <p>장공10%</p>
+                    <p>물리공격력+3</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="work-glove-60-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="../../img/scroll/60.png">
+                    </button>
+                    <p>장공60%</p>
+                    <p>물리공격력+2</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="work-glove-100-percent-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="../../img/scroll/100.png">
+                    </button>
+                    <p>장공100%</p>
+                    <p>물리공격력+1</p>
+                </div>
+                <div class="scroll-btn-container">
+                    <button id="work-glove-reset-button" class ="scroll-button" type="button">
+                        <img class="scroll-image" src="../../img/etc/reset.svg">
+                    </button>
+                </div>
+            </div>
+            <div class="item-price-calculator-container" >
+                <div class="item-price-input">
+                    <label for="work-glove-price">아이템 가격:</label>
+                    <input type="text" id="work-glove-price" placeholder="가격을 입력하세요" value="0">
+                    <span class="item-buy-cnt">
+                            <span id="work-glove-cnt">1</span>개
+                        </span>
+                </div>
+            </div>
+            <div class="scroll-price-calculator-container">
+                <div class="scroll-price-input">
+                    <label for="work-glove-10-price">10% 가격: </label>
+                    <input type="text" id="work-glove-10-price" placeholder=" 가격을 입력하세요" value="0">
+                    <span class="scroll-use-info">
+                            <span id="work-glove-10-success-cnt">0</span>장 /
+                            <span id="work-glove-10-used-cnt">0</span>장
+                        </span>
+                </div>
+                <div class="scroll-price-input">
+                    <label for="work-glove-60-price">60% 가격: </label>
+                    <input type="text" id="work-glove-60-price" placeholder=" 가격을 입력하세요" value="0">
+                    <span class="scroll-use-info">
+                            <span id="work-glove-60-success-cnt">0</span>장 /
+                            <span id="work-glove-60-used-cnt">0</span>장
+                        </span>
+                </div>
+                <div class="scroll-price-input">
+                    <label for="work-glove-100-price">100% 가격: </label>
+                    <input type="text" id="work-glove-100-price" placeholder=" 가격을 입력하세요" value="0">
+                    <span class="scroll-use-info">
+                            <span id="work-glove-100-success-cnt">0</span>장 /
+                            <span id="work-glove-100-used-cnt">0</span>장
+                        </span>
+                </div>
+                <div class="scroll-price-info">
+                    <div class="scroll-price-result">
+                        <img src ="../../img/etc/meso.png" width="30px" height="30px">
+                        <span id="work-glove-total-used-price">0</span>
+                    </div>
+                    <button class="item-price-result-btn" id="work-glove-price-reset-btn">리셋</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" th:src="@{/js/item/work-glove/work-glove.js}"></script>
+<!--    <script type="module" th:src="@{/js/item/dark-avarice/dark-avarice.js}"></script>-->
+<!--    <script type="module" th:src="@{/js/item/evil-wings/evil-wings.js}"></script>-->
+</body>
+</html>
