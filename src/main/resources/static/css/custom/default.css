@@ -184,11 +184,11 @@ p.item-title {
 .scroll-list {
     width: 310px;
     margin-top: 10px;
+
 }
 
 .scroll-btn-container {
     vertical-align: top;
-    /*border: 1px solid #cccccc;*/
 
     display: inline-block;
     text-align: left;
@@ -198,6 +198,7 @@ p.item-title {
     line-height: 6px;
 
     padding: 1px;
+    margin-right: 3px;
 }
 
 .scroll-button {
