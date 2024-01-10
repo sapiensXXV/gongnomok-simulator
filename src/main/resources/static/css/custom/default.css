@@ -32,8 +32,8 @@ h1 h2 h3 {
 }
 
 .item-info-container {
-    text-align: left;
-    border: 1px black solid;
+    /*text-align: left;*/
+    /*border: 1px black solid;*/
 }
 
 .item-info {
@@ -66,6 +66,19 @@ p.item-title {
 .item {
     float: left;
     margin: 10px;
+}
+
+.item .item-info-container {
+    /*border: 3px red solid;*/
+    float: left;
+    margin: 5px;
+}
+
+.item .simulator-controller-container {
+    /*border: 3px blue solid;*/
+    float: left;
+    vertical-align: bottom;
+    margin: 5px;
 }
 
 /*이미지 - 요구능력치 블록*/
