@@ -27,6 +27,9 @@ let sixtyPerBtn = document.getElementById('dark-avarice-60-percent-button');
 let hundredPerBtn = document.getElementById('dark-avarice-100-percent-button');
 let resetBtn = document.getElementById('dark-avarice-reset-button');
 
+// 아이템 구매 횟수
+let darkAvariceCnt = 1;
+
 // 주문서 시도 횟수
 let darkAvariceTenTrial = 0;
 let darkAvariceSixtyTrial = 0;
@@ -38,21 +41,21 @@ let darkAvariceHundredTrial = 0;
 normalOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     defaultPhysicAtk = 22
-    resetItem();
+    resetItem(false);
     darkAvariceAtk.textContent = defaultPhysicAtk.toString()
 });
 
 oneUpperOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     defaultPhysicAtk = 23
-    resetItem();
+    resetItem(false);
     darkAvariceAtk.textContent = (defaultPhysicAtk).toString()
 });
 
 twoUpperOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     defaultPhysicAtk = 24
-    resetItem();
+    resetItem(false);
     darkAvariceAtk.textContent = (defaultPhysicAtk).toString()
 });
 
@@ -60,7 +63,7 @@ threeUpperOptionBtn.addEventListener('click', function() {
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     let darkAvariceLuk = document.getElementById('dark-avarice-luk');
     defaultPhysicAtk = 25
-    resetItem();
+    resetItem(false);
     darkAvariceAtk.textContent = (defaultPhysicAtk).toString();
     darkAvariceLuk.textContent = (defaultLuk + 1).toString();
 });
@@ -107,13 +110,13 @@ hundredPerBtn.addEventListener('click', function () {
 });
 
 resetBtn.addEventListener('click', function () {
-    resetItem();
+    resetItem(true);
 });
 
 /**
  * 공용 함수
  */
-export function resetItem() {
+export function resetItem(isNew) {
 
     let darkAvariceAtk = document.getElementById('dark-avarice-phy-atk');
     let darkAvariceDef = document.getElementById('dark-avarice-phy-def');
@@ -123,7 +126,9 @@ export function resetItem() {
     let darkAvariceAccText = document.getElementById('dark-avarice-acc-text');
     let additionalElem = document.getElementById('dark-avarice-additional');
     let upgradedCount = document.getElementById('dark-avarice-upgraded-count');
+    let titleElem = document.getElementById('dark-avarice-title');
 
+    util.changeColor(titleElem, parseInt(darkAvariceAtk.textContent) - defaultPhysicAtk);
     darkAvariceAtk.textContent = defaultPhysicAtk.toString()
     darkAvariceDef.textContent = defaultPhysicDef.toString()
     darkAvariceDef.textContent = defaultPhysicDef.toString()
@@ -134,9 +139,11 @@ export function resetItem() {
     additionalElem.hidden = true;
     upgradedCount.textContent = '0'
 
-    let title = document.getElementById('dark-avarice-title');
+    if (isNew) {
+        addDarkAvariceBuyCnt();
+    }
+
     let alertTxt = document.getElementById('dark-avarice-available-alert-txt');
-    util.changeColor(title, parseInt(darkAvariceAtk.textContent) - defaultPhysicAtk);
     alertTxt.hidden = true;
 }
 
@@ -231,11 +238,15 @@ function playFailEffect() {
 /**
  * 주문서 총 사용가격 로직
  */
-
+let darkAvaricePriceInput = document.getElementById('dark-avarice-price'); // 아이템 가격
 let darkAvariceTenInput = document.getElementById('dark-avarice-10-price'); // 10퍼센트 가격
 let darkAvariceSixtyInput = document.getElementById('dark-avarice-60-price'); // 60퍼센트 가격
 let darkAvariceHundredInput = document.getElementById('dark-avarice-100-price'); // 100퍼센트 가격
 let darkAvaricePriceResetBtn = document.getElementById('dark-avarice-price-reset-btn') // 리셋 버튼
+
+darkAvaricePriceInput.oninput = () => {
+    recalculateDarkAvariceTotalPrice()
+}
 
 darkAvariceTenInput.oninput = () => {
     recalculateDarkAvariceTotalPrice();
@@ -250,19 +261,24 @@ darkAvariceHundredInput.oninput = () => {
 }
 
 function recalculateDarkAvariceTotalPrice() {
+    let darkAvaricePriceInputElem = document.getElementById('dark-avarice-price');
     let tenInputElem = document.getElementById('dark-avarice-10-price');
     let sixtyInputElem = document.getElementById('dark-avarice-60-price');
     let hundredInputElem = document.getElementById('dark-avarice-100-price');
     let usedPriceElem = document.getElementById('dark-avarice-total-used-price');
 
+    let price = parseInt(darkAvaricePriceInputElem.value);
     let tenInput = parseInt(tenInputElem.value);
     let sixtyInput = parseInt(sixtyInputElem.value);
     let hundredInput = parseInt(hundredInputElem.value);
 
     usedPriceElem.textContent = (
-        tenInput * darkAvariceTenTrial +
-        sixtyInput * darkAvariceSixtyTrial +
-        hundredInput * darkAvariceHundredTrial
+        price * darkAvariceCnt +
+        (
+            tenInput * darkAvariceTenTrial +
+            sixtyInput * darkAvariceSixtyTrial +
+            hundredInput * darkAvariceHundredTrial
+        )
     ).toLocaleString();
 }
 
@@ -280,6 +296,7 @@ function resetWorkGlovePrice() {
     let tenUsedCnt = document.getElementById('dark-avarice-10-used-cnt');
     let sixtyUsedCnt = document.getElementById('dark-avarice-60-used-cnt');
     let hundredUsedCnt = document.getElementById('dark-avarice-100-used-cnt');
+    let itemCnt = document.getElementById('dark-avarice-cnt');
 
     tenSuccessCnt.textContent = '0';
     sixtySuccessCnt.textContent = '0';
@@ -287,9 +304,18 @@ function resetWorkGlovePrice() {
     tenUsedCnt.textContent = '0';
     sixtyUsedCnt.textContent = '0';
     hundredUsedCnt.textContent = '0';
+    itemCnt.textContent = '1';
 
     darkAvariceTenTrial = 0;
     darkAvariceSixtyTrial = 0;
     darkAvariceHundredTrial = 0;
+    darkAvariceCnt = 1
+    recalculateDarkAvariceTotalPrice();
+}
+
+function addDarkAvariceBuyCnt() {
+    let buyCnt = document.getElementById('dark-avarice-cnt');
+    darkAvariceCnt++; // 아이템 소모 갯수를 증가시킨다
+    buyCnt.textContent = darkAvariceCnt.toString();
     recalculateDarkAvariceTotalPrice();
 }

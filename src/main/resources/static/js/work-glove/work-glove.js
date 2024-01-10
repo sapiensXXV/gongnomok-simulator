@@ -16,9 +16,10 @@ let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 let timer = null;
 
-/**
-* 주문서 시도 횟수
-*/
+// 아이템 구매 횟수
+let workGloveCnt = 1;
+
+// 주문서 시도 횟수
 let workGloveTenTrial = 0;
 let workGloveSixtyTrial = 0;
 let workGloveHundredTrial = 0;
@@ -63,10 +64,10 @@ hundredPercentButton.addEventListener('click', function () {
 });
 
 resetButton.addEventListener('click', function () {
-    resetItem();
+    resetItem(true);
 });
 
-export function resetItem() {
+export function resetItem(isNew) {
     let atkElem = document.getElementById('work-glove-power')
     let atkInfoElem = document.getElementById('work-glove-power-text')
     let availableCntElem = document.getElementById('work-glove-upgrade-available-count')
@@ -81,6 +82,10 @@ export function resetItem() {
     availableCntElem.textContent = '5'
     upgradedCntElem.textContent = '0'
     titleAdditionalObject.hidden = true
+
+    if (isNew) {
+        addWorkGloveBuyCnt();
+    }
 
     let alertTxt = document.getElementById('work-glove-available-alert-txt');
     alertTxt.hidden = true;
@@ -128,8 +133,8 @@ function addSuccessCnt(percent) {
 function fail() {
     console.log('scroll fail');
     let availableCnt = document.getElementById('work-glove-upgrade-available-count')
+    reduceCount(availableCnt);
     util.playFailureSound();
-    reduceCount(availableCnt)
     playFailEffect()
 }
 
@@ -168,10 +173,15 @@ function playFailEffect() {
 /**
  * 주문서 총 사용가격관련 로직
  */
+let evilWingsPriceInput = document.getElementById('work-glove-price'); // 아이템 가격
 let workGloveTenInput = document.getElementById('work-glove-10-price'); // 10퍼센트 가격
 let workGloveSixtyInput = document.getElementById('work-glove-60-price'); // 60퍼센트 가격
 let workGloveHundredInput = document.getElementById('work-glove-100-price'); // 100퍼센트 가격
 let workGlovePriceResetBtn = document.getElementById('work-glove-price-reset-btn') // 리셋 버튼
+
+evilWingsPriceInput.oninput = () => {
+    recalculateWorkGloveTotalPrice()
+}
 
 workGloveTenInput.oninput = () => {
     recalculateWorkGloveTotalPrice();
@@ -199,6 +209,7 @@ function resetWorkGlovePrice() {
     let tenUsedCnt = document.getElementById('work-glove-10-used-cnt');
     let sixtyUsedCnt = document.getElementById('work-glove-60-used-cnt');
     let hundredUsedCnt = document.getElementById('work-glove-100-used-cnt');
+    let itemCnt = document.getElementById('work-glove-cnt');
 
     tenSuccessCnt.textContent = '0';
     sixtySuccessCnt.textContent = '0';
@@ -206,28 +217,44 @@ function resetWorkGlovePrice() {
     tenUsedCnt.textContent = '0';
     sixtyUsedCnt.textContent = '0';
     hundredUsedCnt.textContent = '0';
+    itemCnt.textContent = '1';
 
     workGloveTenTrial = 0;
     workGloveSixtyTrial = 0;
     workGloveHundredTrial = 0;
+    workGloveCnt = 1;
+
     recalculateWorkGloveTotalPrice();
 }
 
 function recalculateWorkGloveTotalPrice() {
+    let workGlovePriceInputElem = document.getElementById('work-glove-price');
     let tenInputElem = document.getElementById('work-glove-10-price');
     let sixtyInputElem = document.getElementById('work-glove-60-price');
     let hundredInputElem = document.getElementById('work-glove-100-price');
     let usedPriceElem = document.getElementById('work-glove-total-used-price');
 
+    let price = parseInt(workGlovePriceInputElem.value);
     let tenInput = parseInt(tenInputElem.value);
     let sixtyInput = parseInt(sixtyInputElem.value);
     let hundredInput = parseInt(hundredInputElem.value);
 
     usedPriceElem.textContent = (
-        tenInput * workGloveTenTrial +
-        sixtyInput * workGloveSixtyTrial +
-        hundredInput * workGloveHundredTrial
+        price * workGloveCnt +
+        (
+            tenInput * workGloveTenTrial +
+            sixtyInput * workGloveSixtyTrial +
+            hundredInput * workGloveHundredTrial
+        )
     ).toLocaleString();
 }
 
-
+/**
+ * 구매 노가다 목장갑 개수 증가
+ */
+function addWorkGloveBuyCnt() {
+    let buyCnt = document.getElementById('work-glove-cnt');
+    workGloveCnt++; // 아이템 소모 갯수를 증가시킨다
+    buyCnt.textContent = workGloveCnt.toString();
+    recalculateWorkGloveTotalPrice();
+}

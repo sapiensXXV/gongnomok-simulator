@@ -164,7 +164,7 @@ export function resetItem(isNew) {
     upgradeSuccessCnt.textContent = '0';
     additionalTitle.hidden = true
     if (isNew) {
-        addBuyCnt()
+        addEvilWingBuyCnt()
     }
 
     let title = document.getElementById('evil-wings-title');
@@ -267,7 +267,7 @@ function playFailEffect() {
     }, 1000);
 }
 
-let evilWingsPriceInput = document.getElementById('evil-wings-price');
+let evilWingsPriceInput = document.getElementById('evil-wings-price'); // 아이템 가격
 let evilWingsTenInput = document.getElementById('evil-wings-10-price'); // 10퍼센트 가격
 let evilWingsSixtyInput = document.getElementById('evil-wings-60-price'); // 60퍼센트 가격
 let evilWingsHundredInput = document.getElementById('evil-wings-100-price'); // 100퍼센트 가격
@@ -296,7 +296,7 @@ function recalculateEvilWingsTotalPrice() {
     let hundredInputElem = document.getElementById('evil-wings-100-price');
     let usedPriceElem = document.getElementById('evil-wings-total-used-price');
 
-    let price = parseInt(evilWingsPriceInputElem.value)
+    let price = parseInt(evilWingsPriceInputElem.value);
     let tenInput = parseInt(tenInputElem.value);
     let sixtyInput = parseInt(sixtyInputElem.value);
     let hundredInput = parseInt(hundredInputElem.value);
@@ -345,10 +345,9 @@ function resetEvilWingsPrice() {
 }
 
 /**
- * 아이템 갯수 증가 로직
+ * 구매 이블윙즈 개수 증가
  */
-
-function addBuyCnt() {
+function addEvilWingBuyCnt() {
     let buyCnt = document.getElementById('evil-wings-cnt');
     evilWingsCnt++; // 아이템 소모 갯수를 증가시킨다
     buyCnt.textContent = evilWingsCnt.toString();
