@@ -27,6 +27,9 @@ let sixtyPerBtn = document.getElementById('evil-wings-60-percent-button');
 let hundredPerBtn = document.getElementById('evil-wings-100-percent-button');
 let resetBtn = document.getElementById('evil-wings-reset-button');
 
+// 아이템 구매 횟수
+let evilWingsCnt = 1;
+
 // 주문서 시도 횟수
 let evilWingsTenTrial = 0;
 let evilWingsSixtyTrial = 0;
@@ -40,7 +43,7 @@ normalOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 80;
     defaultPhyAtk = 53
-    resetItem();
+    resetItem(false);
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -50,7 +53,7 @@ oneUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 81;
     defaultPhyAtk = 54;
-    resetItem();
+    resetItem(false);
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -60,7 +63,7 @@ twoUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 82;
     defaultPhyAtk = 55;
-    resetItem();
+    resetItem(false);
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -70,7 +73,7 @@ threeUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 83;
     defaultPhyAtk = 56;
-    resetItem();
+    resetItem(false);
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -80,7 +83,7 @@ fourUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 84;
     defaultPhyAtk = 57
-    resetItem();
+    resetItem(false);
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -90,7 +93,7 @@ fiveUpperOptionBtn.addEventListener('click', function() {
     let phyAtk = document.getElementById('evil-wings-phy-atk');
     defaultMgAtk = 85;
     defaultPhyAtk = 58
-    resetItem();
+    resetItem(false);
     mgAtk.textContent = defaultMgAtk.toString()
     phyAtk.textContent = defaultPhyAtk.toString()
 });
@@ -138,13 +141,13 @@ hundredPerBtn.addEventListener('click', function () {
 });
 
 resetBtn.addEventListener('click', function () {
-    resetItem();
+    resetItem(true);
 });
 
 /**
  * 공용 함수
  */
-export function resetItem() {
+export function resetItem(isNew) {
     let phyAtk = document.getElementById('evil-wings-phy-atk'); // 물리공격력
     let mgAtk = document.getElementById('evil-wings-mg-atk'); // 마법공격력
     let intV = document.getElementById('evil-wings-int'); // INT
@@ -160,11 +163,15 @@ export function resetItem() {
     availableCnt.textContent = defaultAvailableCount.toString()
     upgradeSuccessCnt.textContent = '0';
     additionalTitle.hidden = true
+    if (isNew) {
+        addBuyCnt()
+    }
 
     let title = document.getElementById('evil-wings-title');
     let alertTxt = document.getElementById('evil-wings-available-alert-txt');
     util.changeColor(title, parseInt(mgAtk.textContent) - defaultMgAtk);
     alertTxt.hidden = true;
+
 }
 
 function success(mgAtk, intV, mgDef, percent) {
@@ -260,14 +267,15 @@ function playFailEffect() {
     }, 1000);
 }
 
-/**
- * 주문서 총 사용가격관련 로직
- */
-
+let evilWingsPriceInput = document.getElementById('evil-wings-price');
 let evilWingsTenInput = document.getElementById('evil-wings-10-price'); // 10퍼센트 가격
 let evilWingsSixtyInput = document.getElementById('evil-wings-60-price'); // 60퍼센트 가격
 let evilWingsHundredInput = document.getElementById('evil-wings-100-price'); // 100퍼센트 가격
 let evilWingsPriceResetBtn = document.getElementById('evil-wings-price-reset-btn') // 리셋 버튼
+
+evilWingsPriceInput.oninput = () => {
+    recalculateEvilWingsTotalPrice()
+}
 
 evilWingsTenInput.oninput = () => {
     recalculateEvilWingsTotalPrice();
@@ -282,19 +290,25 @@ evilWingsHundredInput.oninput = () => {
 }
 
 function recalculateEvilWingsTotalPrice() {
+    let evilWingsPriceInputElem = document.getElementById('evil-wings-price');
     let tenInputElem = document.getElementById('evil-wings-10-price');
     let sixtyInputElem = document.getElementById('evil-wings-60-price');
     let hundredInputElem = document.getElementById('evil-wings-100-price');
     let usedPriceElem = document.getElementById('evil-wings-total-used-price');
 
+    let price = parseInt(evilWingsPriceInputElem.value)
     let tenInput = parseInt(tenInputElem.value);
     let sixtyInput = parseInt(sixtyInputElem.value);
     let hundredInput = parseInt(hundredInputElem.value);
 
     usedPriceElem.textContent = (
-        tenInput * evilWingsTenTrial +
-        sixtyInput * evilWingsSixtyTrial +
-        hundredInput * evilWingsHundredTrial
+        price * evilWingsCnt +
+        (
+            tenInput * evilWingsTenTrial +
+            sixtyInput * evilWingsSixtyTrial +
+            hundredInput *
+            evilWingsHundredTrial
+        )
     ).toLocaleString();
 }
 
@@ -302,16 +316,17 @@ function recalculateEvilWingsTotalPrice() {
  * 가격 리셋 로직
  */
 evilWingsPriceResetBtn.addEventListener('click', function () {
-    resetWorkGlovePrice()
+    resetEvilWingsPrice()
 });
 
-function resetWorkGlovePrice() {
+function resetEvilWingsPrice() {
     let tenSuccessCnt = document.getElementById('evil-wings-10-success-cnt');
     let sixtySuccessCnt = document.getElementById('evil-wings-60-success-cnt');
     let hundredSuccessCnt = document.getElementById('evil-wings-100-success-cnt');
     let tenUsedCnt = document.getElementById('evil-wings-10-used-cnt');
     let sixtyUsedCnt = document.getElementById('evil-wings-60-used-cnt');
     let hundredUsedCnt = document.getElementById('evil-wings-100-used-cnt');
+    let itemCnt = document.getElementById('evil-wings-cnt');
 
     tenSuccessCnt.textContent = '0';
     sixtySuccessCnt.textContent = '0';
@@ -319,9 +334,23 @@ function resetWorkGlovePrice() {
     tenUsedCnt.textContent = '0';
     sixtyUsedCnt.textContent = '0';
     hundredUsedCnt.textContent = '0';
+    itemCnt.textContent = '1';
 
     evilWingsTenTrial = 0;
     evilWingsSixtyTrial = 0;
     evilWingsHundredTrial = 0;
+    evilWingsCnt = 1;
+
+    recalculateEvilWingsTotalPrice();
+}
+
+/**
+ * 아이템 갯수 증가 로직
+ */
+
+function addBuyCnt() {
+    let buyCnt = document.getElementById('evil-wings-cnt');
+    evilWingsCnt++; // 아이템 소모 갯수를 증가시킨다
+    buyCnt.textContent = evilWingsCnt.toString();
     recalculateEvilWingsTotalPrice();
 }
