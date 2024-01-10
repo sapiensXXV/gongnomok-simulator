@@ -18,12 +18,29 @@ public class ItemController {
     }
 
     /**
-     * 파란색 가운
+     * 파란색 가운(민첩)
      */
-    @GetMapping("/armor/blue-robe")
-    public String blueRobe() {
-        return "item/armor/blue-robe";
+    @GetMapping("/armor/blue-robe-dex")
+    public String blueRobeDex() {
+        return "item/armor/blue-robe-dex";
     }
+
+    /**
+     * 파란색 가운(행운)
+     */
+    @GetMapping("/armor/blue-robe-luk")
+    public String blueRobeLuk() {
+        return "item/armor/blue-robe-luk";
+    }
+
+    /**
+     * 파란색 가운(지능)
+     */
+    @GetMapping("/armor/blue-robe-int")
+    public String blueRobeInt() {
+        return "item/armor/blue-robe-int";
+    }
+
 
     /**
      * 다크 보닌
