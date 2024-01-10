@@ -171,6 +171,7 @@ export function resetItem(isNew) {
     availableCnt.textContent = defaultAvailableCount.toString()
     upgradeSuccessCnt.textContent = '0';
     additionalTitle.hidden = true
+
     if (isNew) {
         addEvilWingBuyCnt()
     }
