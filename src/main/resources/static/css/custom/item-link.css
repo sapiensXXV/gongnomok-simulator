@@ -19,7 +19,6 @@
     border-radius: 6px;
     width: 120px;
     height: 120px;
-
 }
 
 .link-btn-info {
@@ -28,7 +27,7 @@
 
 .link-btn-info img {
     display: inline-block;
-
+    width: 60%;
 }
 
 .link-btn-info span {
