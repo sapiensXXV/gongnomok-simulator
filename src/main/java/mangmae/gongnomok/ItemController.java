@@ -14,12 +14,12 @@ public class ItemController {
      */
     @GetMapping("/armor/work-glove")
     public String workGlove() {
-        return "/item/armor/work-glove";
+        return "item/armor/work-glove";
     }
 
     @GetMapping("/weapon/dark-avarice")
     public String darkAvarice() {
-        return "/item/weapon/dark-avarice";
+        return "item/weapon/dark-avarice";
     }
 
     @GetMapping("/weapon/evil-wings")
