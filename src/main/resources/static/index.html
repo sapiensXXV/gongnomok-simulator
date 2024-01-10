@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>메이플 주문서 시뮬레이터</title>
-    <link rel="icon" href="./10-raw.png">
+    <link rel="icon" href="./img/weapon/work-glove.png">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#headers").load("./common/header.html");
+            $("#footers").load("common/footer.html");
+        });
+    </script>
 </head>
 <!--<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">-->
 <link rel="stylesheet" href="css/custom/default.css">
 
 <body>
     <script type="module" src="./js/global.js"></script>
-    <div class="header-container">
-        <img src="img/etc/title.png" width="500px">
-    </div>
-    <details class="simulator-guide">
-        <summary>가이드 (클릭)</summary>
-        <img src="img/etc/guide.png" width="800px">
-    </details>
+    <div id="headers"></div>
     <div class="item-container">
         <!--노가다 목장갑-->
         <div class="item">
