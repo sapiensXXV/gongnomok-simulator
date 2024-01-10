@@ -17,11 +17,25 @@ public class ItemController {
         return "item/armor/work-glove";
     }
 
+    /**
+     * 파란색 가운
+     */
+    @GetMapping("/armor/blue-robe")
+    public String blueRobe() {
+        return "item/armor/blue-robe";
+    }
+
+    /**
+     * 다크 보닌
+     */
     @GetMapping("/weapon/dark-avarice")
     public String darkAvarice() {
         return "item/weapon/dark-avarice";
     }
 
+    /**
+     * 이블 윙즈
+     */
     @GetMapping("/weapon/evil-wings")
     public String evilWings() {
         return "item/weapon/evil-wings";
