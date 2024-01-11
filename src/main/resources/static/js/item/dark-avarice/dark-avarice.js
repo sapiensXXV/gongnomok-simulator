@@ -50,7 +50,7 @@ window.addEventListener('keydown', (e) => {
     } else if (input === 'w' || input == 'W' || input === 'ㅈ' || input === 'ㅉ') {
         sixtyPerBtnClicked()
     } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
-        hundredPerBtnClicked()
+        resetDarkAvaricePrice()
     }
 });
 
@@ -309,10 +309,10 @@ function recalculateDarkAvariceTotalPrice() {
  * 주문서 총 가격 리셋 로직
  */
 darkAvaricePriceResetBtn.addEventListener('click', function () {
-    resetWorkGlovePrice()
+    resetDarkAvaricePrice()
 });
 
-function resetWorkGlovePrice() {
+function resetDarkAvaricePrice() {
     let tenSuccessCnt = document.getElementById('dark-avarice-10-success-cnt');
     let sixtySuccessCnt = document.getElementById('dark-avarice-60-success-cnt');
     let hundredSuccessCnt = document.getElementById('dark-avarice-100-success-cnt');

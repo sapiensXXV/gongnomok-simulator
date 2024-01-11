@@ -37,6 +37,8 @@ window.addEventListener('keydown', (e) => {
         sixtyPerBtnClicked()
     } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
         hundredPerBtnClicked()
+    } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
+        resetblueRobeLuckyPrice();
     }
 });
 
