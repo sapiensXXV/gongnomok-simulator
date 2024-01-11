@@ -50,6 +50,11 @@ public class ItemController {
         return "item/weapon/dark-avarice";
     }
 
+    @GetMapping("/weapon/blood-gigantic")
+    public String bloodGigantic() {
+        return "item/weapon/blood-gigantic";
+    }
+
     /**
      * 이블 윙즈
      */

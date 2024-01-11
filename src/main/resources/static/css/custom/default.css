@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
+
 body {
     margin: 20px;
 }
@@ -9,6 +10,8 @@ body {
 h1 h2 h3 {
     font-family: "IBM Plex Sans KR";
 }
+
+
 
 .header-container {
     text-align: center;
@@ -18,10 +21,21 @@ h1 h2 h3 {
     display: inline-block;
 }
 
+.simulator-guide summary {
+    font-size: 50px;
+}
+
+.guide-container {
+    text-align: center;
+}
+
 .guide-img-container {
     text-align: center;
 }
 
+.guide-img-summary {
+    font-size: 27px;
+}
 .guide-img-container img {
     display: inline-block;
 }
@@ -32,8 +46,8 @@ h1 h2 h3 {
 }
 
 .item-info-container {
-    /*text-align: left;*/
-    /*border: 1px black solid;*/
+    float: left;
+    margin: 5px;
 }
 
 .item-info {
@@ -67,19 +81,19 @@ p.item-title {
     margin: 10px;
 }
 
-.item .item-info-container {
-    /*border: 3px red solid;*/
-    float: left;
-    margin: 5px;
-}
-
 .item .simulator-controller-container {
+    /*border: 3px green solid;*/
+
     float: left;
     margin-bottom: 5px;
     margin-left: 8px;
     margin-right: 5px;
 
     font-family: "IBM Plex Sans KR", sans-serif;
+}
+
+.item-option-btn-container {
+    margin-bottom: 10px;
 }
 
 /*이미지 - 요구능력치 블록*/
@@ -175,10 +189,8 @@ p.item-title {
 
 .scroll-list {
     width: 310px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     font-weight: 500;
-
-
 }
 
 .scroll-btn-container {
@@ -246,6 +258,7 @@ p.item-title {
 }
 
 .scroll-price-calculator-container {
+    /*border: 3px red solid;*/
     font-size: 15px;
     /*font-family: "Noto Sans KR";*/
 }
@@ -280,12 +293,16 @@ p.item-title {
 }
 
 .scroll-price-info {
+    /*border: 3px red solid;*/
     margin-top: 10px;
-    display: flex
+    display: flex;
 }
 
 .scroll-price-info button[type="button"] {
     font-family: "IBM Plex Sans KR", sans-serif;
+    white-space: nowrap;
+    text-align: center;
+
 }
 
 .scroll-price-result {
@@ -314,10 +331,5 @@ item-price-result #work-glove-reset-btn {
     float: right;
 }
 
-/*.scroll-price-calculator-container input {*/
-/*    height: 18px;*/
-/*    border: #0d6efd solid 1px;*/
-/*    border-radius: 5px;*/
-/*}*/
 
 

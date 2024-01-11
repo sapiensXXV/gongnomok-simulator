@@ -31,11 +31,11 @@ window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
-    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input == 'ㅃ') {
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
         tenPerBtnClicked();
-    } else if (input === 'w' || input == 'W' || input === 'ㅈ' || input === 'ㅉ') {
+    } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
         sixtyPerBtnClicked()
-    } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
+    } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
         hundredPerBtnClicked()
     } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
         resetblueRobeIntelPrice();

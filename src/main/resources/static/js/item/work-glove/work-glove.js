@@ -42,7 +42,7 @@ window.addEventListener('keydown', (e) => {
     } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
         hundredPerBtnClicked()
     } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
-        resetWorkGlovePrice();
+        resetWorkGlovePrice()
     }
 });
 
