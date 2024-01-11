@@ -20,6 +20,13 @@ let blueRobeLuckyTenTrial = 0;
 let blueRobeLuckySixtyTrial = 0;
 let blueRobeLuckyHundredTrial = 0;
 
+// 가격 관련 input, button
+let blueRobeLuckyPriceInput = document.getElementById('blue-robe-lucky-price'); // 아이템 가격
+let blueRobeLuckyTenInput = document.getElementById('blue-robe-lucky-10-price'); // 10퍼센트 가격
+let blueRobeLuckySixtyInput = document.getElementById('blue-robe-lucky-60-price'); // 60퍼센트 가격
+let blueRobeLuckyHundredInput = document.getElementById('blue-robe-lucky-100-price'); // 100퍼센트 가격
+let blueRobeLuckyPriceResetBtn = document.getElementById('blue-robe-lucky-price-reset-btn') // 리셋 버튼
+
 /**
  * 핫키 이벤트 등록
  * - Q: 10% 주문서 적용
@@ -31,16 +38,47 @@ window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+        resetBtn.focus();
     } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
-        tenPerBtnClicked();
+        tenPerBtnClicked()
+        tenPerBtn.focus()
     } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
         sixtyPerBtnClicked()
+        sixtyPerBtn.focus();
     } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
         hundredPerBtnClicked()
+        hundredPerBtn.focus()
     } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
-        resetblueRobeLuckyPrice();
+        resetBlueRobeLuckyPrice();
+        blueRobeLuckyPriceResetBtn.focus();
     }
 });
+window.addEventListener('keyup', (e) => {
+    let input = e.key;
+    if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
+        resetBtn.blur();
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
+        tenPerBtn.blur()
+    } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtn.blur();
+    } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtn.blur()
+    } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
+        blueRobeLuckyPriceResetBtn.blur();
+    }
+});
+
+tenPerBtn.addEventListener('mouseup', tenPerBtnMouseUp);
+sixtyPerBtn.addEventListener('mouseup', sixtyPerBtnMouseUp);
+hundredPerBtn.addEventListener('mouseup', hundredPerBtnMouseUp);
+resetBtn.addEventListener('mouseup', resetBtnMouseUp);
+blueRobeLuckyPriceResetBtn.addEventListener('mouseup', workGlovePriceResetBtnMouseUp);
+
+function tenPerBtnMouseUp() { tenPerBtn.blur() }
+function sixtyPerBtnMouseUp() { sixtyPerBtn.blur() }
+function hundredPerBtnMouseUp() { hundredPerBtn.blur() }
+function resetBtnMouseUp() { resetBtn.blur() }
+function workGlovePriceResetBtnMouseUp() { blueRobeLuckyPriceResetBtn.blur() }
 
 /**
  * 주문서 버튼 이벤트 리스너
@@ -115,7 +153,7 @@ export function resetItem(isNew) {
     upgradeSuccessCnt.textContent = '0'; // 업그레이드 성공 횟수 0
     additionalTitle.hidden = true
     if (isNew) {
-        addblueRobeLuckyBuyCnt()
+        addBlueRobeLuckyBuyCnt()
     }
 
     let title = document.getElementById('blue-robe-lucky-title');
@@ -223,12 +261,6 @@ function playFailEffect() {
     }, 1000);
 }
 
-let blueRobeLuckyPriceInput = document.getElementById('blue-robe-lucky-price'); // 아이템 가격
-let blueRobeLuckyTenInput = document.getElementById('blue-robe-lucky-10-price'); // 10퍼센트 가격
-let blueRobeLuckySixtyInput = document.getElementById('blue-robe-lucky-60-price'); // 60퍼센트 가격
-let blueRobeLuckyHundredInput = document.getElementById('blue-robe-lucky-100-price'); // 100퍼센트 가격
-let blueRobeLuckyPriceResetBtn = document.getElementById('blue-robe-lucky-price-reset-btn') // 리셋 버튼
-
 blueRobeLuckyPriceInput.oninput = () => {
     reCalculateBlueRobeLuckyTotalPrice()
 }
@@ -272,10 +304,10 @@ function reCalculateBlueRobeLuckyTotalPrice() {
  * 가격 리셋 로직
  */
 blueRobeLuckyPriceResetBtn.addEventListener('click', function () {
-    resetblueRobeLuckyPrice()
+    resetBlueRobeLuckyPrice()
 });
 
-function resetblueRobeLuckyPrice() {
+function resetBlueRobeLuckyPrice() {
     let tenSuccessCnt = document.getElementById('blue-robe-lucky-10-success-cnt');
     let sixtySuccessCnt = document.getElementById('blue-robe-lucky-60-success-cnt');
     let hundredSuccessCnt = document.getElementById('blue-robe-lucky-100-success-cnt');
@@ -303,7 +335,7 @@ function resetblueRobeLuckyPrice() {
 /**
  * 구매 이블윙즈 개수 증가
  */
-function addblueRobeLuckyBuyCnt() {
+function addBlueRobeLuckyBuyCnt() {
     let buyCnt = document.getElementById('blue-robe-lucky-cnt');
     blueRobeLuckyCnt++; // 아이템 소모 갯수를 증가시킨다
     buyCnt.textContent = blueRobeLuckyCnt.toString();

@@ -34,6 +34,13 @@ let darkAvariceTenTrial = 0;
 let darkAvariceSixtyTrial = 0;
 let darkAvariceHundredTrial = 0;
 
+// 갸격관련 input, button
+let darkAvaricePriceInput = document.getElementById('dark-avarice-price'); // 아이템 가격
+let darkAvariceTenInput = document.getElementById('dark-avarice-10-price'); // 10퍼센트 가격
+let darkAvariceSixtyInput = document.getElementById('dark-avarice-60-price'); // 60퍼센트 가격
+let darkAvariceHundredInput = document.getElementById('dark-avarice-100-price'); // 100퍼센트 가격
+let darkAvaricePriceResetBtn = document.getElementById('dark-avarice-price-reset-btn') // 리셋 버튼
+
 /**
  * 핫키 이벤트 등록
  * - Q: 10% 주문서 적용
@@ -45,14 +52,48 @@ window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+        resetBtn.focus();
     } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
-        tenPerBtnClicked();
+        tenPerBtnClicked()
+        tenPerBtn.focus()
     } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
         sixtyPerBtnClicked()
+        sixtyPerBtn.focus();
     } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
-        resetDarkAvaricePrice()
+        hundredPerBtnClicked()
+        hundredPerBtn.focus()
+    } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
+        resetDarkAvaricePrice();
+        darkAvaricePriceResetBtn.focus();
     }
 });
+
+window.addEventListener('keyup', (e) => {
+    let input = e.key;
+    if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
+        resetBtn.blur();
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
+        tenPerBtn.blur()
+    } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtn.blur();
+    } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtn.blur()
+    } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
+        darkAvaricePriceResetBtn.blur();
+    }
+});
+
+tenPerBtn.addEventListener('mouseup', tenPerBtnMouseUp);
+sixtyPerBtn.addEventListener('mouseup', sixtyPerBtnMouseUp);
+hundredPerBtn.addEventListener('mouseup', hundredPerBtnMouseUp);
+resetBtn.addEventListener('mouseup', resetBtnMouseUp);
+darkAvaricePriceResetBtn.addEventListener('mouseup', workGlovePriceResetBtnMouseUp);
+
+function tenPerBtnMouseUp() { tenPerBtn.blur() }
+function sixtyPerBtnMouseUp() { sixtyPerBtn.blur() }
+function hundredPerBtnMouseUp() { hundredPerBtn.blur() }
+function resetBtnMouseUp() { resetBtn.blur() }
+function workGlovePriceResetBtnMouseUp() { darkAvaricePriceResetBtn.blur() }
 
 /**
  * 주문서 버튼 이벤트 리스너
@@ -261,11 +302,6 @@ function playFailEffect() {
 /**
  * 주문서 총 사용가격 로직
  */
-let darkAvaricePriceInput = document.getElementById('dark-avarice-price'); // 아이템 가격
-let darkAvariceTenInput = document.getElementById('dark-avarice-10-price'); // 10퍼센트 가격
-let darkAvariceSixtyInput = document.getElementById('dark-avarice-60-price'); // 60퍼센트 가격
-let darkAvariceHundredInput = document.getElementById('dark-avarice-100-price'); // 100퍼센트 가격
-let darkAvaricePriceResetBtn = document.getElementById('dark-avarice-price-reset-btn') // 리셋 버튼
 
 darkAvaricePriceInput.oninput = () => {
     recalculateDarkAvariceTotalPrice()

@@ -37,3 +37,11 @@ export function playSuccessSound() {
     successMp3.play();
 }
 
+export function changeKeyDownBorder(object) {
+    object.style.border = "3px #3AA1FF solid"
+}
+
+export function changeKeyUpBorder(object) {
+    object.style.border = "none";
+}
+

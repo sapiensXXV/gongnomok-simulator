@@ -20,6 +20,13 @@ let blueRobeIntelTenTrial = 0;
 let blueRobeIntelSixtyTrial = 0;
 let blueRobeIntelHundredTrial = 0;
 
+// 가격 관련 button, input
+let blueRobeIntelPriceInput = document.getElementById('blue-robe-intel-price'); // 아이템 가격
+let blueRobeIntelTenInput = document.getElementById('blue-robe-intel-10-price'); // 10퍼센트 가격
+let blueRobeIntelSixtyInput = document.getElementById('blue-robe-intel-60-price'); // 60퍼센트 가격
+let blueRobeIntelHundredInput = document.getElementById('blue-robe-intel-100-price'); // 100퍼센트 가격
+let blueRobeIntelPriceResetBtn = document.getElementById('blue-robe-intel-price-reset-btn') // 리셋 버튼
+
 /**
  * 핫키 이벤트 등록
  * - Q: 10% 주문서 적용
@@ -31,16 +38,48 @@ window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+        resetBtn.focus();
     } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
-        tenPerBtnClicked();
+        tenPerBtnClicked()
+        tenPerBtn.focus()
     } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
         sixtyPerBtnClicked()
+        sixtyPerBtn.focus();
     } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
         hundredPerBtnClicked()
+        hundredPerBtn.focus()
     } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
-        resetblueRobeIntelPrice();
+        resetBlueRobeIntelPrice();
+        blueRobeIntelPriceResetBtn.focus();
     }
 });
+
+window.addEventListener('keyup', (e) => {
+    let input = e.key;
+    if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
+        resetBtn.blur();
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input === 'ㅃ') {
+        tenPerBtn.blur()
+    } else if (input === 'w' || input === 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtn.blur();
+    } else if (input === 'e' || input === 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtn.blur()
+    } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
+        blueRobeIntelPriceResetBtn.blur();
+    }
+});
+
+tenPerBtn.addEventListener('mouseup', tenPerBtnMouseUp);
+sixtyPerBtn.addEventListener('mouseup', sixtyPerBtnMouseUp);
+hundredPerBtn.addEventListener('mouseup', hundredPerBtnMouseUp);
+resetBtn.addEventListener('mouseup', resetBtnMouseUp);
+blueRobeIntelPriceResetBtn.addEventListener('mouseup', workGlovePriceResetBtnMouseUp);
+
+function tenPerBtnMouseUp() { tenPerBtn.blur() }
+function sixtyPerBtnMouseUp() { sixtyPerBtn.blur() }
+function hundredPerBtnMouseUp() { hundredPerBtn.blur() }
+function resetBtnMouseUp() { resetBtn.blur() }
+function workGlovePriceResetBtnMouseUp() { blueRobeIntelPriceResetBtn.blur() }
 
 /**
  * 주문서 버튼 이벤트 리스너
@@ -230,12 +269,6 @@ function playFailEffect() {
         gifImg.hidden = true;
     }, 1000);
 }
-
-let blueRobeIntelPriceInput = document.getElementById('blue-robe-intel-price'); // 아이템 가격
-let blueRobeIntelTenInput = document.getElementById('blue-robe-intel-10-price'); // 10퍼센트 가격
-let blueRobeIntelSixtyInput = document.getElementById('blue-robe-intel-60-price'); // 60퍼센트 가격
-let blueRobeIntelHundredInput = document.getElementById('blue-robe-intel-100-price'); // 100퍼센트 가격
-let blueRobeIntelPriceResetBtn = document.getElementById('blue-robe-intel-price-reset-btn') // 리셋 버튼
 
 blueRobeIntelPriceInput.oninput = () => {
     reCalculateBlueRobeIntelTotalPrice()
