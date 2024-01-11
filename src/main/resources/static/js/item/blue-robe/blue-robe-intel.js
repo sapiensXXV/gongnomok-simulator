@@ -20,18 +20,38 @@ let blueRobeIntelTenTrial = 0;
 let blueRobeIntelSixtyTrial = 0;
 let blueRobeIntelHundredTrial = 0;
 
-// R 핫키 이벤트, 아이템 상태 초기화
+/**
+ * 핫키 이벤트 등록
+ * - Q: 10% 주문서 적용
+ * - W: 60% 주문서 적용
+ * - E: 100% 주문서 적용
+ * - R: 아이템 상태 초기화
+ */
 window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input == 'ㅃ') {
+        tenPerBtnClicked();
+    } else if (input === 'w' || input == 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtnClicked()
+    } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtnClicked()
     }
 });
 
 /**
  * 주문서 버튼 이벤트 리스너
  */
-tenPerBtn.addEventListener('click', function() {
+tenPerBtn.addEventListener('click', tenPerBtnClicked);
+sixtyPerBtn.addEventListener('click', sixtyPerBtnClicked);
+hundredPerBtn.addEventListener('click', hundredPerBtnClicked);
+resetBtn.addEventListener('click', function () {
+    resetItem(true);
+});
+
+
+function tenPerBtnClicked() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(10)) {
         success(5, 3, 10, 10);
@@ -43,35 +63,33 @@ tenPerBtn.addEventListener('click', function() {
     blueRobeIntelTenTrial++;
     usedCnt.textContent = blueRobeIntelTenTrial.toString();
     reCalculateBlueRobeIntelTotalPrice();
-})
+}
 
-sixtyPerBtn.addEventListener('click', function() {
+function sixtyPerBtnClicked() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(60)) {
         success(2, 1, 0, 60);
+
     } else {
         fail();
-    }
 
+    }
     let usedCnt = document.getElementById('blue-robe-intel-60-used-cnt');
     blueRobeIntelSixtyTrial++;
     usedCnt.textContent = blueRobeIntelSixtyTrial.toString();
     reCalculateBlueRobeIntelTotalPrice();
-});
 
-hundredPerBtn.addEventListener('click', function () {
+}
+function hundredPerBtnClicked() {
     if (!checkAvailableCount()) return
-    success(1, 0, 0, 100);
 
+    success(1, 0, 0, 100);
     let usedCnt = document.getElementById('blue-robe-intel-100-used-cnt');
     blueRobeIntelHundredTrial++;
     usedCnt.textContent = blueRobeIntelHundredTrial.toString();
     reCalculateBlueRobeIntelTotalPrice();
-});
 
-resetBtn.addEventListener('click', function () {
-    resetItem(true);
-});
+}
 
 /**
  * 공용 함수

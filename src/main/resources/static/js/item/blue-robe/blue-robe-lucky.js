@@ -20,18 +20,34 @@ let blueRobeLuckyTenTrial = 0;
 let blueRobeLuckySixtyTrial = 0;
 let blueRobeLuckyHundredTrial = 0;
 
-// R 핫키 이벤트, 아이템 상태 초기화
+/**
+ * 핫키 이벤트 등록
+ * - Q: 10% 주문서 적용
+ * - W: 60% 주문서 적용
+ * - E: 100% 주문서 적용
+ * - R: 아이템 상태 초기화
+ */
 window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input == 'ㅃ') {
+        tenPerBtnClicked();
+    } else if (input === 'w' || input == 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtnClicked()
+    } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtnClicked()
     }
 });
 
 /**
  * 주문서 버튼 이벤트 리스너
  */
-tenPerBtn.addEventListener('click', function() {
+tenPerBtn.addEventListener('click', tenPerBtnClicked);
+sixtyPerBtn.addEventListener('click', sixtyPerBtnClicked);
+hundredPerBtn.addEventListener('click', hundredPerBtnClicked);
+
+function tenPerBtnClicked() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(10)) {
         success(5, 3, 1, 10);
@@ -43,9 +59,9 @@ tenPerBtn.addEventListener('click', function() {
     blueRobeLuckyTenTrial++;
     usedCnt.textContent = blueRobeLuckyTenTrial.toString();
     reCalculateBlueRobeLuckyTotalPrice();
-})
+}
 
-sixtyPerBtn.addEventListener('click', function() {
+function sixtyPerBtnClicked() {
     if (!checkAvailableCount()) return
     if (util.getRandomResult(60)) {
         success(2, 1, 0, 60);
@@ -57,9 +73,9 @@ sixtyPerBtn.addEventListener('click', function() {
     blueRobeLuckySixtyTrial++;
     usedCnt.textContent = blueRobeLuckySixtyTrial.toString();
     reCalculateBlueRobeLuckyTotalPrice();
-});
+}
 
-hundredPerBtn.addEventListener('click', function () {
+function hundredPerBtnClicked() {
     if (!checkAvailableCount()) return
     success(1, 0, 0, 100);
 
@@ -67,7 +83,7 @@ hundredPerBtn.addEventListener('click', function () {
     blueRobeLuckyHundredTrial++;
     usedCnt.textContent = blueRobeLuckyHundredTrial.toString();
     reCalculateBlueRobeLuckyTotalPrice();
-});
+}
 
 resetBtn.addEventListener('click', function () {
     resetItem(true);

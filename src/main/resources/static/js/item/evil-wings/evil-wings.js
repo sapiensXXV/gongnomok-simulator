@@ -35,13 +35,73 @@ let evilWingsTenTrial = 0;
 let evilWingsSixtyTrial = 0;
 let evilWingsHundredTrial = 0;
 
-// R 핫키 이벤트, 아이템 상태 초기화
+/**
+ * 핫키 이벤트 등록
+ * - Q: 10% 주문서 적용
+ * - W: 60% 주문서 적용
+ * - E: 100% 주문서 적용
+ * - R: 아이템 상태 초기화
+ */
 window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input == 'ㅃ') {
+        tenPerBtnClicked();
+    } else if (input === 'w' || input == 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtnClicked()
+    } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtnClicked()
     }
 });
+
+/**
+ * 주문서 버튼 이벤트 리스너
+ */
+tenPerBtn.addEventListener('click', tenPerBtnClicked);
+sixtyPerBtn.addEventListener('click', sixtyPerBtnClicked);
+hundredPerBtn.addEventListener('click', hundredPerBtnClicked);
+resetBtn.addEventListener('click', function () {
+    resetItem(true);
+});
+
+function tenPerBtnClicked() {
+    if (!checkAvailableCount()) return
+    if (util.getRandomResult(10)) {
+        success(5, 3, 1, 10);
+    } else {
+        fail()
+    }
+
+    let usedCnt = document.getElementById('evil-wings-10-used-cnt');
+    evilWingsTenTrial++;
+    usedCnt.textContent = evilWingsTenTrial.toString();
+    recalculateEvilWingsTotalPrice();
+}
+
+function sixtyPerBtnClicked() {
+    if (!checkAvailableCount()) return
+    if (util.getRandomResult(60)) {
+        success(2, 1, 0, 60);
+    } else {
+        fail();
+    }
+
+    let usedCnt = document.getElementById('evil-wings-60-used-cnt');
+    evilWingsSixtyTrial++;
+    usedCnt.textContent = evilWingsSixtyTrial.toString();
+    recalculateEvilWingsTotalPrice();
+}
+
+function hundredPerBtnClicked() {
+    if (!checkAvailableCount()) return
+    success(1, 0, 0, 100);
+
+    let usedCnt = document.getElementById('evil-wings-100-used-cnt');
+    evilWingsHundredTrial++;
+    usedCnt.textContent = evilWingsHundredTrial.toString();
+    recalculateEvilWingsTotalPrice();
+}
 
 /**
  * 옵션 버튼 이벤트 리스너
@@ -106,51 +166,6 @@ fiveUpperOptionBtn.addEventListener('click', function() {
     phyAtk.textContent = defaultPhyAtk.toString()
 });
 
-
-/**
- * 주문서 버튼 이벤트 리스너
- */
-tenPerBtn.addEventListener('click', function() {
-    if (!checkAvailableCount()) return
-    if (util.getRandomResult(10)) {
-        success(5, 3, 1, 10);
-    } else {
-        fail()
-    }
-
-    let usedCnt = document.getElementById('evil-wings-10-used-cnt');
-    evilWingsTenTrial++;
-    usedCnt.textContent = evilWingsTenTrial.toString();
-    recalculateEvilWingsTotalPrice();
-})
-
-sixtyPerBtn.addEventListener('click', function() {
-    if (!checkAvailableCount()) return
-    if (util.getRandomResult(60)) {
-        success(2, 1, 0, 60);
-    } else {
-        fail();
-    }
-
-    let usedCnt = document.getElementById('evil-wings-60-used-cnt');
-    evilWingsSixtyTrial++;
-    usedCnt.textContent = evilWingsSixtyTrial.toString();
-    recalculateEvilWingsTotalPrice();
-});
-
-hundredPerBtn.addEventListener('click', function () {
-    if (!checkAvailableCount()) return
-    success(1, 0, 0, 100);
-
-    let usedCnt = document.getElementById('evil-wings-100-used-cnt');
-    evilWingsHundredTrial++;
-    usedCnt.textContent = evilWingsHundredTrial.toString();
-    recalculateEvilWingsTotalPrice();
-});
-
-resetBtn.addEventListener('click', function () {
-    resetItem(true);
-});
 
 /**
  * 공용 함수

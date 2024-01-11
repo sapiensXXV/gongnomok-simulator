@@ -4,10 +4,10 @@ import {reduceCount} from "../../global/util.js";
 /**
  * 주문서 버튼
  */
-let tenPercentButton =  document.getElementById('work-glove-10-percent-button')
-let sixtyPercentButton =  document.getElementById('work-glove-60-percent-button')
-let hundredPercentButton =  document.getElementById('work-glove-100-percent-button')
-let resetButton = document.getElementById('work-glove-reset-button')
+let tenPerBtn =  document.getElementById('work-glove-10-percent-button')
+let sixtyPerBtn =  document.getElementById('work-glove-60-percent-button')
+let hundredPerBtn =  document.getElementById('work-glove-100-percent-button')
+let resetBtn = document.getElementById('work-glove-reset-button')
 
 let defaultAtk = 0
 
@@ -24,16 +24,37 @@ let workGloveTenTrial = 0;
 let workGloveSixtyTrial = 0;
 let workGloveHundredTrial = 0;
 
-// R 핫키 이벤트, 아이템 상태 초기화
+/**
+ * 핫키 이벤트 등록
+ * - Q: 10% 주문서 적용
+ * - W: 60% 주문서 적용
+ * - E: 100% 주문서 적용
+ * - R: 아이템 상태 초기화
+ */
 window.addEventListener('keydown', (e) => {
     let input = e.key;
     if (input === 'r' || input === 'R' || input === 'ㄱ' || input === 'ㄲ') {
         resetItem(true)
+    } else if (input === 'q' || input === 'Q' || input === 'ㅂ' || input == 'ㅃ') {
+        tenPerBtnClicked();
+    } else if (input === 'w' || input == 'W' || input === 'ㅈ' || input === 'ㅉ') {
+        sixtyPerBtnClicked()
+    } else if (input === 'e' || input == 'E' || input === 'ㄷ' || input === 'ㄸ') {
+        hundredPerBtnClicked()
     }
 });
 
+/**
+ * 주문서 버튼 이벤트 리스너
+ */
+tenPerBtn.addEventListener('click', tenPerBtnClicked);
+sixtyPerBtn.addEventListener('click', sixtyPerBtnClicked);
+hundredPerBtn.addEventListener('click', hundredPerBtnClicked);
+resetBtn.addEventListener('click', function () {
+    resetItem(true);
+});
 
-tenPercentButton.addEventListener('click', function () {
+function tenPerBtnClicked() {
     if (!checkAvailableCount()) return;
 
     if (util.getRandomResult(10)) {
@@ -46,9 +67,9 @@ tenPercentButton.addEventListener('click', function () {
     workGloveTenTrial++;
     usedCnt.textContent = workGloveTenTrial.toString();
     recalculateWorkGloveTotalPrice();
-});
+}
 
-sixtyPercentButton.addEventListener('click', function () {
+function sixtyPerBtnClicked() {
     if (!checkAvailableCount()) return;
     if (util.getRandomResult(60)) {
         success(2, 60);
@@ -60,9 +81,9 @@ sixtyPercentButton.addEventListener('click', function () {
     workGloveSixtyTrial++;
     usedCnt.textContent = workGloveSixtyTrial.toString();
     recalculateWorkGloveTotalPrice();
-});
+}
 
-hundredPercentButton.addEventListener('click', function () {
+function hundredPerBtnClicked() {
     if (!checkAvailableCount()) return;
     success(1, 100);
 
@@ -70,11 +91,7 @@ hundredPercentButton.addEventListener('click', function () {
     workGloveHundredTrial++;
     usedCnt.textContent = workGloveHundredTrial.toString();
     recalculateWorkGloveTotalPrice();
-});
-
-resetButton.addEventListener('click', function () {
-    resetItem(true);
-});
+}
 
 export function resetItem(isNew) {
     let atkElem = document.getElementById('work-glove-power')
