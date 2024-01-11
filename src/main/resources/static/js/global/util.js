@@ -19,7 +19,7 @@ export function changeColor(object, value) {
     } else if (value >= 23 && value <= 39) {
         object.style.color = "#A201DA"
     } else if (value >= 40) {
-        object.style.color = "yellow"
+        object.style.color = "#E1D460"
     }
 }
 
