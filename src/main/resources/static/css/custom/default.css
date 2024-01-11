@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
 body {
     margin: 20px;
@@ -42,7 +42,6 @@ h1 h2 h3 {
     border: 1px solid black;
 
     background-color: rgba(45, 41, 122, 0.73);
-    margin-top: 10px;
 }
 
 p.item-title {
@@ -75,10 +74,12 @@ p.item-title {
 }
 
 .item .simulator-controller-container {
-    /*border: 3px blue solid;*/
     float: left;
-    vertical-align: bottom;
-    margin: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    font-family: "IBM Plex Sans KR", sans-serif;
 }
 
 /*이미지 - 요구능력치 블록*/
@@ -112,14 +113,6 @@ p.item-title {
 /*아이템 이미지 부분*/
 .item-image {
     position: absolute;
-    /*background-color: #CBC1CC;*/
-
-    /*padding: 10px;*/
-    /*margin-top: 0px;*/
-    /*margin-right: 13px;*/
-    /*margin-left: 13px;*/
-
-    /*vertical-align: top;*/
 }
 
 /*요구 능력치 부분*/
@@ -127,13 +120,12 @@ p.item-title {
     font-size: 15px;
     color: white;
     display: inline-block;
-    /*border: 1px solid white;*/
 
     width: auto;
 }
 
 .required-status p {
-    font-family: 'Noto Sans KR','Pixelify Sans';
+    /*font-family: 'Noto Sans KR','Pixelify Sans';*/
     font-size: 13px;
     line-height: 4px;
     margin-top: 3px;
@@ -146,14 +138,14 @@ p.item-title {
 .etc-info {
     line-height: 6px;
     text-align: center;
-    font-family: 'Noto Sans KR';
+    /*font-family: 'Noto Sans KR';*/
     color: white;
 
     horiz-align: center;
 }
 
-.item-option-btn-container {
-    /*font-family: "Noto Sans KR";*/
+.item-option-btn-container button[type="button"] {
+    font-family: "IBM Plex Sans KR";
     /*!*display: flex;*!*/
     /*align-items: center;*/
     /*margin: 3px;*/
@@ -165,7 +157,7 @@ p.item-title {
 }
 
 .item-option-btn {
-    font-family: "Noto Sans KR";
+    /*font-family: "Noto Sans KR";*/
     display: inline-block;
     margin-top: 3px;
     margin-right: 2px;
@@ -176,14 +168,16 @@ p.item-title {
 }
 
 .available-alert-text {
-    font-family: "Noto Sans KR";
+    /*font-family: "Noto Sans KR";*/
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .scroll-list {
     width: 310px;
     margin-top: 10px;
+    font-weight: 500;
+
 
 }
 
@@ -193,7 +187,7 @@ p.item-title {
     display: inline-block;
     text-align: left;
 
-    font-family: 'Noto Sans KR';
+    /*font-family: 'Noto Sans KR';*/
     font-size: 12px;
     line-height: 6px;
 
@@ -220,7 +214,6 @@ p.item-title {
 
 .item-price-calculator-container {
     font-size: 15px;
-    font-family: "Noto Sans KR";
 }
 
 .item-price-input {
@@ -231,7 +224,7 @@ p.item-title {
     display: inline-block;
     text-align: left;
     width: 80px;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 15px;
 }
 
@@ -254,7 +247,7 @@ p.item-title {
 
 .scroll-price-calculator-container {
     font-size: 15px;
-    font-family: "Noto Sans KR";
+    /*font-family: "Noto Sans KR";*/
 }
 
 .scroll-price-input {
@@ -265,7 +258,7 @@ p.item-title {
     display: inline-block;
     text-align: left;
     width: 80px;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 15px;
 }
 
@@ -291,10 +284,13 @@ p.item-title {
     display: flex
 }
 
+.scroll-price-info button[type="button"] {
+    font-family: "IBM Plex Sans KR", sans-serif;
+}
+
 .scroll-price-result {
     display: flex;
     width: 265px
-
 }
 
 .scroll-price-result img {
