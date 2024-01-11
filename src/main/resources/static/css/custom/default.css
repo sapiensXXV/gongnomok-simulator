@@ -11,40 +11,6 @@ h1 h2 h3 {
     font-family: "IBM Plex Sans KR";
 }
 
-
-
-.header-container {
-    text-align: center;
-}
-
-.header-container img {
-    display: inline-block;
-}
-
-.simulator-guide summary {
-    font-size: 50px;
-}
-
-.guide-container {
-    text-align: center;
-}
-
-.guide-img-container {
-    text-align: center;
-}
-
-.guide-img-summary {
-    font-size: 27px;
-}
-.guide-img-container img {
-    display: inline-block;
-}
-
-.simulator-guide summary {
-    font-family: 'IBM Plex Sans KR';
-    font-size: 22px;
-}
-
 .item-info-container {
     float: left;
     margin: 5px;
@@ -264,6 +230,11 @@ p.item-title {
     overflow: hidden;
 }
 
+.item-price-input input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3AA1FF inset;
+}
+
 .item-price-input .item-buy-cnt {
     margin-left: 3px;
     font-size: 12px;
@@ -300,9 +271,8 @@ p.item-title {
 }
 
 .scroll-price-input input:focus {
-    border-color: #2525ff;
-    border-width: 2px;
     outline: none;
+    box-shadow: 0 0 0 2px #3AA1FF inset;
 }
 
 .scroll-price-input .scroll-use-info {
@@ -325,7 +295,7 @@ p.item-title {
 
 .scroll-price-info button[type="button"]:focus {
     outline: none;
-    box-shadow: 0 0 0 3px #3AA1FF inset;
+    box-shadow: 0 0 0 2px #3AA1FF inset;
 }
 
 .scroll-price-result {
