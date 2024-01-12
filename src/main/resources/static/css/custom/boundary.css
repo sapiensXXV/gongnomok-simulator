@@ -26,12 +26,11 @@
     /*border: 2px blue dashed;*/
     /*중앙 크기*/
     width: 1000px;
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
-    padding-right: 10px;
-    padding-left: 10px;
-
-    height: 100%;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
 }
 
 .right-third-split-boundary {

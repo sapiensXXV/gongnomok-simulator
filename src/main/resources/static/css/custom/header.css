@@ -9,12 +9,15 @@
 }
 
 .header-container {
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: left;
     /*background-color: lightyellow;*/
     text-align: left;
+    width: 100%;
 }
 
 .header-title-left {
@@ -25,7 +28,8 @@
 .header-title-left img {
     margin-top: 25px;
     /*margin-left: 10px;*/
-    /*border-radius: 5px;*/
+    /*margin-left: 10px;*/
+    border-radius: 5px;
 }
 
 .header-title-center {
@@ -41,7 +45,7 @@
 
 .header-title-right img {
     margin-top: 10px;
-    margin-left: 10px;
+    margin-right: 10px;
     float: right;
 
     /*margin: 0 auto;*/

@@ -38,6 +38,8 @@ h1 h2 h3 {
     /*margin-right: 10px;*/
     /*중앙 크기*/
     width: 1000px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     font-family: "IBM Plex Sans KR", sans-serif;
 }
