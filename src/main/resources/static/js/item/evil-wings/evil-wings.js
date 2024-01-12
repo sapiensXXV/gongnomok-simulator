@@ -7,7 +7,7 @@ let defaultMgAtk = 80;
 let defaultAvailableCount = 7;
 let defaultAcc = 0;
 
-let evilWingsImgPath = '../img/weapon/evil-wings.png';
+let evilWingsImgPath = '../img/item/weapon/evil-wings.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 

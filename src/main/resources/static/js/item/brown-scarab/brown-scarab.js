@@ -7,7 +7,7 @@ let defaultPhyDef = 3;
 let defaultAcc = 0;
 let defaultLuk = 4;
 
-let brownScarabImgPath = '../img/weapon/brown-scarab.png';
+let brownScarabImgPath = '../img/item/weapon/brown-scarab.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 

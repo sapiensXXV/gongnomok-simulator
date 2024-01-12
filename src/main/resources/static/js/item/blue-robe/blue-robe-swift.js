@@ -1,6 +1,6 @@
 import * as util from "../../global/util.js";
 
-let blueRobeSwiftImgPath = '../img/weapon/blue-sauna-robe.png';
+let blueRobeSwiftImgPath = '../img/item/weapon/blue-sauna-robe.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 

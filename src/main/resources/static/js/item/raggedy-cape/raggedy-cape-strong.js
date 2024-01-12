@@ -1,6 +1,6 @@
 import * as util from "../../global/util.js";
 
-let raggedyCapeStrongImgPath = '../img/weapon/blue-sauna-robe.png';
+let raggedyCapeStrongImgPath = '../img/item/armor/raggedy-cape.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 

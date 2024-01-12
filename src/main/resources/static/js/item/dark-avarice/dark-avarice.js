@@ -10,7 +10,7 @@ let defaultAcc = 0;
 
 let timer = null;
 
-let gloveImgPath = '../img/weapon/work-glove.png';
+let gloveImgPath = '../img/item/weapon/work-glove.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 

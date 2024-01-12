@@ -8,7 +8,7 @@ let defaultAvo = 3;
 let defaultAcc = 0;
 let defaultLuk = 0;
 
-let bloodGiganticImgPath = '../img/weapon/blood-gigantic.png';
+let bloodGiganticImgPath = '../img/item/weapon/blood-gigantic.png';
 let successGifPath = '../gif/success.gif';
 let failureGifPath = '../gif/failure.gif';
 
