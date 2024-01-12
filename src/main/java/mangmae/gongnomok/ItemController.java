@@ -57,4 +57,27 @@ public class ItemController {
         return "item/weapon/evil-wings";
     }
 
+    // 허름한 망토(힘)
+    @GetMapping("/armor/raggedy-cape-str")
+    public String raggedyCapeStr() {
+        return "item/armor/raggedy-cape-str";
+    }
+
+    // 허름한 망토(민첩)
+    @GetMapping("/armor/raggedy-cape-dex")
+    public String raggedyCapeDex() {
+        return "item/armor/raggedy-cape-dex";
+    }
+
+    // 허름한 망토(지력)
+    @GetMapping("/armor/raggedy-cape-int")
+    public String raggedyCapeInt() {
+        return "item/armor/raggedy-cape-int";
+    }
+
+    // 허름한 망토(행운)
+    @GetMapping("/armor/raggedy-cape-luk")
+    public String raggedyCapeLuk() {
+        return "item/armor/raggedy-cape-luk";
+    }
 }

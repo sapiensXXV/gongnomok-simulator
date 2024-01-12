@@ -24,7 +24,7 @@
 
 .header-title-left img {
     margin-top: 25px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     /*border-radius: 5px;*/
 }
 
@@ -63,7 +63,7 @@
     font-size: 30px;
 
 
-    border-radius: 5px;
+    border-radius: 8px;
     border-color: #FFCC48;
     background-color: #FFCC48;
 

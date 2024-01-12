@@ -15,7 +15,10 @@
 
 .left-third-split-boundary {
     /*border: 2px red dashed;*/
-    width: 250px
+    width: 400px;
+
+    float: right;
+    text-align: right;
 }
 
 .center-third-split-boundary {
@@ -23,12 +26,14 @@
     /*중앙 크기*/
     width: 1000px;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
 
     height: 100%;
 }
 
 .right-third-split-boundary {
     /*border: 2px green dashed;*/
-    width: 250px;
+    width: 400px;
 }
