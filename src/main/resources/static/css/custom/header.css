@@ -22,7 +22,9 @@
 
 .header-title-left {
     /*border: green dashed 2px;*/
-    width: 60%
+    width: 60%;
+    margin-left: 10px;
+
 }
 
 .header-title-left img {
