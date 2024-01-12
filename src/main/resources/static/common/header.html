@@ -15,9 +15,9 @@
             <div class="left-third-split-boundary"></div>
             <div class="center-third-split-boundary">
                 <div class="header-outside-boundary">
-                    <div class="header-container" onclick="location.href='/'">
+                    <div class="header-container">
                         <div class="header-title-left">
-                            <img src="../img/etc/title.png" width="570px">
+                            <a href="/"><img src="../img/etc/title.png" width="570px"></a>
                         </div>
                         <div class="header-title-center"></div>
                         <div class="header-title-right">
@@ -25,20 +25,18 @@
                         </div>
                     </div>
                     <div class="guide-container">
-                        <details class="simulator-guide">
-                            <summary>가이드 (펼치기) 🌟</summary>
-                            <div class="guide-img-container">
-                                <img src="../img/etc/guide.png" width="1000px">
-                            </div>
-                        </details>
+                        <button class="guide-img-btn" id="guide-img-btn" type="button">
+                            가이드 펼치기 💡
+                        </button>
+                        <img id="header-guide-img" class="header-guide-img"  src="../img/etc/guide.png" width="1000px" style="display: none">
                     </div>
-                    <!--<hr class="header-hr">-->
                 </div>
             </div>
             <div class="right-third-split-boundary"></div>
         </div>
     </div>
 
+    <script type="text/javascript" src="../js/common/header.js"></script>
 
 
 </body>

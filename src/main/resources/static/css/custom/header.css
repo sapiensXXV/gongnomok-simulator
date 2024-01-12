@@ -43,6 +43,7 @@
     margin-right: 10px;
 }
 
+
 .simulator-guide summary {
     font-family: 'IBM Plex Sans KR', sans-serif;
     font-weight: 600;
@@ -52,6 +53,25 @@
 .guide-container {
     text-align: center;
 }
+
+.guide-container button[type="button"] {
+    padding: 3px 15px;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+
+
+    border-radius: 5px;
+    border-color: #FFCC48;
+    background-color: #FFCC48;
+
+    margin-bottom: 8px;
+}
+
+.header-guide-img {
+    display: inline-block;
+}
+
 .guide-img-container {
     text-align: center;
 }

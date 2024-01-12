@@ -45,8 +45,7 @@ h1 h2 h3 {
 }
 
 .item-info {
-    width: 300px;
-    /*border: 2px solid darkblue;*/
+    width: 320px;
     border: 1px solid black;
     background-color: rgba(45, 41, 122, 0.73);
 }
@@ -155,7 +154,7 @@ p.item-title {
 
     margin-left: 3px;
     margin-right: 3px;
-    
+
 }
 
 .item-option-btn-container button[type="button"] {
