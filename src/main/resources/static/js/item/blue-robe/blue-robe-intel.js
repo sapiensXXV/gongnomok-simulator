@@ -49,7 +49,7 @@ window.addEventListener('keydown', (e) => {
         hundredPerBtnClicked()
         hundredPerBtn.focus()
     } else if (input === 'f' || input === 'F' || input === 'ㄹ') {
-        resetBlueRobeIntelPrice();
+        resetBlueRobeIntelPrice()
         blueRobeIntelPriceResetBtn.focus();
     }
 });
@@ -313,10 +313,10 @@ function reCalculateBlueRobeIntelTotalPrice() {
  * 가격 리셋 로직
  */
 blueRobeIntelPriceResetBtn.addEventListener('click', function () {
-    resetblueRobeIntelPrice()
+    resetBlueRobeIntelPrice()
 });
 
-function resetblueRobeIntelPrice() {
+function resetBlueRobeIntelPrice() {
     let tenSuccessCnt = document.getElementById('blue-robe-intel-10-success-cnt');
     let sixtySuccessCnt = document.getElementById('blue-robe-intel-60-success-cnt');
     let hundredSuccessCnt = document.getElementById('blue-robe-intel-100-success-cnt');
