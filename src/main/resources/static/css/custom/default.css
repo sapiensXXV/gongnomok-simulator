@@ -35,6 +35,8 @@ h1 h2 h3 {
     margin-left: 10px;
     margin-right: 10px;
     width: 1000px;
+
+    font-family: "IBM Plex Sans KR", sans-serif;
 }
 
 .item-info-container {
