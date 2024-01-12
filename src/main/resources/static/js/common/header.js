@@ -8,7 +8,7 @@ guideImgBtn.addEventListener('click', function () {
         guideImg.style.display = 'inline'
     }
     else if (guideImg.style.display === 'inline') {
-        guideImgBtn.textContent = "가이드 펼치기 💡"
+        guideImgBtn.textContent = "가이드 펼치기 4💡"
         guideImg.style.display = 'none';
     }
 });
