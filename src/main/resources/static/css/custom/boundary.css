@@ -20,7 +20,8 @@
 
 .center-third-split-boundary {
     /*border: 2px blue dashed;*/
-    width: 1100px;
+    /*중앙 크기*/
+    width: 1000px;
     background-color: white;
     border-radius: 5px;
 
