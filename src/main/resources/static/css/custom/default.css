@@ -14,7 +14,9 @@ body {
     /*outline: dashed 1px black;*/
     justify-content: center;
 
-    background-color: #FCD163;
+    /*background-color: #FCD163;*/
+    background-image: url("../../img/etc/elinia.png");
+    background-size: cover;
     height: 100%;
 }
 
@@ -70,11 +72,15 @@ p.item-title {
     justify-content: center;
     /*중앙 크기*/
     width: 1000px;
+    opacity: 1.0;
 }
 
 .item {
     float: left;
     margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .item .simulator-controller-container {

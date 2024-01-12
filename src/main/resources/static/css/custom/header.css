@@ -42,6 +42,8 @@
 .header-title-right img {
     margin-top: 10px;
     margin-left: 10px;
+    float: right;
+
     /*margin: 0 auto;*/
 }
 
