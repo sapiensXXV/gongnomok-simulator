@@ -152,6 +152,10 @@ p.item-title {
     color: white;
 
     horiz-align: center;
+
+    margin-left: 3px;
+    margin-right: 3px;
+    
 }
 
 .item-option-btn-container button[type="button"] {
