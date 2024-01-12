@@ -5,28 +5,41 @@
     <title>Title</title>
 <!--    <link rel="stylesheet" href="../css/custom/default.css">-->
     <link rel="stylesheet" href="../css/custom/header.css">
+    <link rel="stylesheet" href="../css/custom/boundary.css">
 </head>
-<body>
-    <div class="header-container" onclick="location.href='/'">
-        <div id="header-title-left"></div>
-        <div id="header-title-center">
-            <img src="../img/etc/title.png" width="700px">
-        </div>
-        <div id="header-title-right">
-            <a href="https://www.youtube.com/@RALO24"><img src="../img/etc/raltube.png" width="180px"></a>
-        </div>
-    </div>
-    <div class="guide-container">
-        <details class="simulator-guide">
-            <summary>가이드 (펼치기) 🌟</summary>
-            <div class="guide-img-container">
-                <img src="../img/etc/guide.png" width="1200px">
+<body class="header-body">
+
+    <div id="headers"></div>
+    <div class="outside-boundary">
+        <div class="first-boundary">
+            <div class="left-third-split-boundary"></div>
+            <div class="center-third-split-boundary">
+                <div class="header-outside-boundary">
+                    <div class="header-container" onclick="location.href='/'">
+                        <div class="header-title-left">
+                            <img src="../img/etc/title.png" width="570px">
+                        </div>
+                        <div class="header-title-center"></div>
+                        <div class="header-title-right">
+                            <a href="https://www.youtube.com/@RALO24"><img src="../img/etc/raltube.png" width="180px"></a>
+                        </div>
+                    </div>
+                    <div class="guide-container">
+                        <details class="simulator-guide">
+                            <summary>가이드 (펼치기) 🌟</summary>
+                            <div class="guide-img-container">
+                                <img src="../img/etc/guide.png" width="1000px">
+                            </div>
+                        </details>
+                    </div>
+                    <!--<hr class="header-hr">-->
+                </div>
             </div>
-        </details>
+            <div class="right-third-split-boundary"></div>
+        </div>
     </div>
 
 
 
-    <hr>
 </body>
 </html>

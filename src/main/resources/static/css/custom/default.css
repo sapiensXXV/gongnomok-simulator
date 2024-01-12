@@ -2,13 +2,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
+html body {
+    overflow: auto;
+}
+
+html {
+    height: 100%
+}
 
 body {
-    margin: 20px;
+    /*outline: dashed 1px black;*/
+    justify-content: center;
+
+    background-color: #FCD163;
+    height: 100%;
 }
 
 h1 h2 h3 {
     font-family: "IBM Plex Sans KR";
+}
+
+/*body:not(.header-body, .footer-body) {*/
+/*    !*outline: dashed 1px black;*!*/
+/*    !*justify-content: center;*!*/
+/*    !*width: 1000px;*!*/
+/*    !*height: 100%;*!*/
+/*    margin: 0 auto;*/
+/*}*/
+
+.item-link-info-container {
+    /*border: 2px red dashed;*/
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 1000px;
 }
 
 .item-info-container {
@@ -40,6 +66,8 @@ p.item-title {
     margin-top: 20px;
     display: flex;
     justify-content: center;
+
+    width: 1000px;
 }
 
 .item {

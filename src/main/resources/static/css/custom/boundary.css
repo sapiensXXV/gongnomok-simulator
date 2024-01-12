@@ -1,0 +1,33 @@
+.outside-boundary {
+    /*border: 2px purple dashed;*/
+    height: 100%;
+    margin-bottom: 7px;
+}
+
+.first-boundary {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    height: 100%;
+}
+
+.left-third-split-boundary {
+    /*border: 2px red dashed;*/
+    width: 250px
+}
+
+.center-third-split-boundary {
+    /*border: 2px blue dashed;*/
+    width: 1000px;
+    background-color: white;
+    border-radius: 5px;
+
+    height: 100%;
+}
+
+.right-third-split-boundary {
+    /*border: 2px green dashed;*/
+    width: 250px;
+}
