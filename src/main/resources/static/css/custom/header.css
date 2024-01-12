@@ -18,7 +18,7 @@
 }
 
 .header-title-left {
-    border: green dashed 2px;
+    /*border: green dashed 2px;*/
     width: 60%
 }
 
@@ -29,20 +29,20 @@
 }
 
 .header-title-center {
-    border: blue dashed 2px;
+    /*border: blue dashed 2px;*/
     width: 20%;
     /*height: 100%;*/
 }
 
 .header-title-right {
-    border: #d03333 dashed 2px;
+    /*border: #d03333 dashed 2px;*/
     width: 20%;
 }
 
 .header-title-right img {
-    /*margin-top: 10px;*/
-    /*margin-right: 10px;*/
-    margin: 0 auto;
+    margin-top: 10px;
+    margin-left: 10px;
+    /*margin: 0 auto;*/
 }
 
 

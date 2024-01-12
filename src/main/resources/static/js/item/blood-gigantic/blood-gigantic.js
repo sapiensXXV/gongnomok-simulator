@@ -87,13 +87,13 @@ tenPerBtn.addEventListener('mouseup', tenPerBtnMouseUp);
 sixtyPerBtn.addEventListener('mouseup', sixtyPerBtnMouseUp);
 hundredPerBtn.addEventListener('mouseup', hundredPerBtnMouseUp);
 resetBtn.addEventListener('mouseup', resetBtnMouseUp);
-bloodGiganticPriceResetBtn.addEventListener('mouseup', workGlovePriceResetBtnMouseUp);
+bloodGiganticPriceResetBtn.addEventListener('mouseup', bloodGiganticPriceResetBtnMouseUp);
 
 function tenPerBtnMouseUp() { tenPerBtn.blur() }
 function sixtyPerBtnMouseUp() { sixtyPerBtn.blur() }
 function hundredPerBtnMouseUp() { hundredPerBtn.blur() }
 function resetBtnMouseUp() { resetBtn.blur() }
-function workGlovePriceResetBtnMouseUp() { bloodGiganticPriceResetBtn.blur() }
+function bloodGiganticPriceResetBtnMouseUp() { bloodGiganticPriceResetBtn.blur() }
 
 /**
  * 주문서 버튼 이벤트 리스너
