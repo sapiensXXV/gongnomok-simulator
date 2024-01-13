@@ -1,28 +1,24 @@
 .bgm-container {
-    /*padding: 5px;*/
-    padding-top: 5px;
-    padding-bottom: 5px;
-
+    padding: 5px 0;
     border-radius: 8px;
-    /*border: 2px green dashed;*/
-
     background-color: white;
-
     width: 280px;
-    height: 550px;
-
+    height: 700px;
     margin-right: 10px;
     overflow: auto;
-    float: right
+    float: left
 }
 .one-bgm {
     width: 260px;
 }
-.one-bgm > h3 {
+.one-bgm > h2 {
     font-family: "IBM Plex Sans KR", sans-serif;
     float: left;
-    margin-left: 5px;
 
+    margin: 5px;
+
+    display: block;
+    width: 100%;
 }
 
 .one-bgm > label {

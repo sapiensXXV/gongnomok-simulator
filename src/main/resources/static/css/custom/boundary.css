@@ -14,11 +14,48 @@
     height: 100%;
 }
 
+.first-boundary {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+/*.first-boundary {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.left-third-split-boundary, .center-third-split-boundary, .right-third-split-boundary {*/
+/*    !* 각 요소에 플렉스 박스 속성 추가 *!*/
+/*    display: flex;*/
+/*    !*align-items: center; !* 세로 중앙 정렬을 위한 설정 *!*!*/
+/*}*/
+
+/*.left-third-split-boundary {*/
+/*    width: 400px;*/
+/*    text-align: right;*/
+/*}*/
+
+/*.center-third-split-boundary {*/
+/*    width: 1000px;*/
+/*    height: 100%;*/
+/*    background-color: rgba(255, 255, 255, 0.9);*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*.right-third-split-boundary {*/
+/*    margin-left: 10px;*/
+/*    width: 400px;*/
+/*}*/
+
+
+
 .left-third-split-boundary {
     /*border: 2px red dashed;*/
     width: 400px;
 
-    float: right;
+    /*float: right;*/
     text-align: right;
 }
 
@@ -35,5 +72,6 @@
 
 .right-third-split-boundary {
     /*border: 2px green dashed;*/
+    margin-left: 10px;
     width: 400px;
 }

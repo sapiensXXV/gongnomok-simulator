@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
 html body {
-    overflow: auto;
+    overflow: scroll;
 }
 
 html {
