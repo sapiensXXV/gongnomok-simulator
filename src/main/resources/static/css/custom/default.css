@@ -140,7 +140,6 @@ p.item-title {
 /*아이템 이미지 부분*/
 .item-image {
     position: absolute;
-    height: 60px;
 }
 
 /*요구 능력치 부분*/
