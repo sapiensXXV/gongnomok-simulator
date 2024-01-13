@@ -3,22 +3,28 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
 html body {
-    overflow: scroll;
+    overflow: auto;
 }
 
 html {
     height: 100%
 }
 
+
+
 body {
     /*outline: dashed 1px black;*/
     justify-content: center;
 
     /*background-color: #FCD163;*/
-    background-image: url("../../img/etc/elinia.png");
+    /*background-image: url("../../img/etc/elinia.png");*/
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../../img/etc/elinia.png");
     background-size: cover;
     height: 100%;
+
 }
+
+
 
 h1 h2 h3 {
     font-family: "IBM Plex Sans KR";
@@ -336,7 +342,7 @@ p.item-title {
     text-align: center;
     /*border-radius: 3px;*/
     cursor: pointer;
-    
+
 }
 
 .scroll-price-info button[type="button"]:focus {
