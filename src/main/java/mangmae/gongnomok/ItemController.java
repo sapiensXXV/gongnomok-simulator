@@ -80,4 +80,28 @@ public class ItemController {
     public String raggedyCapeLuk() {
         return "item/armor/raggedy-cape-luk";
     }
+
+    //하이랜더
+    @GetMapping("/weapon/lion-heart")
+    public String lionHeart() {
+        return "item/weapon/lion-heart";
+    }
+
+    //호검
+    @GetMapping("/weapon/lion-fang")
+    public String lionFang() {
+        return "item/weapon/lion-fang";
+    }
+    //나카마키
+    @GetMapping("/weapon/nakamaki")
+    public String nakamaki() {
+        return "item/weapon/nakamaki";
+    }
+
+    //구룡도
+    @GetMapping("/weapon/nine-dragon")
+    public String nineDragon() {
+        return "item/weapon/nine-dragon";
+    }
+
 }

@@ -18,7 +18,7 @@ body {
 
     /*background-color: #FCD163;*/
     /*background-image: url("../../img/etc/elinia.png");*/
-    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("../../img/etc/elinia.png");
+    background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url("../../img/etc/elinia.png");
     background-size: cover;
     height: 100%;
 
