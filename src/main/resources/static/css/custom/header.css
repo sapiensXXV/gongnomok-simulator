@@ -83,12 +83,13 @@ width: 60%;
     font-weight: 600;
     font-size: 30px;
 
-
     border-radius: 8px;
     border-color: #FFCC48;
     background-color: #FFCC48;
 
     margin-bottom: 8px;
+
+    cursor: pointer;
 }
 
 .header-guide-img {
