@@ -2,46 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
-html body {
-    overflow: auto;
-}
-
 html {
-    height: 100%
+    height: 100%;
 }
-
-
 
 body {
-    /*outline: dashed 1px black;*/
     justify-content: center;
-
-    /*background-color: #FCD163;*/
-    /*background-image: url("../../img/etc/elinia.png");*/
     background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url("../../img/etc/elinia.png");
     background-size: cover;
     height: 100%;
-
 }
-
-
 
 h1 h2 h3 {
     font-family: "IBM Plex Sans KR";
 }
 
-/*body:not(.header-body, .footer-body) {*/
-/*    !*outline: dashed 1px black;*!*/
-/*    !*justify-content: center;*!*/
-/*    !*width: 1000px;*!*/
-/*    !*height: 100%;*!*/
-/*    margin: 0 auto;*/
-/*}*/
-
 .item-link-info-container {
     /*border: 2px red dashed;*/
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
     /*중앙 크기*/
     width: 1000px;
     padding-left: 10px;
@@ -71,7 +48,6 @@ p.item-title {
     color: white;
     margin-top: 7px;
     margin-bottom: 11px;
-    margin-bottom: 11px;
 }
 
 .item-container {
@@ -79,7 +55,9 @@ p.item-title {
     display: flex;
     justify-content: center;
     /*중앙 크기*/
-    width: 1000px;
+    /*width: 1000px;*/
+    width: 100%;
+    /*min-width: 725px;*/
     opacity: 1.0;
 }
 

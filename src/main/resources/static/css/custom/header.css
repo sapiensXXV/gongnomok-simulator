@@ -2,8 +2,10 @@
     background-color: white;
     /*border: red 2px dashed;*/
     /*중앙 크기 부모의 것을 그대로 따라가야 함*/
-    width: 1000px;
+    /*width: 1000px;*/
+    width: 100%;
     margin: 0 auto;
+
 
     border-radius: 5px  ;
 }
@@ -20,7 +22,7 @@
 
 .header-title-left {
 /*border: green dashed 2px;*/
-width: 60%;
+    width: 60%;
     margin-left: 10px;
 
 }
@@ -41,12 +43,17 @@ width: 60%;
     margin-top: 25px;
     margin-right: 10px; /* 수정 */
     border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
 }
 
 .header-title-right img {
     margin-top: 10px;
     margin-right: 10px;
     float: right;
+
+    width: 100%;
+    cursor: pointer;
 }
 
 
@@ -66,12 +73,6 @@ width: 60%;
     !*margin: 0 auto;*!
 }*/
 
-
-.simulator-guide summary {
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-weight: 600;
-    font-size: 30px;
-}
 
 .guide-container {
     text-align: center;
