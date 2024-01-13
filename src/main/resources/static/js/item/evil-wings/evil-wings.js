@@ -229,7 +229,7 @@ export function resetItem(isNew) {
     additionalTitle.hidden = true
 
     if (isNew) {
-        addEvilWingBuyCnt()
+        addEvilWingsBuyCnt()
     }
 
     let title = document.getElementById('evil-wings-title');
@@ -408,7 +408,7 @@ function resetEvilWingsPrice() {
 /**
  * 구매 이블윙즈 개수 증가
  */
-function addEvilWingBuyCnt() {
+function addEvilWingsBuyCnt() {
     let buyCnt = document.getElementById('evil-wings-cnt');
     evilWingsCnt++; // 아이템 소모 갯수를 증가시킨다
     buyCnt.textContent = evilWingsCnt.toString();
