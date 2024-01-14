@@ -1,11 +1,9 @@
 import * as util from "../../global/util.js";
 
 // 속성 값들
-let defaultAtkSpeed = 4;
 let defaultDex = 0;
 let defaultPhyAtk = 62;
 let defaultAcc = 0;
-let defaultPhyDef = 0;
 let defaultAvailableCount = 7;
 
 let zecoAccurateImgPath = '../img/item/weapon/zeco.png';
@@ -208,7 +206,7 @@ export function resetItem(isNew) {
 
     phyAtk.textContent = defaultPhyAtk.toString();
     dexV.textContent = defaultDex.toString()
-    accV.title = defaultAcc.toString();
+    accV.textContent = defaultAcc.toString();
 
     dexInfo.hidden = true; accInfo.hidden = true;
 

@@ -15,22 +15,28 @@ public class ItemController {
         return "item/armor/work-glove";
     }
 
+    // 파란색 가운
+    @GetMapping("/armor/blue-robe-select")
+    public String blueRobeSelect() {
+        return "item/armor/blue-robe/blue-robe-select";
+    }
+
     // 파란색 가운(민첩)
     @GetMapping("/armor/blue-robe-dex")
     public String blueRobeDex() {
-        return "item/armor/blue-robe-dex";
+        return "item/armor/blue-robe/blue-robe-dex";
     }
 
     // 파란색 가운(행운)
     @GetMapping("/armor/blue-robe-luk")
     public String blueRobeLuk() {
-        return "item/armor/blue-robe-luk";
+        return "item/armor/blue-robe/blue-robe-luk";
     }
 
     // 파란색 가운(지능)
     @GetMapping("/armor/blue-robe-int")
     public String blueRobeInt() {
-        return "item/armor/blue-robe-int";
+        return "item/armor/blue-robe/blue-robe-int";
     }
 
     // 다크 보닌
@@ -69,28 +75,33 @@ public class ItemController {
         return "item/weapon/evil-wings";
     }
 
+    @GetMapping("/armor/raggedy-cape-select")
+    public String raggedyCapeSelect() {
+        return "item/armor/raggedy-cape/raggedy-cape-select";
+    }
+
     // 허름한 망토(힘)
     @GetMapping("/armor/raggedy-cape-str")
     public String raggedyCapeStr() {
-        return "item/armor/raggedy-cape-str";
+        return "item/armor/raggedy-cape/raggedy-cape-str";
     }
 
     // 허름한 망토(민첩)
     @GetMapping("/armor/raggedy-cape-dex")
     public String raggedyCapeDex() {
-        return "item/armor/raggedy-cape-dex";
+        return "item/armor/raggedy-cape/raggedy-cape-dex";
     }
 
     // 허름한 망토(지력)
     @GetMapping("/armor/raggedy-cape-int")
     public String raggedyCapeInt() {
-        return "item/armor/raggedy-cape-int";
+        return "item/armor/raggedy-cape/raggedy-cape-int";
     }
 
     // 허름한 망토(행운)
     @GetMapping("/armor/raggedy-cape-luk")
     public String raggedyCapeLuk() {
-        return "item/armor/raggedy-cape-luk";
+        return "item/armor/raggedy-cape/raggedy-cape-luk";
     }
 
     //하이랜더
@@ -111,6 +122,20 @@ public class ItemController {
     }
 
     //zeco
+    @GetMapping("/weapon/zeco-select")
+    public String zeco() {
+        return "item/weapon/zeco/zeco-select";
+    }
+
+    @GetMapping("/weapon/zeco-accurate")
+    public String zecoSwift() {
+        return "item/weapon/zeco/zeco-accurate";
+    }
+
+    @GetMapping("/weapon/zeco-strong")
+    public String zecoStrong() {
+        return "item/weapon/zeco/zeco-strong";
+    }
 
     //구룡도
     @GetMapping("/weapon/nine-dragon")
