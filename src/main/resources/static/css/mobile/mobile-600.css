@@ -450,8 +450,8 @@
         font-size: 3.2vw;
         line-height: 6px;
         padding: 1px;
-        margin-right: 2px;
-        width: 22%;
+        margin-right: 0.7vw;
+        width: 18.4vw;
     }
 
     .scroll-btn-container button[type="button"] {
@@ -493,9 +493,9 @@
     .item-price-input label {
         display: inline-block;
         text-align: left;
-        width: 28%;
+        width: 24vw;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 3.7vw;
     }
 
     .item-price-input input[type="text"] {
@@ -550,7 +550,7 @@
         padding-left: 5px;
         padding-right: 5px;
 
-        font-size: 17px;
+        font-size: 3.7vw;
         font-family: "IBM Plex Sans KR", sans-serif;
 
         overflow: hidden;
@@ -575,8 +575,8 @@
 
     .scroll-price-info button[type="button"] {
         font-family: "IBM Plex Sans KR", sans-serif;
-        height: 32px;
-        font-size: 16px;
+        height: 9vw;
+        font-size: 4.4vw;
         white-space: nowrap;
         text-align: center;
         /*border-radius: 3px;*/
@@ -598,8 +598,8 @@
     .scroll-price-result img {
         display: flex;
         margin-right: 8px;
-        width: 45px;
-        height: 45px;
+        width: 11vw;
+        height: 11vw;
     }
 
     .scroll-price-result span {
