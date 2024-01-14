@@ -598,4 +598,38 @@
         display: inline-block;
         float: right;
     }
+
+    /* 주문서 선택 */
+    .scroll-select-container {
+        max-width: 100%;
+        padding: 0.7vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .scroll-select-container button[type="button"] {
+        aspect-ratio: 1 / 1;
+        width: 8vw;
+        margin: 0.3vw;
+        cursor: pointer;
+        border: none;
+        border-radius: 7px;
+
+    }
+
+    .scroll-select-container button img {
+        margin: 3px;
+        aspect-ratio: 1 / 1;
+        width: 4.2vw;
+    }
+
+    .scroll-select-container span {
+        display: block;
+        margin-top: 0.3vw;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 0.9vw;
+    }
 }
