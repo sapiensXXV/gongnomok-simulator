@@ -338,9 +338,13 @@
 
     /*이미지 - 요구능력치 블록*/
     .image-and-status {
-        width: auto;
-        text-align: left;
-        display: inline-block;
+        width: 100%;
+        vertical-align: top;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: 1vw;
     }
 
     .tmp-container {
@@ -388,18 +392,14 @@
 
     /*요구 능력치 부분*/
     .required-status {
-        margin-top: 3.7vw;
+        margin-top: 0.5vw;
         font-size: 1vw;
         color: white;
-        display: inline-block;
-
-        width: auto;
     }
 
     .required-status p {
-
-        font-size: 3.8vw;
-        line-height: 1.8vw;
+        font-size: 3.7vw;
+        line-height: 1.1vw;
         margin-top: 3px;
     }
 
@@ -505,8 +505,8 @@
     }
 
     .item-price-input input[type="text"] {
-        width: 44%;
-        height: 4.1vw;
+        width: 38vw;
+        height: 4.7vw;
         border: #82858c solid 1px;
         border-radius: 5px;
 
@@ -548,8 +548,8 @@
     }
 
     .scroll-price-input input[type="text"] {
-        width: 44%;
-        height: 4.1vw;
+        width: 38vw;
+        height: 4.7vw;
         border: #82858c solid 1px;
         border-radius: 5px;
 
@@ -581,7 +581,7 @@
 
     .scroll-price-info button[type="button"] {
         font-family: "IBM Plex Sans KR", sans-serif;
-        height: 6.1vw;
+        height: 7.1vw;
         font-size: 3.3vw;
         white-space: nowrap;
         text-align: center;
@@ -613,7 +613,7 @@
 
     .scroll-price-result span {
         display: flex;
-        font-size: 5.3vw;
+        font-size: 4.5vw;
 
     }
 
