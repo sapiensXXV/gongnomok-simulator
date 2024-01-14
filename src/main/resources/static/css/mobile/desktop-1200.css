@@ -360,9 +360,9 @@
 
     .item-image-gif {
         z-index: 2;
-        margin-top: 3vw;
-        width: 6.5vw;
-        height: 10vw;
+        margin-top: 20px;
+        width: 120%;
+        height: 170%;
     }
 
 
