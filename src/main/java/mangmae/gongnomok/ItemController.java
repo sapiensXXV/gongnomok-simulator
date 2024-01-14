@@ -51,6 +51,12 @@ public class ItemController {
         return "item/weapon/brown-scarab";
     }
 
+    //우드완드
+    @GetMapping("/weapon/wooden-wand")
+    public String woodenWand() {
+        return "item/weapon/wooden-wand";
+    }
+
     // 아크 스태프
     @GetMapping("/weapon/arc-staff")
     public String arcStaff() {
@@ -103,6 +109,8 @@ public class ItemController {
     public String nakamaki() {
         return "item/weapon/nakamaki";
     }
+
+    //zeco
 
     //구룡도
     @GetMapping("/weapon/nine-dragon")
