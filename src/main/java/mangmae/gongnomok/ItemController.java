@@ -51,6 +51,12 @@ public class ItemController {
         return "item/weapon/brown-scarab";
     }
 
+    // 아크 스태프
+    @GetMapping("/weapon/arc-staff")
+    public String arcStaff() {
+        return "item/weapon/arc-staff";
+    }
+
     // 이블 윙즈
     @GetMapping("/weapon/evil-wings")
     public String evilWings() {
