@@ -263,7 +263,6 @@
     .item-info-container {
         display: block;
         float: left;
-        margin: 5px;
         width: 100%;
     }
 
@@ -278,7 +277,7 @@
         text-align: center;
 
         font-family: "Noto Sans KR", sans-serif;
-        font-size: 27px;
+        font-size: 26px;
         font-weight: bold;
 
         color: white;
@@ -287,7 +286,7 @@
     }
 
     .item-container {
-        margin-top: 20px;
+        margin-top: 8px;
         display: flex;
         justify-content: center;
 
@@ -298,7 +297,10 @@
 
     .item {
         /*float: left;*/
-        display: block;
+        display: flex;
+        flex-direction: column;
+
+
         margin: 10px;
         padding: 10px;
         border-radius: 8px;
@@ -315,11 +317,12 @@
 
         font-family: "IBM Plex Sans KR", sans-serif;
         float: left;
+        margin-top: 5px;
         margin-bottom: 5px;
-        margin-left: 15px;
-        margin-right: 5px;
+        /*margin-left: 15px;*/
+        /*margin-right: 5px;*/
 
-        width: 50%;
+        width: 100%;
     }
 
     .item-option-btn-container {
@@ -341,11 +344,11 @@
     .tmp-container {
         display: inline-block;
         background-color: #CBC1CC;
-        width: 120px;
-        height: 120px;
+        width: 75px;
+        height: 75px;
 
         padding: 10px;
-        margin-right: 18px;
+        margin-right: 10px;
         margin-left: 18px;
 
         vertical-align: top;
@@ -392,8 +395,8 @@
     }
 
     .required-status p {
-        /*font-family: 'Noto Sans KR','Pixelify Sans';*/
-        font-size: 20px;
+
+        font-size: 14px;
         line-height: 4px;
         margin-top: 3px;
     }
@@ -412,12 +415,10 @@
 
         margin-left: 3px;
         margin-right: 3px;
-
     }
 
     .etc-info p {
-        font-size: 25px;
-
+        font-size: 17px;
     }
 
     .item-option-btn {
@@ -447,18 +448,13 @@
 
     .scroll-btn-container {
         vertical-align: top;
-
         display: inline-block;
         text-align: left;
-
-        /*font-family: 'Noto Sans KR';*/
-        font-size: 17px;
+        font-size: 12px;
         line-height: 6px;
-
         padding: 1px;
-        margin-right: 3px;
-
-        width: 23%;
+        margin-right: 2px;
+        width: 22%;
     }
 
     .scroll-btn-container button[type="button"] {
@@ -494,7 +490,7 @@
     }
 
     .item-price-input {
-        margin-bottom: 3px;
+        margin-bottom: 5px;
     }
 
     .item-price-input label {
@@ -502,19 +498,19 @@
         text-align: left;
         width: 28%;
         font-weight: 700;
-        font-size: 22px;
+        font-size: 16px;
     }
 
     .item-price-input input[type="text"] {
-        width: 45%;
-        height: 25px;
+        width: 44%;
+        height: 23px;
         border: #82858c solid 1px;
         border-radius: 5px;
 
         padding-left: 5px;
         padding-right: 5px;
 
-        font-size: 18px;
+        font-size: 17px;
         font-family: "IBM Plex Sans KR", sans-serif;
 
         overflow: hidden;
@@ -526,8 +522,8 @@
     }
 
     .item-price-input .item-buy-cnt {
-        margin-left: 8px;
-        font-size: 22px;
+        margin-left: 5px;
+        font-size: 15px;
     }
 
     .scroll-price-calculator-container {
@@ -537,7 +533,7 @@
     }
 
     .scroll-price-input {
-        margin-bottom: 3px;
+        margin-bottom: 5px;
     }
 
     .scroll-price-input label {
@@ -545,19 +541,20 @@
         text-align: left;
         width: 28%;
         font-weight: 700;
-        font-size: 22px;
+        font-size: 16px;
     }
 
     .scroll-price-input input[type="text"] {
-        width: 45%;
-        height: 25px;
+        width: 44%;
+        height: 23px;
         border: #82858c solid 1px;
         border-radius: 5px;
 
         padding-left: 5px;
         padding-right: 5px;
 
-        font-size: 18px;
+        font-size: 17px;
+        font-family: "IBM Plex Sans KR", sans-serif;
 
         overflow: hidden;
     }
@@ -568,19 +565,21 @@
     }
 
     .scroll-price-input .scroll-use-info {
-        margin-left: 8px;
-        font-size: 22px;
+        margin-left: 5px;
+        font-size: 15px;
     }
 
     .scroll-price-info {
         /*border: 3px red solid;*/
         margin-top: 10px;
         display: flex;
+        align-items: center;
     }
 
     .scroll-price-info button[type="button"] {
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 22px;
+        height: 32px;
+        font-size: 16px;
         white-space: nowrap;
         text-align: center;
         /*border-radius: 3px;*/
@@ -602,13 +601,13 @@
     .scroll-price-result img {
         display: flex;
         margin-right: 8px;
-        width: 60px;
-        height: 60px;
+        width: 45px;
+        height: 45px;
     }
 
     .scroll-price-result span {
         display: flex;
-        font-size: 30px;
+        font-size: 20px;
 
     }
 
