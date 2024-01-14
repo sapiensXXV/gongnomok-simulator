@@ -277,7 +277,7 @@
         text-align: center;
 
         font-family: "Noto Sans KR", sans-serif;
-        font-size: 26px;
+        font-size: 7vw;
         font-weight: bold;
 
         color: white;
@@ -299,9 +299,7 @@
         /*float: left;*/
         display: flex;
         flex-direction: column;
-
-
-        margin: 10px;
+        margin: 5px;
         padding: 10px;
         border-radius: 8px;
         background-color: rgba(255, 255, 255, 1);
@@ -344,8 +342,8 @@
     .tmp-container {
         display: inline-block;
         background-color: #CBC1CC;
-        width: 75px;
-        height: 75px;
+        width: 22vw;
+        height: 22vw;
 
         padding: 10px;
         margin-right: 10px;
@@ -396,8 +394,8 @@
 
     .required-status p {
 
-        font-size: 14px;
-        line-height: 4px;
+        font-size: 3.8vw;
+        line-height: 1.2vw;
         margin-top: 3px;
     }
 
@@ -418,7 +416,7 @@
     }
 
     .etc-info p {
-        font-size: 17px;
+        font-size: 4.4vw;
     }
 
     .item-option-btn {
@@ -450,7 +448,7 @@
         vertical-align: top;
         display: inline-block;
         text-align: left;
-        font-size: 12px;
+        font-size: 3.2vw;
         line-height: 6px;
         padding: 1px;
         margin-right: 2px;
@@ -510,7 +508,7 @@
         padding-left: 5px;
         padding-right: 5px;
 
-        font-size: 17px;
+        font-size: 3.7vw;
         font-family: "IBM Plex Sans KR", sans-serif;
 
         overflow: hidden;
@@ -523,7 +521,7 @@
 
     .item-price-input .item-buy-cnt {
         margin-left: 5px;
-        font-size: 15px;
+        font-size: 3.3vw;
     }
 
     .scroll-price-calculator-container {
@@ -541,7 +539,7 @@
         text-align: left;
         width: 28%;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 3.7vw;
     }
 
     .scroll-price-input input[type="text"] {
@@ -566,7 +564,7 @@
 
     .scroll-price-input .scroll-use-info {
         margin-left: 5px;
-        font-size: 15px;
+        font-size: 3.3vw;
     }
 
     .scroll-price-info {
@@ -607,7 +605,7 @@
 
     .scroll-price-result span {
         display: flex;
-        font-size: 20px;
+        font-size: 5.3vw;
 
     }
 
