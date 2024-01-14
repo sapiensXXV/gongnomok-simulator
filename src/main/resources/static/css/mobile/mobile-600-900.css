@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700;800;900&display=swap');
 
-@media only screen and (min-width: 600px) and (max-width: 1199px) {
+@media only screen and (min-width: 600px) and (max-width: 899px) {
     /*바운더리*/
     /*TODO: 작업*/
     .outside-boundary {
@@ -101,7 +101,7 @@
         padding: 3px 15px;
         font-family: "IBM Plex Sans KR", sans-serif;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 4.5vw;
 
         border-radius: 8px;
         border-color: #FFCC48;
@@ -143,8 +143,8 @@
         /*border: 2px red dashed;*/
         /*중앙 크기*/
         width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 2vw;
+        padding-right: 2vw;
         padding-bottom: 10px;
 
         font-family: "IBM Plex Sans KR", sans-serif;
@@ -164,7 +164,7 @@
         aspect-ratio: 1 / 1;
         border: none;
         border-radius: 6px;
-        width: 29%;
+        width: 21.8vw;
         cursor: pointer;
         margin-right: 10px;
         margin-bottom: 10px;
@@ -176,14 +176,14 @@
 
     .link-btn-info img {
         display: inline-block;
-        height: 65px;
+        height: 14vw;
 
     }
 
     .link-btn-info span {
         font-family: "IBM Plex Sans KR", sans-serif;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 2.5vw;
         margin-top: 5px;
     }
 
@@ -332,7 +332,8 @@
         font-family: "IBM Plex Sans KR", sans-serif;
         border-radius: 5px;
         cursor: pointer;
-        padding: 0 0.3vw 0 0.3vw;
+        padding: 0 1.5vw 0 1.5vw;
+        margin: 0 0.3vw 0 0.3vw;
     }
 
     /*이미지 - 요구능력치 블록*/
@@ -374,7 +375,7 @@
     .item-image {
         position: absolute;
         object-fit: contain;
-        width: 85%;
+        width: 19vw;
         /*width: 105px;*/
     }
 
@@ -480,7 +481,7 @@
     }
 
     .scroll-image {
-        height: 80%;
+        height: 12vw;
     }
 
     .nomok-power {
@@ -588,6 +589,7 @@
         cursor: pointer;
 
         padding: 0 1.5vw 0 1.5vw;
+        border-radius: 5px;
 
     }
 
@@ -605,8 +607,8 @@
     .scroll-price-result img {
         display: flex;
         margin-right: 8px;
-        width: 45px;
-        height: 45px;
+        width: 7vw;
+        height: 7vw;
     }
 
     .scroll-price-result span {
