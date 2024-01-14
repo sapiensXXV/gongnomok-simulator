@@ -612,7 +612,7 @@
 
     .scroll-select-container button[type="button"] {
         aspect-ratio: 1 / 1;
-        width: 8vw;
+        width: 10vw;
         margin: 0.3vw;
         cursor: pointer;
         border: none;
@@ -623,7 +623,7 @@
     .scroll-select-container button img {
         margin: 3px;
         aspect-ratio: 1 / 1;
-        width: 4.2vw;
+        width: 5vw;
     }
 
     .scroll-select-container span {

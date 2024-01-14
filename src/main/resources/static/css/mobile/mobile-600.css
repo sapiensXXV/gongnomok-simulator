@@ -625,6 +625,7 @@
         padding: 0.7vw;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
 
@@ -632,24 +633,23 @@
 
     .scroll-select-container button[type="button"] {
         aspect-ratio: 1 / 1;
-        width: 8vw;
-        margin: 0.3vw;
+        width: 42vw;
+        margin: 1.7vw;
         cursor: pointer;
         border: none;
         border-radius: 7px;
-
     }
 
     .scroll-select-container button img {
         margin: 3px;
         aspect-ratio: 1 / 1;
-        width: 4.2vw;
+        width: 22.2vw;
     }
 
     .scroll-select-container span {
         display: block;
         margin-top: 0.3vw;
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 0.9vw;
+        font-size: 3.5vw;
     }
 }
