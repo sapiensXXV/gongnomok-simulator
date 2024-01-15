@@ -32,7 +32,7 @@
         /*border: 2px blue dashed;*/
         /*중앙 크기*/
         /*width: 1000px;*/
-        width: 100%;
+        width: 73vw;
         min-width: 725px;
         height: 100%;
         background-color: rgba(255, 255, 255, 0.9);
@@ -169,7 +169,7 @@
         aspect-ratio: 1 / 1;
         border: none;
         border-radius: 6px;
-        width: 8vw;
+        width: 6.4vw;
         cursor: pointer;
         margin-left: 2px;
     }
@@ -180,13 +180,13 @@
 
     .link-btn-info img {
         display: inline-block;
-        height: 4.5vw;
+        height: 3.5vw;
     }
 
     .link-btn-info span {
         font-family: "IBM Plex Sans KR", sans-serif;
         font-weight: 700;
-        font-size: 0.9vw;
+        font-size: 0.8vw;
     }
 
     .key-shortcut-container {
@@ -286,13 +286,11 @@
     }
 
     .item-container {
-        margin-top: 20px;
+        margin-top: 0.2vw;
         display: flex;
+        flex-direction: row;
         justify-content: center;
-        /*중앙 크기*/
-        /*width: 1000px;*/
         width: 100%;
-        /*min-width: 725px;*/
         opacity: 1.0;
     }
 
