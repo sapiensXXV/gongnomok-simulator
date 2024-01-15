@@ -143,4 +143,32 @@ public class ItemController {
         return "item/weapon/nine-dragon";
     }
 
+    /**
+     * 장신구
+     */
+    //홀리 크로스링
+    @GetMapping("/accessory/holy-cross-earring")
+    public String holyCrossRing() {
+        return "item/accessory/holy-cross-earring-select";
+    }
+
+    @GetMapping("/accessory/holy-cross-earring-health")
+    public String holyCrossRingHealth() {
+        return "item/accessory/holy-cross-earring-hp";
+    }
+
+    @GetMapping("/accessory/holy-cross-earring-swift")
+    public String holyCrossRingSwift() {
+        return "item/accessory/holy-cross-earring-dex";
+    }
+
+    @GetMapping("/accessory/holy-cross-earring-intel")
+    public String holyCrossRingIntel() {
+        return "item/accessory/holy-cross-earring-int";
+    }
+
+    @GetMapping("/accessory/holy-cross-earring-lucky")
+    public String holyCrossRingLucky() {
+        return "item/accessory/holy-cross-earring-luk";
+    }
 }
