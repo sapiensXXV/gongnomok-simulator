@@ -39,6 +39,47 @@ public class ItemController {
         return "item/armor/blue-robe/blue-robe-int";
     }
 
+    // 허름한 망토
+    @GetMapping("/armor/raggedy-cape-select")
+    public String raggedyCapeSelect() {
+        return "item/armor/raggedy-cape/raggedy-cape-select";
+    }
+
+    // 허름한 망토(힘)
+    @GetMapping("/armor/raggedy-cape-str")
+    public String raggedyCapeStr() {
+        return "item/armor/raggedy-cape/raggedy-cape-str";
+    }
+
+    // 허름한 망토(민첩)
+    @GetMapping("/armor/raggedy-cape-dex")
+    public String raggedyCapeDex() {
+        return "item/armor/raggedy-cape/raggedy-cape-dex";
+    }
+
+    // 허름한 망토(지력)
+    @GetMapping("/armor/raggedy-cape-int")
+    public String raggedyCapeInt() {
+        return "item/armor/raggedy-cape/raggedy-cape-int";
+    }
+
+    // 허름한 망토(행운)
+    @GetMapping("/armor/raggedy-cape-luk")
+    public String raggedyCapeLuk() {
+        return "item/armor/raggedy-cape/raggedy-cape-luk";
+    }
+
+    // 다크세라피스
+    @GetMapping("/armor/dark-seraphis")
+    public String darkSeraphis() {
+        return "item/armor/dark-seraphis/dark-seraphis";
+    }
+    // 다크 아나카문
+    @GetMapping("/armor/dark-anakamoon")
+    public String darkAnakamoon() {
+        return "item/armor/dark-anakamoon/dark-anakamoon";
+    }
+
     // 다크 보닌
     @GetMapping("/weapon/dark-avarice")
     public String darkAvarice() {
@@ -73,35 +114,6 @@ public class ItemController {
     @GetMapping("/weapon/evil-wings")
     public String evilWings() {
         return "item/weapon/evil-wings";
-    }
-
-    @GetMapping("/armor/raggedy-cape-select")
-    public String raggedyCapeSelect() {
-        return "item/armor/raggedy-cape/raggedy-cape-select";
-    }
-
-    // 허름한 망토(힘)
-    @GetMapping("/armor/raggedy-cape-str")
-    public String raggedyCapeStr() {
-        return "item/armor/raggedy-cape/raggedy-cape-str";
-    }
-
-    // 허름한 망토(민첩)
-    @GetMapping("/armor/raggedy-cape-dex")
-    public String raggedyCapeDex() {
-        return "item/armor/raggedy-cape/raggedy-cape-dex";
-    }
-
-    // 허름한 망토(지력)
-    @GetMapping("/armor/raggedy-cape-int")
-    public String raggedyCapeInt() {
-        return "item/armor/raggedy-cape/raggedy-cape-int";
-    }
-
-    // 허름한 망토(행운)
-    @GetMapping("/armor/raggedy-cape-luk")
-    public String raggedyCapeLuk() {
-        return "item/armor/raggedy-cape/raggedy-cape-luk";
     }
 
     //하이랜더
