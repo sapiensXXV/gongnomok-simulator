@@ -215,7 +215,11 @@ export function resetItem(isNew) {
     let phyAtk = document.getElementById('evil-wings-phy-atk'); // 물리공격력
     let mgAtk = document.getElementById('evil-wings-mg-atk'); // 마법공격력
     let intV = document.getElementById('evil-wings-int'); // INT
+    let mgDef = document.getElementById('evil-wings-mg-def'); // 마법 방어력
+
     let intInfo = document.getElementById('evil-wings-int-info'); // int 정보 텍스트
+    let mgDefInfo = document.getElementById('evil-wings-mg-def-info'); // 마법 방어력 정보 텍스트
+
     let availableCnt = document.getElementById('evil-wings-upgrade-available-count'); // 강화 가능 횟수
     let upgradeSuccessCnt = document.getElementById('evil-wings-upgraded-count'); // 강화 성공 횟수
     let additionalTitle = document.getElementById('evil-wings-additional');
@@ -223,7 +227,9 @@ export function resetItem(isNew) {
     phyAtk.textContent = defaultPhyAtk.toString();
     mgAtk.textContent = defaultMgAtk.toString();
     intV.textContent = '0'
-    intInfo.hidden = true
+    mgDef.textContent = '0';
+
+    intInfo.hidden = true; mgDefInfo.hidden = true;
     availableCnt.textContent = defaultAvailableCount.toString()
     upgradeSuccessCnt.textContent = '0';
     additionalTitle.hidden = true
@@ -251,6 +257,7 @@ function success(mgAtk, intV, mgDef, percent) {
     let mgDefElem = document.getElementById('evil-wings-mg-def');
 
     let intInfoElem = document.getElementById('evil-wings-int-info');
+    let mgDefInfoElem = document.getElementById('evil-wings-mg-def-info');
 
     mgAtkElem.textContent = (parseInt(mgAtkElem.textContent) + mgAtk).toString();
     intElem.textContent = (parseInt(intElem.textContent) + intV).toString();
@@ -264,6 +271,10 @@ function success(mgAtk, intV, mgDef, percent) {
     if (parseInt(intElem.textContent) !== 0) {
         intInfoElem.hidden = false;
     }
+    if (parseInt(mgDefElem.textContent) !== 0) {
+        mgDefInfoElem.hidden = false;
+    }
+
     //sound
     util.playSuccessSound(); // 강화성공 소리 재생
     reduceAvailableCount(availableCount); // 강화 가능횟수 감소

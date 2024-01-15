@@ -2,6 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&display=swap');
 
+.item-link-info-container {
+    /*border: 2px red dashed;*/
+    /*중앙 크기*/
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+
+    font-family: "IBM Plex Sans KR", sans-serif;
+}
+
 .link-btn-container {
     margin-top: 5px;
     margin-left: 5px;
@@ -9,12 +20,12 @@
 }
 
 .link-btn-container button {
-    padding: 3px;
-    margin-left: 2px;
+    /*padding: 3px;*/
+    /*margin-left: 2px;*/
     border: none;
     border-radius: 6px;
-    width: 120px;
-    height: 120px;
+    /*width: 120px;*/
+    /*height: 120px;*/
 
     cursor: pointer;
 }

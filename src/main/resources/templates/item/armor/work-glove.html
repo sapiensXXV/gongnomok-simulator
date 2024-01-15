@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="google-adsense-account" content="ca-pub-5115370026469477">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0"> <!-- 뷰포트 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 뷰포트 -->
     <script type="text/javascript" src="/js/global/redirection.js"></script>
 
     <title>노가다 목장갑</title>
 
     <link rel="icon" href="/img/item/armor/work-glove.png">
-    <link rel="stylesheet" href="/css/custom/default.css">
-    <link rel="stylesheet" href="/css/custom/boundary.css">
 
-    <style>
-        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-            .left-third-split-boundary {
-                display: none;
-            }
-
-            .right-third-split-boundary {
-                display: none;
-            }
-
-            .center-third-split-boundary {
-                min-width: 380px;
-                max-width: 380px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/mobile/mobile-600.css">
+    <link rel="stylesheet" href="/css/mobile/mobile-600-900.css">
+    <link rel="stylesheet" href="/css/mobile/tablet-900-1200.css">
+    <link rel="stylesheet" href="/css/mobile/desktop-1200-1500.css">
+    <link rel="stylesheet" href="/css/mobile/desktop-1500.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PG3NHKRPS5"></script>
@@ -68,8 +55,8 @@
                                 <div class="image-and-status" >
                                     <div class="tmp-container">
                                         <div class="img-container" id="work-glove-img-container">
-                                            <img class="item-image" src="/img/item/armor/work-glove.png" width="60" height="60">
-                                            <img class="item-image" id="work-glove-gif-img" src="/img/item/armor/work-glove.png"  width="60" height="90" hidden="hidden">
+                                            <img class="item-image" src="/img/item/armor/work-glove.png">
+                                            <img th:class="item-image-gif" id="work-glove-gif-img" src="/img/item/armor/work-glove.png"  hidden="hidden">
                                         </div>
                                     </div>
                                     <div class="required-status">
@@ -168,7 +155,7 @@
                                 </div>
                                 <div class="scroll-price-info">
                                     <div class="scroll-price-result">
-                                        <img src ="../../img/etc/meso.png" width="30px" height="30px">
+                                        <img src ="../../img/etc/meso.png">
                                         <span id="work-glove-total-used-price">0</span>
                                     </div>
                                     <button id="work-glove-price-reset-btn" type="button">메소 리셋</button>

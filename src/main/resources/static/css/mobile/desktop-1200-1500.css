@@ -1,0 +1,635 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Pixelify+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700;800;900&display=swap');
+
+@media only screen and (min-width: 1200px) and (max-width: 1499px) {
+
+    /*바운더리*/
+    /*TODO: 작업*/
+    .outside-boundary {
+        /*border: 2px purple dashed;*/
+        height: 100%;
+        margin-bottom: 7px;
+    }
+
+    .first-boundary {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .left-third-split-boundary {
+        /*border: 2px red dashed;*/
+        width: 45%;
+        /*float: right;*/
+        text-align: right;
+        padding: 0;
+    }
+
+    .center-third-split-boundary {
+        /*border: 2px blue dashed;*/
+        /*중앙 크기*/
+        /*width: 1000px;*/
+        width: 100%;
+        min-width: 725px;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+
+        /*margin-left: 8px;*/
+        margin-right: 8px;
+    }
+
+    .right-third-split-boundary {
+        /*border: 2px green dashed;*/
+        padding-right: 10px;
+        /*width: 400px;*/
+        width: 45%;
+    }
+
+    .header-outside-boundary {
+        background-color: white;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 5px;
+        /*padding: 0px 5px 0px 5px;*/
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        /*justify-content: left; !*원래 left가 기본값임*!*/
+
+        justify-content: space-between;
+        text-align: left;
+        width: 100%;
+    }
+
+    .header-title-left {
+        /*!*border: green dashed 2px;*!*/
+        width: 60%;
+        margin-left: 10px;
+
+    }
+
+    .header-title-center {
+        /*border: blue dashed 2px;*/
+        width: 30%;
+        display: none;
+        /*height: 100%;*/
+    }
+
+    .header-title-right {
+        /*border: #d03333 dashed 2px;*/
+        width: 20%;
+        padding: 5px 5px 0px 0px;
+    }
+
+    .header-title-left img {
+        margin-top: 15px;
+        margin-right: 10px; /* 수정 */
+        border-radius: 5px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .header-title-right img {
+        float: right;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .guide-container {
+        text-align: center;
+    }
+
+    .guide-container button[type="button"] {
+        padding: 3px 15px;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-weight: 600;
+        font-size: 25px;
+
+        border-radius: 8px;
+        border-color: #FFCC48;
+        background-color: #FFCC48;
+
+        margin-bottom: 6px;
+
+        cursor: pointer;
+    }
+
+    .header-guide-img {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .guide-img-container {
+        text-align: center;
+    }
+
+    .guide-img-container img {
+        display: inline-block;
+    }
+
+    /*홈화면*/
+
+
+    .key-info-container {
+        /*border: 2px red dashed;*/
+        /*중앙 크기*/
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+
+        font-family: "IBM Plex Sans KR", sans-serif;
+    }
+
+    .item-link-info-container {
+        /*border: 2px red dashed;*/
+        /*중앙 크기*/
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+
+        font-family: "IBM Plex Sans KR", sans-serif;
+    }
+
+    .link-btn-container {
+        margin-bottom: 7px;
+        /*margin-left: 7px;*/
+        /*margin-right: 7px;*/
+    }
+
+    .link-btn-container button {
+        aspect-ratio: 1 / 1;
+        border: none;
+        border-radius: 6px;
+        width: 8vw;
+        cursor: pointer;
+        margin-left: 2px;
+    }
+
+    .link-btn-info {
+        text-align: center;
+    }
+
+    .link-btn-info img {
+        display: inline-block;
+        height: 4.5vw;
+    }
+
+    .link-btn-info span {
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-weight: 700;
+        font-size: 0.9vw;
+    }
+
+    .key-shortcut-container {
+        width: 280px;
+
+        /*float: right*/
+    }
+
+    .key-shortcut-container img {
+        border-radius: 8px;
+        width: 100%;
+
+    }
+
+    /* BGM SELECTOR */
+    .bgm-container {
+        padding: 5px 0;
+        border-radius: 8px;
+        background-color: white;
+        width: 280px;
+        height: 700px;
+        margin-right: 10px;
+        overflow: auto;
+        float: left
+    }
+    .one-bgm {
+        width: 260px;
+    }
+    .one-bgm > h2 {
+        font-family: "IBM Plex Sans KR", sans-serif;
+        float: left;
+
+        margin: 5px;
+
+        display: block;
+        width: 100%;
+    }
+
+    .one-bgm > label {
+        font-family: "IBM Plex Sans KR", sans-serif;
+        float: left;
+        margin-left: 5px;
+        display: block;
+
+    }
+
+    .one-bgm > iframe {
+        width: 254px;
+        margin-left: 5px;
+        margin-bottom: 8px;
+        float: left;
+    }
+
+    /* default */
+    html, body {
+        min-height: 100%;
+        /*width: 100%;*/
+        margin: 0;
+        /*height: 100%;*/
+    }
+
+    body {
+        justify-content: center;
+        background: linear-gradient(rgba(255, 255, 255, .6), rgba(255, 255, 255, .6)), url("../../img/etc/elinia.png");
+        background-size: cover;
+        padding: 5px;
+
+    }
+
+    h1 h2 h3 {
+        font-family: "IBM Plex Sans KR", sans-serif;
+    }
+
+
+
+    .item-info-container {
+        float: left;
+        margin: 5px;
+    }
+
+    .item-info {
+        width: 320px;
+        border: 1px solid black;
+        background-color: rgba(45, 41, 122, 0.73);
+    }
+
+    p.item-title {
+        text-align: center;
+
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+
+        color: white;
+        margin-top: 7px;
+        margin-bottom: 11px;
+    }
+
+    .item-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        /*중앙 크기*/
+        /*width: 1000px;*/
+        width: 100%;
+        /*min-width: 725px;*/
+        opacity: 1.0;
+    }
+
+    .item {
+        float: left;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    .item .simulator-controller-container {
+        /*border: 3px green solid;*/
+
+        float: left;
+        margin-bottom: 5px;
+        margin-left: 8px;
+        margin-right: 5px;
+
+        font-family: "IBM Plex Sans KR", sans-serif;
+    }
+
+    .item-option-btn-container {
+        margin-bottom: 10px;
+    }
+    .item-option-btn-container button[type="button"]{
+        cursor: pointer;
+    }
+
+    /*이미지 - 요구능력치 블록*/
+    .image-and-status {
+        width: auto;
+        text-align: left;
+        display: inline-block;
+    }
+
+    .tmp-container {
+        display: inline-block;
+        background-color: #CBC1CC;
+        width: 60px;
+        height: 60px;
+
+        padding: 10px;
+        margin-right: 13px;
+        margin-left: 13px;
+
+        vertical-align: top;
+    }
+
+    .img-container {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*아이템 이미지 부분*/
+    .item-image {
+        position: absolute;
+        object-fit: contain;
+        width: 90%;
+    }
+
+    .item-image-gif {
+        z-index: 2;
+        margin-top: 20px;
+        width: 120%;
+        height: 170%;
+    }
+
+    /*요구 능력치 부분*/
+    .required-status {
+        font-size: 15px;
+        color: white;
+        display: inline-block;
+
+        width: auto;
+    }
+
+    .required-status p {
+        /*font-family: 'Noto Sans KR','Pixelify Sans';*/
+        font-size: 13px;
+        line-height: 4px;
+        margin-top: 3px;
+    }
+
+    .item-status {
+        color: rgba(143, 145, 183);
+    }
+
+    .etc-info {
+        line-height: 6px;
+        text-align: center;
+        /*font-family: 'Noto Sans KR';*/
+        color: white;
+
+        horiz-align: center;
+
+        margin-left: 3px;
+        margin-right: 3px;
+
+    }
+
+    .item-option-btn-container button[type="button"] {
+        font-family: "IBM Plex Sans KR", sans-serif;
+        /*!*display: flex;*!*/
+        /*align-items: center;*/
+        /*margin: 3px;*/
+        /*vertical-align: top;*/
+        /*!*text-align: left;*!*/
+
+        /*display: inline-block;*/
+        /*text-align: center;*/
+    }
+
+    .item-option-btn {
+        /*font-family: "Noto Sans KR";*/
+        display: inline-block;
+        margin-top: 3px;
+        margin-right: 2px;
+    }
+
+    .job {
+        word-spacing: 9px;
+    }
+
+    .available-alert-text {
+        /*font-family: "Noto Sans KR";*/
+        font-family: "IBM Plex Sans KR", sans-serif;
+        margin-top: 5px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .scroll-list {
+        width: 330px;
+        /*margin-top: 10px;*/
+        font-weight: 500;
+    }
+
+    .scroll-btn-container {
+        vertical-align: top;
+
+        display: inline-block;
+        text-align: left;
+
+        /*font-family: 'Noto Sans KR';*/
+        font-size: 12px;
+        line-height: 6px;
+
+        padding: 1px;
+        margin-right: 3px;
+    }
+
+    .scroll-btn-container button[type="button"] {
+        cursor: pointer;
+    }
+
+    .scroll-button {
+        vertical-align: top;
+        padding: 10px;
+        padding-bottom: 5px;
+
+        border-style: none;
+        border-radius: 4px;
+    }
+
+    .scroll-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px #3AA1FF inset;
+    }
+
+    .scroll-image {
+        height: 44px;
+    }
+
+    .nomok-power {
+        display: inline-block;
+    }
+
+    .item-price-calculator-container {
+        font-size: 15px;
+    }
+
+    .item-price-input {
+        margin-bottom: 3px;
+    }
+
+    .item-price-input label {
+        display: inline-block;
+        text-align: left;
+        width: 80px;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .item-price-input input {
+        width: 120px;
+        height: 18px;
+        border: #82858c solid 1px;
+        border-radius: 5px;
+
+        padding-left: 5px;
+        padding-right: 5px;
+
+        overflow: hidden;
+    }
+
+    .item-price-input input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #3AA1FF inset;
+    }
+
+    .item-price-input .item-buy-cnt {
+        margin-left: 3px;
+        font-size: 12px;
+    }
+
+    .scroll-price-calculator-container {
+        /*border: 3px red solid;*/
+        font-size: 15px;
+        /*font-family: "Noto Sans KR";*/
+    }
+
+    .scroll-price-input {
+        margin-bottom: 3px;
+    }
+
+    .scroll-price-input label {
+        display: inline-block;
+        text-align: left;
+        width: 80px;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .scroll-price-input input {
+        width: 120px;
+        height: 18px;
+        border: #82858c solid 1px;
+        border-radius: 5px;
+
+        padding-left: 5px;
+        padding-right: 5px;
+
+        overflow: hidden;
+    }
+
+    .scroll-price-input input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #3AA1FF inset;
+    }
+
+    .scroll-price-input .scroll-use-info {
+        margin-left: 3px;
+        font-size: 12px;
+    }
+
+    .scroll-price-info {
+        /*border: 3px red solid;*/
+        margin-top: 10px;
+        display: flex;
+    }
+
+    .scroll-price-info button[type="button"] {
+        font-family: "IBM Plex Sans KR", sans-serif;
+        white-space: nowrap;
+        text-align: center;
+        /*border-radius: 3px;*/
+        cursor: pointer;
+
+    }
+
+    .scroll-price-info button[type="button"]:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #3AA1FF inset;
+    }
+
+    .scroll-price-result {
+        display: flex;
+        width: 265px
+    }
+
+    .scroll-price-result img {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .scroll-price-result button {
+        float: right;
+        font-weight: bold;
+    }
+
+
+    .scroll-price-result span {
+        font-size: 18px;
+
+    }
+
+    .item-price-result #work-glove-reset-btn {
+        display: inline-block;
+        float: right;
+    }
+
+    /* 주문서 선택 */
+    .scroll-select-container {
+        max-width: 100%;
+        padding: 0.7vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .scroll-select-container button[type="button"] {
+        aspect-ratio: 1 / 1;
+        width: 10vw;
+        margin: 0.3vw;
+        cursor: pointer;
+        border: none;
+        border-radius: 7px;
+
+    }
+
+    .scroll-select-container button img {
+        margin: 3px;
+        aspect-ratio: 1 / 1;
+        width: 5vw;
+    }
+
+    .scroll-select-container span {
+        display: block;
+        margin-top: 0.3vw;
+        font-family: "IBM Plex Sans KR", sans-serif;
+        font-size: 0.9vw;
+    }
+}

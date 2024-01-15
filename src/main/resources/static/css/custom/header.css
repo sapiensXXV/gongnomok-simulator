@@ -20,42 +20,24 @@
 }
 
 
-.header-title-left {
-/*border: green dashed 2px;*/
-    width: 60%;
-    margin-left: 10px;
+/*.header-title-left {*/
+/*!*!*border: green dashed 2px;*!*!*/
+/*    width: 60%;*/
+/*    margin-left: 10px;*/
 
-}
+/*}*/
 
 
-.header-title-center {
-    /*border: blue dashed 2px;*/
-    width: 30%;
-    /*height: 100%;*/
-}
+/*.header-title-center {*/
+/*    !*border: blue dashed 2px;*!*/
+/*    width: 30%;*/
+/*    !*height: 100%;*!*/
+/*}*/
 
-.header-title-right {
-    /*border: #d03333 dashed 2px;*/
-    width: 20%;
-}
-
-.header-title-left img {
-    margin-top: 25px;
-    margin-right: 10px; /* 수정 */
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-}
-
-.header-title-right img {
-    margin-top: 10px;
-    margin-right: 10px;
-    float: right;
-
-    width: 100%;
-    cursor: pointer;
-}
-
+/*.header-title-right {*/
+/*    !*border: #d03333 dashed 2px;*!*/
+/*    width: 20%;*/
+/*}*/
 
 /*.header-title-left img {
     margin-top: 25px;
@@ -74,36 +56,36 @@
 }*/
 
 
-.guide-container {
-    text-align: center;
-}
+/*.guide-container {*/
+/*    text-align: center;*/
+/*}*/
 
-.guide-container button[type="button"] {
-    padding: 3px 15px;
-    font-family: "IBM Plex Sans KR", sans-serif;
-    font-weight: 600;
-    font-size: 30px;
+/*.guide-container button[type="button"] {*/
+/*    padding: 3px 15px;*/
+/*    font-family: "IBM Plex Sans KR", sans-serif;*/
+/*    font-weight: 600;*/
+/*    font-size: 30px;*/
 
-    border-radius: 8px;
-    border-color: #FFCC48;
-    background-color: #FFCC48;
+/*    border-radius: 8px;*/
+/*    border-color: #FFCC48;*/
+/*    background-color: #FFCC48;*/
 
-    margin-bottom: 8px;
+/*    margin-bottom: 8px;*/
 
-    cursor: pointer;
-}
+/*    cursor: pointer;*/
+/*}*/
 
-.header-guide-img {
-    display: inline-block;
-}
+/*.header-guide-img {*/
+/*    display: inline-block;*/
+/*}*/
 
-.guide-img-container {
-    text-align: center;
-}
+/*.guide-img-container {*/
+/*    text-align: center;*/
+/*}*/
 
-.guide-img-container img {
-    display: inline-block;
-}
+/*.guide-img-container img {*/
+/*    display: inline-block;*/
+/*}*/
 
 .header-hr {
     background: #FCD163;

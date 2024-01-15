@@ -8,8 +8,12 @@
     <script type="text/javascript" src="/js/global/redirection.js"></script>
     <title>이블 윙즈</title>
     <link rel="icon" href="/img/item/weapon/evil-wings.png">
-    <link rel="stylesheet" href="/css/custom/default.css">
-    <link rel="stylesheet" href="/css/custom/boundary.css">
+
+    <link rel="stylesheet" href="/css/mobile/mobile-600.css">
+    <link rel="stylesheet" href="/css/mobile/mobile-600-900.css">
+    <link rel="stylesheet" href="/css/mobile/tablet-900-1200.css">
+    <link rel="stylesheet" href="/css/mobile/desktop-1200-1500.css">
+    <link rel="stylesheet" href="/css/mobile/desktop-1500.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PG3NHKRPS5"></script>
@@ -41,19 +45,17 @@
             </div>
             <div class="center-third-split-boundary">
                 <div class="item-container">
-                    <!--이블 윙즈-->
                     <div class="item">
                         <div class="item-info-container">
                             <div class="item-info">
                                 <p id="evil-wings-title" class="item-title">
                                     이블 윙즈<span id="evil-wings-additional" hidden="hidden"> (+<span id="evil-wings-upgraded-count">0</span>)</span></p>
 
-                                <!-- 아이템 이미지, 필요 능력치-->
                                 <div class="image-and-status" >
                                     <div class="tmp-container">
                                         <div class="img-container">
-                                            <img class="item-image" src="/img/item/weapon/evil-wings.png" width="60" height="60">
-                                            <img class="item-image" id="evil-wings-gif-img" src="/img/item/weapon/evil-wings.png"  width="60" height="90" hidden="hidden">
+                                            <img class="item-image" src="/img/item/weapon/evil-wings.png">
+                                            <img class="item-image-gif" id="evil-wings-gif-img" src="/img/item/weapon/evil-wings.png" hidden="hidden">
                                         </div>
                                     </div>
                                     <div class="required-status">
@@ -80,10 +82,10 @@
                                     <p>장비분류 : 스태프</p>
                                     <p>공격속도 : 빠름</p>
                                     <!--                <p id="evil-wings-acc-text" hidden="hidden">명중률 : +<span id="evil-wings-acc">0</span></p>-->
+                                    <p id="evil-wings-int-info" hidden="hidden">INT : +<span id="evil-wings-int">0</span></p>
                                     <p>공격력 : +<span id="evil-wings-phy-atk">53</span></p>
                                     <p>마력 : +<span id="evil-wings-mg-atk">80</span></p>
-                                    <p id="evil-wings-mg-def-info" hidden="hidden">마법 방어력 : +<span id="evil-wings-mg-def"></span></p>
-                                    <p id="evil-wings-int-info" hidden="hidden">INT : +<span id="evil-wings-int">0</span></p>
+                                    <p id="evil-wings-mg-def-info" hidden="hidden">마법 방어력 : +<span id="evil-wings-mg-def">0</span></p>
                                     <p>업그레이드 가능 횟수 : <span id="evil-wings-upgrade-available-count">7</span></p>
                                 </div>
                             </div>
@@ -105,7 +107,7 @@
                                     <button id="evil-wings-10-percent-button" class ="scroll-button" type="button">
                                         <img class="scroll-image" src="/img/scroll/10.png">
                                     </button>
-                                    <p>스마공10%</p>
+                                    <p>스마10%</p>
                                     <p>마법공격력+5</p>
                                     <p>INT+3</p>
                                     <p>마법방어력+1</p>
@@ -114,7 +116,7 @@
                                     <button id="evil-wings-60-percent-button" class ="scroll-button" type="button">
                                         <img class="scroll-image" src="/img/scroll/60.png">
                                     </button>
-                                    <p>스마공60%</p>
+                                    <p>스마60%</p>
                                     <p>마법공격력+2</p>
                                     <p>INT+1</p>
                                 </div>
@@ -122,7 +124,7 @@
                                     <button id="evil-wings-100-percent-button" class ="scroll-button" type="button">
                                         <img class="scroll-image" src="/img/scroll/100.png">
                                     </button>
-                                    <p>스마공100%</p>
+                                    <p>스마100%</p>
                                     <p>마법공격력+1</p>
                                 </div>
                                 <div class="scroll-btn-container">
