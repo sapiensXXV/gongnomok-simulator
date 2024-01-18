@@ -4,6 +4,10 @@
 
 @media only screen and (min-width: 1500px)  {
 
+    html body {
+        cursor: url("../../img/etc/cursor.png"), auto;
+    }
+
     /*바운더리*/
     /*TODO: 작업*/
     .outside-boundary {
@@ -573,7 +577,8 @@
 
     .scroll-price-result {
         display: flex;
-        width: 265px
+        width: 265px;
+        align-items: center;
     }
 
     .scroll-price-result img {
