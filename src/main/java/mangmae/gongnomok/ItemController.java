@@ -74,10 +74,17 @@ public class ItemController {
     public String darkSeraphis() {
         return "item/armor/dark-seraphis/dark-seraphis";
     }
+
     // 다크 아나카문
     @GetMapping("/armor/dark-anakamoon")
     public String darkAnakamoon() {
         return "item/armor/dark-anakamoon/dark-anakamoon";
+    }
+
+    //메바
+    @GetMapping("/weapon/meba")
+    public String meba() {
+        return "item/weapon/meba";
     }
 
     // 다크 보닌
