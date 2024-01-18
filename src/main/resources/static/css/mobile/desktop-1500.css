@@ -4,10 +4,6 @@
 
 @media only screen and (min-width: 1500px)  {
 
-    html body {
-        cursor: url("../../img/etc/cursor.png"), auto;
-    }
-
     /*바운더리*/
     /*TODO: 작업*/
     .outside-boundary {
