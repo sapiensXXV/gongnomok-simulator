@@ -69,4 +69,35 @@ public class CommonArmorController {
         return "item/armor/raggedy-cape/raggedy-cape-luk";
     }
 
+    // 이카루스의 망토
+    @GetMapping("/icarus-cape-str")
+    public String icarusCape() {
+        return "item/armor/icarus-cape/icarus-cape-strong";
+    }
+
+    // 빨간색 가이아의 망토
+    @GetMapping("/red-gaia-cape")
+    public String redGaiaCapeSelect() {
+        return "item/armor/red-gaia-cape/red-gaia-cape";
+    }
+
+    @GetMapping("/red-gaia-cape-str")
+    public String redGaiaCapeStrong() {
+        return "item/armor/red-gaia-cape/red-gaia-cape-strong";
+    }
+
+    @GetMapping("/red-gaia-cape-dex")
+    public String redGaiaCapeSwift() {
+        return "item/armor/red-gaia-cape/red-gaia-cape-swift";
+    }
+
+    @GetMapping("/red-gaia-cape-int")
+    public String redGaiaCapeIntel() {
+        return "item/armor/red-gaia-cape/red-gaia-cape-intel";
+    }
+
+    @GetMapping("/red-gaia-cape-luk")
+    public String redGaiaCapeLucky() {
+        return "item/armor/red-gaia-cape/red-gaia-cape-lucky";
+    }
 }

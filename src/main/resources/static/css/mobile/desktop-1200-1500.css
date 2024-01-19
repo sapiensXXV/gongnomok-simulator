@@ -169,7 +169,7 @@
         aspect-ratio: 1 / 1;
         border: none;
         border-radius: 6px;
-        width: 8vw;
+        width: 7vw;
         cursor: pointer;
         margin-left: 2px;
     }
@@ -180,13 +180,13 @@
 
     .link-btn-info img {
         display: inline-block;
-        height: 4.5vw;
+        height: 3.7vw;
     }
 
     .link-btn-info span {
         font-family: "IBM Plex Sans KR", sans-serif;
         font-weight: 700;
-        font-size: 0.9vw;
+        font-size: 0.8vw;
     }
 
     .key-shortcut-container {
