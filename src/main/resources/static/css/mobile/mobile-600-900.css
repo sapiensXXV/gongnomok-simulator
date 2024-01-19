@@ -277,7 +277,7 @@
         text-align: center;
 
         font-family: "Noto Sans KR", sans-serif;
-        font-size: 6vw;
+        font-size: 4vw;
         font-weight: bold;
 
         color: white;
@@ -305,7 +305,7 @@
         background-color: rgba(255, 255, 255, 1);
 
         justify-content: center;
-        width: 77vw;
+        width: 62vw;
 
 
     }
@@ -328,7 +328,8 @@
         margin-bottom: 10px;
     }
     .item-option-btn-container button[type="button"] {
-        font-size: 3.6vw;
+        height: 5vw;
+        font-size: 2.3vw;
         font-family: "IBM Plex Sans KR", sans-serif;
         border-radius: 5px;
         cursor: pointer;
@@ -350,8 +351,8 @@
     .tmp-container {
         display: inline-block;
         background-color: #CBC1CC;
-        width: 23vw;
-        height: 23vw;
+        width: 20vw;
+        height: 20vw;
 
         padding: 10px;
         margin-right: 2vw;
@@ -379,7 +380,7 @@
     .item-image {
         position: absolute;
         object-fit: contain;
-        width: 19vw;
+        width: 16vw;
         /*width: 105px;*/
     }
 
@@ -398,7 +399,7 @@
     }
 
     .required-status p {
-        font-size: 3.7vw;
+        font-size: 2.7vw;
         line-height: 1.1vw;
         margin-top: 3px;
     }
@@ -420,7 +421,7 @@
     }
 
     .etc-info p {
-        font-size: 4.4vw;
+        font-size: 3.2vw;
     }
 
     .item-option-btn {
@@ -452,11 +453,11 @@
         vertical-align: top;
         display: inline-block;
         text-align: left;
-        font-size: 3vw;
+        font-size: 2vw;
         line-height: 6px;
         padding: 1px;
         margin-right: 2px;
-        width: 18.2vw;
+        width: 13.7vw;
 
     }
 
@@ -469,7 +470,6 @@
     .scroll-button {
         vertical-align: top;
         padding: 10px;
-        padding-bottom: 5px;
 
         border-style: none;
         border-radius: 4px;
@@ -481,7 +481,7 @@
     }
 
     .scroll-image {
-        height: 12vw;
+        height: 9vw;
     }
 
     .nomok-power {
@@ -499,13 +499,13 @@
     .item-price-input label {
         display: inline-block;
         text-align: left;
-        width: 28%;
+        width: 25%;
         font-weight: 700;
-        font-size: 3.5vw;
+        font-size: 2.7vw;
     }
 
     .item-price-input input[type="text"] {
-        width: 38vw;
+        width: 29vw;
         height: 4.7vw;
         border: #82858c solid 1px;
         border-radius: 5px;
@@ -513,7 +513,7 @@
         padding-left: 5px;
         padding-right: 5px;
 
-        font-size: 3.7vw;
+        font-size: 3vw;
         font-family: "IBM Plex Sans KR", sans-serif;
 
         overflow: hidden;
@@ -526,7 +526,7 @@
 
     .item-price-input .item-buy-cnt {
         margin-left: 5px;
-        font-size: 3.3vw;
+        font-size: 2.7vw;
     }
 
     .scroll-price-calculator-container {
@@ -542,13 +542,13 @@
     .scroll-price-input label {
         display: inline-block;
         text-align: left;
-        width: 28%;
+        width: 25%;
         font-weight: 700;
-        font-size: 3.7vw;
+        font-size: 2.7vw;
     }
 
     .scroll-price-input input[type="text"] {
-        width: 38vw;
+        width: 29vw;
         height: 4.7vw;
         border: #82858c solid 1px;
         border-radius: 5px;
@@ -557,7 +557,7 @@
         padding-right: 5px;
 
         font-family: "IBM Plex Sans KR", sans-serif;
-        font-size: 3.7vw;
+        font-size: 3vw;
 
         overflow: hidden;
     }
@@ -569,7 +569,7 @@
 
     .scroll-price-input .scroll-use-info {
         margin-left: 5px;
-        font-size: 3.3vw;
+        font-size: 2.7vw;
     }
 
     .scroll-price-info {
@@ -581,8 +581,8 @@
 
     .scroll-price-info button[type="button"] {
         font-family: "IBM Plex Sans KR", sans-serif;
-        height: 7.1vw;
-        font-size: 3.3vw;
+        height: 6.1vw;
+        font-size: 2.5vw;
         white-space: nowrap;
         text-align: center;
         /*border-radius: 3px;*/
@@ -607,13 +607,13 @@
     .scroll-price-result img {
         display: flex;
         margin-right: 8px;
-        width: 7vw;
-        height: 7vw;
+        width: 6vw;
+        height: 6vw;
     }
 
     .scroll-price-result span {
         display: flex;
-        font-size: 4.5vw;
+        font-size: 3.5vw;
 
     }
 

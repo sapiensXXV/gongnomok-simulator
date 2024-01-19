@@ -575,7 +575,8 @@
 
     .scroll-price-result {
         display: flex;
-        width: 265px
+        width: 265px;
+        align-items: center;
     }
 
     .scroll-price-result img {

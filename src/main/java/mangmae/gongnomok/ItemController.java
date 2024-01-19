@@ -74,10 +74,17 @@ public class ItemController {
     public String darkSeraphis() {
         return "item/armor/dark-seraphis/dark-seraphis";
     }
+
     // 다크 아나카문
     @GetMapping("/armor/dark-anakamoon")
     public String darkAnakamoon() {
         return "item/armor/dark-anakamoon/dark-anakamoon";
+    }
+
+    //메바
+    @GetMapping("/weapon/meba")
+    public String meba() {
+        return "item/weapon/meba";
     }
 
     // 다크 보닌
@@ -96,6 +103,57 @@ public class ItemController {
     @GetMapping("/weapon/brown-scarab")
     public String brownScarab() {
         return "item/weapon/brown-scarab";
+    }
+
+    /**
+     * 궁수
+     */
+    //배틀보우
+    @GetMapping("/weapon/battle-bow")
+    public String battleBow() {
+        return "item/weapon/battle-bow";
+    }
+
+    //라이덴
+    @GetMapping("/weapon/ryden")
+    public String ryden() {
+        return "item/weapon/ryden";
+    }
+
+    //발터2000
+    @GetMapping("/weapon/vaulter")
+    public String vaulter() {
+        return "item/weapon/vaulter";
+    }
+
+    //올림푸스
+    @GetMapping("/weapon/olympus")
+    public String olympus() {
+        return "item/weapon/olympus";
+    }
+
+    //골든 힌켈
+    @GetMapping("/weapon/golden-hinkel")
+    public String goldenHinkel() {
+        return "item/weapon/golden-hinkel";
+    }
+
+    //헤클러
+    @GetMapping("/weapon/heckler")
+    public String heckler() {
+        return "item/weapon/heckler";
+    }
+
+    //로우어
+    @GetMapping("/weapon/rower")
+    public String rower() {
+        return "item/weapon/rower";
+    }
+
+    //골든 크로우
+    @GetMapping("/weapon/golden-crow")
+    public String goldenCrow() {
+        return "item/weapon/golden-crow";
     }
 
     //우드완드

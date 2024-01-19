@@ -98,7 +98,7 @@
 
     .header-title-right img {
         float: right;
-        width: 100%;
+        width: 85%;
         cursor: pointer;
     }
 
@@ -353,7 +353,7 @@
     .item-image {
         position: absolute;
         object-fit: contain;
-        width: 90%;
+        width: 100%;
     }
 
     .item-image-gif {
@@ -573,7 +573,8 @@
 
     .scroll-price-result {
         display: flex;
-        width: 265px
+        width: 265px;
+        align-items: center;
     }
 
     .scroll-price-result img {
