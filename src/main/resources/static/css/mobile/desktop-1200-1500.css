@@ -582,6 +582,7 @@
     .scroll-price-result img {
         display: inline-block;
         margin-right: 5px;
+        width: 3vw;
     }
 
     .scroll-price-result button {
