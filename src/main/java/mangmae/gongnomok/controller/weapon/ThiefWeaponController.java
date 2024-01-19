@@ -33,9 +33,9 @@ public class ThiefWeaponController {
     }
 
     //태극부채
-    @GetMapping("/korean-pan")
+    @GetMapping("/korean-fan")
     public String koreanPan() {
-        return "item/weapon/thief/korean-pan";
+        return "item/weapon/thief/korean-fan";
     }
 
     //베즐러드
