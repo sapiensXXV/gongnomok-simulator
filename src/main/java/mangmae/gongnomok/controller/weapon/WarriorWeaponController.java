@@ -48,4 +48,28 @@ public class WarriorWeaponController {
         return "item/weapon/warrior/nine-dragon";
     }
 
+    //그륜힐
+    @GetMapping("/doom-bringer")
+    public String doomBringer() {
+        return "item/weapon/warrior/doom-bringer";
+    }
+
+    //그레이트 로헨
+    @GetMapping("/heaven-gate")
+    public String heavenGate() {
+        return "item/weapon/warrior/heaven-gate";
+    }
+
+    //청운검
+    @GetMapping("/blue-screamer")
+    public String blueScreamer() {
+        return "item/weapon/warrior/blue-screamer";
+    }
+
+    //라투헨더
+    @GetMapping("/devil-sunrise")
+    public String devilSunrise() {
+        return "item/weapon/warrior/devil-sunrise";
+    }
+
 }

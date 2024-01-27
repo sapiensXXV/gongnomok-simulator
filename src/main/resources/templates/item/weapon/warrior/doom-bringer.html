@@ -1,10 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="google-adsense-account" content="ca-pub-5115370026469477">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 뷰포트 -->
+
+  <script type="text/javascript" src="/js/global/redirection.js"></script>
+  <title>그륜힐</title>
+  <link rel="icon" href="/img/item/weapon/warrior/doom-bringer-raw.png">
+
+  <link rel="stylesheet" href="/css/mobile/mobile-600.css">
+  <link rel="stylesheet" href="/css/mobile/mobile-600-900.css">
+  <link rel="stylesheet" href="/css/mobile/tablet-900-1200.css">
+  <link rel="stylesheet" href="/css/mobile/desktop-1200-1500.css">
+  <link rel="stylesheet" href="/css/mobile/desktop-1500.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PG3NHKRPS5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PG3NHKRPS5');
+  </script>
+
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#headers").load('/common/header.html');
+      $("#footers").load("/common/footer.html");
+      $("#key-shortcut-guide").load('/common/key-shortcut.html');
+      $("#bgm-selector").load('/common/bgm-selector.html');
+    });
+  </script>
 </head>
 <body>
+<div id="headers"></div>
+
+<div class="outside-boundary">
+  <div class="first-boundary">
+    <div class="left-third-split-boundary">
+      <div id="key-shortcut-guide"></div>
+    </div>
+    <div class="center-third-split-boundary">
+      <div class="item-container">
+        <div class="item">
+          <div class="item-info-container">
+            <div class="item-info">
+              <p id="doom-bringer-title" class="item-title">
+                그륜힐<span id="doom-bringer-additional" hidden="hidden"> (+<span id="doom-bringer-upgraded-count">0</span>)</span></p>
+
+              <!-- 아이템 이미지, 필요 능력치-->
+              <div class="image-and-status" >
+                <div class="tmp-container">
+                  <div class="img-container">
+                    <img class="item-image" src="/img/item/weapon/warrior/doom-bringer.png">
+                    <img class="item-image-gif" id="doom-bringer-gif-img" src="/img/item/weapon/warrior/doom-bringer.png" hidden="hidden">
+                  </div>
+                </div>
+                <div class="required-status">
+                  <div class="user-status">
+                    <p>REQ LEV : 70</p>
+                    <p>REQ STR : 220</p>
+                    <p>REQ DEX : 0</p>
+                    <p>REQ INT : 0</p>
+                    <p>REQ LUK : 0</p>
+                    <p>REQ POP : 0</p>
+                  </div>
+                  <div class="item-status">
+                    <p>ITEM LEV: - </p>
+                    <p>ITEM EXP: - </p>
+                  </div>
+
+                </div>
+              </div>
+
+              <!--착용가능 직업, 실제 능력치-->
+              <div class="etc-info">
+                <p class="job"><span style="color:red">초보자</span>  전사  <span style="color:red">마법사  궁수  도적  해적</span></p>
+                <hr>
+                <p>장비분류 : 두손검</p>
+                <p>공격속도 : 보통</p>
+                <p id="doom-bringer-str-info" hidden="hidden">STR : +<span id="doom-bringer-str">0</span></p>
+                <p>공격력 : +<span id="doom-bringer-phy-atk">85</span></p>
+                <p id="doom-bringer-phy-def-info" hidden="hidden">물리 방어력 : +<span id="doom-bringer-phy-def">0</span></p>
+                <p>업그레이드 가능 횟수 : <span id="doom-bringer-upgrade-available-count">7</span></p>
+              </div>
+            </div>
+            <div hidden="hidden" class="available-alert-text" id="doom-bringer-available-alert-txt">
+              <span style="color:#d03333">강화 횟수를 초과하였습니다</span>
+            </div>
+          </div>
+          <div class="simulator-controller-container">
+            <div class="item-option-btn-container">
+              <button id="doom-bringer-normal-option-btn" class="item-option-btn" type="button">정옵</button>
+              <button id="doom-bringer-one-upper-option-btn" class="item-option-btn" type="button">1상옵</button>
+              <button id="doom-bringer-two-upper-option-btn" class="item-option-btn" type="button">2상옵</button>
+              <button id="doom-bringer-three-upper-option-btn" class="item-option-btn" type="button">3상옵</button>
+              <button id="doom-bringer-four-upper-option-btn" class="item-option-btn" type="button">4상옵</button>
+              <button id="doom-bringer-five-upper-option-btn" class="item-option-btn" type="button">5상옵</button>
+            </div>
+            <div class="scroll-list">
+              <div class="scroll-btn-container">
+                <button id="doom-bringer-10-percent-button" class ="scroll-button" type="button">
+                  <img class="scroll-image" src="/img/scroll/10.png">
+                </button>
+                <p>두공10%</p>
+                <p>물리공격력+5</p>
+                <p>STR+3</p>
+                <p>물리방어력+1</p>
+              </div>
+              <div class="scroll-btn-container">
+                <button id="doom-bringer-60-percent-button" class ="scroll-button" type="button">
+                  <img class="scroll-image" src="/img/scroll/60.png">
+                </button>
+                <p>두공60%</p>
+                <p>물리공격력+2</p>
+                <p>STR+1</p>
+              </div>
+              <div class="scroll-btn-container">
+                <button id="doom-bringer-100-percent-button" class ="scroll-button" type="button">
+                  <img class="scroll-image" src="/img/scroll/100.png">
+                </button>
+                <p>두공100%</p>
+                <p>물리공격력+1</p>
+              </div>
+              <div class="scroll-btn-container">
+                <button id="doom-bringer-reset-button" class ="scroll-button" type="button">
+                  <img class="scroll-image" src="/img/etc/reset.svg">
+                </button>
+              </div>
+            </div>
+            <div class="item-price-calculator-container" >
+              <div class="item-price-input">
+                <label for="doom-bringer-price">아이템 가격:</label>
+                <input type="text" id="doom-bringer-price" placeholder="가격을 입력하세요" value="0">
+                <span class="item-buy-cnt">
+                        <span id="doom-bringer-cnt">1</span>개
+                    </span>
+              </div>
+            </div>
+            <div class="scroll-price-calculator-container">
+              <div class="scroll-price-input">
+                <label for="doom-bringer-10-price">10% 가격: </label>
+                <input type="text" id="doom-bringer-10-price" placeholder=" 가격을 입력하세요" value="0" >
+                <span class="scroll-use-info">
+                        <span id="doom-bringer-10-success-cnt">0</span>장 /
+                        <span id="doom-bringer-10-used-cnt">0</span>장
+                    </span>
+              </div>
+              <div class="scroll-price-input">
+                <label for="doom-bringer-60-price">60% 가격: </label>
+                <input type="text" id="doom-bringer-60-price" placeholder=" 가격을 입력하세요" value="0">
+                <span class="scroll-use-info">
+                        <span id="doom-bringer-60-success-cnt">0</span>장 /
+                        <span id="doom-bringer-60-used-cnt">0</span>장
+                    </span>
+              </div>
+              <div class="scroll-price-input">
+                <label for="doom-bringer-100-price">100% 가격: </label>
+                <input type="text" id="doom-bringer-100-price" placeholder=" 가격을 입력하세요" value="0">
+                <span class="scroll-use-info">
+                        <span id="doom-bringer-100-success-cnt">0</span>장 /
+                        <span id="doom-bringer-100-used-cnt">0</span>장
+                    </span>
+              </div>
+              <div class="scroll-price-info">
+                <div class="scroll-price-result">
+                  <img src ="/img/etc/meso.png" width="30px" height="30px">
+                  <span id="doom-bringer-total-used-price">0</span>
+                </div>
+                <button id="doom-bringer-price-reset-btn" type="button">메소 리셋</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-third-split-boundary">
+      <div id="bgm-selector"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" th:src="@{/js/item/weapon/warrior/doom-bringer/doom-bringer.js}"></script>
 
 </body>
 </html>
