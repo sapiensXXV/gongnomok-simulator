@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //타임리프
 	implementation 'org.springframework.boot:spring-boot-starter-web' //스프링 웹
 	implementation 'org.springframework.boot:spring-boot-starter-actuator' //액츄에이터
+	implementation 'io.micrometer:micrometer-registry-prometheus' //프로메테우스
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
