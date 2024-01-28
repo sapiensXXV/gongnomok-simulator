@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'mangmae'
-version = '1.0.8-SNAPSHOT'
+version = '1.0.9-SNAPSHOT'
 
 java {
 	sourceCompatibility = '17'
@@ -22,8 +22,12 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //타임리프
+	implementation 'org.springframework.boot:spring-boot-starter-web' //스프링 웹
+	implementation 'org.springframework.boot:spring-boot-starter-actuator' //액츄에이터
+	implementation 'io.micrometer:micrometer-registry-prometheus' //프로메테우스
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
