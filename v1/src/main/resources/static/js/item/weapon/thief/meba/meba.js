@@ -2,7 +2,7 @@ import * as util from "../../../../global/util.js";
 
 // 속성 값들
 let defaultLuk = 0;
-let defaultPhysicAtk = 22;
+let defaultPhysicAtk = 16;
 let defaultAcc = 0;
 let defaultAvailableCount = 7;
 
