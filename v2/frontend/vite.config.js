@@ -8,6 +8,6 @@ export default defineConfig({
     outDir: "../backend/src/main/resources/static"
   },
   server: {
-    "/api": "http:localhost:8080"
+    "/": "http://localhost:8080"
   }
 })
