@@ -59,6 +59,8 @@ public class QItem extends EntityPathBase<Item> {
 
     public final NumberPath<Integer> str = createNumber("str", Integer.class);
 
+    public final NumberPath<Integer> upgradable = createNumber("upgradable", Integer.class);
+
     public QItem(String variable) {
         super(Item.class, forVariable(variable));
     }

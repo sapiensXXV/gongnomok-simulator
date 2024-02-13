@@ -39,5 +39,6 @@ public class Item {
     private int mgDef;
     private int hp;
     private int mp;
+    private int upgradable;
 
 }

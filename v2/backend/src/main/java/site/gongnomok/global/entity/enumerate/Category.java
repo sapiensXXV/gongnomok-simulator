@@ -1,5 +1,7 @@
 package site.gongnomok.global.entity.enumerate;
 
+import java.util.Arrays;
+
 public enum Category {
     HAT, // 모자
     GLOVES, // 장갑
@@ -27,6 +29,15 @@ public enum Category {
 
     public static String makeString(Category category) {
         return category.name().toLowerCase();
+    }
+
+    public static Category stringToCategory(String data) {
+        return Arrays.stream(values())
+                .filter(value -> {
+                    return value.name().toLowerCase().equals(data);
+                })
+                .findAny()
+                .orElseThrow(RuntimeException::new);
     }
 
 }
