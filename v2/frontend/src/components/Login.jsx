@@ -54,10 +54,12 @@ export default function Login () {
     })
       .then((res) => {
         console.log(res)
+        setHasError(false)
         navigate('/')
       })
       .catch((err) => {
         console.log(err)
+        setHasError(true)
       })
   }
 
@@ -100,8 +102,6 @@ export default function Login () {
             </div>
           </div>
         </form>
-
-
 
       </section >
     </>
