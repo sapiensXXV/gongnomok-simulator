@@ -9,7 +9,7 @@ export default function NewItem() {
   const navigate = useNavigate();
 
   // 폼에 필요한 데이터
-  const [itemId, setItemId] = useState(0);
+  const [itemId, setItemId] = useState(1);
   const [itemName, setItemName] = useState('');
   const [requiredLevel, setRequiredLevel] = useState(0);
 
@@ -21,26 +21,55 @@ export default function NewItem() {
   const [requiredPop, setRequiredPop] = useState(0);
 
   // 요구 직업
-  const [requiredJob, setRequiredJob] = useState('common');
+  const [requiredJob, setRequiredJob] = useState('COMMON');
 
   // 장비 카테고리
   const [category, setCategory] = useState('ONE_HANDED_SWORD');
 
   // 아이템 능력치
   const [str, setStr] = useState(0);
+  const [strLower, setStrLower] = useState(0);
+  const [strUpper, setStrUpper] = useState(0);
+
   const [dex, setDex] = useState(0);
+  const [dexLower, setDexLower] = useState(0);
+  const [dexUpper, setDexUpper] = useState(0);
+
   const [int, setInt] = useState(0);
+  const [intLower, setIntLower] = useState(0);
+  const [intUpper, setIntUpper] = useState(0);
+
   const [luk, setLuk] = useState(0);
+  const [lukLower, setLukLower] = useState(0);
+  const [lukUpper, setLukUpper] = useState(0);
+
   const [phyAtk, setPhyAtk] = useState(0);
+  const [phyAtkLower, setPhyAtkLower] = useState(0);
+  const [phyAtkUpper, setPhyAtkUpper] = useState(0);
+
   const [mgAtk, setMgAtk] = useState(0);
+  const [mgAtkLower, setMgAtkLower] = useState(0);
+  const [mgAtkUpper, setMgAtkUpper] = useState(0);
+
   const [phyDef, setPhyDef] = useState(0);
+  const [phyDefLower, setPhyDefLower] = useState(0);
+  const [phyDefUpper, setPhyDefUpper] = useState(0);
+
   const [mgDef, setMgDef] = useState(0);
+  const [mgDefLower, setMgDefLower] = useState(0);
+  const [mgDefUpper, setMgDefUpper] = useState(0);
+
   const [hp, setHp] = useState(0);
+  const [hpLower, setHpLower] = useState(0);
+  const [hpUpper, setHpUpper] = useState(0);
+
   const [mp, setMp] = useState(0);
+  const [mpLower, setMpLower] = useState(0);
+  const [mpUpper, setMpUpper] = useState(0);
 
 
-
-
+  //업그레이드 가능 횟수
+  const [upgradableCount, setUpgradableCount] = useState(5);
 
 
   useEffect(() => {
@@ -67,24 +96,65 @@ export default function NewItem() {
         level: requiredLevel,
         str: requiredStr,
         dex: requiredDex,
-        int: requiredInt,
+        intel: requiredInt, // 서버에서 int가 예약어인 관계로 intel 사용
         luk: requiredLuk,
         pop: requiredPop,
         job: requiredJob
       },
       category: category,
       status: {
-        str: str,
-        dex: dex,
-        int: int,
-        luk: luk,
-        phyAtk: phyAtk,
-        mgAtk: mgAtk,
-        phyDef: phyDef,
-        mgDef: mgDef,
-        hp: hp,
-        mp: mp
-      }
+        str: {
+          normal: str,
+          lower: strLower,
+          upper: strUpper
+        },
+        dex: {
+          normal: dex,
+          lower: dexLower,
+          upper: dexUpper
+        },
+        intel: {
+          normal: int,
+          lower: intLower,
+          upper: intUpper
+        },
+        luk: {
+          normal: luk,
+          lower: lukLower,
+          upper: lukUpper
+        },
+        phyAtk: {
+          normal: phyAtk,
+          lower: phyAtkLower,
+          upper: phyAtkUpper
+        },
+        mgAtk: {
+          normal: mgAtk,
+          lower: mgAtkLower,
+          upper: mgAtkUpper
+        },
+        phyDef: {
+          normal: phyDef,
+          lower: phyDefLower,
+          upper: phyDefUpper
+        },
+        mgDef: {
+          normal: mgDef,
+          lower: mgDefLower,
+          upper: mgDefUpper
+        },
+        hp: {
+          normal: hp,
+          lower: hpLower,
+          upper: hpUpper
+        },
+        mp: {
+          normal: mp,
+          lower: mpLower,
+          upper: mpUpper
+        }
+      },
+      upgradableCount: upgradableCount
     };
     console.log(`request json = ${itemForm}`)
     // 폼 요청
@@ -155,32 +225,124 @@ export default function NewItem() {
   const handleItemStr = (e) => {
     setStr(e.target.value)
   }
+
+  const handleItemStrLower = (e) => {
+    setStrLower(e.target.value)
+  }
+
+  const handleItemStrUpper = (e) => {
+    setStrUpper(e.target.value)
+  } 
+
   const handleItemDex = (e) => {
     setDex(e.target.value)
   }
+  const handleItemDexLower = (e) => {
+    setDexLower(e.target.value)
+  }
+  const handleItemDexUpper = (e) => {
+    setDexUpper(e.target.value)
+  }
+
   const handleItemInt = (e) => {
     setInt(e.target.value)
   }
+
+  const handleItemIntLower = (e) => {
+    setIntLower(e.target.value)
+  }
+
+  const handleItemIntUpper = (e) => {
+    setIntUpper(e.target.value)
+  }
+
   const handleItemLuk = (e) => {
     setLuk(e.target.value)
   }
+
+  const handleItemLukLower = (e) => {
+    setLukLower(e.target.value)
+  }
+
+  const handleItemLukUpper = (e) => {
+    setLukUpper(e.target.value)
+  }
+
   const handleItemPhyAtk = (e) => {
     setPhyAtk(e.target.value)
   }
+
+  const handleItemPhyAtkLower = (e) => {
+    setPhyAtkLower(e.target.value)
+  }
+
+  const handleItemPhyAtkUpper = (e) => {
+    setPhyAtkUpper(e.target.value)
+  }
+
   const handleItemMgAtk = (e) => {
     setMgAtk(e.target.value)
   }
+
+  const handleItemMgAtkLower = (e) => {
+    setMgAtkLower(e.target.value)
+  }
+
+  const handleItemMgAtkUpper = (e) => {
+    setMgAtkUpper(e.target.value)
+  }
+
   const handleItemPhyDef = (e) => {
     setPhyDef(e.target.value)
   }
+
+  const handleItemPhyDefLower = (e) => {
+    setPhyDefLower(e.target.value)
+  }
+
+  const handleItemPhyDefUpper = (e) => {
+    setPhyDefUpper(e.target.value)
+  }
+
   const handleItemMgDef = (e) => {
     setMgDef(e.target.value)
   }
+
+  const handleItemMgDefLower = (e) => {
+    setMgDefLower(e.target.value)
+  }
+
+  const handleItemMgDefUpper = (e) => {
+    setMgDefUpper(e.target.value)
+  }
+
   const handleItemHp = (e) => {
     setHp(e.target.value)
   }
+
+  const handleItemHpLower = (e) => {
+    setHpLower(e.target.value)
+  }
+
+  const handleItemHpUpper = (e) => {
+    setHpUpper(e.target.value)
+  }
+
   const handleItemMp = (e) => {
     setMp(e.target.value)
+  }
+
+  const handleItemMpLower = (e) => {
+    setMpLower(e.target.value)
+  }
+
+  const handleItemMpUpper = (e) => {
+    setMpUpper(e.target.value)
+  }
+
+  //업그레이드 가능 횟수
+  const handleUpgradableCountSelect = (e) => {
+    setUpgradableCount(e.target.value);
   }
 
   return (
@@ -245,8 +407,8 @@ export default function NewItem() {
 
           <div className="row justify-content-start text-start">
             <div className="col-12">
-              <label htmlFor="required-job" className="form-label">장비 분류</label>
-              <select className="form-select form-select-sm" aria-label="job select" onChange={handleSelectCategory} value={category}>
+              <label htmlFor="required-job-select" className="form-label">장비 분류</label>
+              <select id="required-job-select" className="form-select form-select-sm" aria-label="job select" onChange={handleSelectCategory} value={category}>
                 <option value="ONE_HANDED_SWORD">한손검</option>
                 <option value="TWO_HANDED_SWORD">두손검</option>
                 <option value="ONE_HANDED_AXE">한손도끼</option>
@@ -277,81 +439,171 @@ export default function NewItem() {
           </div>
 
 
-          <section className="row justify-content-start text-start d-grid gap-2">
+          <section className="row justify-content-start text-start">
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-str" className="form-label">STR</label>
                 <input type="text" id="item-str" className="form-control form-control-sm" value={str} onChange={handleItemStr} />
               </div>
-
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={strLower} onChange={handleItemStrLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={strUpper} onChange={handleItemStrUpper} />
+              </div>
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-dex" className="form-label">Dex</label>
                 <input type="text" id="item-dex" className="form-control form-control-sm" value={dex} onChange={handleItemDex} />
               </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={dexLower} onChange={handleItemDexLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={dexUpper} onChange={handleItemDexUpper} />
+              </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-int" className="form-label">INT</label>
                 <input type="text" id="item-int" className="form-control form-control-sm" value={int} onChange={handleItemInt} />
               </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={intLower} onChange={handleItemIntLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={intUpper} onChange={handleItemIntUpper} />
+              </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-luk" className="form-label">LUK</label>
                 <input type="text" id="item-luk" className="form-control form-control-sm" value={luk} onChange={handleItemLuk} />
               </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={lukLower} onChange={handleItemLukLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={lukUpper} onChange={handleItemLukUpper} />
+              </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-phyAtk" className="form-label">공격력</label>
                 <input type="text" id="item-phyAtk" className="form-control form-control-sm" value={phyAtk} onChange={handleItemPhyAtk} />
               </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={phyAtkLower} onChange={handleItemPhyAtkLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={phyAtkUpper} onChange={handleItemPhyAtkUpper} />
+              </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-mgAtk" className="form-label">마력</label>
                 <input type="text" id="item-mgAtk" className="form-control form-control-sm" value={mgAtk} onChange={handleItemMgAtk} />
               </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={mgAtkLower} onChange={handleItemMgAtkLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mgAtkUpper} onChange={handleItemMgAtkUpper} />
+              </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-phyDef" className="form-label">물리방어력</label>
                 <input type="text" id="item-phyDef" className="form-control form-control-sm" value={phyDef} onChange={handleItemPhyDef} />
               </div>
-
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <label htmlFor="item-str" className="form-label">마법방어력</label>
-                <input type="text" id="item-str" className="form-control form-control-sm" value={str} onChange={handleItemMgDef} />
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={phyDefLower} onChange={handleItemPhyDefLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={phyDefUpper} onChange={handleItemPhyDefUpper} />
               </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
+                <label htmlFor="item-str" className="form-label">마법방어력</label>
+                <input type="text" id="item-str" className="form-control form-control-sm" value={mgDef} onChange={handleItemMgDef} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={mgDefLower} onChange={handleItemMgDefLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mgDefUpper} onChange={handleItemMgDefUpper} />
+              </div>
+
+            </div>
+            <div className="row">
+              <div className="col-2">
                 <label htmlFor="item-hp" className="form-label">HP</label>
                 <input type="text" id="item-hp" className="form-control form-control-sm" value={hp} onChange={handleItemHp} />
               </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={hpLower} onChange={handleItemHpLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={hpUpper} onChange={handleItemHpUpper} />
+              </div>
 
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-2">
                 <label htmlFor="item-mp" className="form-label">MP</label>
                 <input type="text" id="item-mp" className="form-control form-control-sm" value={mp} onChange={handleItemMp} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={mpLower} onChange={handleItemMpLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mpUpper} onChange={handleItemMpUpper} />
               </div>
 
             </div>
           </section>
-          <button className="btn btn-success btn-sm mb-3" type="submit">등록</button>
-        </div>
 
+          <section className="row">
+            <div className="col-12">
+              <label htmlFor="upgradable-count-select" className="form-label">업그레이드 가능 횟수</label>
+              <select id="upgradable-count-select" className="form-select form-select-sm" aria-label="job select" onChange={handleUpgradableCountSelect} value={upgradableCount}>
+                <option value={5}>5</option>
+                <option value={7}>7</option>
+                <option value={10}>10</option>
+              </select>
+            </div>
+          </section>
+
+          <button className="btn btn-success btn-sm mb-3 mt-3" type="submit">등록</button>
+        </div>
       </form>
     </>
   );

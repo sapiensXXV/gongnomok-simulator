@@ -2,7 +2,7 @@
 import Header from './components/Header';
 import { Route, Routes } from 'react-router-dom';
 
-import Home from './components/Home';
+import ItemMain from './components/Item/ItemMain';
 import Login from './components/Login';
 import Test from './components/Test';
 import NewItem from './components/NewItem';
@@ -18,7 +18,7 @@ function App() {
       </div>
       <Header />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<ItemMain />} />
         <Route path='/login' element={<Login />} />
         <Route path='/test' element={<Test />} />
         <Route path='/item/new' element={<NewItem />} />
