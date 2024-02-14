@@ -1,15 +1,15 @@
 package site.gongnomok.global.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import site.gongnomok.global.entity.enumerate.Category;
 import site.gongnomok.global.entity.enumerate.Job;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@AllArgsConstructor
+@Builder
 public class Item {
 
     @Id
@@ -29,16 +29,17 @@ public class Item {
     @Enumerated(value = EnumType.STRING)
     private Category category;
 
-    private int str;
-    private int dex;
-    private int intel;
-    private int luk;
-    private int phyAtk;
-    private int mgAtk;
-    private int phyDef;
-    private int mgDef;
-    private int hp;
-    private int mp;
+    private String str;
+    private String dex;
+    private String intel;
+    private String luk;
+    private String phyAtk;
+    private String mgAtk;
+    private String phyDef;
+    private String mgDef;
+    private String hp;
+    private String mp;
     private int upgradable;
+    private int viewCount;
 
 }

@@ -4,12 +4,13 @@ export default function ItemCondition({
   handleJob,
   minLevel,
   handleMinLevel,
-  handleCategory
+  handleCategory,
+  handleSubmitButton
 }) {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmitButton}>
         <section id="item-name-condition" className="d-flex bd-highlight">
           <div className="p-2 flex-grow-1 bd-highlight">
             <input
@@ -21,6 +22,7 @@ export default function ItemCondition({
           <div className="p-2 bd-highlight">
             <button
               className='btn btn-primary btn-sm'
+              type="submit"
             >
               검색
             </button>

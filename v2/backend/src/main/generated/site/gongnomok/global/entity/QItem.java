@@ -21,27 +21,27 @@ public class QItem extends EntityPathBase<Item> {
 
     public final EnumPath<site.gongnomok.global.entity.enumerate.Category> category = createEnum("category", site.gongnomok.global.entity.enumerate.Category.class);
 
-    public final NumberPath<Integer> dex = createNumber("dex", Integer.class);
+    public final StringPath dex = createString("dex");
 
-    public final NumberPath<Integer> hp = createNumber("hp", Integer.class);
+    public final StringPath hp = createString("hp");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final NumberPath<Integer> intel = createNumber("intel", Integer.class);
+    public final StringPath intel = createString("intel");
 
-    public final NumberPath<Integer> luk = createNumber("luk", Integer.class);
+    public final StringPath luk = createString("luk");
 
-    public final NumberPath<Integer> mgAtk = createNumber("mgAtk", Integer.class);
+    public final StringPath mgAtk = createString("mgAtk");
 
-    public final NumberPath<Integer> mgDef = createNumber("mgDef", Integer.class);
+    public final StringPath mgDef = createString("mgDef");
 
-    public final NumberPath<Integer> mp = createNumber("mp", Integer.class);
+    public final StringPath mp = createString("mp");
 
     public final StringPath name = createString("name");
 
-    public final NumberPath<Integer> phyAtk = createNumber("phyAtk", Integer.class);
+    public final StringPath phyAtk = createString("phyAtk");
 
-    public final NumberPath<Integer> phyDef = createNumber("phyDef", Integer.class);
+    public final StringPath phyDef = createString("phyDef");
 
     public final NumberPath<Integer> requiredDex = createNumber("requiredDex", Integer.class);
 
@@ -57,9 +57,11 @@ public class QItem extends EntityPathBase<Item> {
 
     public final NumberPath<Integer> requiredStr = createNumber("requiredStr", Integer.class);
 
-    public final NumberPath<Integer> str = createNumber("str", Integer.class);
+    public final StringPath str = createString("str");
 
     public final NumberPath<Integer> upgradable = createNumber("upgradable", Integer.class);
+
+    public final NumberPath<Integer> viewCount = createNumber("viewCount", Integer.class);
 
     public QItem(String variable) {
         super(Item.class, forVariable(variable));

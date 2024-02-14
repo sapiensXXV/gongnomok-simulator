@@ -8,7 +8,7 @@ public enum Job {
     public static Job stringToJob(String data) {
         return Arrays.stream(values())
                 .filter(status -> {
-                    return status.name().toLowerCase().equals(data);
+                    return status.name().equals(data);
                 })
                 .findAny()
                 .orElseThrow(RuntimeException::new);

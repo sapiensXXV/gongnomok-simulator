@@ -1,8 +1,12 @@
 package site.gongnomok.global.entity.enumerate;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 
+@Slf4j
 public enum Category {
+    ALL, // 전체
     HAT, // 모자
     GLOVES, // 장갑
     SHOES, // 신발
@@ -32,9 +36,10 @@ public enum Category {
     }
 
     public static Category stringToCategory(String data) {
+        log.info("{} 를 Category로 바꿉니다.", data);
         return Arrays.stream(values())
                 .filter(value -> {
-                    return value.name().toLowerCase().equals(data);
+                    return value.name().equals(data);
                 })
                 .findAny()
                 .orElseThrow(RuntimeException::new);

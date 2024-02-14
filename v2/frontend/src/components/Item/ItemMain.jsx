@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import ItemCondition from "./ItemCondition";
 import ItemList from "./ItemList";
+import axios from "axios";
 
 export default function ItemMain() {
 
@@ -13,22 +14,34 @@ export default function ItemMain() {
 
   const handleItemName = (e) => {
     setItemName(e.target.value)
-    console.log(itemName);
+    // console.log(itemName);
   }
 
   const handleJob = (e) => {
     setJob(e.target.value)
-    console.log(`job = ${job}`)
+    // console.log(`job = ${job}`)
   }
 
   const handleMinLevel = (e) => {
     setMinLevel(e.target.value);
-    console.log(`new min level = ${minLevel}`)
+    // console.log(`new min level = ${minLevel}`)
   }
 
   const handleCategory = (e) => {
     setCategory(e.target.value);
-    console.log(`category change = ${category}`);
+    // console.log(`category change = ${category}`);
+  }
+
+  const handleSubmitButton = (e) => {
+    e.preventDefault();
+    const submitForm = {
+      name: itemName,
+      job: job,
+      minLevel: minLevel,
+      category: category
+    }
+
+    console.log(submitForm);
   }
 
   return (
@@ -43,6 +56,7 @@ export default function ItemMain() {
                 minLevel={minLevel}
                 handleMinLevel={handleMinLevel} 
                 handleCategory={handleCategory}
+                handleSubmitButton={handleSubmitButton}
               />
             </section>
           </div>

@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.domain.item.dto.api.ItemCreateDto;
+import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestDto;
+import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
+import site.gongnomok.domain.item.service.ItemService;
 import site.gongnomok.domain.member.dto.MemberDto;
 import site.gongnomok.global.MemberConst;
 
@@ -18,6 +21,8 @@ import static site.gongnomok.global.entity.enumerate.Role.USER;
 @RestController
 @RequiredArgsConstructor
 public class ItemController {
+
+    private final ItemService itemService;
 
     @GetMapping("/item/new")
     public ResponseEntity<Void> newItem(
@@ -37,9 +42,19 @@ public class ItemController {
         @RequestBody ItemCreateDto createDto
     ) {
         Long id = createDto.getId();
-        log.info("create item dto = {}", createDto);
-
+//        log.info("create item dto = {}", createDto);
+        itemService.saveItem(createDto.toServiceDto());
         return ResponseEntity.created(URI.create("/item/" + id)).build();
+    }
+
+    @PostMapping("/items")
+    public ResponseEntity<ItemListResponseDto> items(
+        @RequestBody ItemListRequestDto requestDto
+    ) {
+        log.info("request = {}", requestDto);
+        ItemListResponseDto searchResult = itemService.findItems(requestDto.toServiceDto());
+
+        return ResponseEntity.ok(searchResult);
     }
 
 }
