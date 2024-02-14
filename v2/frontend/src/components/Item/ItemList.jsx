@@ -1,7 +1,7 @@
 export default function ItemList() {
   return (
     <>
-      <h3>Item List</h3>
+      <h3>아이템 리스트</h3>
     </>
   )
 }
