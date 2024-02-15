@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import site.gongnomok.domain.item.dto.service.ItemCreateServiceDto;
+import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 
 @NoArgsConstructor
@@ -18,6 +19,7 @@ public class ItemCreateDto {
     private String category;
     private ItemStatusDto status;
     private int upgradableCount;
+    private String attackSpeed;
 
     public ItemCreateServiceDto toServiceDto() {
         return ItemCreateServiceDto.builder()
@@ -27,6 +29,7 @@ public class ItemCreateDto {
                 .category(Category.stringToCategory(category))
                 .status(status.toServiceDto())
                 .upgradableCount(upgradableCount)
+                .attackSpeed(AttackSpeed.stringToAttackSpeed(attackSpeed))
                 .build();
     }
 }

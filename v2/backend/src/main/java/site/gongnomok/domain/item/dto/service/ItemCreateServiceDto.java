@@ -3,6 +3,7 @@ package site.gongnomok.domain.item.dto.service;
 import lombok.*;
 import site.gongnomok.domain.item.dto.api.ItemRequiredDto;
 import site.gongnomok.domain.item.dto.api.ItemStatusDto;
+import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 
 
@@ -18,5 +19,6 @@ public class ItemCreateServiceDto {
     private Category category;
     private ItemStatusServiceDto status;
     private int upgradableCount;
+    private AttackSpeed attackSpeed;
 
 }

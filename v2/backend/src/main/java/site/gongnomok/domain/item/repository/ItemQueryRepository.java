@@ -10,4 +10,6 @@ public interface ItemQueryRepository {
 
     public List<ItemResponseDto> findItems(ItemListRequestServiceDto condition);
 
+    public List<ItemResponseDto> findAllOrderById();
+
 }

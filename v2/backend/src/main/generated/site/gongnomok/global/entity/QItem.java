@@ -19,6 +19,8 @@ public class QItem extends EntityPathBase<Item> {
 
     public static final QItem item = new QItem("item");
 
+    public final EnumPath<site.gongnomok.global.entity.enumerate.AttackSpeed> attackSpeed = createEnum("attackSpeed", site.gongnomok.global.entity.enumerate.AttackSpeed.class);
+
     public final EnumPath<site.gongnomok.global.entity.enumerate.Category> category = createEnum("category", site.gongnomok.global.entity.enumerate.Category.class);
 
     public final StringPath dex = createString("dex");

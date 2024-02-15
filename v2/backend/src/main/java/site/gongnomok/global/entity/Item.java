@@ -2,6 +2,7 @@ package site.gongnomok.global.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 import site.gongnomok.global.entity.enumerate.Job;
 
@@ -29,6 +30,9 @@ public class Item {
     @Enumerated(value = EnumType.STRING)
     private Category category;
 
+    @Enumerated(value = EnumType.STRING)
+    private AttackSpeed attackSpeed;
+    
     private String str;
     private String dex;
     private String intel;

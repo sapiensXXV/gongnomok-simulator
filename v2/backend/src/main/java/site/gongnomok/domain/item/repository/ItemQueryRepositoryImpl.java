@@ -48,6 +48,21 @@ public class ItemQueryRepositoryImpl implements ItemQueryRepository {
                 .fetch();
     }
 
+    @Override
+    public List<ItemResponseDto> findAllOrderById() {
+        return queryFactory
+                .select(
+                        Projections.fields(
+                                ItemResponseDto.class,
+                                item.id.as("itemId"),
+                                item.name
+                        )
+                )
+                .from(item)
+                .orderBy(item.id.asc())
+                .fetch();
+    }
+
     public BooleanExpression nameContains(String name) {
         if (name.equals("")) {
             return Expressions.asBoolean(true).isTrue();

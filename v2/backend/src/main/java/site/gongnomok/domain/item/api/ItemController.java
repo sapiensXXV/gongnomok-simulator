@@ -42,13 +42,19 @@ public class ItemController {
         @RequestBody ItemCreateDto createDto
     ) {
         Long id = createDto.getId();
-//        log.info("create item dto = {}", createDto);
         itemService.saveItem(createDto.toServiceDto());
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
+    @GetMapping("/items")
+    public ResponseEntity<ItemListResponseDto> items() {
+        ItemListResponseDto allItems = itemService.findAllOrderById();
+
+        return ResponseEntity.ok(allItems);
+    }
+
     @PostMapping("/items")
-    public ResponseEntity<ItemListResponseDto> items(
+    public ResponseEntity<ItemListResponseDto> searchItems(
         @RequestBody ItemListRequestDto requestDto
     ) {
         log.info("request = {}", requestDto);

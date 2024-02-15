@@ -14,6 +14,7 @@ import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
 import site.gongnomok.domain.item.repository.ItemRepository;
 import site.gongnomok.global.entity.Item;
+import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class ItemService {
         Category category = dto.getCategory();
         ItemStatusServiceDto status = dto.getStatus();
         int upgradableCount = dto.getUpgradableCount();
+        AttackSpeed attackSpeed = dto.getAttackSpeed();
         Item newItem = null;
         try {
             newItem = Item.builder()
@@ -46,6 +48,7 @@ public class ItemService {
                     .requiredPop(required.getPop())
                     .requiredJob(required.getJob())
                     .category(category)
+                    .attackSpeed(attackSpeed)
                     .str(mapper.writeValueAsString(status.getStr()))
                     .dex(mapper.writeValueAsString(status.getDex()))
                     .intel(mapper.writeValueAsString(status.getIntel()))
@@ -68,5 +71,11 @@ public class ItemService {
     public ItemListResponseDto findItems(ItemListRequestServiceDto dto) {
         List<ItemResponseDto> items = itemRepository.findItems(dto);
         return ItemListResponseDto.of(items);
+    }
+
+    public ItemListResponseDto findAllOrderById() {
+        List<ItemResponseDto> items = itemRepository.findAllOrderById();
+        return ItemListResponseDto.of(items);
+
     }
 }
