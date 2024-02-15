@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import JobSelect from "./Item/form/JobSelect";
 
 
 export default function NewItem() {
@@ -21,7 +22,13 @@ export default function NewItem() {
   const [requiredPop, setRequiredPop] = useState(0);
 
   // 요구 직업
-  const [requiredJob, setRequiredJob] = useState('COMMON');
+  const [requiredJob, setRequiredJob] = useState({
+    COMMON: false,
+    WARRIOR: false,
+    BOWMAN: false,
+    MAGICIAN: false,
+    THIEF: false
+  });
 
   // 장비 카테고리
   const [category, setCategory] = useState('ONE_HANDED_SWORD');
@@ -91,6 +98,7 @@ export default function NewItem() {
     const itemForm = {
       id: itemId,
       name: itemName,
+      requiredJob: requiredJob,
       required: {
         level: requiredLevel,
         str: requiredStr,
@@ -98,7 +106,6 @@ export default function NewItem() {
         intel: requiredInt, // 서버에서 int가 예약어인 관계로 intel 사용
         luk: requiredLuk,
         pop: requiredPop,
-        job: requiredJob
       },
       category: category,
       status: {
@@ -204,10 +211,29 @@ export default function NewItem() {
   }
 
 
-  // 직업 선택
   const handleSelectJob = (e) => {
-    console.log(e.target.value)
-    setRequiredJob(e.target.value);
+    const value = e.target.value
+    const checked = e.target.checked
+    const newJob = { ...requiredJob }
+    
+    if (value === "COMMON") {
+      if (checked) newJob.COMMON = true;
+      else newJob.COMMON = false;
+    } else if (value === "WARRIOR") {
+      if (checked) newJob.WARRIOR = true;
+      else newJob.WARRIOR = false;
+    } else if (value === "BOWMAN") {
+      if (checked) newJob.BOWMAN = true;
+      else newJob.BOWMAN = false;
+    } else if (value === "MAGICIAN") {
+      if (checked) newJob.MAGICIAN = true;
+      else newJob.MAGICIAN = false;
+    } else if (value === "THIEF") {
+      if (checked) newJob.THIEF = true; 
+      else newJob.THIEF = false;
+    }
+
+    setRequiredJob(newJob);
   }
 
   // 무기 분류 선택
@@ -390,7 +416,7 @@ export default function NewItem() {
             </div>
           </div>
 
-          <div className="row justify-content-start text-start">
+          {/* <div className="row justify-content-start text-start">
             <div className="col-12">
               <label htmlFor="required-job" className="form-label">요구 직업</label>
               <select className="form-select form-select-sm" aria-label="job select" onChange={handleSelectJob} value={requiredJob}>
@@ -402,7 +428,17 @@ export default function NewItem() {
               </select>
 
             </div>
-          </div>
+          </div> */}
+
+          <label htmlFor="required-job" className="form-label mt-2">요구 직업</label>
+          <section id="required-job">
+            <JobSelect name="공통" jobId="common_job_id" value="COMMON" selectHandler={handleSelectJob}/>
+            <JobSelect name="전사" jobId="warrior_job_id" value="WARRIOR" selectHandler={handleSelectJob}/>
+            <JobSelect name="궁수" jobId="bowman_job_id" value="BOWMAN" selectHandler={handleSelectJob}/>
+            <JobSelect name="마법사" jobId="magician_job_id" value="MAGICIAN" selectHandler={handleSelectJob}/>
+            <JobSelect name="도적" jobId="theif_job_id" value="THIEF" selectHandler={handleSelectJob}/>
+          </section>
+
 
           <div className="row justify-content-start text-start">
             <div className="col-12">
