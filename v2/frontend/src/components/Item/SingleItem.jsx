@@ -9,7 +9,7 @@ export default function SingleItem({ id, name }) {
 
   return (
     <>
-        <div className="item-list-container">
+
           <div className="item-list-button">
             <a href={`/item/${id}`} className="link-underline link-underline-opacity-0">
               <button>
@@ -18,7 +18,7 @@ export default function SingleItem({ id, name }) {
               </button>
             </a>
           </div>
-        </div>
+
     </>
   );
 } 

@@ -81,12 +81,8 @@ export default function NewItem() {
         console.log(response)
       })
       .catch((err) => {
-        const status = err.response.status
-        if (status === 401) {
-          console.log("상태코드 401 로그인 화면으로 가세요")
-          navigate('/login')
-        }
-        navigate('/')
+        console.log(err)
+        navigate('/login')
       })
   }, [])
 
@@ -166,6 +162,7 @@ export default function NewItem() {
       .post('/api/item/new', itemForm)
       .then((response) => {
         console.log(response);
+        alert('등록성공')
       })
       .catch((error) => {
         console.log(error);
