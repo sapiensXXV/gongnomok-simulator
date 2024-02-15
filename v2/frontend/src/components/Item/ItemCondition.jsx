@@ -10,6 +10,7 @@ export default function ItemCondition({
 
   return (
     <>
+      <h2 className="text-center item-condition-title">아이템 검색</h2>
       <form onSubmit={handleSubmitButton}>
         <section id="item-name-condition" className="d-flex bd-highlight">
           <div className="p-2 flex-grow-1 bd-highlight">

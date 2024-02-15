@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png"
+// import logo from "../assets/logo.png"
 
 export default function Header() {
   return (
@@ -6,8 +6,8 @@ export default function Header() {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-          <img className="mr-3" src={logo} width="35" />
-            GONGNOMOK.SITE
+          <img className="mr-3" src="/images/logo.png" width="35" />
+            <span className="title">GONGNOMOK.SITE</span>
           </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

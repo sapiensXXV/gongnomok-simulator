@@ -67,6 +67,9 @@ export default function NewItem() {
   const [mpLower, setMpLower] = useState(0);
   const [mpUpper, setMpUpper] = useState(0);
 
+  //공격속도
+  const [attackSpeed, setAttackSpeed] = useState('NORMAL')
+
 
   //업그레이드 가능 횟수
   const [upgradableCount, setUpgradableCount] = useState(5);
@@ -154,7 +157,8 @@ export default function NewItem() {
           upper: mpUpper
         }
       },
-      upgradableCount: upgradableCount
+      upgradableCount: upgradableCount,
+      attackSpeed: attackSpeed
     };
     console.log(`request json = ${itemForm}`)
     // 폼 요청
@@ -180,32 +184,26 @@ export default function NewItem() {
   // 요구사항
   const handleChangeRequiredLevel = (e) => {
     setRequiredLevel(e.target.value);
-    // console.log(`required level = ${requiredLevel}`)
   }
 
   const handleChangeRequiredStr = (e) => {
     setRequiredStr(e.target.value);
-    // console.log(`set required str = ${requiredStr}`)
   }
 
   const handleChangeRequiredDex = (e) => {
     setRequiredDex(e.target.value);
-    // console.log(`setrequired dex = ${requiredDex}`)
   }
 
   const handleChangeRequiredInt = (e) => {
     setRequiredInt(e.target.value);
-    // console.log(`set required int = ${requiredInt}`)
   }
 
   const handleChangeRequiredLuk = (e) => {
     setRequiredLuk(e.target.value);
-    // console.log(`set required luk = ${requiredLuk}`)
   }
 
   const handleChangeRequiredPop = (e) => {
     setRequiredPop(e.target.value);
-    // console.log(`set required pop = ${requiredPop}`)
   }
 
 
@@ -345,6 +343,10 @@ export default function NewItem() {
     setUpgradableCount(e.target.value);
   }
 
+  const handleAttackSpeed = (e) => {
+    setAttackSpeed(e.target.value);
+  }
+
   return (
     <>
       <h1 className="text-center mt-3">아이템 등록 페이지</h1>
@@ -438,6 +440,19 @@ export default function NewItem() {
             </div>
           </div>
 
+
+          <section className="row">
+            <div className="col-12">
+              <label htmlFor="upgradable-count-select" className="form-label">공격 속도</label>
+              <select id="upgradable-count-select" className="form-select form-select-sm" aria-label="job select" onChange={handleAttackSpeed} value={attackSpeed}>
+                <option value="VERY_SLOW">매우 느림</option>
+                <option value="SLOW">느림</option>
+                <option value="NORMAL">보통</option>
+                <option value="FAST">빠름</option>
+                <option value="VERY_FAST">매우 빠름</option>
+              </select>
+            </div>
+          </section>
 
           <section className="row justify-content-start text-start">
             <div className="row">
@@ -595,6 +610,7 @@ export default function NewItem() {
             <div className="col-12">
               <label htmlFor="upgradable-count-select" className="form-label">업그레이드 가능 횟수</label>
               <select id="upgradable-count-select" className="form-select form-select-sm" aria-label="job select" onChange={handleUpgradableCountSelect} value={upgradableCount}>
+                <option value={0}>0</option>
                 <option value={5}>5</option>
                 <option value={7}>7</option>
                 <option value={10}>10</option>
