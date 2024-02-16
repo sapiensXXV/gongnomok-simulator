@@ -42,6 +42,7 @@ public class ItemController {
         @RequestBody ItemCreateDto createDto
     ) {
         Long id = createDto.getId();
+//        log.info("requiredJob = {}", createDto.getRequiredJob());
         itemService.saveItem(createDto.toServiceDto());
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }

@@ -6,8 +6,7 @@ import site.gongnomok.global.entity.enumerate.Job;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @Builder
 public class ItemRequiredServiceDto {
     private int level;
@@ -16,5 +15,4 @@ public class ItemRequiredServiceDto {
     private int intel;
     private int luk;
     private int pop;
-    private Job job;
 }

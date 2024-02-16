@@ -19,7 +19,6 @@ public class ItemRequiredDto {
     private int intel;
     private int luk;
     private int pop;
-    private String job;
 
     public ItemRequiredServiceDto toServiceDto() {
         return ItemRequiredServiceDto.builder()
@@ -29,7 +28,6 @@ public class ItemRequiredDto {
                 .intel(intel)
                 .luk(luk)
                 .pop(pop)
-                .job(Job.stringToJob(job))
                 .build();
 
     }

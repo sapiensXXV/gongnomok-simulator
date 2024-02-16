@@ -13,4 +13,8 @@ public enum Job {
                 .findAny()
                 .orElseThrow(RuntimeException::new);
     }
+
+    public static String jobToString(Job job) {
+        return job.name().toLowerCase();
+    }
 }

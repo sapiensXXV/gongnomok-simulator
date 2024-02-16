@@ -15,6 +15,7 @@ public class ItemCreateDto {
 
     private Long id;
     private String name;
+    private ItemRequiredJob requiredJob;
     private ItemRequiredDto required;
     private String category;
     private ItemStatusDto status;
@@ -25,8 +26,9 @@ public class ItemCreateDto {
         return ItemCreateServiceDto.builder()
                 .id(id)
                 .name(name)
+                .requiredJob(requiredJob.toServiceDto())
                 .required(required.toServiceDto())
-                .category(Category.stringToCategory(category))
+                .category(category == null ? null : Category.stringToCategory(category))
                 .status(status.toServiceDto())
                 .upgradableCount(upgradableCount)
                 .attackSpeed(AttackSpeed.stringToAttackSpeed(attackSpeed))

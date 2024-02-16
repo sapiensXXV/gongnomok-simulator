@@ -15,6 +15,7 @@ public class ItemCreateServiceDto {
 
     private Long id;
     private String name;
+    private ItemRequiredJobServiceDto requiredJob;
     private ItemRequiredServiceDto required;
     private Category category;
     private ItemStatusServiceDto status;

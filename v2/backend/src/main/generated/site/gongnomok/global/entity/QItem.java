@@ -21,7 +21,11 @@ public class QItem extends EntityPathBase<Item> {
 
     public final EnumPath<site.gongnomok.global.entity.enumerate.AttackSpeed> attackSpeed = createEnum("attackSpeed", site.gongnomok.global.entity.enumerate.AttackSpeed.class);
 
+    public final BooleanPath bowman = createBoolean("bowman");
+
     public final EnumPath<site.gongnomok.global.entity.enumerate.Category> category = createEnum("category", site.gongnomok.global.entity.enumerate.Category.class);
+
+    public final BooleanPath common = createBoolean("common");
 
     public final StringPath dex = createString("dex");
 
@@ -32,6 +36,8 @@ public class QItem extends EntityPathBase<Item> {
     public final StringPath intel = createString("intel");
 
     public final StringPath luk = createString("luk");
+
+    public final BooleanPath magician = createBoolean("magician");
 
     public final StringPath mgAtk = createString("mgAtk");
 
@@ -49,8 +55,6 @@ public class QItem extends EntityPathBase<Item> {
 
     public final NumberPath<Integer> requiredInt = createNumber("requiredInt", Integer.class);
 
-    public final EnumPath<site.gongnomok.global.entity.enumerate.Job> requiredJob = createEnum("requiredJob", site.gongnomok.global.entity.enumerate.Job.class);
-
     public final NumberPath<Integer> requiredLevel = createNumber("requiredLevel", Integer.class);
 
     public final NumberPath<Integer> requiredLuk = createNumber("requiredLuk", Integer.class);
@@ -61,9 +65,13 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath str = createString("str");
 
+    public final BooleanPath thief = createBoolean("thief");
+
     public final NumberPath<Integer> upgradable = createNumber("upgradable", Integer.class);
 
     public final NumberPath<Integer> viewCount = createNumber("viewCount", Integer.class);
+
+    public final BooleanPath warrior = createBoolean("warrior");
 
     public QItem(String variable) {
         super(Item.class, forVariable(variable));

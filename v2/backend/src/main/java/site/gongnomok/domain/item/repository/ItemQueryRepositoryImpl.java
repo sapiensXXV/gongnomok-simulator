@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
+import site.gongnomok.global.entity.QItem;
 import site.gongnomok.global.entity.enumerate.Category;
 import site.gongnomok.global.entity.enumerate.Job;
 
@@ -41,7 +42,7 @@ public class ItemQueryRepositoryImpl implements ItemQueryRepository {
                 .from(item)
                 .where(
                         nameContains(name),
-                        jobEqual(job),
+                        jobContain(job),
                         categoryEqual(category),
                         levelGoe(minLevel)
                 )
@@ -71,12 +72,25 @@ public class ItemQueryRepositoryImpl implements ItemQueryRepository {
         return item.name.contains(name);
     }
 
-    public BooleanExpression jobEqual(Job job) {
-        return item.requiredJob.eq(job);
+    public BooleanExpression jobContain(Job job) {
+        String name = Job.jobToString(job);
+        if (name.equals("common")) {
+            return item.common.isTrue();
+        } else if (name.equals("warrior")) {
+            return item.warrior.isTrue();
+        } else if (name.equals("bowman")) {
+            return item.bowman.isTrue();
+        } else if (name.equals("magician")) {
+            return item.magician.isTrue();
+        } else if (name.equals("thief")) {
+            return item.thief.isTrue();
+        }
+
+        return null;
     }
 
     public BooleanExpression categoryEqual(Category category) {
-        return item.category.eq(category);
+        return category == null ? null : item.category.eq(category);
     }
 
     public BooleanExpression levelGoe(int minLevel) {

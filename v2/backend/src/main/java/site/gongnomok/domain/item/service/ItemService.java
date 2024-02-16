@@ -10,6 +10,7 @@ import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
 import site.gongnomok.domain.item.dto.service.ItemCreateServiceDto;
+import site.gongnomok.domain.item.dto.service.ItemRequiredJobServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
 import site.gongnomok.domain.item.repository.ItemRepository;
@@ -30,6 +31,7 @@ public class ItemService {
     public void saveItem(ItemCreateServiceDto dto) {
         Long itemId = dto.getId();
         String itemName = dto.getName();
+        ItemRequiredJobServiceDto requiredJob = dto.getRequiredJob();
         ItemRequiredServiceDto required = dto.getRequired();
         Category category = dto.getCategory();
         ItemStatusServiceDto status = dto.getStatus();
@@ -46,7 +48,11 @@ public class ItemService {
                     .requiredInt(required.getIntel())
                     .requiredLuk(required.getLuk())
                     .requiredPop(required.getPop())
-                    .requiredJob(required.getJob())
+                    .common(requiredJob.isCommon())
+                    .warrior(requiredJob.isWarrior())
+                    .bowman(requiredJob.isBowman())
+                    .magician(requiredJob.isMagician())
+                    .thief(requiredJob.isThief())
                     .category(category)
                     .attackSpeed(attackSpeed)
                     .str(mapper.writeValueAsString(status.getStr()))

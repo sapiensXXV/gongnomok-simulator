@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
-import site.gongnomok.global.entity.enumerate.Job;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,15 +23,18 @@ public class Item {
     private int requiredLuk;
     private int requiredPop;
 
-    @Enumerated(value = EnumType.STRING)
-    private Job requiredJob;
+    private boolean common;
+    private boolean warrior;
+    private boolean bowman;
+    private boolean magician;
+    private boolean thief;
 
     @Enumerated(value = EnumType.STRING)
     private Category category;
 
     @Enumerated(value = EnumType.STRING)
     private AttackSpeed attackSpeed;
-    
+
     private String str;
     private String dex;
     private String intel;
