@@ -69,10 +69,10 @@ export default function ItemCondition({
               <option value={null}>-- 구분 없음 --</option>
               <option value="ONE_HANDED_SWORD">한손검</option>
               <option value="TWO_HANDED_SWORD">두손검</option>
-              <option value="ONE_HANDED_AXE">한손도끼</option>
-              <option value="TWO_HANDED_AXE">두손도끼</option>
-              <option value="ONE_HANDED_BLUNT">한손둔기</option>
-              <option value="TWO_HANDED_BLUNT">두손둔기</option>
+              <option value="ONE_HANDED_AXE">한손 도끼</option>
+              <option value="TWO_HANDED_AXE">두손 도끼</option>
+              <option value="ONE_HANDED_BLUNT">한손 둔기</option>
+              <option value="TWO_HANDED_BLUNT">두손 둔기</option>
               <option value="SPEAR">창</option>
               <option value="POLEARM">폴암</option>
               <option value="BOW">활</option>
@@ -84,7 +84,7 @@ export default function ItemCondition({
               <option value="HAT">모자</option>
               <option value="GLOVES">장갑</option>
               <option value="SHOES">신발</option>
-              <option value="OVERALL">전신</option>
+              <option value="OVERALL">한벌옷</option>
               <option value="TOP">상의</option>
               <option value="BOTTOM">하의</option>
               <option value="SHIELD">방패</option>
@@ -94,8 +94,6 @@ export default function ItemCondition({
           </section>
         </form>
       </section>
-
-
     </>
   )
 }

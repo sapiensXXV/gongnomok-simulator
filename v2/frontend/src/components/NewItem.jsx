@@ -66,6 +66,11 @@ export default function NewItem() {
   const [mgDefLower, setMgDefLower] = useState(0);
   const [mgDefUpper, setMgDefUpper] = useState(0);
 
+  const [acc, setAcc] = useState(0);
+  const [avo, setAvo] = useState(0);
+  const [move, setMove] = useState(0);
+  const [jump, setJump] = useState(0);
+
   const [hp, setHp] = useState(0);
   const [hpLower, setHpLower] = useState(0);
   const [hpUpper, setHpUpper] = useState(0);
@@ -149,6 +154,10 @@ export default function NewItem() {
           lower: mgDefLower,
           upper: mgDefUpper
         },
+        acc: acc,
+        avo: avo,
+        move: move,
+        jump: jump,
         hp: {
           normal: hp,
           lower: hpLower,
@@ -351,6 +360,22 @@ export default function NewItem() {
 
   const handleItemMp = (e) => {
     setMp(e.target.value)
+  }
+
+  const handleAcc = (e) => {
+    setAcc(e.target.value)
+  }
+
+  const handleAvo = (e) => {
+    setAvo(e.target.value)
+  }
+
+  const handleMove = (e) => {
+    setMove(e.target.value)
+  }
+
+  const handleJump = (e) => {
+    setJump(e.target.value)
   }
 
   const handleItemMpLower = (e) => {
@@ -591,8 +616,29 @@ export default function NewItem() {
                 <label htmlFor="item-str-upper" className="form-label">상옵</label>
                 <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mgDefUpper} onChange={handleItemMgDefUpper} />
               </div>
-
             </div>
+
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-acc" className="form-label">명중률</label>
+                <input type="text" id="item-acc" className="form-control form-control-sm" value={acc} onChange={handleAcc} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-avo" className="form-label">회피율</label>
+                <input type="text" id="item-avo" className="form-control form-control-sm" value={acc} onChange={handleAvo} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-move" className="form-label">이동속도</label>
+                <input type="text" id="item-move" className="form-control form-control-sm" value={acc} onChange={handleMove} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-jump" className="form-label">점프력</label>
+                <input type="text" id="item-jump" className="form-control form-control-sm" value={acc} onChange={handleJump} />
+              </div>
+            </div>
+
+            
+
             <div className="row">
               <div className="col-2">
                 <label htmlFor="item-hp" className="form-label">HP</label>

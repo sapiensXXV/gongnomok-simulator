@@ -19,6 +19,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'SejonghospitalBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SejonghospitalBold.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
 @media screen and (min-width:1200px) and (max-width:1399px) {
 
   /* 네비게이션 바 */
@@ -95,5 +102,156 @@
     font-size: 1vw;
     margin-top: 11px;
   }
+
+  /*********** 시뮬레이터 ***********/
+
+  .item-simulator-section {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+
+    border-radius: 8px;
+  }
+
+  .item-info-section {
+    font-family: Pretendard-Regular;
+
+    width: 23.5vw;
+    text-align: center;
+    color: white;
+    background-color: #7175b5;
+
+    border-color: black;
+    border-width: 2px;
+
+    padding: 4px;
+
+  }
+
+  .item-info-section hr {
+    height: 2px;
+    background-color: white;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+  }
+
+  .item-info-basic {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    align-items: flex-start;
+
+    margin-bottom: 9px;
+  }
+
+  .item-info-basic img {
+    margin-left: 10px;
+    padding: 9px;
+    background-color: #C9C8D4;
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .item-info-required {
+    margin-left: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+  }
+
+  .item-info-required span {
+    line-height: 16px;
+    font-size: 1vw;
+    display: block;
+  }
+
+  .item-useless-info {
+    color: #c0c0c0;
+  }
+
+  .item-info-name {
+    display: block;
+    font-size: 1.8vw;
+    font-weight: bold;
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+
+  .item-info-job {
+    font-size: 15px;
+  }
+
+  .red {
+    color: red
+  }
+
+  .item-info-job span {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  .item-info-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Pretendard-Regular;
+    font-size: 15px;
+
+    line-height: 20px;
+    margin-bottom: 10px
+  }
+
+
+  .item-controller-section {
+    width: 24vw;
+    background-color: white;
+    border-radius: 6px;
+
+    padding: 6px;
+
+  }
+
+  .scroll-select {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    margin-top: 5px;
+  }
+
+  .scroll-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .scroll-info span {
+    font-size: 0.85vw;
+    font-family: SejonghospitalBold;
+
+  }
+
+  .scroll-select button {
+    width: 4.8vw;
+    height: 4.8vw;  
+
+    border: none;
+    border-radius: 6px;
+
+    margin-bottom: 2px;
+
+  }
+
+  .scroll-select img {
+    width: 90%;
+
+
+  }
+
 
 }
