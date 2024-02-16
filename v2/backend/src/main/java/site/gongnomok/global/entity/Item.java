@@ -43,6 +43,10 @@ public class Item {
     private String mgAtk;
     private String phyDef;
     private String mgDef;
+    private int acc; //명중률
+    private int avo; //회피율
+    private int move; //이동속도
+    private int jump; //점프력
     private String hp;
     private String mp;
     private int upgradable;

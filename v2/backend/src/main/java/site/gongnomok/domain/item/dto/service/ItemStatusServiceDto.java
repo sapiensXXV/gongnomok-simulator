@@ -24,5 +24,10 @@ public class ItemStatusServiceDto {
     private ItemStatusInfoServiceDto hp;
     private ItemStatusInfoServiceDto mp;
 
+    private int acc;
+    private int avo;
+    private int move;
+    private int jump;
+
 
 }

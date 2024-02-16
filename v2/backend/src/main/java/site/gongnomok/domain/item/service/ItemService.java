@@ -40,6 +40,7 @@ public class ItemService {
         ItemStatusServiceDto status = dto.getStatus();
         int upgradableCount = dto.getUpgradableCount();
         AttackSpeed attackSpeed = dto.getAttackSpeed();
+
         Item newItem = null;
         try {
             newItem = Item.builder()
@@ -66,6 +67,10 @@ public class ItemService {
                     .mgAtk(mapper.writeValueAsString(status.getMgAtk()))
                     .phyDef(mapper.writeValueAsString(status.getPhyDef()))
                     .mgDef(mapper.writeValueAsString(status.getMgDef()))
+                    .acc(status.getAcc())
+                    .avo(status.getAvo())
+                    .move(status.getMove())
+                    .jump(status.getJump())
                     .hp(mapper.writeValueAsString(status.getHp()))
                     .mp(mapper.writeValueAsString(status.getMp()))
                     .upgradable(upgradableCount)
@@ -106,7 +111,7 @@ public class ItemService {
                 .common(item.isCommon())
                 .warrior(item.isWarrior())
                 .bowman(item.isBowman())
-                .magician(item.isBowman())
+                .magician(item.isMagician())
                 .thief(item.isThief())
                 .build();
 
@@ -122,8 +127,14 @@ public class ItemService {
                 .mgDef(mapper.readValue(item.getMgDef(), ItemStatusInfoDto.class))
                 .hp(mapper.readValue(item.getHp(), ItemStatusInfoDto.class))
                 .mp(mapper.readValue(item.getMp(), ItemStatusInfoDto.class))
+                .acc(item.getAcc())
+                .avo(item.getAvo())
+                .move(item.getMove())
+                .jump(item.getJump())
                 .build();
         int viewCount = item.getViewCount();
+        String attackSpeed = item.getAttackSpeed().name();
+        int upgradableCount = item.getUpgradable();
 
         return ItemDetailResponseDto.builder()
                 .name(name)
@@ -132,6 +143,8 @@ public class ItemService {
                 .category(category)
                 .status(status)
                 .viewCount(viewCount)
+                .attackSpeed(attackSpeed)
+                .upgradableCount(upgradableCount)
                 .build();
     }
 }

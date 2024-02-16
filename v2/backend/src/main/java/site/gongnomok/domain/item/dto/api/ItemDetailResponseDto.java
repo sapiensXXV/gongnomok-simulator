@@ -19,4 +19,7 @@ public class ItemDetailResponseDto {
     private ItemStatusDto status;
     private int viewCount;
 
+    private String attackSpeed;
+    private int upgradableCount;
+
 }
