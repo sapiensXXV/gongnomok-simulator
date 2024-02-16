@@ -82,6 +82,10 @@ body {
 
 }
 
+.item-condition-title {
+  font-family: NPSfontBold;
+}
+
 .item-list-button img {
   height: 60%
 }

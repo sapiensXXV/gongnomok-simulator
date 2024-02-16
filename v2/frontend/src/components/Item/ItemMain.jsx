@@ -77,10 +77,10 @@ export default function ItemMain() {
 
   return (
     <>
-      <section className="container mt-3">
+      <section className="mt-3">
         <div className="row">
-          <div className="col-md-4">
-            <section className="col-md-12 bg-light rounded py-3">
+          <div className="col-lg-12 col-xl-4">
+            <section className="col-md-12">
               <ItemCondition
                 handleItemName={handleItemName}
                 handleJob={handleJob}
@@ -93,8 +93,8 @@ export default function ItemMain() {
           </div>
 
 
-          <div className="col-md-8">
-            <section className="col-md-12 bg-light rounded py-3 px-3 item-list-container">
+          <div className="col-lg-12 col-xl-8">
+            <section>
               <ItemList itemList={itemList}/>
             </section>
           </div>

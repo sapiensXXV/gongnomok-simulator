@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NPSfontBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SOYOMapleBoldTTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@media screen and (max-width:575px) {
+
+  /* 네비게이션 바 */
+  .header-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: NPSfontBold;
+  }
+  
+  .header-title a {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+  }
+
+  .header-title img {
+    width: 6vw;
+    height: 6vw;
+    margin: 10px;
+  }
+
+  .header-item-nav {
+    margin-left: 14px;
+    font-family: NPSfontBold;
+    font-size: 2.5vw;
+  }
+
+  .header-title span {
+    display: block;
+    color: black;
+    
+    font-size: 4vw;
+  }
+
+
+  /* 아이템 리스트 컨테이너 */
+  .item-list-container {
+    height: 58vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .item-list-title {
+    font-family: NPSfontBold;
+  }
+
+  /* 아이템 리스트 아이템 칸 버튼 */
+  .item-list-button button {
+    width: 24vw;
+    height: 24vw;
+  
+    border: none;
+    border-radius: 12px;
+  
+    padding: 2px
+  
+  }
+
+  .item-condition-title {
+    font-family: NPSfontBold;
+  }
+
+  /* 아이템 리스트 이미지 */
+  .item-list-button img {
+    height: 60%
+  }
+  
+  /* 아이템 리스트 아이템 이름 */
+  .item-list-button span {
+    display: block;
+    font-family: SOYOMapleBoldTTF;
+    font-size: 2.7vw;
+    margin-top: 7px;
+  }
+
+}

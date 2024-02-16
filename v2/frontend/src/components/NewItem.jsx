@@ -23,11 +23,11 @@ export default function NewItem() {
 
   // 요구 직업
   const [requiredJob, setRequiredJob] = useState({
-    COMMON: false,
-    WARRIOR: false,
-    BOWMAN: false,
-    MAGICIAN: false,
-    THIEF: false
+    common: false,
+    warrior: false,
+    bowman: false,
+    magician: false,
+    thief: false
   });
 
   // 장비 카테고리
@@ -216,21 +216,21 @@ export default function NewItem() {
     const checked = e.target.checked
     const newJob = { ...requiredJob }
     
-    if (value === "COMMON") {
-      if (checked) newJob.COMMON = true;
-      else newJob.COMMON = false;
-    } else if (value === "WARRIOR") {
-      if (checked) newJob.WARRIOR = true;
-      else newJob.WARRIOR = false;
-    } else if (value === "BOWMAN") {
-      if (checked) newJob.BOWMAN = true;
-      else newJob.BOWMAN = false;
-    } else if (value === "MAGICIAN") {
-      if (checked) newJob.MAGICIAN = true;
-      else newJob.MAGICIAN = false;
-    } else if (value === "THIEF") {
-      if (checked) newJob.THIEF = true; 
-      else newJob.THIEF = false;
+    if (value === "common") {
+      if (checked) newJob.common = true;
+      else newJob.common = false;
+    } else if (value === "warrior") {
+      if (checked) newJob.warrior = true;
+      else newJob.warrior = false;
+    } else if (value === "bowman") {
+      if (checked) newJob.bowman = true;
+      else newJob.bowman = false;
+    } else if (value === "magician") {
+      if (checked) newJob.magician = true;
+      else newJob.magician = false;
+    } else if (value === "thief") {
+      if (checked) newJob.thief = true; 
+      else newJob.thief = false;
     }
 
     setRequiredJob(newJob);
@@ -416,27 +416,13 @@ export default function NewItem() {
             </div>
           </div>
 
-          {/* <div className="row justify-content-start text-start">
-            <div className="col-12">
-              <label htmlFor="required-job" className="form-label">요구 직업</label>
-              <select className="form-select form-select-sm" aria-label="job select" onChange={handleSelectJob} value={requiredJob}>
-                <option value="COMMON">공통</option>
-                <option value="WARRIOR">전사</option>
-                <option value="BOWMAN">궁수</option>
-                <option value="MAGICIAN">마법사</option>
-                <option value="THIEF">도적</option>
-              </select>
-
-            </div>
-          </div> */}
-
           <label htmlFor="required-job" className="form-label mt-2">요구 직업</label>
           <section id="required-job">
-            <JobSelect name="공통" jobId="common_job_id" value="COMMON" selectHandler={handleSelectJob}/>
-            <JobSelect name="전사" jobId="warrior_job_id" value="WARRIOR" selectHandler={handleSelectJob}/>
-            <JobSelect name="궁수" jobId="bowman_job_id" value="BOWMAN" selectHandler={handleSelectJob}/>
-            <JobSelect name="마법사" jobId="magician_job_id" value="MAGICIAN" selectHandler={handleSelectJob}/>
-            <JobSelect name="도적" jobId="theif_job_id" value="THIEF" selectHandler={handleSelectJob}/>
+            <JobSelect name="공통" jobId="common_job_id" value="common" selectHandler={handleSelectJob}/>
+            <JobSelect name="전사" jobId="warrior_job_id" value="warrior" selectHandler={handleSelectJob}/>
+            <JobSelect name="궁수" jobId="bowman_job_id" value="bowman" selectHandler={handleSelectJob}/>
+            <JobSelect name="마법사" jobId="magician_job_id" value="magician" selectHandler={handleSelectJob}/>
+            <JobSelect name="도적" jobId="theif_job_id" value="thief" selectHandler={handleSelectJob}/>
           </section>
 
 
