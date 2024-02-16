@@ -6,8 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.domain.item.dto.api.ItemCreateDto;
+import site.gongnomok.domain.item.dto.api.ItemDetailResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
+import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
 import site.gongnomok.domain.item.service.ItemService;
 import site.gongnomok.domain.member.dto.MemberDto;
 import site.gongnomok.global.MemberConst;
@@ -63,5 +65,16 @@ public class ItemController {
 
         return ResponseEntity.ok(searchResult);
     }
+
+    @GetMapping("/item/{itemId}")
+    public ResponseEntity<ItemDetailResponseDto> item(@PathVariable("itemId") Long itemId) {
+        try {
+            ItemDetailResponseDto findItem = itemService.findItemById(itemId);
+            return ResponseEntity.ok(findItem);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 
 }

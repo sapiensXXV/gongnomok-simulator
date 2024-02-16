@@ -1,15 +1,14 @@
 package site.gongnomok.domain.item.dto.api;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
 import site.gongnomok.global.entity.enumerate.Job;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
+@Builder
 @ToString
 public class ItemRequiredDto {
 

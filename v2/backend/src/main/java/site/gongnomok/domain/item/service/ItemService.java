@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import site.gongnomok.domain.item.dto.api.*;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
@@ -13,12 +14,14 @@ import site.gongnomok.domain.item.dto.service.ItemCreateServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemRequiredJobServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
+import site.gongnomok.domain.item.exception.CannotFindItemException;
 import site.gongnomok.domain.item.repository.ItemRepository;
 import site.gongnomok.global.entity.Item;
 import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -83,5 +86,52 @@ public class ItemService {
         List<ItemResponseDto> items = itemRepository.findAllOrderById();
         return ItemListResponseDto.of(items);
 
+    }
+
+    public ItemDetailResponseDto findItemById(Long id) throws JsonProcessingException {
+        Optional<Item> findItem = itemRepository.findById(id);
+        Item item = findItem.orElseThrow(CannotFindItemException::new);
+
+        String name = item.getName();
+        ItemRequiredDto requiredDto = ItemRequiredDto.builder()
+                .level(item.getRequiredLevel())
+                .str(item.getRequiredStr())
+                .dex(item.getRequiredDex())
+                .intel(item.getRequiredInt())
+                .luk(item.getRequiredLuk())
+                .pop(item.getRequiredPop())
+                .build();
+
+        ItemRequiredJob job = ItemRequiredJob.builder()
+                .common(item.isCommon())
+                .warrior(item.isWarrior())
+                .bowman(item.isBowman())
+                .magician(item.isBowman())
+                .thief(item.isThief())
+                .build();
+
+        String category = item.getCategory().name();
+        ItemStatusDto status = ItemStatusDto.builder()
+                .str(mapper.readValue(item.getStr(), ItemStatusInfoDto.class))
+                .dex(mapper.readValue(item.getDex(), ItemStatusInfoDto.class))
+                .intel(mapper.readValue(item.getIntel(), ItemStatusInfoDto.class))
+                .luk(mapper.readValue(item.getLuk(), ItemStatusInfoDto.class))
+                .phyAtk(mapper.readValue(item.getPhyAtk(), ItemStatusInfoDto.class))
+                .mgAtk(mapper.readValue(item.getMgAtk(), ItemStatusInfoDto.class))
+                .phyDef(mapper.readValue(item.getPhyDef(), ItemStatusInfoDto.class))
+                .mgDef(mapper.readValue(item.getMgDef(), ItemStatusInfoDto.class))
+                .hp(mapper.readValue(item.getHp(), ItemStatusInfoDto.class))
+                .mp(mapper.readValue(item.getMp(), ItemStatusInfoDto.class))
+                .build();
+        int viewCount = item.getViewCount();
+
+        return ItemDetailResponseDto.builder()
+                .name(name)
+                .job(job)
+                .required(requiredDto)
+                .category(category)
+                .status(status)
+                .viewCount(viewCount)
+                .build();
     }
 }

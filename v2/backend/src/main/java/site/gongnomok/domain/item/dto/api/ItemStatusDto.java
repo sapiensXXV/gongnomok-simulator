@@ -1,16 +1,15 @@
 package site.gongnomok.domain.item.dto.api;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import site.gongnomok.domain.item.dto.service.ItemStatusInfoServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 @ToString
+@Builder
 public class ItemStatusDto {
 
     private ItemStatusInfoDto str;

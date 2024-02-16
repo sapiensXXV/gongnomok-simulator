@@ -1,16 +1,14 @@
 package site.gongnomok.domain.item.dto.api;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import site.gongnomok.domain.item.dto.service.ItemRequiredJobServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+@Builder
 public class ItemRequiredJob {
     private boolean common;
     private boolean warrior;
