@@ -5,6 +5,11 @@ import { useParams } from "react-router-dom"
 import { INIT_ITEM_INFO, CATEGORY_NAME, ATTACK_SPEED } from "/src/global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
 import Scroll from "./Scroll";
+import PriceCalculator from "./PriceCalculator";
+
+import { playFailureSound, playSuccessSound, playPurchaseSound } from "../../global/util/soundPlay";
+import { playFailureEffect, playSuccessEffect } from "../../global/util/animationPlay";
+import OptionSelect from "./OptionalSelect";
 
 
 export default function ItemSimulator() {
@@ -13,6 +18,7 @@ export default function ItemSimulator() {
 
   const [info, setInfo] = useState(INIT_ITEM_INFO); // 아이템 정보
   const [upgradedCount, setUpgradedCount] = useState(0);
+  // const [defaultUpgradedCount, setDefaultUpgradedCount] = useState(0);
 
   //능력치
   const [str, setStr] = useState(0);
@@ -50,14 +56,34 @@ export default function ItemSimulator() {
 
   const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK');
 
+  // 가격관련 변수
+  const [itemPrice, setItemPrice] = useState(0); // 아이템 가격
+  const [scroll10Price, setScroll10Price] = useState(0); //10% 주문서 가격
+  const [scroll60Price, setScroll60Price] = useState(0); // 60% 주문서 가격
+  const [scroll100Price, setScroll100Price] = useState(0); // 100% 주문서 가격
+
+  const [itemBuyCount, setItemBuyCount] = useState(1); // 구매 아이템 갯수
+  const [scroll10BuyCount, setScroll10BuyCount] = useState(0); // 10% 주문서 구매 갯수
+  const [scroll60BuyCount, setScroll60BuyCount] = useState(0); // 60% 주문서 구매 갯수
+  const [scroll100BuyCount, setScroll100BuyCount] = useState(0); // 100% 주문서 구매 갯수
+
+  const [scroll10SuccessCount, setScroll10SuccessCount] = useState(0); // 10% 주문서 성공 갯수
+  const [scroll60SuccessCount, setScroll60SuccessCount] = useState(0); // 60% 주문서 성공 갯수
+  const [scroll100SuccessCount, setScroll100SuccessCount] = useState(0); // 100%주문서 성공 갯수
+
+  
+
+
+
   // 아이템정보를 가져온다.
   useEffect(() => {
     axios
       .get(`/api/item/${itemId}`)
       .then((res) => {
-        console.log(res)
+
         setInfo(res.data);
         const status = res.data.status;
+        console.log(status);
 
         setStr(status.str.normal);
         setDex(status.dex.normal);
@@ -107,17 +133,59 @@ export default function ItemSimulator() {
   // 주문서 버튼 클릭 핸들러
   const handleScrollClicked = (percent) => {
 
+    if (!checkValidate()) {
+      return;
+    }
+
     // 능력치 증가 시켜야함
     const info = SCROLL_INFO.get(currentScroll);
     let upgradeInfo = null;
     if (percent === 10) {
       upgradeInfo = info.upgradeValue._10;
+      setScroll10BuyCount(scroll10BuyCount + 1);
     } else if (percent === 60) {
       upgradeInfo = info.upgradeValue._60;
+      setScroll60BuyCount(scroll60BuyCount + 1);
     } else if (percent === 100) {
       upgradeInfo = info.upgradeValue._100;
+      setScroll100BuyCount(scroll100BuyCount + 1);
     }
 
+    if (rollScroll(percent)) {
+      scrollSuccess(upgradeInfo);
+      if (percent === 10) setScroll10SuccessCount(scroll10SuccessCount + 1);
+      else if (percent === 60) setScroll60SuccessCount(scroll60SuccessCount + 1);
+      else if (percent === 100) setScroll100SuccessCount(scroll100SuccessCount + 1);
+    } else {
+      scrollFail();
+    }
+    setUpgradableCount(upgradableCount - 1);
+  }
+
+  const checkValidate = () => {
+    //주문서를 더 적용할 수 있는지 검사
+    if (upgradableCount <= 0) {
+      console.log('리셋버튼을 눌러주세요')
+      return false;
+    }
+
+    //더이상 적용할 수 없다는 메세지 출력,
+    //함수의 반환결과를 받은 쪽은 그대로 리턴된다.
+    return true;
+  }
+
+  const rollScroll = (percent) => {
+    const count = percent / 10;
+    let result = Math.floor(Math.random() * 10 + 1);
+    if (result >= 1 && result <= count) return true;
+    else return false;
+  }
+
+  const scrollSuccess = (upgradeInfo) => {
+    //주문서 성공
+    console.log('success')
+    playSuccessSound();
+    playSuccessEffect();
     upgradeInfo.map((info) => {
       switch (info.name) {
         case 'str':
@@ -145,12 +213,16 @@ export default function ItemSimulator() {
           setMgDef(mgDef + info.value)
           break;
         case 'acc':
+          setAcc(acc + info.value)
           break;
         case 'avo':
+          setAvo(avo + info.value)
           break;
         case 'move':
+          setMove(move + info.value)
           break;
         case 'jump':
+          setJump(jump, info.value)
           break;
         case 'hp':
           setHp(hp + info.value)
@@ -160,10 +232,37 @@ export default function ItemSimulator() {
           break;
       }
     })
+
+    setUpgradedCount(upgradedCount + 1);
+  }
+
+  const scrollFail = () => {
+    //주문서 실패
+    playFailureSound();
+    playFailureEffect();
+    console.log('fail')
+  }
+
+  const itemPriceChangeHandler = (e) => {
+    console.log('아이템 가격 변경')
+    setItemPrice(e.target.value);
+  }
+
+  const scroll10PriceChangeHandler = (e) => {
+    setScroll10Price(e.target.value)
+  }
+
+  const scroll60PriceChangeHandler = (e) => {
+    setScroll60Price(e.target.value)
+  }
+
+  const scroll100PriceChangeHandler = (e) => {
+    setScroll100Price(e.target.value)
   }
 
   // 리셋버튼 핸들러 
   const handleResetClicked = () => {
+    playPurchaseSound();
     setStr(defaultStr);
     setDex(defaultDex);
     setIntel(defaultIntel);
@@ -172,9 +271,15 @@ export default function ItemSimulator() {
     setMgAtk(defaultMgAtk);
     setPhyDef(defaultPhyDef);
     setMgDef(defaultMgDef);
+    setAcc(defaultAcc);
+    setAvo(defaultAvo);
+    setMove(defaultMove);
+    setJump(defaultJump);
     setHp(defaultHp);
     setMp(defaultMp);
     setUpgradableCount(defaultUpgradableCount);
+    setUpgradedCount(0);
+    setItemBuyCount(itemBuyCount + 1);
   }
 
   return (
@@ -244,6 +349,10 @@ export default function ItemSimulator() {
             }
           </select>
 
+          <section className="option-select-container">
+            <OptionSelect statusInfo={info.status}/>
+          </section>
+
           <div className="scroll-select">
             {/* <Scroll  /> */}
             <Scroll percent={10} name={currentScroll} onClick={handleScrollClicked} />
@@ -255,6 +364,44 @@ export default function ItemSimulator() {
               </button>
             </div>
           </div>
+
+          {/********** 가격관련 정보 **********/}
+
+
+          <div className="item-price-info">
+            <PriceCalculator isScroll={false} buyCount={itemBuyCount} inputHandler={itemPriceChangeHandler} />
+            <PriceCalculator
+              isScroll={true}
+              percent={10}
+              buyCount={scroll10BuyCount} 
+              successCount={scroll10SuccessCount}
+              inputHandler={scroll10PriceChangeHandler}
+            />
+            <PriceCalculator
+              isScroll={true}
+              percent={60}
+              buyCount={scroll60BuyCount}
+              successCount={scroll60SuccessCount}
+              inputHandler={scroll60PriceChangeHandler}
+            />
+            <PriceCalculator
+              isScroll={true}
+              percent={100}
+              buyCount={scroll100BuyCount}
+              successCount={scroll100SuccessCount}
+              inputHandler={scroll100PriceChangeHandler}
+            />
+            <div className="total-price-info">
+              <img src="/images/etc/meso.png"></img>
+              <span>{
+                (itemBuyCount * itemPrice +
+                scroll10BuyCount * scroll10Price +
+                scroll60BuyCount * scroll60Price +
+                scroll100BuyCount * scroll100Price).toLocaleString()
+              }</span>
+            </div>
+          </div>
+
         </section>
 
       </main>

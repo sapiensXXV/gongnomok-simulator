@@ -216,12 +216,20 @@
 
   }
 
+  .option-select-container {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
   .scroll-select {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 
     margin-top: 5px;
+    margin-bottom: 9px;
   }
 
   .scroll-info {
@@ -249,9 +257,54 @@
 
   .scroll-select img {
     width: 90%;
-
-
   }
 
+  /* 아이템 가격 정보 */
+  .item-price-info {
+    font-size: 1vw;
+    font-family: SejonghospitalBold;
+  }
+
+  .price-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .price-input-description {
+    display: block;
+    margin-right: 5px;
+    width: 5.1vw;
+  }
+
+  .price-input-container input {
+    margin-bottom: 5px;
+    padding: 4px;
+    margin-right: 5px;
+    height: 1.7vw;
+
+    border-radius: 5px;
+    border-width: 1px;
+
+    width: 12.5vw;
+    /* height: 13px; */
+  }
+
+  .total-price-info {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .total-price-info img {
+    width: 2.5vw;
+    height: 2.5vw;
+    margin-right: 5px;
+  }
+
+  .total-price-info span {
+    font-size: 1.2vw;
+  }
 
 }
