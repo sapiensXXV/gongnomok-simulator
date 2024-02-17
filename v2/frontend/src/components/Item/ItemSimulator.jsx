@@ -10,6 +10,7 @@ import PriceCalculator from "./PriceCalculator";
 import { playFailureSound, playSuccessSound, playPurchaseSound } from "../../global/util/soundPlay";
 import { playFailureEffect, playSuccessEffect } from "../../global/util/animationPlay";
 import OptionSelect from "./OptionalSelect";
+import RequiredStatus from "./RequiredStatus";
 
 
 export default function ItemSimulator() {
@@ -356,12 +357,13 @@ export default function ItemSimulator() {
             <div className="item-info-basic">
               <img src={`/images/item/${itemId}.png`} />
               <div className="item-info-required">
-                <span>REQ LEV : {info.required.level}</span>
-                <span>REQ STR : {info.required.str}</span>
-                <span>REQ DEX : {info.required.dex}</span>
-                <span>REQ INT : {info.required.intel}</span>
-                <span>REQ LUK : {info.required.luk}</span>
-                <span>REQ POP : {info.required.pop}</span>
+                <RequiredStatus name="LEV" value={info.required.level} />
+                <RequiredStatus name="STR" value={info.required.str} />
+                <RequiredStatus name="DEX" value={info.required.dex} />
+                <RequiredStatus name="INT" value={info.required.intel} />
+                <RequiredStatus name="LUK" value={info.required.luk} />
+                <RequiredStatus name="POP" value={info.required.pop} />
+                
                 <span className="item-useless-info">ITEM LEV : -</span>
                 <span className="item-useless-info">ITEM EXP : -</span>
 

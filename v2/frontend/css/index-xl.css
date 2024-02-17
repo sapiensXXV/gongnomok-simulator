@@ -114,7 +114,7 @@
   }
 
   .item-info-section-container {
-    
+
   }
 
   .item-info-section {
@@ -164,6 +164,24 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: start;
+  }
+
+  .item-status-required {
+    text-align: justify;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: flex-start;
+  }
+
+  .item-status-required-description {
+    display: block;
+    width: 4.5vw;
+  }
+
+  .item-status-required-info {
+    display: block;
+
   }
 
   .item-info-required span {
