@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { SCROLL_INFO } from "../../global/scroll"
 import { STATUS_NAME } from "../../global/status" 
 
 export default function Scroll({ percent, name, onClick }) {
 
   const [scrollInfo, setScrollInfo] = useState({})
+  
+  // let isMouseUp = useRef(true);
+  // let isKeyUp = useRef(false);
+  // let isMouseDown = useRef(false);
+  // let isKeyDown = useRef(false);
 
   useEffect(() => {
     setScrollInfo(SCROLL_INFO.get(name))
@@ -23,8 +28,10 @@ export default function Scroll({ percent, name, onClick }) {
 
   return (
     <>
-      <div className="scroll-info">
-        <button onClick={() => onClick(percent)}>
+      <div className='scroll-info'>
+        <button id={`scroll-button-${percent}`}
+          onClick={() => onClick(percent)}
+        >
           <img src={`/images/scroll/${percent}.png`}></img>
         </button>
         <span>{scrollInfo.shortcut}{percent}%</span>

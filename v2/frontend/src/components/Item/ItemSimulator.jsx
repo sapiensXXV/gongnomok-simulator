@@ -2,6 +2,8 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
+import { initSimulatorEvent } from '../../global/event';
+
 import { INIT_ITEM_INFO, CATEGORY_NAME, ATTACK_SPEED } from "/src/global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
 import Scroll from "./Scroll";
@@ -11,6 +13,7 @@ import { playFailureSound, playSuccessSound, playPurchaseSound } from "../../glo
 import { playFailureEffect, playSuccessEffect } from "../../global/util/animationPlay";
 import OptionSelect from "./OptionalSelect";
 import RequiredStatus from "./RequiredStatus";
+
 
 
 export default function ItemSimulator() {
@@ -53,7 +56,7 @@ export default function ItemSimulator() {
   let defaultHp = useRef(0);
   let defaultMp = useRef(0);
 
-  let needReset = useRef(false);
+  const [needReset, setNeedReset] = useState(false);
 
   const [defaultUpgradableCount, setDefaultUpgradableCount] = useState(0);
   const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK');
@@ -89,6 +92,10 @@ export default function ItemSimulator() {
       .catch((err) => {
         console.log(err);
       })
+
+      //이벤트 등록
+      initSimulatorEvent();
+
   }, []);
 
 
@@ -170,7 +177,7 @@ export default function ItemSimulator() {
     //주문서를 더 적용할 수 있는지 검사
     if (upgradableCount <= 0) {
       console.log('리셋버튼을 눌러주세요')
-      needReset.current = true;
+      setNeedReset(true);
       return false;
     }
 
@@ -307,8 +314,9 @@ export default function ItemSimulator() {
     resetItem();
   }
 
-  function resetItem() {
-    needReset.current = false;
+  function resetItem() {    
+    setNeedReset(false);
+
     setStr(defaultStr.current);
     setDex(defaultDex.current);
     setIntel(defaultIntel.current);
@@ -399,6 +407,10 @@ export default function ItemSimulator() {
               <span>업그레이드 가능 횟수 : {upgradableCount}</span>
             </div>
           </section>
+          {
+            needReset && <span className="red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+          }
+          <span></span>
         </section>
 
         <section>
@@ -425,7 +437,7 @@ export default function ItemSimulator() {
             <Scroll percent={60} name={currentScroll} onClick={handleScrollClicked} />
             <Scroll percent={100} name={currentScroll} onClick={handleScrollClicked} />
             <div className="scroll-info">
-              <button onClick={handleResetClicked}>
+              <button onClick={handleResetClicked} id="reset-button">
                 <img src="/images/etc/reset.png"></img>
               </button>
             </div>
@@ -467,7 +479,7 @@ export default function ItemSimulator() {
                     scroll100BuyCount * scroll100Price).toLocaleString()
                 }</span>
               </div>
-              <button className="total-price-reset-btn" onClick={handlePurchaseResetClicked}>
+              <button className="total-price-reset-btn" id="purchase-reset-button" onClick={handlePurchaseResetClicked}>
                 메소 리셋
               </button>
             </section>
