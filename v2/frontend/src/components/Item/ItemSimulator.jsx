@@ -337,7 +337,7 @@ export default function ItemSimulator() {
   const handlePurchaseResetClicked = () => {
     playPurchaseSound();
     setItemBuyCount(1);
-    setScroll100BuyCount(0);
+    setScroll10BuyCount(0);
     setScroll60BuyCount(0);
     setScroll100BuyCount(0);
     setScroll10SuccessCount(0);
