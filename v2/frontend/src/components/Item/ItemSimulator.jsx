@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
 import { INIT_ITEM_INFO, CATEGORY_NAME, ATTACK_SPEED } from "/src/global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
@@ -18,7 +18,6 @@ export default function ItemSimulator() {
 
   const [info, setInfo] = useState(INIT_ITEM_INFO); // 아이템 정보
   const [upgradedCount, setUpgradedCount] = useState(0);
-  // const [defaultUpgradedCount, setDefaultUpgradedCount] = useState(0);
 
   //능력치
   const [str, setStr] = useState(0);
@@ -38,22 +37,24 @@ export default function ItemSimulator() {
   const [upgradableCount, setUpgradableCount] = useState(0);
 
   // 기본 값
-  const [defaultStr, setDefaultStr] = useState(0);
-  const [defaultDex, setDefaultDex] = useState(0);
-  const [defaultIntel, setDefaultIntel] = useState(0);
-  const [defaultLuk, setDefaultLuk] = useState(0);
-  const [defaultPhyAtk, setDefaultPhyAtk] = useState(0);
-  const [defaultMgAtk, setDefaultMgAtk] = useState(0);
-  const [defaultPhyDef, setDefaultPhyDef] = useState(0);
-  const [defaultMgDef, setDefaultMgDef] = useState(0);
-  const [defaultAcc, setDefaultAcc] = useState(0);
-  const [defaultAvo, setDefaultAvo] = useState(0);
-  const [defaultMove, setDefaultMove] = useState(0);
-  const [defaultJump, setDefaultJump] = useState(0);
-  const [defaultHp, setDefaultHp] = useState(0);
-  const [defaultMp, setDefaultMp] = useState(0);
-  const [defaultUpgradableCount, setDefaultUpgradableCount] = useState(0);
+  let defaultStr = useRef(0);
+  let defaultDex = useRef(0);
+  let defaultIntel = useRef(0);
+  let defaultLuk = useRef(0);
+  let defaultPhyAtk = useRef(0);
+  let defaultMgAtk = useRef(0);
+  let defaultPhyDef = useRef(0);
+  let defaultMgDef = useRef(0);
+  let defaultAcc = useRef(0);
+  let defaultAvo = useRef(0);
+  let defaultMove = useRef(0);
+  let defaultJump = useRef(0);
+  let defaultHp = useRef(0);
+  let defaultMp = useRef(0);
 
+  let needReset = useRef(false);
+
+  const [defaultUpgradableCount, setDefaultUpgradableCount] = useState(0);
   const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK');
 
   // 가격관련 변수
@@ -71,10 +72,6 @@ export default function ItemSimulator() {
   const [scroll60SuccessCount, setScroll60SuccessCount] = useState(0); // 60% 주문서 성공 갯수
   const [scroll100SuccessCount, setScroll100SuccessCount] = useState(0); // 100%주문서 성공 갯수
 
-  
-
-
-
   // 아이템정보를 가져온다.
   useEffect(() => {
     axios
@@ -83,38 +80,9 @@ export default function ItemSimulator() {
 
         setInfo(res.data);
         const status = res.data.status;
-        console.log(status);
-
-        setStr(status.str.normal);
-        setDex(status.dex.normal);
-        setIntel(status.intel.normal);
-        setLuk(status.luk.normal);
-        setPhyAtk(status.phyAtk.normal);
-        setMgAtk(status.mgAtk.normal);
-        setPhyDef(status.phyDef.normal);
-        setMgDef(status.mgDef.normal);
-        setAcc(status.acc);
-        setAvo(status.avo);
-        setMove(status.move);
-        setJump(status.jump);
-        setHp(status.hp.normal);
-        setMp(status.mp.normal);
+        console.log(`status=${status.dex.normal}`)
+        setInit(status);
         setUpgradableCount(res.data.upgradableCount);
-
-        setDefaultStr(status.str.normal);
-        setDefaultDex(status.dex.normal);
-        setDefaultIntel(status.intel.normal);
-        setDefaultLuk(status.luk.normal);
-        setDefaultPhyAtk(status.phyAtk.normal);
-        setDefaultMgAtk(status.mgAtk.normal);
-        setDefaultPhyDef(status.phyDef.normal);
-        setDefaultMgDef(status.mgDef.normal);
-        setDefaultAcc(status.acc);
-        setDefaultAvo(status.avo);
-        setDefaultMove(status.move);
-        setDefaultJump(status.jump);
-        setDefaultHp(status.hp.normal);
-        setDefaultMp(status.mp.normal);
         setDefaultUpgradableCount(res.data.upgradableCount);
       })
       .catch((err) => {
@@ -123,6 +91,41 @@ export default function ItemSimulator() {
   }, []);
 
 
+  function setInit(status) {
+    setStr(status.str.normal);
+    setDex(status.dex.normal);
+    setIntel(status.intel.normal);
+    setLuk(status.luk.normal);
+    setPhyAtk(status.phyAtk.normal);
+    setMgAtk(status.mgAtk.normal);
+    setPhyDef(status.phyDef.normal);
+    setMgDef(status.mgDef.normal);
+    setAcc(status.acc);
+    setAvo(status.avo);
+    setMove(status.move);
+    setJump(status.jump);
+    setHp(status.hp.normal);
+    setMp(status.mp.normal);
+
+    defaultStr.current = status.str.normal;
+    defaultDex.current = status.dex.normal;
+    defaultIntel.current = status.intel.normal;
+    defaultLuk.current = status.luk.normal;
+    defaultPhyAtk.current = status.phyAtk.normal;
+    defaultMgAtk.current = status.mgAtk.normal;
+    defaultPhyDef.current = status.phyDef.normal;
+    defaultAcc.current = status.acc;
+    defaultAvo.current = status.avo;
+    defaultMove.current = status.move;
+    defaultJump.current = status.jump;
+    defaultHp.current = status.hp.normal;
+    defaultMp.current = status.mp.normal;
+
+    console.log('초기화 이후')
+    console.log(`defaultDex=${defaultDex.current}`);
+    console.log(`defaultPhyAtk=${defaultPhyAtk.current}`)
+
+  }
 
   // 주문서 선택 핸들러
   const handleScrollChange = (e) => {
@@ -166,6 +169,7 @@ export default function ItemSimulator() {
     //주문서를 더 적용할 수 있는지 검사
     if (upgradableCount <= 0) {
       console.log('리셋버튼을 눌러주세요')
+      needReset.current = true;
       return false;
     }
 
@@ -260,26 +264,84 @@ export default function ItemSimulator() {
     setScroll100Price(e.target.value)
   }
 
+  const handleItemOption = (e, statusName) => {
+    const name = statusName;
+    const value = e.target.value
+    console.log(`name=${name}, value=${value}`)
+
+    switch (name) {
+      case 'str':
+        defaultStr.current = value;
+        break;
+      case 'dex':
+        console.log(`defaultDex값을 ${defaultDex.current} => ${value}`)
+        defaultDex.current = value;
+        console.log(`변경 후 defaultDex=${defaultDex.current}`)
+        break;
+      case 'intel':
+        defaultIntel.current = value;
+        break;
+      case 'luk':
+        defaultLuk.current = value;
+        break;
+      case 'phyAtk':
+        defaultPhyAtk.current = value;
+        break;
+      case 'mgAtk':
+        defaultMgAtk.current = value;
+        break;
+      case 'phyDef':
+        defaultPhyDef.current = value;
+        break;
+      case 'mgDef':
+        defaultMgDef.current = value;
+        break;
+      case 'hp':
+        defaultHp.current = value;
+        break;
+      case 'mp':
+        defaultMp.current = value;
+        break;
+    }
+    resetItem();
+  }
+
+  function resetItem() {
+    needReset.current = false;
+    setStr(defaultStr.current);
+    setDex(defaultDex.current);
+    setIntel(defaultIntel.current);
+    setLuk(defaultLuk.current);
+    setPhyAtk(defaultPhyAtk.current);
+    setMgAtk(defaultMgAtk.current);
+    setPhyDef(defaultPhyDef.current);
+    setMgDef(defaultMgDef.current);
+    setAcc(defaultAcc.current);
+    setAvo(defaultAvo.current);
+    setMove(defaultMove.current);
+    setJump(defaultJump.current);
+    setHp(defaultHp.current);
+    setMp(defaultMp.current);
+    setUpgradableCount(defaultUpgradableCount);
+    setUpgradedCount(0);
+    setItemBuyCount((count) => count + 1);
+  }
+
   // 리셋버튼 핸들러 
   const handleResetClicked = () => {
     playPurchaseSound();
-    setStr(defaultStr);
-    setDex(defaultDex);
-    setIntel(defaultIntel);
-    setLuk(defaultLuk);
-    setPhyAtk(defaultPhyAtk);
-    setMgAtk(defaultMgAtk);
-    setPhyDef(defaultPhyDef);
-    setMgDef(defaultMgDef);
-    setAcc(defaultAcc);
-    setAvo(defaultAvo);
-    setMove(defaultMove);
-    setJump(defaultJump);
-    setHp(defaultHp);
-    setMp(defaultMp);
-    setUpgradableCount(defaultUpgradableCount);
-    setUpgradedCount(0);
-    setItemBuyCount(itemBuyCount + 1);
+    resetItem();
+  }
+
+  const handlePurchaseResetClicked = () => {
+    playPurchaseSound();
+    setItemBuyCount(1);
+    setScroll100BuyCount(0);
+    setScroll60BuyCount(0);
+    setScroll100BuyCount(0);
+    setScroll10SuccessCount(0);
+    setScroll60SuccessCount(0);
+    setScroll100SuccessCount(0);
   }
 
   return (
@@ -288,54 +350,56 @@ export default function ItemSimulator() {
 
 
       <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-1">
+        <section className="item-info-section-container">
+          <section className="item-info-section mx-1">
+            <span className='item-info-name'>{info.name}{upgradedCount > 0 && `(+${upgradedCount})`}</span>
+            <div className="item-info-basic">
+              <img src={`/images/item/${itemId}.png`} />
+              <div className="item-info-required">
+                <span>REQ LEV : {info.required.level}</span>
+                <span>REQ STR : {info.required.str}</span>
+                <span>REQ DEX : {info.required.dex}</span>
+                <span>REQ INT : {info.required.intel}</span>
+                <span>REQ LUK : {info.required.luk}</span>
+                <span>REQ POP : {info.required.pop}</span>
+                <span className="item-useless-info">ITEM LEV : -</span>
+                <span className="item-useless-info">ITEM EXP : -</span>
 
-        <section className="item-info-section mx-1">
-          <span className="item-info-name">{info.name}{upgradedCount > 0 && `(+${upgradedCount})`}</span>
-          <div className="item-info-basic">
-            <img src={`/images/item/${itemId}.png`} />
-            <div className="item-info-required">
-              <span>REQ LEV : {info.required.level}</span>
-              <span>REQ STR : {info.required.str}</span>
-              <span>REQ DEX : {info.required.dex}</span>
-              <span>REQ INT : {info.required.intel}</span>
-              <span>REQ LUK : {info.required.luk}</span>
-              <span>REQ POP : {info.required.pop}</span>
-              <span className="item-useless-info">ITEM LEV : -</span>
-              <span className="item-useless-info">ITEM EXP : -</span>
-
+              </div>
             </div>
-          </div>
-          <div className="item-info-job">
-            <span className={info.job.common ? '' : 'red'}>초보자</span>
-            <span className={info.job.warrior || info.job.common ? '' : 'red'}>전사</span>
-            <span className={info.job.magician || info.job.common ? '' : 'red'}>마법사</span>
-            <span className={info.job.bowman || info.job.common ? '' : 'red'} >궁수</span>
-            <span className={info.job.thief || info.job.common ? '' : 'red'}>도적</span>
-            <span className={info.job.common ? '' : 'red'}>해적</span>
-          </div>
-          <hr />
+            <div className="item-info-job">
+              <span className={info.job.common ? '' : 'red'}>초보자</span>
+              <span className={info.job.warrior || info.job.common ? '' : 'red'}>전사</span>
+              <span className={info.job.magician || info.job.common ? '' : 'red'}>마법사</span>
+              <span className={info.job.bowman || info.job.common ? '' : 'red'} >궁수</span>
+              <span className={info.job.thief || info.job.common ? '' : 'red'}>도적</span>
+              <span className={info.job.common ? '' : 'red'}>해적</span>
+            </div>
+            <hr />
 
-          <div className="item-info-status">
-            <span>장비분류 : {CATEGORY_NAME.get(info.category)}</span>
-            <span>공격속도 : {ATTACK_SPEED.get(info.attackSpeed)}</span>
-            {str > 0 && <span>STR : +{str}</span>}
-            {dex > 0 && <span>DEX : +{dex}</span>}
-            {intel > 0 && <span>INT : +{intel}</span>}
-            {luk > 0 && <span>LUK : +{luk}</span>}
-            {acc > 0 && <span>명중률 : +{acc}</span>}
-            {avo > 0 && <span>회피율 : +{avo}</span>}
-            {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
-            {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
-            {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
-            {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
-            {hp > 0 && <span>HP : +{hp}</span>}
-            {mp > 0 && <span>MP : +{mp}</span>}
-            {move > 0 && <span>이동속도 : +{move}</span>}
-            {jump > 0 && <span>점프력 : +{jump}</span>}
-            <span>업그레이드 가능 횟수 : {upgradableCount}</span>
-          </div>
+            <div className="item-info-status">
+              <span>장비분류 : {CATEGORY_NAME.get(info.category)}</span>
+              <span>공격속도 : {ATTACK_SPEED.get(info.attackSpeed)}</span>
+              {str > 0 && <span>STR : +{str}</span>}
+              {dex > 0 && <span>DEX : +{dex}</span>}
+              {intel > 0 && <span>INT : +{intel}</span>}
+              {luk > 0 && <span>LUK : +{luk}</span>}
+              {acc > 0 && <span>명중률 : +{acc}</span>}
+              {avo > 0 && <span>회피율 : +{avo}</span>}
+              {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
+              {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
+              {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
+              {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
+              {hp > 0 && <span>HP : +{hp}</span>}
+              {mp > 0 && <span>MP : +{mp}</span>}
+              {move > 0 && <span>이동속도 : +{move}</span>}
+              {jump > 0 && <span>점프력 : +{jump}</span>}
+              <span>업그레이드 가능 횟수 : {upgradableCount}</span>
+            </div>
+          </section>
         </section>
 
+        <section>
         <section className="item-controller-section mx-1">
           <select className="form-select form-select-sm" onChange={handleScrollChange}>
             {
@@ -350,7 +414,7 @@ export default function ItemSimulator() {
           </select>
 
           <section className="option-select-container">
-            <OptionSelect statusInfo={info.status}/>
+            <OptionSelect statusInfo={info.status} optionSelectHandler={handleItemOption} />
           </section>
 
           <div className="scroll-select">
@@ -373,7 +437,7 @@ export default function ItemSimulator() {
             <PriceCalculator
               isScroll={true}
               percent={10}
-              buyCount={scroll10BuyCount} 
+              buyCount={scroll10BuyCount}
               successCount={scroll10SuccessCount}
               inputHandler={scroll10PriceChangeHandler}
             />
@@ -391,18 +455,25 @@ export default function ItemSimulator() {
               successCount={scroll100SuccessCount}
               inputHandler={scroll100PriceChangeHandler}
             />
-            <div className="total-price-info">
-              <img src="/images/etc/meso.png"></img>
-              <span>{
-                (itemBuyCount * itemPrice +
-                scroll10BuyCount * scroll10Price +
-                scroll60BuyCount * scroll60Price +
-                scroll100BuyCount * scroll100Price).toLocaleString()
-              }</span>
-            </div>
-          </div>
+            <section className="total-price-info-section">
+              <div className="total-price-info">
+                <img src="/images/etc/meso.png"></img>
+                <span>{
+                  (itemBuyCount * itemPrice +
+                    scroll10BuyCount * scroll10Price +
+                    scroll60BuyCount * scroll60Price +
+                    scroll100BuyCount * scroll100Price).toLocaleString()
+                }</span>
+              </div>
+              <button className="total-price-reset-btn" onClick={handlePurchaseResetClicked}>
+                메소 리셋
+              </button>
+            </section>
 
+          </div>
         </section>
+        </section>
+        
 
       </main>
     </>

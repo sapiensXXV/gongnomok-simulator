@@ -113,6 +113,10 @@
     border-radius: 8px;
   }
 
+  .item-info-section-container {
+    
+  }
+
   .item-info-section {
     font-family: Pretendard-Regular;
 
@@ -255,6 +259,10 @@
 
   }
 
+  .scroll-select button:focus {
+    background-color: rgb(214, 214, 214);
+  }
+
   .scroll-select img {
     width: 90%;
   }
@@ -290,8 +298,17 @@
     /* height: 13px; */
   }
 
-  .total-price-info {
+  .total-price-info-section {
     margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  .total-price-info {
+    
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -305,6 +322,16 @@
 
   .total-price-info span {
     font-size: 1.2vw;
+  }
+
+  .total-price-reset-btn {
+    padding: 3px 7px 3px 7px;
+    border: none;
+    border-radius: 3px;
+  }
+
+  .total-price-reset-btn:focus {
+    background-color: rgb(214, 214, 214);
   }
 
 }

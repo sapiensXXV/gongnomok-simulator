@@ -8,7 +8,7 @@ export default function Scroll({ percent, name, onClick }) {
 
   useEffect(() => {
     setScrollInfo(SCROLL_INFO.get(name))
-    console.log(SCROLL_INFO.get(name))
+    // console.log(SCROLL_INFO.get(name))
   }, [])
 
   const getScrollStatus = (value) => {
