@@ -1,8 +1,7 @@
 
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
-import { initSimulatorEvent } from '../../global/event';
 
 import { INIT_ITEM_INFO, CATEGORY_NAME, ATTACK_SPEED } from "/src/global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
@@ -11,241 +10,226 @@ import PriceCalculator from "./PriceCalculator";
 
 import { playFailureSound, playSuccessSound, playPurchaseSound } from "../../global/util/soundPlay";
 import { playFailureEffect, playSuccessEffect } from "../../global/util/animationPlay";
-import OptionSelect from "./OptionalSelect";
+import OptionSelect from "./OptionSelect";
 import RequiredStatus from "./RequiredStatus";
-
+import { useHotkeys } from "react-hotkeys-hook";
 
 
 export default function ItemSimulator() {
 
-  const { itemId } = useParams();
+  const { itemId } = useParams(); // item id
 
-  const [info, setInfo] = useState(INIT_ITEM_INFO); // 아이템 정보
-  const [upgradedCount, setUpgradedCount] = useState(0);
+  useHotkeys('q', () => {
+    console.log(`[Q] keyup`)
+  }, { keyup: true, keydown: false });
 
-  //능력치
-  const [str, setStr] = useState(0);
-  const [dex, setDex] = useState(0);
-  const [intel, setIntel] = useState(0);
-  const [luk, setLuk] = useState(0);
-  const [phyAtk, setPhyAtk] = useState(0);
-  const [mgAtk, setMgAtk] = useState(0);
-  const [phyDef, setPhyDef] = useState(0);
-  const [mgDef, setMgDef] = useState(0);
-  const [acc, setAcc] = useState(0);
-  const [avo, setAvo] = useState(0);
-  const [move, setMove] = useState(0);
-  const [jump, setJump] = useState(0);
-  const [hp, setHp] = useState(0);
-  const [mp, setMp] = useState(0);
-  const [upgradableCount, setUpgradableCount] = useState(0);
+  const availableScroll = useRef([]);
 
-  // 기본 값
-  let defaultStr = useRef(0);
-  let defaultDex = useRef(0);
-  let defaultIntel = useRef(0);
-  let defaultLuk = useRef(0);
-  let defaultPhyAtk = useRef(0);
-  let defaultMgAtk = useRef(0);
-  let defaultPhyDef = useRef(0);
-  let defaultMgDef = useRef(0);
-  let defaultAcc = useRef(0);
-  let defaultAvo = useRef(0);
-  let defaultMove = useRef(0);
-  let defaultJump = useRef(0);
-  let defaultHp = useRef(0);
-  let defaultMp = useRef(0);
+  const [info, setInfo] = useState(null); // 아이템 정보
+  const [defaultStatus, setDefaultStatus] = useState(null);
+  const [status, setStatus] = useState(null);
+  const [upgradedCount, setUpgradedCount] = useState(null); // 업그레이드 된 횟수
+  const [currentScroll, setCurrentScroll] = useState(null); // 현재 적용하고 있는 주문서
+  const [purchaseInfo, setPurchaseInfo] = useState({
+    item: {
+      price: 0,   //아이템 가격
+      buy: 0,     //구매 갯수
+    },
+    _10: {
+      price: 0,   //10% 가격
+      buy: 0,     //10%구매 갯수
+      success: 0, //10% 성공 갯수
+    },
+    _60: {
+      price: 0,
+      buy: 0,
+      success: 0,
+    },
+    _100: {
+      price: 0,
+      buy: 0,
+      success: 0,
+    },
+  })
 
-  const [needReset, setNeedReset] = useState(false);
+  async function fetchData() {
+    try {
+      const response = await axios.get(`/api/item/${itemId}`)
+      const data = response.data;
+      const copy = { ...data }
 
-  const [defaultUpgradableCount, setDefaultUpgradableCount] = useState(0);
-  const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK');
+      setInfo({ ...data })
+      setStatus((prev) => { 
+        return {
+        str: copy.status.str.normal,
+        dex: copy.status.dex.normal,
+        intel: copy.status.intel.normal,
+        luk: copy.status.luk.normal,
+        phyAtk: copy.status.phyAtk.normal,
+        mgAtk: copy.status.mgAtk.normal,
+        phyDef: copy.status.phyDef.normal,
+        mgDef: copy.status.mgDef.normal,
+        acc: copy.status.acc,
+        avo: copy.status.avo,
+        move: copy.status.move,
+        jump: copy.status.jump,
+        hp: copy.status.hp.normal,
+        mp: copy.status.mp.normal,
+        upgradable: copy.upgradableCount
+      }})
 
-  // 가격관련 변수
-  const [itemPrice, setItemPrice] = useState(0); // 아이템 가격
-  const [scroll10Price, setScroll10Price] = useState(0); //10% 주문서 가격
-  const [scroll60Price, setScroll60Price] = useState(0); // 60% 주문서 가격
-  const [scroll100Price, setScroll100Price] = useState(0); // 100% 주문서 가격
+      setDefaultStatus((prev) => { return {
+        str: copy.status.str.normal,
+        dex: copy.status.dex.normal,
+        intel: copy.status.intel.normal,
+        luk: copy.status.luk.normal,
+        phyAtk: copy.status.phyAtk.normal,
+        mgAtk: copy.status.mgAtk.normal,
+        phyDef: copy.status.phyDef.normal,
+        mgDef: copy.status.mgDef.normal,
+        acc: copy.status.acc,
+        avo: copy.status.avo,
+        move: copy.status.move,
+        jump: copy.status.jump,
+        hp: copy.status.hp.normal,
+        mp: copy.status.mp.normal,
+        upgradable: copy.upgradableCount
+      }})
+      setUpgradedCount(0);
 
-  const [itemBuyCount, setItemBuyCount] = useState(1); // 구매 아이템 갯수
-  const [scroll10BuyCount, setScroll10BuyCount] = useState(0); // 10% 주문서 구매 갯수
-  const [scroll60BuyCount, setScroll60BuyCount] = useState(0); // 60% 주문서 구매 갯수
-  const [scroll100BuyCount, setScroll100BuyCount] = useState(0); // 100% 주문서 구매 갯수
-
-  const [scroll10SuccessCount, setScroll10SuccessCount] = useState(0); // 10% 주문서 성공 갯수
-  const [scroll60SuccessCount, setScroll60SuccessCount] = useState(0); // 60% 주문서 성공 갯수
-  const [scroll100SuccessCount, setScroll100SuccessCount] = useState(0); // 100%주문서 성공 갯수
-
-  // 아이템정보를 가져온다.
-  useEffect(() => {
-    axios
-      .get(`/api/item/${itemId}`)
-      .then((res) => {
-
-        setInfo(res.data);
-        const status = res.data.status;
-        console.log(`status=${status.dex.normal}`)
-        setInit(status);
-        setUpgradableCount(res.data.upgradableCount);
-        setDefaultUpgradableCount(res.data.upgradableCount);
+      availableScroll.current = SCROLL_NAME_LIST.map((name) => {
+        if (SCROLL_INFO.get(name).category === data.category) {
+          return SCROLL_INFO.get(name);
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      })
 
-      //이벤트 등록
-      initSimulatorEvent();
+      if (availableScroll.current.length > 0) {
+        setCurrentScroll(availableScroll.current[0]);
+      }
 
-  }, []);
-
-
-  function setInit(status) {
-    setStr(status.str.normal);
-    setDex(status.dex.normal);
-    setIntel(status.intel.normal);
-    setLuk(status.luk.normal);
-    setPhyAtk(status.phyAtk.normal);
-    setMgAtk(status.mgAtk.normal);
-    setPhyDef(status.phyDef.normal);
-    setMgDef(status.mgDef.normal);
-    setAcc(status.acc);
-    setAvo(status.avo);
-    setMove(status.move);
-    setJump(status.jump);
-    setHp(status.hp.normal);
-    setMp(status.mp.normal);
-
-    defaultStr.current = status.str.normal;
-    defaultDex.current = status.dex.normal;
-    defaultIntel.current = status.intel.normal;
-    defaultLuk.current = status.luk.normal;
-    defaultPhyAtk.current = status.phyAtk.normal;
-    defaultMgAtk.current = status.mgAtk.normal;
-    defaultPhyDef.current = status.phyDef.normal;
-    defaultAcc.current = status.acc;
-    defaultAvo.current = status.avo;
-    defaultMove.current = status.move;
-    defaultJump.current = status.jump;
-    defaultHp.current = status.hp.normal;
-    defaultMp.current = status.mp.normal;
-
-    console.log('초기화 이후')
-    console.log(`defaultDex=${defaultDex.current}`);
-    console.log(`defaultPhyAtk=${defaultPhyAtk.current}`)
-
+      
+    } catch (e) {
+      console.log(e);
+    }
   }
+
+  useEffect(() => { fetchData() }, []);
+
 
   // 주문서 선택 핸들러
   const handleScrollChange = (e) => {
-    setCurrentScroll(e.target.value);
-    console.log(`current scroll=${e.target.value}`);
+    setCurrentScroll(SCROLL_INFO.get(e.target.value));
   }
 
+
   // 주문서 버튼 클릭 핸들러
-  const handleScrollClicked = (percent) => {
+  function handleScrollClicked(percent) {
 
     if (!checkValidate()) {
       return;
     }
 
     // 능력치 증가 시켜야함
-    const info = SCROLL_INFO.get(currentScroll);
     let upgradeInfo = null;
+    const purchaseCopy = { ...purchaseInfo }
     if (percent === 10) {
-      upgradeInfo = info.upgradeValue._10;
-      setScroll10BuyCount(scroll10BuyCount + 1);
+      upgradeInfo = currentScroll.upgradeValue._10;
+      purchaseCopy._10.buy = purchaseCopy._10.buy + 1;
     } else if (percent === 60) {
-      upgradeInfo = info.upgradeValue._60;
-      setScroll60BuyCount(scroll60BuyCount + 1);
+      upgradeInfo = currentScroll.upgradeValue._60;
+      purchaseCopy._60.buy = purchaseCopy._60.buy + 1;
     } else if (percent === 100) {
-      upgradeInfo = info.upgradeValue._100;
-      setScroll100BuyCount(scroll100BuyCount + 1);
+      upgradeInfo = currentScroll.upgradeValue._100;
+      purchaseCopy._100.buy = purchaseCopy._100.buy + 1;
     }
 
     if (rollScroll(percent)) {
       scrollSuccess(upgradeInfo);
-      if (percent === 10) setScroll10SuccessCount(scroll10SuccessCount + 1);
-      else if (percent === 60) setScroll60SuccessCount(scroll60SuccessCount + 1);
-      else if (percent === 100) setScroll100SuccessCount(scroll100SuccessCount + 1);
+      if (percent === 10) purchaseCopy._10.success = purchaseCopy._10.success + 1;
+      else if (percent === 60) purchaseCopy._60.success = purchaseCopy._60.success + 1;
+      else if (percent === 100) purchaseCopy._100.success = purchaseCopy._100.success + 1;
     } else {
       scrollFail();
     }
-    setUpgradableCount(upgradableCount - 1);
+
+    setPurchaseInfo(purchaseCopy);
+    
+    const statusCopy = { ...status }
+    statusCopy.upgradable = statusCopy.upgradable - 1;
+    setStatus(statusCopy);
   }
 
-  const checkValidate = () => {
+  function checkValidate() {
     //주문서를 더 적용할 수 있는지 검사
-    if (upgradableCount <= 0) {
-      console.log('리셋버튼을 눌러주세요')
-      setNeedReset(true);
+    if (status.upgradable <= 0) {
       return false;
     }
-
-    //더이상 적용할 수 없다는 메세지 출력,
-    //함수의 반환결과를 받은 쪽은 그대로 리턴된다.
     return true;
   }
 
-  const rollScroll = (percent) => {
+  function rollScroll(percent) {
     const count = percent / 10;
     let result = Math.floor(Math.random() * 10 + 1);
     if (result >= 1 && result <= count) return true;
     else return false;
   }
 
-  const scrollSuccess = (upgradeInfo) => {
+  function scrollSuccess(upgradeInfo) {
     //주문서 성공
     console.log('success')
     playSuccessSound();
     playSuccessEffect();
-    upgradeInfo.map((info) => {
-      switch (info.name) {
-        case 'str':
-          setStr(str + info.value)
-          break;
-        case 'dex':
-          setDex(dex + info.value)
-          break;
-        case 'intel':
-          setIntel(intel + info.value)
-          break;
-        case 'luk':
-          setLuk(luk + info.value)
-          break;
-        case 'phyAtk':
-          setPhyAtk(phyAtk + info.value)
-          break;
-        case 'mgAtk':
-          setMgAtk(mgAtk + info.value)
-          break;
-        case 'phyDef':
-          setPhyDef(phyDef + info.value)
-          break;
-        case 'mgDef':
-          setMgDef(mgDef + info.value)
-          break;
-        case 'acc':
-          setAcc(acc + info.value)
-          break;
-        case 'avo':
-          setAvo(avo + info.value)
-          break;
-        case 'move':
-          setMove(move + info.value)
-          break;
-        case 'jump':
-          setJump(jump, info.value)
-          break;
-        case 'hp':
-          setHp(hp + info.value)
-          break;
-        case 'mp':
-          setMp(mp + info.value)
-          break;
-      }
-    })
-
-    setUpgradedCount(upgradedCount + 1);
+    setStatus((prevStatus) => {
+      const statusCopy = { ...prevStatus };
+      upgradeInfo.map((scroll) => {
+        switch (scroll.name) {
+          case 'str':
+            statusCopy.str = statusCopy.str + scroll.value
+            break;
+          case 'dex':
+            statusCopy.dex = statusCopy.dex + scroll.value
+            break;
+          case 'intel':
+            statusCopy.intel = statusCopy.intel + scroll.value
+            break;
+          case 'luk':
+            statusCopy.luk = statusCopy.luk + scroll.value
+            break;
+          case 'phyAtk':
+            statusCopy.phyAtk = statusCopy.phyAtk + scroll.value
+            break;
+          case 'mgAtk':
+            statusCopy.mgAtk = statusCopy.mgAtk + scroll.value
+            break;
+          case 'phyDef':
+            statusCopy.phyDef = statusCopy.phyDef + scroll.value
+            break;
+          case 'mgDef':
+            statusCopy.mgDef = statusCopy.mgDef + scroll.value
+            break;
+          case 'acc':
+            statusCopy.acc = statusCopy.acc + scroll.value
+            break;
+          case 'avo':
+            statusCopy.avo = statusCopy.avo + scroll.value
+            break;
+          case 'move':
+            statusCopy.move = statusCopy.move + scroll.value
+            break;
+          case 'jump':
+            statusCopy.jump = statusCopy.jump + scroll.value
+            break;
+          case 'hp':
+            statusCopy.hp = statusCopy.hp + scroll.value
+            break;
+          case 'mp':
+            statusCopy.mp = statusCopy.mp + scroll.value
+            break;
+        }
+      })
+      return statusCopy;
+    });
+    setUpgradedCount((prevUpgradedCount) => prevUpgradedCount + 1);
   }
 
   const scrollFail = () => {
@@ -256,84 +240,115 @@ export default function ItemSimulator() {
   }
 
   const itemPriceChangeHandler = (e) => {
-    console.log('아이템 가격 변경')
-    setItemPrice(e.target.value);
+    setPurchaseInfo((prev) => {
+      const copy = { ...prev } 
+      copy.item.price = e.target.value;
+      return copy;
+    })
   }
 
   const scroll10PriceChangeHandler = (e) => {
-    setScroll10Price(e.target.value)
+    setPurchaseInfo((prev) => {
+      const copy = { ...prev } 
+      copy._10.price = e.target.value;
+      return copy;
+    })
   }
 
   const scroll60PriceChangeHandler = (e) => {
-    setScroll60Price(e.target.value)
+    setPurchaseInfo((prev) => {
+      const copy = { ...prev } 
+      copy._60.price = e.target.value;
+      return copy;
+    })
   }
 
   const scroll100PriceChangeHandler = (e) => {
-    setScroll100Price(e.target.value)
+    setPurchaseInfo((prev) => {
+      const copy = { ...prev } 
+      copy._100.price = e.target.value;
+      return copy;
+    })
   }
 
   const handleItemOption = (e, statusName) => {
     const name = statusName;
-    const value = e.target.value
-    console.log(`name=${name}, value=${value}`)
+    const value = e.target.value;
 
-    switch (name) {
-      case 'str':
-        defaultStr.current = value;
+    setDefaultStatus((prevDefault) => {
+      const copy = {...prevDefault}
+      switch(name) {
+        case 'str':
+        copy.str = value;
         break;
       case 'dex':
-        console.log(`defaultDex값을 ${defaultDex.current} => ${value}`)
-        defaultDex.current = value;
-        console.log(`변경 후 defaultDex=${defaultDex.current}`)
+        copy.dex = value;
         break;
       case 'intel':
-        defaultIntel.current = value;
+        copy.intel = value;
         break;
       case 'luk':
-        defaultLuk.current = value;
+        copy.luk = value;
         break;
       case 'phyAtk':
-        defaultPhyAtk.current = value;
+        copy.phyAtk = value;
         break;
       case 'mgAtk':
-        defaultMgAtk.current = value;
+        copy.mgAtk = value;
         break;
       case 'phyDef':
-        defaultPhyDef.current = value;
+        copy.phyDef = value;
         break;
       case 'mgDef':
-        defaultMgDef.current = value;
+        copy.mgDef = value;
         break;
       case 'hp':
-        defaultHp.current = value;
+        copy.hp = value;
         break;
       case 'mp':
-        defaultMp.current = value;
+        copy.mp = value;
         break;
-    }
+      }
+
+      return copy;
+    })
+
     resetItem();
   }
 
-  function resetItem() {    
-    setNeedReset(false);
+  function resetItem() {
+    
+    // 스테이터스 초기화
+    setStatus((prev) => {
 
-    setStr(defaultStr.current);
-    setDex(defaultDex.current);
-    setIntel(defaultIntel.current);
-    setLuk(defaultLuk.current);
-    setPhyAtk(defaultPhyAtk.current);
-    setMgAtk(defaultMgAtk.current);
-    setPhyDef(defaultPhyDef.current);
-    setMgDef(defaultMgDef.current);
-    setAcc(defaultAcc.current);
-    setAvo(defaultAvo.current);
-    setMove(defaultMove.current);
-    setJump(defaultJump.current);
-    setHp(defaultHp.current);
-    setMp(defaultMp.current);
-    setUpgradableCount(defaultUpgradableCount);
+      const copyDefaultStatus = { ...defaultStatus }
+      const newStatus = { ...prev }
+      console.log(copyDefaultStatus)
+      newStatus.str = copyDefaultStatus?.status.str;
+      newStatus.dex = copyDefaultStatus.status.dex;
+      newStatus.intel = copyDefaultStatus.status.intel;
+      newStatus.luk = copyDefaultStatus.status.luk;
+      newStatus.phyAtk = copyDefaultStatus.status.phyAtk;
+      newStatus.mgAtk = copyDefaultStatus.status.mgAtk;
+      newStatus.phyDef = copyDefaultStatus.status.phyDef;
+      newStatus.mgDef = copyDefaultStatus.status.mgDef;
+      newStatus.acc = copyDefaultStatus.status.acc;
+      newStatus.avo = copyDefaultStatus.status.avo;
+      newStatus.move = copyDefaultStatus.status.move;
+      newStatus.jump = copyDefaultStatus.status.jump;
+      newStatus.hp = copyDefaultStatus.status.hp;
+      newStatus.mp = copyDefaultStatus.status.mp;
+      newStatus.upgradable = copyDefaultStatus.upgradableCount;
+
+      return newStatus;
+    })
+
+    setPurchaseInfo((prev) => {
+      const purchaseCopy = { ...prev }
+      purchaseCopy.item.buy = purchaseCopy.item.buy + 1;
+      return purchaseCopy;
+    })
     setUpgradedCount(0);
-    setItemBuyCount((count) => count + 1);
   }
 
   // 리셋버튼 핸들러 
@@ -342,152 +357,166 @@ export default function ItemSimulator() {
     resetItem();
   }
 
-  const handlePurchaseResetClicked = () => {
+  function handlePurchaseResetClicked() {
     playPurchaseSound();
-    setItemBuyCount(1);
-    setScroll10BuyCount(0);
-    setScroll60BuyCount(0);
-    setScroll100BuyCount(0);
-    setScroll10SuccessCount(0);
-    setScroll60SuccessCount(0);
-    setScroll100SuccessCount(0);
+    setPurchaseInfo((prev) => {
+      const purchaseCopy = { ...prev }
+
+      purchaseCopy.item.buy = 1;
+      purchaseCopy._10.buy = 0;
+      purchaseCopy._60.buy = 0;
+      purchaseCopy._100.buy = 0;
+      purchaseCopy._10.success = 0;
+      purchaseCopy._60.success = 0;
+      purchaseCopy._100.success = 0;
+
+      return purchaseCopy;
+    })
   }
 
   return (
     <>
-      {/* <h1>아이템 시뮬레이터{`id=${itemId}`}</h1> */}
-
-
+    <button onClick={() => console.log(status)}>데이터 보여줘</button> 
       <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-1">
         <section className="item-info-section-container">
           <section className="item-info-section mx-1">
-            <span className='item-info-name'>{info.name}{upgradedCount > 0 && `(+${upgradedCount})`}</span>
+            <span className='item-info-name'>{info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}</span>
             <div className="item-info-basic">
               <img src={`/images/item/${itemId}.png`} />
               <div className="item-info-required">
-                <RequiredStatus name="LEV" value={info.required.level} />
-                <RequiredStatus name="STR" value={info.required.str} />
-                <RequiredStatus name="DEX" value={info.required.dex} />
-                <RequiredStatus name="INT" value={info.required.intel} />
-                <RequiredStatus name="LUK" value={info.required.luk} />
-                <RequiredStatus name="POP" value={info.required.pop} />
-                
+                <RequiredStatus name="LEV" value={info?.required.level} />
+                <RequiredStatus name="STR" value={info?.required.str} />
+                <RequiredStatus name="DEX" value={info?.required.dex} />
+                <RequiredStatus name="INT" value={info?.required.intel} />
+                <RequiredStatus name="LUK" value={info?.required.luk} />
+                <RequiredStatus name="POP" value={info?.required.pop} />
+
                 <span className="item-useless-info">ITEM LEV : -</span>
                 <span className="item-useless-info">ITEM EXP : -</span>
 
               </div>
             </div>
             <div className="item-info-job">
-              <span className={info.job.common ? '' : 'red'}>초보자</span>
-              <span className={info.job.warrior || info.job.common ? '' : 'red'}>전사</span>
-              <span className={info.job.magician || info.job.common ? '' : 'red'}>마법사</span>
-              <span className={info.job.bowman || info.job.common ? '' : 'red'} >궁수</span>
-              <span className={info.job.thief || info.job.common ? '' : 'red'}>도적</span>
-              <span className={info.job.common ? '' : 'red'}>해적</span>
+              <span className={info?.job.common ? '' : 'red'}>초보자</span>
+              <span className={info?.job.warrior || info?.job.common ? '' : 'red'}>전사</span>
+              <span className={info?.job.magician || info?.job.common ? '' : 'red'}>마법사</span>
+              <span className={info?.job.bowman || info?.job.common ? '' : 'red'} >궁수</span>
+              <span className={info?.job.thief || info?.job.common ? '' : 'red'}>도적</span>
+              <span className={info?.job.common ? '' : 'red'}>해적</span>
             </div>
             <hr />
 
             <div className="item-info-status">
-              <span>장비분류 : {CATEGORY_NAME.get(info.category)}</span>
-              <span>공격속도 : {ATTACK_SPEED.get(info.attackSpeed)}</span>
-              {str > 0 && <span>STR : +{str}</span>}
-              {dex > 0 && <span>DEX : +{dex}</span>}
-              {intel > 0 && <span>INT : +{intel}</span>}
-              {luk > 0 && <span>LUK : +{luk}</span>}
-              {acc > 0 && <span>명중률 : +{acc}</span>}
-              {avo > 0 && <span>회피율 : +{avo}</span>}
-              {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
-              {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
-              {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
-              {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
-              {hp > 0 && <span>HP : +{hp}</span>}
-              {mp > 0 && <span>MP : +{mp}</span>}
-              {move > 0 && <span>이동속도 : +{move}</span>}
-              {jump > 0 && <span>점프력 : +{jump}</span>}
-              <span>업그레이드 가능 횟수 : {upgradableCount}</span>
+              <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
+              <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>
+              {status?.str > 0 && <span>STR : +{status?.str}</span>}
+              {status?.dex > 0 && <span>DEX : +{status?.dex}</span>}
+              {status?.intel > 0 && <span>INT : +{status?.intel}</span>}
+              {status?.luk > 0 && <span>LUK : +{status?.luk}</span>}
+              {status?.acc > 0 && <span>명중률 : +{status?.acc}</span>}
+              {status?.avo > 0 && <span>회피율 : +{status?.avo}</span>}
+              {status?.phyAtk > 0 && <span>공격력 : +{status?.phyAtk}</span>}
+              {status?.mgAtk > 0 && <span>마력 : +{status?.mgAtk}</span>}
+              {status?.phyDef > 0 && <span>물리방어력 : +{status?.phyDef}</span>}
+              {status?.mgDef > 0 && <span>마법방어력 : +{status?.mgDef}</span>}
+              {status?.hp > 0 && <span>HP : +{status?.hp}</span>}
+              {status?.mp > 0 && <span>MP : +{status?.mp}</span>}
+              {status?.move > 0 && <span>이동속도 : +{status?.move}</span>}
+              {status?.jump > 0 && <span>점프력 : +{status?.jump}</span>}
+              <span>업그레이드 가능 횟수 : {status?.upgradable}</span>
             </div>
           </section>
           {
-            needReset && <span className="red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+            status?.upgradableCount <= 0 && <span className="red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
           }
           <span></span>
         </section>
 
         <section>
-        <section className="item-controller-section mx-1">
-          <select className="form-select form-select-sm" onChange={handleScrollChange}>
-            {
-              SCROLL_NAME_LIST.map((name) => {
-                if (SCROLL_INFO.get(name).category === info.category) {
-                  const key = SCROLL_INFO.get(name).keyword;
-                  const scroll_name = SCROLL_INFO.get(name).name
+          <section className="item-controller-section mx-1">
+            <select
+              className="form-select form-select-sm"
+              onChange={handleScrollChange}
+              defaultValue={currentScroll}
+            >
+              {
+                availableScroll.current.map((scroll) => {
+                  if (scroll === undefined) return;
+                  const key = scroll.keyword;
+                  const scroll_name = scroll.name;
                   return <option key={key} value={key}>{scroll_name}</option>
-                }
-              })
-            }
-          </select>
+                })
+              }
+            </select>
 
-          <section className="option-select-container">
-            <OptionSelect statusInfo={info.status} optionSelectHandler={handleItemOption} />
-          </section>
-
-          <div className="scroll-select">
-            {/* <Scroll  /> */}
-            <Scroll percent={10} name={currentScroll} onClick={handleScrollClicked} />
-            <Scroll percent={60} name={currentScroll} onClick={handleScrollClicked} />
-            <Scroll percent={100} name={currentScroll} onClick={handleScrollClicked} />
-            <div className="scroll-info">
-              <button onClick={handleResetClicked} id="reset-button">
-                <img src="/images/etc/reset.png"></img>
-              </button>
-            </div>
-          </div>
-
-          {/********** 가격관련 정보 **********/}
-
-
-          <div className="item-price-info">
-            <PriceCalculator isScroll={false} buyCount={itemBuyCount} inputHandler={itemPriceChangeHandler} />
-            <PriceCalculator
-              isScroll={true}
-              percent={10}
-              buyCount={scroll10BuyCount}
-              successCount={scroll10SuccessCount}
-              inputHandler={scroll10PriceChangeHandler}
-            />
-            <PriceCalculator
-              isScroll={true}
-              percent={60}
-              buyCount={scroll60BuyCount}
-              successCount={scroll60SuccessCount}
-              inputHandler={scroll60PriceChangeHandler}
-            />
-            <PriceCalculator
-              isScroll={true}
-              percent={100}
-              buyCount={scroll100BuyCount}
-              successCount={scroll100SuccessCount}
-              inputHandler={scroll100PriceChangeHandler}
-            />
-            <section className="total-price-info-section">
-              <div className="total-price-info">
-                <img src="/images/etc/meso.png"></img>
-                <span>{
-                  (itemBuyCount * itemPrice +
-                    scroll10BuyCount * scroll10Price +
-                    scroll60BuyCount * scroll60Price +
-                    scroll100BuyCount * scroll100Price).toLocaleString()
-                }</span>
-              </div>
-              <button className="total-price-reset-btn" id="purchase-reset-button" onClick={handlePurchaseResetClicked}>
-                메소 리셋
-              </button>
+            <section className="option-select-container">
+              <OptionSelect statusInfo={info?.status} optionSelectHandler={handleItemOption} />
             </section>
 
-          </div>
+            <div className="scroll-select">
+              {/* <Scroll  /> */}
+              <Scroll percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
+              <Scroll percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
+              <Scroll percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
+              <div className="scroll-info">
+                <button onClick={handleResetClicked} id="reset-button">
+                  <img src="/images/etc/reset.png"></img>
+                </button>
+              </div>
+            </div>
+
+            {/********** 가격관련 정보 **********/}
+
+
+            <div className="item-price-info">
+              <PriceCalculator isScroll={false} buyCount={purchaseInfo.item.buy} inputHandler={itemPriceChangeHandler} />
+              <PriceCalculator
+                isScroll={true}
+                percent={10}
+                buyCount={purchaseInfo._10.buy}
+                successCount={purchaseInfo._10.success}
+                inputHandler={scroll10PriceChangeHandler}
+              />
+              <PriceCalculator
+                isScroll={true}
+                percent={60}
+                buyCount={purchaseInfo._60.buy}
+                successCount={purchaseInfo._60.success}
+                inputHandler={scroll60PriceChangeHandler}
+              />
+              <PriceCalculator
+                isScroll={true}
+                percent={100}
+                buyCount={purchaseInfo._100.buy}
+                successCount={purchaseInfo._100.success}
+                inputHandler={scroll100PriceChangeHandler}
+              />
+              <section className="total-price-info-section">
+                <div className="total-price-info">
+                  <img src="/images/etc/meso.png"></img>
+                  <span>
+                    {
+                      (purchaseInfo.item.buy * purchaseInfo.item.price +
+                        purchaseInfo._10.buy * purchaseInfo._10.price +
+                        purchaseInfo._60.buy * purchaseInfo._60.price +
+                        purchaseInfo._100.buy * purchaseInfo._100.price).toLocaleString()
+                    }
+                  </span>
+                </div>
+                <button
+                  className="total-price-reset-btn"
+                  id="purchase-reset-button"
+                  onClick={handlePurchaseResetClicked}
+                  onMouseUp={document.activeElement.blur()}
+                >
+                  메소 리셋
+                </button>
+              </section>
+
+            </div>
+          </section>
         </section>
-        </section>
-        
+
 
       </main>
     </>

@@ -2,27 +2,19 @@ import { useEffect, useRef, useState } from "react"
 import { SCROLL_INFO } from "../../global/scroll"
 import { STATUS_NAME } from "../../global/status" 
 
-export default function Scroll({ percent, name, onClick }) {
-
-  const [scrollInfo, setScrollInfo] = useState({})
-  
-  // let isMouseUp = useRef(true);
-  // let isKeyUp = useRef(false);
-  // let isMouseDown = useRef(false);
-  // let isKeyDown = useRef(false);
-
-  useEffect(() => {
-    setScrollInfo(SCROLL_INFO.get(name))
-    // console.log(SCROLL_INFO.get(name))
-  }, [])
+export default function Scroll({ 
+  percent, 
+  currentScroll,
+  onClick,
+}) {
 
   const getScrollStatus = (value) => {
     if (percent === 10) {
-      return value.upgradeValue._10;
+      return value?.upgradeValue?._10;
     } else if (percent === 60) {
-      return value.upgradeValue._60;
+      return value?.upgradeValue?._60;
     } else if (percent === 100) {
-      return value.upgradeValue._100;
+      return value?.upgradeValue?._100;
     }
   }
 
@@ -31,12 +23,13 @@ export default function Scroll({ percent, name, onClick }) {
       <div className='scroll-info'>
         <button id={`scroll-button-${percent}`}
           onClick={() => onClick(percent)}
+          onMouseUp={() => document.activeElement.blur()}
         >
           <img src={`/images/scroll/${percent}.png`}></img>
         </button>
-        <span>{scrollInfo.shortcut}{percent}%</span>
+        <span>{currentScroll?.shortcut}{percent}%</span>
         {
-          getScrollStatus(SCROLL_INFO.get(name)).map((upgrade) => {
+          getScrollStatus(currentScroll)?.map((upgrade) => {
             return (
               <span 
                 key={`${upgrade.name}${upgrade.value}${percent}`}

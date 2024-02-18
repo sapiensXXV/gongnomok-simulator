@@ -1,5 +1,6 @@
 const wand_mg_atk = {
   keyword: "WAND_MG_ATK",
+  main: "mgAtk",
   name: "완드 마력 주문서",
   shortcut: "완마",
   category: "WAND",

@@ -8,19 +8,21 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
   useEffect(() => {
     const newOptionList = []
 
-    const keys = Object.keys(statusInfo);
-    // console.log(keys)
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const value = statusInfo[key];
+    if (statusInfo != null) {
+      const keys = Object.keys(statusInfo);
+      // console.log(keys)
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        const value = statusInfo[key];
 
-      if (value.lower > 0 || value.upper > 0) {
-        newOptionList.push({name: key, ...statusInfo[key]});
+        if (value.lower > 0 || value.upper > 0) {
+          newOptionList.push({ name: key, ...statusInfo[key] });
+        }
       }
-    }
 
-    // console.log(newOptionList)
-    setOptionList(newOptionList);
+      // console.log(newOptionList)
+      setOptionList(newOptionList);
+    }
 
   }, [statusInfo])
 
