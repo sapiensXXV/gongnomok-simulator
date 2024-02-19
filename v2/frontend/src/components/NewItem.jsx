@@ -67,9 +67,20 @@ export default function NewItem() {
   const [mgDefUpper, setMgDefUpper] = useState(0);
 
   const [acc, setAcc] = useState(0);
+  const [accLower, setAccLower] = useState(0);
+  const [accUpper, setAccUpper] = useState(0);
+
   const [avo, setAvo] = useState(0);
+  const [avoLower, setAvoLower] = useState(0);
+  const [avoUpper, stAvoUpper] = useState(0);
+
   const [move, setMove] = useState(0);
+  const [moveLower, setMoveLower] = useState(0);
+  const [moveUpper, setMoveUpper] = useState(0);
+
   const [jump, setJump] = useState(0);
+  const [jumpLower, setJumpLower] = useState(0);
+  const [jumpUpper, setJumpUpper] = useState(0);
 
   const [hp, setHp] = useState(0);
   const [hpLower, setHpLower] = useState(0);
@@ -84,7 +95,7 @@ export default function NewItem() {
 
 
   //업그레이드 가능 횟수
-  const [upgradableCount, setUpgradableCount] = useState(5);
+  const [upgradableCount, setUpgradableCount] = useState(7);
 
 
   useEffect(() => {
@@ -154,10 +165,26 @@ export default function NewItem() {
           lower: mgDefLower,
           upper: mgDefUpper
         },
-        acc: acc,
-        avo: avo,
-        move: move,
-        jump: jump,
+        acc: {
+          normal: acc,
+          lower: accLower,
+          upper: accUpper
+        },
+        avo: {
+          normal: avo,
+          lower: avoLower,
+          upper: avoUpper
+        },
+        move: {
+          normal: move,
+          lower: moveLower,
+          upper: moveUpper
+        },
+        jump: {
+          normal: jump,
+          lower: jumpLower,
+          upper: jumpUpper
+        },
         hp: {
           normal: hp,
           lower: hpLower,
@@ -366,16 +393,48 @@ export default function NewItem() {
     setAcc(e.target.value)
   }
 
+  const handleAccLower = (e) => {
+    setAccLower(e.target.value)
+  }
+
+  const handleAccUpper = (e) => {
+    setAccUpper(e.target.value)
+  }
+
   const handleAvo = (e) => {
     setAvo(e.target.value)
+  }
+
+  const handleAvoLower = (e) => {
+    setAvoLower(e.target.value)
+  }
+
+  const handleAvoUpper = (e) => {
+    setAvoUpper(e.target.value)
   }
 
   const handleMove = (e) => {
     setMove(e.target.value)
   }
 
+  const handleMoveLower = (e) => {
+    setMoveLower(e.target.value)
+  }
+
+  const handleMoveUpper = (e) => {
+    setMoveUpper(e.target.value)
+  }
+
   const handleJump = (e) => {
     setJump(e.target.value)
+  }
+
+  const handleJumpLower = (e) => {
+    setJumpLower(e.target.value)
+  }
+
+  const handleJumpUpper = (e) => {
+    setJumpUpper(e.target.value)
   }
 
   const handleItemMpLower = (e) => {
@@ -620,24 +679,63 @@ export default function NewItem() {
 
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-acc" className="form-label">명중률</label>
-                <input type="text" id="item-acc" className="form-control form-control-sm" value={acc} onChange={handleAcc} />
+                <label htmlFor="item-str" className="form-label">명중률</label>
+                <input type="text" id="item-str" className="form-control form-control-sm" value={acc} onChange={handleAcc} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-avo" className="form-label">회피율</label>
-                <input type="text" id="item-avo" className="form-control form-control-sm" value={avo} onChange={handleAvo} />
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={accLower} onChange={handleAccLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-move" className="form-label">이동속도</label>
-                <input type="text" id="item-move" className="form-control form-control-sm" value={move} onChange={handleMove} />
-              </div>
-              <div className="col-2">
-                <label htmlFor="item-jump" className="form-label">점프력</label>
-                <input type="text" id="item-jump" className="form-control form-control-sm" value={jump} onChange={handleJump} />
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={accUpper} onChange={handleAccUpper} />
               </div>
             </div>
 
-            
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-str" className="form-label">회피율</label>
+                <input type="text" id="item-str" className="form-control form-control-sm" value={avo} onChange={handleAvo} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={avoLower} onChange={handleAvoLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={avoUpper} onChange={handleAvoUpper} />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-str" className="form-label">이동속도</label>
+                <input type="text" id="item-str" className="form-control form-control-sm" value={move} onChange={handleMove} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={moveLower} onChange={handleMoveLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={moveUpper} onChange={handleMoveUpper} />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-str" className="form-label">점프력</label>
+                <input type="text" id="item-str" className="form-control form-control-sm" value={jump} onChange={handleJump} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-lower" className="form-label">하옵</label>
+                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={jumpLower} onChange={handleJumpLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-str-upper" className="form-label">상옵</label>
+                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={jumpUpper} onChange={handleJumpUpper} />
+              </div>
+            </div>
 
             <div className="row">
               <div className="col-2">

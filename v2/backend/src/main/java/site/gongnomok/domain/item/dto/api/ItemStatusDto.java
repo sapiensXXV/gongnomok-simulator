@@ -22,11 +22,10 @@ public class ItemStatusDto {
     private ItemStatusInfoDto mgDef;
     private ItemStatusInfoDto hp;
     private ItemStatusInfoDto mp;
-
-    private int acc;
-    private int avo;
-    private int move;
-    private int jump;
+    private ItemStatusInfoDto acc;
+    private ItemStatusInfoDto avo;
+    private ItemStatusInfoDto move;
+    private ItemStatusInfoDto jump;
 
     public ItemStatusServiceDto toServiceDto() {
         return ItemStatusServiceDto.builder()
@@ -38,10 +37,10 @@ public class ItemStatusDto {
                 .mgAtk(mgAtk.toServiceDto())
                 .phyDef(phyDef.toServiceDto())
                 .mgDef(mgDef.toServiceDto())
-                .acc(acc)
-                .avo(avo)
-                .move(move)
-                .jump(jump)
+                .acc(acc.toServiceDto())
+                .avo(avo.toServiceDto())
+                .move(move.toServiceDto())
+                .jump(jump.toServiceDto())
                 .hp(hp.toServiceDto())
                 .mp(mp.toServiceDto())
                 .build();
