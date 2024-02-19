@@ -73,6 +73,9 @@ public class ItemQueryRepositoryImpl implements ItemQueryRepository {
     }
 
     public BooleanExpression jobContain(Job job) {
+
+        if (job == null) return null;
+
         String name = Job.jobToString(job);
         if (name.equals("common")) {
             return item.common.isTrue();

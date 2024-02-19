@@ -116,6 +116,7 @@ public class ItemService {
                 .build();
 
         String category = item.getCategory().name();
+
         ItemStatusDto status = ItemStatusDto.builder()
                 .str(mapper.readValue(item.getStr(), ItemStatusInfoDto.class))
                 .dex(mapper.readValue(item.getDex(), ItemStatusInfoDto.class))

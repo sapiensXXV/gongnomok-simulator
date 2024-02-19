@@ -20,7 +20,7 @@ public class ItemListRequestDto {
         return ItemListRequestServiceDto.builder()
                 .name(name)
                 .category(category == null ? null : Category.stringToCategory(category))
-                .job(Job.stringToJob(job))
+                .job(job == null ? null : Job.stringToJob(job))
                 .minLevel(minLevel)
                 .build();
     }
