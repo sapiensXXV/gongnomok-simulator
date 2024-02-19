@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react"
-import { SCROLL_INFO } from "../../global/scroll"
+import { forwardRef } from "react"
 import { STATUS_NAME } from "../../global/status" 
 
-export default function Scroll({ 
+function Scroll({ 
   percent, 
   currentScroll,
   onClick,
-}) {
+}, ref) {
+
 
   const getScrollStatus = (value) => {
     if (percent === 10) {
@@ -21,7 +21,9 @@ export default function Scroll({
   return (
     <>
       <div className='scroll-info'>
-        <button id={`scroll-button-${percent}`}
+        <button 
+          ref={ref}
+          id={`scroll-button-${percent}`}
           onClick={() => onClick(percent)}
           onMouseUp={() => document.activeElement.blur()}
         >
@@ -43,3 +45,5 @@ export default function Scroll({
     </>
   )
 }
+
+export default forwardRef(Scroll);

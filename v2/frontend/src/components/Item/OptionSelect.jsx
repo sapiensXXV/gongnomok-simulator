@@ -12,8 +12,11 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
       const keys = Object.keys(statusInfo);
       // console.log(keys)
       for (let i = 0; i < keys.length; i++) {
+        
         const key = keys[i];
         const value = statusInfo[key];
+
+        if (key === 'acc' || key === 'avo' || key === 'move' || key === 'jump') continue;
 
         if (value.lower > 0 || value.upper > 0) {
           newOptionList.push({ name: key, ...statusInfo[key] });
@@ -29,7 +32,6 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
   return (
     <>
       {
-        // console.log(optionList)
         optionList.map((option) => {
           return (
             <select

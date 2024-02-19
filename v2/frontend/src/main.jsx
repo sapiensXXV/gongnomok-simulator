@@ -1,5 +1,6 @@
 
 import ReactDOM from 'react-dom/client'
+import React from 'react'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 // import '../css/index.css'
@@ -18,13 +19,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <div className='col col-lg-0 col-xxl-2'></div>
         <div className='col-lg-12 col-xxl-8'>
 
-        <App />
+          <App />
 
         </div>
         <div className='col-lg-0 col-xxl-2'></div>
       </div>
 
-      
+
     </BrowserRouter>
-  // </React.StrictMode>,
+  // </React.StrictMode>
+
+
 )

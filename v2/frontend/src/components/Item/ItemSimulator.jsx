@@ -3,99 +3,119 @@ import axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
 
-import { INIT_ITEM_INFO, CATEGORY_NAME, ATTACK_SPEED } from "/src/global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
 import Scroll from "./Scroll";
 import PriceCalculator from "./PriceCalculator";
 
-import { playFailureSound, playSuccessSound, playPurchaseSound } from "../../global/util/soundPlay";
+import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../global/util/soundPlay";
 import { playFailureEffect, playSuccessEffect } from "../../global/util/animationPlay";
 import OptionSelect from "./OptionSelect";
 import RequiredStatus from "./RequiredStatus";
+import { ATTACK_SPEED, CATEGORY_NAME } from "../../global/item";
 import { useHotkeys } from "react-hotkeys-hook";
 
 
 export default function ItemSimulator() {
 
   const { itemId } = useParams(); // item id
-
-  useHotkeys('q', () => {
-    console.log(`[Q] keyup`)
-  }, { keyup: true, keydown: false });
-
   const availableScroll = useRef([]);
 
   const [info, setInfo] = useState(null); // 아이템 정보
-  const [defaultStatus, setDefaultStatus] = useState(null);
-  const [status, setStatus] = useState(null);
-  const [upgradedCount, setUpgradedCount] = useState(null); // 업그레이드 된 횟수
-  const [currentScroll, setCurrentScroll] = useState(null); // 현재 적용하고 있는 주문서
-  const [purchaseInfo, setPurchaseInfo] = useState({
-    item: {
-      price: 0,   //아이템 가격
-      buy: 0,     //구매 갯수
-    },
-    _10: {
-      price: 0,   //10% 가격
-      buy: 0,     //10%구매 갯수
-      success: 0, //10% 성공 갯수
-    },
-    _60: {
-      price: 0,
-      buy: 0,
-      success: 0,
-    },
-    _100: {
-      price: 0,
-      buy: 0,
-      success: 0,
-    },
-  })
+  const [upgradedCount, setUpgradedCount] = useState(0); // 업그레이드 된 횟수
+  const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK'); // 현재 적용하고 있는 주문서
+
+  // 표시 능력치
+  const [str, setStr] = useState(0);
+  const [dex, setDex] = useState(0);
+  const [intel, setIntel] = useState(0);
+  const [luk, setLuk] = useState(0);
+  const [phyAtk, setPhyAtk] = useState(0);
+  const [mgAtk, setMgAtk] = useState(0);
+  const [phyDef, setPhyDef] = useState(0);
+  const [mgDef, setMgDef] = useState(0);
+  const [acc, setAcc] = useState(0);
+  const [avo, setAvo] = useState(0);
+  const [move, setMove] = useState(0);
+  const [jump, setJump] = useState(0);
+  const [hp, setHp] = useState(0);
+  const [mp, setMp] = useState(0);
+  const [upgradable, setUpgradable] = useState(0);
+
+  const defaultStr = useRef(0);
+  const defaultDex = useRef(0);
+  const defaultIntel = useRef(0);
+  const defaultLuk = useRef(0);
+  const defaultPhyAtk = useRef(0);
+  const defaultMgAtk = useRef(0);
+  const defaultPhyDef = useRef(0);
+  const defaultMgDef = useRef(0);
+  const defaultAcc = useRef(0);
+  const defaultAvo = useRef(0);
+  const defaultMove = useRef(0);
+  const defaultJump = useRef(0);
+  const defaultHp = useRef(0);
+  const defaultMp = useRef(0);
+  const defaultUpgradable = useRef(0);
+
+  // 구매가격
+  const [itemPrice, setItemPrice] = useState(0);
+  const [itemBuyCount, setItemBuyCount] = useState(1);
+  const [scroll10Price, setScroll10Price] = useState(0);
+  const [scroll10BuyCount, setScroll10BuyCount] = useState(0);
+  const [scroll10Success, setScroll10Success] = useState(0);
+  const [scroll60Price, setScroll60Price] = useState(0);
+  const [scroll60BuyCount, setScroll60BuyCount] = useState(0);
+  const [scroll60Success, setScroll60Success] = useState(0);
+  const [scroll100Price, setScroll100Price] = useState(0);
+  const [scroll100BuyCount, setScroll100BuyCount] = useState(0);
+  const [scroll100Success, setScroll100Success] = useState(0);
+
+  //버튼 Ref
+  const scroll10Button = useRef();
+  const scroll60Button = useRef();
+  const scroll100Button = useRef();
+  const resetButton = useRef();
+  const purchaseResetButton = useRef();
 
   async function fetchData() {
     try {
       const response = await axios.get(`/api/item/${itemId}`)
       const data = response.data;
-      const copy = { ...data }
+      const copy = JSON.parse(JSON.stringify(data));
 
-      setInfo({ ...data })
-      setStatus((prev) => { 
-        return {
-        str: copy.status.str.normal,
-        dex: copy.status.dex.normal,
-        intel: copy.status.intel.normal,
-        luk: copy.status.luk.normal,
-        phyAtk: copy.status.phyAtk.normal,
-        mgAtk: copy.status.mgAtk.normal,
-        phyDef: copy.status.phyDef.normal,
-        mgDef: copy.status.mgDef.normal,
-        acc: copy.status.acc,
-        avo: copy.status.avo,
-        move: copy.status.move,
-        jump: copy.status.jump,
-        hp: copy.status.hp.normal,
-        mp: copy.status.mp.normal,
-        upgradable: copy.upgradableCount
-      }})
+      setInfo(data);
 
-      setDefaultStatus((prev) => { return {
-        str: copy.status.str.normal,
-        dex: copy.status.dex.normal,
-        intel: copy.status.intel.normal,
-        luk: copy.status.luk.normal,
-        phyAtk: copy.status.phyAtk.normal,
-        mgAtk: copy.status.mgAtk.normal,
-        phyDef: copy.status.phyDef.normal,
-        mgDef: copy.status.mgDef.normal,
-        acc: copy.status.acc,
-        avo: copy.status.avo,
-        move: copy.status.move,
-        jump: copy.status.jump,
-        hp: copy.status.hp.normal,
-        mp: copy.status.mp.normal,
-        upgradable: copy.upgradableCount
-      }})
-      setUpgradedCount(0);
+      setStr(copy.status.str.normal);
+      setDex(copy.status.dex.normal);
+      setIntel(copy.status.intel.normal);
+      setLuk(copy.status.luk.normal);
+      setPhyAtk(copy.status.phyAtk.normal);
+      setMgAtk(copy.status.mgAtk.normal);
+      setPhyDef(copy.status.phyDef.normal);
+      setMgDef(copy.status.mgDef.normal);
+      setAcc(copy.status.acc);
+      setAvo(copy.status.avo);
+      setMove(copy.status.move);
+      setJump(copy.status.jump);
+      setHp(copy.status.hp.normal);
+      setMp(copy.status.mp.normal);
+      setUpgradable(copy.upgradableCount)
+
+      defaultStr.current = copy.status.str.normal;
+      defaultDex.current = copy.status.dex.normal;
+      defaultIntel.current = copy.status.intel.normal;
+      defaultLuk.current = copy.status.luk.normal;
+      defaultPhyAtk.current = copy.status.phyAtk.normal;
+      defaultMgAtk.current = copy.status.mgAtk.normal;
+      defaultPhyDef.current = copy.status.phyDef.normal;
+      defaultMgDef.current = copy.status.mgDef.normal;
+      defaultAcc.current = copy.status.acc;
+      defaultAvo.current = copy.status.avo;
+      defaultMove.current = copy.status.move;
+      defaultJump.current = copy.status.jump;
+      defaultHp.current = copy.status.hp.normal;
+      defaultMp.current = copy.status.mp.normal;
+      defaultUpgradable.current = copy.upgradableCount
 
       availableScroll.current = SCROLL_NAME_LIST.map((name) => {
         if (SCROLL_INFO.get(name).category === data.category) {
@@ -107,7 +127,6 @@ export default function ItemSimulator() {
         setCurrentScroll(availableScroll.current[0]);
       }
 
-      
     } catch (e) {
       console.log(e);
     }
@@ -115,10 +134,9 @@ export default function ItemSimulator() {
 
   useEffect(() => { fetchData() }, []);
 
-
   // 주문서 선택 핸들러
-  const handleScrollChange = (e) => {
-    setCurrentScroll(SCROLL_INFO.get(e.target.value));
+  function handleScrollChange(e) {
+    setCurrentScroll(() => SCROLL_INFO.get(e.target.value));
   }
 
 
@@ -130,38 +148,27 @@ export default function ItemSimulator() {
     }
 
     // 능력치 증가 시켜야함
-    let upgradeInfo = null;
-    const purchaseCopy = { ...purchaseInfo }
-    if (percent === 10) {
-      upgradeInfo = currentScroll.upgradeValue._10;
-      purchaseCopy._10.buy = purchaseCopy._10.buy + 1;
-    } else if (percent === 60) {
-      upgradeInfo = currentScroll.upgradeValue._60;
-      purchaseCopy._60.buy = purchaseCopy._60.buy + 1;
-    } else if (percent === 100) {
-      upgradeInfo = currentScroll.upgradeValue._100;
-      purchaseCopy._100.buy = purchaseCopy._100.buy + 1;
-    }
 
     if (rollScroll(percent)) {
-      scrollSuccess(upgradeInfo);
-      if (percent === 10) purchaseCopy._10.success = purchaseCopy._10.success + 1;
-      else if (percent === 60) purchaseCopy._60.success = purchaseCopy._60.success + 1;
-      else if (percent === 100) purchaseCopy._100.success = purchaseCopy._100.success + 1;
+      scrollSuccess(percent);
     } else {
       scrollFail();
     }
 
-    setPurchaseInfo(purchaseCopy);
-    
-    const statusCopy = { ...status }
-    statusCopy.upgradable = statusCopy.upgradable - 1;
-    setStatus(statusCopy);
+    if (percent === 10) {
+      setScroll10BuyCount((prev) => prev + 1);
+    } else if (percent === 60) {
+      setScroll60BuyCount((prev) => prev + 1);
+    } else if (percent === 100) {
+      setScroll100BuyCount((prev) => prev + 1);
+    }
+
+    setUpgradable((prev) => prev - 1);
   }
 
   function checkValidate() {
     //주문서를 더 적용할 수 있는지 검사
-    if (status.upgradable <= 0) {
+    if (upgradable <= 0) {
       return false;
     }
     return true;
@@ -174,213 +181,271 @@ export default function ItemSimulator() {
     else return false;
   }
 
-  function scrollSuccess(upgradeInfo) {
+  function scrollSuccess(percent) {
     //주문서 성공
-    console.log('success')
     playSuccessSound();
     playSuccessEffect();
-    setStatus((prevStatus) => {
-      const statusCopy = { ...prevStatus };
-      upgradeInfo.map((scroll) => {
-        switch (scroll.name) {
-          case 'str':
-            statusCopy.str = statusCopy.str + scroll.value
-            break;
-          case 'dex':
-            statusCopy.dex = statusCopy.dex + scroll.value
-            break;
-          case 'intel':
-            statusCopy.intel = statusCopy.intel + scroll.value
-            break;
-          case 'luk':
-            statusCopy.luk = statusCopy.luk + scroll.value
-            break;
-          case 'phyAtk':
-            statusCopy.phyAtk = statusCopy.phyAtk + scroll.value
-            break;
-          case 'mgAtk':
-            statusCopy.mgAtk = statusCopy.mgAtk + scroll.value
-            break;
-          case 'phyDef':
-            statusCopy.phyDef = statusCopy.phyDef + scroll.value
-            break;
-          case 'mgDef':
-            statusCopy.mgDef = statusCopy.mgDef + scroll.value
-            break;
-          case 'acc':
-            statusCopy.acc = statusCopy.acc + scroll.value
-            break;
-          case 'avo':
-            statusCopy.avo = statusCopy.avo + scroll.value
-            break;
-          case 'move':
-            statusCopy.move = statusCopy.move + scroll.value
-            break;
-          case 'jump':
-            statusCopy.jump = statusCopy.jump + scroll.value
-            break;
-          case 'hp':
-            statusCopy.hp = statusCopy.hp + scroll.value
-            break;
-          case 'mp':
-            statusCopy.mp = statusCopy.mp + scroll.value
-            break;
-        }
-      })
-      return statusCopy;
-    });
-    setUpgradedCount((prevUpgradedCount) => prevUpgradedCount + 1);
+
+    if (percent === 10) {
+      setScroll10Success((prev) => prev + 1);
+    } else if (percent === 60) {
+      setScroll60Success((prev) => prev + 1);
+    } else if (percent === 100) {
+      setScroll100Success((prev) => prev + 1);
+    }
+
+    let upgradeInfo = null;
+    if (percent === 10) {
+      upgradeInfo = SCROLL_INFO.get(currentScroll.keyword).upgradeValue._10
+    } else if (percent === 60) {
+      upgradeInfo = SCROLL_INFO.get(currentScroll.keyword).upgradeValue._60
+    } else if (percent === 100) {
+      upgradeInfo = SCROLL_INFO.get(currentScroll.keyword).upgradeValue._100
+    }
+
+    upgradeInfo.map((scroll) => {
+      switch (scroll.name) {
+        case 'str':
+          setStr((prev) => prev + scroll.value)
+          break;
+        case 'dex':
+          setDex((prev) => prev + scroll.value)
+          break;
+        case 'intel':
+          setIntel((prev) => prev + scroll.value)
+          break;
+        case 'luk':
+          setLuk((prev) => prev + scroll.value)
+          break;
+        case 'phyAtk':
+          setPhyAtk((prev) => prev + scroll.value)
+          break;
+        case 'mgAtk':
+          setMgAtk((prev) => prev + scroll.value)
+          break;
+        case 'phyDef':
+          setPhyDef((prev) => prev + scroll.value)
+          break;
+        case 'mgDef':
+          setMgDef((prev) => prev + scroll.value)
+          break;
+        case 'acc':
+          setAcc((prev) => prev + scroll.value)
+          break;
+        case 'avo':
+          setAvo((prev) => prev + scroll.value)
+          break;
+        case 'move':
+          setMove((prev) => prev + scroll.value)
+          break;
+        case 'jump':
+          setJump((prev) => prev + scroll.value)
+          break;
+        case 'hp':
+          setHp((prev) => prev + scroll.value)
+          break;
+        case 'mp':
+          setMp((prev) => prev + scroll.value)
+          break;
+      }
+    })
+    setUpgradedCount((prev) => prev + 1);
   }
 
-  const scrollFail = () => {
+  function scrollFail() {
     //주문서 실패
     playFailureSound();
     playFailureEffect();
-    console.log('fail')
   }
 
   const itemPriceChangeHandler = (e) => {
-    setPurchaseInfo((prev) => {
-      const copy = { ...prev } 
-      copy.item.price = e.target.value;
-      return copy;
-    })
+    e.preventDefault();
+    setItemPrice(e.target.value)
   }
 
-  const scroll10PriceChangeHandler = (e) => {
-    setPurchaseInfo((prev) => {
-      const copy = { ...prev } 
-      copy._10.price = e.target.value;
-      return copy;
-    })
-  }
+  const scroll10PriceChangeHandler = useCallback((e) => {
+    setScroll10Price(e.target.value);
+  }, [])
 
-  const scroll60PriceChangeHandler = (e) => {
-    setPurchaseInfo((prev) => {
-      const copy = { ...prev } 
-      copy._60.price = e.target.value;
-      return copy;
-    })
-  }
+  const scroll60PriceChangeHandler = useCallback((e) => {
+    setScroll60Price(e.target.value);
+  }, [])
 
-  const scroll100PriceChangeHandler = (e) => {
-    setPurchaseInfo((prev) => {
-      const copy = { ...prev } 
-      copy._100.price = e.target.value;
-      return copy;
-    })
-  }
+  const scroll100PriceChangeHandler = useCallback((e) => {
+    setScroll100Price(e.target.value);
+  }, [])
 
-  const handleItemOption = (e, statusName) => {
+  function handleItemOption(e, statusName) {
     const name = statusName;
-    const value = e.target.value;
+    const value = Number(e.target.value);
 
-    setDefaultStatus((prevDefault) => {
-      const copy = {...prevDefault}
-      switch(name) {
-        case 'str':
-        copy.str = value;
+    switch (name) {
+      case 'str':
+
+        defaultStr.current = value;
         break;
       case 'dex':
-        copy.dex = value;
+        defaultDex.current = value;
         break;
       case 'intel':
-        copy.intel = value;
+        defaultIntel.current = value;
         break;
       case 'luk':
-        copy.luk = value;
+        defaultLuk.current = value;
         break;
       case 'phyAtk':
-        copy.phyAtk = value;
+        defaultPhyAtk.current = value;
         break;
       case 'mgAtk':
-        copy.mgAtk = value;
+        defaultMgAtk.current = value;
         break;
       case 'phyDef':
-        copy.phyDef = value;
+        defaultPhyDef.current = value;
         break;
       case 'mgDef':
-        copy.mgDef = value;
+        defaultMgDef.current = value;
         break;
       case 'hp':
-        copy.hp = value;
+        defaultHp.current = value;
         break;
       case 'mp':
-        copy.mp = value;
+        defaultMp.current = value;
         break;
-      }
-
-      return copy;
-    })
+    }
 
     resetItem();
+
   }
 
   function resetItem() {
-    
-    // 스테이터스 초기화
-    setStatus((prev) => {
-
-      const copyDefaultStatus = { ...defaultStatus }
-      const newStatus = { ...prev }
-      console.log(copyDefaultStatus)
-      newStatus.str = copyDefaultStatus?.status.str;
-      newStatus.dex = copyDefaultStatus.status.dex;
-      newStatus.intel = copyDefaultStatus.status.intel;
-      newStatus.luk = copyDefaultStatus.status.luk;
-      newStatus.phyAtk = copyDefaultStatus.status.phyAtk;
-      newStatus.mgAtk = copyDefaultStatus.status.mgAtk;
-      newStatus.phyDef = copyDefaultStatus.status.phyDef;
-      newStatus.mgDef = copyDefaultStatus.status.mgDef;
-      newStatus.acc = copyDefaultStatus.status.acc;
-      newStatus.avo = copyDefaultStatus.status.avo;
-      newStatus.move = copyDefaultStatus.status.move;
-      newStatus.jump = copyDefaultStatus.status.jump;
-      newStatus.hp = copyDefaultStatus.status.hp;
-      newStatus.mp = copyDefaultStatus.status.mp;
-      newStatus.upgradable = copyDefaultStatus.upgradableCount;
-
-      return newStatus;
-    })
-
-    setPurchaseInfo((prev) => {
-      const purchaseCopy = { ...prev }
-      purchaseCopy.item.buy = purchaseCopy.item.buy + 1;
-      return purchaseCopy;
-    })
+    resetStatus();
+    setItemBuyCount((prev) => prev + 1);
     setUpgradedCount(0);
   }
 
+  function resetStatus() {
+    setStr(defaultStr.current)
+    setDex(defaultDex.current)
+    setIntel(defaultIntel.current)
+    setLuk(defaultLuk.current)
+    setPhyAtk(defaultPhyAtk.current)
+    setMgAtk(defaultMgAtk.current)
+    setPhyDef(defaultPhyDef.current)
+    setMgDef(defaultMgDef.current)  
+    setAcc(defaultAcc.current)
+    setAvo(defaultAvo.current)
+    setMove(defaultMove.current)
+    setJump(defaultJump.current)
+    setHp(defaultHp.current)
+    setMp(defaultMp.current)
+    setUpgradable(defaultUpgradable.current)
+  }
+
   // 리셋버튼 핸들러 
-  const handleResetClicked = () => {
-    playPurchaseSound();
+  function handleResetClicked() {
+    playDiceSound();
     resetItem();
   }
 
   function handlePurchaseResetClicked() {
     playPurchaseSound();
-    setPurchaseInfo((prev) => {
-      const purchaseCopy = { ...prev }
-
-      purchaseCopy.item.buy = 1;
-      purchaseCopy._10.buy = 0;
-      purchaseCopy._60.buy = 0;
-      purchaseCopy._100.buy = 0;
-      purchaseCopy._10.success = 0;
-      purchaseCopy._60.success = 0;
-      purchaseCopy._100.success = 0;
-
-      return purchaseCopy;
-    })
+    resetItem();
+    setItemBuyCount(1);
+    setScroll10BuyCount(0);
+    setScroll60BuyCount(0);
+    setScroll100BuyCount(0);
+    setScroll10Success(0);
+    setScroll60Success(0);
+    setScroll100Success(0);
   }
+
+  function getItemNameColor() {
+
+    let totalDefault = [
+      defaultStr.current, defaultDex.current, defaultIntel.current, defaultLuk.current, defaultPhyAtk.current,
+      defaultMgAtk.current, defaultPhyDef.current, defaultMgDef.current, defaultAcc.current, defaultAvo.current,
+      defaultMove.current, defaultJump.current, defaultHp.current, defaultMp.current
+    ].reduce((prev, cur, idx) => { return prev += cur });
+
+    let totalStatus = [
+      str, dex, intel, luk, phyAtk, mgAtk, phyDef, mgDef, acc, avo, move, jump, hp, mp
+    ].reduce((prev, cur, idx) => { return prev += cur });
+
+    totalDefault = totalDefault - (defaultHp.current + defaultMp.current) + defaultHp.current / 10 + defaultMp.current / 10;
+    totalStatus = totalStatus - (hp + mp) + hp / 10 + mp / 10;
+
+    const result = totalStatus - totalDefault;
+
+    if (result >= 0 && result <= 5) {
+      if (upgradedCount === 0) {
+        return 'white'
+      } else {
+        return 'orange'
+      }
+    } else if (result >= 6 && result <= 22) {
+      return 'blue';
+    } else if (result >= 23 && result <= 39) {
+      return 'purple'
+    } else if (result >= 40 && result <= 56) {
+      return 'yellow'
+    } else if (result >= 57 && result <= 73) {
+      return 'green'
+    }
+
+    return 'white';
+
+  }
+
+  // 핫키
+  useHotkeys('q', () => {
+    scroll10Button.current.focus();
+    handleScrollClicked(10)
+  }, { keyup: false, keydown: true });
+  useHotkeys('w', () => {
+    scroll60Button.current.focus();
+    handleScrollClicked(60)
+  }, { keyup: false, keydown: true });
+  useHotkeys('e', () => {
+    scroll100Button.current.focus();
+    handleScrollClicked(100)
+  }, { keyup: false, keydown: true });
+  useHotkeys('r', () => {
+    resetButton.current.focus();
+    handleResetClicked()
+  }, { keyup: false, keydown: true });
+  useHotkeys('f', () => {
+    purchaseResetButton.current.focus();
+    handlePurchaseResetClicked()
+  }, { keyup: false, keydown: true });
+
+  useHotkeys('q', () => {
+    scroll10Button.current.blur();
+  }, { keyup: true, keydown: false });
+  useHotkeys('w', () => {
+    scroll60Button.current.blur();
+  }, { keyup: true, keydown: false });
+  useHotkeys('e', () => {
+    scroll100Button.current.blur();
+  }, { keyup: true, keydown: false });
+  useHotkeys('r', () => {
+    resetButton.current.blur();
+  }, { keyup: true, keydown: false });
+  useHotkeys('f', () => {
+    purchaseResetButton.current.blur();
+  }, { keyup: true, keydown: false });
 
   return (
     <>
-    <button onClick={() => console.log(status)}>데이터 보여줘</button> 
+      <section className="shorcut-guide-section bg-green">
+
+      </section>
       <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-1">
         <section className="item-info-section-container">
           <section className="item-info-section mx-1">
-            <span className='item-info-name'>{info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}</span>
+            <span
+              className={`item-info-name ${getItemNameColor()}`}>
+              {info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}
+            </span>
             <div className="item-info-basic">
               <img src={`/images/item/${itemId}.png`} />
               <div className="item-info-required">
@@ -409,28 +474,30 @@ export default function ItemSimulator() {
             <div className="item-info-status">
               <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
               <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>
-              {status?.str > 0 && <span>STR : +{status?.str}</span>}
-              {status?.dex > 0 && <span>DEX : +{status?.dex}</span>}
-              {status?.intel > 0 && <span>INT : +{status?.intel}</span>}
-              {status?.luk > 0 && <span>LUK : +{status?.luk}</span>}
-              {status?.acc > 0 && <span>명중률 : +{status?.acc}</span>}
-              {status?.avo > 0 && <span>회피율 : +{status?.avo}</span>}
-              {status?.phyAtk > 0 && <span>공격력 : +{status?.phyAtk}</span>}
-              {status?.mgAtk > 0 && <span>마력 : +{status?.mgAtk}</span>}
-              {status?.phyDef > 0 && <span>물리방어력 : +{status?.phyDef}</span>}
-              {status?.mgDef > 0 && <span>마법방어력 : +{status?.mgDef}</span>}
-              {status?.hp > 0 && <span>HP : +{status?.hp}</span>}
-              {status?.mp > 0 && <span>MP : +{status?.mp}</span>}
-              {status?.move > 0 && <span>이동속도 : +{status?.move}</span>}
-              {status?.jump > 0 && <span>점프력 : +{status?.jump}</span>}
-              <span>업그레이드 가능 횟수 : {status?.upgradable}</span>
+              {str > 0 && <span>STR : +{str}</span>}
+              {dex > 0 && <span>DEX : +{dex}</span>}
+              {intel > 0 && <span>INT : +{intel}</span>}
+              {luk > 0 && <span>LUK : +{luk}</span>}
+              {acc > 0 && <span>명중률 : +{acc}</span>}
+              {avo > 0 && <span>회피율 : +{avo}</span>}
+              {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
+              {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
+              {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
+              {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
+              {hp > 0 && <span>HP : +{hp}</span>}
+              {mp > 0 && <span>MP : +{mp}</span>}
+              {move > 0 && <span>이동속도 : +{move}</span>}
+              {jump > 0 && <span>점프력 : +{jump}</span>}
+              <span>업그레이드 가능 횟수 : {upgradable}</span>
             </div>
           </section>
           {
-            status?.upgradableCount <= 0 && <span className="red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+            upgradable <= 0 && <span className="red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
           }
           <span></span>
         </section>
+
+        {/********************* 가격관련 정보 ***********************/}
 
         <section>
           <section className="item-controller-section mx-1">
@@ -443,8 +510,7 @@ export default function ItemSimulator() {
                 availableScroll.current.map((scroll) => {
                   if (scroll === undefined) return;
                   const key = scroll.keyword;
-                  const scroll_name = scroll.name;
-                  return <option key={key} value={key}>{scroll_name}</option>
+                  return <option key={key} value={key}>{scroll.name}</option>
                 })
               }
             </select>
@@ -455,59 +521,70 @@ export default function ItemSimulator() {
 
             <div className="scroll-select">
               {/* <Scroll  /> */}
-              <Scroll percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
-              <Scroll percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
-              <Scroll percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
+              <Scroll ref={scroll10Button} percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
+              <Scroll ref={scroll60Button} percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
+              <Scroll ref={scroll100Button} percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
               <div className="scroll-info">
-                <button onClick={handleResetClicked} id="reset-button">
+                <button ref={resetButton} onClick={handleResetClicked} id="reset-button" onMouseUp={() => document.activeElement.blur()}>
                   <img src="/images/etc/reset.png"></img>
                 </button>
               </div>
             </div>
-
-            {/********** 가격관련 정보 **********/}
-
-
             <div className="item-price-info">
-              <PriceCalculator isScroll={false} buyCount={purchaseInfo.item.buy} inputHandler={itemPriceChangeHandler} />
               <PriceCalculator
+                key={`item-price`}
+                isScroll={false}
+                price={itemPrice}
+                buyCount={itemBuyCount}
+                inputHandler={itemPriceChangeHandler}
+              />
+              <PriceCalculator
+                key={`scroll-price-10`}
                 isScroll={true}
                 percent={10}
-                buyCount={purchaseInfo._10.buy}
-                successCount={purchaseInfo._10.success}
+                price={scroll10Price}
+                buyCount={scroll10BuyCount}
+                successCount={scroll10Success}
                 inputHandler={scroll10PriceChangeHandler}
               />
               <PriceCalculator
+                key={`scroll-price-60`}
                 isScroll={true}
                 percent={60}
-                buyCount={purchaseInfo._60.buy}
-                successCount={purchaseInfo._60.success}
+                price={scroll60Price}
+                buyCount={scroll60BuyCount}
+                successCount={scroll60Success}
                 inputHandler={scroll60PriceChangeHandler}
               />
               <PriceCalculator
+                key={`scroll-price-100`}
                 isScroll={true}
                 percent={100}
-                buyCount={purchaseInfo._100.buy}
-                successCount={purchaseInfo._100.success}
+                price={scroll100Price}
+                buyCount={scroll100BuyCount}
+                successCount={scroll100Success}
                 inputHandler={scroll100PriceChangeHandler}
               />
+
               <section className="total-price-info-section">
                 <div className="total-price-info">
                   <img src="/images/etc/meso.png"></img>
                   <span>
                     {
-                      (purchaseInfo.item.buy * purchaseInfo.item.price +
-                        purchaseInfo._10.buy * purchaseInfo._10.price +
-                        purchaseInfo._60.buy * purchaseInfo._60.price +
-                        purchaseInfo._100.buy * purchaseInfo._100.price).toLocaleString()
+                      (itemBuyCount * itemPrice +
+                        scroll10BuyCount * scroll10Price +
+                        scroll60BuyCount * scroll60Price +
+                        scroll100BuyCount * scroll100Price).toLocaleString()
                     }
                   </span>
                 </div>
+
                 <button
+                  ref={purchaseResetButton}
                   className="total-price-reset-btn"
                   id="purchase-reset-button"
                   onClick={handlePurchaseResetClicked}
-                  onMouseUp={document.activeElement.blur()}
+                  onMouseUp={() => document.activeElement.blur()}
                 >
                   메소 리셋
                 </button>
@@ -516,8 +593,6 @@ export default function ItemSimulator() {
             </div>
           </section>
         </section>
-
-
       </main>
     </>
   )

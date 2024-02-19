@@ -625,15 +625,15 @@ export default function NewItem() {
               </div>
               <div className="col-2">
                 <label htmlFor="item-avo" className="form-label">회피율</label>
-                <input type="text" id="item-avo" className="form-control form-control-sm" value={acc} onChange={handleAvo} />
+                <input type="text" id="item-avo" className="form-control form-control-sm" value={avo} onChange={handleAvo} />
               </div>
               <div className="col-2">
                 <label htmlFor="item-move" className="form-label">이동속도</label>
-                <input type="text" id="item-move" className="form-control form-control-sm" value={acc} onChange={handleMove} />
+                <input type="text" id="item-move" className="form-control form-control-sm" value={move} onChange={handleMove} />
               </div>
               <div className="col-2">
                 <label htmlFor="item-jump" className="form-label">점프력</label>
-                <input type="text" id="item-jump" className="form-control form-control-sm" value={acc} onChange={handleJump} />
+                <input type="text" id="item-jump" className="form-control form-control-sm" value={jump} onChange={handleJump} />
               </div>
             </div>
 

@@ -1,9 +1,5 @@
 export default function SingleItem({ id, name }) {
 
-  // useEffect(() => {
-  //   console.log(`imagePath=/images/item/${id}.png'}`)
-  // })
-
   return (
     <>
 

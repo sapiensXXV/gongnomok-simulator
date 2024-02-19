@@ -105,6 +105,10 @@
 
   /*********** 시뮬레이터 ***********/
 
+  shorcut-guide-section {
+    height: 1vw;
+  }
+
   .item-simulator-section {
     display: flex;
     align-items: top;
@@ -217,6 +221,34 @@
     color: red
   }
 
+  .whtie {
+    color: white
+  }
+
+  .orange {
+    color: orange
+  }
+
+  .purple {
+    color: rgb(164, 28, 255)
+  }
+
+  .blue {
+    color: rgb(41, 77, 255);
+  }
+
+  .yellow {
+    color: rgb(240, 240, 35);
+  }
+
+  .green {
+    color: rgb(0, 157, 0)
+  }
+
+  .pink {
+    color: rgb(255, 129, 221)
+  }
+
   .item-info-job span {
     margin-left: 6px;
     margin-right: 6px;
@@ -285,6 +317,7 @@
   }
 
   .scroll-select button:focus {
+    outline: 0;
     background-color: rgb(214, 214, 214);
   }
 
@@ -300,22 +333,24 @@
   .item-price-info {
     font-size: 1vw;
     font-family: SejonghospitalBold;
+    gap: 2px;
   }
 
   .price-input-container {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 5px;
+
   }
 
   .price-input-description {
     display: block;
     margin-right: 5px;
-    width: 5.1vw;
+    width: 5.5vw;
   }
 
   .price-input-container input {
-    margin-bottom: 5px;
     padding: 4px;
     margin-right: 5px;
     height: 1.7vw;
@@ -360,6 +395,8 @@
   }
 
   .total-price-reset-btn:focus {
+    border: none;
+    outline: 0;
     background-color: rgb(214, 214, 214);
   }
 

@@ -18,3 +18,10 @@ export function playPurchaseSound() {
   sound.currentTime = 0;
   sound.play();
 }
+
+export function playDiceSound() {
+  let sound = new Audio('/sound/dice.mp3');
+  sound.volume = 0.20;
+  sound.currentTime = 0;
+  sound.play();
+}
