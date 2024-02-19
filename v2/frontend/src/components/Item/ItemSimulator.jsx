@@ -118,11 +118,20 @@ export default function ItemSimulator() {
       defaultMp.current = copy.status.mp.normal;
       defaultUpgradable.current = copy.upgradableCount
 
-      availableScroll.current = SCROLL_NAME_LIST.map((name) => {
-        if (SCROLL_INFO.get(name).category === data.category) {
-          return SCROLL_INFO.get(name);
+      // availableScroll.current = SCROLL_NAME_LIST.map((name) => {
+      //   console.log(`${SCROLL_INFO.get(name).category} == ${data.category}`)
+      //   if (SCROLL_INFO.get(name).category === data.category) {
+      //     console.log(`통과!`);
+      //     return SCROLL_INFO.get(name);
+      //   }
+      // })
+
+      for (let i = 0; i < SCROLL_NAME_LIST.length; i++) {
+        const name = SCROLL_NAME_LIST[i];
+        if(SCROLL_INFO.get(name).category === data.category) {
+          availableScroll.current = [...availableScroll.current, SCROLL_INFO.get(name)];
         }
-      })
+      }
 
       if (availableScroll.current.length > 0) {
         setCurrentScroll(availableScroll.current[0]);

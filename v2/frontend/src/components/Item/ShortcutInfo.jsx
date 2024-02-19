@@ -1,18 +1,12 @@
-// import { memo } from "react"
+import { memo } from "react"
 
-import { useEffect } from "react"
-
-export default function ShortcutInfo({ shortcut, description }) {
-
-  useEffect(() => {
-    console.log(shortcut)
-  }, [])
-
+function ShortcutInfo({ description }) {
+  console.log('shortcut info render')
   return (
     <>
-      
         <span className="shortcut-description">{description}</span>
-      
     </>
   )
 }
+
+export default memo(ShortcutInfo);
