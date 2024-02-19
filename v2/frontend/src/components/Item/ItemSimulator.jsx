@@ -542,7 +542,7 @@ export default function ItemSimulator() {
             
 
           </section>
-          <section className="overflow-message">
+          <section className="overflow-message text-center">
             {
               upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
             }

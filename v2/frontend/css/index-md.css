@@ -240,6 +240,7 @@
 
   .scroll-overflow-msg {
     color: #ff3e3e;
+    justify-content: center;
     margin-left: 3px;
     font-size: 14px;
     font-family: Pretendard-Regular;

@@ -241,6 +241,7 @@
 
   .scroll-overflow-msg {
     display: block;
+    justify-content: center;
 
     color: #ff3e3e;
     margin-left: 3px;
