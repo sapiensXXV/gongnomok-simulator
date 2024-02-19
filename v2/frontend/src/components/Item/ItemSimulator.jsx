@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
 
@@ -17,7 +18,7 @@ import ShortcutInfo from "./ShortcutInfo";
 let timer = null;
 
 export default function ItemSimulator() {
-
+  console.log('render')
   const { itemId } = useParams(); // item id
   const availableScroll = useRef([]);
 
@@ -118,22 +119,19 @@ export default function ItemSimulator() {
       defaultMp.current = copy.status.mp.normal;
       defaultUpgradable.current = copy.upgradableCount
 
-      // availableScroll.current = SCROLL_NAME_LIST.map((name) => {
-      //   console.log(`${SCROLL_INFO.get(name).category} == ${data.category}`)
-      //   if (SCROLL_INFO.get(name).category === data.category) {
-      //     console.log(`통과!`);
-      //     return SCROLL_INFO.get(name);
-      //   }
-      // })
+      
 
       for (let i = 0; i < SCROLL_NAME_LIST.length; i++) {
         const name = SCROLL_NAME_LIST[i];
+        // console.log(`name=${name}`)
+        // console.log(`${SCROLL_INFO.get(name)}`)
         if(SCROLL_INFO.get(name).category === data.category) {
           availableScroll.current = [...availableScroll.current, SCROLL_INFO.get(name)];
         }
       }
-
+      
       if (availableScroll.current.length > 0) {
+        console.log(`set current scroll`)
         setCurrentScroll(availableScroll.current[0]);
       }
 
@@ -143,6 +141,9 @@ export default function ItemSimulator() {
   }
 
   useEffect(() => { fetchData() }, []);
+  // useEffect(() => { 
+  //   setCurrentScroll(availableScroll.current[0]);
+  // }, [info])
 
   // 주문서 선택 핸들러
   function handleScrollChange(e) {
@@ -563,7 +564,7 @@ export default function ItemSimulator() {
                 availableScroll.current.map((scroll) => {
                   if (scroll === undefined) return;
                   const key = scroll.keyword;
-                  return <option key={key} value={key}>{scroll.name}</option>
+                  return <option key={uuidv4()} value={key}>{scroll.name}</option>
                 })
               }
             </select>

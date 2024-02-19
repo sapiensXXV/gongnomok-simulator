@@ -7,7 +7,6 @@ function Scroll({
   onClick,
 }, ref) {
 
-
   const getScrollStatus = (value) => {
     if (percent === 10) {
       return value?.upgradeValue?._10;

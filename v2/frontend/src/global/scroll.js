@@ -1349,7 +1349,7 @@ export const SCROLL_INFO = new Map([
   ["TWO_HANDED_SWORD_ACC", two_handed_sword_acc],
 
   ["TWO_HANDED_AXE_PHY_ATK", two_handed_axe_phy_atk],
-  ["TWO_HANDED_AXE_PHY_ATK", two_handed_axe_acc],
+  ["TWO_HANDED_AXE_ACC", two_handed_axe_acc],
 
   ["TWO_HANDED_BLUNT_PHY_ATK", two_handed_blunt_phy_atk],
   ["TWO_HANDED_BLUNT_ACC", two_handed_blunt_acc],
