@@ -474,7 +474,7 @@ const one_handed_sword_phy_atk = {
 
 const one_handed_sword_acc = {
   keyword: "ONE_HANDED_SWORD_ACC",
-  name: "한손검 공격력 주문서",
+  name: "한손검 명중률 주문서",
   shortcut: "명중률",
   category: "ONE_HANDED_SWORD",
   upgradeValue: {

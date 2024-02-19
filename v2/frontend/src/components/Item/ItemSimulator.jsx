@@ -18,7 +18,6 @@ import ShortcutInfo from "./ShortcutInfo";
 let timer = null;
 
 export default function ItemSimulator() {
-  console.log('render')
   const { itemId } = useParams(); // item id
   const availableScroll = useRef([]);
 
@@ -95,10 +94,10 @@ export default function ItemSimulator() {
       setMgAtk(copy.status.mgAtk.normal);
       setPhyDef(copy.status.phyDef.normal);
       setMgDef(copy.status.mgDef.normal);
-      setAcc(copy.status.acc);
-      setAvo(copy.status.avo);
-      setMove(copy.status.move);
-      setJump(copy.status.jump);
+      setAcc(copy.status.acc.normal);
+      setAvo(copy.status.avo.normal);
+      setMove(copy.status.move.normal);
+      setJump(copy.status.jump.normal);
       setHp(copy.status.hp.normal);
       setMp(copy.status.mp.normal);
       setUpgradable(copy.upgradableCount)
@@ -111,10 +110,10 @@ export default function ItemSimulator() {
       defaultMgAtk.current = copy.status.mgAtk.normal;
       defaultPhyDef.current = copy.status.phyDef.normal;
       defaultMgDef.current = copy.status.mgDef.normal;
-      defaultAcc.current = copy.status.acc;
-      defaultAvo.current = copy.status.avo;
-      defaultMove.current = copy.status.move;
-      defaultJump.current = copy.status.jump;
+      defaultAcc.current = copy.status.acc.normal;
+      defaultAvo.current = copy.status.avo.normal;
+      defaultMove.current = copy.status.move.normal;
+      defaultJump.current = copy.status.jump.normal;
       defaultHp.current = copy.status.hp.normal;
       defaultMp.current = copy.status.mp.normal;
       defaultUpgradable.current = copy.upgradableCount
@@ -123,15 +122,12 @@ export default function ItemSimulator() {
 
       for (let i = 0; i < SCROLL_NAME_LIST.length; i++) {
         const name = SCROLL_NAME_LIST[i];
-        // console.log(`name=${name}`)
-        // console.log(`${SCROLL_INFO.get(name)}`)
         if(SCROLL_INFO.get(name).category === data.category) {
           availableScroll.current = [...availableScroll.current, SCROLL_INFO.get(name)];
         }
       }
       
       if (availableScroll.current.length > 0) {
-        console.log(`set current scroll`)
         setCurrentScroll(availableScroll.current[0]);
       }
 
@@ -206,8 +202,6 @@ export default function ItemSimulator() {
     } else if (percent === 100) {
       setScroll100Success((prev) => prev + 1);
     }
-
-    console.log(currentScroll)
 
     let upgradeInfo = null;
     if (percent === 10) {
@@ -542,7 +536,7 @@ export default function ItemSimulator() {
             
 
           </section>
-          <section className="overflow-message text-center">
+          <section className="overflow-message">
             {
               upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
             }
@@ -557,14 +551,14 @@ export default function ItemSimulator() {
           <section className="item-controller-section mx-1">
             <select
               className="form-select form-select-sm"
-              onChange={handleScrollChange}
+              onChange={(e) => handleScrollChange(e)}
               defaultValue={currentScroll}
             >
               {
                 availableScroll.current.map((scroll) => {
                   if (scroll === undefined) return;
                   const key = scroll.keyword;
-                  return <option key={uuidv4()} value={key}>{scroll.name}</option>
+                  return <option key={`${key}`} value={key}>{scroll.name}</option>
                 })
               }
             </select>
