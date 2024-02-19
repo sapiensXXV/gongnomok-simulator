@@ -19,7 +19,7 @@ export default function ItemList({ itemList, isItemLoaded }) {
         } 
 
         <section className="col-md-12 bg-light rounded item-list-container px-2 py-2">
-          <div className="row row-cols-xs-3 row-cols-sm-4 row-cols-md-5 row-cols-lg-5 row-cols-xl-6 g-3">
+          <div className="row row-cols-xs-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-6 row-cols-xl-6 g-3">
 
             {
               itemList.map((item) => {

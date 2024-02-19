@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
 
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
@@ -8,12 +8,13 @@ import Scroll from "./Scroll";
 import PriceCalculator from "./PriceCalculator";
 
 import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../global/util/soundPlay";
-import { playFailureEffect, playSuccessEffect } from "../../global/util/animationPlay";
 import OptionSelect from "./OptionSelect";
 import RequiredStatus from "./RequiredStatus";
 import { ATTACK_SPEED, CATEGORY_NAME } from "../../global/item";
 import { useHotkeys } from "react-hotkeys-hook";
+import ShortcutInfo from "./ShortcutInfo";
 
+let timer = null;
 
 export default function ItemSimulator() {
 
@@ -182,9 +183,11 @@ export default function ItemSimulator() {
   }
 
   function scrollSuccess(percent) {
+    console.log('success')
+
     //주문서 성공
     playSuccessSound();
-    playSuccessEffect();
+    playSuccessGif();
 
     if (percent === 10) {
       setScroll10Success((prev) => prev + 1);
@@ -193,6 +196,8 @@ export default function ItemSimulator() {
     } else if (percent === 100) {
       setScroll100Success((prev) => prev + 1);
     }
+
+    console.log(currentScroll)
 
     let upgradeInfo = null;
     if (percent === 10) {
@@ -255,7 +260,7 @@ export default function ItemSimulator() {
   function scrollFail() {
     //주문서 실패
     playFailureSound();
-    playFailureEffect();
+    playFailureGif();
   }
 
   const itemPriceChangeHandler = (e) => {
@@ -331,7 +336,7 @@ export default function ItemSimulator() {
     setPhyAtk(defaultPhyAtk.current)
     setMgAtk(defaultMgAtk.current)
     setPhyDef(defaultPhyDef.current)
-    setMgDef(defaultMgDef.current)  
+    setMgDef(defaultMgDef.current)
     setAcc(defaultAcc.current)
     setAvo(defaultAvo.current)
     setMove(defaultMove.current)
@@ -434,72 +439,111 @@ export default function ItemSimulator() {
     purchaseResetButton.current.blur();
   }, { keyup: true, keydown: false });
 
+  const scrollAnimation = useRef();
+  const transParentImgPath = '/images/etc/empty.png';
+  const successGifPath = '/images/etc/gif/success-150.gif';
+  const failGifPath = '/images/etc/gif/failure-150.gif'
+
+  function playSuccessGif() {
+    clearTimeout(timer);
+    scrollAnimation.current.src = successGifPath;
+    timer = setTimeout(function () {
+      scrollAnimation.current.src = transParentImgPath;
+    }, 1000);
+  }
+
+  function playFailureGif() {
+    clearTimeout(timer);
+    scrollAnimation.current.src = failGifPath;
+    timer = setTimeout(function () {
+      scrollAnimation.current.src = transParentImgPath;
+    }, 1000);
+  }
+
   return (
     <>
-      <section className="shorcut-guide-section bg-green">
-
+      <section className="shorcut-guide-section bg-success">
+        <span className="shortcut-title">단축키</span>
+        <div className="shortcut-info">
+          <ShortcutInfo description='Q-10%적용' />
+          <ShortcutInfo description='W-60%적용' />
+          <ShortcutInfo description='E-100%적용' />
+          <ShortcutInfo description='R-아이템 리셋' />
+          <ShortcutInfo description='F-구매기록 리셋' />
+        </div>
       </section>
       <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-1">
-        <section className="item-info-section-container">
-          <section className="item-info-section mx-1">
-            <span
-              className={`item-info-name ${getItemNameColor()}`}>
-              {info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}
-            </span>
-            <div className="item-info-basic">
-              <img src={`/images/item/${itemId}.png`} />
-              <div className="item-info-required">
-                <RequiredStatus name="LEV" value={info?.required.level} />
-                <RequiredStatus name="STR" value={info?.required.str} />
-                <RequiredStatus name="DEX" value={info?.required.dex} />
-                <RequiredStatus name="INT" value={info?.required.intel} />
-                <RequiredStatus name="LUK" value={info?.required.luk} />
-                <RequiredStatus name="POP" value={info?.required.pop} />
+        <section className="item-info-and-overflow-message">
+          <section className="item-info-section-container">
+            <section className="item-info-section mx-1">
+              <span
+                className={`item-info-name ${getItemNameColor()}`}>
+                {info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}
+              </span>
+              <div className="item-info-basic">
+                <div className="item-img-container">
+                  <img className='item-img' src={`/images/item/${itemId}.png`} />
+                  <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation" id="scroll-animation"></img>
+                </div>
+                <div className="item-info-required">
+                  <RequiredStatus name="LEV" value={info?.required.level} />
+                  <RequiredStatus name="STR" value={info?.required.str} />
+                  <RequiredStatus name="DEX" value={info?.required.dex} />
+                  <RequiredStatus name="INT" value={info?.required.intel} />
+                  <RequiredStatus name="LUK" value={info?.required.luk} />
+                  <RequiredStatus name="POP" value={info?.required.pop} />
 
-                <span className="item-useless-info">ITEM LEV : -</span>
-                <span className="item-useless-info">ITEM EXP : -</span>
+                  <span className="item-useless-info">ITEM LEV : -</span>
+                  <span className="item-useless-info">ITEM EXP : -</span>
 
+                </div>
               </div>
-            </div>
-            <div className="item-info-job">
-              <span className={info?.job.common ? '' : 'red'}>초보자</span>
-              <span className={info?.job.warrior || info?.job.common ? '' : 'red'}>전사</span>
-              <span className={info?.job.magician || info?.job.common ? '' : 'red'}>마법사</span>
-              <span className={info?.job.bowman || info?.job.common ? '' : 'red'} >궁수</span>
-              <span className={info?.job.thief || info?.job.common ? '' : 'red'}>도적</span>
-              <span className={info?.job.common ? '' : 'red'}>해적</span>
-            </div>
-            <hr />
+              <div className="item-info-job">
+                <span className={info?.job.common ? '' : 'red'}>초보자</span>
+                <span className={info?.job.warrior || info?.job.common ? '' : 'red'}>전사</span>
+                <span className={info?.job.magician || info?.job.common ? '' : 'red'}>마법사</span>
+                <span className={info?.job.bowman || info?.job.common ? '' : 'red'} >궁수</span>
+                <span className={info?.job.thief || info?.job.common ? '' : 'red'}>도적</span>
+                <span className={info?.job.common ? '' : 'red'}>해적</span>
+              </div>
+              <hr />
 
-            <div className="item-info-status">
-              <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
-              <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>
-              {str > 0 && <span>STR : +{str}</span>}
-              {dex > 0 && <span>DEX : +{dex}</span>}
-              {intel > 0 && <span>INT : +{intel}</span>}
-              {luk > 0 && <span>LUK : +{luk}</span>}
-              {acc > 0 && <span>명중률 : +{acc}</span>}
-              {avo > 0 && <span>회피율 : +{avo}</span>}
-              {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
-              {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
-              {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
-              {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
-              {hp > 0 && <span>HP : +{hp}</span>}
-              {mp > 0 && <span>MP : +{mp}</span>}
-              {move > 0 && <span>이동속도 : +{move}</span>}
-              {jump > 0 && <span>점프력 : +{jump}</span>}
-              <span>업그레이드 가능 횟수 : {upgradable}</span>
-            </div>
+              <div className="item-info-status">
+                <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
+                <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>
+                {str > 0 && <span>STR : +{str}</span>}
+                {dex > 0 && <span>DEX : +{dex}</span>}
+                {intel > 0 && <span>INT : +{intel}</span>}
+                {luk > 0 && <span>LUK : +{luk}</span>}
+                {acc > 0 && <span>명중률 : +{acc}</span>}
+                {avo > 0 && <span>회피율 : +{avo}</span>}
+                {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
+                {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
+                {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
+                {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
+                {hp > 0 && <span>HP : +{hp}</span>}
+                {mp > 0 && <span>MP : +{mp}</span>}
+                {move > 0 && <span>이동속도 : +{move}</span>}
+                {jump > 0 && <span>점프력 : +{jump}</span>}
+                <span>업그레이드 가능 횟수 : {upgradable}</span>
+              </div>
+            </section>
+
+            
+
           </section>
-          {
-            upgradable <= 0 && <span className="red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
-          }
-          <span></span>
+          <section className="overflow-message">
+            {
+              upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+            }
+          </section>
         </section>
 
-        {/********************* 가격관련 정보 ***********************/}
 
-        <section>
+        {/********************* 가격관련 정보 ***********************/}
+        
+        <div>
+        <section className="d-flex justify-content-center">
           <section className="item-controller-section mx-1">
             <select
               className="form-select form-select-sm"
@@ -586,13 +630,15 @@ export default function ItemSimulator() {
                   onClick={handlePurchaseResetClicked}
                   onMouseUp={() => document.activeElement.blur()}
                 >
-                  메소 리셋
+                  구매기록 리셋
                 </button>
               </section>
 
             </div>
           </section>
         </section>
+        </div>
+        
       </main>
     </>
   )

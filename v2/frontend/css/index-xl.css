@@ -105,8 +105,50 @@
 
   /*********** 시뮬레이터 ***********/
 
-  shorcut-guide-section {
-    height: 1vw;
+  .shorcut-guide-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    margin: 1vw 15px 1vw 15px;
+
+    font-family: SejonghospitalBold;
+    
+  }
+
+  .shortcut-info {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    align-items: center;
+    text-align: center;
+
+    gap: 10px;
+
+  }
+
+  .shortcut-info span {
+  }
+
+  .shortcut-title {
+    font-size: 25px;
+  }
+
+  .shortcut-description {
+    font-size: 19px
+  }
+
+  .shorcut-guide-section span {
+    color: white;
   }
 
   .item-simulator-section {
@@ -117,14 +159,14 @@
     border-radius: 8px;
   }
 
-  .item-info-section-container {
+  /* .item-info-section-container {
 
-  }
+  } */
 
   .item-info-section {
     font-family: Pretendard-Regular;
 
-    width: 23.5vw;
+    width: 325px;
     text-align: center;
     color: white;
     background-color: #7175b5;
@@ -154,12 +196,31 @@
     margin-bottom: 9px;
   }
 
-  .item-info-basic img {
+  .item-img-container {
     margin-left: 10px;
-    padding: 9px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+
+    border: none;
+  }
+
+  .item-img {
+    
     background-color: #C9C8D4;
-    width: 6vw;
-    height: 6vw;
+    width: 92px;
+    height: 92px;
+    padding: 9px;
+  }
+
+  .scroll-animation {
+    position: absolute;
+    z-index: 2;
+    outline: 0;
+    border: none;
+    background-color: none;
+    width: 92px;
+    height: 115px;
   }
 
   .item-info-required {
@@ -179,6 +240,8 @@
   }
 
   .scroll-overflow-msg {
+    display: block;
+
     color: #ff3e3e;
     margin-left: 3px;
     font-size: 14px;
@@ -187,7 +250,7 @@
 
   .item-status-required-description {
     display: block;
-    width: 4.5vw;
+    width: 63px;
   }
 
   .item-status-required-info {
@@ -196,8 +259,8 @@
   }
 
   .item-info-required span {
-    line-height: 16px;
-    font-size: 1vw;
+    line-height: 19px;
+    font-size: 14px;
     display: block;
   }
 
@@ -207,10 +270,10 @@
 
   .item-info-name {
     display: block;
-    font-size: 1.8vw;
+    font-size: 25px;
     font-weight: bold;
     margin-top: 1px;
-    margin-bottom: 1px;
+    margin-bottom: 5px;
   }
 
   .item-info-job {
@@ -269,7 +332,7 @@
 
 
   .item-controller-section {
-    width: 24vw;
+    width: 330px;
     background-color: white;
     border-radius: 6px;
 
@@ -300,14 +363,14 @@
   }
 
   .scroll-info span {
-    font-size: 0.85vw;
+    font-size: 12px;
     font-family: SejonghospitalBold;
 
   }
 
   .scroll-select button {
-    width: 4.8vw;
-    height: 4.8vw;  
+    width: 73px;
+    height: 73px;  
 
     border: none;
     border-radius: 6px;
@@ -331,7 +394,7 @@
 
   /* 아이템 가격 정보 */
   .item-price-info {
-    font-size: 1vw;
+    font-size: 14px;
     font-family: SejonghospitalBold;
     gap: 2px;
   }
@@ -347,18 +410,18 @@
   .price-input-description {
     display: block;
     margin-right: 5px;
-    width: 5.5vw;
+    width: 76px;
   }
 
   .price-input-container input {
     padding: 4px;
     margin-right: 5px;
-    height: 1.7vw;
+    height: 25px;
 
     border-radius: 5px;
     border-width: 1px;
 
-    width: 12.5vw;
+    width: 170px;
     /* height: 13px; */
   }
 
@@ -379,13 +442,15 @@
   }
 
   .total-price-info img {
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 35px;
+    height: 35px;
     margin-right: 5px;
   }
 
   .total-price-info span {
-    font-size: 1.2vw;
+    width: 170px;
+    overflow: hidden;
+    font-size: 19px;
   }
 
   .total-price-reset-btn {
