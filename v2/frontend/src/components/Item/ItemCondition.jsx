@@ -38,6 +38,7 @@ export default function ItemCondition({
               aria-label="직업 선택"
               onChange={handleJob}
             >
+              <option value="NONE">-- 구분 없음 --</option>
               <option value="COMMON">공통</option>
               <option value="WARRIOR">전사</option>
               <option value="BOWMAN">궁수</option>
@@ -66,7 +67,7 @@ export default function ItemCondition({
               aria-label="장비 분류 선택"
               onChange={handleCategory}
             >
-              <option value={null}>-- 구분 없음 --</option>
+              <option value="NONE">-- 구분 없음 --</option>
               <option value="ONE_HANDED_SWORD">한손검</option>
               <option value="TWO_HANDED_SWORD">두손검</option>
               <option value="ONE_HANDED_AXE">한손 도끼</option>
