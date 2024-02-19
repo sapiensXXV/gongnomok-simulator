@@ -134,7 +134,7 @@ public class ItemService {
                 .jump(mapper.readValue(item.getJump(), ItemStatusInfoDto.class))
                 .build();
         int viewCount = item.getViewCount();
-        String attackSpeed = item.getAttackSpeed().name();
+        String attackSpeed = item.getAttackSpeed() == null ? null : item.getAttackSpeed().name();
         int upgradableCount = item.getUpgradable();
 
         return ItemDetailResponseDto.builder()

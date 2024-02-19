@@ -81,9 +81,10 @@ export default function ItemSimulator() {
   async function fetchData() {
     try {
       const response = await axios.get(`/api/item/${itemId}`)
+      console.log(response);
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
-
+      
       setInfo(data);
 
       setStr(copy.status.str.normal);
@@ -132,7 +133,7 @@ export default function ItemSimulator() {
       }
 
     } catch (e) {
-      console.log(e);
+        console.log(e);
     }
   }
 
@@ -514,7 +515,7 @@ export default function ItemSimulator() {
 
               <div className="item-info-status">
                 <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
-                <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>
+                {info?.attackSpeed != null && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
                 {str > 0 && <span>STR : +{str}</span>}
                 {dex > 0 && <span>DEX : +{dex}</span>}
                 {intel > 0 && <span>INT : +{intel}</span>}

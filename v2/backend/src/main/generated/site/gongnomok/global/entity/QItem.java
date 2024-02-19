@@ -19,11 +19,11 @@ public class QItem extends EntityPathBase<Item> {
 
     public static final QItem item = new QItem("item");
 
-    public final NumberPath<Integer> acc = createNumber("acc", Integer.class);
+    public final StringPath acc = createString("acc");
 
     public final EnumPath<site.gongnomok.global.entity.enumerate.AttackSpeed> attackSpeed = createEnum("attackSpeed", site.gongnomok.global.entity.enumerate.AttackSpeed.class);
 
-    public final NumberPath<Integer> avo = createNumber("avo", Integer.class);
+    public final StringPath avo = createString("avo");
 
     public final BooleanPath bowman = createBoolean("bowman");
 
@@ -39,7 +39,7 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath intel = createString("intel");
 
-    public final NumberPath<Integer> jump = createNumber("jump", Integer.class);
+    public final StringPath jump = createString("jump");
 
     public final StringPath luk = createString("luk");
 
@@ -49,7 +49,7 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath mgDef = createString("mgDef");
 
-    public final NumberPath<Integer> move = createNumber("move", Integer.class);
+    public final StringPath move = createString("move");
 
     public final StringPath mp = createString("mp");
 

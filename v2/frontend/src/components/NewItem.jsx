@@ -197,7 +197,7 @@ export default function NewItem() {
         }
       },
       upgradableCount: upgradableCount,
-      attackSpeed: attackSpeed
+      attackSpeed: ((attackSpeed === 'NONE') ? null : attackSpeed)
     };
     console.log(`request json = ${itemForm}`)
     // 폼 요청
@@ -548,6 +548,7 @@ export default function NewItem() {
             <div className="col-12">
               <label htmlFor="upgradable-count-select" className="form-label">공격 속도</label>
               <select id="upgradable-count-select" className="form-select form-select-sm" aria-label="job select" onChange={handleAttackSpeed} value={attackSpeed}>
+                <option value="NONE">-- 없음 --</option>
                 <option value="VERY_SLOW">매우 느림</option>
                 <option value="SLOW">느림</option>
                 <option value="NORMAL">보통</option>

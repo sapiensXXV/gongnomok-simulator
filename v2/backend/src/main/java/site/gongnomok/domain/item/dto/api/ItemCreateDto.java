@@ -31,7 +31,7 @@ public class ItemCreateDto {
                 .category(category == null ? null : Category.stringToCategory(category))
                 .status(status.toServiceDto())
                 .upgradableCount(upgradableCount)
-                .attackSpeed(AttackSpeed.stringToAttackSpeed(attackSpeed))
+                .attackSpeed(attackSpeed == null ? null : AttackSpeed.stringToAttackSpeed(attackSpeed))
                 .build();
     }
 }
