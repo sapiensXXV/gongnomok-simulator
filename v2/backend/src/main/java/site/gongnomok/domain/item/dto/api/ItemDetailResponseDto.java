@@ -22,4 +22,6 @@ public class ItemDetailResponseDto {
     private String attackSpeed;
     private int upgradableCount;
 
+    private int knockBackPercent;
+
 }

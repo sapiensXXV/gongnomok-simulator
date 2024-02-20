@@ -41,6 +41,8 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath jump = createString("jump");
 
+    public final NumberPath<Integer> knockBackPercent = createNumber("knockBackPercent", Integer.class);
+
     public final StringPath luk = createString("luk");
 
     public final BooleanPath magician = createBoolean("magician");

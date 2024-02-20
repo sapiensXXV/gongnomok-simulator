@@ -51,5 +51,6 @@ public class Item {
     private String mp;
     private int upgradable;
     private int viewCount;
+    private int knockBackPercent;
 
 }

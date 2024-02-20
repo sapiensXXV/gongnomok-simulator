@@ -21,5 +21,6 @@ public class ItemCreateServiceDto {
     private ItemStatusServiceDto status;
     private int upgradableCount;
     private AttackSpeed attackSpeed;
+    private int knockBackPercent;
 
 }

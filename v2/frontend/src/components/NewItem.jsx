@@ -72,7 +72,7 @@ export default function NewItem() {
 
   const [avo, setAvo] = useState(0);
   const [avoLower, setAvoLower] = useState(0);
-  const [avoUpper, stAvoUpper] = useState(0);
+  const [avoUpper, setAvoUpper] = useState(0);
 
   const [move, setMove] = useState(0);
   const [moveLower, setMoveLower] = useState(0);
@@ -96,6 +96,9 @@ export default function NewItem() {
 
   //업그레이드 가능 횟수
   const [upgradableCount, setUpgradableCount] = useState(7);
+
+  //넉백 확률
+  const [knockBackPercent, setKnockBackPercent] = useState(0);
 
 
   useEffect(() => {
@@ -197,7 +200,8 @@ export default function NewItem() {
         }
       },
       upgradableCount: upgradableCount,
-      attackSpeed: ((attackSpeed === 'NONE') ? null : attackSpeed)
+      attackSpeed: ((attackSpeed === 'NONE') ? null : attackSpeed),
+      knockBackPercent: knockBackPercent
     };
     console.log(`request json = ${itemForm}`)
     // 폼 요청
@@ -454,6 +458,10 @@ export default function NewItem() {
     setAttackSpeed(e.target.value);
   }
 
+  const handleKnockBackPercent = (e) => {
+    setKnockBackPercent(e.target.value);
+  }
+
   return (
     <>
       <h1 className="text-center mt-3">아이템 등록 페이지</h1>
@@ -579,27 +587,27 @@ export default function NewItem() {
                 <input type="text" id="item-dex" className="form-control form-control-sm" value={dex} onChange={handleItemDex} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={dexLower} onChange={handleItemDexLower} />
+                <label htmlFor="item-dex-lower" className="form-label">하옵</label>
+                <input type="text" id="item-dex-lower" className="form-control form-control-sm" value={dexLower} onChange={handleItemDexLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={dexUpper} onChange={handleItemDexUpper} />
+                <label htmlFor="item-dex-upper" className="form-label">상옵</label>
+                <input type="text" id="item-dex-upper" className="form-control form-control-sm" value={dexUpper} onChange={handleItemDexUpper} />
               </div>
 
             </div>
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-int" className="form-label">INT</label>
-                <input type="text" id="item-int" className="form-control form-control-sm" value={int} onChange={handleItemInt} />
+                <label htmlFor="item-intel" className="form-label">intel</label>
+                <input type="text" id="item-intel" className="form-control form-control-sm" value={int} onChange={handleItemInt} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={intLower} onChange={handleItemIntLower} />
+                <label htmlFor="item-intel-lower" className="form-label">하옵</label>
+                <input type="text" id="item-intel-lower" className="form-control form-control-sm" value={intLower} onChange={handleItemIntLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={intUpper} onChange={handleItemIntUpper} />
+                <label htmlFor="item-intel-upper" className="form-label">상옵</label>
+                <input type="text" id="item-intel-upper" className="form-control form-control-sm" value={intUpper} onChange={handleItemIntUpper} />
               </div>
 
             </div>
@@ -609,12 +617,12 @@ export default function NewItem() {
                 <input type="text" id="item-luk" className="form-control form-control-sm" value={luk} onChange={handleItemLuk} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={lukLower} onChange={handleItemLukLower} />
+                <label htmlFor="item-luk-lower" className="form-label">하옵</label>
+                <input type="text" id="item-luk-lower" className="form-control form-control-sm" value={lukLower} onChange={handleItemLukLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={lukUpper} onChange={handleItemLukUpper} />
+                <label htmlFor="item-luk-upper" className="form-label">상옵</label>
+                <input type="text" id="item-luk-upper" className="form-control form-control-sm" value={lukUpper} onChange={handleItemLukUpper} />
               </div>
 
             </div>
@@ -624,12 +632,12 @@ export default function NewItem() {
                 <input type="text" id="item-phyAtk" className="form-control form-control-sm" value={phyAtk} onChange={handleItemPhyAtk} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={phyAtkLower} onChange={handleItemPhyAtkLower} />
+                <label htmlFor="item-phyAtk-lower" className="form-label">하옵</label>
+                <input type="text" id="item-phyAtk-lower" className="form-control form-control-sm" value={phyAtkLower} onChange={handleItemPhyAtkLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={phyAtkUpper} onChange={handleItemPhyAtkUpper} />
+                <label htmlFor="item-phyAtk-upper" className="form-label">상옵</label>
+                <input type="text" id="item-phyAtk-upper" className="form-control form-control-sm" value={phyAtkUpper} onChange={handleItemPhyAtkUpper} />
               </div>
 
             </div>
@@ -639,12 +647,12 @@ export default function NewItem() {
                 <input type="text" id="item-mgAtk" className="form-control form-control-sm" value={mgAtk} onChange={handleItemMgAtk} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={mgAtkLower} onChange={handleItemMgAtkLower} />
+                <label htmlFor="item-mgAtk-lower" className="form-label">하옵</label>
+                <input type="text" id="item-mgAtk-lower" className="form-control form-control-sm" value={mgAtkLower} onChange={handleItemMgAtkLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mgAtkUpper} onChange={handleItemMgAtkUpper} />
+                <label htmlFor="item-mgAtk-upper" className="form-label">상옵</label>
+                <input type="text" id="item-mgAtk-upper" className="form-control form-control-sm" value={mgAtkUpper} onChange={handleItemMgAtkUpper} />
               </div>
 
             </div>
@@ -654,87 +662,87 @@ export default function NewItem() {
                 <input type="text" id="item-phyDef" className="form-control form-control-sm" value={phyDef} onChange={handleItemPhyDef} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={phyDefLower} onChange={handleItemPhyDefLower} />
+                <label htmlFor="item-phyDef-lower" className="form-label">하옵</label>
+                <input type="text" id="item-phyDef-lower" className="form-control form-control-sm" value={phyDefLower} onChange={handleItemPhyDefLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={phyDefUpper} onChange={handleItemPhyDefUpper} />
+                <label htmlFor="item-phyDef-upper" className="form-label">상옵</label>
+                <input type="text" id="item-phyDef-upper" className="form-control form-control-sm" value={phyDefUpper} onChange={handleItemPhyDefUpper} />
               </div>
 
             </div>
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-str" className="form-label">마법방어력</label>
-                <input type="text" id="item-str" className="form-control form-control-sm" value={mgDef} onChange={handleItemMgDef} />
+                <label htmlFor="item-mgDef" className="form-label">마법방어력</label>
+                <input type="text" id="item-mgDef" className="form-control form-control-sm" value={mgDef} onChange={handleItemMgDef} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={mgDefLower} onChange={handleItemMgDefLower} />
+                <label htmlFor="item-mgDef-lower" className="form-label">하옵</label>
+                <input type="text" id="item-mgDef-lower" className="form-control form-control-sm" value={mgDefLower} onChange={handleItemMgDefLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mgDefUpper} onChange={handleItemMgDefUpper} />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-2">
-                <label htmlFor="item-str" className="form-label">명중률</label>
-                <input type="text" id="item-str" className="form-control form-control-sm" value={acc} onChange={handleAcc} />
-              </div>
-              <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={accLower} onChange={handleAccLower} />
-              </div>
-              <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={accUpper} onChange={handleAccUpper} />
+                <label htmlFor="item-mgDef-upper" className="form-label">상옵</label>
+                <input type="text" id="item-mgDef-upper" className="form-control form-control-sm" value={mgDefUpper} onChange={handleItemMgDefUpper} />
               </div>
             </div>
 
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-str" className="form-label">회피율</label>
-                <input type="text" id="item-str" className="form-control form-control-sm" value={avo} onChange={handleAvo} />
+                <label htmlFor="item-acc" className="form-label">명중률</label>
+                <input type="text" id="item-acc" className="form-control form-control-sm" value={acc} onChange={handleAcc} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={avoLower} onChange={handleAvoLower} />
+                <label htmlFor="item-acc-lower" className="form-label">하옵</label>
+                <input type="text" id="item-acc-lower" className="form-control form-control-sm" value={accLower} onChange={handleAccLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={avoUpper} onChange={handleAvoUpper} />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-2">
-                <label htmlFor="item-str" className="form-label">이동속도</label>
-                <input type="text" id="item-str" className="form-control form-control-sm" value={move} onChange={handleMove} />
-              </div>
-              <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={moveLower} onChange={handleMoveLower} />
-              </div>
-              <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={moveUpper} onChange={handleMoveUpper} />
+                <label htmlFor="item-acc-upper" className="form-label">상옵</label>
+                <input type="text" id="item-acc-upper" className="form-control form-control-sm" value={accUpper} onChange={handleAccUpper} />
               </div>
             </div>
 
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-str" className="form-label">점프력</label>
-                <input type="text" id="item-str" className="form-control form-control-sm" value={jump} onChange={handleJump} />
+                <label htmlFor="item-acc" className="form-label">회피율</label>
+                <input type="text" id="item-acc" className="form-control form-control-sm" value={avo} onChange={handleAvo} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={jumpLower} onChange={handleJumpLower} />
+                <label htmlFor="item-acc-lower" className="form-label">하옵</label>
+                <input type="text" id="item-acc-lower" className="form-control form-control-sm" value={avoLower} onChange={handleAvoLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={jumpUpper} onChange={handleJumpUpper} />
+                <label htmlFor="item-acc-upper" className="form-label">상옵</label>
+                <input type="text" id="item-acc-upper" className="form-control form-control-sm" value={avoUpper} onChange={handleAvoUpper} />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-move" className="form-label">이동속도</label>
+                <input type="text" id="item-move" className="form-control form-control-sm" value={move} onChange={handleMove} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-move-lower" className="form-label">하옵</label>
+                <input type="text" id="item-move-lower" className="form-control form-control-sm" value={moveLower} onChange={handleMoveLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-move-upper" className="form-label">상옵</label>
+                <input type="text" id="item-move-upper" className="form-control form-control-sm" value={moveUpper} onChange={handleMoveUpper} />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-jump" className="form-label">점프력</label>
+                <input type="text" id="item-jump" className="form-control form-control-sm" value={jump} onChange={handleJump} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-jump-lower" className="form-label">하옵</label>
+                <input type="text" id="item-jump-lower" className="form-control form-control-sm" value={jumpLower} onChange={handleJumpLower} />
+              </div>
+              <div className="col-2">
+                <label htmlFor="item-jump-upper" className="form-label">상옵</label>
+                <input type="text" id="item-jump-upper" className="form-control form-control-sm" value={jumpUpper} onChange={handleJumpUpper} />
               </div>
             </div>
 
@@ -744,12 +752,12 @@ export default function NewItem() {
                 <input type="text" id="item-hp" className="form-control form-control-sm" value={hp} onChange={handleItemHp} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={hpLower} onChange={handleItemHpLower} />
+                <label htmlFor="item-hp-lower" className="form-label">하옵</label>
+                <input type="text" id="item-hp-lower" className="form-control form-control-sm" value={hpLower} onChange={handleItemHpLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={hpUpper} onChange={handleItemHpUpper} />
+                <label htmlFor="item-hp-upper" className="form-label">상옵</label>
+                <input type="text" id="item-hp-upper" className="form-control form-control-sm" value={hpUpper} onChange={handleItemHpUpper} />
               </div>
 
             </div>
@@ -759,14 +767,20 @@ export default function NewItem() {
                 <input type="text" id="item-mp" className="form-control form-control-sm" value={mp} onChange={handleItemMp} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-lower" className="form-label">하옵</label>
-                <input type="text" id="item-str-lower" className="form-control form-control-sm" value={mpLower} onChange={handleItemMpLower} />
+                <label htmlFor="item-mp-lower" className="form-label">하옵</label>
+                <input type="text" id="item-mp-lower" className="form-control form-control-sm" value={mpLower} onChange={handleItemMpLower} />
               </div>
               <div className="col-2">
-                <label htmlFor="item-str-upper" className="form-label">상옵</label>
-                <input type="text" id="item-str-upper" className="form-control form-control-sm" value={mpUpper} onChange={handleItemMpUpper} />
+                <label htmlFor="item-mp-upper" className="form-label">상옵</label>
+                <input type="text" id="item-mp-upper" className="form-control form-control-sm" value={mpUpper} onChange={handleItemMpUpper} />
               </div>
+            </div>
 
+            <div className="row">
+              <div className="col-2">
+                <label htmlFor="item-knockBack" className="form-label">타격 넉백 확률</label>
+                <input type="text" id="item-knockBack" className="form-control form-control-sm" value={knockBackPercent} onChange={handleKnockBackPercent} />
+              </div>
             </div>
           </section>
 

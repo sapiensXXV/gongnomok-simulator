@@ -40,6 +40,7 @@ public class ItemService {
         ItemStatusServiceDto status = dto.getStatus();
         int upgradableCount = dto.getUpgradableCount();
         AttackSpeed attackSpeed = dto.getAttackSpeed();
+        int knockBackPercent = dto.getKnockBackPercent();
 
         Item newItem = null;
         try {
@@ -74,6 +75,7 @@ public class ItemService {
                     .hp(mapper.writeValueAsString(status.getHp()))
                     .mp(mapper.writeValueAsString(status.getMp()))
                     .upgradable(upgradableCount)
+                    .knockBackPercent(knockBackPercent)
                     .build();
         } catch (JsonProcessingException e) {
             throw new RuntimeException("아이템 정보를 JSON으로 매핑할 수 없습니다.", e);
@@ -116,6 +118,7 @@ public class ItemService {
                 .build();
 
         String category = item.getCategory().name();
+        int knockBackPercent = item.getKnockBackPercent();
 
         ItemStatusDto status = ItemStatusDto.builder()
                 .str(mapper.readValue(item.getStr(), ItemStatusInfoDto.class))
@@ -146,6 +149,7 @@ public class ItemService {
                 .viewCount(viewCount)
                 .attackSpeed(attackSpeed)
                 .upgradableCount(upgradableCount)
+                .knockBackPercent(knockBackPercent)
                 .build();
     }
 }

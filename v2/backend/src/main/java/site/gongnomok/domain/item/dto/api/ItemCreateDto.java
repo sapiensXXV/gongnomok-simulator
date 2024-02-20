@@ -21,6 +21,7 @@ public class ItemCreateDto {
     private ItemStatusDto status;
     private int upgradableCount;
     private String attackSpeed;
+    private int knockBackPercent;
 
     public ItemCreateServiceDto toServiceDto() {
         return ItemCreateServiceDto.builder()
@@ -32,6 +33,7 @@ public class ItemCreateDto {
                 .status(status.toServiceDto())
                 .upgradableCount(upgradableCount)
                 .attackSpeed(attackSpeed == null ? null : AttackSpeed.stringToAttackSpeed(attackSpeed))
+                .knockBackPercent(knockBackPercent)
                 .build();
     }
 }
