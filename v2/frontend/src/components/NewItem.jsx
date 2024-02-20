@@ -583,7 +583,7 @@ export default function NewItem() {
             </div>
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-dex" className="form-label">Dex</label>
+                <label htmlFor="item-dex" className="form-label">DEX</label>
                 <input type="text" id="item-dex" className="form-control form-control-sm" value={dex} onChange={handleItemDex} />
               </div>
               <div className="col-2">
@@ -598,7 +598,7 @@ export default function NewItem() {
             </div>
             <div className="row">
               <div className="col-2">
-                <label htmlFor="item-intel" className="form-label">intel</label>
+                <label htmlFor="item-intel" className="form-label">INT</label>
                 <input type="text" id="item-intel" className="form-control form-control-sm" value={int} onChange={handleItemInt} />
               </div>
               <div className="col-2">

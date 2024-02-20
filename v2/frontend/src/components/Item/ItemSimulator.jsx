@@ -41,6 +41,7 @@ export default function ItemSimulator() {
   const [hp, setHp] = useState(0);
   const [mp, setMp] = useState(0);
   const [upgradable, setUpgradable] = useState(0);
+  const [knockBackPercent, setKnockBackPercent] = useState(0);
 
   const defaultStr = useRef(0);
   const defaultDex = useRef(0);
@@ -102,6 +103,7 @@ export default function ItemSimulator() {
       setHp(copy.status.hp.normal);
       setMp(copy.status.mp.normal);
       setUpgradable(copy.upgradableCount)
+      setKnockBackPercent(copy.knockBackPercent);
 
       defaultStr.current = copy.status.str.normal;
       defaultDex.current = copy.status.dex.normal;
@@ -530,6 +532,7 @@ export default function ItemSimulator() {
                 {mp > 0 && <span>MP : +{mp}</span>}
                 {move > 0 && <span>이동속도 : +{move}</span>}
                 {jump > 0 && <span>점프력 : +{jump}</span>}
+                {knockBackPercent > 0 && <span>직접 타격시 넉백 확률 : +{knockBackPercent}%</span> }
                 <span>업그레이드 가능 횟수 : {upgradable}</span>
               </div>
             </section>

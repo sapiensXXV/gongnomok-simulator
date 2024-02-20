@@ -201,15 +201,19 @@
     position: relative;
     justify-content: center;
 
+    width: 90px;
+    height: 90px;
+
     border: none;
+
+    align-items: center;
+    background-color: #C9C8D4;
   }
 
   .item-img {
     
-    background-color: #C9C8D4;
-    width: 92px;
-    height: 92px;
-    padding: 9px;
+    
+    height: 78%
   }
 
   .scroll-animation {
