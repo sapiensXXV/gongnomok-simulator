@@ -454,7 +454,7 @@ export default function ItemSimulator() {
     scrollAnimation.current.src = successGifPath;
     timer = setTimeout(function () {
       scrollAnimation.current.src = transParentImgPath;
-    }, 1000);
+    }, 900);
   }
 
   function playFailureGif() {
@@ -462,7 +462,7 @@ export default function ItemSimulator() {
     scrollAnimation.current.src = failGifPath;
     timer = setTimeout(function () {
       scrollAnimation.current.src = transParentImgPath;
-    }, 1000);
+    }, 600);
   }
 
   return (
