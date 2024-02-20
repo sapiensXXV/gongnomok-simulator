@@ -81,8 +81,8 @@
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 15vw;
-    height: 15vw;
+    width: 120px;
+    height: 120px;
   
     border: none;
     border-radius: 12px;
@@ -104,8 +104,8 @@
   .item-list-button span {
     display: block;
     font-family: SOYOMapleBoldTTF;
-    font-size: 1.8vw;
-    margin-top: 11px;
+    font-size: 15px;
+    margin-top: 6px;
   }
 
   /*********** 시뮬레이터 ***********/
