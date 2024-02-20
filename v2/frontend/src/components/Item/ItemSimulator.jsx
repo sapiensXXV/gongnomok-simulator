@@ -323,6 +323,18 @@ export default function ItemSimulator() {
       case 'mp':
         defaultMp.current = value;
         break;
+      case 'avo':
+        defaultAvo.current = value;
+        break;
+      case 'acc':
+        defaultAcc.current = value;
+        break;
+      case 'move':
+        defaultMove.current = value;
+        break;
+      case 'jump':
+        defaultJump.current = value;
+        break;
     }
 
     resetItem();

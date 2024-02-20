@@ -16,7 +16,7 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
         const key = keys[i];
         const value = statusInfo[key];
 
-        if (key === 'acc' || key === 'avo' || key === 'move' || key === 'jump') continue;
+        // if (key === 'acc' || key === 'avo' || key === 'move' || key === 'jump') continue;
 
         if (value.lower > 0 || value.upper > 0) {
           newOptionList.push({ name: key, ...statusInfo[key] });

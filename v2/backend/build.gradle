@@ -63,3 +63,4 @@ sourceSets {
 clean {
 	delete file(generated)
 }
+
