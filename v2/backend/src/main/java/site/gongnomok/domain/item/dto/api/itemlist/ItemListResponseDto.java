@@ -12,16 +12,28 @@ import java.util.List;
 @ToString
 public class ItemListResponseDto {
 
-    public List<ItemResponseDto> items;
+    private List<ItemResponseDto> items;
+    private int startPage;
+    private int endPage;
 
     private ItemListResponseDto() {
     }
 
-    private ItemListResponseDto(List<ItemResponseDto> items) {
+    private ItemListResponseDto(
+            final List<ItemResponseDto> items,
+            final int startPage,
+            final int endPage
+    ) {
         this.items = items;
+        this.startPage = startPage;
+        this.endPage = endPage;
     }
 
-    public static ItemListResponseDto of(List<ItemResponseDto> items) {
-        return new ItemListResponseDto(items);
+    public static ItemListResponseDto of(
+            List<ItemResponseDto> items,
+            final int startPage,
+            final int endPage
+    ) {
+        return new ItemListResponseDto(items, startPage, endPage);
     }
 }
