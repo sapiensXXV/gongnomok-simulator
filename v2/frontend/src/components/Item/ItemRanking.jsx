@@ -20,7 +20,7 @@ export default function ItemRanking() {
   return (
     <>
       <section className="item-ranking-container d-flex bg-light">
-        <span className="item-ranking-title">인기 순위</span>
+        <span className="item-ranking-title">인기 아이템</span>
 
         <div className="ranking-items">
           {
