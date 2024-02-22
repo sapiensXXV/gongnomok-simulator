@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import site.gongnomok.domain.member.dto.LoginDto;
 import site.gongnomok.domain.member.dto.MemberDto;
 import site.gongnomok.domain.member.service.MemberService;
-import site.gongnomok.global.MemberConst;
+import site.gongnomok.global.constant.MemberConst;
 
 @Slf4j
 @CrossOrigin

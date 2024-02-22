@@ -6,15 +6,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.domain.item.dto.ItemRankingResponse;
 import site.gongnomok.domain.item.dto.api.ItemCreateDto;
 import site.gongnomok.domain.item.dto.api.ItemDetailResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.domain.item.service.ItemService;
 import site.gongnomok.domain.member.dto.MemberDto;
-import site.gongnomok.global.MemberConst;
+import site.gongnomok.global.constant.MemberConst;
 
 import java.net.URI;
+import java.util.List;
 
 import static site.gongnomok.global.entity.enumerate.Role.USER;
 
@@ -46,6 +48,13 @@ public class ItemController {
         Long id = createDto.getId();
         itemService.saveItem(createDto.toServiceDto());
         return ResponseEntity.created(URI.create("/item/" + id)).build();
+    }
+
+    @GetMapping("/item/ranking")
+    public ResponseEntity<List<ItemRankingResponse>> itemRanking() {
+
+        List<ItemRankingResponse> result = itemService.itemRanking();
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/items")

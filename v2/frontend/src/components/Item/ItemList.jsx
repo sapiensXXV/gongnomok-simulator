@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useState } from "react";
 import SingleItem from "./SingleItem";
+import ItemRanking from "./ItemRanking";
 
 
 
@@ -12,7 +13,7 @@ export default function ItemList({
 
   return (
     <>
-
+      <ItemRanking/>
       <section className="bg-light rounded py-2 px-1">
         <h2 className="item-list-title text-center">아이템 목록</h2>
         <section className="col-md-12 bg-light rounded item-list-container px-2 py-2">

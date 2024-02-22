@@ -74,7 +74,7 @@
   }
   
   .item-list-title {
-    font-family: NPSfontBold;
+    font-family: SOYOMapleBoldTTF;
   }
   
 
@@ -92,8 +92,60 @@
   }
 
   .item-condition-title {
-    font-family: NPSfontBold;
+    font-family: SOYOMapleBoldTTF;
   }
+
+/********************* 랭킹 ************************/
+.item-ranking-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: Pretendard-Regular;
+
+  margin-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+
+  border-radius: 8px;
+}
+
+.item-ranking-container img {
+  width: 30px;
+}
+
+.item-ranking-title {
+  font-family: SOYOMapleBoldTTF;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.ranking-items {
+  /* display: flex; */
+  /* justify-content:   start; */
+  /* flex-direction: column;
+  align-items: center;
+
+  gap: 2px; */
+}
+
+.single-ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: rgb(53, 53, 53);
+}
+
+.item-rank-text {
+  font-family: SOYOMapleBoldTTF;
+}
+
+.single-ranking-item a {
+  text-decoration: none;
+  color: inherit;
+}
 
   /* 아이템 리스트 이미지 */
   .item-list-button img {

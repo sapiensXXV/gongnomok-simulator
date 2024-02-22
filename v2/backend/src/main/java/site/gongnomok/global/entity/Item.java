@@ -53,4 +53,8 @@ public class Item {
     private int viewCount;
     private int knockBackPercent;
 
+    public void addViewCount() {
+        viewCount++;
+    }
+
 }

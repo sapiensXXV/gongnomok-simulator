@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
+import site.gongnomok.domain.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.domain.item.dto.api.ItemListPageDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
@@ -126,6 +127,23 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
                 .fetch();
     }
 
+    @Override
+    public List<ItemRankingRepositoryDto> findItemByViewCount(long findCount) {
+        return queryFactory
+                .select(
+                        Projections.fields(
+                                ItemRankingRepositoryDto.class,
+                                item.id.as("itemId"),
+                                item.name,
+                                item.viewCount
+                        )
+                )
+                .from(item)
+                .orderBy(item.viewCount.desc())
+                .limit(findCount)
+                .fetch();
+    }
+
     private Pageable exchangePageRequest(Pageable pageable, long totalCount) {
         /**
          * 요청한 페이지 번호가 기존의 사이즈를 초과할 경우 마지막 페이지의 데이터를 반환한다.
@@ -141,17 +159,6 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
         int requestPageNo = (int) Math.ceil((double) totalCount / pageNo);
         return PageRequest.of(requestPageNo, pageSize);
     }
-
-//    private BooleanExpression checkItemConditions(ItemListRequestServiceDto condition) {
-//        if (condition == null) return null;
-//        String conditionName = condition.getName();
-//        Job conditionJob = condition.getJob();
-//        Category conditionCategory = condition.getCategory();
-//        int conditionMinLevel = condition.getMinLevel();
-//
-//        return nameContains(conditionName)
-//
-//    }
 
     private BooleanExpression nameContains(String name) {
         if (name.equals("")) {

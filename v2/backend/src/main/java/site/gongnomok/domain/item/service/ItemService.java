@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import site.gongnomok.domain.item.dto.ItemRankingRepositoryDto;
+import site.gongnomok.domain.item.dto.ItemRankingResponse;
 import site.gongnomok.domain.item.dto.api.*;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
@@ -17,21 +20,27 @@ import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
 import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
 import site.gongnomok.domain.item.exception.CannotFindItemException;
 import site.gongnomok.domain.item.repository.ItemRepository;
+import site.gongnomok.global.constant.ItemConst;
 import site.gongnomok.global.entity.Item;
 import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static site.gongnomok.global.constant.ItemConst.RANKING_ITEM_NUMBER;
+
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ItemService {
 
     private final ItemRepository itemRepository;
     private final ObjectMapper mapper;
 
+    @Transactional
     public void saveItem(ItemCreateServiceDto dto) {
         Long itemId = dto.getId();
         String itemName = dto.getName();
@@ -101,9 +110,21 @@ public class ItemService {
         return ItemListResponseDto.of(items);
     }
 
+    public List<ItemRankingResponse> itemRanking() {
+        List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCount(RANKING_ITEM_NUMBER);
+        List<ItemRankingResponse> ranking = new ArrayList<>();
+        for (int i = 1; i <= items.size(); i++) {
+            ItemRankingRepositoryDto item = items.get(i - 1);
+            ranking.add(ItemRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
+        }
+        return ranking;
+    }
+
+    @Transactional
     public ItemDetailResponseDto findItemById(Long id) throws JsonProcessingException {
         Optional<Item> findItem = itemRepository.findById(id);
         Item item = findItem.orElseThrow(CannotFindItemException::new);
+        item.addViewCount(); // 조회수 증가
 
         String name = item.getName();
         ItemRequiredDto requiredDto = ItemRequiredDto.builder()

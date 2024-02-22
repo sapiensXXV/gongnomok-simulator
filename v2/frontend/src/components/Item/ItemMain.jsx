@@ -5,6 +5,7 @@ import ItemList from "./ItemList";
 import axios from "axios";
 
 import { DEFAULT_FETCH_SIZE } from "../../global/item";
+import ItemRanking from "./ItemRanking";
 
 export default function ItemMain() {
 
