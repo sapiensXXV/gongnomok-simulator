@@ -13,27 +13,19 @@ import java.util.List;
 public class ItemListResponseDto {
 
     private List<ItemResponseDto> items;
-    private int startPage;
-    private int endPage;
 
     private ItemListResponseDto() {
     }
 
     private ItemListResponseDto(
-            final List<ItemResponseDto> items,
-            final int startPage,
-            final int endPage
+            final List<ItemResponseDto> items
     ) {
         this.items = items;
-        this.startPage = startPage;
-        this.endPage = endPage;
     }
 
     public static ItemListResponseDto of(
-            List<ItemResponseDto> items,
-            final int startPage,
-            final int endPage
+            List<ItemResponseDto> items
     ) {
-        return new ItemListResponseDto(items, startPage, endPage);
+        return new ItemListResponseDto(items);
     }
 }

@@ -25,6 +25,8 @@ export const ITEM_CATEGORIES = [
   "CAPE",
 ]
 
+export const DEFAULT_FETCH_SIZE = 30;
+
 export const INIT_ITEM_INFO = {
   name: '',
   required: {

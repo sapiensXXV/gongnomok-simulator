@@ -3,12 +3,13 @@ import { useEffect, useState, useRef } from "react";
 import ItemCondition from "./ItemCondition";
 import ItemList from "./ItemList";
 import axios from "axios";
-import { current } from "@reduxjs/toolkit";
+
+import { DEFAULT_FETCH_SIZE } from "../../global/item";
 
 export default function ItemMain() {
 
   const [itemName, setItemName] = useState('');
-  const [job, setJob] = useState("COMMON");
+  const [job, setJob] = useState("NONE");
   const [minLevel, setMinLevel] = useState(0);
   const [category, setCategory] = useState("NONE")
 
@@ -18,25 +19,22 @@ export default function ItemMain() {
   const isLoading = useRef(false);
   // const searchCondition = useRef(DEFAULT_ITEM_CONDITION);
   const nextPage = useRef(0);
-  const hasNextPage = useRef(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
 
   // 화면에 접속하자마자 검색이 필요하다.
   useEffect(() => {
     console.log(`아이템 첫 로딩`)
-    isLoading.current = true;
+    setIsItemLoaded(false)
     axios
-      .get('/api/items?page=0&size=50')
+      .get(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
         setItemList(res.data.items); // 조회 결과 아이템
         setIsItemLoaded(true);
 
-        if (res.data.items.length < 50) hasNextPage.current = false;
-        else hasNextPage.current = true;
+        if (res.data.items.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
+        else setHasNextPage(true);
 
         nextPage.current += 1
-        isLoading.current = false;
-
-        console.log(res)
       })
       .catch((err) => {
         console.log(err)
@@ -69,35 +67,63 @@ export default function ItemMain() {
     }
   }
 
-  function handleConditionSearch() {
+  function handleConditionSearch(e) {
 
-    console.log(`검색 버튼이 눌렸다.`)
-    console.log(`/api/items?page=${nextPage.current}&size=50`)
-    console.log(`searchCondition=${getSearchCondition()}`);
-    console.log(`hasNextPage=${hasNextPage.current}`)
-    console.log(`isLoading=${isLoading.current}`)
-
-    isLoading.current = true;
-
+    // console.log(`검색 버튼이 눌렸다.`)
+    // console.log(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
+    // console.log(`searchCondition=${getSearchCondition()}`);
+    // console.log(`hasNextPage=${hasNextPage}`)
+    // console.log(`isLoading=${isLoading.current}`)
+    e.preventDefault();
+    setIsItemLoaded(false);
     axios
-    .post('/api/items?page=0&size=50', getSearchCondition())
-    .then((res) => {
-      console.log(res)
-      setItemList(...res.data.items)
-      setIsItemLoaded(true); // 아이템 로딩 완료 => 스피너 사라짐
+      .post(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
+      .then((res) => {
+        console.log(res.data.items)
+        setItemList([...res.data.items])
+        setIsItemLoaded(true)
 
-      isLoading.current = false;
-      nextPage.current += 1
-      if (res.data.items.length < 50) hasNextPage.current = false;
-    })
-    .catch((err) => {
-      console.log(err)
-      setItemList([]);
-    })
+        nextPage.current = 1
+        if (res.data.items.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
+        else setHasNextPage(true);  
+      })
+      .catch((err) => {
+        console.log(err)
+        setItemList([]);
+      })
   }
+
+  function handleMoreItemButton(e) {
+    e.preventDefault()
+    setIsItemLoaded(false);
+    // console.log(`더보기 버튼 클릭`)
+    // console.log(`요청링크=[/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}]`)
+    // console.log(getSearchCondition())
+    axios
+      .post(`/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
+      .then((res) => {
+        console.log(res)
+        setItemList([...itemList, ...res.data.items])
+        setIsItemLoaded(true);
+
+        if (res.data.items.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
+        else setHasNextPage(true);
+
+        nextPage.current += 1;
+      })
+      .catch((err) => {
+        console.log(err);
+        setItemList([])
+      })
+  }
+
+  // function showCondition() {
+  //   console.log(getSearchCondition())
+  // }
 
   return (
     <>
+      {/* <button onClick={showCondition}>condition</button> */}
       <section className="mt-3">
         <div className="row">
           <div className="col-lg-12 col-xl-4">
@@ -120,6 +146,7 @@ export default function ItemMain() {
                 itemList={itemList} 
                 isItemLoaded={isItemLoaded}
                 hasNextPage={hasNextPage}
+                handleMoreItemButton={handleMoreItemButton}
               />
             </section>
           </div>

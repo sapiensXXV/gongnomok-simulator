@@ -12,7 +12,7 @@ export default function ItemCondition({
     <>
       <section className="bg-light rounded py-2">
         <h2 className="text-center item-condition-title">아이템 검색</h2>
-        <form onSubmit={handleSubmitButton}>
+        <form onSubmit={(e) => handleSubmitButton(e)}>
           <section id="item-name-condition" className="d-flex bd-highlight">
             <div className="p-2 flex-grow-1 bd-highlight">
               <input

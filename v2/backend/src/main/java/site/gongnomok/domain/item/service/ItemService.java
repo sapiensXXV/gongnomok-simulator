@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import site.gongnomok.domain.item.dto.api.*;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
@@ -84,8 +85,8 @@ public class ItemService {
         itemRepository.save(newItem);
     }
 
-    public ItemListResponseDto findItems(ItemListRequestServiceDto dto) {
-        List<ItemResponseDto> items = itemRepository.findItems(dto);
+    public ItemListResponseDto findItemsWithCondition(ItemListRequestServiceDto dto, Pageable pageable) {
+        List<ItemResponseDto> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
         return ItemListResponseDto.of(items);
     }
 
@@ -93,6 +94,11 @@ public class ItemService {
         List<ItemResponseDto> items = itemRepository.findAllOrderById();
         return ItemListResponseDto.of(items);
 
+    }
+
+    public ItemListResponseDto findPaginationItems(Pageable pageable) {
+        List<ItemResponseDto> items = itemRepository.paginationFindItems(pageable);
+        return ItemListResponseDto.of(items);
     }
 
     public ItemDetailResponseDto findItemById(Long id) throws JsonProcessingException {

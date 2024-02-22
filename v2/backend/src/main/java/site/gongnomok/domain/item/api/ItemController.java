@@ -3,13 +3,13 @@ package site.gongnomok.domain.item.api;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.domain.item.dto.api.ItemCreateDto;
 import site.gongnomok.domain.item.dto.api.ItemDetailResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
-import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
 import site.gongnomok.domain.item.service.ItemService;
 import site.gongnomok.domain.member.dto.MemberDto;
 import site.gongnomok.global.MemberConst;
@@ -48,20 +48,20 @@ public class ItemController {
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
+//    @GetMapping("/items")
+//    public ResponseEntity<ItemListResponseDto> paginationItems(
+//        Pageable pageable
+//    ) {
+//        ItemListResponseDto paginationItems = itemService.findPaginationItems(pageable);
+//        return ResponseEntity.ok(paginationItems);
+//    }
+
     @GetMapping("/items")
-    public ResponseEntity<ItemListResponseDto> items() {
-        ItemListResponseDto allItems = itemService.findAllOrderById();
-
-        return ResponseEntity.ok(allItems);
-    }
-
-    @PostMapping("/items")
     public ResponseEntity<ItemListResponseDto> searchItems(
-        @RequestBody ItemListRequestDto requestDto
+        @RequestBody ItemListRequestDto requestDto,
+        Pageable pageable
     ) {
-        log.info("request = {}", requestDto);
-        ItemListResponseDto searchResult = itemService.findItems(requestDto.toServiceDto());
-
+        ItemListResponseDto searchResult = itemService.findItemsWithCondition(requestDto.toServiceDto(), pageable);
         return ResponseEntity.ok(searchResult);
     }
 
