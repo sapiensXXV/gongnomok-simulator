@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class WebController {
 
-//    @GetMapping({"/", "/login", "/item/**"})
+//    @GetMapping({"/", "/login", "/item/**", "/items/**"})
 ////    @GetMapping
 //    public String index() {
 //

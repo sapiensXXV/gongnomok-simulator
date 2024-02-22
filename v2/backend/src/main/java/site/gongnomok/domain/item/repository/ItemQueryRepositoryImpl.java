@@ -94,9 +94,9 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
                         )
                 )
                 .from(item)
+                .orderBy(item.id.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(item.id.asc())
                 .fetch();
     }
 

@@ -48,15 +48,13 @@ public class ItemController {
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
-//    @GetMapping("/items")
-//    public ResponseEntity<ItemListResponseDto> paginationItems(
-//        Pageable pageable
-//    ) {
-//        ItemListResponseDto paginationItems = itemService.findPaginationItems(pageable);
-//        return ResponseEntity.ok(paginationItems);
-//    }
-
     @GetMapping("/items")
+    public ResponseEntity<ItemListResponseDto> findItems(Pageable pageable) {
+        ItemListResponseDto paginationItems = itemService.findPaginationItems(pageable);
+        return ResponseEntity.ok(paginationItems);
+    }
+
+    @PostMapping("/items")
     public ResponseEntity<ItemListResponseDto> searchItems(
         @RequestBody ItemListRequestDto requestDto,
         Pageable pageable

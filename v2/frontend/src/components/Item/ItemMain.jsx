@@ -15,8 +15,6 @@ export default function ItemMain() {
 
   const [itemList, setItemList] = useState([]);  
   const [isItemLoaded, setIsItemLoaded] = useState(false);
-
-  const isLoading = useRef(false);
   // const searchCondition = useRef(DEFAULT_ITEM_CONDITION);
   const nextPage = useRef(0);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -24,6 +22,7 @@ export default function ItemMain() {
   // 화면에 접속하자마자 검색이 필요하다.
   useEffect(() => {
     console.log(`아이템 첫 로딩`)
+    console.log(getSearchCondition())
     setIsItemLoaded(false)
     axios
       .get(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
@@ -47,6 +46,7 @@ export default function ItemMain() {
   }
 
   const handleJob = (e) => {
+
     setJob(e.target.value)
   }
 
