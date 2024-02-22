@@ -102,6 +102,12 @@
     margin-top: 7px;
   }
 
+
+  .more-item-button {
+    width: 100%;
+    margin-top: 8px;
+    background-color: rgb(255, 255, 255);
+  }
   .shorcut-guide-section {
     display: none;
     flex-direction: column;

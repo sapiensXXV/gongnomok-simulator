@@ -120,6 +120,12 @@
     
   }
 
+  .more-item-button {
+    width: 100%;
+    margin-top: 8px;
+    background-color: rgb(255, 255, 255);
+  }
+
   .shortcut-info {
     margin-top: 3px;
     margin-bottom: 3px;

@@ -108,6 +108,12 @@
     margin-top: 6px;
   }
 
+  .more-item-button {
+    width: 100%;
+    margin-top: 8px;
+    background-color: rgb(255, 255, 255);
+  }
+
   /*********** 시뮬레이터 ***********/
 
   .shorcut-guide-section {
