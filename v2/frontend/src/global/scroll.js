@@ -1,8 +1,8 @@
-const glove_phy_atk = {
-  keyword: "GLOVE_PHY_ATK",
+const gloves_phy_atk = {
+  keyword: "GLOVES_PHY_ATK",
   name: "장갑 공격력 주문서",
   shortcut: "장공",
-  category: "GLOVE",
+  category: "GLOVES",
   upgradeValue: {
     _10: [
       { name: "phyAtk", value: 3 }
@@ -16,11 +16,11 @@ const glove_phy_atk = {
   }
 }
 
-const glove_swift = {
-  keyword: "GLOVE_SWIFT",
+const gloves_swift = {
+  keyword: "GLOVES_SWIFT",
   name: "장갑 민첩성 주문서",
   shortcut: "장민",
-  category: "GLOVE",
+  category: "GLOVES",
   upgradeValue: {
     _10: [
       { name: "acc", value: 5 },
@@ -37,11 +37,11 @@ const glove_swift = {
   }
 }
 
-const glove_health = {
-  keyword: "GLOVE_HEALTH",
+const gloves_health = {
+  keyword: "GLOVES_HEALTH",
   name: "장갑 체력 주문서",
   shortcut: "장체",
-  category: "GLOVE",
+  category: "GLOVES",
   upgradeValue: {
     _10: [
       { name: "hp", value: 30 }
@@ -1222,9 +1222,9 @@ const shield_strength = {
 }
 
 export const SCROLL_NAME_LIST = [
-  "GLOVE_PHY_ATK",
-  "GLOVE_SWIFT",
-  "GLOVE_HEALTH",
+  "GLOVES_PHY_ATK",
+  "GLOVES_SWIFT",
+  "GLOVES_HEALTH",
 
   "HAT_SWIFT",
   "HAT_DEFENCE",
@@ -1307,9 +1307,9 @@ export const SCROLL_NAME_LIST = [
 
 
 export const SCROLL_INFO = new Map([
-  ["GLOVE_PHY_ATK", glove_phy_atk],
-  ["GLOVE_SWIFT", glove_swift],
-  ["GLOVE_HEALTH", glove_health],
+  ["GLOVES_PHY_ATK", gloves_phy_atk],
+  ["GLOVES_SWIFT", gloves_swift],
+  ["GLOVES_HEALTH", gloves_health],
 
   ["HAT_SWIFT", hat_swift],
   ["HAT_DEFENCE", hat_defence],

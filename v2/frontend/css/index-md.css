@@ -91,14 +91,14 @@
 
   /* 아이템 리스트 이미지 */
   .item-list-button img {
-    height: 60%
+    height: 55%
   }
   
   /* 아이템 리스트 아이템 이름 */
   .item-list-button span {
     display: block;
     font-family: SOYOMapleBoldTTF;
-    font-size: 1.8vw;
+    font-size: 1.53vw;
     margin-top: 11px;
   }
 

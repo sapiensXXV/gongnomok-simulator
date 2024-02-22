@@ -44,12 +44,6 @@ export default function ItemList({
             </button>
           }
         </section>
-
-
-
-
-
-
       </section>
     </>
   )

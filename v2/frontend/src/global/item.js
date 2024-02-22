@@ -122,7 +122,7 @@ export const CATEGORY_NAME = new Map([
   ["DAGGER", "단검"],
   ["CLAW", "아대"],
   ["HAT", "모자"],
-  ["GLOVE", "장갑"],
+  ["GLOVES", "장갑"],
   ["SHOES", "신발"],
   ["OVERALL", "한벌옷"],
   ["TOP", "상의"],
