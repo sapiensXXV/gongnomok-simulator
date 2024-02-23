@@ -31,6 +31,7 @@ export default function ItemMain() {
         } else {
           setItemList(items);
         }
+        console.log(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
         console.log(res);
         setItemList(res?.data?.items); // 조회 결과 아이템
         setIsItemLoaded(true);
