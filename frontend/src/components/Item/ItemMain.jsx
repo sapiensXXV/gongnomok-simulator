@@ -28,7 +28,7 @@ export default function ItemMain() {
         setItemList(res.data.items); // 조회 결과 아이템
         setIsItemLoaded(true);
 
-        if (res.data.items.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
+        if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
         else setHasNextPage(true);
 
         nextPage.current += 1
@@ -75,7 +75,7 @@ export default function ItemMain() {
         setIsItemLoaded(true)
 
         nextPage.current = 1
-        if (res.data.items.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
+        if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
         else setHasNextPage(true);  
       })
       .catch((err) => {
@@ -96,7 +96,7 @@ export default function ItemMain() {
         setItemList([...itemList, ...res.data.items])
         setIsItemLoaded(true);
 
-        if (res.data.items.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
+        if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
         else setHasNextPage(true);
 
         nextPage.current += 1;

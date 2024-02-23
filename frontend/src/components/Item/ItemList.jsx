@@ -20,8 +20,8 @@ export default function ItemList({
           <div className="row row-cols-xs-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-auto row-cols-xl-6 g-3 d-flex justify-content-start">
 
             {
-              itemList != null && itemList.length > 0 &&
-              itemList.map((item) => {
+              itemList != null && itemList?.length > 0 &&
+              itemList?.map((item) => {
                 return (
                   <div key={item.itemId} className="col d-flex justify-content-start" >
                     <SingleItem key={`item${item.itemId}`} id={item.itemId} name={item.name} />

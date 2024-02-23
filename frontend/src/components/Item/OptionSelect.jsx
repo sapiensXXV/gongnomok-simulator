@@ -11,7 +11,7 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
     if (statusInfo != null) {
       const keys = Object.keys(statusInfo);
       // console.log(keys)
-      for (let i = 0; i < keys.length; i++) {
+      for (let i = 0; i < keys?.length; i++) {
         
         const key = keys[i];
         const value = statusInfo[key];
@@ -29,8 +29,8 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
   return (
     <>
       {
-        optionList.length > 0 &&
-        optionList.map((option) => {
+        optionList?.length > 0 &&
+        optionList?.map((option) => {
           return (
             <select
               key={`${option.name}_option`}

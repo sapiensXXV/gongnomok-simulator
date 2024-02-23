@@ -122,14 +122,14 @@ export default function ItemSimulator() {
 
       
 
-      for (let i = 0; i < SCROLL_NAME_LIST.length; i++) {
+      for (let i = 0; i < SCROLL_NAME_LIST?.length; i++) {
         const name = SCROLL_NAME_LIST[i];
         if(SCROLL_INFO.get(name).category === data.category) {
           availableScroll.current = [...availableScroll.current, SCROLL_INFO.get(name)];
         }
       }
       
-      if (availableScroll.current.length > 0) {
+      if (availableScroll.current?.length > 0) {
         setCurrentScroll(availableScroll.current[0]);
       }
 
@@ -211,7 +211,7 @@ export default function ItemSimulator() {
       upgradeInfo = SCROLL_INFO.get(currentScroll.keyword).upgradeValue._100
     }
 
-    upgradeInfo.map((scroll) => {
+    upgradeInfo?.map((scroll) => {
       switch (scroll.name) {
         case 'str':
           setStr((prev) => prev + scroll.value)
@@ -567,7 +567,7 @@ export default function ItemSimulator() {
               defaultValue={currentScroll}
             >
               {
-                availableScroll.current.map((scroll) => {
+                availableScroll.current?.map((scroll) => {
                   if (scroll === undefined) return;
                   const key = scroll.keyword;
                   return <option key={`${key}`} value={key}>{scroll.name}</option>
