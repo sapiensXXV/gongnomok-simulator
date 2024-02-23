@@ -9,7 +9,7 @@ export default function ItemRanking() {
     axios
       .get(`/api/item/ranking`)
       .then((response) => {
-        setRankingItems(response.data);
+        setRankingItems(response?.data);
       })
       .catch((err) => {
         console.log(err)

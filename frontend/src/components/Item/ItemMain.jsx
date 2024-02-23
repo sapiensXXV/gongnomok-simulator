@@ -25,7 +25,7 @@ export default function ItemMain() {
     axios
       .get(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
-        setItemList(res.data.items); // 조회 결과 아이템
+        setItemList(res?.data?.items); // 조회 결과 아이템
         setIsItemLoaded(true);
 
         if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
