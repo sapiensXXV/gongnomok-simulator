@@ -567,6 +567,7 @@ export default function ItemSimulator() {
               defaultValue={currentScroll}
             >
               {
+                availableScroll?.current != null && availableScroll.current?.length > 0 &&
                 availableScroll.current?.map((scroll) => {
                   if (scroll === undefined) return;
                   const key = scroll.keyword;
