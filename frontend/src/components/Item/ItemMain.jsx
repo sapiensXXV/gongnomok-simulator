@@ -25,8 +25,14 @@ export default function ItemMain() {
     axios
       .get(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
+        const items = res?.data?.items;
+        if (items === undefined || items === null) {
+          setItemList([]);
+        } else {
+          setItemList(items);
+        }
+        console.log(res);
         setItemList(res?.data?.items); // 조회 결과 아이템
-        console.log(res?.data?.items);
         setIsItemLoaded(true);
 
         if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
