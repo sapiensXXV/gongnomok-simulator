@@ -29,6 +29,7 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
   return (
     <>
       {
+        optionList.length > 0 &&
         optionList.map((option) => {
           return (
             <select

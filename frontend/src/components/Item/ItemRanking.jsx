@@ -23,6 +23,7 @@ export default function ItemRanking() {
 
         <div className="ranking-items">
           {
+            rankingItems != null && rankingItems.length > 0 &&
             rankingItems.map((item) => {
               return (
                 <div key={`item-rank${item.rank}`}>
