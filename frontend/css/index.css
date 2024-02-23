@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NPSfontBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SOYOMapleBoldTTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: Pretendard-Regular;
+}
+
+.title {
+  font-family: NPSfontBold;
+}
+
+.item-list-title {
+  font-family: NPSfontBold;
+}
+
+.item-condition-title {
+  font-family: NPSfontBold;
+}
+
+.item-card {
+  font-family: SOYOMapleBoldTTF;
+  font-size: small;
+}
+
+.item-card img {
+  width: 60%;
+  margin: auto;
+  display: block;
+}
+
+
+
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.item-list-container {
+  height: 85vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.item-list-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+
+  text-overflow: ellipsis;
+
+}
+
+.item-list-button button {
+  width: 6vw;
+  height: 6vw;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 2px
+
+}
+
+.item-condition-title {
+  font-family: NPSfontBold;
+}
+
+.item-list-button img {
+  height: 60%
+}
+
+.item-list-button span {
+  display: block;
+  font-family: SOYOMapleBoldTTF;
+  font-size: 0.7vw;
+  margin-top: 4px;
+}
+
+.item-list-button button:focus {
+  border-width: 2px;
+  border-color: blue;
+}
