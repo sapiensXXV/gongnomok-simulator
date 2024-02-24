@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { BASE_URI } from "../../global/uri";
 
 export default function ItemRanking() {
 
@@ -7,7 +8,7 @@ export default function ItemRanking() {
 
   useEffect(() => {
     axios
-      .get(`/api/item/ranking`)
+      .get(`${BASE_URI}/item/ranking`)
       .then((response) => {
         setRankingItems(response?.data);
       })
