@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import JobSelect from "./Item/form/JobSelect";
+import { BASE_URI } from "../global/uri";
 
 
 export default function NewItem() {
@@ -102,7 +103,7 @@ export default function NewItem() {
 
 
   useEffect(() => {
-    axios.get('/api/item/new')
+    axios.get(`${BASE_URI}/item/new`)
       .then((response) => {
         console.log(response)
       })
@@ -206,7 +207,7 @@ export default function NewItem() {
     console.log(`request json = ${itemForm}`)
     // 폼 요청
     axios
-      .post('/api/item/new', itemForm)
+      .post(`${BASE_URI}/item/new`, itemForm)
       .then((response) => {
         console.log(response);
         alert('등록성공')

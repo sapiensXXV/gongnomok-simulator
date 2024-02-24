@@ -5,6 +5,7 @@ import ItemList from "./ItemList";
 import axios from "axios";
 
 import { DEFAULT_FETCH_SIZE } from "../../global/item";
+import { BASE_URI } from "../../global/uri";
 
 export default function ItemMain() {
 
@@ -23,7 +24,7 @@ export default function ItemMain() {
   useEffect(() => {
     setIsItemLoaded(false)
     axios
-      .get(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
+      .get(`${BASE_URI}/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
         const items = res?.data?.items;
         if (items === undefined || items === null) {
@@ -31,8 +32,8 @@ export default function ItemMain() {
         } else {
           setItemList(items);
         }
-        console.log(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
-        console.log(res);
+        // console.log(`http://localhost:8080/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
+        // console.log(res);
         setItemList(res?.data?.items); // 조회 결과 아이템
         setIsItemLoaded(true);
 
@@ -77,7 +78,7 @@ export default function ItemMain() {
     e.preventDefault();
     setIsItemLoaded(false);
     axios
-      .post(`/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
+      .post(`${BASE_URI}/items?page=0&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
       .then((res) => {
         setItemList([...res.data.items])
         setIsItemLoaded(true)
@@ -95,11 +96,8 @@ export default function ItemMain() {
   function handleMoreItemButton(e) {
     e.preventDefault()
     setIsItemLoaded(false);
-    // console.log(`더보기 버튼 클릭`)
-    // console.log(`요청링크=[/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}]`)
-    // console.log(getSearchCondition())
     axios
-      .post(`/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
+      .post(`${BASE_URI}/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
       .then((res) => {
         setItemList([...itemList, ...res.data.items])
         setIsItemLoaded(true);

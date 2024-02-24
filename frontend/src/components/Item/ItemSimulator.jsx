@@ -14,6 +14,7 @@ import RequiredStatus from "./RequiredStatus";
 import { ATTACK_SPEED, CATEGORY_NAME } from "../../global/item";
 import { useHotkeys } from "react-hotkeys-hook";
 import ShortcutInfo from "./ShortcutInfo";
+import { BASE_URI } from "../../global/uri";
 
 let timer = null;
 
@@ -81,7 +82,7 @@ export default function ItemSimulator() {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`/api/item/${itemId}`)
+      const response = await axios.get(`${BASE_URI}/item/${itemId}`)
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
       

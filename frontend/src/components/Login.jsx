@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { BASE_URI } from "../global/uri";
 
 
 
@@ -25,7 +26,7 @@ export default function Login () {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('/api/login', {
+    axios.post(`${BASE_URI}/login`, {
       id: inputId,
       password: inputPassword
     })

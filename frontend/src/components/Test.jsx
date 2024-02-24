@@ -6,7 +6,7 @@ export default function Test() {
   const [data, setData] = useState('');
 
   const handleClick = () => {
-    axios.get('/api/test')
+    axios.get(`${BASE_URI}/test`)
       .then((res) => {
         console.log(res)
         setData(res.data);
