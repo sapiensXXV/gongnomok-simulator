@@ -1,6 +1,9 @@
 package site.gongnomok.domain.item.api;
 
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -21,16 +24,15 @@ import java.util.List;
 import static site.gongnomok.global.entity.enumerate.Role.USER;
 
 @Slf4j
-@CrossOrigin(origins = "*")
-//@CrossOrigin(origins = {"http://34.64.91.129"})
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class ItemController {
 
     private final ItemService itemService;
 
-    @GetMapping("/item/new")
-    public ResponseEntity<Void> newItem(
+    @GetMapping("/auth")
+    public ResponseEntity<Void> auth(
             @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
     ) {
         if (member == null) {
@@ -39,6 +41,7 @@ public class ItemController {
         if (member.getRole().equals(USER.makeLowerString())) {
             return ResponseEntity.status(403).build();
         }
+
         return ResponseEntity.ok().build();
     }
 

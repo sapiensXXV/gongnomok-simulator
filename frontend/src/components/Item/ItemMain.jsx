@@ -24,7 +24,10 @@ export default function ItemMain() {
   useEffect(() => {
     setIsItemLoaded(false)
     axios
-      .get(`${BASE_URI}/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
+      .get(
+          `${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, 
+          { withCredentials: true }
+        )
       .then((res) => {
         const items = res?.data?.items;
         if (items === undefined || items === null) {
@@ -32,8 +35,6 @@ export default function ItemMain() {
         } else {
           setItemList(items);
         }
-        // console.log(`http://localhost:8080/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
-        // console.log(res);
         setItemList(res?.data?.items); // 조회 결과 아이템
         setIsItemLoaded(true);
 
@@ -78,7 +79,7 @@ export default function ItemMain() {
     e.preventDefault();
     setIsItemLoaded(false);
     axios
-      .post(`${BASE_URI}/items?page=0&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
+      .post(`${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition(), { withCredentials: true })
       .then((res) => {
         setItemList([...res.data.items])
         setIsItemLoaded(true)
@@ -97,7 +98,7 @@ export default function ItemMain() {
     e.preventDefault()
     setIsItemLoaded(false);
     axios
-      .post(`${BASE_URI}/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition())
+      .post(`${BASE_URI}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition(), { withCredentials: true })
       .then((res) => {
         setItemList([...itemList, ...res.data.items])
         setIsItemLoaded(true);

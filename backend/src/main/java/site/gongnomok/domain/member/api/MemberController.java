@@ -1,6 +1,7 @@
 package site.gongnomok.domain.member.api;
 
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import site.gongnomok.global.constant.MemberConst;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -27,12 +28,10 @@ public class MemberController {
         @RequestBody LoginDto loginDto,
         HttpServletRequest request
     ) {
-        log.info("loginDto={}", loginDto);
         MemberDto member = memberService.findMember(loginDto.toServiceDto());
         HttpSession session = request.getSession();
-        session.setAttribute(MemberConst.loginMember, member);
 
-        log.info("login success");
+        session.setAttribute(MemberConst.loginMember, member);
         return ResponseEntity.ok().body(member);
     }
 

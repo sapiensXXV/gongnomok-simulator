@@ -82,7 +82,7 @@ export default function ItemSimulator() {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`${BASE_URI}/item/${itemId}`)
+      const response = await axios.get(`${BASE_URI}/api/item/${itemId}`, { withCredentials: true })
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
       

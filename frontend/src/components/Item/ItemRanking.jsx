@@ -8,7 +8,7 @@ export default function ItemRanking() {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URI}/item/ranking`)
+      .get(`${BASE_URI}/api/item/ranking`, { withCredentials: true })
       .then((response) => {
         setRankingItems(response?.data);
       })

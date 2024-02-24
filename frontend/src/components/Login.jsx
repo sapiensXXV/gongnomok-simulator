@@ -26,11 +26,12 @@ export default function Login () {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post(`${BASE_URI}/login`, {
+    axios.post(`${BASE_URI}/api/login`, {
       id: inputId,
       password: inputPassword
-    })
+    }, { withCredentials: true })
       .then((res) => {
+        console.log(res);
         setHasError(false)
         navigate('/')
       })

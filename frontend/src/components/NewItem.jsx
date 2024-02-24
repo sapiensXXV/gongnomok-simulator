@@ -103,9 +103,8 @@ export default function NewItem() {
 
 
   useEffect(() => {
-    axios.get(`${BASE_URI}/item/new`)
+    axios.get(`${BASE_URI}/api/auth`, { withCredentials: true })
       .then((response) => {
-        console.log(response)
       })
       .catch((err) => {
         console.log(err)
@@ -204,12 +203,10 @@ export default function NewItem() {
       attackSpeed: ((attackSpeed === 'NONE') ? null : attackSpeed),
       knockBackPercent: knockBackPercent
     };
-    console.log(`request json = ${itemForm}`)
     // 폼 요청
     axios
-      .post(`${BASE_URI}/item/new`, itemForm)
+      .post(`${BASE_URI}/api/item/new`, itemForm, { withCredentials: true })
       .then((response) => {
-        console.log(response);
         alert('등록성공')
       })
       .catch((error) => {
