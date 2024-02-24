@@ -21,7 +21,8 @@ import java.util.List;
 import static site.gongnomok.global.entity.enumerate.Role.USER;
 
 @Slf4j
-@CrossOrigin(origins = {"http://34.64.91.129", "http://localhost:5173"})
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = {"http://34.64.91.129"})
 @RestController
 @RequiredArgsConstructor
 public class ItemController {
