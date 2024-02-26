@@ -97,58 +97,80 @@
     font-family: SOYOMapleBoldTTF;
   }
 
-/********************* 랭킹 ************************/
-.item-ranking-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /********************* 랭킹 ************************/
+  .item-ranking-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  font-family: Pretendard-Regular;
+    font-family: Pretendard-Regular;
 
-  margin-bottom: 15px;
-  padding-top: 10px;
-  padding-bottom: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 15px;
 
-  border-radius: 8px;
-}
+    border-radius: 8px;
+  }
 
-.item-ranking-container img {
-  width: 30px;
-}
+  .item-ranking-container img {
+    width: 30px;
+  }
 
-.item-ranking-title {
-  font-family: SOYOMapleBoldTTF;
-  font-size: 24px;
-  margin-bottom: 8px;
-}
+  .item-ranking-title {
+    font-family: SOYOMapleBoldTTF;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
 
-.ranking-items {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-}
+  .item-ranking-controller {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
 
-.ranking-items a {
-  text-decoration: none;
-}
+  .item-ranking-button {
+    border-radius: 8px;
+    border: none;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+  }
 
-.single-ranking-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  .item-ranking-button img {
+    width: 25px;
+    height: 25px;
+  }
 
-  color: rgb(53, 53, 53);
-}
+  .ranking-items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+  }
 
-.item-rank-text {
-  font-family: SOYOMapleBoldTTF;
-}
+  .ranking-items a {
+    text-decoration: none;
+  }
 
-.single-ranking-item a {
-  text-decoration: none;
-  color: inherit;
-}
+  .single-ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: rgb(53, 53, 53);
+  }
+
+  .item-rank-text {
+    font-family: SOYOMapleBoldTTF;
+    width: 38px;
+  }
+
+  .single-ranking-item a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   /* 아이템 리스트 이미지 */
   .item-list-button img {

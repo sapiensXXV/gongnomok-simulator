@@ -45,7 +45,7 @@ export default function ItemRanking() {
 
   function handleNextButtonClicked() {
     console.log(`next`)
-    if (rankingPage >= MAXIMUM_RANKING_PAGE) return; //현재 페이지가 최대 페이지 이상일 경우 수행하지 않고 반환
+    if (rankingPage >= MAXIMUM_RANKING_PAGE-1) return; //현재 페이지가 최대 페이지 이상일 경우 수행하지 않고 반환
 
     axios
       .get(
@@ -101,7 +101,7 @@ export default function ItemRanking() {
             <img src="/images/etc/next.png"/>
           </button>
         </div>
-        <span className="mt-2">{`${rankingPage+1}/${MAXIMUM_RANKING_PAGE+1}`}</span>
+        <span className="mt-2">{`${rankingPage+1}/${MAXIMUM_RANKING_PAGE}`}</span>
         
       </section>
     </>

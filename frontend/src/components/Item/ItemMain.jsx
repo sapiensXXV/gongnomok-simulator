@@ -19,6 +19,7 @@ export default function ItemMain() {
   // const searchCondition = useRef(DEFAULT_ITEM_CONDITION);
   const nextPage = useRef(0);
   const [hasNextPage, setHasNextPage] = useState(true);
+  
 
   // 화면에 접속하자마자 검색이 필요하다.
   useEffect(() => {
