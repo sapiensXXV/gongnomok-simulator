@@ -10,6 +10,7 @@ import '../css/index-md.css'
 import '../css/index-lg.css'
 import '../css/index-xl.css'
 import '../css/index-xxl.css'
+import '../css/common.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>

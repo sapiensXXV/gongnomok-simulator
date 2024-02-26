@@ -81,6 +81,12 @@
   .item-ranking-container img {
     width: 30px;
   }
+  
+  .ranking-items-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
   .item-ranking-title {
     font-family: SOYOMapleBoldTTF;
@@ -88,7 +94,30 @@
     margin-bottom: 8px;
   }
 
+  .item-ranking-controller {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .item-ranking-button {
+    border-radius: 8px;
+    border: none;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+  }
+
+  .item-ranking-button img {
+    width: 25px;
+    height: 25px;
+  }
+
+
   .ranking-items {
+    width: 240px;
     display: flex;
     flex-direction: column;
     row-gap: 8px;
@@ -108,6 +137,7 @@
 
   .item-rank-text {
     font-family: SOYOMapleBoldTTF;
+    width: 38px;
   }
 
   .single-ranking-item a {

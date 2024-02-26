@@ -26,6 +26,8 @@ export const ITEM_CATEGORIES = [
 ]
 
 export const DEFAULT_FETCH_SIZE = 30;
+export const DEFAULT_RANKING_FETCH_SIZE = 5;
+export const MAXIMUM_RANKING_PAGE = 3;
 
 export const INIT_ITEM_INFO = {
   name: '',
