@@ -144,6 +144,25 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
                 .fetch();
     }
 
+    @Override
+    public List<ItemRankingRepositoryDto> findItemByViewCountPagination(Pageable pageable) {
+        return queryFactory
+            .select(
+                Projections.fields(
+                    ItemRankingRepositoryDto.class,
+                    item.id.as("itemId"),
+                    item.name,
+                    item.viewCount
+                )
+            )
+            .from(item)
+            .orderBy(item.viewCount.desc())
+            .offset(pageable.getOffset())
+            .limit(pageable.getPageSize())
+            .fetch();
+
+    }
+
     private Pageable exchangePageRequest(Pageable pageable, long totalCount) {
         /**
          * 요청한 페이지 번호가 기존의 사이즈를 초과할 경우 마지막 페이지의 데이터를 반환한다.

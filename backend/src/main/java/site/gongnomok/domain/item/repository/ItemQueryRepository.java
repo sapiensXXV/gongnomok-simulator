@@ -22,4 +22,6 @@ public interface ItemQueryRepository {
 
     public List<ItemRankingRepositoryDto> findItemByViewCount(long findCount);
 
+    public List<ItemRankingRepositoryDto> findItemByViewCountPagination(Pageable pageable);
+
 }

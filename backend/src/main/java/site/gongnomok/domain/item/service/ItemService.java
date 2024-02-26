@@ -112,11 +112,21 @@ public class ItemService {
 
     public List<ItemRankingResponse> itemRanking() {
         List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCount(RANKING_ITEM_NUMBER);
+        return getItemRankingResponses(items);
+    }
+
+    public List<ItemRankingResponse> itemRankingPagination(Pageable pageable) {
+        List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
+        return getItemRankingResponses(items);
+    }
+
+    private List<ItemRankingResponse> getItemRankingResponses(List<ItemRankingRepositoryDto> items) {
         List<ItemRankingResponse> ranking = new ArrayList<>();
         for (int i = 1; i <= items.size(); i++) {
             ItemRankingRepositoryDto item = items.get(i - 1);
             ranking.add(ItemRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
         }
+
         return ranking;
     }
 

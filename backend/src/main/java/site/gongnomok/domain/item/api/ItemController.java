@@ -55,10 +55,12 @@ public class ItemController {
     }
 
     @GetMapping("/item/ranking")
-    public ResponseEntity<List<ItemRankingResponse>> itemRanking() {
+    public ResponseEntity<List<ItemRankingResponse>> itemRanking(Pageable pageable) {
 
-        List<ItemRankingResponse> result = itemService.itemRanking();
+//        List<ItemRankingResponse> result = itemService.itemRanking();
+        List<ItemRankingResponse> result = itemService.itemRankingPagination(pageable);
         return ResponseEntity.ok(result);
+
     }
 
     @GetMapping("/items")
