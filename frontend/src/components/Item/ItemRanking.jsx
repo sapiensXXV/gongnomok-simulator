@@ -9,7 +9,7 @@ export default function ItemRanking() {
   const [rankingPage, setRankingPage] = useState(0);
 
   useEffect(() => {
-    console.log(`RANKING GET ${BASE_URI}/api/item/ranking?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`)
+    // console.log(`RANKING GET ${BASE_URI}/api/item/ranking?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`)
     axios
       .get(
         `${BASE_URI}/api/item/ranking?page=0&size=${DEFAULT_RANKING_FETCH_SIZE}`,
