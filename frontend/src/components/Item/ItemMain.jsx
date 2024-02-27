@@ -24,6 +24,7 @@ export default function ItemMain() {
   // 화면에 접속하자마자 검색이 필요하다.
   useEffect(() => {
     setIsItemLoaded(false)
+    // console.log(`GET ${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
     axios
       .get(
           `${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, 
