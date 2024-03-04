@@ -28,4 +28,24 @@ public class ItemStatusServiceDto {
     private ItemStatusInfoServiceDto move;
     private ItemStatusInfoServiceDto jump;
 
+    public static ItemStatusServiceDto geAllZeroDto() {
+        ItemStatusInfoServiceDto zeroStatus = ItemStatusInfoServiceDto.getAllZero();
+        return ItemStatusServiceDto.builder()
+            .str(zeroStatus)
+            .dex(zeroStatus)
+            .intel(zeroStatus)
+            .luk(zeroStatus)
+            .phyAtk(zeroStatus)
+            .mgAtk(zeroStatus)
+            .phyDef(zeroStatus)
+            .mgDef(zeroStatus)
+            .hp(zeroStatus)
+            .mp(zeroStatus)
+            .acc(zeroStatus)
+            .avo(zeroStatus)
+            .move(zeroStatus)
+            .jump(zeroStatus)
+            .build();
+    }
+
 }
