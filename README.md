@@ -16,3 +16,6 @@
 
 ### 프로젝트 구조
 <img src="./img/gongnomok-project-draw.drawio.png">
+
+### 관련 포스트
+- [개발기](https://velog.io/@januaryone/%EB%A9%94%EC%9D%B4%ED%94%8C-%EC%A3%BC%EB%AC%B8%EC%84%9C-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%ED%84%B0-%EA%B0%9C%EB%B0%9C%EA%B8%B0)
