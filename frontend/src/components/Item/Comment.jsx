@@ -1,17 +1,32 @@
-import { useState } from "react"
-import { INIT_COMMENT_FORM } from "../../global/comment";
+import { useRef, useState } from "react"
+import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM } from "../../global/comment";
 import axios from "axios";
 import { BASE_URI } from "../../global/uri";
 
 export default function Comment({ itemId }) {
 
+  const [commentList, setCommentList] = useState([]);
 
   const [commentForm, setCommentForm] = useState(INIT_COMMENT_FORM);
   const [isContentValid, setIsContentValid] = useState(false);
   const [isNameValid, setIsNameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
-  console.log(commentForm)
+  const lastLookUpCommentId = useRef(-1); // 마지막으로 조회한 댓글 ID
+
+  function fetchComment() {
+    axios
+      .get(
+        `${BASE_URI}/api/items?lastId=${lastLookUpCommentId.current}&size=${DEFAULT_COMMENT_FETCH_SIZE}`, 
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   function validateContent() {
     if (commentForm.content.length == 0 || commentForm.content.length > 200) {
@@ -94,9 +109,6 @@ export default function Comment({ itemId }) {
     setCommentForm(copy);
   }
 
-
-
-
   return (
     <>
       <section className="comment-container bg-light mx-3 mb-3 px-3 py-3">
@@ -137,8 +149,9 @@ export default function Comment({ itemId }) {
           {!isPasswordValid && <div><span className="red">패스워드를 입력해주세요.</span></div>}
           {!isContentValid && <div><span className="red">댓글은 1~200자를 입력해야합니다.</span></div>}
         </div>
+        <section></section>
 
-      </section >
+      </section>
 
     </>
   )
