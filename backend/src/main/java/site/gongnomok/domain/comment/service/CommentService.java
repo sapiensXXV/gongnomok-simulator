@@ -39,7 +39,7 @@ public class CommentService {
             .name(savedComment.getName())
             .commentId(savedComment.getId())
             .createdDate(savedComment.getCreatedDate())
-            .build(); 
+            .build();
 
     }
 
