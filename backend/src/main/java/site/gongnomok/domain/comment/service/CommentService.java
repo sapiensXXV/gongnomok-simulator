@@ -3,6 +3,7 @@ package site.gongnomok.domain.comment.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.domain.comment.dto.CommentCreateResponse;
 import site.gongnomok.domain.comment.dto.CommentCreateServiceDto;
 import site.gongnomok.domain.comment.exception.CannotFindItemCommentException;
@@ -15,6 +16,7 @@ import site.gongnomok.global.util.SecurityUtil;
 
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CommentService {
 
