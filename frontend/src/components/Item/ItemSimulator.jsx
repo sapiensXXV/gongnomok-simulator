@@ -1,20 +1,21 @@
 
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
-
-import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
-import Scroll from "./Scroll";
-import PriceCalculator from "./PriceCalculator";
-
 import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../global/util/soundPlay";
+import { useHotkeys } from "react-hotkeys-hook";
+
+import { BASE_URI } from "../../global/uri";
+import { ATTACK_SPEED, CATEGORY_NAME } from "../../global/item";
+import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
+
+import ShortcutInfo from "./ShortcutInfo";
 import OptionSelect from "./OptionSelect";
 import RequiredStatus from "./RequiredStatus";
-import { ATTACK_SPEED, CATEGORY_NAME } from "../../global/item";
-import { useHotkeys } from "react-hotkeys-hook";
-import ShortcutInfo from "./ShortcutInfo";
-import { BASE_URI } from "../../global/uri";
+import Scroll from "./Scroll";
+import PriceCalculator from "./PriceCalculator";
+import Comment from "./Comment";
 
 let timer = null;
 
@@ -85,7 +86,7 @@ export default function ItemSimulator() {
       const response = await axios.get(`${BASE_URI}/api/item/${itemId}`, { withCredentials: true })
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
-      
+
       setInfo(data);
 
       setStr(copy.status.str.normal);
@@ -121,21 +122,21 @@ export default function ItemSimulator() {
       defaultMp.current = copy.status.mp.normal;
       defaultUpgradable.current = copy.upgradableCount
 
-      
+
 
       for (let i = 0; i < SCROLL_NAME_LIST?.length; i++) {
         const name = SCROLL_NAME_LIST[i];
-        if(SCROLL_INFO.get(name).category === data.category) {
+        if (SCROLL_INFO.get(name).category === data.category) {
           availableScroll.current = [...availableScroll.current, SCROLL_INFO.get(name)];
         }
       }
-      
+
       if (availableScroll.current?.length > 0) {
         setCurrentScroll(availableScroll.current[0]);
       }
 
     } catch (e) {
-        console.log(e);
+      console.log(e);
     }
   }
 
@@ -541,12 +542,12 @@ export default function ItemSimulator() {
                 {mp > 0 && <span>MP : +{mp}</span>}
                 {move > 0 && <span>이동속도 : +{move}</span>}
                 {jump > 0 && <span>점프력 : +{jump}</span>}
-                {knockBackPercent > 0 && <span>직접 타격시 넉백 확률 : +{knockBackPercent}%</span> }
+                {knockBackPercent > 0 && <span>직접 타격시 넉백 확률 : +{knockBackPercent}%</span>}
                 <span>업그레이드 가능 횟수 : {upgradable}</span>
               </div>
             </section>
 
-            
+
 
           </section>
           <section className="overflow-message">
@@ -558,106 +559,113 @@ export default function ItemSimulator() {
 
 
         {/********************* 가격관련 정보 ***********************/}
-        
+
         <div>
-        <section className="d-flex justify-content-center">
-          <section className="item-controller-section mx-1">
-            <select
-              className="form-select form-select-sm"
-              onChange={(e) => handleScrollChange(e)}
-              defaultValue={currentScroll}
-            >
-              {
-                availableScroll?.current != null && availableScroll.current?.length > 0 &&
-                availableScroll.current?.map((scroll) => {
-                  if (scroll === undefined) return;
-                  const key = scroll.keyword;
-                  return <option key={`${key}`} value={key}>{scroll.name}</option>
-                })
-              }
-            </select>
+          <section className="d-flex justify-content-center">
+            <section className="item-controller-section mx-1">
+              <select
+                className="form-select form-select-sm"
+                onChange={(e) => handleScrollChange(e)}
+                defaultValue={currentScroll}
+              >
+                {
+                  availableScroll?.current != null && availableScroll.current?.length > 0 &&
+                  availableScroll.current?.map((scroll) => {
+                    if (scroll === undefined) return;
+                    const key = scroll.keyword;
+                    return <option key={`${key}`} value={key}>{scroll.name}</option>
+                  })
+                }
+              </select>
 
-            <section className="option-select-container">
-              <OptionSelect statusInfo={info?.status} optionSelectHandler={handleItemOption} />
-            </section>
-
-            <div className="scroll-select">
-              {/* <Scroll  /> */}
-              <Scroll ref={scroll10Button} percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
-              <Scroll ref={scroll60Button} percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
-              <Scroll ref={scroll100Button} percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
-              <div className="scroll-info">
-                <button ref={resetButton} onClick={handleResetClicked} id="reset-button" onMouseUp={() => document.activeElement.blur()}>
-                  <img src="/images/etc/reset.png"></img>
-                </button>
-              </div>
-            </div>
-            <div className="item-price-info">
-              <PriceCalculator
-                key={`item-price`}
-                isScroll={false}
-                price={itemPrice}
-                buyCount={itemBuyCount}
-                inputHandler={itemPriceChangeHandler}
-              />
-              <PriceCalculator
-                key={`scroll-price-10`}
-                isScroll={true}
-                percent={10}
-                price={scroll10Price}
-                buyCount={scroll10BuyCount}
-                successCount={scroll10Success}
-                inputHandler={scroll10PriceChangeHandler}
-              />
-              <PriceCalculator
-                key={`scroll-price-60`}
-                isScroll={true}
-                percent={60}
-                price={scroll60Price}
-                buyCount={scroll60BuyCount}
-                successCount={scroll60Success}
-                inputHandler={scroll60PriceChangeHandler}
-              />
-              <PriceCalculator
-                key={`scroll-price-100`}
-                isScroll={true}
-                percent={100}
-                price={scroll100Price}
-                buyCount={scroll100BuyCount}
-                successCount={scroll100Success}
-                inputHandler={scroll100PriceChangeHandler}
-              />
-
-              <section className="total-price-info-section">
-                <div className="total-price-info">
-                  <img src="/images/etc/meso.png"></img>
-                  <span>
-                    {
-                      (itemBuyCount * itemPrice +
-                        scroll10BuyCount * scroll10Price +
-                        scroll60BuyCount * scroll60Price +
-                        scroll100BuyCount * scroll100Price).toLocaleString()
-                    }
-                  </span>
-                </div>
-
-                <button
-                  ref={purchaseResetButton}
-                  className="total-price-reset-btn"
-                  id="purchase-reset-button"
-                  onClick={handlePurchaseResetClicked}
-                  onMouseUp={() => document.activeElement.blur()}
-                >
-                  구매기록 리셋
-                </button>
+              <section className="option-select-container">
+                <OptionSelect statusInfo={info?.status} optionSelectHandler={handleItemOption} />
               </section>
 
-            </div>
+              <div className="scroll-select">
+                {/* <Scroll  /> */}
+                <Scroll ref={scroll10Button} percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
+                <Scroll ref={scroll60Button} percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
+                <Scroll ref={scroll100Button} percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
+                <div className="scroll-info">
+                  <button ref={resetButton} onClick={handleResetClicked} id="reset-button" onMouseUp={() => document.activeElement.blur()}>
+                    <img src="/images/etc/reset.png"></img>
+                  </button>
+                </div>
+              </div>
+              <div className="item-price-info">
+                <PriceCalculator
+                  key={`item-price`}
+                  isScroll={false}
+                  price={itemPrice}
+                  buyCount={itemBuyCount}
+                  inputHandler={itemPriceChangeHandler}
+                />
+                <PriceCalculator
+                  key={`scroll-price-10`}
+                  isScroll={true}
+                  percent={10}
+                  price={scroll10Price}
+                  buyCount={scroll10BuyCount}
+                  successCount={scroll10Success}
+                  inputHandler={scroll10PriceChangeHandler}
+                />
+                <PriceCalculator
+                  key={`scroll-price-60`}
+                  isScroll={true}
+                  percent={60}
+                  price={scroll60Price}
+                  buyCount={scroll60BuyCount}
+                  successCount={scroll60Success}
+                  inputHandler={scroll60PriceChangeHandler}
+                />
+                <PriceCalculator
+                  key={`scroll-price-100`}
+                  isScroll={true}
+                  percent={100}
+                  price={scroll100Price}
+                  buyCount={scroll100BuyCount}
+                  successCount={scroll100Success}
+                  inputHandler={scroll100PriceChangeHandler}
+                />
+
+                <section className="total-price-info-section">
+                  <div className="total-price-info">
+                    <img src="/images/etc/meso.png"></img>
+                    <span>
+                      {
+                        (itemBuyCount * itemPrice +
+                          scroll10BuyCount * scroll10Price +
+                          scroll60BuyCount * scroll60Price +
+                          scroll100BuyCount * scroll100Price).toLocaleString()
+                      }
+                    </span>
+                  </div>
+
+                  <button
+                    ref={purchaseResetButton}
+                    className="total-price-reset-btn"
+                    id="purchase-reset-button"
+                    onClick={handlePurchaseResetClicked}
+                    onMouseUp={() => document.activeElement.blur()}
+                  >
+                    구매기록 리셋
+                  </button>
+                </section>
+
+              </div>
+            </section>
           </section>
-        </section>
         </div>
-        
+
       </main>
+
+      {/***********************************************************************/}
+      {/******************************** 댓글 **********************************/}
+      {/***********************************************************************/}
+      <Comment/>
+      
+
     </>
   )
 }
