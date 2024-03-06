@@ -94,3 +94,7 @@
   cursor: pointer;
   outline: none;
 }
+
+.comment-error-container {
+  font-size: 12px;
+}
