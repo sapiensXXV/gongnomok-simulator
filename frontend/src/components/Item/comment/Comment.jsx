@@ -126,7 +126,7 @@ export default function Comment({ itemId }) {
       .then((res) => {
         const data = res.data;
         const newComment = {
-          commendId: data.commentId,
+          commentId: data.commentId,
           name: data.name,
           content: commentForm.content,
           createdDate: data.createdDate
@@ -169,9 +169,10 @@ export default function Comment({ itemId }) {
   function handleDelete(commentId) {
     // 모달창을 띄우고 패스워드를 입력받는다.
     setModalOpen(true);
-
     const copy = { ...commentDeleteForm };
     copy.commentId = commentId;
+
+
     setCommentDeleteForm(copy);
   }
 
