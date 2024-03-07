@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM } from "../../../global/comment";
 import axios from "axios";
 import { BASE_URI } from "../../../global/uri";
@@ -7,14 +7,17 @@ import SingleComment from "./SingleComment";
 export default function Comment({ itemId }) {
 
   const [commentList, setCommentList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [lastCommentId, setLastCommentId] = useState(-1);
 
   const [commentForm, setCommentForm] = useState(INIT_COMMENT_FORM);
   const [isContentValid, setIsContentValid] = useState(true);
   const [isNameValid, setIsNameValid] = useState(true);
   const [isPasswordValid, setIsPasswordValid] = useState(true);
 
-  const lastLookUpCommentId = useRef(-1); // 마지막으로 조회한 댓글 ID
+  
   const hasMoreComment = useRef(true);
+  
 
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
@@ -24,14 +27,30 @@ export default function Comment({ itemId }) {
   const [isDeleteRequestValid, setIsDeleteRequestValid] = useState(true);
   const [modalErrorMessage, setModalErrorMessage] = useState("");
 
-  function fetchComment() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 0,
+    })
 
+    const observerTarget = document.getElementById('comment-observer')
+    if (observerTarget) {
+      observer.observe(observerTarget);
+    }
+  }, []) 
+
+  useEffect(() => { 
+    fetchComment();
+    console.log(lastCommentId)
+  }, [lastCommentId])
+
+  function fetchComment() {
+    setIsLoading(true);
     if (!hasMoreComment.current) return;
-    console.log(`last comment id=${lastLookUpCommentId.current}`)
+    console.log(`last comment id=${lastCommentId}`)
 
     axios
       .get(
-        `${BASE_URI}/api/item/${itemId}/comment?lastId=${lastLookUpCommentId.current}&size=${DEFAULT_COMMENT_FETCH_SIZE}`,
+        `${BASE_URI}/api/item/${itemId}/comment?lastId=${lastCommentId}&size=${DEFAULT_COMMENT_FETCH_SIZE}`,
         { withCredentials: true }
       )
       .then((res) => {
@@ -40,15 +59,12 @@ export default function Comment({ itemId }) {
         const newCommentList = [...commentList, ...newComments];
         setCommentList(newCommentList)
 
-        if (newComments.length > 0) {
-          lastLookUpCommentId.current = newComments[newComments.length - 1].commentId;
-        }
-
         if (newComments.length < DEFAULT_COMMENT_FETCH_SIZE) hasMoreComment.current = false;
       })
       .catch((err) => {
         console.log(err);
       })
+    setIsLoading(false)
   }
 
   function validateContent() {
@@ -153,6 +169,20 @@ export default function Comment({ itemId }) {
     copy.commentId = commentId;
     setCommentDeleteForm(copy);
   }
+
+  function handleObserver(entries) {
+    const target = entries[0];
+    if (target.isIntersecting && !isLoading) {
+      if (commentList.length == 0) {
+        setLastCommentId(-1);
+      } else {
+        setLastCommentId(commentList[commentList.length - 1].commentId)
+      }
+    }
+  }
+
+
+  /***************************** 모달 *******************************/ 
 
   function handleModalBackgroundClicked(e) {
     // if (e.target === modalBackground.current) {
@@ -263,11 +293,12 @@ export default function Comment({ itemId }) {
               )
             })
           }
+          <div id="comment-observer" style={{ height: "10px" }}></div>
         </section>
 
       </section>
 
-      <button onClick={fetchComment}>댓글 가져오기</button>
+      {/* <button onClick={fetchComment}>댓글 가져오기</button> */}
       {
         modalOpen &&
         <div
@@ -314,8 +345,6 @@ export default function Comment({ itemId }) {
               </div>
             </div>
           </div>
-
-
         </div>
       }
     </>
