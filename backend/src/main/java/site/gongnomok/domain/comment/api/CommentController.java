@@ -30,8 +30,10 @@ public class CommentController {
     }
 
     @GetMapping("/item/{itemId}/comment/count")
-    public ResponseEntity<CommentCountResponse> countAllComment() {
-        return ResponseEntity.ok(commentService.countAllComment());
+    public ResponseEntity<CommentCountResponse> countComment(
+        @PathVariable("itemId") Long itemId
+    ) {
+        return ResponseEntity.ok(commentService.countComment(itemId));
     }
 
     @GetMapping("/item/{itemId}/comment")

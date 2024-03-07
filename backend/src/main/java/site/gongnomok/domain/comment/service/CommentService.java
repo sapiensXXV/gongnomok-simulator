@@ -49,8 +49,8 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
-    public CommentCountResponse countAllComment() {
-        return new CommentCountResponse(commentJpaRepository.count());
+    public CommentCountResponse countComment(Long itemId) {
+        return new CommentCountResponse(commentQueryRepository.commentCount(itemId));
     }
 
     @Transactional(readOnly = true)
