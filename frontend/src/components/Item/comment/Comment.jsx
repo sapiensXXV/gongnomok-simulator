@@ -3,12 +3,15 @@ import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM
 import axios from "axios";
 import { BASE_URI } from "../../../global/uri";
 import SingleComment from "./SingleComment";
+import { useInView } from "react-intersection-observer";
 
 export default function Comment({ itemId }) {
 
   const [commentList, setCommentList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [lastCommentId, setLastCommentId] = useState(-1);
+  const isLoading = useRef(false);
+
+  const [commentCount, setCommnetCount] = useState(0);
 
   const [commentForm, setCommentForm] = useState(INIT_COMMENT_FORM);
   const [isContentValid, setIsContentValid] = useState(true);
@@ -27,26 +30,27 @@ export default function Comment({ itemId }) {
   const [isDeleteRequestValid, setIsDeleteRequestValid] = useState(true);
   const [modalErrorMessage, setModalErrorMessage] = useState("");
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, {
-      threshold: 0,
-    })
+  const [observeTarget, inView] = useInView();
 
-    const observerTarget = document.getElementById('comment-observer')
-    if (observerTarget) {
-      observer.observe(observerTarget);
-    }
+  useEffect(() => {
+    axios
+      .get(`${BASE_URI}/api/item/${itemId}/comment/count`)
+      .then((res) => {
+        const count = res.data.count;
+        setCommnetCount(count);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }, []) 
 
   useEffect(() => { 
     fetchComment();
-    console.log(lastCommentId)
-  }, [lastCommentId])
+  }, [inView])
 
   function fetchComment() {
-    setIsLoading(true);
-    if (!hasMoreComment.current) return;
-    console.log(`last comment id=${lastCommentId}`)
+    if (!hasMoreComment.current || isLoading.current) return;
+    isLoading.current = true;
 
     axios
       .get(
@@ -54,17 +58,19 @@ export default function Comment({ itemId }) {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res);
         const newComments = res.data
         const newCommentList = [...commentList, ...newComments];
         setCommentList(newCommentList)
 
+        if (newComments.length > 0) {
+          setLastCommentId(newComments[newComments.length - 1].commentId);
+        }
         if (newComments.length < DEFAULT_COMMENT_FETCH_SIZE) hasMoreComment.current = false;
       })
       .catch((err) => {
         console.log(err);
       })
-    setIsLoading(false)
+    isLoading.current = false;
   }
 
   function validateContent() {
@@ -157,12 +163,11 @@ export default function Comment({ itemId }) {
   }
 
   function handleReport() {
-    console.log('신고버튼 클릭')
+    // 신고기능 나중에 추가
   }
 
   function handleDelete(commentId) {
     // 모달창을 띄우고 패스워드를 입력받는다.
-    console.log('삭제버튼 클릭')
     setModalOpen(true);
 
     const copy = { ...commentDeleteForm };
@@ -170,25 +175,7 @@ export default function Comment({ itemId }) {
     setCommentDeleteForm(copy);
   }
 
-  function handleObserver(entries) {
-    const target = entries[0];
-    if (target.isIntersecting && !isLoading) {
-      if (commentList.length == 0) {
-        setLastCommentId(-1);
-      } else {
-        setLastCommentId(commentList[commentList.length - 1].commentId)
-      }
-    }
-  }
-
-
   /***************************** 모달 *******************************/ 
-
-  function handleModalBackgroundClicked(e) {
-    // if (e.target === modalBackground.current) {
-    //   setModalOpen(false);
-    // }
-  }
 
   /********************** 댓글 삭제 *************************/ 
 
@@ -206,14 +193,12 @@ export default function Comment({ itemId }) {
       { withCredentials: true }
     )
     .then((res) => {
-      console.log(res);
       setIsDeleteRequestValid(true);
       setModalOpen(false);
 
       filterDeleteComment(commentDeleteForm.commentId);
     })
     .catch((err) => {
-      console.log(err.response.data.message);
       const message = err.response.data.message;
       setIsDeleteRequestValid(false);
       setModalErrorMessage(message);
@@ -222,7 +207,6 @@ export default function Comment({ itemId }) {
 
   function handleModalDeleteButtonClicked(e) {
     e.preventDefault();
-    console.log(`댓글 삭제버튼 클릭`)
     // 댓글을 지울 수 있으면 모달창을 닫는다.
     // 댓글을 지울 수 없다면 에러 메세지를 출력한다.
 
@@ -243,7 +227,7 @@ export default function Comment({ itemId }) {
   return (
     <>
       <section className="comment-container bg-light mx-3 mb-3 px-3 py-3">
-        <span className="comment-area-title" >댓글(???)</span>
+        <span className="comment-area-title" >댓글({commentCount})</span>
         <div className="comment-content-root">
           <form onSubmit={submitCommentForm}>
             <textarea
@@ -293,18 +277,16 @@ export default function Comment({ itemId }) {
               )
             })
           }
-          <div id="comment-observer" style={{ height: "10px" }}></div>
+          <div ref={observeTarget} style={{ height: "10px" }}></div>
         </section>
 
       </section>
 
-      {/* <button onClick={fetchComment}>댓글 가져오기</button> */}
       {
         modalOpen &&
         <div
           className="delete-modal-container"
           ref={modalBackground}
-          onClick={handleModalBackgroundClicked}
         >
           <div className="delete-modal-root">
             <div className="delete-modal-header">
