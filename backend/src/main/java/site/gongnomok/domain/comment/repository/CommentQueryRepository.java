@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import site.gongnomok.domain.comment.dto.CommentCountResponse;
 import site.gongnomok.domain.comment.dto.CommentCreateDto;
 import site.gongnomok.domain.comment.dto.CommentResponse;
 import site.gongnomok.global.entity.Comment;
@@ -45,6 +46,14 @@ public class CommentQueryRepository {
             .orderBy(comment.id.desc())
             .limit(pageSize)
             .fetch();
+    }
+
+    public Long commentCount(Long itemId) {
+        return queryFactory
+            .select(comment.count())
+            .from(comment)
+            .where(comment.item.id.eq(itemId))
+            .fetchOne();
     }
 
     private BooleanExpression ltCommentId(Long commentId) {
