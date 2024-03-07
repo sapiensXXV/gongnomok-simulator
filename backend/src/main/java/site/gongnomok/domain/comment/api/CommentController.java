@@ -38,9 +38,7 @@ public class CommentController {
         @RequestParam("size") int size
     ) {
 
-
-
-        return null;
-
+        List<CommentResponse> comments = commentService.fetchComment(itemId, lastId == -1 ? null : lastId, size);
+        return ResponseEntity.ok(comments);
     }
 }

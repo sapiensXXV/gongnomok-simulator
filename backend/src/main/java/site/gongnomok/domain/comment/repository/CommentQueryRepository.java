@@ -31,7 +31,7 @@ public class CommentQueryRepository {
             .select(
                 Projections.fields(
                     CommentResponse.class,
-                    comment.id,
+                    comment.id.as("commentId"),
                     comment.name,
                     comment.content,
                     comment.createdDate
