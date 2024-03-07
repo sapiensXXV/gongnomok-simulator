@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM } from "../../../global/comment";
+import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM } from "../../../global/comment";
 import axios from "axios";
 import { BASE_URI } from "../../../global/uri";
 import SingleComment from "./SingleComment";
@@ -19,13 +19,19 @@ export default function Comment({ itemId }) {
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
 
+  const [commentDeleteForm, setCommentDeleteForm] = useState(INIT_COMMENT_DELETE_FORM)
+
+  const [isDeleteRequestValid, setIsDeleteRequestValid] = useState(true);
+  const [modalErrorMessage, setModalErrorMessage] = useState("");
+
   function fetchComment() {
 
-    if (!hasMoreComment) return;
-    console.log('출력됨')
+    if (!hasMoreComment.current) return;
+    console.log(`last comment id=${lastLookUpCommentId.current}`)
+
     axios
       .get(
-        `${BASE_URI}/api/item/${itemId}/comment?lastId=${lastLookUpCommentId.current}&size=${DEFAULT_COMMENT_FETCH_SIZE}`, 
+        `${BASE_URI}/api/item/${itemId}/comment?lastId=${lastLookUpCommentId.current}&size=${DEFAULT_COMMENT_FETCH_SIZE}`,
         { withCredentials: true }
       )
       .then((res) => {
@@ -33,11 +39,11 @@ export default function Comment({ itemId }) {
         const newComments = res.data
         const newCommentList = [...commentList, ...newComments];
         setCommentList(newCommentList)
-        
-        if (newCommentList.length > 0) {
-          lastLookUpCommentId.current = newCommentList[newComments.length - 1].commentId;
+
+        if (newComments.length > 0) {
+          lastLookUpCommentId.current = newComments[newComments.length - 1].commentId;
         }
-        
+
         if (newComments.length < DEFAULT_COMMENT_FETCH_SIZE) hasMoreComment.current = false;
       })
       .catch((err) => {
@@ -85,17 +91,25 @@ export default function Comment({ itemId }) {
     return true;
   }
 
+  /***********************댓글 제출***********************/
+
   function submitCommentForm(e) {
     e.preventDefault();
     if (!validateForm()) {
       return;
     }
-
-    //댓글 제출
+    
     axios
       .post(`${BASE_URI}/api/item/${itemId}/comment`, commentForm, { withCredentials: true })
       .then((res) => {
-        console.log(res.data)
+        const data = res.data;
+        const newComment = {
+          commendId: data.commentId,
+          name: data.name,
+          content: commentForm.content,
+          createdDate: data.createdDate
+        }
+        setCommentList([newComment, ...commentList])
       })
       .catch((err) => {
         console.log(err);
@@ -130,26 +144,70 @@ export default function Comment({ itemId }) {
     console.log('신고버튼 클릭')
   }
 
-  function handleDelete() {
+  function handleDelete(commentId) {
     // 모달창을 띄우고 패스워드를 입력받는다.
     console.log('삭제버튼 클릭')
     setModalOpen(true);
+
+    const copy = { ...commentDeleteForm };
+    copy.commentId = commentId;
+    setCommentDeleteForm(copy);
   }
 
   function handleModalBackgroundClicked(e) {
-    if (e.target === modalBackground.current) {
-      setModalOpen(false);
-    }
+    // if (e.target === modalBackground.current) {
+    //   setModalOpen(false);
+    // }
   }
 
-  function handleModalDeleteButtonClicked() {
+  /********************** 댓글 삭제 *************************/ 
+
+  function filterDeleteComment(commentId) {
+    const copy = [...commentList];
+    const result = copy.filter((comment) => comment.commentId != commentId)
+    setCommentList(result);
+  }
+
+  function deleteComment() {
+    axios
+    .post(
+      `${BASE_URI}/api/item/comment/delete`,
+      commentDeleteForm,
+      { withCredentials: true }
+    )
+    .then((res) => {
+      console.log(res);
+      setIsDeleteRequestValid(true);
+      setModalOpen(false);
+
+      filterDeleteComment(commentDeleteForm.commentId);
+    })
+    .catch((err) => {
+      console.log(err.response.data.message);
+      const message = err.response.data.message;
+      setIsDeleteRequestValid(false);
+      setModalErrorMessage(message);
+    })
+  }
+
+  function handleModalDeleteButtonClicked(e) {
+    e.preventDefault();
     console.log(`댓글 삭제버튼 클릭`)
     // 댓글을 지울 수 있으면 모달창을 닫는다.
     // 댓글을 지울 수 없다면 에러 메세지를 출력한다.
+
+    deleteComment();
   }
 
   function handleModalCloseButtonClicked(e) {
+    e.preventDefault();
     setModalOpen(false);
+  }
+
+  function handleCommentDeletePasswordInput(e) {
+    const copy = { ...commentDeleteForm }
+    copy.password = e.target.value;
+    setCommentDeleteForm(copy)
   }
 
   return (
@@ -196,11 +254,11 @@ export default function Comment({ itemId }) {
           {
             commentList.map((comment) => {
               return (
-                <SingleComment 
-                  key={`comment_${itemId}_${comment.commentId}`} 
+                <SingleComment
+                  key={`comment_${itemId}_${comment.commentId}`}
                   info={comment}
                   handleReport={handleReport}
-                  handleDelete={handleDelete}
+                  handleDelete={() => handleDelete(comment.commentId)}
                 />
               )
             })
@@ -212,7 +270,7 @@ export default function Comment({ itemId }) {
       <button onClick={fetchComment}>댓글 가져오기</button>
       {
         modalOpen &&
-        <div 
+        <div
           className="delete-modal-container"
           ref={modalBackground}
           onClick={handleModalBackgroundClicked}
@@ -225,21 +283,29 @@ export default function Comment({ itemId }) {
               <div className="delete-modal-content">
                 <div className="delete-modal-dialog">
                   <article className="modal-title">비밀번호</article>
-                  <input 
-                    className="modal-input" 
+                  <input
+                    className="modal-input"
                     type="password"
                     placeholder="비밀번호를 입력하세요."
+                    defaultValue=""
+                    value={commentDeleteForm.password}
+                    onChange={handleCommentDeletePasswordInput}
                   ></input>
+                  { 
+                    !isDeleteRequestValid &&
+                    <span className="red">{modalErrorMessage}</span>
+                  }
+                  
                 </div>
               </div>
               <div className="delete-modal-button-container">
-                <button 
+                <button
                   className="delete-modal-button delete-modal-delete-button"
                   onClick={handleModalDeleteButtonClicked}
                 >
                   확인
                 </button>
-                <button 
+                <button
                   className="delete-modal-button delete-modal-cancel-button"
                   onClick={handleModalCloseButtonClicked}
                 >
@@ -248,8 +314,8 @@ export default function Comment({ itemId }) {
               </div>
             </div>
           </div>
-          
-          
+
+
         </div>
       }
     </>
