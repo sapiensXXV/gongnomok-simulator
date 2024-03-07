@@ -4,10 +4,7 @@ package site.gongnomok.domain.comment.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.domain.comment.dto.CommentCreateResponse;
-import site.gongnomok.domain.comment.dto.CommentCreateServiceDto;
-import site.gongnomok.domain.comment.dto.CommentDeleteServiceDto;
-import site.gongnomok.domain.comment.dto.CommentResponse;
+import site.gongnomok.domain.comment.dto.*;
 import site.gongnomok.domain.comment.exception.CannotFindCommentByIdException;
 import site.gongnomok.domain.comment.exception.CannotFindItemCommentException;
 import site.gongnomok.domain.comment.exception.CommentPasswordNotMatchException;
@@ -49,6 +46,11 @@ public class CommentService {
             .createdDate(savedComment.getCreatedDate())
             .build();
 
+    }
+
+    @Transactional(readOnly = true)
+    public CommentCountResponse countAllComment() {
+        return new CommentCountResponse(commentJpaRepository.count());
     }
 
     @Transactional(readOnly = true)

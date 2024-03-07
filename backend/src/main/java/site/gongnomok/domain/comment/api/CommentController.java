@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.domain.comment.dto.CommentCreateDto;
-import site.gongnomok.domain.comment.dto.CommentCreateResponse;
-import site.gongnomok.domain.comment.dto.CommentDeleteDto;
-import site.gongnomok.domain.comment.dto.CommentResponse;
+import site.gongnomok.domain.comment.dto.*;
 import site.gongnomok.domain.comment.service.CommentService;
 
 import java.util.List;
@@ -30,6 +27,11 @@ public class CommentController {
         return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(createdComment);
+    }
+
+    @GetMapping("/item/{itemId}/comment/count")
+    public ResponseEntity<CommentCountResponse> countAllComment() {
+        return ResponseEntity.ok(commentService.countAllComment());
     }
 
     @GetMapping("/item/{itemId}/comment")
