@@ -142,6 +142,12 @@ export default function Comment({ itemId }) {
     }
   }
 
+  function handleModalDeleteButtonClicked() {
+    console.log(`댓글 삭제버튼 클릭`)
+    // 댓글을 지울 수 있으면 모달창을 닫는다.
+    // 댓글을 지울 수 없다면 에러 메세지를 출력한다.
+  }
+
   function handleModalCloseButtonClicked(e) {
     setModalOpen(false);
   }
@@ -227,10 +233,16 @@ export default function Comment({ itemId }) {
                 </div>
               </div>
               <div className="delete-modal-button-container">
-                <button className="delete-modal-button delete-modal-delete-button">
+                <button 
+                  className="delete-modal-button delete-modal-delete-button"
+                  onClick={handleModalDeleteButtonClicked}
+                >
                   확인
                 </button>
-                <button className="delete-modal-button delete-modal-cancel-button">
+                <button 
+                  className="delete-modal-button delete-modal-cancel-button"
+                  onClick={handleModalCloseButtonClicked}
+                >
                   취소
                 </button>
               </div>
