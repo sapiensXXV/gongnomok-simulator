@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.domain.comment.dto.CommentCreateResponse;
 import site.gongnomok.domain.comment.dto.CommentCreateServiceDto;
+import site.gongnomok.domain.comment.dto.CommentDeleteServiceDto;
 import site.gongnomok.domain.comment.dto.CommentResponse;
+import site.gongnomok.domain.comment.exception.CannotFindCommentByIdException;
 import site.gongnomok.domain.comment.exception.CannotFindItemCommentException;
+import site.gongnomok.domain.comment.exception.CommentPasswordNotMatchException;
 import site.gongnomok.domain.comment.repository.CommentQueryRepository;
 import site.gongnomok.domain.comment.repository.CommentJpaRepository;
 import site.gongnomok.domain.item.repository.ItemRepository;
@@ -57,6 +60,16 @@ public class CommentService {
         return commentQueryRepository.paginationNoOffsetComment(lastCommentId, itemId, fetchSize);
     }
 
+    public void deleteComment(final CommentDeleteServiceDto deleteDto) {
+        Comment findComment = commentJpaRepository
+            .findById(deleteDto.getCommentId())
+            .orElseThrow(() -> new CannotFindCommentByIdException("존재하지 않는 댓글입니다."));
 
+        String encryptedPassword = SecurityUtil.encryptSha256(deleteDto.getPassword());
+        if (encryptedPassword.equals(findComment.getPassword())) {
+            throw new CommentPasswordNotMatchException("패스워드가 일치하지 않습니다.");
+        }
 
+        commentJpaRepository.delete(findComment);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.domain.comment.dto.CommentCreateDto;
 import site.gongnomok.domain.comment.dto.CommentCreateResponse;
+import site.gongnomok.domain.comment.dto.CommentDeleteDto;
 import site.gongnomok.domain.comment.dto.CommentResponse;
 import site.gongnomok.domain.comment.service.CommentService;
 
@@ -41,4 +42,14 @@ public class CommentController {
         List<CommentResponse> comments = commentService.fetchComment(itemId, lastId == -1 ? null : lastId, size);
         return ResponseEntity.ok(comments);
     }
+
+    @DeleteMapping("/item/comment")
+    public ResponseEntity<Void> deleteComment(
+        @RequestBody CommentDeleteDto deleteDto
+    ) {
+
+        commentService.deleteComment(deleteDto.toServiceDto());
+        return ResponseEntity.ok().build();
+    }
+
 }
