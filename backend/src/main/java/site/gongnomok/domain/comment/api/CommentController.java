@@ -43,7 +43,7 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
 
-    @DeleteMapping("/item/comment")
+    @PostMapping("/item/comment/delete")
     public ResponseEntity<Void> deleteComment(
         @RequestBody CommentDeleteDto deleteDto
     ) {
