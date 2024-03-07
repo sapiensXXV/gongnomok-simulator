@@ -24,7 +24,7 @@ public class SecurityUtil {
             throw new RuntimeException(e);
         }
 
-        return result;
+        return result.substring(0, 10);
     }
 
 }

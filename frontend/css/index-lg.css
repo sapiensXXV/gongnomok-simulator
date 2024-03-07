@@ -43,22 +43,22 @@
   }
 
   .header-title img {
-    width: 6vw;
-    height: 6vw;
+    width: 28px;
+    height: 28px;
     margin: 10px;
   }
 
   .header-item-nav {
     margin-left: 14px;
     font-family: NPSfontBold;
-    font-size: 2.5vw;
+    font-size: 16px;
   }
 
   .header-title span {
     display: block;
     color: black;
     
-    font-size: 32px;
+    font-size: 19px;
   }
 
   .header-title a {
