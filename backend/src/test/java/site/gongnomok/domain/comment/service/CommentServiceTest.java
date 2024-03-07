@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.domain.comment.dto.CommentCreateResponse;
-import site.gongnomok.domain.comment.dto.CommentCreateServiceDto;
-import site.gongnomok.domain.comment.dto.CommentResponse;
+import site.gongnomok.domain.comment.dto.*;
+import site.gongnomok.domain.comment.exception.CommentPasswordNotMatchException;
+import site.gongnomok.global.entity.Comment;
 import site.gongnomok.global.util.SecurityUtil;
 
 import java.util.List;
@@ -78,6 +78,57 @@ class CommentServiceTest {
     @DisplayName("아이템 댓글 No Offset")
     void comment_no_offset_page() {
 
+    }
+
+
+    @Test
+    @DisplayName("댓글 삭제 성공")
+    void comment_delete() {
+
+        //given
+        String PASSWORD = "1234321";
+        Long itemId = 5L;
+
+        CommentCreateServiceDto createDto = CommentCreateServiceDto.builder()
+            .name("user")
+            .password(PASSWORD)
+            .content("comment content")
+            .build();
+        CommentCreateResponse createCommentInfo = commentService.createComment(createDto, 5L);
+
+        //when
+        CommentDeleteServiceDto deleteDto = CommentDeleteServiceDto.builder()
+            .commentId(createCommentInfo.getCommentId())
+            .password(PASSWORD)
+            .build();
+
+        commentService.deleteComment(deleteDto);
+    }
+
+    @Test
+    @DisplayName("댓글 비밀번호 불일치 삭제 실패")
+    void comment_delete_fail_password_mismatch() {
+        //given
+        String PASSWORD = "1234321";
+        String WRONG_PASSWORD = "1234";
+
+        CommentCreateServiceDto createDto = CommentCreateServiceDto.builder()
+            .name("user")
+            .password(PASSWORD)
+            .content("comment content")
+            .build();
+
+        CommentCreateResponse createCommentInfo = commentService.createComment(createDto, 5L);
+
+        //when, then
+        CommentDeleteServiceDto deleteDto = CommentDeleteServiceDto.builder()
+            .commentId(createCommentInfo.getCommentId())
+            .password(WRONG_PASSWORD)
+            .build();
+
+        assertThrows(CommentPasswordNotMatchException.class, () -> {
+            commentService.deleteComment(deleteDto);
+        });
     }
 
 }

@@ -2,6 +2,7 @@ package site.gongnomok.domain.comment.service;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.domain.comment.dto.*;
@@ -21,6 +22,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class CommentService {
 
     private final ItemRepository itemRepository;
@@ -68,7 +70,7 @@ public class CommentService {
             .orElseThrow(() -> new CannotFindCommentByIdException("존재하지 않는 댓글입니다."));
 
         String encryptedPassword = SecurityUtil.encryptSha256(deleteDto.getPassword());
-        if (encryptedPassword.equals(findComment.getPassword())) {
+        if (!encryptedPassword.equals(findComment.getPassword())) {
             throw new CommentPasswordNotMatchException("패스워드가 일치하지 않습니다.");
         }
 
