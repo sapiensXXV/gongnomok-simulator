@@ -15,7 +15,7 @@ import OptionSelect from "./OptionSelect";
 import RequiredStatus from "./RequiredStatus";
 import Scroll from "./Scroll";
 import PriceCalculator from "./PriceCalculator";
-import Comment from "./Comment";
+import Comment from "./comment/Comment";
 
 let timer = null;
 

@@ -7,9 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.domain.comment.dto.CommentCreateDto;
 import site.gongnomok.domain.comment.dto.CommentCreateResponse;
+import site.gongnomok.domain.comment.dto.CommentResponse;
 import site.gongnomok.domain.comment.service.CommentService;
 
-import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -31,9 +32,15 @@ public class CommentController {
     }
 
     @GetMapping("/item/{itemId}/comment")
-    public ResponseEntity<Void> comment(
-        @PathVariable(name = "itemId") Long itemId
+    public ResponseEntity<List<CommentResponse>> comment(
+        @PathVariable(name = "itemId") Long itemId,
+        @RequestParam("lastId") Long lastId,
+        @RequestParam("size") int size
     ) {
+
+
+
         return null;
+
     }
 }

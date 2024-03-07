@@ -3,3 +3,5 @@ export const INIT_COMMENT_FORM = {
   password: "",
   content: "",
 }
+
+export const DEFAULT_COMMENT_FETCH_SIZE = 20;

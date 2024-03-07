@@ -1,27 +1,44 @@
 import { useRef, useState } from "react"
-import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM } from "../../global/comment";
+import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM } from "../../../global/comment";
 import axios from "axios";
-import { BASE_URI } from "../../global/uri";
+import { BASE_URI } from "../../../global/uri";
+import SingleComment from "./SingleComment";
 
 export default function Comment({ itemId }) {
 
   const [commentList, setCommentList] = useState([]);
 
   const [commentForm, setCommentForm] = useState(INIT_COMMENT_FORM);
-  const [isContentValid, setIsContentValid] = useState(false);
-  const [isNameValid, setIsNameValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isContentValid, setIsContentValid] = useState(true);
+  const [isNameValid, setIsNameValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
 
   const lastLookUpCommentId = useRef(-1); // 마지막으로 조회한 댓글 ID
+  const hasMoreComment = useRef(true);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const modalBackground = useRef();
 
   function fetchComment() {
+
+    if (!hasMoreComment) return;
+    console.log('출력됨')
     axios
       .get(
-        `${BASE_URI}/api/items?lastId=${lastLookUpCommentId.current}&size=${DEFAULT_COMMENT_FETCH_SIZE}`, 
+        `${BASE_URI}/api/item/${itemId}/comment?lastId=${lastLookUpCommentId.current}&size=${DEFAULT_COMMENT_FETCH_SIZE}`, 
         { withCredentials: true }
       )
       .then((res) => {
         console.log(res);
+        const newComments = res.data
+        const newCommentList = [...commentList, ...newComments];
+        setCommentList(newCommentList)
+        
+        if (newCommentList.length > 0) {
+          lastLookUpCommentId.current = newCommentList[newComments.length - 1].commentId;
+        }
+        
+        if (newComments.length < DEFAULT_COMMENT_FETCH_SIZE) hasMoreComment.current = false;
       })
       .catch((err) => {
         console.log(err);
@@ -109,6 +126,26 @@ export default function Comment({ itemId }) {
     setCommentForm(copy);
   }
 
+  function handleReport() {
+    console.log('신고버튼 클릭')
+  }
+
+  function handleDelete() {
+    // 모달창을 띄우고 패스워드를 입력받는다.
+    console.log('삭제버튼 클릭')
+    setModalOpen(true);
+  }
+
+  function handleModalBackgroundClicked(e) {
+    if (e.target === modalBackground.current) {
+      setModalOpen(false);
+    }
+  }
+
+  function handleModalCloseButtonClicked(e) {
+    setModalOpen(false);
+  }
+
   return (
     <>
       <section className="comment-container bg-light mx-3 mb-3 px-3 py-3">
@@ -149,10 +186,60 @@ export default function Comment({ itemId }) {
           {!isPasswordValid && <div><span className="red">패스워드를 입력해주세요.</span></div>}
           {!isContentValid && <div><span className="red">댓글은 1~200자를 입력해야합니다.</span></div>}
         </div>
-        <section></section>
+        <section className="single-comment-container mt-2">
+          {
+            commentList.map((comment) => {
+              return (
+                <SingleComment 
+                  key={`comment_${itemId}_${comment.commentId}`} 
+                  info={comment}
+                  handleReport={handleReport}
+                  handleDelete={handleDelete}
+                />
+              )
+            })
+          }
+        </section>
 
       </section>
 
+      <button onClick={fetchComment}>댓글 가져오기</button>
+      {
+        modalOpen &&
+        <div 
+          className="delete-modal-container"
+          ref={modalBackground}
+          onClick={handleModalBackgroundClicked}
+        >
+          <div className="delete-modal-root">
+            <div className="delete-modal-header">
+              <div className="delete-modal-title">댓글 삭제하기</div>
+            </div>
+            <div className="delete-modal-body">
+              <div className="delete-modal-content">
+                <div className="delete-modal-dialog">
+                  <article className="modal-title">비밀번호</article>
+                  <input 
+                    className="modal-input" 
+                    type="password"
+                    placeholder="비밀번호를 입력하세요."
+                  ></input>
+                </div>
+              </div>
+              <div className="delete-modal-button-container">
+                <button className="delete-modal-button delete-modal-delete-button">
+                  확인
+                </button>
+                <button className="delete-modal-button delete-modal-cancel-button">
+                  취소
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      }
     </>
   )
 }
