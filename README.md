@@ -17,5 +17,6 @@
 ### 프로젝트 구조
 <img src="./img/gongnomok-project-draw.drawio.png">
 
-### 관련 포스트
+### 포스트
 - [개발기](https://velog.io/@januaryone/%EB%A9%94%EC%9D%B4%ED%94%8C-%EC%A3%BC%EB%AC%B8%EC%84%9C-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%ED%84%B0-%EA%B0%9C%EB%B0%9C%EA%B8%B0)
+- [No Offset으로 댓글 페이징 최적화하기](https://velog.io/@januaryone/No-Offset-%EC%BF%BC%EB%A6%AC%EB%A1%9C-%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
