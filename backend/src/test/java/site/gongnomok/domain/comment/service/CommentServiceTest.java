@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.domain.comment.dto.*;
+import site.gongnomok.domain.comment.exception.CannotFindCommentByIdException;
 import site.gongnomok.domain.comment.exception.CommentPasswordNotMatchException;
 import site.gongnomok.global.entity.Comment;
 import site.gongnomok.global.util.SecurityUtil;
@@ -141,6 +142,19 @@ class CommentServiceTest {
             .build();
 
         assertThrows(CommentPasswordNotMatchException.class, () -> {
+            commentService.deleteComment(deleteDto);
+        });
+    }
+
+    @Test
+    @DisplayName("댓글 ID 불일치 삭제 실패")
+    void comment_delete_fail_comment_id_mismatch() {
+        CommentDeleteServiceDto deleteDto = CommentDeleteServiceDto.builder()
+            .commentId(Long.MAX_VALUE)
+            .password("password")
+            .build();
+
+        assertThrows(CannotFindCommentByIdException.class, () -> {
             commentService.deleteComment(deleteDto);
         });
     }
