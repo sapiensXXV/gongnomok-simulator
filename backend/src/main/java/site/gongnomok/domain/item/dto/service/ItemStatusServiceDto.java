@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import site.gongnomok.domain.item.dto.api.ItemStatusInfoDto;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +27,7 @@ public class ItemStatusServiceDto {
     private ItemStatusInfoServiceDto move;
     private ItemStatusInfoServiceDto jump;
 
-    public static ItemStatusServiceDto geAllZeroDto() {
+    public static ItemStatusServiceDto makeAllZero() {
         ItemStatusInfoServiceDto zeroStatus = ItemStatusInfoServiceDto.getAllZero();
         return ItemStatusServiceDto.builder()
             .str(zeroStatus)
