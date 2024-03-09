@@ -1,22 +1,19 @@
 package site.gongnomok.domain.comment.repository;
 
 
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import site.gongnomok.domain.comment.dto.CommentCountResponse;
-import site.gongnomok.domain.comment.dto.CommentCreateDto;
 import site.gongnomok.domain.comment.dto.CommentResponse;
-import site.gongnomok.global.entity.Comment;
-import site.gongnomok.global.entity.QComment;
 
 import java.util.List;
 
 import static site.gongnomok.global.entity.QComment.comment;
 
+@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class CommentQueryRepository {
@@ -28,6 +25,9 @@ public class CommentQueryRepository {
         final Long itemId,
         final int pageSize
     ) {
+
+        log.info("paginationNoOffsetComment(commentId={}, itemId={}, pageSize={}", commentId, itemId, pageSize);
+
         return queryFactory
             .select(
                 Projections.fields(

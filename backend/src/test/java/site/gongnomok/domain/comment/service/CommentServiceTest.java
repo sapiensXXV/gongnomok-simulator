@@ -68,16 +68,30 @@ class CommentServiceTest {
         List<CommentResponse> results = commentService.fetchComment(itemId, null, 20);
 
         assertThat(results).hasSize(20);
-        for (CommentResponse result : results) {
-            System.out.println(result.getName() + " " + result.getContent());
-        }
-
     }
 
     @Test
     @DisplayName("아이템 댓글 No Offset")
+    @Transactional
     void comment_no_offset_page() {
+        Long itemId = 5L;
+        for (int i = 1; i <= 30; i++) {
+            commentService.createComment(
+                CommentCreateServiceDto.builder()
+                    .name("abc" + i)
+                    .password("password")
+                    .content("test content")
+                    .build(),
+                itemId
+            );
+        }
+        // 마지막으로 등록한 댓글 1개를 가져옴
+        List<CommentResponse> commentFirstPage = commentService.fetchComment(itemId, null, 1);
+        Long lastCommentId = commentFirstPage.get(0).getCommentId();
 
+        List<CommentResponse> results = commentService.fetchComment(itemId, lastCommentId, 20);
+
+        assertThat(results).hasSize(20);
     }
 
 

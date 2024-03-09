@@ -51,7 +51,7 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
-    public CommentCountResponse countComment(Long itemId) {
+    public CommentCountResponse countComment(final Long itemId) {
         return new CommentCountResponse(commentQueryRepository.commentCount(itemId));
     }
 
