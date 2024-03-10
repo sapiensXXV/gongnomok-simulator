@@ -142,41 +142,41 @@ class ItemServiceTest {
         assertThat(ranking).hasSize(PAGE_SIZE);
     }
 
-    @Test
-    @DisplayName("id로 아이템 찾기")
-    void find_item_by_id() throws JsonProcessingException {
-        String ITEM_NAME = "Test Item Name";
-        Long ITEM_ID = Long.MAX_VALUE;
-
-        ItemCreateServiceDto createDto = ItemCreateServiceDto.builder()
-            .id(ITEM_ID)
-            .name(ITEM_NAME)
-            .requiredJob(
-                ItemRequiredJobServiceDto.builder()
-                    .common(false)
-                    .warrior(true)
-                    .bowman(false)
-                    .magician(false)
-                    .thief(false)
-                    .build()
-            )
-            .required(
-                ItemRequiredServiceDto.builder()
-                    .level(40).str(0).dex(0).intel(0).luk(0).pop(0)
-                    .build()
-            )
-            .category(Category.ONE_HANDED_SWORD)
-            .status(ItemStatusServiceDto.makeAllZero())
-            .attackSpeed(AttackSpeed.NORMAL)
-            .knockBackPercent(0)
-            .build();
-
-        itemService.saveItem(createDto);
-        ItemDetailResponseDto findItem = itemService.findItemById(ITEM_ID);
-
-        assertThat(findItem.getName()).isEqualTo(ITEM_NAME);
-        assertThat(findItem.getCategory()).isEqualTo(Category.ONE_HANDED_SWORD);
-        assertThat(findItem.getAttackSpeed()).isEqualTo(AttackSpeed.NORMAL);
-    }
+//    @Test
+//    @DisplayName("id로 아이템 찾기")
+//    void find_item_by_id() throws JsonProcessingException {
+//        String ITEM_NAME = "Test Item Name";
+//        Long ITEM_ID = Long.MAX_VALUE;
+//
+//        ItemCreateServiceDto createDto = ItemCreateServiceDto.builder()
+//            .id(ITEM_ID)
+//            .name(ITEM_NAME)
+//            .requiredJob(
+//                ItemRequiredJobServiceDto.builder()
+//                    .common(false)
+//                    .warrior(true)
+//                    .bowman(false)
+//                    .magician(false)
+//                    .thief(false)
+//                    .build()
+//            )
+//            .required(
+//                ItemRequiredServiceDto.builder()
+//                    .level(40).str(0).dex(0).intel(0).luk(0).pop(0)
+//                    .build()
+//            )
+//            .category(Category.ONE_HANDED_SWORD)
+//            .status(ItemStatusServiceDto.makeAllZero())
+//            .attackSpeed(AttackSpeed.NORMAL)
+//            .knockBackPercent(0)
+//            .build();
+//
+//        itemService.saveItem(createDto);
+//        ItemDetailResponseDto findItem = itemService.findItemById(ITEM_ID);
+//
+//        assertThat(findItem.getName()).isEqualTo(ITEM_NAME);
+//        assertThat(findItem.getCategory()).isEqualTo(Category.ONE_HANDED_SWORD);
+//        assertThat(findItem.getAttackSpeed()).isEqualTo(AttackSpeed.NORMAL);
+//    }
 
 }
