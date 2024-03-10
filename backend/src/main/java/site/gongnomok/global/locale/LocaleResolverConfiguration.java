@@ -13,8 +13,8 @@ public class LocaleResolverConfiguration {
 
     @Bean
     public LocaleResolver localeResolver() {
-        SessionLocaleResolver localeRessolver = new SessionLocaleResolver();
-        localeRessolver.setDefaultLocale(Locale.KOREA);
-        return localeRessolver;
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.KOREA);
+        return localeResolver;
     }
 }

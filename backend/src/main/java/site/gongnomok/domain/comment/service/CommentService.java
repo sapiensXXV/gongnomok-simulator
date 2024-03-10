@@ -22,7 +22,6 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@Slf4j
 public class CommentService {
 
     private final ItemRepository itemRepository;

@@ -25,9 +25,6 @@ public class CommentQueryRepository {
         final Long itemId,
         final int pageSize
     ) {
-
-        log.info("paginationNoOffsetComment(commentId={}, itemId={}, pageSize={}", commentId, itemId, pageSize);
-
         return queryFactory
             .select(
                 Projections.fields(
