@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { DEFAULT_FETCH_SIZE } from "../../global/item";
 import { BASE_URI } from "../../global/uri";
+import FeedbackBanner from "../FeedbackBanner";
 
 export default function ItemMain() {
 
@@ -119,6 +120,11 @@ export default function ItemMain() {
   return (
     <>
       <section className="mt-3">
+        <div className="row mb-3">
+          <section>
+            <FeedbackBanner/>
+          </section>
+        </div>
         <div className="row">
           <div className="col-lg-12 col-xl-4">
             <section className="col-md-12">
@@ -135,6 +141,7 @@ export default function ItemMain() {
 
 
           <div className="col-lg-12 col-xl-8">
+            
             <section>
               <ItemList 
                 itemList={itemList} 
