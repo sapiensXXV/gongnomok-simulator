@@ -84,6 +84,22 @@
   font-style: normal;
 }
 
+.feedback-banner-root {
+  background-color: rgb(2, 151, 41);
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+
+  font-family: Pretendard-Regular;
+}
+
+.feedback-banner-root a {
+  color: rgb(254, 70, 70);
+  font-family: Pretendard-Bold;
+  text-decoration: none;
+}
+
 .comment-container {
   /* height: 100px; */
   border-radius: 8px;
