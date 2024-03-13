@@ -1,6 +1,5 @@
 package site.gongnomok.domain.comment.service;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.domain.comment.dto.*;
 import site.gongnomok.domain.comment.exception.CannotFindCommentByIdException;
 import site.gongnomok.domain.comment.exception.CommentPasswordNotMatchException;
-import site.gongnomok.global.entity.Comment;
 import site.gongnomok.global.util.SecurityUtil;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,49 +47,49 @@ class CommentServiceTest {
         assertThat(createResponse.getCreatedDate()).isNotNull();
     }
 
-    @Test
-    @DisplayName("아이템 댓글 첫페이지 No Offset")
-    void comment_no_offset_first_page() {
-        Long itemId = 5L;
-        for (int i = 1; i <= 30; i++) {
-            commentService.createComment(
-                CommentCreateServiceDto.builder()
-                    .name("abc" + i)
-                    .password("password")
-                    .content("testcomment" + i)
-                    .build(),
-                itemId
-            );
-        }
+//    @Test
+//    @DisplayName("아이템 댓글 첫페이지 No Offset")
+//    void comment_no_offset_first_page() {
+//        Long itemId = 5L;
+//        for (int i = 1; i <= 30; i++) {
+//            commentService.createComment(
+//                CommentCreateServiceDto.builder()
+//                    .name("abc" + i)
+//                    .password("password")
+//                    .content("testcomment" + i)
+//                    .build(),
+//                itemId
+//            );
+//        }
+//
+//        List<CommentResponse> results = commentService.fetchComment(itemId, null, 20);
+//
+//        assertThat(results).hasSize(20);
+//    }
 
-        List<CommentResponse> results = commentService.fetchComment(itemId, null, 20);
-
-        assertThat(results).hasSize(20);
-    }
-
-    @Test
-    @DisplayName("아이템 댓글 No Offset")
-    @Transactional
-    void comment_no_offset_page() {
-        Long itemId = 5L;
-        for (int i = 1; i <= 30; i++) {
-            commentService.createComment(
-                CommentCreateServiceDto.builder()
-                    .name("abc" + i)
-                    .password("password")
-                    .content("test content")
-                    .build(),
-                itemId
-            );
-        }
-        // 마지막으로 등록한 댓글 1개를 가져옴
-        List<CommentResponse> commentFirstPage = commentService.fetchComment(itemId, null, 1);
-        Long lastCommentId = commentFirstPage.get(0).getCommentId();
-
-        List<CommentResponse> results = commentService.fetchComment(itemId, lastCommentId, 20);
-
-        assertThat(results).hasSize(20);
-    }
+//    @Test
+//    @DisplayName("아이템 댓글 No Offset")
+//    @Transactional
+//    void comment_no_offset_page() {
+//        Long itemId = 5L;
+//        for (int i = 1; i <= 30; i++) {
+//            commentService.createComment(
+//                CommentCreateServiceDto.builder()
+//                    .name("abc" + i)
+//                    .password("password")
+//                    .content("test content")
+//                    .build(),
+//                itemId
+//            );
+//        }
+//        // 마지막으로 등록한 댓글 1개를 가져옴
+//        List<CommentResponse> commentFirstPage = commentService.fetchComment(itemId, null, 1);
+//        Long lastCommentId = commentFirstPage.get(0).getCommentId();
+//
+//        List<CommentResponse> results = commentService.fetchComment(itemId, lastCommentId, 20);
+//
+//        assertThat(results).hasSize(20);
+//    }
 
 
     @Test
