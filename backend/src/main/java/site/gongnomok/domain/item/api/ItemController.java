@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.domain.item.dto.ItemEnhanceResponse;
 import site.gongnomok.domain.item.dto.ItemRankingResponse;
 import site.gongnomok.domain.item.dto.api.ItemCreateDto;
 import site.gongnomok.domain.item.dto.api.ItemDetailResponseDto;
@@ -86,6 +87,20 @@ public class ItemController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("/item/{itemId}/enhanced")
+    public ResponseEntity<ItemEnhanceResponse> enhancedItem(
+        @PathVariable("itemId") Long itemId
+    ) {
+        ItemEnhanceResponse result = itemService.findEnhanceItem(itemId);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/item/{itemId}/enhanced")
+    public ResponseEntity<Void> challengeEnhancedItem() {
+
+        return null;
     }
 
 

@@ -561,4 +561,11 @@
     background-color: rgb(214, 214, 214);
   }
 
+  .item-simulator-root {
+    display: flex;
+    justify-content: center;
+
+    gap: 10px;
+  }
+
 }

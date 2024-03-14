@@ -16,6 +16,7 @@ import RequiredStatus from "./RequiredStatus";
 import Scroll from "./Scroll";
 import PriceCalculator from "./PriceCalculator";
 import Comment from "./comment/Comment";
+import BestRecordItem from "./BestRecordItem";
 
 let timer = null;
 
@@ -489,182 +490,186 @@ export default function ItemSimulator() {
           <ShortcutInfo description='F-구매기록 리셋' />
         </div>
       </section>
-      <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-1">
-        <section className="item-info-and-overflow-message">
-          <section className="item-info-section-container">
-            <section className="item-info-section mx-1">
-              <span
-                className={`item-info-name ${getItemNameColor()}`}>
-                {info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}
-              </span>
-              <div className="item-info-basic">
-                <div className="item-img-container">
-                  <img className='item-img' src={`/images/item/${itemId}.png`} />
-                  <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation" id="scroll-animation"></img>
+      <section className="item-simulator-root">
+        <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-3">
+          <section className="item-info-and-overflow-message">
+            <section className="item-info-section-container">
+              <section className="item-info-section mx-1">
+                <span
+                  className={`item-info-name ${getItemNameColor()}`}>
+                  {info?.name}{upgradedCount != null && upgradedCount > 0 && `(+${upgradedCount})`}
+                </span>
+                <div className="item-info-basic">
+                  <div className="item-img-container">
+                    <img className='item-img' src={`/images/item/${itemId}.png`} />
+                    <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation" id="scroll-animation"></img>
+                  </div>
+                  <div className="item-info-required">
+                    <RequiredStatus name="LEV" value={info?.required.level} />
+                    <RequiredStatus name="STR" value={info?.required.str} />
+                    <RequiredStatus name="DEX" value={info?.required.dex} />
+                    <RequiredStatus name="INT" value={info?.required.intel} />
+                    <RequiredStatus name="LUK" value={info?.required.luk} />
+                    <RequiredStatus name="POP" value={info?.required.pop} />
+
+                    <span className="item-useless-info">ITEM LEV : -</span>
+                    <span className="item-useless-info">ITEM EXP : -</span>
+
+                  </div>
                 </div>
-                <div className="item-info-required">
-                  <RequiredStatus name="LEV" value={info?.required.level} />
-                  <RequiredStatus name="STR" value={info?.required.str} />
-                  <RequiredStatus name="DEX" value={info?.required.dex} />
-                  <RequiredStatus name="INT" value={info?.required.intel} />
-                  <RequiredStatus name="LUK" value={info?.required.luk} />
-                  <RequiredStatus name="POP" value={info?.required.pop} />
-
-                  <span className="item-useless-info">ITEM LEV : -</span>
-                  <span className="item-useless-info">ITEM EXP : -</span>
-
+                <div className="item-info-job">
+                  <span className={info?.job.common ? '' : 'red'}>초보자</span>
+                  <span className={info?.job.warrior || info?.job.common ? '' : 'red'}>전사</span>
+                  <span className={info?.job.magician || info?.job.common ? '' : 'red'}>마법사</span>
+                  <span className={info?.job.bowman || info?.job.common ? '' : 'red'} >궁수</span>
+                  <span className={info?.job.thief || info?.job.common ? '' : 'red'}>도적</span>
+                  <span className={info?.job.common ? '' : 'red'}>해적</span>
                 </div>
-              </div>
-              <div className="item-info-job">
-                <span className={info?.job.common ? '' : 'red'}>초보자</span>
-                <span className={info?.job.warrior || info?.job.common ? '' : 'red'}>전사</span>
-                <span className={info?.job.magician || info?.job.common ? '' : 'red'}>마법사</span>
-                <span className={info?.job.bowman || info?.job.common ? '' : 'red'} >궁수</span>
-                <span className={info?.job.thief || info?.job.common ? '' : 'red'}>도적</span>
-                <span className={info?.job.common ? '' : 'red'}>해적</span>
-              </div>
-              <hr />
+                <hr />
 
-              <div className="item-info-status">
-                <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
-                {info?.attackSpeed != null && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
-                {str > 0 && <span>STR : +{str}</span>}
-                {dex > 0 && <span>DEX : +{dex}</span>}
-                {intel > 0 && <span>INT : +{intel}</span>}
-                {luk > 0 && <span>LUK : +{luk}</span>}
-                {acc > 0 && <span>명중률 : +{acc}</span>}
-                {avo > 0 && <span>회피율 : +{avo}</span>}
-                {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
-                {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
-                {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
-                {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
-                {hp > 0 && <span>HP : +{hp}</span>}
-                {mp > 0 && <span>MP : +{mp}</span>}
-                {move > 0 && <span>이동속도 : +{move}</span>}
-                {jump > 0 && <span>점프력 : +{jump}</span>}
-                {knockBackPercent > 0 && <span>직접 타격시 넉백 확률 : +{knockBackPercent}%</span>}
-                <span>업그레이드 가능 횟수 : {upgradable}</span>
-              </div>
-            </section>
-
-
-
-          </section>
-          <section className="overflow-message">
-            {
-              upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
-            }
-          </section>
-        </section>
-
-
-        {/********************* 가격관련 정보 ***********************/}
-
-        <div>
-          <section className="d-flex justify-content-center">
-            <section className="item-controller-section mx-1">
-              <select
-                className="form-select form-select-sm"
-                onChange={(e) => handleScrollChange(e)}
-                defaultValue={currentScroll}
-              >
-                {
-                  availableScroll?.current != null && availableScroll.current?.length > 0 &&
-                  availableScroll.current?.map((scroll) => {
-                    if (scroll === undefined) return;
-                    const key = scroll.keyword;
-                    return <option key={`${key}`} value={key}>{scroll.name}</option>
-                  })
-                }
-              </select>
-
-              <section className="option-select-container">
-                <OptionSelect statusInfo={info?.status} optionSelectHandler={handleItemOption} />
+                <div className="item-info-status">
+                  <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
+                  {info?.attackSpeed != null && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
+                  {str > 0 && <span>STR : +{str}</span>}
+                  {dex > 0 && <span>DEX : +{dex}</span>}
+                  {intel > 0 && <span>INT : +{intel}</span>}
+                  {luk > 0 && <span>LUK : +{luk}</span>}
+                  {acc > 0 && <span>명중률 : +{acc}</span>}
+                  {avo > 0 && <span>회피율 : +{avo}</span>}
+                  {phyAtk > 0 && <span>공격력 : +{phyAtk}</span>}
+                  {mgAtk > 0 && <span>마력 : +{mgAtk}</span>}
+                  {phyDef > 0 && <span>물리방어력 : +{phyDef}</span>}
+                  {mgDef > 0 && <span>마법방어력 : +{mgDef}</span>}
+                  {hp > 0 && <span>HP : +{hp}</span>}
+                  {mp > 0 && <span>MP : +{mp}</span>}
+                  {move > 0 && <span>이동속도 : +{move}</span>}
+                  {jump > 0 && <span>점프력 : +{jump}</span>}
+                  {knockBackPercent > 0 && <span>직접 타격시 넉백 확률 : +{knockBackPercent}%</span>}
+                  <span>업그레이드 가능 횟수 : {upgradable}</span>
+                </div>
               </section>
 
-              <div className="scroll-select">
-                {/* <Scroll  /> */}
-                <Scroll ref={scroll10Button} percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
-                <Scroll ref={scroll60Button} percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
-                <Scroll ref={scroll100Button} percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
-                <div className="scroll-info">
-                  <button ref={resetButton} onClick={handleResetClicked} id="reset-button" onMouseUp={() => document.activeElement.blur()}>
-                    <img src="/images/etc/reset.png"></img>
-                  </button>
-                </div>
-              </div>
-              <div className="item-price-info">
-                <PriceCalculator
-                  key={`item-price`}
-                  isScroll={false}
-                  price={itemPrice}
-                  buyCount={itemBuyCount}
-                  inputHandler={itemPriceChangeHandler}
-                />
-                <PriceCalculator
-                  key={`scroll-price-10`}
-                  isScroll={true}
-                  percent={10}
-                  price={scroll10Price}
-                  buyCount={scroll10BuyCount}
-                  successCount={scroll10Success}
-                  inputHandler={scroll10PriceChangeHandler}
-                />
-                <PriceCalculator
-                  key={`scroll-price-60`}
-                  isScroll={true}
-                  percent={60}
-                  price={scroll60Price}
-                  buyCount={scroll60BuyCount}
-                  successCount={scroll60Success}
-                  inputHandler={scroll60PriceChangeHandler}
-                />
-                <PriceCalculator
-                  key={`scroll-price-100`}
-                  isScroll={true}
-                  percent={100}
-                  price={scroll100Price}
-                  buyCount={scroll100BuyCount}
-                  successCount={scroll100Success}
-                  inputHandler={scroll100PriceChangeHandler}
-                />
 
-                <section className="total-price-info-section">
-                  <div className="total-price-info">
-                    <img src="/images/etc/meso.png"></img>
-                    <span>
-                      {
-                        (itemBuyCount * itemPrice +
-                          scroll10BuyCount * scroll10Price +
-                          scroll60BuyCount * scroll60Price +
-                          scroll100BuyCount * scroll100Price).toLocaleString()
-                      }
-                    </span>
-                  </div>
 
-                  <button
-                    ref={purchaseResetButton}
-                    className="total-price-reset-btn"
-                    id="purchase-reset-button"
-                    onClick={handlePurchaseResetClicked}
-                    onMouseUp={() => document.activeElement.blur()}
-                  >
-                    구매기록 리셋
-                  </button>
-                </section>
-
-              </div>
+            </section>
+            <section className="overflow-message">
+              {
+                upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+              }
             </section>
           </section>
-        </div>
 
-      </main>
+
+          {/********************* 가격관련 정보 ***********************/}
+
+          <div>
+            <section className="d-flex justify-content-center">
+              <section className="item-controller-section mx-1">
+                <select
+                  className="form-select form-select-sm"
+                  onChange={(e) => handleScrollChange(e)}
+                  defaultValue={currentScroll}
+                >
+                  {
+                    availableScroll?.current != null && availableScroll.current?.length > 0 &&
+                    availableScroll.current?.map((scroll) => {
+                      if (scroll === undefined) return;
+                      const key = scroll.keyword;
+                      return <option key={`${key}`} value={key}>{scroll.name}</option>
+                    })
+                  }
+                </select>
+
+                <section className="option-select-container">
+                  <OptionSelect statusInfo={info?.status} optionSelectHandler={handleItemOption} />
+                </section>
+
+                <div className="scroll-select">
+                  {/* <Scroll  /> */}
+                  <Scroll ref={scroll10Button} percent={10} currentScroll={currentScroll} onClick={handleScrollClicked} />
+                  <Scroll ref={scroll60Button} percent={60} currentScroll={currentScroll} onClick={handleScrollClicked} />
+                  <Scroll ref={scroll100Button} percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
+                  <div className="scroll-info">
+                    <button ref={resetButton} onClick={handleResetClicked} id="reset-button" onMouseUp={() => document.activeElement.blur()}>
+                      <img src="/images/etc/reset.png"></img>
+                    </button>
+                  </div>
+                </div>
+                <div className="item-price-info">
+                  <PriceCalculator
+                    key={`item-price`}
+                    isScroll={false}
+                    price={itemPrice}
+                    buyCount={itemBuyCount}
+                    inputHandler={itemPriceChangeHandler}
+                  />
+                  <PriceCalculator
+                    key={`scroll-price-10`}
+                    isScroll={true}
+                    percent={10}
+                    price={scroll10Price}
+                    buyCount={scroll10BuyCount}
+                    successCount={scroll10Success}
+                    inputHandler={scroll10PriceChangeHandler}
+                  />
+                  <PriceCalculator
+                    key={`scroll-price-60`}
+                    isScroll={true}
+                    percent={60}
+                    price={scroll60Price}
+                    buyCount={scroll60BuyCount}
+                    successCount={scroll60Success}
+                    inputHandler={scroll60PriceChangeHandler}
+                  />
+                  <PriceCalculator
+                    key={`scroll-price-100`}
+                    isScroll={true}
+                    percent={100}
+                    price={scroll100Price}
+                    buyCount={scroll100BuyCount}
+                    successCount={scroll100Success}
+                    inputHandler={scroll100PriceChangeHandler}
+                  />
+
+                  <section className="total-price-info-section">
+                    <div className="total-price-info">
+                      <img src="/images/etc/meso.png"></img>
+                      <span>
+                        {
+                          (itemBuyCount * itemPrice +
+                            scroll10BuyCount * scroll10Price +
+                            scroll60BuyCount * scroll60Price +
+                            scroll100BuyCount * scroll100Price).toLocaleString()
+                        }
+                      </span>
+                    </div>
+
+                    <button
+                      ref={purchaseResetButton}
+                      className="total-price-reset-btn"
+                      id="purchase-reset-button"
+                      onClick={handlePurchaseResetClicked}
+                      onMouseUp={() => document.activeElement.blur()}
+                    >
+                      구매기록 리셋
+                    </button>
+                  </section>
+
+                </div>
+              </section>
+            </section>
+          </div>
+
+        </main>
+        <BestRecordItem itemId={itemId}/>
+      </section>
+
 
       {/***********************************************************************/}
       {/******************************** 댓글 **********************************/}
       {/***********************************************************************/}
-      <Comment itemId={itemId}/>
-      
+      <Comment itemId={itemId} />
+
 
     </>
   )
