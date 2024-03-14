@@ -50,7 +50,7 @@ export default function BestRecordItem({ itemId, info }) {
   return (
     <>
       <main className="item-best-record-root bg-light mx-3 mb-3 py-2 px-3">
-        <span className="item-best-record-title">최고기록{ enhanced?.name?.length > 0 && `(${enhanced.name} 님)`}</span>
+        <span className="item-best-record-title">최고기록{ enhanced?.name?.length > 0 && ` (이름: ${enhanced.name})`}</span>
         <div className="best-record-container">
           <section className="item-info-section-container black-border">
             <section className="item-info-section">

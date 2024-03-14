@@ -769,7 +769,7 @@ export default function ItemSimulator() {
             <div className="delete-modal-body">
               <div className="delete-modal-content">
                 <div className="delete-modal-dialog">
-                  <article className="modal-title">이름</article>
+                  <article className="modal-title">이름<span className="red"> (※ 부적절한 이름 입력 시 삭제처리 됩니다.)</span></article>
                   <input
                     className="modal-input"
                     type="text"

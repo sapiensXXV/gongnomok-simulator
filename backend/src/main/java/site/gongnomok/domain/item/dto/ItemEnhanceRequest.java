@@ -1,16 +1,14 @@
 package site.gongnomok.domain.item.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import site.gongnomok.domain.item.dto.service.ItemEnhanceServiceRequest;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class ItemEnhanceRequest {
 
     private String name;

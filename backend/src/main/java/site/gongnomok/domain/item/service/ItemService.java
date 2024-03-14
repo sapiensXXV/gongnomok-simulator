@@ -272,6 +272,7 @@ public class ItemService {
         final ItemEnhanceServiceRequest enhanceDto
     ) {
         enhancedItem.changeStatus(enhanceDto);
+
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }
