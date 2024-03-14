@@ -549,7 +549,7 @@ export default function ItemSimulator() {
         </div>
       </section>
       <section className="item-simulator-root">
-        <main className="item-simulator-section bg-light mx-3 my-3 py-3 px-3">
+        <main className="item-simulator-section bg-light  my-3 mx-3 py-3 px-3">
           <section className="item-info-and-overflow-message">
             <section className="item-info-section-container">
               <section className="item-info-section mx-1">

@@ -551,13 +551,6 @@
     background-color: rgb(214, 214, 214);
   }
 
-  .item-simulator-root {
-    /* display: flex; */
-    /* justify-content: center; */
-
-    gap: 10px;
-  }
-
   .item-best-record-root {
     border-radius: 8px;
 
@@ -565,6 +558,8 @@
     flex-direction: column;
 
     justify-content: center;
+
+    margin-top: 1rem;
 
   }
 
@@ -579,6 +574,34 @@
   .best-record-container {
     display: flex;
     justify-content: center;
+  }
+
+  .item-record-challenge-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-record-challenge-btn {
+    padding: 3px 7px 3px 7px;
+    border: none;
+    border-radius: 3px;
+    font-family: SejonghospitalBold;
+    font-size: 14px;
+
+    width: 325px;
+  }
+
+  .item-record-challenge-btn:focus {
+    border: none;
+    outline: 0;
+    background-color: rgb(214, 214, 214);
+  }
+
+  .item-simulator-root {
+    display: flex;
+    justify-content: space-evenly;
   }
 
 }
