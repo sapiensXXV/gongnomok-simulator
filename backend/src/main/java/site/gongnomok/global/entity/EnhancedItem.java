@@ -20,6 +20,7 @@ public class EnhancedItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    private String name;
     private Integer iev; // item enhancement value
     private Integer successCount;
     private Integer str;
@@ -38,6 +39,7 @@ public class EnhancedItem {
     private Integer mp;
 
     public void changeStatus(ItemEnhanceServiceRequest dto) {
+        name = dto.getName();
         iev = dto.getIev();
         successCount = dto.getSuccessCount();
         str = dto.getStr();

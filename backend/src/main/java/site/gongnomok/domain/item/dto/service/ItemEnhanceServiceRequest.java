@@ -13,6 +13,7 @@ import site.gongnomok.global.entity.EnhancedItem;
 @Builder
 public class ItemEnhanceServiceRequest {
 
+    private String name;
     private Integer iev;
     private Integer successCount;
     private Integer str;
@@ -32,6 +33,7 @@ public class ItemEnhanceServiceRequest {
 
     public static EnhancedItem createEntity(final ItemEnhanceServiceRequest dto) {
         return EnhancedItem.builder()
+            .name(dto.getName())
             .iev(dto.getIev())
             .successCount(dto.getSuccessCount())
             .str(dto.getStr())
