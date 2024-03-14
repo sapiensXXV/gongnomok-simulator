@@ -14,19 +14,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
+import site.gongnomok.domain.item.dto.ItemEnhanceResponse;
 import site.gongnomok.domain.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.domain.item.dto.api.ItemListPageDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
+import site.gongnomok.global.entity.EnhancedItem;
 import site.gongnomok.global.entity.Item;
+import site.gongnomok.global.entity.QEnhancedItem;
 import site.gongnomok.global.entity.QItem;
 import site.gongnomok.global.entity.enumerate.Category;
 import site.gongnomok.global.entity.enumerate.Job;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
+import static site.gongnomok.global.entity.QEnhancedItem.enhancedItem;
 import static site.gongnomok.global.entity.QItem.item;
 
 
@@ -161,6 +166,20 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
             .limit(pageable.getPageSize())
             .fetch();
 
+    }
+
+    @Override
+    public Optional<EnhancedItem> findEnhanceItem(Long itemId) {
+        EnhancedItem result = queryFactory
+            .select(enhancedItem)
+            .from(enhancedItem)
+            .where(enhancedItem.item.id.eq(itemId))
+            .fetchOne();
+
+        if (result == null) {
+            return Optional.empty();
+        }
+        return Optional.of(result);
     }
 
     private Pageable exchangePageRequest(Pageable pageable, long totalCount) {

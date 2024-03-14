@@ -359,7 +359,7 @@
   .item-info-name {
     display: block;
     font-size: 25px;
-    font-weight: bold;
+    font-family: Pretendard-Medium;
     margin-top: 1px;
     margin-bottom: 5px;
   }
@@ -509,7 +509,7 @@
     border-radius: 5px;
     border-width: 1px;
 
-    width: 170px;
+    width: 150px;
     /* height: 13px; */
   }
 
@@ -551,6 +551,58 @@
     border: none;
     outline: 0;
     background-color: rgb(214, 214, 214);
+  }
+
+  .item-best-record-root {
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+  }
+
+  .item-best-record-title {
+    font-size: 20px;
+    font-family: SejonghospitalBold;
+
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .best-record-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-record-challenge-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-record-challenge-btn {
+    padding: 3px 7px 3px 7px;
+    border: none;
+    border-radius: 3px;
+    font-family: SejonghospitalBold;
+    font-size: 14px;
+
+    width: 325px;
+  }
+
+  .item-record-challenge-btn:focus {
+    border: none;
+    outline: 0;
+    background-color: rgb(214, 214, 214);
+  }
+
+  .item-simulator-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
 }

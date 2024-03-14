@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.domain.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.domain.item.dto.ItemEnhanceRequest;
+import site.gongnomok.domain.item.dto.ItemEnhanceResponse;
 import site.gongnomok.domain.item.dto.ItemRankingResponse;
 import site.gongnomok.domain.item.dto.api.ItemCreateDto;
 import site.gongnomok.domain.item.dto.api.ItemDetailResponseDto;
@@ -33,7 +36,7 @@ public class ItemController {
 
     @GetMapping("/auth")
     public ResponseEntity<Void> auth(
-            @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
+        @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
     ) {
         if (member == null) {
             return ResponseEntity.status(401).build();
@@ -88,5 +91,21 @@ public class ItemController {
         }
     }
 
+    @GetMapping("/item/{itemId}/enhanced")
+    public ResponseEntity<ItemEnhanceResponse> enhancedItem(
+        @PathVariable("itemId") Long itemId
+    ) {
+        ItemEnhanceResponse result = itemService.findEnhanceItem(itemId);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/item/{itemId}/enhanced")
+    public ResponseEntity<UpdateEnhancementResponse> challengeEnhancedItem(
+        @PathVariable("itemId") Long itemId,
+        @RequestBody ItemEnhanceRequest enhanceDto
+    ) {
+        UpdateEnhancementResponse response = itemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto());
+        return ResponseEntity.ok(response);
+    }
 
 }

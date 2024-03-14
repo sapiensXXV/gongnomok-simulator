@@ -20,7 +20,6 @@ export default function Comment({ itemId }) {
 
   
   const hasMoreComment = useRef(true);
-  
 
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();

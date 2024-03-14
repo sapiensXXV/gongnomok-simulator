@@ -8,18 +8,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.gongnomok.domain.enhanceditem.dto.EnhanceResult;
+import site.gongnomok.domain.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.domain.enhanceditem.repository.EnhancedItemRepository;
+import site.gongnomok.domain.item.dto.ItemEnhanceResponse;
 import site.gongnomok.domain.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.domain.item.dto.ItemRankingResponse;
 import site.gongnomok.domain.item.dto.api.*;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
-import site.gongnomok.domain.item.dto.service.ItemCreateServiceDto;
-import site.gongnomok.domain.item.dto.service.ItemRequiredJobServiceDto;
-import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
-import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
+import site.gongnomok.domain.item.dto.service.*;
+import site.gongnomok.domain.item.exception.CannotFindEnhancedItemException;
 import site.gongnomok.domain.item.exception.CannotFindItemException;
 import site.gongnomok.domain.item.repository.ItemRepository;
+import site.gongnomok.global.entity.EnhancedItem;
 import site.gongnomok.global.entity.Item;
 import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
@@ -35,6 +38,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final EnhancedItemRepository enhancedItemRepository;
     private final ObjectMapper mapper;
 
     public void saveItem(ItemCreateServiceDto dto) {
@@ -180,5 +184,95 @@ public class ItemService {
             .move(mapper.readValue(item.getMove(), ItemStatusInfoDto.class))
             .jump(mapper.readValue(item.getJump(), ItemStatusInfoDto.class))
             .build();
+    }
+
+    /**
+     * @param itemId 특정 아이템의 기록을 읽어온다.
+     * @return 아이템의 최고기록 정보를 담은 ItemEnhanceResponse 객체
+     */
+    public ItemEnhanceResponse findEnhanceItem(Long itemId) {
+        Item findItem = itemRepository
+            .findById(itemId)
+            .orElseThrow(() -> new CannotFindItemException("아이템을 찾을 수 없습니다."));
+
+        Optional<EnhancedItem> enhanceItem = itemRepository.findEnhanceItem(itemId);
+        if (enhanceItem.isEmpty()) {
+            // item_id에 해당하는 아이템의 기록정보가 테이블에 없다면 기본정보를 만들어서 반환한다.
+            return ItemEnhanceResponse.getBasicEnhanceData();
+        } else {
+            EnhancedItem enhancedItem = enhanceItem.orElseThrow(() -> new CannotFindEnhancedItemException("아이템 기록을 찾을 수 없습니다."));
+
+            enhancedItem.changeItem(findItem);
+
+            return ItemEnhanceResponse.builder()
+                .name(enhancedItem.getName())
+                .iev(enhancedItem.getIev())
+                .successCount(enhancedItem.getSuccessCount())
+                .str(enhancedItem.getStr())
+                .dex(enhancedItem.getDex())
+                .intel(enhancedItem.getIntel())
+                .luk(enhancedItem.getLuk())
+                .phyAtk(enhancedItem.getPhyAtk())
+                .mgAtk(enhancedItem.getMgAtk())
+                .phyDef(enhancedItem.getPhyDef())
+                .mgDef(enhancedItem.getMgDef())
+                .acc(enhancedItem.getAcc())
+                .avo(enhancedItem.getAvo())
+                .move(enhancedItem.getMove())
+                .jump(enhancedItem.getJump())
+                .hp(enhancedItem.getHp())
+                .mp(enhancedItem.getMp())
+                .build();
+        }
+    }
+
+    /**
+     * @param itemId 새로운 기록을 등록할 아이템 ID
+     * @param enhanceDto 기록 정보
+     */
+    @Transactional
+    public UpdateEnhancementResponse updateEnhanceItem(
+        final Long itemId,
+        final ItemEnhanceServiceRequest enhanceDto
+    ) {
+
+        Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
+        if (enhancedItemOptional.isEmpty()) {
+            return createEnhancedRecord(itemId, enhanceDto);
+        }
+
+        EnhancedItem enhancedItem = enhancedItemOptional
+            .orElseThrow(() -> new CannotFindEnhancedItemException("기록을 찾을 수 없습니다."));
+
+        if (enhancedItem.getIev() < enhanceDto.getIev()) {
+            // 기록이 기존의 것보다 높을 경우
+            return updateEnhancedRecord(enhancedItem, enhanceDto);
+        }
+
+        // 기록이 기존의 것보다 낮을 경우
+        return new UpdateEnhancementResponse(EnhanceResult.FAIL);
+    }
+
+    private UpdateEnhancementResponse createEnhancedRecord(
+        final Long itemId,
+        final ItemEnhanceServiceRequest enhanceDto
+    ) {
+        Item item = itemRepository
+            .findById(itemId)
+            .orElseThrow(() -> new CannotFindItemException("아이템을 찾을 수 없습니다."));
+        EnhancedItem enhancedItem = ItemEnhanceServiceRequest.createEntity(enhanceDto);
+        enhancedItem.changeItem(item);
+        enhancedItemRepository.save(enhancedItem);
+
+        return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
+    }
+
+    private UpdateEnhancementResponse updateEnhancedRecord(
+        final EnhancedItem enhancedItem,
+        final ItemEnhanceServiceRequest enhanceDto
+    ) {
+        enhancedItem.changeStatus(enhanceDto);
+
+        return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }
