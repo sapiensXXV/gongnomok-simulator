@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.domain.enhanceditem.dto.EnhanceResult;
 import site.gongnomok.domain.enhanceditem.dto.UpdateEnhancementResponse;
 import site.gongnomok.domain.enhanceditem.repository.EnhancedItemRepository;
-import site.gongnomok.domain.item.dto.ItemEnhanceRequest;
 import site.gongnomok.domain.item.dto.ItemEnhanceResponse;
 import site.gongnomok.domain.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.domain.item.dto.ItemRankingResponse;
@@ -207,7 +206,7 @@ public class ItemService {
 
             return ItemEnhanceResponse.builder()
                 .iev(enhancedItem.getIev())
-                .upgradedCount(enhancedItem.getUpgradedCount())
+                .successCount(enhancedItem.getSuccessCount())
                 .str(enhancedItem.getStr())
                 .dex(enhancedItem.getDex())
                 .intel(enhancedItem.getIntel())
@@ -238,24 +237,43 @@ public class ItemService {
 
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
-            return changeEnhancedRecord(enhanceDto);
+            return createEnhancedRecord(itemId, enhanceDto);
         }
 
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new CannotFindEnhancedItemException("기록을 찾을 수 없습니다."));
 
-        if (enhancedItem.getIev() > enhanceDto.getIev()) {
+        log.info("이전 IEV={}", enhancedItem.getIev());
+        log.info("새로운 IEV= {}", enhanceDto.getIev());
+
+        if (enhancedItem.getIev() < enhanceDto.getIev()) {
             // 기록이 기존의 것보다 높을 경우
-            return changeEnhancedRecord(enhanceDto);
+            return updateEnhancedRecord(enhancedItem, enhanceDto);
         }
 
         // 기록이 기존의 것보다 낮을 경우
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
     }
 
-    private UpdateEnhancementResponse changeEnhancedRecord(ItemEnhanceServiceRequest enhanceDto) {
-        EnhancedItem newRecord = ItemEnhanceServiceRequest.createEntity(enhanceDto);
-        enhancedItemRepository.save(newRecord);
+    private UpdateEnhancementResponse createEnhancedRecord(
+        final Long itemId,
+        final ItemEnhanceServiceRequest enhanceDto
+    ) {
+        Item item = itemRepository
+            .findById(itemId)
+            .orElseThrow(() -> new CannotFindItemException("아이템을 찾을 수 없습니다."));
+        EnhancedItem enhancedItem = ItemEnhanceServiceRequest.createEntity(enhanceDto);
+        enhancedItem.changeItem(item);
+        enhancedItemRepository.save(enhancedItem);
+
+        return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
+    }
+
+    private UpdateEnhancementResponse updateEnhancedRecord(
+        final EnhancedItem enhancedItem,
+        final ItemEnhanceServiceRequest enhanceDto
+    ) {
+        enhancedItem.changeStatus(enhanceDto);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }

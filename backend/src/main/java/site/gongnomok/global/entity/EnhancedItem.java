@@ -21,7 +21,7 @@ public class EnhancedItem {
     private Item item;
 
     private Integer iev; // item enhancement value
-    private Integer upgradedCount;
+    private Integer successCount;
     private Integer str;
     private Integer dex;
     private Integer intel;
@@ -36,6 +36,25 @@ public class EnhancedItem {
     private Integer jump;
     private Integer hp;
     private Integer mp;
+
+    public void changeStatus(ItemEnhanceServiceRequest dto) {
+        iev = dto.getIev();
+        successCount = dto.getSuccessCount();
+        str = dto.getStr();
+        dex = dto.getDex();
+        intel = dto.getIntel();
+        luk = dto.getLuk();
+        phyAtk = dto.getPhyAtk();
+        mgAtk = dto.getMgAtk();
+        phyDef = dto.getPhyDef();
+        mgDef = dto.getMgDef();
+        acc = dto.getAcc();
+        avo = dto.getAvo();
+        move = dto.getMove();
+        jump = dto.getJump();
+        hp = dto.getHp();
+        mp = dto.getMp();
+    }
 
     public void changeItem(Item item) {
         this.item = item;

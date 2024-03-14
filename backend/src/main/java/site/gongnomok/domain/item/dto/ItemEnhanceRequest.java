@@ -14,7 +14,7 @@ import site.gongnomok.domain.item.dto.service.ItemEnhanceServiceRequest;
 public class ItemEnhanceRequest {
 
     private Integer iev;
-    private Integer upgradedCount;
+    private Integer successCount;
     private Integer str;
     private Integer dex;
     private Integer intel;
@@ -33,7 +33,7 @@ public class ItemEnhanceRequest {
     public ItemEnhanceServiceRequest toServiceDto() {
         return ItemEnhanceServiceRequest.builder()
             .iev(iev)
-            .upgradedCount(upgradedCount)
+            .successCount(successCount)
             .str(str)
             .dex(dex)
             .intel(intel)

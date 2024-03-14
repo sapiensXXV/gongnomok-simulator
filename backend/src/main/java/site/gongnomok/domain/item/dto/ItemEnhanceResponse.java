@@ -1,13 +1,10 @@
 package site.gongnomok.domain.item.dto;
 
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.internal.build.AllowNonPortable;
-import site.gongnomok.global.entity.Item;
 
 @Getter
 @AllArgsConstructor
@@ -16,7 +13,7 @@ import site.gongnomok.global.entity.Item;
 public class ItemEnhanceResponse {
 
     private Long itemId;
-    private Integer upgradedCount;
+    private Integer successCount;
     private Integer iev; // item enhancement value
     private Integer str;
     private Integer dex;
@@ -37,7 +34,7 @@ public class ItemEnhanceResponse {
         return ItemEnhanceResponse.builder()
             .itemId(itemId)
             .iev(0)
-            .upgradedCount(0)
+            .successCount(0)
             .str(0)
             .dex(0)
             .intel(0)
