@@ -14,6 +14,7 @@ import site.gongnomok.global.entity.EnhancedItem;
 public class ItemEnhanceServiceRequest {
 
     private Integer iev;
+    private Integer upgradedCount;
     private Integer str;
     private Integer dex;
     private Integer intel;
@@ -32,6 +33,7 @@ public class ItemEnhanceServiceRequest {
     public static EnhancedItem createEntity(final ItemEnhanceServiceRequest dto) {
         return EnhancedItem.builder()
             .iev(dto.getIev())
+            .upgradedCount(dto.getUpgradedCount())
             .str(dto.getStr())
             .dex(dto.getDex())
             .intel(dto.getIntel())

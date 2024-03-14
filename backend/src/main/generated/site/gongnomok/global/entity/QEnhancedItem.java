@@ -56,6 +56,8 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public final NumberPath<Integer> str = createNumber("str", Integer.class);
 
+    public final NumberPath<Integer> upgradedCount = createNumber("upgradedCount", Integer.class);
+
     public QEnhancedItem(String variable) {
         this(EnhancedItem.class, forVariable(variable), INITS);
     }

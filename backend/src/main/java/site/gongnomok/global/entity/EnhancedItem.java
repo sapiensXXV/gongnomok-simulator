@@ -21,6 +21,7 @@ public class EnhancedItem {
     private Item item;
 
     private Integer iev; // item enhancement value
+    private Integer upgradedCount;
     private Integer str;
     private Integer dex;
     private Integer intel;

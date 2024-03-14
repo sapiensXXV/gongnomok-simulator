@@ -207,6 +207,7 @@ public class ItemService {
 
             return ItemEnhanceResponse.builder()
                 .iev(enhancedItem.getIev())
+                .upgradedCount(enhancedItem.getUpgradedCount())
                 .str(enhancedItem.getStr())
                 .dex(enhancedItem.getDex())
                 .intel(enhancedItem.getIntel())
