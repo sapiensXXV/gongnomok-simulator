@@ -1,3 +1,7 @@
+export const DEFAULT_FETCH_SIZE = 30;
+export const DEFAULT_RANKING_FETCH_SIZE = 5;
+export const MAXIMUM_RANKING_PAGE = 4;
+
 export const ITEM_CATEGORIES = [
 
   "ONE_HANDED_SWORD",
@@ -25,9 +29,28 @@ export const ITEM_CATEGORIES = [
   "CAPE",
 ]
 
-export const DEFAULT_FETCH_SIZE = 30;
-export const DEFAULT_RANKING_FETCH_SIZE = 5;
-export const MAXIMUM_RANKING_PAGE = 4;
+export const DEFAULT_ITEM_RECORD = {
+  iev: 0,
+  str: 0,
+  successCount: 0,
+  dex: 0,
+  intel: 0,
+  luk: 0,
+  phyAtk: 0,
+  mgAtk: 0, 
+  phyDef: 0,
+  mgDef: 0,
+  acc: 0,
+  avo: 0,
+  move: 0,
+  jump: 0,
+  hp: 0,
+  mp: 0,
+}
+
+export const DEFAULT_ITEM_STATUS = {
+  
+}
 
 export const INIT_ITEM_INFO = {
   name: '',

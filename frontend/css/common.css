@@ -354,3 +354,22 @@
   background-color: #FFF;
   color: #303030;
 }
+
+.rotate-gold-border {
+
+}
+
+@keyframes blink {
+  40% {
+    opacity:.5;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+
+.black-border {
+  border-width: 2px;
+  border-color: black;
+}

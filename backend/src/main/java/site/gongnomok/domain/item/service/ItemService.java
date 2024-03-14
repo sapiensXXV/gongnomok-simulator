@@ -243,9 +243,6 @@ public class ItemService {
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new CannotFindEnhancedItemException("기록을 찾을 수 없습니다."));
 
-        log.info("이전 IEV={}", enhancedItem.getIev());
-        log.info("새로운 IEV= {}", enhanceDto.getIev());
-
         if (enhancedItem.getIev() < enhanceDto.getIev()) {
             // 기록이 기존의 것보다 높을 경우
             return updateEnhancedRecord(enhancedItem, enhanceDto);

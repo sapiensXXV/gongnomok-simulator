@@ -25,6 +25,7 @@ export default function ItemSimulator() {
   const availableScroll = useRef([]);
 
   const [info, setInfo] = useState(null); // 아이템 정보
+  const [infoCopy, setInfoCopy] = useState(null);
   const [upgradedCount, setUpgradedCount] = useState(0); // 업그레이드 된 횟수
   const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK'); // 현재 적용하고 있는 주문서
 
@@ -82,12 +83,14 @@ export default function ItemSimulator() {
   const resetButton = useRef();
   const purchaseResetButton = useRef();
 
+  const [challengeModalOpen, setChallengeModalOpen] = useState(false);
+
   async function fetchData() {
     try {
       const response = await axios.get(`${BASE_URI}/api/item/${itemId}`, { withCredentials: true })
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
-
+      setInfoCopy({...response.data});
       setInfo(data);
 
       setStr(copy.status.str.normal);
@@ -383,21 +386,8 @@ export default function ItemSimulator() {
   }
 
   function getItemNameColor() {
-
-    let totalDefault = [
-      defaultStr.current, defaultDex.current, defaultIntel.current, defaultLuk.current, defaultPhyAtk.current,
-      defaultMgAtk.current, defaultPhyDef.current, defaultMgDef.current, defaultAcc.current, defaultAvo.current,
-      defaultMove.current, defaultJump.current, defaultHp.current, defaultMp.current
-    ].reduce((prev, cur, idx) => { return prev += cur });
-
-    let totalStatus = [
-      str, dex, intel, luk, phyAtk, mgAtk, phyDef, mgDef, acc, avo, move, jump, hp, mp
-    ].reduce((prev, cur, idx) => { return prev += cur });
-
-    totalDefault = totalDefault - (defaultHp.current + defaultMp.current) + defaultHp.current / 10 + defaultMp.current / 10;
-    totalStatus = totalStatus - (hp + mp) + hp / 10 + mp / 10;
-
-    const result = totalStatus - totalDefault;
+    
+    const result = calculateIEV();
 
     if (result >= 0 && result <= 5) {
       if (upgradedCount === 0) {
@@ -478,6 +468,74 @@ export default function ItemSimulator() {
     }, 600);
   }
 
+  function calculateIEV() {
+    let totalDefault = [
+      defaultStr.current, defaultDex.current, defaultIntel.current, defaultLuk.current, defaultPhyAtk.current,
+      defaultMgAtk.current, defaultPhyDef.current, defaultMgDef.current, defaultAcc.current, defaultAvo.current,
+      defaultMove.current, defaultJump.current, defaultHp.current, defaultMp.current
+    ].reduce((prev, cur, idx) => { return prev += cur });
+
+    let totalStatus = [
+      str, dex, intel, luk, phyAtk, mgAtk, phyDef, mgDef, acc, avo, move, jump, hp, mp
+    ].reduce((prev, cur, idx) => { return prev += cur });
+
+    totalDefault = totalDefault - (defaultHp.current + defaultMp.current) + defaultHp.current / 10 + defaultMp.current / 10;
+    totalStatus = totalStatus - (hp + mp) + hp / 10 + mp / 10;
+
+    return totalStatus - totalDefault;
+  }
+
+  function challengeRecordButtonClicked() {
+
+    setChallengeModalOpen(true);
+
+  }
+
+  function createChallengeForm() {
+    return {
+      iev: calculateIEV(),
+      successCount: upgradedCount,
+      str: str - defaultStr.current,
+      dex: dex - defaultDex.current,
+      intel: intel - defaultIntel.current,
+      luk: luk - defaultLuk.current,
+      phyAtk: phyAtk - defaultPhyAtk.current,
+      mgAtk: mgAtk - defaultMgAtk.current,
+      phyDef: phyDef - defaultPhyDef.current,
+      mgDef: mgDef - defaultMgDef.current,
+      acc: acc - defaultAcc.current,
+      avo: avo - defaultAvo.current,
+      move: move - defaultMove.current,
+      jump: jump - defaultJump.current,
+      hp: hp - defaultHp.current,
+      mp: mp - defaultMp.current
+    }
+  }
+
+  function handleChallengeAcceptButtonClicked() {
+
+    const challengeForm = createChallengeForm();
+    axios
+      .post(
+        `${BASE_URI}/api/item/${itemId}/enhanced`,
+        challengeForm, { withCredentials: true }
+      )
+      .then((res) => {
+        const challengeResult = res.data.status;
+        console.log(challengeResult);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+    setChallengeModalOpen(false);
+  }
+
+  function handleChallengeCancelButtonClicked() {
+    setChallengeModalOpen(false);
+  }
+
   return (
     <>
       <section className="shorcut-guide-section bg-success">
@@ -549,13 +607,18 @@ export default function ItemSimulator() {
                 </div>
               </section>
 
-
-
             </section>
             <section className="overflow-message">
               {
                 upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
               }
+            </section>
+            <section className="item-record-challenge-section">
+              <button 
+                className="item-record-challenge-btn"
+                onClick={challengeRecordButtonClicked}
+                onMouseUp={() => document.activeElement.blur()}
+              >기록으로 등록하기</button>
             </section>
           </section>
 
@@ -661,9 +724,40 @@ export default function ItemSimulator() {
           </div>
 
         </main>
-        <BestRecordItem itemId={itemId}/>
+        <BestRecordItem itemId={itemId} info={infoCopy}/>
       </section>
-
+      
+      {
+        challengeModalOpen &&
+        <div
+          className="delete-modal-container"
+        >
+          <div className="delete-modal-root">
+            <div className="delete-modal-header">
+              <div className="delete-modal-title text-center">기록으로 등록하시겠습니까?</div>
+            </div>
+            <div className="delete-modal-body">
+              <div className="delete-modal-content">
+                최고기록보다 높지 않으면 등록되지 않습니다.
+              </div>
+              <div className="delete-modal-button-container">
+                <button
+                  className="delete-modal-button delete-modal-delete-button"
+                  onClick={handleChallengeAcceptButtonClicked}
+                >
+                  예
+                </button>
+                <button
+                  className="delete-modal-button delete-modal-cancel-button"
+                  onClick={handleChallengeCancelButtonClicked}
+                >
+                  아니오
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
 
       {/***********************************************************************/}
       {/******************************** 댓글 **********************************/}
