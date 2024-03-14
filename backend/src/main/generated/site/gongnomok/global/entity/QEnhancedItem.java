@@ -50,6 +50,8 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public final NumberPath<Integer> mp = createNumber("mp", Integer.class);
 
+    public final StringPath name = createString("name");
+
     public final NumberPath<Integer> phyAtk = createNumber("phyAtk", Integer.class);
 
     public final NumberPath<Integer> phyDef = createNumber("phyDef", Integer.class);

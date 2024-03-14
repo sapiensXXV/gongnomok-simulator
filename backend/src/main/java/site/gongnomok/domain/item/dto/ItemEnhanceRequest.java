@@ -13,6 +13,7 @@ import site.gongnomok.domain.item.dto.service.ItemEnhanceServiceRequest;
 @Builder
 public class ItemEnhanceRequest {
 
+    private String name;
     private Integer iev;
     private Integer successCount;
     private Integer str;
@@ -32,6 +33,7 @@ public class ItemEnhanceRequest {
 
     public ItemEnhanceServiceRequest toServiceDto() {
         return ItemEnhanceServiceRequest.builder()
+            .name(name)
             .iev(iev)
             .successCount(successCount)
             .str(str)
