@@ -30,6 +30,7 @@ export const ITEM_CATEGORIES = [
 ]
 
 export const DEFAULT_ITEM_RECORD = {
+  name: "",
   iev: 0,
   str: 0,
   successCount: 0,
@@ -49,7 +50,7 @@ export const DEFAULT_ITEM_RECORD = {
 }
 
 export const DEFAULT_ITEM_STATUS = {
-  
+
 }
 
 export const INIT_ITEM_INFO = {

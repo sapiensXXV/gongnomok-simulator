@@ -84,6 +84,8 @@ export default function ItemSimulator() {
   const purchaseResetButton = useRef();
 
   const [challengeModalOpen, setChallengeModalOpen] = useState(false);
+  const [challengerName, setChallengerName] = useState("");
+  const [isChallengerNameEmpty, setIsChallengerNameEmpty] = useState(false);
 
   async function fetchData() {
     try {
@@ -485,6 +487,12 @@ export default function ItemSimulator() {
     return totalStatus - totalDefault;
   }
 
+  // 도전
+
+  const [challengeResultModalOpen, setChallengeResultModalOpen] = useState(false);
+  const [isChallengeSuccess, setIsChallengeSuccess] = useState(false);
+
+
   function challengeRecordButtonClicked() {
 
     setChallengeModalOpen(true);
@@ -493,6 +501,7 @@ export default function ItemSimulator() {
 
   function createChallengeForm() {
     return {
+      name: challengerName,
       iev: calculateIEV(),
       successCount: upgradedCount,
       str: str - defaultStr.current,
@@ -514,7 +523,13 @@ export default function ItemSimulator() {
 
   function handleChallengeAcceptButtonClicked() {
 
+    if (challengerName === '') {
+      setIsChallengerNameEmpty(true);
+      return;
+    }
+
     const challengeForm = createChallengeForm();
+    console.log(challengeForm);
     axios
       .post(
         `${BASE_URI}/api/item/${itemId}/enhanced`,
@@ -523,6 +538,13 @@ export default function ItemSimulator() {
       .then((res) => {
         const challengeResult = res.data.status;
         console.log(challengeResult);
+
+        setChallengeResultModalOpen(true);
+        if (challengeResult === 'SUCCESS') {
+          setIsChallengeSuccess(true);
+        } else {
+          setIsChallengeSuccess(false);
+        }
         
       })
       .catch((err) => {
@@ -534,6 +556,14 @@ export default function ItemSimulator() {
 
   function handleChallengeCancelButtonClicked() {
     setChallengeModalOpen(false);
+  }
+
+  function handleChallengeNameChanged(e) {
+    setChallengerName(e.target.value);
+  }
+
+  function handleChallengeResultOkButton() {
+    setChallengeResultModalOpen(false);
   }
 
   return (
@@ -738,7 +768,21 @@ export default function ItemSimulator() {
             </div>
             <div className="delete-modal-body">
               <div className="delete-modal-content">
-                최고기록보다 높지 않으면 등록되지 않습니다.
+                <div className="delete-modal-dialog">
+                  <article className="modal-title">이름</article>
+                  <input
+                    className="modal-input"
+                    type="text"
+                    placeholder="이름을 입력하세요."
+                    defaultValue=""
+                    value={challengerName}
+                    onChange={handleChallengeNameChanged}
+                  ></input>
+                  {
+                    isChallengerNameEmpty &&
+                    <span className="red">이름을 입력해주세요</span>
+                  }
+                </div>
               </div>
               <div className="delete-modal-button-container">
                 <button
@@ -752,6 +796,36 @@ export default function ItemSimulator() {
                   onClick={handleChallengeCancelButtonClicked}
                 >
                   아니오
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      {
+        challengeResultModalOpen &&
+        <div
+          className="delete-modal-container"
+        >
+          <div className="delete-modal-root">
+            <div className="delete-modal-header">
+              <div className="delete-modal-title text-center">
+                도전 결과
+              </div>
+            </div>
+            <div className="delete-modal-body">
+              <div className="delete-modal-content">
+                <div className="text-center">
+                  { isChallengeSuccess ? `등록에 성공하였습니다!` : `등록에 실패했습니다. 더 좋은 아이템을 만들어보세요!` }
+                </div>
+              </div>
+              <div className="delete-modal-button-container">
+                <button
+                  className="delete-modal-button delete-modal-delete-button"
+                  onClick={handleChallengeResultOkButton}
+                >
+                  예
                 </button>
               </div>
             </div>

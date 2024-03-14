@@ -32,7 +32,7 @@ export default function BestRecordItem({ itemId, info }) {
   function getItemNameColor() {
     const iev = enhanced.iev;
     if (iev >= 0 && iev <= 5) {
-      return 'white';
+      return 'orange';
     } else if (iev >= 6 && iev <= 22) {
       return 'blue';
     } else if (iev >= 23 && iev <= 39) {
@@ -49,8 +49,8 @@ export default function BestRecordItem({ itemId, info }) {
 
   return (
     <>
-      <main className="item-best-record-root bg-light mx-3 mb-3 py-3 px-3">
-        <span className="item-best-record-title">최고기록</span>
+      <main className="item-best-record-root bg-light mx-3 mb-3 py-2 px-3">
+        <span className="item-best-record-title">최고기록{ enhanced?.name?.length > 0 && `(${enhanced.name} 님)`}</span>
         <div className="best-record-container">
           <section className="item-info-section-container black-border">
             <section className="item-info-section">
