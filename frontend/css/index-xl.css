@@ -159,7 +159,7 @@
 
 
   .ranking-items {
-    width: 240px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     row-gap: 8px;

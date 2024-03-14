@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ItemEnhanceResponse {
 
-    private Long itemId;
+    private String name;
     private Integer successCount;
     private Integer iev; // item enhancement value
     private Integer str;
@@ -30,9 +30,9 @@ public class ItemEnhanceResponse {
     private Integer hp;
     private Integer mp;
 
-    public static ItemEnhanceResponse getBasicEnhanceData(Long itemId) {
+    public static ItemEnhanceResponse getBasicEnhanceData() {
         return ItemEnhanceResponse.builder()
-            .itemId(itemId)
+            .name(null)
             .iev(0)
             .successCount(0)
             .str(0)

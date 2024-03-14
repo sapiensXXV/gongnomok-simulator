@@ -198,13 +198,14 @@ public class ItemService {
         Optional<EnhancedItem> enhanceItem = itemRepository.findEnhanceItem(itemId);
         if (enhanceItem.isEmpty()) {
             // item_id에 해당하는 아이템의 기록정보가 테이블에 없다면 기본정보를 만들어서 반환한다.
-            return ItemEnhanceResponse.getBasicEnhanceData(itemId);
+            return ItemEnhanceResponse.getBasicEnhanceData();
         } else {
             EnhancedItem enhancedItem = enhanceItem.orElseThrow(() -> new CannotFindEnhancedItemException("아이템 기록을 찾을 수 없습니다."));
 
             enhancedItem.changeItem(findItem);
 
             return ItemEnhanceResponse.builder()
+                .name(enhancedItem.getName())
                 .iev(enhancedItem.getIev())
                 .successCount(enhancedItem.getSuccessCount())
                 .str(enhancedItem.getStr())
