@@ -2,12 +2,13 @@ package site.gongnomok.global.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import site.gongnomok.domain.item.dto.service.ItemEnhanceServiceRequest;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @Getter
 public class EnhancedItem {
 
@@ -38,5 +39,4 @@ public class EnhancedItem {
     public void changeItem(Item item) {
         this.item = item;
     }
-
 }

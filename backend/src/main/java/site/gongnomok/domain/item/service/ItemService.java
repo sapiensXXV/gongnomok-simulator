@@ -8,6 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.gongnomok.domain.enhanceditem.dto.EnhanceResult;
+import site.gongnomok.domain.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.domain.enhanceditem.repository.EnhancedItemRepository;
+import site.gongnomok.domain.item.dto.ItemEnhanceRequest;
 import site.gongnomok.domain.item.dto.ItemEnhanceResponse;
 import site.gongnomok.domain.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.domain.item.dto.ItemRankingResponse;
@@ -15,10 +19,7 @@ import site.gongnomok.domain.item.dto.api.*;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.domain.item.dto.api.itemlist.ItemResponseDto;
-import site.gongnomok.domain.item.dto.service.ItemCreateServiceDto;
-import site.gongnomok.domain.item.dto.service.ItemRequiredJobServiceDto;
-import site.gongnomok.domain.item.dto.service.ItemRequiredServiceDto;
-import site.gongnomok.domain.item.dto.service.ItemStatusServiceDto;
+import site.gongnomok.domain.item.dto.service.*;
 import site.gongnomok.domain.item.exception.CannotFindEnhancedItemException;
 import site.gongnomok.domain.item.exception.CannotFindItemException;
 import site.gongnomok.domain.item.repository.ItemRepository;
@@ -38,6 +39,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final EnhancedItemRepository enhancedItemRepository;
     private final ObjectMapper mapper;
 
     public void saveItem(ItemCreateServiceDto dto) {
@@ -221,5 +223,38 @@ public class ItemService {
                 .mp(enhancedItem.getMp())
                 .build();
         }
+    }
+
+    /**
+     * @param itemId 새로운 기록을 등록할 아이템 ID
+     * @param enhanceDto 기록 정보
+     */
+    @Transactional
+    public UpdateEnhancementResponse updateEnhanceItem(
+        final Long itemId,
+        final ItemEnhanceServiceRequest enhanceDto
+    ) {
+
+        Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
+        if (enhancedItemOptional.isEmpty()) {
+            return changeEnhancedRecord(enhanceDto);
+        }
+
+        EnhancedItem enhancedItem = enhancedItemOptional
+            .orElseThrow(() -> new CannotFindEnhancedItemException("기록을 찾을 수 없습니다."));
+
+        if (enhancedItem.getIev() > enhanceDto.getIev()) {
+            // 기록이 기존의 것보다 높을 경우
+            return changeEnhancedRecord(enhanceDto);
+        }
+
+        // 기록이 기존의 것보다 낮을 경우
+        return new UpdateEnhancementResponse(EnhanceResult.FAIL);
+    }
+
+    private UpdateEnhancementResponse changeEnhancedRecord(ItemEnhanceServiceRequest enhanceDto) {
+        EnhancedItem newRecord = ItemEnhanceServiceRequest.createEntity(enhanceDto);
+        enhancedItemRepository.save(newRecord);
+        return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }

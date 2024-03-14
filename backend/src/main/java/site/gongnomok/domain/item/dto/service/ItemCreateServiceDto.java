@@ -1,8 +1,6 @@
 package site.gongnomok.domain.item.dto.service;
 
 import lombok.*;
-import site.gongnomok.domain.item.dto.api.ItemRequiredDto;
-import site.gongnomok.domain.item.dto.api.ItemStatusDto;
 import site.gongnomok.global.entity.enumerate.AttackSpeed;
 import site.gongnomok.global.entity.enumerate.Category;
 
