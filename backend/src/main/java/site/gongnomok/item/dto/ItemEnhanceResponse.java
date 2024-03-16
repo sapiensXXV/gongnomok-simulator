@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.gongnomok.enhanceditem.domain.EnhancedItem;
 
 @Getter
 @AllArgsConstructor
@@ -49,6 +50,28 @@ public class ItemEnhanceResponse {
             .jump(0)
             .hp(0)
             .mp(0)
+            .build();
+    }
+
+    public static ItemEnhanceResponse convertEntityToResponse(EnhancedItem entity) {
+        return ItemEnhanceResponse.builder()
+            .name(entity.getName())
+            .iev(entity.getIev())
+            .successCount(entity.getSuccessCount())
+            .str(entity.getStr())
+            .dex(entity.getDex())
+            .intel(entity.getIntel())
+            .luk(entity.getLuk())
+            .phyAtk(entity.getPhyAtk())
+            .mgAtk(entity.getMgAtk())
+            .phyDef(entity.getPhyDef())
+            .mgDef(entity.getMgDef())
+            .acc(entity.getAcc())
+            .avo(entity.getAvo())
+            .move(entity.getMove())
+            .jump(entity.getJump())
+            .hp(entity.getHp())
+            .mp(entity.getMp())
             .build();
     }
 
