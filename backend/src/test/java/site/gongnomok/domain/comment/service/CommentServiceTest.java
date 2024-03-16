@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.domain.comment.dto.*;
-import site.gongnomok.domain.comment.exception.CannotFindCommentByIdException;
-import site.gongnomok.domain.comment.exception.CommentPasswordNotMatchException;
+import site.gongnomok.comment.dto.response.CommentCreateResponse;
+import site.gongnomok.comment.dto.request.CommentCreateServiceDto;
+import site.gongnomok.comment.dto.request.CommentDeleteServiceDto;
+import site.gongnomok.comment.service.CommentService;
+import site.gongnomok.comment.exception.CannotFindCommentByIdException;
+import site.gongnomok.comment.exception.CommentPasswordNotMatchException;
 import site.gongnomok.global.util.SecurityUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;

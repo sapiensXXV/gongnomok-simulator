@@ -7,6 +7,9 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import site.gongnomok.item.domain.AttackSpeed;
+import site.gongnomok.item.domain.Category;
+import site.gongnomok.item.domain.Item;
 
 
 /**
@@ -21,13 +24,13 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath acc = createString("acc");
 
-    public final EnumPath<site.gongnomok.global.entity.enumerate.AttackSpeed> attackSpeed = createEnum("attackSpeed", site.gongnomok.global.entity.enumerate.AttackSpeed.class);
+    public final EnumPath<AttackSpeed> attackSpeed = createEnum("attackSpeed", AttackSpeed.class);
 
     public final StringPath avo = createString("avo");
 
     public final BooleanPath bowman = createBoolean("bowman");
 
-    public final EnumPath<site.gongnomok.global.entity.enumerate.Category> category = createEnum("category", site.gongnomok.global.entity.enumerate.Category.class);
+    public final EnumPath<Category> category = createEnum("category", Category.class);
 
     public final BooleanPath common = createBoolean("common");
 

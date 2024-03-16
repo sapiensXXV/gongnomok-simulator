@@ -7,6 +7,8 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import site.gongnomok.member.domain.Member;
+import site.gongnomok.member.domain.Role;
 
 
 /**
@@ -27,7 +29,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath password = createString("password");
 
-    public final EnumPath<site.gongnomok.global.entity.enumerate.Role> role = createEnum("role", site.gongnomok.global.entity.enumerate.Role.class);
+    public final EnumPath<Role> role = createEnum("role", Role.class);
 
     public QMember(String variable) {
         super(Member.class, forVariable(variable));
