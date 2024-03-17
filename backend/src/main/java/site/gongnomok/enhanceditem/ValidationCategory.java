@@ -47,7 +47,7 @@ public enum ValidationCategory {
         return upgradableCount * singleUpgradableValue;
     }
 
-    public ValidationCategory findWithName(String name) {
+    public static ValidationCategory findWithName(String name) {
         return Arrays
             .stream(values())
             .filter(value -> value.name().equals(name))
