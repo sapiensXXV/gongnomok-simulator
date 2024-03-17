@@ -81,6 +81,7 @@ public class EnhancedItemService {
 
     private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
 
+        log.info("request.getCategory()={}", request.getCategory());
         ValidationCategory findCategory = ValidationCategory.findWithName(request.getCategory());
 
         log.info("------------------- [검증 시작] ----------------------");
