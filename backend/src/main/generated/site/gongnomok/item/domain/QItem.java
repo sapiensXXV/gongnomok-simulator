@@ -1,4 +1,4 @@
-package site.gongnomok.global.entity;
+package site.gongnomok.item.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -7,9 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import site.gongnomok.item.domain.AttackSpeed;
-import site.gongnomok.item.domain.Category;
-import site.gongnomok.item.domain.Item;
 
 
 /**
@@ -18,7 +15,7 @@ import site.gongnomok.item.domain.Item;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QItem extends EntityPathBase<Item> {
 
-    private static final long serialVersionUID = 1876990337L;
+    private static final long serialVersionUID = -392478672L;
 
     public static final QItem item = new QItem("item");
 

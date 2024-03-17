@@ -1,4 +1,4 @@
-package site.gongnomok.global.entity;
+package site.gongnomok.enhanceditem.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -8,7 +8,6 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import site.gongnomok.enhanceditem.domain.EnhancedItem;
 
 
 /**
@@ -17,7 +16,7 @@ import site.gongnomok.enhanceditem.domain.EnhancedItem;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
-    private static final long serialVersionUID = 1140828183L;
+    private static final long serialVersionUID = -206638276L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -37,7 +36,7 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public final NumberPath<Integer> intel = createNumber("intel", Integer.class);
 
-    public final QItem item;
+    public final site.gongnomok.item.domain.QItem item;
 
     public final NumberPath<Integer> jump = createNumber("jump", Integer.class);
 
@@ -79,7 +78,7 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public QEnhancedItem(Class<? extends EnhancedItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.item = inits.isInitialized("item") ? new QItem(forProperty("item")) : null;
+        this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item")) : null;
     }
 
 }

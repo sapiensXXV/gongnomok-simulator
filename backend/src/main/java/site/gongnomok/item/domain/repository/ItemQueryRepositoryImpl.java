@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
+import site.gongnomok.enhanceditem.domain.QEnhancedItem;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.item.dto.api.itemlist.ItemResponseDto;
@@ -21,8 +22,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static site.gongnomok.global.entity.QEnhancedItem.enhancedItem;
-import static site.gongnomok.global.entity.QItem.item;
+import static site.gongnomok.enhanceditem.domain.QEnhancedItem.enhancedItem;
+import static site.gongnomok.item.domain.QItem.item;
 
 
 @Repository

@@ -10,7 +10,6 @@ import site.gongnomok.comment.dto.request.CommentDeleteDto;
 import site.gongnomok.comment.dto.response.CommentCountResponse;
 import site.gongnomok.comment.dto.response.CommentCreateResponse;
 import site.gongnomok.comment.dto.response.CommentResponse;
-import site.gongnomok.domain.comment.dto.*;
 import site.gongnomok.comment.service.CommentService;
 
 import java.util.List;

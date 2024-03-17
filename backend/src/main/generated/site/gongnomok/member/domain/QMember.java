@@ -1,4 +1,4 @@
-package site.gongnomok.global.entity;
+package site.gongnomok.member.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -7,8 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import site.gongnomok.member.domain.Member;
-import site.gongnomok.member.domain.Role;
 
 
 /**
@@ -17,7 +15,7 @@ import site.gongnomok.member.domain.Role;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMember extends EntityPathBase<Member> {
 
-    private static final long serialVersionUID = 2344328L;
+    private static final long serialVersionUID = 1972555838L;
 
     public static final QMember member = new QMember("member1");
 

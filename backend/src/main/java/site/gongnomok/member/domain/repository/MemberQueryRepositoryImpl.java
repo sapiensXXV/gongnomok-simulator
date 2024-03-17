@@ -8,8 +8,7 @@ import site.gongnomok.member.domain.Member;
 
 import java.util.Optional;
 
-import static site.gongnomok.global.entity.QMember.member;
-
+import static site.gongnomok.member.domain.QMember.member;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,7 +18,8 @@ public class MemberQueryRepositoryImpl implements MemberQueryRepository {
 
     @Override
     public Optional<Member> findMember(final String id, final String encryptedPassword) {
-        Member result = queryFactory.selectFrom(member)
+        Member result = queryFactory
+            .selectFrom(member)
             .where(idEqual(id), passwordEqual(encryptedPassword))
             .fetchOne();
 
