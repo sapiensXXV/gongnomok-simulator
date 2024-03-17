@@ -201,8 +201,8 @@
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 9vw;
-    height: 9vw;
+    width: 7.8vw;
+    height: 7.8vw;
   
     border: none;
     border-radius: 8px;
@@ -224,9 +224,11 @@
   /* 아이템 리스트 아이템 이름 */
   .item-list-button span {
     display: block;
-    font-family: SOYOMapleBoldTTF;
-    font-size: 0.95vw;
+    font-family: Pretendard-SemiBold;
+    font-size: 12px;
     margin-top: 11px;
+
+    text-overflow: ellipsis;
   }
 
   .more-item-button {
