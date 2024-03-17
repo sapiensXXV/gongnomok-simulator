@@ -1,4 +1,4 @@
-package site.gongnomok.global.entity;
+package site.gongnomok.comment.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -8,7 +8,6 @@ import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import site.gongnomok.comment.domain.Comment;
 
 
 /**
@@ -17,7 +16,7 @@ import site.gongnomok.comment.domain.Comment;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QComment extends EntityPathBase<Comment> {
 
-    private static final long serialVersionUID = 74191153L;
+    private static final long serialVersionUID = 2024669298L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -29,7 +28,7 @@ public class QComment extends EntityPathBase<Comment> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QItem item;
+    public final site.gongnomok.item.domain.QItem item;
 
     public final StringPath name = createString("name");
 
@@ -53,7 +52,7 @@ public class QComment extends EntityPathBase<Comment> {
 
     public QComment(Class<? extends Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.item = inits.isInitialized("item") ? new QItem(forProperty("item")) : null;
+        this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item")) : null;
     }
 
 }

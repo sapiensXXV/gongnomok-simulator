@@ -2,6 +2,7 @@ package site.gongnomok.item.dto;
 
 
 import lombok.*;
+import site.gongnomok.enhanceditem.ValidationCategory;
 import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
 
 @Getter
@@ -12,6 +13,7 @@ import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
 public class ItemEnhanceRequest {
 
     private String name;
+    private String category;
     private Integer iev;
     private Integer successCount;
     private Integer str;
@@ -32,6 +34,7 @@ public class ItemEnhanceRequest {
     public ItemEnhanceServiceRequest toServiceDto() {
         return ItemEnhanceServiceRequest.builder()
             .name(name)
+            .category(category)
             .iev(iev)
             .successCount(successCount)
             .str(str)

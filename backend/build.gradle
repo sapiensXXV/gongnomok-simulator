@@ -29,6 +29,7 @@ dependencies {
 	implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '1.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator' //액츄에이터
 	implementation 'io.micrometer:micrometer-registry-prometheus' //프로메테우스
+	runtimeOnly 'com.h2database:h2' // H2
 
 	compileOnly 'org.projectlombok:lombok'
 

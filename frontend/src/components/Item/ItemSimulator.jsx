@@ -502,6 +502,7 @@ export default function ItemSimulator() {
   function createChallengeForm() {
     return {
       name: challengerName,
+      category: CATEGORY_NAME.get(info?.category),
       iev: calculateIEV(),
       successCount: upgradedCount,
       str: str - defaultStr.current,
@@ -648,7 +649,7 @@ export default function ItemSimulator() {
                 className="item-record-challenge-btn"
                 onClick={challengeRecordButtonClicked}
                 onMouseUp={() => document.activeElement.blur()}
-              >기록으로 등록하기</button>
+              >기록에 도전하기</button>
             </section>
           </section>
 

@@ -14,7 +14,6 @@ import site.gongnomok.comment.exception.CannotFindItemCommentException;
 import site.gongnomok.comment.exception.CommentPasswordNotMatchException;
 import site.gongnomok.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.comment.domain.repository.CommentQueryRepository;
-import site.gongnomok.domain.comment.dto.*;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.comment.domain.Comment;
 import site.gongnomok.item.domain.Item;

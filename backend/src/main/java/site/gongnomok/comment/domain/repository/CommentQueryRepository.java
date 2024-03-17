@@ -11,7 +11,8 @@ import site.gongnomok.comment.dto.response.CommentResponse;
 
 import java.util.List;
 
-import static site.gongnomok.global.entity.QComment.comment;
+import static site.gongnomok.comment.domain.QComment.comment;
+
 
 @Slf4j
 @Repository

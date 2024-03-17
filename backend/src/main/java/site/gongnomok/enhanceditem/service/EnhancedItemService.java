@@ -2,8 +2,10 @@ package site.gongnomok.enhanceditem.service;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.gongnomok.enhanceditem.ValidationCategory;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.enhanceditem.dto.EnhanceResult;
@@ -17,6 +19,7 @@ import site.gongnomok.item.exception.CannotFindItemException;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EnhancedItemService {
@@ -55,6 +58,10 @@ public class EnhancedItemService {
         final ItemEnhanceServiceRequest enhanceDto
     ) {
 
+        if (!validateEnhanceRequest(enhanceDto)) {
+            return new UpdateEnhancementResponse(EnhanceResult.FAIL);
+        }
+
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
             return createEnhancedRecord(itemId, enhanceDto);
@@ -70,6 +77,27 @@ public class EnhancedItemService {
 
         // 기록이 기존의 것보다 낮을 경우
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
+    }
+
+    private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
+
+        ValidationCategory findCategory = ValidationCategory.findWithName(request.getCategory());
+
+        log.info("------------------- [검증 시작] ----------------------");
+        log.info("request.getIev() = {}", request.getIev());
+        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
+
+        if (request.getIev() > findCategory.getMaximumUpgradableValue()) {
+            return false;
+        }
+
+        log.info("request.getSuccessCount()={}", request.getSuccessCount());
+        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
+
+        if (request.getSuccessCount() > findCategory.getUpgradableCount()) {
+            return false;
+        }
+        return true;
     }
 
     private UpdateEnhancementResponse createEnhancedRecord(

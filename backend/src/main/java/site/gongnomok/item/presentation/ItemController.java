@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.enhanceditem.service.EnhancedItemService;
 import site.gongnomok.item.dto.ItemEnhanceRequest;
 import site.gongnomok.item.dto.ItemEnhanceResponse;
 import site.gongnomok.item.dto.ItemRankingResponse;
@@ -30,6 +31,7 @@ import static site.gongnomok.member.domain.Role.USER;
 public class ItemController {
 
     private final ItemService itemService;
+    private final EnhancedItemService enhancedItemService;
 
     @GetMapping("/auth")
     public ResponseEntity<Void> auth(
@@ -86,23 +88,6 @@ public class ItemController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-    }
-
-    @GetMapping("/item/{itemId}/enhanced")
-    public ResponseEntity<ItemEnhanceResponse> enhancedItem(
-        @PathVariable("itemId") Long itemId
-    ) {
-        ItemEnhanceResponse result = itemService.findEnhanceItem(itemId);
-        return ResponseEntity.ok(result);
-    }
-
-    @PostMapping("/item/{itemId}/enhanced")
-    public ResponseEntity<UpdateEnhancementResponse> challengeEnhancedItem(
-        @PathVariable("itemId") Long itemId,
-        @RequestBody ItemEnhanceRequest enhanceDto
-    ) {
-        UpdateEnhancementResponse response = itemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto());
-        return ResponseEntity.ok(response);
     }
 
 }
