@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.gongnomok.enhanceditem.ValidationCategory;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
 
 @Getter
@@ -14,6 +15,7 @@ import site.gongnomok.enhanceditem.domain.EnhancedItem;
 public class ItemEnhanceServiceRequest {
 
     private String name;
+    private String category;
     private Integer iev;
     private Integer successCount;
     private Integer str;
