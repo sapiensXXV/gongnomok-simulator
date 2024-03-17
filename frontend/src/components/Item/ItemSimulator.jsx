@@ -502,7 +502,7 @@ export default function ItemSimulator() {
   function createChallengeForm() {
     return {
       name: challengerName,
-      category: CATEGORY_NAME.get(info?.category),
+      category: info?.category,
       iev: calculateIEV(),
       successCount: upgradedCount,
       str: str - defaultStr.current,
