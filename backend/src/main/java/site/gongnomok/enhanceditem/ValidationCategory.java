@@ -1,5 +1,10 @@
 package site.gongnomok.enhanceditem;
 
+import site.gongnomok.enhanceditem.exception.CannotFindCategoryException;
+
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum ValidationCategory {
 
     HAT(7, 9), // 모자
@@ -40,5 +45,13 @@ public enum ValidationCategory {
 
     public int getMaximumUpgradableValue() {
         return upgradableCount * singleUpgradableValue;
+    }
+
+    public ValidationCategory findWithName(String name) {
+        return Arrays
+            .stream(values())
+            .filter(value -> value.name().equals(name))
+            .findAny()
+            .orElseThrow(CannotFindCategoryException::new);
     }
 }
