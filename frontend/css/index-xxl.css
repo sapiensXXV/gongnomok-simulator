@@ -133,8 +133,8 @@
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 5.1vw;
-    height: 5.1vw;
+    width: 6.1vw;
+    height: 6.1vw;
   
     border: none;
     border-radius: 8px;
@@ -233,7 +233,7 @@
     display: block;
     /* font-family: SOYOMapleBoldTTF; */
     font-family: Pretendard-SemiBold;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 9px;
 
     text-overflow: ellipsis;
@@ -416,7 +416,7 @@
   .item-info-name {
     display: block;
     font-size: 25px;
-    font-family: Pretendard-Medium;
+    font-family: Pretendard-SemiBold;
     margin-top: 1px;
     margin-bottom: 5px;
   }
@@ -628,7 +628,7 @@
 
   .item-simulator-root {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 
 }
