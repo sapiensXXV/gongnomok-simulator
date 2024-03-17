@@ -41,6 +41,8 @@ export default function BestRecordItem({ itemId, info }) {
       return 'yellow'
     } else if (iev >= 57 && iev <= 73) {
       return 'green'
+    } else if (iev > 73) {
+      return 'primary-red'
     }
 
     return 'white';

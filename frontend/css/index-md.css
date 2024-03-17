@@ -365,39 +365,7 @@
   .item-info-job {
     font-size: 15px;
   }
-
-  .red {
-    color: red
-  }
-
-  .whtie {
-    color: white
-  }
-
-  .orange {
-    color: orange
-  }
-
-  .purple {
-    color: rgb(164, 28, 255)
-  }
-
-  .blue {
-    color: rgb(41, 77, 255);
-  }
-
-  .yellow {
-    color: rgb(240, 240, 35);
-  }
-
-  .green {
-    color: rgb(0, 157, 0)
-  }
-
-  .pink {
-    color: rgb(255, 129, 221)
-  }
-
+  
   .item-info-job span {
     margin-left: 6px;
     margin-right: 6px;

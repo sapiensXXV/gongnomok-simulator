@@ -369,3 +369,39 @@
   border-width: 2px;
   border-color: black;
 }
+
+.red {
+  color: red
+}
+
+.primary-red {
+  color: rgb(255, 83, 83)
+}
+
+.whtie {
+  color: white
+}
+
+.orange {
+  color: orange
+}
+
+.purple {
+  color: rgb(164, 28, 255)
+}
+
+.blue {
+  color: rgb(41, 77, 255);
+}
+
+.yellow {
+  color: rgb(240, 240, 35);
+}
+
+.green {
+  color: rgb(0, 157, 0)
+}
+
+.pink {
+  color: rgb(255, 129, 221)
+}
