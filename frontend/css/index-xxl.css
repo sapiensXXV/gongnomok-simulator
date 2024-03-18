@@ -584,10 +584,9 @@
     display: flex;
     flex-direction: column;
 
-    justify-content: center;
+    /* justify-content: center; */
 
     margin-top: 1rem;
-
   }
 
   .item-best-record-title {
@@ -596,6 +595,12 @@
 
     text-align: center;
     margin-bottom: 8px;
+  }
+
+  .item-record-comment {
+    margin-top: 3px;
+    font-size: 13px;
+    font-family: Pretendard-Medium;
   }
 
   .best-record-container {

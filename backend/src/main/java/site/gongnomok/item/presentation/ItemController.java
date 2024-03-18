@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.enhanceditem.dto.UpdateEnhancementResponse;
 import site.gongnomok.enhanceditem.service.EnhancedItemService;
-import site.gongnomok.item.dto.ItemEnhanceRequest;
-import site.gongnomok.item.dto.ItemEnhanceResponse;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.api.ItemCreateDto;
 import site.gongnomok.item.dto.api.ItemDetailResponseDto;
@@ -59,7 +56,6 @@ public class ItemController {
     @GetMapping("/item/ranking")
     public ResponseEntity<List<ItemRankingResponse>> itemRanking(Pageable pageable) {
 
-//        List<ItemRankingResponse> result = itemService.itemRanking();
         List<ItemRankingResponse> result = itemService.itemRankingPagination(pageable);
         return ResponseEntity.ok(result);
 

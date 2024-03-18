@@ -110,6 +110,7 @@ export default function BestRecordItem({ itemId, info }) {
             </section>
           </section>
         </div>
+        <span className="item-record-comment">※ 기록은 아이템 정옵 기준으로 등록됩니다</span>
 
 
       </main>

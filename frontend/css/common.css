@@ -405,3 +405,14 @@
 .pink {
   color: rgb(255, 129, 221)
 }
+.item-best-record-root {
+  text-align: center;
+  justify-content: flex-start;
+}
+
+.item-record-comment {
+  margin-top: 3px;
+  font-size: 13px;
+  font-family: Pretendard-SemiBold;
+  color: rgb(255, 100, 100);
+}
