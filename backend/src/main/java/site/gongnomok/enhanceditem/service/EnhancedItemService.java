@@ -84,16 +84,16 @@ public class EnhancedItemService {
         log.info("request.getCategory()={}", request.getCategory());
         ValidationCategory findCategory = ValidationCategory.findWithName(request.getCategory());
 
-        log.info("------------------- [검증 시작] ----------------------");
-        log.info("request.getIev() = {}", request.getIev());
-        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
+//        log.info("------------------- [검증 시작] ----------------------");
+//        log.info("request.getIev() = {}", request.getIev());
+//        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
 
         if (request.getIev() > findCategory.getMaximumUpgradableValue()) {
             return false;
         }
 
-        log.info("request.getSuccessCount()={}", request.getSuccessCount());
-        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
+//        log.info("request.getSuccessCount()={}", request.getSuccessCount());
+//        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
 
         if (request.getSuccessCount() > findCategory.getUpgradableCount()) {
             return false;
