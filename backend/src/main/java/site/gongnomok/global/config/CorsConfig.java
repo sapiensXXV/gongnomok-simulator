@@ -10,6 +10,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        // TODO: 3/19/24 SameSite 설정
         registry
                 .addMapping("/**")
                 .allowedMethods("*")
@@ -26,5 +27,6 @@ public class CorsConfig implements WebMvcConfigurer {
                 )
                 .allowCredentials(true)
                 .maxAge(3000);
+
     }
 }
