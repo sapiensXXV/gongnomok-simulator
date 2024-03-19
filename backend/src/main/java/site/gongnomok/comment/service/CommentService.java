@@ -9,17 +9,20 @@ import site.gongnomok.comment.dto.request.CommentDeleteServiceDto;
 import site.gongnomok.comment.dto.response.CommentCountResponse;
 import site.gongnomok.comment.dto.response.CommentCreateResponse;
 import site.gongnomok.comment.dto.response.CommentResponse;
-import site.gongnomok.comment.exception.CannotFindCommentByIdException;
-import site.gongnomok.comment.exception.CannotFindItemCommentException;
-import site.gongnomok.comment.exception.CommentPasswordNotMatchException;
 import site.gongnomok.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.comment.domain.repository.CommentQueryRepository;
+import site.gongnomok.global.exception.CommentException;
+import site.gongnomok.global.exception.ExceptionCode;
+import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.comment.domain.Comment;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.global.util.SecurityUtil;
 
 import java.util.List;
+
+import static site.gongnomok.global.exception.ExceptionCode.INVALID_PASSWORD;
+import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_COMMENT_ID;
 
 
 @Service
@@ -38,7 +41,9 @@ public class CommentService {
 
         String encryptedPassword = SecurityUtil.encryptSha256(createDto.getPassword());
 
-        Item findItem = itemRepository.findById(itemId).orElseThrow(() -> new CannotFindItemCommentException(itemId));
+        Item findItem = itemRepository
+            .findById(itemId)
+            .orElseThrow(() -> new ItemException(ExceptionCode.NOT_FOUND_ITEM_ID));
         Comment newComment = Comment.of(createDto.getName(), encryptedPassword, createDto.getContent());
 
         newComment.changeItem(findItem);
@@ -69,11 +74,11 @@ public class CommentService {
     public void deleteComment(final CommentDeleteServiceDto deleteDto) {
         Comment findComment = commentJpaRepository
             .findById(deleteDto.getCommentId())
-            .orElseThrow(() -> new CannotFindCommentByIdException("존재하지 않는 댓글입니다."));
+            .orElseThrow(() -> new CommentException(NOT_FOUND_COMMENT_ID));
 
         String encryptedPassword = SecurityUtil.encryptSha256(deleteDto.getPassword());
         if (!encryptedPassword.equals(findComment.getPassword())) {
-            throw new CommentPasswordNotMatchException("패스워드가 일치하지 않습니다.");
+            throw new CommentException(INVALID_PASSWORD);
         }
 
         commentJpaRepository.delete(findComment);

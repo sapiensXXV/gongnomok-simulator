@@ -9,8 +9,7 @@ import site.gongnomok.comment.dto.response.CommentCreateResponse;
 import site.gongnomok.comment.dto.request.CommentCreateServiceDto;
 import site.gongnomok.comment.dto.request.CommentDeleteServiceDto;
 import site.gongnomok.comment.service.CommentService;
-import site.gongnomok.comment.exception.CannotFindCommentByIdException;
-import site.gongnomok.comment.exception.CommentPasswordNotMatchException;
+import site.gongnomok.global.exception.CommentException;
 import site.gongnomok.global.util.SecurityUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -140,7 +139,7 @@ class CommentServiceTest {
             .password(WRONG_PASSWORD)
             .build();
 
-        assertThrows(CommentPasswordNotMatchException.class, () -> {
+        assertThrows(CommentException.class, () -> {
             commentService.deleteComment(deleteDto);
         });
     }
@@ -153,7 +152,7 @@ class CommentServiceTest {
             .password("password")
             .build();
 
-        assertThrows(CannotFindCommentByIdException.class, () -> {
+        assertThrows(CommentException.class, () -> {
             commentService.deleteComment(deleteDto);
         });
     }
