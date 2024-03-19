@@ -1,9 +1,9 @@
 package site.gongnomok.enhanceditem;
 
-import site.gongnomok.enhanceditem.exception.CannotFindCategoryException;
-
+import site.gongnomok.global.exception.CategoryException;
 import java.util.Arrays;
-import java.util.Optional;
+
+import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_CATEGORY_NAME;
 
 public enum ValidationCategory {
 
@@ -52,6 +52,6 @@ public enum ValidationCategory {
             .stream(values())
             .filter(value -> value.name().equals(name))
             .findAny()
-            .orElseThrow(CannotFindCategoryException::new);
+            .orElseThrow(() -> new CategoryException(NOT_FOUND_CATEGORY_NAME));
     }
 }

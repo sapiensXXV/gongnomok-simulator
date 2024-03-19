@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.enhanceditem.domain.repository.EnhancedItemRepository;
+import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.api.*;
@@ -16,7 +16,6 @@ import site.gongnomok.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.item.dto.api.itemlist.ItemResponseDto;
 import site.gongnomok.item.dto.service.*;
-import site.gongnomok.item.exception.CannotFindItemException;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.AttackSpeed;
@@ -25,6 +24,8 @@ import site.gongnomok.item.domain.Category;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_ITEM_ID;
 
 @Slf4j
 @Service
@@ -119,7 +120,7 @@ public class ItemService {
     @Transactional
     public ItemDetailResponseDto findItemById(Long id) throws JsonProcessingException {
         Optional<Item> findItem = itemRepository.findById(id);
-        Item item = findItem.orElseThrow(CannotFindItemException::new);
+        Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         item.addViewCount(); // 조회수 증가
 
         String name = item.getName();
