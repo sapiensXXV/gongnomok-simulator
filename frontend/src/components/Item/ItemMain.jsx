@@ -6,7 +6,8 @@ import axios from "axios";
 
 import { DEFAULT_FETCH_SIZE } from "../../global/item";
 import { BASE_URI } from "../../global/uri";
-import FeedbackBanner from "../FeedbackBanner";
+import FeedbackBanner from "../banner/FeedbackBanner";
+import InformBanner from "../banner/InformBanner";
 
 export default function ItemMain() {
 
@@ -123,6 +124,7 @@ export default function ItemMain() {
         <div className="row mb-3">
           <section>
             <FeedbackBanner/>
+            <InformBanner/>
           </section>
         </div>
         <div className="row">

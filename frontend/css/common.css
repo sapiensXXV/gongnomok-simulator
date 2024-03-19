@@ -86,7 +86,7 @@
 
 .feedback-banner-root {
   background-color: rgb(2, 151, 41);
-  padding: 10px;
+  padding: 8px;
   text-align: center;
   border-radius: 8px;
   color: white;
@@ -98,6 +98,17 @@
   color: rgb(254, 70, 70);
   font-family: Pretendard-Bold;
   text-decoration: none;
+}
+
+.inform-banner-root {
+  margin-top: 3px;
+  background-color: rgb(58, 88, 255);
+  padding: 8px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+
+  font-family: Pretendard-Regular;
 }
 
 .comment-container {
