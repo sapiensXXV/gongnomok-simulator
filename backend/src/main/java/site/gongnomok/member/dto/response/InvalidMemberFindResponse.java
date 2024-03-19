@@ -1,4 +1,4 @@
-package site.gongnomok.member.exception;
+package site.gongnomok.member.dto.response;
 
 
 import lombok.AllArgsConstructor;

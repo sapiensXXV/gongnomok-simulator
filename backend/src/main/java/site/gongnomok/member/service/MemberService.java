@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import site.gongnomok.member.exception.CannotFindMemberException;
-import site.gongnomok.member.dto.MemberDto;
+import site.gongnomok.member.dto.request.MemberDto;
 import site.gongnomok.member.domain.repository.MemberRepository;
-import site.gongnomok.member.dto.MemberLoginServiceDto;
+import site.gongnomok.member.dto.request.MemberLoginServiceDto;
 import site.gongnomok.member.domain.Member;
 import site.gongnomok.global.util.SecurityUtil;
 

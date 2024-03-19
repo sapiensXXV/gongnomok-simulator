@@ -1,4 +1,4 @@
-package site.gongnomok.item.exception;
+package site.gongnomok.enhanceditem.exception;
 
 public class CannotFindEnhancedItemException extends RuntimeException{
 

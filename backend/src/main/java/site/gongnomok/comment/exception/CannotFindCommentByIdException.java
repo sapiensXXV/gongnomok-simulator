@@ -1,5 +1,6 @@
 package site.gongnomok.comment.exception;
 
+
 public class CannotFindCommentByIdException extends RuntimeException {
 
     public CannotFindCommentByIdException() {

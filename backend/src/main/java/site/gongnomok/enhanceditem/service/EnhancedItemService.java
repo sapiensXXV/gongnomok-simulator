@@ -14,7 +14,7 @@ import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.dto.ItemEnhanceResponse;
 import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
-import site.gongnomok.item.exception.CannotFindEnhancedItemException;
+import site.gongnomok.enhanceditem.exception.CannotFindEnhancedItemException;
 import site.gongnomok.item.exception.CannotFindItemException;
 
 import java.util.Optional;

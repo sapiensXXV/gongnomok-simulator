@@ -1,4 +1,4 @@
-package site.gongnomok.member.dto;
+package site.gongnomok.member.dto.request;
 
 
 import lombok.AllArgsConstructor;

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import site.gongnomok.member.exception.CannotFindMemberException;
-import site.gongnomok.member.exception.InvalidMemberFindResponse;
+import site.gongnomok.member.dto.response.InvalidMemberFindResponse;
 import site.gongnomok.member.presentation.MemberController;
 
 @Slf4j

@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.member.dto.LoginDto;
-import site.gongnomok.member.dto.MemberDto;
+import site.gongnomok.member.dto.request.LoginDto;
+import site.gongnomok.member.dto.request.MemberDto;
 import site.gongnomok.member.service.MemberService;
 import site.gongnomok.global.constant.MemberConst;
 

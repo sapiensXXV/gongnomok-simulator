@@ -13,7 +13,7 @@ import site.gongnomok.item.dto.api.ItemDetailResponseDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.item.service.ItemService;
-import site.gongnomok.member.dto.MemberDto;
+import site.gongnomok.member.dto.request.MemberDto;
 import site.gongnomok.global.constant.MemberConst;
 
 import java.net.URI;
