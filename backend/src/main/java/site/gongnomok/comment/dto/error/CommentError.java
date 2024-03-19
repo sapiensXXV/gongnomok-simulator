@@ -8,7 +8,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class CommentError {
 
-    private String code;
+    private int code;
     private String message;
 
 }

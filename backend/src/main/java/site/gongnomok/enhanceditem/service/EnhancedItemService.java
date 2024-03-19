@@ -10,14 +10,17 @@ import site.gongnomok.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.enhanceditem.dto.EnhanceResult;
 import site.gongnomok.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.global.exception.EnhancedItemException;
+import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.dto.ItemEnhanceResponse;
 import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
-import site.gongnomok.item.exception.CannotFindEnhancedItemException;
-import site.gongnomok.item.exception.CannotFindItemException;
 
 import java.util.Optional;
+
+import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_ENHANCED_ID;
+import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_ITEM_ID;
 
 @Slf4j
 @Service
@@ -35,14 +38,14 @@ public class EnhancedItemService {
     public ItemEnhanceResponse findEnhanceItem(Long itemId) {
         Item findItem = itemRepository
             .findById(itemId)
-            .orElseThrow(() -> new CannotFindItemException("아이템을 찾을 수 없습니다."));
+            .orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
 
         Optional<EnhancedItem> enhanceItem = itemRepository.findEnhanceItem(itemId);
         if (enhanceItem.isEmpty()) {
             // item_id에 해당하는 아이템의 기록정보가 테이블에 없다면 기본정보를 만들어서 반환한다.
             return ItemEnhanceResponse.getBasicEnhanceData();
         } else {
-            EnhancedItem enhancedItem = enhanceItem.orElseThrow(() -> new CannotFindEnhancedItemException("아이템 기록을 찾을 수 없습니다."));
+            EnhancedItem enhancedItem = enhanceItem.orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
             enhancedItem.changeItem(findItem);
             return ItemEnhanceResponse.convertEntityToResponse(enhancedItem);
         }
@@ -68,7 +71,7 @@ public class EnhancedItemService {
         }
 
         EnhancedItem enhancedItem = enhancedItemOptional
-            .orElseThrow(() -> new CannotFindEnhancedItemException("기록을 찾을 수 없습니다."));
+            .orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
 
         if (enhancedItem.getIev() < enhanceDto.getIev()) {
             // 기록이 기존의 것보다 높을 경우
@@ -84,16 +87,16 @@ public class EnhancedItemService {
         log.info("request.getCategory()={}", request.getCategory());
         ValidationCategory findCategory = ValidationCategory.findWithName(request.getCategory());
 
-        log.info("------------------- [검증 시작] ----------------------");
-        log.info("request.getIev() = {}", request.getIev());
-        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
+//        log.info("------------------- [검증 시작] ----------------------");
+//        log.info("request.getIev() = {}", request.getIev());
+//        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
 
         if (request.getIev() > findCategory.getMaximumUpgradableValue()) {
             return false;
         }
 
-        log.info("request.getSuccessCount()={}", request.getSuccessCount());
-        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
+//        log.info("request.getSuccessCount()={}", request.getSuccessCount());
+//        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
 
         if (request.getSuccessCount() > findCategory.getUpgradableCount()) {
             return false;
@@ -107,7 +110,7 @@ public class EnhancedItemService {
     ) {
         Item item = itemRepository
             .findById(itemId)
-            .orElseThrow(() -> new CannotFindItemException("아이템을 찾을 수 없습니다."));
+            .orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         EnhancedItem enhancedItem = ItemEnhanceServiceRequest.createEntity(enhanceDto);
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
