@@ -2,8 +2,8 @@ ads.txt
 
 HELP.md
 .gradle
-.properties
-.yml
+*.properties
+*.yml
 build/
 logs/
 !gradle/wrapper/gradle-wrapper.jar
