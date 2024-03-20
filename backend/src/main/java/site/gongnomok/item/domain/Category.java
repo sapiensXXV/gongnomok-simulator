@@ -36,6 +36,7 @@ public enum Category {
     }
 
     public static Category stringToCategory(String data) {
+        if (data == null) return null;
 //        log.info("{} 를 Category로 바꿉니다.", data);
         return Arrays.stream(values())
                 .filter(value -> {

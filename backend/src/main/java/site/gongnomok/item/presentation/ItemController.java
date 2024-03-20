@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.enhanceditem.service.EnhancedItemService;
 import site.gongnomok.item.dto.ItemRankingResponse;
-import site.gongnomok.item.dto.api.ItemCreateDto;
-import site.gongnomok.item.dto.api.ItemDetailResponseDto;
+import site.gongnomok.item.dto.request.ItemCreateRequest;
+import site.gongnomok.item.dto.response.ItemDetailsResponse;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.item.service.ItemService;
@@ -28,28 +28,13 @@ import static site.gongnomok.member.domain.Role.USER;
 public class ItemController {
 
     private final ItemService itemService;
-    private final EnhancedItemService enhancedItemService;
-
-    @GetMapping("/auth")
-    public ResponseEntity<Void> auth(
-        @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
-    ) {
-        if (member == null) {
-            return ResponseEntity.status(401).build();
-        }
-        if (member.getRole().equals(USER.makeLowerString())) {
-            return ResponseEntity.status(403).build();
-        }
-
-        return ResponseEntity.ok().build();
-    }
 
     @PostMapping("/item/new")
     public ResponseEntity<Void> createItem(
-        @RequestBody ItemCreateDto createDto
+        @RequestBody ItemCreateRequest createDto
     ) {
         Long id = createDto.getId();
-        itemService.saveItem(createDto.toServiceDto());
+        itemService.saveItem(createDto);
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
@@ -77,9 +62,9 @@ public class ItemController {
     }
 
     @GetMapping("/item/{itemId}")
-    public ResponseEntity<ItemDetailResponseDto> item(@PathVariable("itemId") Long itemId) {
+    public ResponseEntity<ItemDetailsResponse> item(@PathVariable("itemId") Long itemId) {
         try {
-            ItemDetailResponseDto findItem = itemService.findItemById(itemId);
+            ItemDetailsResponse findItem = itemService.findItemById(itemId);
             return ResponseEntity.ok(findItem);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

@@ -10,6 +10,7 @@ public enum AttackSpeed {
     VERY_FAST;
 
     public static AttackSpeed stringToAttackSpeed(String data) {
+        if (data == null) return null;
         return Arrays.stream(values())
                 .filter((value) -> {
                     return value.name().equals(data);
