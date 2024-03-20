@@ -30,6 +30,7 @@ public class ItemController {
     private final ItemService itemService;
     private final EnhancedItemService enhancedItemService;
 
+    // TODO: 3/20/24 AUTH 도메인으로 이동
     @GetMapping("/auth")
     public ResponseEntity<Void> auth(
         @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
@@ -49,7 +50,7 @@ public class ItemController {
         @RequestBody ItemCreateDto createDto
     ) {
         Long id = createDto.getId();
-        itemService.saveItem(createDto.toServiceDto());
+        itemService.saveItem(createDto);
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 

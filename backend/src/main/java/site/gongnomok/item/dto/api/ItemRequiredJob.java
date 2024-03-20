@@ -2,6 +2,7 @@ package site.gongnomok.item.dto.api;
 
 
 import lombok.*;
+import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.dto.service.ItemRequiredJobServiceDto;
 
 @AllArgsConstructor
@@ -23,5 +24,15 @@ public class ItemRequiredJob {
                 .magician(magician)
                 .thief(thief)
                 .build();
+    }
+
+    public static ItemRequiredJob from(Item item) {
+        return ItemRequiredJob.builder()
+            .common(item.isCommon())
+            .warrior(item.isWarrior())
+            .bowman(item.isBowman())
+            .magician(item.isMagician())
+            .thief(item.isThief())
+            .build();
     }
 }

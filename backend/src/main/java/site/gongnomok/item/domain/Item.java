@@ -33,20 +33,8 @@ public class Item {
     @Enumerated(value = EnumType.STRING)
     private AttackSpeed attackSpeed;
 
-    private String str;
-    private String dex;
-    private String intel;
-    private String luk;
-    private String phyAtk;
-    private String mgAtk;
-    private String phyDef;
-    private String mgDef;
-    private String acc; //명중률
-    private String avo; //회피율
-    private String move; //이동속도
-    private String jump; //점프력
-    private String hp;
-    private String mp;
+    private ItemStatus status;
+
     private int upgradable;
     private int viewCount;
     private int knockBackPercent;
