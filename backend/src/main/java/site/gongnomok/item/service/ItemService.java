@@ -37,7 +37,6 @@ import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_ITEM_ID;
 public class ItemService {
 
     private final ItemRepository itemRepository;
-    private final ObjectMapper mapper;
 
     public void saveItem(ItemCreateDto dto) {
         Item newItem = ItemFactory.from(dto);
@@ -81,22 +80,4 @@ public class ItemService {
         return ItemDetailsResponse.from(item);
     }
 
-    private ItemStatusRequest convertItemToStatusDto(Item item) throws JsonProcessingException {
-        return ItemStatusRequest.builder()
-            .str(mapper.readValue(item.getStr(), ItemStatusRangeRequest.class))
-            .dex(mapper.readValue(item.getDex(), ItemStatusRangeRequest.class))
-            .intel(mapper.readValue(item.getIntel(), ItemStatusRangeRequest.class))
-            .luk(mapper.readValue(item.getLuk(), ItemStatusRangeRequest.class))
-            .phyAtk(mapper.readValue(item.getPhyAtk(), ItemStatusRangeRequest.class))
-            .mgAtk(mapper.readValue(item.getMgAtk(), ItemStatusRangeRequest.class))
-            .phyDef(mapper.readValue(item.getPhyDef(), ItemStatusRangeRequest.class))
-            .mgDef(mapper.readValue(item.getMgDef(), ItemStatusRangeRequest.class))
-            .hp(mapper.readValue(item.getHp(), ItemStatusRangeRequest.class))
-            .mp(mapper.readValue(item.getMp(), ItemStatusRangeRequest.class))
-            .acc(mapper.readValue(item.getAcc(), ItemStatusRangeRequest.class))
-            .avo(mapper.readValue(item.getAvo(), ItemStatusRangeRequest.class))
-            .move(mapper.readValue(item.getMove(), ItemStatusRangeRequest.class))
-            .jump(mapper.readValue(item.getJump(), ItemStatusRangeRequest.class))
-            .build();
-    }
 }
