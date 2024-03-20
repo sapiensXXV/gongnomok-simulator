@@ -1,4 +1,4 @@
-package site.gongnomok.item.dto.api;
+package site.gongnomok.item.dto.response;
 
 
 import lombok.AllArgsConstructor;
@@ -6,14 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import site.gongnomok.item.domain.Item;
-import site.gongnomok.item.dto.request.ItemStatusRequest;
-import site.gongnomok.item.dto.response.ItemStatusResponse;
+import site.gongnomok.item.dto.api.ItemRequiredDto;
+import site.gongnomok.item.dto.api.ItemRequiredJob;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class ItemDetailResponseDto {
+public class ItemDetailsResponse {
 
     private String name;
     private ItemRequiredDto required;
@@ -25,12 +25,12 @@ public class ItemDetailResponseDto {
     private int upgradableCount;
     private int knockBackPercent;
 
-    public static ItemDetailResponseDto from(Item item) {
+    public static ItemDetailsResponse from(Item item) {
 
         ItemRequiredDto requiredDto = ItemRequiredDto.from(item);
         ItemRequiredJob job = ItemRequiredJob.from(item);
 
-        return ItemDetailResponseDto.builder()
+        return ItemDetailsResponse.builder()
             .name(item.getName())
             .job(job)
             .required(requiredDto)

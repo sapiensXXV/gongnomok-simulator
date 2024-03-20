@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import site.gongnomok.enhanceditem.service.EnhancedItemService;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.api.ItemCreateDto;
-import site.gongnomok.item.dto.api.ItemDetailResponseDto;
+import site.gongnomok.item.dto.response.ItemDetailsResponse;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.item.service.ItemService;
@@ -78,9 +78,9 @@ public class ItemController {
     }
 
     @GetMapping("/item/{itemId}")
-    public ResponseEntity<ItemDetailResponseDto> item(@PathVariable("itemId") Long itemId) {
+    public ResponseEntity<ItemDetailsResponse> item(@PathVariable("itemId") Long itemId) {
         try {
-            ItemDetailResponseDto findItem = itemService.findItemById(itemId);
+            ItemDetailsResponse findItem = itemService.findItemById(itemId);
             return ResponseEntity.ok(findItem);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

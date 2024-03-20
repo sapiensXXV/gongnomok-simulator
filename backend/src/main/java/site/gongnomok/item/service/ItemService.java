@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.global.exception.ItemException;
+import site.gongnomok.item.domain.ItemFactory;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.api.*;
@@ -21,6 +22,7 @@ import site.gongnomok.item.domain.AttackSpeed;
 import site.gongnomok.item.domain.Category;
 import site.gongnomok.item.dto.request.ItemStatusRangeRequest;
 import site.gongnomok.item.dto.request.ItemStatusRequest;
+import site.gongnomok.item.dto.response.ItemDetailsResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,38 +41,7 @@ public class ItemService {
 
     public void saveItem(ItemCreateDto dto) {
         // TODO: 3/20/24 Item 객체 생성을 다른 객체에 위임한다.
-        Long itemId = dto.getId();
-        String itemName = dto.getName();
-        ItemRequiredJob requiredJob = dto.getRequiredJob();
-        ItemRequiredDto required = dto.getRequired();
-        Category category = Category.stringToCategory(dto.getCategory());
-        ItemStatusRequest status = dto.getStatus();
-        int upgradableCount = dto.getUpgradableCount();
-        AttackSpeed attackSpeed = AttackSpeed.stringToAttackSpeed(dto.getAttackSpeed());
-        int knockBackPercent = dto.getKnockBackPercent();
-
-        Item newItem = Item.builder()
-            .id(itemId)
-            .name(itemName)
-            .requiredLevel(required.getLevel())
-            .requiredStr(required.getStr())
-            .requiredDex(required.getDex())
-            .requiredInt(required.getIntel())
-            .requiredLuk(required.getLuk())
-            .requiredPop(required.getPop())
-            .common(requiredJob.isCommon())
-            .warrior(requiredJob.isWarrior())
-            .bowman(requiredJob.isBowman())
-            .magician(requiredJob.isMagician())
-            .thief(requiredJob.isThief())
-            .category(category)
-            .attackSpeed(attackSpeed)
-            .status(status.toEntity())
-            .upgradable(upgradableCount)
-            .knockBackPercent(knockBackPercent)
-            .build();
-
-
+        Item newItem = ItemFactory.from(dto);
         itemRepository.save(newItem);
     }
 
@@ -103,7 +74,7 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemDetailResponseDto findItemById(Long id) throws JsonProcessingException {
+    public ItemDetailsResponse findItemById(Long id) throws JsonProcessingException {
         Optional<Item> findItem = itemRepository.findById(id);
         Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         item.addViewCount(); // 조회수 증가
@@ -134,7 +105,7 @@ public class ItemService {
         String attackSpeed = item.getAttackSpeed() == null ? null : item.getAttackSpeed().name();
         int upgradableCount = item.getUpgradable();
 
-        return ItemDetailResponseDto.builder()
+        return ItemDetailsResponse.builder()
                 .name(name)
                 .job(job)
                 .required(requiredDto)
