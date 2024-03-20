@@ -8,6 +8,7 @@ import site.gongnomok.item.domain.ItemStatusRange;
 @AllArgsConstructor
 @Getter @Setter
 @ToString
+@Builder
 public class ItemStatusRangeRequest {
     private int normal;
     private int lower;
@@ -32,4 +33,13 @@ public class ItemStatusRangeRequest {
             .upper(upper)
             .build();
     }
+
+    public static ItemStatusRangeRequest makeDefaultRequest() {
+        return ItemStatusRangeRequest.builder()
+            .lower(0)
+            .normal(0)
+            .upper(0)
+            .build();
+    }
+
 }

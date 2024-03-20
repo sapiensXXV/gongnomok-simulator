@@ -1,7 +1,6 @@
 package site.gongnomok.item.service;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +32,7 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public void saveItem(
+    public void createItem(
         final ItemCreateRequest dto
     ) {
         Item newItem = ItemFactory.from(dto);
@@ -80,7 +79,7 @@ public class ItemService {
     @Transactional
     public ItemDetailsResponse findItemById(
         final Long id
-    ) throws JsonProcessingException {
+    ) {
         final Optional<Item> findItem = itemRepository.findById(id);
         final Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         item.addViewCount(); // 조회수 증가

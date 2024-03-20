@@ -8,8 +8,10 @@ import site.gongnomok.item.dto.service.ItemRequiredJobServiceDto;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @Builder
+@EqualsAndHashCode
 public class ItemRequiredJob {
     private boolean common;
     private boolean warrior;
@@ -36,5 +38,16 @@ public class ItemRequiredJob {
             .thief(item.getAvailableJob().isThief())
             .build();
     }
+
+    public static ItemRequiredJob makeDefault() {
+        return ItemRequiredJob.builder()
+            .common(true)
+            .warrior(false)
+            .bowman(false)
+            .magician(false)
+            .thief(false)
+            .build();
+    }
+
 
 }

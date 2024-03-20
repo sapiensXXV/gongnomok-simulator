@@ -42,4 +42,15 @@ public class ItemRequiredDto {
             .pop(item.getRequiredStatus().getRequiredPop())
             .build();
     }
+
+    public static ItemRequiredDto makeDefault() {
+        return ItemRequiredDto.builder()
+            .level(0)
+            .str(0)
+            .dex(0)
+            .intel(0)
+            .luk(0)
+            .pop(0)
+            .build();
+    }
 }

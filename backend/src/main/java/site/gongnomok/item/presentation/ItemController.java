@@ -6,20 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.enhanceditem.service.EnhancedItemService;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.response.ItemDetailsResponse;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.item.service.ItemService;
-import site.gongnomok.member.dto.request.MemberDto;
-import site.gongnomok.global.constant.MemberConst;
 
 import java.net.URI;
 import java.util.List;
-
-import static site.gongnomok.member.domain.Role.USER;
 
 @Slf4j
 @RestController
@@ -34,7 +29,7 @@ public class ItemController {
         @RequestBody ItemCreateRequest createDto
     ) {
         Long id = createDto.getId();
-        itemService.saveItem(createDto);
+        itemService.createItem(createDto);
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
