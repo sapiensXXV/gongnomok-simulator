@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.enhanceditem.service.EnhancedItemService;
 import site.gongnomok.item.dto.ItemRankingResponse;
-import site.gongnomok.item.dto.api.ItemCreateDto;
+import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.response.ItemDetailsResponse;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
@@ -47,7 +47,7 @@ public class ItemController {
 
     @PostMapping("/item/new")
     public ResponseEntity<Void> createItem(
-        @RequestBody ItemCreateDto createDto
+        @RequestBody ItemCreateRequest createDto
     ) {
         Long id = createDto.getId();
         itemService.saveItem(createDto);

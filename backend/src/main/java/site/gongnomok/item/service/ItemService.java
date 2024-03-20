@@ -2,7 +2,6 @@ package site.gongnomok.item.service;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -12,16 +11,12 @@ import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.ItemFactory;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.item.dto.ItemRankingResponse;
-import site.gongnomok.item.dto.api.*;
 import site.gongnomok.item.dto.api.itemlist.ItemListRequestServiceDto;
 import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
 import site.gongnomok.item.dto.api.itemlist.ItemResponseDto;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.domain.Item;
-import site.gongnomok.item.domain.AttackSpeed;
-import site.gongnomok.item.domain.Category;
-import site.gongnomok.item.dto.request.ItemStatusRangeRequest;
-import site.gongnomok.item.dto.request.ItemStatusRequest;
+import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.response.ItemDetailsResponse;
 
 import java.util.ArrayList;
@@ -39,7 +34,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     public void saveItem(
-        final ItemCreateDto dto
+        final ItemCreateRequest dto
     ) {
         Item newItem = ItemFactory.from(dto);
         itemRepository.save(newItem);

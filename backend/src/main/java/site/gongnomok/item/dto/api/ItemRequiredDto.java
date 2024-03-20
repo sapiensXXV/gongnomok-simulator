@@ -3,6 +3,7 @@ package site.gongnomok.item.dto.api;
 
 import lombok.*;
 import site.gongnomok.item.domain.Item;
+import site.gongnomok.item.domain.RequiredStatus;
 import site.gongnomok.item.dto.service.ItemRequiredServiceDto;
 
 @NoArgsConstructor
@@ -32,14 +33,25 @@ public class ItemRequiredDto {
 
     }
 
+    public RequiredStatus toEntity() {
+        return RequiredStatus.builder()
+            .requiredLevel(level)
+            .requiredStr(str)
+            .requiredDex(dex)
+            .requiredInt(intel)
+            .requiredLuk(luk)
+            .requiredPop(pop)
+            .build();
+    }
+
     public static ItemRequiredDto from(Item item) {
         return ItemRequiredDto.builder()
-            .level(item.getRequiredLevel())
-            .str(item.getRequiredStr())
-            .dex(item.getRequiredDex())
-            .intel(item.getRequiredInt())
-            .luk(item.getRequiredLuk())
-            .pop(item.getRequiredPop())
+            .level(item.getRequiredStatus().getRequiredLevel())
+            .str(item.getRequiredStatus().getRequiredStr())
+            .dex(item.getRequiredStatus().getRequiredDex())
+            .intel(item.getRequiredStatus().getRequiredInt())
+            .luk(item.getRequiredStatus().getRequiredLuk())
+            .pop(item.getRequiredStatus().getRequiredPop())
             .build();
     }
 }

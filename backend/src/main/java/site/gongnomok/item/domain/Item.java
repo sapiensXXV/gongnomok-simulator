@@ -14,26 +14,21 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
     private String name;
-    private int requiredLevel;
-    private int requiredStr;
-    private int requiredDex;
-    private int requiredInt;
-    private int requiredLuk;
-    private int requiredPop;
 
-    private boolean common;
-    private boolean warrior;
-    private boolean bowman;
-    private boolean magician;
-    private boolean thief;
+    @Embedded
+    private RequiredStatus requiredStatus;
+
+    @Embedded
+    private AvailableJob availableJob;
+
+    @Embedded
+    private ItemStatus status;
 
     @Enumerated(value = EnumType.STRING)
     private Category category;
 
     @Enumerated(value = EnumType.STRING)
     private AttackSpeed attackSpeed;
-
-    private ItemStatus status;
 
     private int upgradable;
     private int viewCount;
@@ -42,5 +37,4 @@ public class Item {
     public void addViewCount() {
         viewCount++;
     }
-
 }

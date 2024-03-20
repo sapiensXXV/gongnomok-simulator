@@ -1,8 +1,7 @@
 package site.gongnomok.item.domain;
 
 
-import org.springframework.stereotype.Component;
-import site.gongnomok.item.dto.api.ItemCreateDto;
+import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.api.ItemRequiredDto;
 import site.gongnomok.item.dto.api.ItemRequiredJob;
 import site.gongnomok.item.dto.request.ItemStatusRequest;
@@ -13,7 +12,7 @@ public class ItemFactory {
     private ItemFactory() {
     }
 
-    public static Item from(ItemCreateDto dto) {
+    public static Item from(ItemCreateRequest dto) {
         Long itemId = dto.getId();
         String itemName = dto.getName();
         ItemRequiredJob requiredJob = dto.getRequiredJob();
@@ -24,20 +23,11 @@ public class ItemFactory {
         AttackSpeed attackSpeed = AttackSpeed.stringToAttackSpeed(dto.getAttackSpeed());
         int knockBackPercent = dto.getKnockBackPercent();
 
-        Item newItem = Item.builder()
+        return Item.builder()
             .id(itemId)
             .name(itemName)
-            .requiredLevel(required.getLevel())
-            .requiredStr(required.getStr())
-            .requiredDex(required.getDex())
-            .requiredInt(required.getIntel())
-            .requiredLuk(required.getLuk())
-            .requiredPop(required.getPop())
-            .common(requiredJob.isCommon())
-            .warrior(requiredJob.isWarrior())
-            .bowman(requiredJob.isBowman())
-            .magician(requiredJob.isMagician())
-            .thief(requiredJob.isThief())
+            .availableJob(requiredJob.toEntity())
+            .requiredStatus(required.toEntity())
             .category(category)
             .attackSpeed(attackSpeed)
             .status(status.toEntity())
