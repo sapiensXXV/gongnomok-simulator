@@ -1,4 +1,11 @@
 spring:
   profiles:
     active: test
-spring.datasource.url
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/gongnomok-test
+    username: sa
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
