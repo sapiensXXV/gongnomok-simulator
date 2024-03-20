@@ -17,16 +17,6 @@ public class ItemRequiredJob {
     private boolean magician;
     private boolean thief;
 
-    public ItemRequiredJobServiceDto toServiceDto() {
-        return ItemRequiredJobServiceDto.builder()
-                .common(common)
-                .warrior(warrior)
-                .bowman(bowman)
-                .magician(magician)
-                .thief(thief)
-                .build();
-    }
-
     public AvailableJob toEntity() {
         return AvailableJob.builder()
             .common(common)

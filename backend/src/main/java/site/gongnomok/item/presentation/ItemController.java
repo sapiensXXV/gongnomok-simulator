@@ -28,22 +28,6 @@ import static site.gongnomok.member.domain.Role.USER;
 public class ItemController {
 
     private final ItemService itemService;
-    private final EnhancedItemService enhancedItemService;
-
-    // TODO: 3/20/24 AUTH 도메인으로 이동
-    @GetMapping("/auth")
-    public ResponseEntity<Void> auth(
-        @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
-    ) {
-        if (member == null) {
-            return ResponseEntity.status(401).build();
-        }
-        if (member.getRole().equals(USER.makeLowerString())) {
-            return ResponseEntity.status(403).build();
-        }
-
-        return ResponseEntity.ok().build();
-    }
 
     @PostMapping("/item/new")
     public ResponseEntity<Void> createItem(

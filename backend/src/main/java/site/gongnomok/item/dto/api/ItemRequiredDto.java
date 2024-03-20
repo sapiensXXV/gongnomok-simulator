@@ -21,18 +21,6 @@ public class ItemRequiredDto {
     private int luk;
     private int pop;
 
-    public ItemRequiredServiceDto toServiceDto() {
-        return ItemRequiredServiceDto.builder()
-            .level(level)
-            .str(str)
-            .dex(dex)
-            .intel(intel)
-            .luk(luk)
-            .pop(pop)
-            .build();
-
-    }
-
     public RequiredStatus toEntity() {
         return RequiredStatus.builder()
             .requiredLevel(level)
