@@ -40,7 +40,6 @@ public class ItemService {
     private final ObjectMapper mapper;
 
     public void saveItem(ItemCreateDto dto) {
-        // TODO: 3/20/24 Item 객체 생성을 다른 객체에 위임한다.
         Item newItem = ItemFactory.from(dto);
         itemRepository.save(newItem);
     }
@@ -79,43 +78,7 @@ public class ItemService {
         Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         item.addViewCount(); // 조회수 증가
 
-        String name = item.getName();
-        ItemRequiredDto requiredDto = ItemRequiredDto.builder()
-                .level(item.getRequiredLevel())
-                .str(item.getRequiredStr())
-                .dex(item.getRequiredDex())
-                .intel(item.getRequiredInt())
-                .luk(item.getRequiredLuk())
-                .pop(item.getRequiredPop())
-                .build();
-
-        ItemRequiredJob job = ItemRequiredJob.builder()
-                .common(item.isCommon())
-                .warrior(item.isWarrior())
-                .bowman(item.isBowman())
-                .magician(item.isMagician())
-                .thief(item.isThief())
-                .build();
-
-        String category = item.getCategory().name();
-        int knockBackPercent = item.getKnockBackPercent();
-
-        ItemStatusRequest status = convertItemToStatusDto(item);
-        int viewCount = item.getViewCount();
-        String attackSpeed = item.getAttackSpeed() == null ? null : item.getAttackSpeed().name();
-        int upgradableCount = item.getUpgradable();
-
-        return ItemDetailsResponse.builder()
-                .name(name)
-                .job(job)
-                .required(requiredDto)
-                .category(category)
-                .status(status)
-                .viewCount(viewCount)
-                .attackSpeed(attackSpeed)
-                .upgradableCount(upgradableCount)
-                .knockBackPercent(knockBackPercent)
-                .build();
+        return ItemDetailsResponse.from(item);
     }
 
     private ItemStatusRequest convertItemToStatusDto(Item item) throws JsonProcessingException {
