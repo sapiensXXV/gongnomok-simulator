@@ -38,33 +38,44 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public void saveItem(ItemCreateDto dto) {
+    public void saveItem(
+        final ItemCreateDto dto
+    ) {
         Item newItem = ItemFactory.from(dto);
         itemRepository.save(newItem);
     }
 
     @Transactional(readOnly = true)
-    public ItemListResponseDto findItemsWithCondition(ItemListRequestServiceDto dto, Pageable pageable) {
-        List<ItemResponseDto> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
+    public ItemListResponseDto findItemsWithCondition(
+        final ItemListRequestServiceDto dto,
+        final Pageable pageable
+    ) {
+        final List<ItemResponseDto> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
         return ItemListResponseDto.of(items);
     }
 
     @Transactional(readOnly = true)
-    public ItemListResponseDto findPaginationItems(Pageable pageable) {
-        List<ItemResponseDto> items = itemRepository.paginationFindItems(pageable);
+    public ItemListResponseDto findPaginationItems(
+        final Pageable pageable
+    ) {
+        final List<ItemResponseDto> items = itemRepository.paginationFindItems(pageable);
         return ItemListResponseDto.of(items);
     }
 
     @Transactional(readOnly = true)
-    public List<ItemRankingResponse> itemRankingPagination(Pageable pageable) {
-        List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
+    public List<ItemRankingResponse> itemRankingPagination(
+        final Pageable pageable
+    ) {
+        final List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
         return convertItemListRankingResponse(items);
     }
 
-    private List<ItemRankingResponse> convertItemListRankingResponse(List<ItemRankingRepositoryDto> items) {
-        List<ItemRankingResponse> ranking = new ArrayList<>();
+    private List<ItemRankingResponse> convertItemListRankingResponse(
+        final List<ItemRankingRepositoryDto> items
+    ) {
+        final List<ItemRankingResponse> ranking = new ArrayList<>();
         for (int i = 1; i <= items.size(); i++) {
-            ItemRankingRepositoryDto item = items.get(i - 1);
+            final ItemRankingRepositoryDto item = items.get(i - 1);
             ranking.add(ItemRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
         }
 
@@ -72,9 +83,11 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemDetailsResponse findItemById(Long id) throws JsonProcessingException {
-        Optional<Item> findItem = itemRepository.findById(id);
-        Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
+    public ItemDetailsResponse findItemById(
+        final Long id
+    ) throws JsonProcessingException {
+        final Optional<Item> findItem = itemRepository.findById(id);
+        final Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         item.addViewCount(); // 조회수 증가
 
         return ItemDetailsResponse.from(item);
