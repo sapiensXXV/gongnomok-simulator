@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.response.ItemDetailsResponse;
-import site.gongnomok.item.dto.api.itemlist.ItemListRequestDto;
-import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
+import site.gongnomok.item.dto.request.itemlist.ItemListRequest;
+import site.gongnomok.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.item.service.ItemService;
 
 import java.net.URI;
@@ -42,17 +42,17 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public ResponseEntity<ItemListResponseDto> findItems(Pageable pageable) {
-        ItemListResponseDto paginationItems = itemService.findPaginationItems(pageable);
+    public ResponseEntity<ItemListResponse> findItems(Pageable pageable) {
+        ItemListResponse paginationItems = itemService.findPaginationItems(pageable);
         return ResponseEntity.ok(paginationItems);
     }
 
     @PostMapping("/items")
-    public ResponseEntity<ItemListResponseDto> searchItems(
-        @RequestBody ItemListRequestDto requestDto,
+    public ResponseEntity<ItemListResponse> searchItems(
+        @RequestBody ItemListRequest requestDto,
         Pageable pageable
     ) {
-        ItemListResponseDto searchResult = itemService.findItemsWithCondition(requestDto.toServiceDto(), pageable);
+        ItemListResponse searchResult = itemService.findItemsWithCondition(requestDto.toServiceDto(), pageable);
         return ResponseEntity.ok(searchResult);
     }
 

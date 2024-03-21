@@ -10,9 +10,9 @@ import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.ItemFactory;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.item.dto.ItemRankingResponse;
-import site.gongnomok.item.dto.api.itemlist.ItemListRequestServiceDto;
-import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
-import site.gongnomok.item.dto.api.itemlist.ItemResponseDto;
+import site.gongnomok.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.item.dto.api.itemlist.ItemListResponse;
+import site.gongnomok.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.dto.request.ItemCreateRequest;
@@ -40,20 +40,20 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public ItemListResponseDto findItemsWithCondition(
-        final ItemListRequestServiceDto dto,
+    public ItemListResponse findItemsWithCondition(
+        final ItemListServiceRequest dto,
         final Pageable pageable
     ) {
-        final List<ItemResponseDto> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
-        return ItemListResponseDto.of(items);
+        final List<ItemResponse> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
+        return ItemListResponse.of(items);
     }
 
     @Transactional(readOnly = true)
-    public ItemListResponseDto findPaginationItems(
+    public ItemListResponse findPaginationItems(
         final Pageable pageable
     ) {
-        final List<ItemResponseDto> items = itemRepository.paginationFindItems(pageable);
-        return ItemListResponseDto.of(items);
+        final List<ItemResponse> items = itemRepository.paginationFindItems(pageable);
+        return ItemListResponse.of(items);
     }
 
     @Transactional(readOnly = true)

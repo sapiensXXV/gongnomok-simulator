@@ -1,4 +1,4 @@
-package site.gongnomok.item.dto.api.itemlist;
+package site.gongnomok.item.dto.request.itemlist;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import site.gongnomok.item.domain.Job;
 @AllArgsConstructor
 @Getter
 @Builder
-public class ItemListRequestServiceDto {
+public class ItemListServiceRequest {
 
     private Category category;
     private Job job;
