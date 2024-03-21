@@ -621,7 +621,7 @@ export default function ItemSimulator() {
 
                 <div className="item-info-status">
                   <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
-                  {(info?.attackSpeed !== null || info?.attackSpeed !== 'NONE' ) && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
+                  {(info?.attackSpeed !== null && info?.attackSpeed !== 'NONE' ) && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
                   {str > 0 && <span>STR : +{str}</span>}
                   {dex > 0 && <span>DEX : +{dex}</span>}
                   {intel > 0 && <span>INT : +{intel}</span>}
