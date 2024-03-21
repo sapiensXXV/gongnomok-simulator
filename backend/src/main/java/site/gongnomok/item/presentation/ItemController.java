@@ -57,13 +57,11 @@ public class ItemController {
     }
 
     @GetMapping("/item/{itemId}")
-    public ResponseEntity<ItemDetailsResponse> item(@PathVariable("itemId") Long itemId) {
-        try {
-            ItemDetailsResponse findItem = itemService.findItemById(itemId);
-            return ResponseEntity.ok(findItem);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<ItemDetailsResponse> item(
+        @PathVariable("itemId") Long itemId
+    ) {
+        final ItemDetailsResponse findItem = itemService.findItemById(itemId);
+        return ResponseEntity.ok(findItem);
     }
 
 }

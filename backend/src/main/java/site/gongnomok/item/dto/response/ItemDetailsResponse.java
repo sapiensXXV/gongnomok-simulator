@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.gongnomok.item.domain.AttackSpeed;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.dto.api.ItemRequiredDto;
 import site.gongnomok.item.dto.api.ItemRequiredJob;
