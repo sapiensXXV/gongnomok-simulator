@@ -3,6 +3,7 @@ package site.gongnomok.item.domain;
 import java.util.Arrays;
 
 public enum AttackSpeed {
+    NONE,
     VERY_SLOW,
     SLOW,
     NORMAL,
@@ -10,7 +11,7 @@ public enum AttackSpeed {
     VERY_FAST;
 
     public static AttackSpeed stringToAttackSpeed(String data) {
-        if (data == null) return null;
+        if (data == null) return NONE;
         return Arrays.stream(values())
                 .filter((value) -> {
                     return value.name().equals(data);

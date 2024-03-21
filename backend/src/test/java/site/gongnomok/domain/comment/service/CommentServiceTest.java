@@ -1,5 +1,6 @@
 package site.gongnomok.domain.comment.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,13 @@ import site.gongnomok.comment.dto.request.CommentDeleteServiceDto;
 import site.gongnomok.comment.service.CommentService;
 import site.gongnomok.global.exception.CommentException;
 import site.gongnomok.global.util.SecurityUtil;
+import site.gongnomok.item.domain.AttackSpeed;
+import site.gongnomok.item.domain.Category;
+import site.gongnomok.item.dto.api.ItemRequiredDto;
+import site.gongnomok.item.dto.api.ItemRequiredJob;
+import site.gongnomok.item.dto.request.ItemCreateRequest;
+import site.gongnomok.item.dto.request.ItemStatusRequest;
+import site.gongnomok.item.service.ItemService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +30,37 @@ class CommentServiceTest {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    ItemService itemService;
+
+    @BeforeEach
+    void beforeEach() {
+
+        final String ITEM_NAME_PREFIX = "item_";
+
+        for (long i = 1; i <= 30; i++) {
+            final Long ITEM_ID = i;
+            final String ITEM_NAME = ITEM_NAME_PREFIX + i;
+
+            final ItemRequiredJob requiredJob = ItemRequiredJob.makeDefault();
+            final ItemRequiredDto requiredDto = ItemRequiredDto.makeDefault();
+            final ItemStatusRequest status = ItemStatusRequest.makeDefaultRequest();
+
+            ItemCreateRequest createRequest = ItemCreateRequest.builder()
+                .id(ITEM_ID)
+                .name(ITEM_NAME)
+                .requiredJob(requiredJob)
+                .required(requiredDto)
+                .category(Category.CLAW.name())
+                .status(status)
+                .upgradableCount(7)
+                .attackSpeed(AttackSpeed.FAST.name())
+                .knockBackPercent(0)
+                .build();
+            itemService.createItem(createRequest);
+        }
+    }
 
     @Test
     @DisplayName("댓글 생성")
@@ -48,51 +87,6 @@ class CommentServiceTest {
         assertThat(createResponse.getName()).isEqualTo(USERNAME);
         assertThat(createResponse.getCreatedDate()).isNotNull();
     }
-
-//    @Test
-//    @DisplayName("아이템 댓글 첫페이지 No Offset")
-//    void comment_no_offset_first_page() {
-//        Long itemId = 5L;
-//        for (int i = 1; i <= 30; i++) {
-//            commentService.createComment(
-//                CommentCreateServiceDto.builder()
-//                    .name("abc" + i)
-//                    .password("password")
-//                    .content("testcomment" + i)
-//                    .build(),
-//                itemId
-//            );
-//        }
-//
-//        List<CommentResponse> results = commentService.fetchComment(itemId, null, 20);
-//
-//        assertThat(results).hasSize(20);
-//    }
-
-//    @Test
-//    @DisplayName("아이템 댓글 No Offset")
-//    @Transactional
-//    void comment_no_offset_page() {
-//        Long itemId = 5L;
-//        for (int i = 1; i <= 30; i++) {
-//            commentService.createComment(
-//                CommentCreateServiceDto.builder()
-//                    .name("abc" + i)
-//                    .password("password")
-//                    .content("test content")
-//                    .build(),
-//                itemId
-//            );
-//        }
-//        // 마지막으로 등록한 댓글 1개를 가져옴
-//        List<CommentResponse> commentFirstPage = commentService.fetchComment(itemId, null, 1);
-//        Long lastCommentId = commentFirstPage.get(0).getCommentId();
-//
-//        List<CommentResponse> results = commentService.fetchComment(itemId, lastCommentId, 20);
-//
-//        assertThat(results).hasSize(20);
-//    }
-
 
     @Test
     @DisplayName("댓글 삭제 성공")
