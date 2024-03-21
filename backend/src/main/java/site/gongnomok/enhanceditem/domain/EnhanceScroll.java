@@ -73,7 +73,7 @@ public enum EnhanceScroll {
     SHIELD_DEFENCE(10,4,2),
     SHIELD_HEALTH(10,5,2),
     SHIELD_LUCKY(10,6,2),
-    HIELD_STRENGTH(10,6,2);
+    SHIELD_STRENGTH(10,6,2);
 
     private final int ten;
     private final int sixty;
