@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.gongnomok.comment.domain.Comment;
 
 import java.time.LocalDateTime;
 
@@ -16,4 +17,12 @@ public class CommentCreateResponse {
     private String name;
     private Long commentId;
     private LocalDateTime createdDate;
+
+    public static CommentCreateResponse from(Comment comment) {
+        return CommentCreateResponse.builder()
+            .name(comment.getName())
+            .commentId(comment.getId())
+            .createdDate(comment.getCreatedDate())
+            .build();
+    }
 }
