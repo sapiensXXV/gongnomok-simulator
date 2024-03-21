@@ -26,11 +26,7 @@ public class MemberService {
 
         Optional<Member> member = memberRepository.findMember(id, encryptedPassword);
         Member findedMember = member.orElseThrow(() -> new CannotFindMemberException("회원을 찾을 수 없습니다."));
-        return MemberDto.builder()
-            .role(findedMember.getRole().makeLowerString())
-            .id(findedMember.getId())
-            .name(findedMember.getName())
-            .build();
+        return MemberDto.from(findedMember);
     }
 
 
