@@ -28,7 +28,4 @@ public class MemberService {
         Member findedMember = member.orElseThrow(() -> new CannotFindMemberException("회원을 찾을 수 없습니다."));
         return MemberDto.from(findedMember);
     }
-
-
-
 }

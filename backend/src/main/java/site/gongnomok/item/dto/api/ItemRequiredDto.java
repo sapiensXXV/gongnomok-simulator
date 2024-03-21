@@ -4,7 +4,6 @@ package site.gongnomok.item.dto.api;
 import lombok.*;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.RequiredStatus;
-import site.gongnomok.item.dto.service.ItemRequiredServiceDto;
 
 @NoArgsConstructor
 @AllArgsConstructor
