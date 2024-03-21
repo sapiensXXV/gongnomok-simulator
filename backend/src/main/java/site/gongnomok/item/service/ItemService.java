@@ -1,7 +1,6 @@
 package site.gongnomok.item.service;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -11,9 +10,9 @@ import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.ItemFactory;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
 import site.gongnomok.item.dto.ItemRankingResponse;
-import site.gongnomok.item.dto.api.itemlist.ItemListRequestServiceDto;
-import site.gongnomok.item.dto.api.itemlist.ItemListResponseDto;
-import site.gongnomok.item.dto.api.itemlist.ItemResponseDto;
+import site.gongnomok.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.item.dto.api.itemlist.ItemListResponse;
+import site.gongnomok.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.dto.request.ItemCreateRequest;
@@ -33,7 +32,7 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public void saveItem(
+    public void createItem(
         final ItemCreateRequest dto
     ) {
         Item newItem = ItemFactory.from(dto);
@@ -41,20 +40,20 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public ItemListResponseDto findItemsWithCondition(
-        final ItemListRequestServiceDto dto,
+    public ItemListResponse findItemsWithCondition(
+        final ItemListServiceRequest dto,
         final Pageable pageable
     ) {
-        final List<ItemResponseDto> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
-        return ItemListResponseDto.of(items);
+        final List<ItemResponse> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
+        return ItemListResponse.of(items);
     }
 
     @Transactional(readOnly = true)
-    public ItemListResponseDto findPaginationItems(
+    public ItemListResponse findPaginationItems(
         final Pageable pageable
     ) {
-        final List<ItemResponseDto> items = itemRepository.paginationFindItems(pageable);
-        return ItemListResponseDto.of(items);
+        final List<ItemResponse> items = itemRepository.paginationFindItems(pageable);
+        return ItemListResponse.of(items);
     }
 
     @Transactional(readOnly = true)
@@ -80,7 +79,7 @@ public class ItemService {
     @Transactional
     public ItemDetailsResponse findItemById(
         final Long id
-    ) throws JsonProcessingException {
+    ) {
         final Optional<Item> findItem = itemRepository.findById(id);
         final Item item = findItem.orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
         item.addViewCount(); // 조회수 증가

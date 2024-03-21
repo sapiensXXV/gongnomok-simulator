@@ -66,4 +66,23 @@ public class ItemStatusRequest {
             .jump(jump.toEntity())
             .build();
     }
+
+    public static ItemStatusRequest makeDefaultRequest() {
+        return ItemStatusRequest.builder()
+            .str(ItemStatusRangeRequest.makeDefaultRequest())
+            .dex(ItemStatusRangeRequest.makeDefaultRequest())
+            .intel(ItemStatusRangeRequest.makeDefaultRequest())
+            .luk(ItemStatusRangeRequest.makeDefaultRequest())
+            .phyAtk(ItemStatusRangeRequest.makeDefaultRequest())
+            .mgAtk(ItemStatusRangeRequest.makeDefaultRequest())
+            .phyDef(ItemStatusRangeRequest.makeDefaultRequest())
+            .mgDef(ItemStatusRangeRequest.makeDefaultRequest())
+            .hp(ItemStatusRangeRequest.makeDefaultRequest())
+            .mp(ItemStatusRangeRequest.makeDefaultRequest())
+            .acc(ItemStatusRangeRequest.makeDefaultRequest())
+            .avo(ItemStatusRangeRequest.makeDefaultRequest())
+            .move(ItemStatusRangeRequest.makeDefaultRequest())
+            .jump(ItemStatusRangeRequest.makeDefaultRequest())
+            .build();
+    }
 }

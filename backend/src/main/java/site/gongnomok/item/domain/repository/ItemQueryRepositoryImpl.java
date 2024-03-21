@@ -9,10 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
-import site.gongnomok.enhanceditem.domain.QEnhancedItem;
 import site.gongnomok.item.dto.ItemRankingRepositoryDto;
-import site.gongnomok.item.dto.api.itemlist.ItemListRequestServiceDto;
-import site.gongnomok.item.dto.api.itemlist.ItemResponseDto;
+import site.gongnomok.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.Category;
@@ -37,7 +36,7 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public List<ItemResponseDto> findItems(ItemListRequestServiceDto condition) {
+    public List<ItemResponse> findItems(ItemListServiceRequest condition) {
 
         String name = condition.getName();
         Job job = condition.getJob();
@@ -47,7 +46,7 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
         return queryFactory
                 .select(
                         Projections.fields(
-                                ItemResponseDto.class,
+                                ItemResponse.class,
                                 item.id.as("itemId"),
                                 item.name
                         )
@@ -63,11 +62,11 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public List<ItemResponseDto> findAllOrderById() {
+    public List<ItemResponse> findAllOrderById() {
         return queryFactory
                 .select(
                         Projections.fields(
-                                ItemResponseDto.class,
+                                ItemResponse.class,
                                 item.id.as("itemId"),
                                 item.name
                         )
@@ -79,13 +78,13 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
 
 
     @Override
-    public List<ItemResponseDto> paginationFindItems(
+    public List<ItemResponse> paginationFindItems(
             final Pageable pageable
     ) {
         return queryFactory
                 .select(
                         Projections.fields(
-                                ItemResponseDto.class,
+                                ItemResponse.class,
                                 item.id.as("itemId"),
                                 item.name
                         )
@@ -98,14 +97,14 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public List<ItemResponseDto> paginationFindItemsWithCondition(
-        final ItemListRequestServiceDto condition,
+    public List<ItemResponse> paginationFindItemsWithCondition(
+        final ItemListServiceRequest condition,
         final Pageable pageable
     ) {
         return queryFactory
                 .select(
                         Projections.fields(
-                                ItemResponseDto.class,
+                                ItemResponse.class,
                                 item.id.as("itemId"),
                                 item.name
                         )
@@ -203,15 +202,15 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
 
         String name = Job.jobToString(job);
         if (name.equals("common")) {
-            return item.common.isTrue();
+            return item.availableJob.common.isTrue();
         } else if (name.equals("warrior")) {
-            return item.warrior.isTrue();
+            return item.availableJob.warrior.isTrue();
         } else if (name.equals("bowman")) {
-            return item.bowman.isTrue();
+            return item.availableJob.bowman.isTrue();
         } else if (name.equals("magician")) {
-            return item.magician.isTrue();
+            return item.availableJob.magician.isTrue();
         } else if (name.equals("thief")) {
-            return item.thief.isTrue();
+            return item.availableJob.thief.isTrue();
         }
 
         return null;
@@ -222,7 +221,7 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     private BooleanExpression levelGoe(int minLevel) {
-        return item.requiredLevel.goe(minLevel);
+        return item.requiredStatus.requiredLevel.goe(minLevel);
     }
 
     private Querydsl querydsl() {

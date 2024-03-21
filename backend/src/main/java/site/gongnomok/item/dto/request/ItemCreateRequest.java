@@ -6,8 +6,10 @@ import site.gongnomok.item.dto.api.ItemRequiredJob;
 import site.gongnomok.item.dto.request.ItemStatusRequest;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 @ToString
+@Builder
 public class ItemCreateRequest {
 
     private Long id;
