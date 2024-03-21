@@ -78,7 +78,7 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public QEnhancedItem(Class<? extends EnhancedItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item")) : null;
+        this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item"), inits.get("item")) : null;
     }
 
 }

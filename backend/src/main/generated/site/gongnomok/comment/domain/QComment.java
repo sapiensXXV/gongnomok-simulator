@@ -52,7 +52,7 @@ public class QComment extends EntityPathBase<Comment> {
 
     public QComment(Class<? extends Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item")) : null;
+        this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item"), inits.get("item")) : null;
     }
 
 }
