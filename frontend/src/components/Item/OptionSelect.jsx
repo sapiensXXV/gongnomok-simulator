@@ -27,13 +27,14 @@ export default function OptionSelect({ statusInfo, optionSelectHandler }) {
 
   return (
     <>
+
       {
         optionList?.length > 0 &&
         optionList?.map((option) => {
           return (
             <select
               key={`${option.name}_option`}
-              className="form-select form-select-sm"
+              className="form-select form-select-sm option-select-item"
               onChange={(e) => optionSelectHandler(e, option.name)}
               defaultValue={option.normal}
             >

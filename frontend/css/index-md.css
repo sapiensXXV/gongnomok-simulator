@@ -451,13 +451,6 @@
 
   }
 
-  .option-select-container {
-    margin-top: 5px;
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-  }
-
   .scroll-select {
     display: flex;
     justify-content: space-between;
