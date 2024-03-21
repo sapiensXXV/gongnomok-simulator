@@ -49,11 +49,7 @@ public class CommentService {
         newComment.changeItem(findItem);
         Comment savedComment = commentJpaRepository.save(newComment);
 
-        return CommentCreateResponse.builder()
-            .name(savedComment.getName())
-            .commentId(savedComment.getId())
-            .createdDate(savedComment.getCreatedDate())
-            .build();
+        return CommentCreateResponse.from(savedComment);
 
     }
 
