@@ -3,7 +3,6 @@ package site.gongnomok.item.dto.request;
 import lombok.*;
 import site.gongnomok.item.dto.api.ItemRequiredDto;
 import site.gongnomok.item.dto.api.ItemRequiredJob;
-import site.gongnomok.item.dto.request.ItemStatusRequest;
 
 @NoArgsConstructor
 @AllArgsConstructor

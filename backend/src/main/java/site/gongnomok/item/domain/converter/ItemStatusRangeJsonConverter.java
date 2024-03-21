@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import site.gongnomok.item.domain.ItemStatus;
 import site.gongnomok.item.domain.ItemStatusRange;
 
 @Converter(autoApply = true)

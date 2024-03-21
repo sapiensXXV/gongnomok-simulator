@@ -14,14 +14,6 @@ public class ItemStatusRangeRequest {
     private int lower;
     private int upper;
 
-//    public ItemStatusInfoServiceDto toServiceDto() {
-//        return ItemStatusInfoServiceDto.builder()
-//                .normal(normal)
-//                .lower(lower)
-//                .upper(upper)
-//                .build();
-//    }
-
     public static ItemStatusRangeRequest from(final ItemStatusRange range) {
         return new ItemStatusRangeRequest(range.getLower(), range.getNormal(), range.getUpper());
     }

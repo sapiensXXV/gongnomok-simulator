@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.ItemStatus;
-import site.gongnomok.item.dto.request.ItemStatusRangeRequest;
-import site.gongnomok.item.dto.request.ItemStatusRequest;
 
 
 @Getter
