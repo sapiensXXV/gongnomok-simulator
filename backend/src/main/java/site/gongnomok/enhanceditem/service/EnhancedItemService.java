@@ -73,8 +73,8 @@ public class EnhancedItemService {
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
 
-        if (enhancedItem.getIev() < enhanceDto.getIev()) {
-            // 기록이 기존의 것보다 높을 경우
+        if (enhancedItem.getIev() <= enhanceDto.getIev()) {
+            // 기록이 기존의 것과 같거나 높을 경우
             return updateEnhancedRecord(enhancedItem, enhanceDto);
         }
 
