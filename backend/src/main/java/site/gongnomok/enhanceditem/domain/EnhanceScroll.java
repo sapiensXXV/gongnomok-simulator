@@ -82,7 +82,6 @@ public enum EnhanceScroll {
     private final int hundred;
 
     public static EnhanceScroll from(String name) {
-        log.info("주문서 이름={}", name);
         return Arrays.stream(EnhanceScroll.values())
             .filter((scroll) -> name.equals(scroll.name()))
             .findFirst()

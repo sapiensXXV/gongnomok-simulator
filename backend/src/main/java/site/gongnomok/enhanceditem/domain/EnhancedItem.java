@@ -42,6 +42,7 @@ public class EnhancedItem {
         score = dto.getScore();
         success = dto.getSuccess();
         scroll = dto.getScroll();
+        status = dto.getStatus();
     }
 
     public void changeScore(int score) {
