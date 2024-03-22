@@ -1,4 +1,4 @@
-package site.gongnomok.item.dto;
+package site.gongnomok.enhanceditem.dto;
 
 
 import lombok.AllArgsConstructor;
