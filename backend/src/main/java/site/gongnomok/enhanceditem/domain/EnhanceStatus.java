@@ -2,16 +2,14 @@ package site.gongnomok.enhanceditem.domain;
 
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Embeddable
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class EnhanceStatus {
     private int str;
     private int dex;

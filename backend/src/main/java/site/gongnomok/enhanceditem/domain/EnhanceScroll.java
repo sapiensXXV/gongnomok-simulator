@@ -15,26 +15,26 @@ import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_SCROLL_NAM
 @Slf4j
 public enum EnhanceScroll {
 
-    GLOVE_PHY_ATK(10, 6, 2),
-    GLOVES_SWIFT(5, 2, 1),
-    GLOVES_HEALTH(5, 2, 1),
+    GLOVES_PHY_ATK(10, 6, 2),
+    GLOVES_SWIFT(10, 4, 2),
+    GLOVES_HEALTH(10, 4, 2),
     HAT_SWIFT(10, 6, 2),
     HAT_DEFENCE(10, 4, 2),
     HAT_INTEL(10, 6, 2),
-    HAT_HEALTH(5, 2, 1),
+    HAT_HEALTH(10, 4, 2),
     OVERALL_SWIFT(10, 4, 2),
     OVERALL_DEFENCE(10, 4, 2),
     OVERALL_INTEL(10, 4, 2),
     OVERALL_LUCKY(10, 4, 2),
     OVERALL_STRENGTH(10, 6, 2),
     TOP_DEFENCE(10, 4, 2),
-    TOP_HEALTH(5, 2, 1),
+    TOP_HEALTH(10, 4, 2),
     TOP_LUCKY(10, 6, 2),
     TOP_STRENGTH(10, 6, 2),
     BOTTOM_SWIFT(10, 6, 2),
     BOTTOM_DEFENCE(10, 4, 2),
-    BOTTOM_JUMP(5, 2, 1),
-    BOTTOM_HEALTH(5, 2, 1),
+    BOTTOM_JUMP(10, 4, 2),
+    BOTTOM_HEALTH(10, 4, 2),
     SHOES_SWIFT(10, 4, 2),
     SHOES_MOVE(10, 6, 2),
     SHOES_JUMP(10, 4, 2),
@@ -82,6 +82,7 @@ public enum EnhanceScroll {
     private final int hundred;
 
     public static EnhanceScroll from(String name) {
+        log.info("주문서 이름={}", name);
         return Arrays.stream(EnhanceScroll.values())
             .filter((scroll) -> name.equals(scroll.name()))
             .findFirst()

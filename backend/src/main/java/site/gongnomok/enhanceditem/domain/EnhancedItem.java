@@ -12,6 +12,7 @@ import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
 @AllArgsConstructor
 @Builder
 @Getter
+@ToString
 public class EnhancedItem {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

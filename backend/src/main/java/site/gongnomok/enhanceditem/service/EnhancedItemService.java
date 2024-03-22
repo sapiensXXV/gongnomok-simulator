@@ -71,17 +71,13 @@ public class EnhancedItemService {
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
 
-        if (enhancedItem.getScore() <= calculateScore(request)) {
+        if (enhancedItem.getScore() <= request.getScore()) {
             // 기록이 기존의 것과 같거나 높을 경우
             return updateEnhancedRecord(enhancedItem, request);
         }
 
         // 기록이 기존의 것보다 낮을 경우
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
-    }
-
-    private static int calculateScore(ItemEnhanceServiceRequest request) {
-        return request.getScroll().calculateScore(request.getSuccess());
     }
 
     private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
