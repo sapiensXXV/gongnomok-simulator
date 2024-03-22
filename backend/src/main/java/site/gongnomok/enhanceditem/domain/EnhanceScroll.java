@@ -2,6 +2,7 @@ package site.gongnomok.enhanceditem.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import site.gongnomok.global.exception.ExceptionCode;
 import site.gongnomok.global.exception.ScrollException;
 
@@ -11,6 +12,7 @@ import static site.gongnomok.global.exception.ExceptionCode.NOT_FOUND_SCROLL_NAM
 
 @Getter
 @RequiredArgsConstructor
+@Slf4j
 public enum EnhanceScroll {
 
     GLOVE_PHY_ATK(10, 6, 2),

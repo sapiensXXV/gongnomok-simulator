@@ -10,14 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QEnhancedStatus is a Querydsl query type for EnhancedStatus
+ * QEnhanceStatus is a Querydsl query type for EnhanceStatus
  */
 @Generated("com.querydsl.codegen.DefaultEmbeddableSerializer")
-public class QEnhancedStatus extends BeanPath<EnhanceStatus> {
+public class QEnhanceStatus extends BeanPath<EnhanceStatus> {
 
-    private static final long serialVersionUID = -724704805L;
+    private static final long serialVersionUID = 1736612621L;
 
-    public static final QEnhancedStatus enhancedStatus = new QEnhancedStatus("enhancedStatus");
+    public static final QEnhanceStatus enhanceStatus = new QEnhanceStatus("enhanceStatus");
 
     public final NumberPath<Integer> acc = createNumber("acc", Integer.class);
 
@@ -47,15 +47,15 @@ public class QEnhancedStatus extends BeanPath<EnhanceStatus> {
 
     public final NumberPath<Integer> str = createNumber("str", Integer.class);
 
-    public QEnhancedStatus(String variable) {
+    public QEnhanceStatus(String variable) {
         super(EnhanceStatus.class, forVariable(variable));
     }
 
-    public QEnhancedStatus(Path<? extends EnhanceStatus> path) {
+    public QEnhanceStatus(Path<? extends EnhanceStatus> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QEnhancedStatus(PathMetadata metadata) {
+    public QEnhanceStatus(PathMetadata metadata) {
         super(EnhanceStatus.class, metadata);
     }
 

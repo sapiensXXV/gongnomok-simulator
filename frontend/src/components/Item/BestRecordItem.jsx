@@ -58,7 +58,7 @@ export default function BestRecordItem({ itemId, info }) {
             <section className="item-info-section">
               <span
                 className={`item-info-name ${getItemNameColor()}`}>
-                {info?.name}{enhanced.successCount > 0 && `(+${enhanced.successCount})`}
+                {info?.name}{enhanced.success.total > 0 && `(+${enhanced.success.total})`}
               </span>
               <div className="item-info-basic">
                 <div className="item-img-container">
@@ -90,26 +90,44 @@ export default function BestRecordItem({ itemId, info }) {
               <div className="item-info-status">
                 <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
                 {(info?.attackSpeed !== null && info?.attackSpeed !== 'NONE') && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
-                {status?.str.normal + enhanced.str > 0 && <span>STR : +{status?.str.normal + enhanced.str}</span>}
-                {status?.dex.normal + enhanced.dex > 0 && <span>DEX : +{status?.dex.normal + enhanced.dex}</span>}
-                {status?.intel.normal + enhanced.intel > 0 && <span>INT : +{status?.intel.normal + enhanced.intel}</span>}
-                {status?.luk.normal + enhanced.luk > 0 && <span>LUK : +{status?.luk.normal + enhanced.luk}</span>}
-                {status?.acc.normal + enhanced.acc > 0 && <span>명중률 : +{status?.acc.normal + enhanced.acc}</span>}
-                {status?.avo.normal + enhanced.avo > 0 && <span>회피율 : +{status?.avo.normal + enhanced.avo}</span>}
-                {status?.phyAtk.normal + enhanced.phyAtk > 0 && <span>공격력 : +{status?.phyAtk.normal + enhanced.phyAtk}</span>}
-                {status?.mgAtk.normal + enhanced.mgAtk > 0 && <span>마력 : +{status?.mgAtk.normal + enhanced.mgAtk}</span>}
-                {status?.phyDef.normal + enhanced.phyDef > 0 && <span>물리방어력 : +{status?.phyDef.normal + enhanced.phyDef}</span>}
-                {status?.mgDef.normal + enhanced.mgDef > 0 && <span>마법방어력 : +{status?.mgDef.normal + enhanced.mgDef}</span>}
-                {status?.hp.normal + enhanced.hp > 0 && <span>HP : +{status?.hp.normal + enhanced.hp}</span>}
-                {status?.mp.normal + enhanced.mp > 0 && <span>MP : +{status?.mp.normal + enhanced.mp}</span>}
-                {status?.move.normal + enhanced.move > 0 && <span>이동속도 : +{status?.move.normal + enhanced.move}</span>}
-                {status?.jump.normal + enhanced.jump > 0 && <span>점프력 : +{status?.jump.normal + enhanced.jump}</span>}
+                {status?.str.normal + enhanced.status.str > 0 && <span>STR : +{status?.str.normal + enhanced.status.str}</span>}
+                {status?.dex.normal + enhanced.status.dex > 0 && <span>DEX : +{status?.dex.normal + enhanced.status.dex}</span>}
+                {status?.intel.normal + enhanced.status.intel > 0 && <span>INT : +{status?.intel.normal + enhanced.status.intel}</span>}
+                {status?.luk.normal + enhanced.status.luk > 0 && <span>LUK : +{status?.luk.normal + enhanced.status.luk}</span>}
+                {status?.acc.normal + enhanced.status.acc > 0 && <span>명중률 : +{status?.acc.normal + enhanced.status.acc}</span>}
+                {status?.avo.normal + enhanced.status.avo > 0 && <span>회피율 : +{status?.avo.normal + enhanced.status.avo}</span>}
+                {status?.phyAtk.normal + enhanced.status.phyAtk > 0 && <span>공격력 : +{status?.phyAtk.normal + enhanced.status.phyAtk}</span>}
+                {status?.mgAtk.normal + enhanced.status.mgAtk > 0 && <span>마력 : +{status?.mgAtk.normal + enhanced.status.mgAtk}</span>}
+                {status?.phyDef.normal + enhanced.status.phyDef > 0 && <span>물리방어력 : +{status?.phyDef.normal + enhanced.status.phyDef}</span>}
+                {status?.mgDef.normal + enhanced.status.mgDef > 0 && <span>마법방어력 : +{status?.mgDef.normal + enhanced.status.mgDef}</span>}
+                {status?.hp.normal + enhanced.status.hp > 0 && <span>HP : +{status?.hp.normal + enhanced.status.hp}</span>}
+                {status?.mp.normal + enhanced.status.mp > 0 && <span>MP : +{status?.mp.normal + enhanced.status.mp}</span>}
+                {status?.move.normal + enhanced.status.move > 0 && <span>이동속도 : +{status?.move.normal + enhanced.status.move}</span>}
+                {status?.jump.normal + enhanced.status.jump > 0 && <span>점프력 : +{status?.jump.normal + enhanced.status.jump}</span>}
                 {info?.knockBackPercent > 0 && <span>직접 타격시 넉백 확률 : +{info?.knockBackPercent}%</span>}
                 <span>업그레이드 가능 횟수 : 0</span>
               </div>
             </section>
           </section>
+          
         </div>
+        <section className="success-scroll-root">
+          <div className="success-scroll-container">
+            <div className="success-single-scroll-container">
+              <img src={`/images/scroll/10.png`}></img>
+              <span> × {enhanced.success.ten}</span>
+            </div>
+            <div className="success-single-scroll-container">
+              <img src={`/images/scroll/60.png`}></img>
+              <span> × {enhanced.success.sixty}</span>
+            </div>
+            <div className="success-single-scroll-container">
+              <img src={`/images/scroll/100.png`}></img>
+              <span> × {enhanced.success.hundred}</span>
+            </div>
+          </div>  
+        </section>
+
         <span className="item-record-comment">※ 기록은 아이템 정옵 기준으로 등록됩니다</span>
 
 

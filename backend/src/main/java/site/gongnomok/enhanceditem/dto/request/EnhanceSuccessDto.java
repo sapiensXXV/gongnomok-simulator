@@ -12,17 +12,17 @@ import site.gongnomok.enhanceditem.domain.EnhanceSuccess;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnhanceSuccessDto {
-    private int successCount;
-    private int tenSuccessCount;
-    private int sixtySuccessCount;
-    private int hundredSuccessCount;
+    private int total;
+    private int ten;
+    private int sixty;
+    private int hundred;
 
     public EnhanceSuccess toEntity() {
         return EnhanceSuccess.builder()
-            .successCount(successCount)
-            .tenSuccessCount(tenSuccessCount)
-            .sixtySuccessCount(sixtySuccessCount)
-            .hundredSuccessCount(hundredSuccessCount)
+            .successCount(total)
+            .tenSuccessCount(ten)
+            .sixtySuccessCount(sixty)
+            .hundredSuccessCount(hundred)
             .build();
     }
 }

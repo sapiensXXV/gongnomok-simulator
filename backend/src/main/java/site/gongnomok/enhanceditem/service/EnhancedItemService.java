@@ -6,15 +6,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.enhanceditem.domain.EnhanceScroll;
+import site.gongnomok.enhanceditem.domain.EnhanceSuccess;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.enhanceditem.domain.repository.EnhancedItemRepository;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.enhanceditem.dto.response.EnhanceResult;
 import site.gongnomok.enhanceditem.dto.response.UpdateEnhancementResponse;
 import site.gongnomok.global.exception.EnhancedItemException;
 import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.repository.ItemRepository;
-import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
 import site.gongnomok.enhanceditem.dto.response.ItemEnhanceResponse;
 
 import java.util.Optional;
@@ -48,52 +50,55 @@ public class EnhancedItemService {
 
     /**
      * @param itemId 새로운 기록을 등록할 아이템 ID
-     * @param enhanceDto 기록 정보
+     * @param request 기록 정보
      */
     // TODO: 3/22/24 validation 로직 분리
     @Transactional
     public UpdateEnhancementResponse updateEnhanceItem(
         final Long itemId,
-        final ItemEnhanceRequest enhanceDto
+        final ItemEnhanceServiceRequest request
     ) {
 
-        if (!validateEnhanceRequest(enhanceDto)) {
+        if (!validateEnhanceRequest(request)) {
             return new UpdateEnhancementResponse(EnhanceResult.FAIL);
         }
 
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
-            return createEnhancedRecord(itemId, enhanceDto);
+            return createEnhancedRecord(itemId, request);
         }
 
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
 
-        if (enhancedItem.getScore() <= enhanceDto.getScore()) {
+        if (enhancedItem.getScore() <= calculateScore(request)) {
             // 기록이 기존의 것과 같거나 높을 경우
-            return updateEnhancedRecord(enhancedItem, enhanceDto);
+            return updateEnhancedRecord(enhancedItem, request);
         }
 
         // 기록이 기존의 것보다 낮을 경우
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
     }
 
-    private boolean validateEnhanceRequest(ItemEnhanceRequest request) {
+    private static int calculateScore(ItemEnhanceServiceRequest request) {
+        return request.getScroll().calculateScore(request.getSuccess());
+    }
+
+    private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
         int ten = request.getSuccess().getTenSuccessCount();
         int sixty = request.getSuccess().getSixtySuccessCount();
         int hundred = request.getSuccess().getHundredSuccessCount();
 
         int success = ten + sixty + hundred;
-        EnhanceScroll scroll = EnhanceScroll.from(request.getScroll());
+        EnhanceScroll scroll = request.getScroll();
         int maximumScore = scroll.getMaximumScore(request.getUpgradable());
-        int score = scroll.calculateScore(ten, sixty, hundred); // 클라이언트 측에서 계산된 score 데이터가 있으나, 서버측에서 한번 더 검증
-
+        int score = scroll.calculateScore(request.getSuccess());
         return success <= 10 && score <= maximumScore;
     }
 
     private UpdateEnhancementResponse createEnhancedRecord(
         final Long itemId,
-        final ItemEnhanceRequest enhanceDto
+        final ItemEnhanceServiceRequest enhanceDto
     ) {
         Item item = itemRepository
             .findById(itemId)
@@ -107,10 +112,9 @@ public class EnhancedItemService {
 
     private UpdateEnhancementResponse updateEnhancedRecord(
         final EnhancedItem enhancedItem,
-        final ItemEnhanceRequest enhanceDto
+        final ItemEnhanceServiceRequest request
     ) {
-        enhancedItem.changeInfo(enhanceDto);
-
+        enhancedItem.changeInfo(request);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }

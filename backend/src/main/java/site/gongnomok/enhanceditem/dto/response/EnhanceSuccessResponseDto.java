@@ -12,26 +12,26 @@ import site.gongnomok.enhanceditem.domain.EnhanceSuccess;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnhanceSuccessResponseDto {
-    private int successCount;
-    private int tenSuccessCount;
-    private int sixtySuccessCount;
-    private int hundredSuccessCount;
+    private int total;
+    private int ten;
+    private int sixty;
+    private int hundred;
 
     public static EnhanceSuccessResponseDto getBasic() {
         return EnhanceSuccessResponseDto.builder()
-            .successCount(0)
-            .tenSuccessCount(0)
-            .sixtySuccessCount(0)
-            .hundredSuccessCount(0)
+            .total(0)
+            .ten(0)
+            .sixty(0)
+            .hundred(0)
             .build();
     }
 
     public static EnhanceSuccessResponseDto from(EnhanceSuccess success) {
         return EnhanceSuccessResponseDto.builder()
-            .successCount(success.getSuccessCount())
-            .tenSuccessCount(success.getTenSuccessCount())
-            .sixtySuccessCount(success.getSixtySuccessCount())
-            .hundredSuccessCount(success.getHundredSuccessCount())
+            .total(success.getSuccessCount())
+            .ten(success.getTenSuccessCount())
+            .sixty(success.getSixtySuccessCount())
+            .hundred(success.getHundredSuccessCount())
             .build();
     }
 

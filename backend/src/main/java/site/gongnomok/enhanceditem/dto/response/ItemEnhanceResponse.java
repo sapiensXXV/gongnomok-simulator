@@ -15,6 +15,7 @@ public class ItemEnhanceResponse {
 
     private String name;
     private int score; // item enhancement value
+    private int iev;
     private EnhanceSuccessResponseDto success;
     private EnhanceStatusResponseDto status;
 
@@ -22,6 +23,7 @@ public class ItemEnhanceResponse {
         return ItemEnhanceResponse.builder()
             .name(null)
             .score(0)
+            .iev(0)
             .success(EnhanceSuccessResponseDto.getBasic())
             .status(EnhanceStatusResponseDto.getBasic())
             .build();
@@ -31,6 +33,7 @@ public class ItemEnhanceResponse {
         return ItemEnhanceResponse.builder()
             .name(entity.getName())
             .score(entity.getScore())
+            .iev(entity.getIev())
             .success(EnhanceSuccessResponseDto.from(entity.getSuccess()))
             .status(EnhanceStatusResponseDto.from(entity.getStatus()))
             .build();

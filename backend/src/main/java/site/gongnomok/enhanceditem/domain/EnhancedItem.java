@@ -3,6 +3,7 @@ package site.gongnomok.enhanceditem.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
 
@@ -18,6 +19,7 @@ public class EnhancedItem {
     private Long id;
 
     private String name;
+    private int iev;
     private int score;
 
     @OneToOne
@@ -30,14 +32,19 @@ public class EnhancedItem {
     @Embedded
     private EnhanceStatus status;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private EnhanceScroll scroll;
 
-    public void changeInfo(ItemEnhanceRequest dto) {
+    public void changeInfo(ItemEnhanceServiceRequest dto) {
         name = dto.getName();
+        iev = dto.getIev();
         score = dto.getScore();
-        success = dto.getSuccess().toEntity();
-        status = dto.getStatus().toEntity();
+        success = dto.getSuccess();
+        scroll = dto.getScroll();
+    }
+
+    public void changeScore(int score) {
+        this.score = score;
     }
 
     public void changeItem(Item item) {

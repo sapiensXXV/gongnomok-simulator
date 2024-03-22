@@ -3,7 +3,8 @@ package site.gongnomok.enhanceditem.dto.request;
 
 import lombok.*;
 import site.gongnomok.enhanceditem.domain.EnhanceScroll;
-import site.gongnomok.enhanceditem.domain.EnhancedItem;
+import site.gongnomok.enhanceditem.domain.EnhanceStatus;
+import site.gongnomok.enhanceditem.domain.EnhanceSuccess;
 
 @Getter
 @NoArgsConstructor
@@ -14,17 +15,25 @@ public class ItemEnhanceRequest {
 
     private String name;
     private int upgradable;
-    private int score;
+    private int iev;
     private String scroll;
     private EnhanceSuccessDto success;
     private EnhanceStatusDto status;
 
-    public EnhancedItem toEntity() {
-        return EnhancedItem.builder()
+    public ItemEnhanceServiceRequest toServiceDto() {
+
+        EnhanceScroll appliedScroll = EnhanceScroll.from(scroll);
+        EnhanceSuccess successEntity = success.toEntity();
+        EnhanceStatus statusEntity = status.toEntity();
+
+        return ItemEnhanceServiceRequest.builder()
             .name(name)
-            .scroll(EnhanceScroll.from(scroll))
-            .success(success.toEntity())
-            .status(status.toEntity())
+            .upgradable(upgradable)
+            .iev(iev)
+            .score(appliedScroll.calculateScore(successEntity))
+            .scroll(appliedScroll)
+            .success(successEntity)
+            .status(statusEntity)
             .build();
     }
 }
