@@ -5,17 +5,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.enhanceditem.ValidationCategory;
+import site.gongnomok.enhanceditem.domain.EnhanceScroll;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.enhanceditem.domain.repository.EnhancedItemRepository;
-import site.gongnomok.enhanceditem.dto.EnhanceResult;
-import site.gongnomok.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.enhanceditem.dto.response.EnhanceResult;
+import site.gongnomok.enhanceditem.dto.response.UpdateEnhancementResponse;
 import site.gongnomok.global.exception.EnhancedItemException;
 import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.repository.ItemRepository;
-import site.gongnomok.item.dto.ItemEnhanceResponse;
-import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
+import site.gongnomok.enhanceditem.dto.response.ItemEnhanceResponse;
 
 import java.util.Optional;
 
@@ -36,18 +36,13 @@ public class EnhancedItemService {
      * @return 아이템의 최고기록 정보를 담은 ItemEnhanceResponse 객체
      */
     public ItemEnhanceResponse findEnhanceItem(Long itemId) {
-        Item findItem = itemRepository
-            .findById(itemId)
-            .orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
-
         Optional<EnhancedItem> enhanceItem = itemRepository.findEnhanceItem(itemId);
         if (enhanceItem.isEmpty()) {
             // item_id에 해당하는 아이템의 기록정보가 테이블에 없다면 기본정보를 만들어서 반환한다.
             return ItemEnhanceResponse.getBasicEnhanceData();
         } else {
             EnhancedItem enhancedItem = enhanceItem.orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
-            enhancedItem.changeItem(findItem);
-            return ItemEnhanceResponse.convertEntityToResponse(enhancedItem);
+            return ItemEnhanceResponse.from(enhancedItem);
         }
     }
 
@@ -55,10 +50,11 @@ public class EnhancedItemService {
      * @param itemId 새로운 기록을 등록할 아이템 ID
      * @param enhanceDto 기록 정보
      */
+    // TODO: 3/22/24 validation 로직 분리
     @Transactional
     public UpdateEnhancementResponse updateEnhanceItem(
         final Long itemId,
-        final ItemEnhanceServiceRequest enhanceDto
+        final ItemEnhanceRequest enhanceDto
     ) {
 
         if (!validateEnhanceRequest(enhanceDto)) {
@@ -73,7 +69,7 @@ public class EnhancedItemService {
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
 
-        if (enhancedItem.getIev() <= enhanceDto.getIev()) {
+        if (enhancedItem.getScore() <= enhanceDto.getScore()) {
             // 기록이 기존의 것과 같거나 높을 경우
             return updateEnhancedRecord(enhancedItem, enhanceDto);
         }
@@ -82,36 +78,27 @@ public class EnhancedItemService {
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
     }
 
-    private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
+    private boolean validateEnhanceRequest(ItemEnhanceRequest request) {
+        int ten = request.getSuccess().getTenSuccessCount();
+        int sixty = request.getSuccess().getSixtySuccessCount();
+        int hundred = request.getSuccess().getHundredSuccessCount();
 
-        log.info("request.getCategory()={}", request.getCategory());
-        ValidationCategory findCategory = ValidationCategory.findWithName(request.getCategory());
+        int success = ten + sixty + hundred;
+        EnhanceScroll scroll = EnhanceScroll.from(request.getScroll());
+        int maximumScore = scroll.getMaximumScore(request.getUpgradable());
+        int score = scroll.calculateScore(ten, sixty, hundred); // 클라이언트 측에서 계산된 score 데이터가 있으나, 서버측에서 한번 더 검증
 
-//        log.info("------------------- [검증 시작] ----------------------");
-//        log.info("request.getIev() = {}", request.getIev());
-//        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
-
-        if (request.getIev() > findCategory.getMaximumUpgradableValue()) {
-            return false;
-        }
-
-//        log.info("request.getSuccessCount()={}", request.getSuccessCount());
-//        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
-
-        if (request.getSuccessCount() > findCategory.getUpgradableCount()) {
-            return false;
-        }
-        return true;
+        return success <= 10 && score <= maximumScore;
     }
 
     private UpdateEnhancementResponse createEnhancedRecord(
         final Long itemId,
-        final ItemEnhanceServiceRequest enhanceDto
+        final ItemEnhanceRequest enhanceDto
     ) {
         Item item = itemRepository
             .findById(itemId)
             .orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
-        EnhancedItem enhancedItem = ItemEnhanceServiceRequest.createEntity(enhanceDto);
+        EnhancedItem enhancedItem = enhanceDto.toEntity();
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
 
@@ -120,9 +107,9 @@ public class EnhancedItemService {
 
     private UpdateEnhancementResponse updateEnhancedRecord(
         final EnhancedItem enhancedItem,
-        final ItemEnhanceServiceRequest enhanceDto
+        final ItemEnhanceRequest enhanceDto
     ) {
-        enhancedItem.changeStatus(enhanceDto);
+        enhancedItem.changeInfo(enhanceDto);
 
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
