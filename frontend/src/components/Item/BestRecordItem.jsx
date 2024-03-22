@@ -89,7 +89,7 @@ export default function BestRecordItem({ itemId, info }) {
 
               <div className="item-info-status">
                 <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
-                {info?.attackSpeed != null && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
+                {(info?.attackSpeed !== null && info?.attackSpeed !== 'NONE') && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
                 {status?.str.normal + enhanced.str > 0 && <span>STR : +{status?.str.normal + enhanced.str}</span>}
                 {status?.dex.normal + enhanced.dex > 0 && <span>DEX : +{status?.dex.normal + enhanced.dex}</span>}
                 {status?.intel.normal + enhanced.intel > 0 && <span>INT : +{status?.intel.normal + enhanced.intel}</span>}
