@@ -557,6 +557,7 @@ export default function ItemSimulator() {
     }
 
     const challengeForm = createChallengeForm();
+
     axios
       .post(
         `${BASE_URI}/api/item/${itemId}/enhanced`,
