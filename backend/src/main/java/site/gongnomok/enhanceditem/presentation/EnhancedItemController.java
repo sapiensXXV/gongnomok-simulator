@@ -4,10 +4,10 @@ package site.gongnomok.enhanceditem.presentation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.enhanceditem.dto.response.UpdateEnhancementResponse;
 import site.gongnomok.enhanceditem.service.EnhancedItemService;
-import site.gongnomok.item.dto.ItemEnhanceRequest;
-import site.gongnomok.item.dto.ItemEnhanceResponse;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
+import site.gongnomok.enhanceditem.dto.response.ItemEnhanceResponse;
 
 @RequestMapping("/api")
 @RestController
@@ -30,8 +30,8 @@ public class EnhancedItemController {
         @PathVariable("itemId") Long itemId,
         @RequestBody ItemEnhanceRequest enhanceDto
     ) {
-
         UpdateEnhancementResponse response = enhancedItemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto());
         return ResponseEntity.ok(response);
     }
+
 }

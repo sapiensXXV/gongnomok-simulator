@@ -5,17 +5,19 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.enhanceditem.ValidationCategory;
+import site.gongnomok.enhanceditem.domain.EnhanceScroll;
+import site.gongnomok.enhanceditem.domain.EnhanceSuccess;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.enhanceditem.domain.repository.EnhancedItemRepository;
-import site.gongnomok.enhanceditem.dto.EnhanceResult;
-import site.gongnomok.enhanceditem.dto.UpdateEnhancementResponse;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceServiceRequest;
+import site.gongnomok.enhanceditem.dto.response.EnhanceResult;
+import site.gongnomok.enhanceditem.dto.response.UpdateEnhancementResponse;
 import site.gongnomok.global.exception.EnhancedItemException;
 import site.gongnomok.global.exception.ItemException;
 import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.repository.ItemRepository;
-import site.gongnomok.item.dto.ItemEnhanceResponse;
-import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
+import site.gongnomok.enhanceditem.dto.response.ItemEnhanceResponse;
 
 import java.util.Optional;
 
@@ -36,72 +38,62 @@ public class EnhancedItemService {
      * @return 아이템의 최고기록 정보를 담은 ItemEnhanceResponse 객체
      */
     public ItemEnhanceResponse findEnhanceItem(Long itemId) {
-        Item findItem = itemRepository
-            .findById(itemId)
-            .orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
-
         Optional<EnhancedItem> enhanceItem = itemRepository.findEnhanceItem(itemId);
         if (enhanceItem.isEmpty()) {
             // item_id에 해당하는 아이템의 기록정보가 테이블에 없다면 기본정보를 만들어서 반환한다.
             return ItemEnhanceResponse.getBasicEnhanceData();
         } else {
             EnhancedItem enhancedItem = enhanceItem.orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
-            enhancedItem.changeItem(findItem);
-            return ItemEnhanceResponse.convertEntityToResponse(enhancedItem);
+            return ItemEnhanceResponse.from(enhancedItem);
         }
     }
 
     /**
      * @param itemId 새로운 기록을 등록할 아이템 ID
-     * @param enhanceDto 기록 정보
+     * @param request 기록 정보
      */
+    // TODO: 3/22/24 validation 로직 분리
     @Transactional
     public UpdateEnhancementResponse updateEnhanceItem(
         final Long itemId,
-        final ItemEnhanceServiceRequest enhanceDto
+        final ItemEnhanceServiceRequest request
     ) {
 
-        if (!validateEnhanceRequest(enhanceDto)) {
+        if (!validateEnhanceRequest(request)) {
             return new UpdateEnhancementResponse(EnhanceResult.FAIL);
         }
 
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
-            return createEnhancedRecord(itemId, enhanceDto);
+            return createEnhancedRecord(itemId, request);
         }
 
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(NOT_FOUND_ENHANCED_ID));
 
-        if (enhancedItem.getIev() <= enhanceDto.getIev()) {
+        if (enhancedItem.getScore() <= calculateScore(request)) {
             // 기록이 기존의 것과 같거나 높을 경우
-            return updateEnhancedRecord(enhancedItem, enhanceDto);
+            return updateEnhancedRecord(enhancedItem, request);
         }
 
         // 기록이 기존의 것보다 낮을 경우
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
     }
 
+    private static int calculateScore(ItemEnhanceServiceRequest request) {
+        return request.getScroll().calculateScore(request.getSuccess());
+    }
+
     private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
+        int ten = request.getSuccess().getTenSuccessCount();
+        int sixty = request.getSuccess().getSixtySuccessCount();
+        int hundred = request.getSuccess().getHundredSuccessCount();
 
-        log.info("request.getCategory()={}", request.getCategory());
-        ValidationCategory findCategory = ValidationCategory.findWithName(request.getCategory());
-
-//        log.info("------------------- [검증 시작] ----------------------");
-//        log.info("request.getIev() = {}", request.getIev());
-//        log.info("findCategory.getMaximumUpgradableValue()={}", findCategory.getMaximumUpgradableValue());
-
-        if (request.getIev() > findCategory.getMaximumUpgradableValue()) {
-            return false;
-        }
-
-//        log.info("request.getSuccessCount()={}", request.getSuccessCount());
-//        log.info("findCategory.getUpgradableCount()={}", findCategory.getUpgradableCount());
-
-        if (request.getSuccessCount() > findCategory.getUpgradableCount()) {
-            return false;
-        }
-        return true;
+        int success = ten + sixty + hundred;
+        EnhanceScroll scroll = request.getScroll();
+        int maximumScore = scroll.getMaximumScore(request.getUpgradable());
+        int score = scroll.calculateScore(request.getSuccess());
+        return success <= 10 && score <= maximumScore;
     }
 
     private UpdateEnhancementResponse createEnhancedRecord(
@@ -111,7 +103,7 @@ public class EnhancedItemService {
         Item item = itemRepository
             .findById(itemId)
             .orElseThrow(() -> new ItemException(NOT_FOUND_ITEM_ID));
-        EnhancedItem enhancedItem = ItemEnhanceServiceRequest.createEntity(enhanceDto);
+        EnhancedItem enhancedItem = enhanceDto.toEntity();
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
 
@@ -120,10 +112,9 @@ public class EnhancedItemService {
 
     private UpdateEnhancementResponse updateEnhancedRecord(
         final EnhancedItem enhancedItem,
-        final ItemEnhanceServiceRequest enhanceDto
+        final ItemEnhanceServiceRequest request
     ) {
-        enhancedItem.changeStatus(enhanceDto);
-
+        enhancedItem.changeInfo(request);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }

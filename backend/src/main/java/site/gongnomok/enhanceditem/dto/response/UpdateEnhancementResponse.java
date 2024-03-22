@@ -1,4 +1,4 @@
-package site.gongnomok.enhanceditem.dto;
+package site.gongnomok.enhanceditem.dto.response;
 
 
 import lombok.AllArgsConstructor;

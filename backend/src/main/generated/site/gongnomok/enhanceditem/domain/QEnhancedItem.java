@@ -22,43 +22,21 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public static final QEnhancedItem enhancedItem = new QEnhancedItem("enhancedItem");
 
-    public final NumberPath<Integer> acc = createNumber("acc", Integer.class);
-
-    public final NumberPath<Integer> avo = createNumber("avo", Integer.class);
-
-    public final NumberPath<Integer> dex = createNumber("dex", Integer.class);
-
-    public final NumberPath<Integer> hp = createNumber("hp", Integer.class);
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final NumberPath<Integer> iev = createNumber("iev", Integer.class);
 
-    public final NumberPath<Integer> intel = createNumber("intel", Integer.class);
-
     public final site.gongnomok.item.domain.QItem item;
-
-    public final NumberPath<Integer> jump = createNumber("jump", Integer.class);
-
-    public final NumberPath<Integer> luk = createNumber("luk", Integer.class);
-
-    public final NumberPath<Integer> mgAtk = createNumber("mgAtk", Integer.class);
-
-    public final NumberPath<Integer> mgDef = createNumber("mgDef", Integer.class);
-
-    public final NumberPath<Integer> move = createNumber("move", Integer.class);
-
-    public final NumberPath<Integer> mp = createNumber("mp", Integer.class);
 
     public final StringPath name = createString("name");
 
-    public final NumberPath<Integer> phyAtk = createNumber("phyAtk", Integer.class);
+    public final NumberPath<Integer> score = createNumber("score", Integer.class);
 
-    public final NumberPath<Integer> phyDef = createNumber("phyDef", Integer.class);
+    public final EnumPath<EnhanceScroll> scroll = createEnum("scroll", EnhanceScroll.class);
 
-    public final NumberPath<Integer> str = createNumber("str", Integer.class);
+    public final QEnhanceStatus status;
 
-    public final NumberPath<Integer> successCount = createNumber("successCount", Integer.class);
+    public final QEnhanceSuccess success;
 
     public QEnhancedItem(String variable) {
         this(EnhancedItem.class, forVariable(variable), INITS);
@@ -79,6 +57,8 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
     public QEnhancedItem(Class<? extends EnhancedItem> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item"), inits.get("item")) : null;
+        this.status = inits.isInitialized("status") ? new QEnhanceStatus(forProperty("status")) : null;
+        this.success = inits.isInitialized("success") ? new QEnhanceSuccess(forProperty("success")) : null;
     }
 
 }

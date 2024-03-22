@@ -7,7 +7,7 @@ import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } 
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { BASE_URI } from "../../global/uri";
-import { ATTACK_SPEED, CATEGORY_NAME } from "../../global/item";
+import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../global/item";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
 
 import ShortcutInfo from "./ShortcutInfo";
@@ -17,6 +17,7 @@ import Scroll from "./Scroll";
 import PriceCalculator from "./PriceCalculator";
 import Comment from "./comment/Comment";
 import BestRecordItem from "./BestRecordItem";
+
 
 let timer = null;
 
@@ -28,6 +29,7 @@ export default function ItemSimulator() {
   const [infoCopy, setInfoCopy] = useState(null);
   const [upgradedCount, setUpgradedCount] = useState(0); // 업그레이드 된 횟수
   const [currentScroll, setCurrentScroll] = useState('WAND_MG_ATK'); // 현재 적용하고 있는 주문서
+  const [successScroll, setSuccessScroll] = useState(DEAFULT_SUCCESS_SCROLL); // 현재 성공한 주문서 정보
 
   // 표시 능력치
   const [str, setStr] = useState(0);
@@ -92,7 +94,6 @@ export default function ItemSimulator() {
       const response = await axios.get(`${BASE_URI}/api/item/${itemId}`, { withCredentials: true })
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
-      console.log(data)
       setInfoCopy({...response.data});
       setInfo(data);
 
@@ -165,7 +166,6 @@ export default function ItemSimulator() {
     }
 
     // 능력치 증가 시켜야함
-
     if (rollScroll(percent)) {
       scrollSuccess(percent);
     } else {
@@ -198,13 +198,32 @@ export default function ItemSimulator() {
     else return false;
   }
 
+  function refreshSuccessScroll() {
+    setSuccessScroll(DEAFULT_SUCCESS_SCROLL);
+  }
+
+  function addSuccessScrollInfo(percent) {
+
+    const copy = {...successScroll}
+    copy.total += 1;
+    if (percent === 10) {
+      copy.ten += 1;
+    } else if (percent === 60) {
+      copy.sixty += 1;
+    } else if (percent === 100) {
+      copy.hundred += 1;
+    } 
+
+    setSuccessScroll(copy);
+  }
+
   function scrollSuccess(percent) {
-    console.log('success')
 
     //주문서 성공
     playSuccessSound();
     playSuccessGif();
 
+    addSuccessScrollInfo(percent); // 성공한 주문서 정보 추가
     if (percent === 10) {
       setScroll10Success((prev) => prev + 1);
     } else if (percent === 60) {
@@ -350,6 +369,7 @@ export default function ItemSimulator() {
 
   function resetItem() {
     resetStatus();
+    refreshSuccessScroll();
     setItemBuyCount((prev) => prev + 1);
     setUpgradedCount(0);
   }
@@ -490,6 +510,7 @@ export default function ItemSimulator() {
     return totalStatus - totalDefault;
   }
 
+
   // 도전
 
   const [challengeResultModalOpen, setChallengeResultModalOpen] = useState(false);
@@ -505,23 +526,26 @@ export default function ItemSimulator() {
   function createChallengeForm() {
     return {
       name: challengerName,
-      category: info?.category,
+      upgradable: infoCopy.upgradableCount,
       iev: calculateIEV(),
-      successCount: upgradedCount,
-      str: str - defaultStr.current,
-      dex: dex - defaultDex.current,
-      intel: intel - defaultIntel.current,
-      luk: luk - defaultLuk.current,
-      phyAtk: phyAtk - defaultPhyAtk.current,
-      mgAtk: mgAtk - defaultMgAtk.current,
-      phyDef: phyDef - defaultPhyDef.current,
-      mgDef: mgDef - defaultMgDef.current,
-      acc: acc - defaultAcc.current,
-      avo: avo - defaultAvo.current,
-      move: move - defaultMove.current,
-      jump: jump - defaultJump.current,
-      hp: hp - defaultHp.current,
-      mp: mp - defaultMp.current
+      scroll: currentScroll.keyword,
+      success: successScroll,
+      status: {
+        str: str - defaultStr.current,
+        dex: dex - defaultDex.current,
+        intel: intel - defaultIntel.current,
+        luk: luk - defaultLuk.current,
+        phyAtk: phyAtk - defaultPhyAtk.current,
+        mgAtk: mgAtk - defaultMgAtk.current,
+        phyDef: phyDef - defaultPhyDef.current,
+        mgDef: mgDef - defaultMgDef.current,
+        acc: acc - defaultAcc.current,
+        avo: avo - defaultAvo.current,
+        move: move - defaultMove.current,
+        jump: jump - defaultJump.current,
+        hp: hp - defaultHp.current,
+        mp: mp - defaultMp.current
+      },
     }
   }
 
@@ -533,7 +557,6 @@ export default function ItemSimulator() {
     }
 
     const challengeForm = createChallengeForm();
-    console.log(challengeForm);
     axios
       .post(
         `${BASE_URI}/api/item/${itemId}/enhanced`,
@@ -541,8 +564,6 @@ export default function ItemSimulator() {
       )
       .then((res) => {
         const challengeResult = res.data.status;
-        console.log(challengeResult);
-
         setChallengeResultModalOpen(true);
         if (challengeResult === 'SUCCESS') {
           setIsChallengeSuccess(true);

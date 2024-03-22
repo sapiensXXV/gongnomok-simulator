@@ -43,10 +43,6 @@ public enum ValidationCategory {
         return upgradableCount;
     }
 
-    public int getMaximumUpgradableValue() {
-        return upgradableCount * singleUpgradableValue;
-    }
-
     public static ValidationCategory findWithName(String name) {
         return Arrays
             .stream(values())

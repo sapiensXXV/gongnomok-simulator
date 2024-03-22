@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import site.gongnomok.enhanceditem.ValidationCategory;
-import site.gongnomok.enhanceditem.domain.EnhancedItem;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ItemEnhanceServiceRequest {
+public class ItemEnhancementRequest {
 
     private String name;
     private String category;
@@ -33,26 +31,6 @@ public class ItemEnhanceServiceRequest {
     private Integer hp;
     private Integer mp;
 
-    public static EnhancedItem createEntity(final ItemEnhanceServiceRequest dto) {
-        return EnhancedItem.builder()
-            .name(dto.getName())
-            .iev(dto.getIev())
-            .successCount(dto.getSuccessCount())
-            .str(dto.getStr())
-            .dex(dto.getDex())
-            .intel(dto.getIntel())
-            .luk(dto.getLuk())
-            .phyAtk(dto.getPhyAtk())
-            .mgAtk(dto.getMgAtk())
-            .phyDef(dto.getPhyDef())
-            .mgDef(dto.getMgDef())
-            .acc(dto.getAcc())
-            .avo(dto.getAvo())
-            .move(dto.getMove())
-            .jump(dto.getJump())
-            .hp(dto.getHp())
-            .mp(dto.getMp())
-            .build();
-    }
+
 
 }

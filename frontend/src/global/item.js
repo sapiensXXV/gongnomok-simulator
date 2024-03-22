@@ -29,24 +29,60 @@ export const ITEM_CATEGORIES = [
   "CAPE",
 ]
 
+// export const DEFAULT_ITEM_RECORD = {
+//   name: "",
+//   iev: 0,
+//   str: 0,
+//   successCount: 0,
+//   dex: 0,
+//   intel: 0,
+//   luk: 0,
+//   phyAtk: 0,
+//   mgAtk: 0, 
+//   phyDef: 0,
+//   mgDef: 0,
+//   acc: 0,
+//   avo: 0,
+//   move: 0,
+//   jump: 0,
+//   hp: 0,
+//   mp: 0,
+// }
+
 export const DEFAULT_ITEM_RECORD = {
   name: "",
-  iev: 0,
-  str: 0,
-  successCount: 0,
-  dex: 0,
-  intel: 0,
-  luk: 0,
-  phyAtk: 0,
-  mgAtk: 0, 
-  phyDef: 0,
-  mgDef: 0,
-  acc: 0,
-  avo: 0,
-  move: 0,
-  jump: 0,
-  hp: 0,
-  mp: 0,
+  score: 0,
+  success: {
+    total: 0,
+    ten: 0,
+    sixty: 0,
+    hundred: 0,
+  },
+  status: {
+    str: 0,
+    successCount: 0,
+    dex: 0,
+    intel: 0,
+    luk: 0,
+    phyAtk: 0,
+    mgAtk: 0, 
+    phyDef: 0,
+    mgDef: 0,
+    acc: 0,
+    avo: 0,
+    move: 0,
+    jump: 0,
+    hp: 0,
+    mp: 0,
+  }
+
+}
+
+export const DEAFULT_SUCCESS_SCROLL = {
+  total: 0,
+  ten: 0,
+  sixty: 0,
+  hundred: 0,
 }
 
 export const DEFAULT_ITEM_STATUS = {

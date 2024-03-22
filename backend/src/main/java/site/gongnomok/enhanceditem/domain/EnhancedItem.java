@@ -3,8 +3,9 @@ package site.gongnomok.enhanceditem.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.item.domain.Item;
-import site.gongnomok.item.dto.service.ItemEnhanceServiceRequest;
+import site.gongnomok.enhanceditem.dto.request.ItemEnhanceRequest;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -17,46 +18,33 @@ public class EnhancedItem {
     @Column(name = "enhanced_id")
     private Long id;
 
+    private String name;
+    private int iev;
+    private int score;
+
     @OneToOne
     @JoinColumn(name = "item_id")
     private Item item;
 
-    private String name;
-    private Integer iev; // item enhancement value
-    private Integer successCount;
-    private Integer str;
-    private Integer dex;
-    private Integer intel;
-    private Integer luk;
-    private Integer phyAtk;
-    private Integer mgAtk;
-    private Integer phyDef;
-    private Integer mgDef;
-    private Integer acc;
-    private Integer avo;
-    private Integer move;
-    private Integer jump;
-    private Integer hp;
-    private Integer mp;
+    @Embedded
+    private EnhanceSuccess success;
 
-    public void changeStatus(ItemEnhanceServiceRequest dto) {
+    @Embedded
+    private EnhanceStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private EnhanceScroll scroll;
+
+    public void changeInfo(ItemEnhanceServiceRequest dto) {
         name = dto.getName();
         iev = dto.getIev();
-        successCount = dto.getSuccessCount();
-        str = dto.getStr();
-        dex = dto.getDex();
-        intel = dto.getIntel();
-        luk = dto.getLuk();
-        phyAtk = dto.getPhyAtk();
-        mgAtk = dto.getMgAtk();
-        phyDef = dto.getPhyDef();
-        mgDef = dto.getMgDef();
-        acc = dto.getAcc();
-        avo = dto.getAvo();
-        move = dto.getMove();
-        jump = dto.getJump();
-        hp = dto.getHp();
-        mp = dto.getMp();
+        score = dto.getScore();
+        success = dto.getSuccess();
+        scroll = dto.getScroll();
+    }
+
+    public void changeScore(int score) {
+        this.score = score;
     }
 
     public void changeItem(Item item) {
