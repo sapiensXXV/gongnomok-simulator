@@ -45,10 +45,6 @@ public class EnhancedItem {
         status = dto.getStatus();
     }
 
-    public void changeScore(int score) {
-        this.score = score;
-    }
-
     public void changeItem(Item item) {
         this.item = item;
     }
