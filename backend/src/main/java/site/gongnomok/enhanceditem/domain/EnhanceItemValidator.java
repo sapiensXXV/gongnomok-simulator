@@ -4,8 +4,7 @@ import org.springframework.stereotype.Component;
 import site.gongnomok.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.global.exception.EnhancedItemException;
 
-import static site.gongnomok.global.exception.ExceptionCode.INVALID_ENHANCED_SCORE_REQUST;
-import static site.gongnomok.global.exception.ExceptionCode.INVALID_ENHANCED_SUCCESS_REQUEST;
+import static site.gongnomok.global.exception.ExceptionCode.*;
 
 
 @Component
@@ -35,7 +34,7 @@ public class EnhanceItemValidator {
         final int maximumScore = scroll.getMaximumScore(upgradable);
         final int actualScore = scroll.calculateScore(success);
         if (actualScore > maximumScore) {
-            throw new EnhancedItemException(INVALID_ENHANCED_SCORE_REQUST);
+            throw new EnhancedItemException(INVALID_ENHANCED_SCORE_REQUEST);
         }
     }
 }
