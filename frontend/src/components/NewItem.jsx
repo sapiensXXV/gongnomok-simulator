@@ -200,7 +200,7 @@ export default function NewItem() {
         }
       },
       upgradableCount: upgradableCount,
-      attackSpeed: ((attackSpeed === 'NONE') ? null : attackSpeed),
+      attackSpeed: attackSpeed,
       knockBackPercent: knockBackPercent
     };
     // 폼 요청
