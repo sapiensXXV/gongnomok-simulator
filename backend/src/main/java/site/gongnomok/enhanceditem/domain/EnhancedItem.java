@@ -36,6 +36,10 @@ public class EnhancedItem {
     @Enumerated(EnumType.STRING)
     private EnhanceScroll scroll;
 
+    public static EnhancedItem of(ItemEnhanceServiceRequest dto) {
+
+    }
+
     public void changeInfo(ItemEnhanceServiceRequest dto) {
         name = dto.getName();
         iev = dto.getIev();
@@ -43,10 +47,6 @@ public class EnhancedItem {
         success = dto.getSuccess();
         scroll = dto.getScroll();
         status = dto.getStatus();
-    }
-
-    public void changeScore(int score) {
-        this.score = score;
     }
 
     public void changeItem(Item item) {

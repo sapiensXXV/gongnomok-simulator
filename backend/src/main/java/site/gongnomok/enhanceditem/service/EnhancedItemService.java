@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.gongnomok.enhanceditem.domain.EnhanceItemValidator;
 import site.gongnomok.enhanceditem.domain.EnhanceScroll;
 import site.gongnomok.enhanceditem.domain.EnhanceSuccess;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
@@ -32,6 +33,7 @@ public class EnhancedItemService {
 
     private final ItemRepository itemRepository;
     private final EnhancedItemRepository enhancedItemRepository;
+    private final EnhanceItemValidator validator;
 
     /**
      * @param itemId 특정 아이템의 기록을 읽어온다.
@@ -52,16 +54,13 @@ public class EnhancedItemService {
      * @param itemId 새로운 기록을 등록할 아이템 ID
      * @param request 기록 정보
      */
-    // TODO: 3/22/24 validation 로직 분리
     @Transactional
     public UpdateEnhancementResponse updateEnhanceItem(
         final Long itemId,
         final ItemEnhanceServiceRequest request
     ) {
 
-        if (!validateEnhanceRequest(request)) {
-            return new UpdateEnhancementResponse(EnhanceResult.FAIL);
-        }
+        validator.validateRequest(request);
 
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
@@ -78,18 +77,6 @@ public class EnhancedItemService {
 
         // 기록이 기존의 것보다 낮을 경우
         return new UpdateEnhancementResponse(EnhanceResult.FAIL);
-    }
-
-    private boolean validateEnhanceRequest(ItemEnhanceServiceRequest request) {
-        int ten = request.getSuccess().getTenSuccessCount();
-        int sixty = request.getSuccess().getSixtySuccessCount();
-        int hundred = request.getSuccess().getHundredSuccessCount();
-
-        int success = ten + sixty + hundred;
-        EnhanceScroll scroll = request.getScroll();
-        int maximumScore = scroll.getMaximumScore(request.getUpgradable());
-        int score = scroll.calculateScore(request.getSuccess());
-        return success <= 10 && score <= maximumScore;
     }
 
     private UpdateEnhancementResponse createEnhancedRecord(
