@@ -222,7 +222,7 @@ const overall_strength = {
   category: "OVERALL",
   upgradeValue: {
     _10: [
-      { name: "str", value: 3 },
+      { name: "str", value: 5 },
       { name: "phyDef", value: 3 },
       { name: "hp", value: 5 }
     ],
