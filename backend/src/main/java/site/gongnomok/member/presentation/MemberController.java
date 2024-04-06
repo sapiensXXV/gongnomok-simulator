@@ -34,10 +34,4 @@ public class MemberController {
         return ResponseEntity.ok().body(member);
     }
 
-    @GetMapping("/test")
-    public String test() {
-        log.info("Test Method");
-        return "ok";
-    }
-
 }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnhanceSuccess {
-    private int successCount; // TODO: 3/22/24 삭제
+    private int successCount;
     private int tenSuccessCount;
     private int sixtySuccessCount;
     private int hundredSuccessCount;

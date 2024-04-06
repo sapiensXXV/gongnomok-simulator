@@ -21,6 +21,7 @@ public class AuthController {
     public ResponseEntity<Void> auth(
         @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
     ) {
+
         if (member == null) {
             return ResponseEntity.status(401).build();
         }
@@ -30,5 +31,6 @@ public class AuthController {
 
         return ResponseEntity.ok().build();
     }
+
 
 }

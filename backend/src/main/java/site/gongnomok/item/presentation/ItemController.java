@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.auth.AdminAuth;
+import site.gongnomok.auth.AdminOnly;
+import site.gongnomok.auth.domain.Accessor;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.response.ItemDetailsResponse;
@@ -25,7 +28,9 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping("/item/new")
+    @AdminOnly
     public ResponseEntity<Void> createItem(
+        @AdminAuth final Accessor accessor,
         @RequestBody ItemCreateRequest createDto
     ) {
         Long id = createDto.getId();

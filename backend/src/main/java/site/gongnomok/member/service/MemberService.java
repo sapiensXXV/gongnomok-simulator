@@ -4,6 +4,7 @@ package site.gongnomok.member.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.member.exception.CannotFindMemberException;
 import site.gongnomok.member.dto.request.MemberDto;
 import site.gongnomok.member.domain.repository.MemberRepository;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberService {
 
