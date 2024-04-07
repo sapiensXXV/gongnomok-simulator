@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:17-oracle
 
 ARG JAR_FILE=/build/libs/gongnomok-app.jar
 

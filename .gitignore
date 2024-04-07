@@ -4,6 +4,7 @@ HELP.md
 .gradle
 *.properties
 *.yml
+*.pem
 build/
 logs/
 !gradle/wrapper/gradle-wrapper.jar
