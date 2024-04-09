@@ -18,6 +18,11 @@ COPY . .
 RUN npm install
 RUN npm run build
 
+# SSL 키 복사
+COPY ./secret/fullchain.pem /etc/secret/
+COPY ./secret/option-ssl-nginx.conf /etc/secret/
+COPY ./secret/privkey.pem /etc/secret/
+
 FROM nginx:1.18.0-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 RUN rm -rf /etc/nginx/conf.d/*
