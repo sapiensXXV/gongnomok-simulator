@@ -15,6 +15,10 @@ frontend/secret/
 
 application.properties
 application-gcp.properties
+application.yml
+application-gcp.yml
+keystore.p12
+
 
 application-aws.properties
 
