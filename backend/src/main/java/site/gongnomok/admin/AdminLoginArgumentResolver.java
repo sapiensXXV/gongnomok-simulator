@@ -29,7 +29,7 @@ public class AdminLoginArgumentResolver implements HandlerMethodArgumentResolver
     }
 
     @Override
-    public Object resolveArgument(
+    public Accessor resolveArgument(
         MethodParameter parameter,
         ModelAndViewContainer mavContainer,
         NativeWebRequest webRequest,
