@@ -13,6 +13,9 @@ logs/
 
 frontend/secret/
 
+application.properties
+application-gcp.properties
+
 application-aws.properties
 
 option-ssl-nginx.conf
