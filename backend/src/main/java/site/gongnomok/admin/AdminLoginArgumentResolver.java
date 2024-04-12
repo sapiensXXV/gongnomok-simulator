@@ -12,9 +12,9 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import site.gongnomok.auth.AdminAuth;
 import site.gongnomok.auth.domain.Accessor;
 import site.gongnomok.global.constant.MemberConst;
-import site.gongnomok.member.domain.Member;
 import site.gongnomok.member.domain.Role;
 import site.gongnomok.member.domain.repository.MemberRepository;
+import site.gongnomok.member.dto.request.MemberDto;
 
 
 @Component
@@ -38,9 +38,9 @@ public class AdminLoginArgumentResolver implements HandlerMethodArgumentResolver
 
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         HttpSession session = request.getSession();
-        Member member = (Member) session.getAttribute(MemberConst.loginMember);
+        MemberDto member = (MemberDto) session.getAttribute(MemberConst.loginMember);
 
-        if (member == null || !member.getRole().equals(Role.ADMIN)) {
+        if (member == null || !member.getRole().equals(Role.ADMIN.name())) {
             return null;
         }
 
