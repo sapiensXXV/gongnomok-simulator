@@ -9,7 +9,7 @@ export default function ItemRanking() {
   const [rankingPage, setRankingPage] = useState(0);
 
   useEffect(() => {
-    console.log(`RANKING GET ${BASE_URI}/api/item/ranking?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`)
+    // console.log(`RANKING GET ${BASE_URI}/api/item/ranking?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`)
     axios
       .get(
         `${BASE_URI}/api/item/ranking?page=0&size=${DEFAULT_RANKING_FETCH_SIZE}`,
@@ -24,7 +24,6 @@ export default function ItemRanking() {
   }, [])
 
   function handlePreviousButtonClicked() {
-    console.log(`previous`)
     if (rankingPage <= 0) return; //현재 페이지가 0 이하일 경우 수행하지 않고 반환
     
     // 이전 페이지 요청 수행

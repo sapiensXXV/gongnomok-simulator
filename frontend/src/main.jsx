@@ -9,6 +9,9 @@ import '../css/index-lg.css'
 import '../css/index-xl.css'
 import '../css/index-xxl.css'
 import '../css/common.css'
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>

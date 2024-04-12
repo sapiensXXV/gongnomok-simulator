@@ -13,15 +13,18 @@ import site.gongnomok.member.domain.Member;
 @ToString
 public class MemberDto {
 
+    private Long memberId;
     private String role;
     private String id;
     private String name;
 
     public static MemberDto from(Member member) {
         return MemberDto.builder()
-            .role(member.getRole().makeLowerString())
+            .memberId(member.getMemberId())
+            .role(member.getRole().name())
             .id(member.getId())
             .name(member.getName())
             .build();
     }
+
 }

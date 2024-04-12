@@ -21,16 +21,13 @@ public class AuthController {
     public ResponseEntity<Void> auth(
         @SessionAttribute(value = MemberConst.loginMember, required = false) MemberDto member
     ) {
-
         if (member == null) {
             return ResponseEntity.status(401).build();
         }
-        if (member.getRole().equals(USER.makeLowerString())) {
+        if (member.getRole().equals(USER.name())) {
             return ResponseEntity.status(403).build();
         }
 
         return ResponseEntity.ok().build();
     }
-
-
 }
