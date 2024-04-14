@@ -15,6 +15,7 @@
 - **DB** `MySQL 8.0`, `GCP Cloud SQL`
 
 ### 프로젝트 구조
+![](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/cfd91b92-54ce-4837-a5f0-50c3abdbb016)
 <img src="https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/db47b411-6e72-449a-94b1-fb1068fd6485">
 
 ### 포스트
