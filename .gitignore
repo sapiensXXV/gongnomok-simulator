@@ -13,6 +13,8 @@ logs/
 
 frontend/secret/
 
+!docker-compose.yml
+
 application.properties
 application-gcp.properties
 application.yml
