@@ -19,6 +19,12 @@ FROM openjdk:17-oracle as builder
 WORKDIR /backend
 
 COPY /build/libs/gongnomok-app.jar ./app-dev-1.1.4.jar
+# COPY /pinpoint ./pinpoint
+
+# ENV pinpointPath=/backend/pinpoint
+
+# ENTRYPOINT [ "java", "-jar", "-javaagent:/backend/pinpoint/pinpoint-bootstrap.jar", "-Dpinpoint.applicationName=gongnomok", "-Dpinpoint.agentId=gongnomok-dev", "-Dspring.profiles.active=dev", "app-dev-1.1.4.jar" ]
+
 ENTRYPOINT [ "java", "-Dspring.profiles.active=dev", "-jar", "/backend/app-dev-1.1.4.jar" ]
 
 VOLUME [ "/tmp" ]
