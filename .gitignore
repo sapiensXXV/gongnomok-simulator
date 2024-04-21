@@ -1,5 +1,8 @@
 ads.txt
 
+
+.env
+
 HELP.md
 .gradle
 *.properties
