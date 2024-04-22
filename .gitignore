@@ -2,6 +2,7 @@ ads.txt
 
 
 .env
+*.env
 
 HELP.md
 .gradle
