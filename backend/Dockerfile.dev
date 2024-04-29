@@ -22,5 +22,6 @@ ARG JAR_PATH=build/libs/gongnomok-app.jar
 COPY ${JAR_PATH} app.jar
 
 COPY ./script/run-dev.sh ./
+RUN chmod +x ./run-dev.sh
 
 ENTRYPOINT [ "./run-dev.sh" ]
