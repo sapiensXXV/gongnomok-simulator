@@ -14,6 +14,9 @@
 - **프레임워크** `Spring Boot 3.2.2`
 - **DB** `MySQL 8.0`, `GCP Cloud SQL`
 
+- **모니터링** `Grafana`, `PINPOINT`
+- **부하테스트** `nGrinder`
+
 ### 프로젝트 구조
 ![](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/9c8d93ee-e692-4868-bb42-d8cdf213b294)
 <!-- <img src="https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/db47b411-6e72-449a-94b1-fb1068fd6485"> -->
