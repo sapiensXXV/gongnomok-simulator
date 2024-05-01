@@ -18,7 +18,7 @@
 - **부하테스트** `nGrinder`
 
 ### 프로젝트 구조
-![](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/9c8d93ee-e692-4868-bb42-d8cdf213b294)
+![](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/779f515a-e58e-4550-8b8f-f951bc0339db)
 <!-- <img src="https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/db47b411-6e72-449a-94b1-fb1068fd6485"> -->
 
 ### 포스트
