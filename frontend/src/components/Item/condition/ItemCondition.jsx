@@ -49,9 +49,9 @@ export default function ItemCondition({
     } else {
       copy.category = category;
     }
-
+    console.log(copy.category)
     setSearchCondition(copy);
-    doSearch(copy);
+    // doSearch(copy);
   }
 
   return (
@@ -101,7 +101,6 @@ export default function ItemCondition({
             />
           </section>
 
-
           <section className="px-2 category-select-container">
             <span className="condition-title">카테고리</span>
             <div className="category-select-button-container">
@@ -129,7 +128,6 @@ export default function ItemCondition({
               <CategorySelect category={`EARRING`} condition={searchCondition.category} name={`귀고리`} representationItemNumber={2031} changeHandler={handleCategoryChange}/>
               <CategorySelect category={`CAPE`} condition={searchCondition.category} name={`망토`} representationItemNumber={2109} changeHandler={handleCategoryChange}/>
             </div>
-            
           </section>
         </form>
       </section>

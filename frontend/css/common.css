@@ -495,7 +495,7 @@
   height: 33px;
   padding: 0px 7px 0px 7px;
 
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
   border: none;
   border-radius: 6px;
 
@@ -530,6 +530,11 @@
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
+.select-active-text {
+  background-color: rgb(81, 118, 252);
+  color: white;
+}
+
 .condition-title {
   font-size: 16px;
   font-family: 'Pretendard SemiBold';
@@ -557,7 +562,7 @@
   min-width: 33px;
   min-height: 33px;
 
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
   border: none;
   border-radius: 6px;
 }
