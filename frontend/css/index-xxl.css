@@ -233,7 +233,7 @@
     display: block;
     /* font-family: SOYOMapleBoldTTF; */
     font-family: Pretendard-SemiBold;
-    font-size: 12px;
+    font-size: 0.7vw;
     margin-top: 9px;
 
     text-overflow: ellipsis;
@@ -627,6 +627,14 @@
   .item-simulator-root {
     display: flex;
     justify-content: center;
+  }
+
+  .item-list-grid {
+    display: grid;
+    column-gap: 10px;
+    row-gap:10px;
+  
+    grid-template-columns: repeat(6, 1fr);
   }
 
 }

@@ -23,6 +23,7 @@ export default function ItemRanking() {
       })
   }, [])
 
+
   function handlePreviousButtonClicked() {
     if (rankingPage <= 0) return; //현재 페이지가 0 이하일 경우 수행하지 않고 반환
     

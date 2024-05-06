@@ -626,4 +626,13 @@
     justify-content: center;
   }
 
+  .item-list-grid {
+    display: grid;
+    column-gap: 10px;
+    row-gap:10px;
+  
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+
 }
