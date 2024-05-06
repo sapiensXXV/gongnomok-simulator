@@ -541,6 +541,8 @@
   column-gap: 5px;
   flex-wrap: wrap;
   justify-content: start;
+
+  margin-top: .5rem;
 }
 
 
@@ -576,6 +578,14 @@
   margin-right: 5px;
 }
 
-.category-select-button-active {
+.item-list-button button > img {
+  -webkit-transition:
+    -webkit-transform 0.5s;
+  transition:
+    transform 0.5s;
+}
 
+.item-list-button button:hover > img {
+  transform: scale(1.2);
+  transform: rotate(-15deg);
 }

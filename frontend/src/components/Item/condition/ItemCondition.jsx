@@ -44,8 +44,8 @@ export default function ItemCondition({
     e.preventDefault();
     console.log(`handleCategoryChange`)
     let copy = {...searchCondition};
-    if (copy.category !== 'ALL') {
-      copy.category = 'ALL'
+    if (copy.category === category) {
+      copy.category = "ALL";
     } else {
       copy.category = category;
     }
@@ -105,29 +105,29 @@ export default function ItemCondition({
           <section className="px-2 category-select-container">
             <span className="condition-title">카테고리</span>
             <div className="category-select-button-container">
-              <CategorySelect isSelected={searchCondition.category === "ONE_HANDED_SWORD"} name={`한손검`} representationItemNumber={5} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "TWO_HANDED_SWORD"} name={`두손검`} representationItemNumber={31} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "ONE_HANDED_AXE"} name={`한손 도끼`} representationItemNumber={58} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "TWO_HANDED_AXE"} name={`두손 도끼`} representationItemNumber={72} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "ONE_HANDED_BLUNT"} name={`한손 둔기`} representationItemNumber={96} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "TWO_HANDED_BLUNT"} name={`두손 둔기`} representationItemNumber={106} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "SPEAR"} name={`창`} representationItemNumber={125} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "POLEARM"} name={`폴암`} representationItemNumber={147} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "BOW"} name={`활`} representationItemNumber={193} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "CROSSBOW"} name={`석궁`} representationItemNumber={218} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "WAND"} name={`완드`} representationItemNumber={160} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "STAFF"} name={`스태프`} representationItemNumber={181} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "DAGGER"} name={`단검`} representationItemNumber={278} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "CLAW"} name={`아대`} representationItemNumber={254} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "HAT"} name={`모자`} representationItemNumber={330} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "GLOVES"} name={`장갑`} representationItemNumber={2060} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "SHOES"} name={`신발`} representationItemNumber={847} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "OVERALL"} name={`한벌옷`} representationItemNumber={461} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "TOP"} name={`상의`} representationItemNumber={976} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "BOTTOM"} name={`하의`} representationItemNumber={435} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "SHIELD"} name={`방패`} representationItemNumber={2203} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "EARRING"} name={`귀고리`} representationItemNumber={2031} changeHandler={handleCategoryChange}/>
-              <CategorySelect isSelected={searchCondition.category === "CAPE"} name={`망토`} representationItemNumber={2109} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`ONE_HANDED_SWORD`} condition={searchCondition.category} name={`한손검`} representationItemNumber={5} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`TWO_HANDED_SWORD`} condition={searchCondition.category} name={`두손검`} representationItemNumber={31} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`ONE_HANDED_AXE`} condition={searchCondition.category} name={`한손 도끼`} representationItemNumber={58} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`TWO_HANDED_AXE`} condition={searchCondition.category} name={`두손 도끼`} representationItemNumber={72} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`ONE_HANDED_BLUNT`} condition={searchCondition.category} name={`한손 둔기`} representationItemNumber={96} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`TWO_HANDED_BLUNT`} condition={searchCondition.category} name={`두손 둔기`} representationItemNumber={106} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`SPEAR`} condition={searchCondition.category} name={`창`} representationItemNumber={125} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`POLEARM`} condition={searchCondition.category} name={`폴암`} representationItemNumber={147} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`BOW`} condition={searchCondition.category} name={`활`} representationItemNumber={193} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`CROSSBOW`} condition={searchCondition.category} name={`석궁`} representationItemNumber={218} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`WAND`} condition={searchCondition.category} name={`완드`} representationItemNumber={160} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`STAFF`} condition={searchCondition.category} name={`스태프`} representationItemNumber={181} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`DAGGER`} condition={searchCondition.category} name={`단검`} representationItemNumber={278} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`CLAW`} condition={searchCondition.category} name={`아대`} representationItemNumber={254} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`HAT`} condition={searchCondition.category} name={`모자`} representationItemNumber={330} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`GLOVES`} condition={searchCondition.category} name={`장갑`} representationItemNumber={2060} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`SHOES`} condition={searchCondition.category} name={`신발`} representationItemNumber={847} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`OVERALL`} condition={searchCondition.category} name={`한벌옷`} representationItemNumber={461} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`TOP`} condition={searchCondition.category} name={`상의`} representationItemNumber={976} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`BOTTOM`} condition={searchCondition.category} name={`하의`} representationItemNumber={435} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`SHIELD`} condition={searchCondition.category} name={`방패`} representationItemNumber={2203} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`EARRING`} condition={searchCondition.category} name={`귀고리`} representationItemNumber={2031} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`CAPE`} condition={searchCondition.category} name={`망토`} representationItemNumber={2109} changeHandler={handleCategoryChange}/>
             </div>
             
           </section>

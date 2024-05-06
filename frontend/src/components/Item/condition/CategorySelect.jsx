@@ -1,5 +1,6 @@
 export default function CategorySelect({
-  isSelected,
+  category,
+  condition,
   name,
   representationItemNumber,
   changeHandler
@@ -7,8 +8,8 @@ export default function CategorySelect({
   return (
     <>
       <button 
-        className={`category-select-button ${isSelected ? 'condition-title' : ''}`}
-        onClick={(e) => changeHandler(e)}
+        className={`category-select-button ${condition === category ? 'condition-title' : ''}`}
+        onClick={(e) => changeHandler(e, category)}
       >
         <img src={`/images/item/${representationItemNumber}.png`}/>
         <span>{name}</span>
