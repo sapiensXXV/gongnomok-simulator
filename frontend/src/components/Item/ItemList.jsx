@@ -1,8 +1,5 @@
-import { forwardRef, useEffect, useState } from "react";
 import SingleItem from "./SingleItem";
 import ItemRanking from "./ItemRanking";
-
-
 
 export default function ItemList({
   itemList,
