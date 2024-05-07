@@ -32,4 +32,12 @@ public class JobSearchDto {
     public boolean isAll() {
         return !isWarrior() && !isBowman() && !isMagician() && !isThief();
     }
+
+    public static JobSearchDto allFalse() {
+        return new JobSearchDto(false, false, false, false);
+    }
+
+    public static JobSearchDto allTrue() {
+        return new JobSearchDto(true, true, true, true);
+    }
 }

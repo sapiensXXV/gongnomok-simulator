@@ -1,7 +1,6 @@
 package site.gongnomok.domain.item.service;
 
 import jakarta.persistence.EntityManager;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.global.exception.ItemException;
+import site.gongnomok.item.domain.AttackSpeed;
+import site.gongnomok.item.domain.Category;
 import site.gongnomok.item.domain.Item;
-import site.gongnomok.item.domain.Job;
 import site.gongnomok.item.domain.repository.ItemRepository;
 import site.gongnomok.item.dto.ItemRankingResponse;
 import site.gongnomok.item.dto.api.ItemRequiredDto;
@@ -21,9 +21,8 @@ import site.gongnomok.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.item.dto.request.ItemCreateRequest;
 import site.gongnomok.item.dto.request.ItemStatusRequest;
 import site.gongnomok.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.item.dto.request.itemlist.JobSearchDto;
 import site.gongnomok.item.dto.response.ItemDetailsResponse;
-import site.gongnomok.item.domain.AttackSpeed;
-import site.gongnomok.item.domain.Category;
 import site.gongnomok.item.service.ItemService;
 
 import java.util.List;
@@ -111,7 +110,7 @@ class ItemServiceTest {
 
         final ItemListServiceRequest condition = new ItemListServiceRequest(
             Category.CLAW,
-            Job.COMMON,
+            JobSearchDto.allFalse(),
             0,
             ITEM_NAME_PREFIX
         );
@@ -158,7 +157,7 @@ class ItemServiceTest {
 
         final ItemListServiceRequest condition = new ItemListServiceRequest(
             null, //카테고리 조건이 null
-            Job.COMMON,
+            JobSearchDto.allFalse(),
             0,
             ITEM_NAME_PREFIX
         );
@@ -202,7 +201,7 @@ class ItemServiceTest {
 
         final ItemListServiceRequest condition = new ItemListServiceRequest(
             Category.CLAW,
-            null, // 직업 조건이 null
+            JobSearchDto.allFalse(), // 직업 조건이 null
             0,
             ITEM_NAME_PREFIX
         );
@@ -210,6 +209,7 @@ class ItemServiceTest {
 
         //when
         ItemListResponse searchResult = itemService.findItemsWithCondition(condition, pageable);
+
 
         //then
         assertThat(searchResult.getItems()).hasSize(PAGE_SIZE);
