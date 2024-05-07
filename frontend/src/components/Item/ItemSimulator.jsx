@@ -364,6 +364,7 @@ export default function ItemSimulator() {
     }
 
     resetItem();
+    setItemBuyCount((prev) => prev - 1);
 
   }
 
@@ -510,17 +511,11 @@ export default function ItemSimulator() {
     return totalStatus - totalDefault;
   }
 
-
-  // 도전
-
   const [challengeResultModalOpen, setChallengeResultModalOpen] = useState(false);
   const [isChallengeSuccess, setIsChallengeSuccess] = useState(false);
 
-
   function challengeRecordButtonClicked() {
-
     setChallengeModalOpen(true);
-
   }
 
   function createChallengeForm() {
