@@ -13,6 +13,6 @@ RUN chmod +x ./gradlew
 RUN ./gradlew clean build
 
 FROM openjdk:17-oracle
-COPY /build/libs/gongnomok-app.jar ./app-1.1.4.jar
-ENTRYPOINT [ "java", "-jar", "/app-1.1.4.jar" ]
+COPY /build/libs/gongnomok-app.jar ./app.jar
+ENTRYPOINT [ "java", "-jar", "/app.jar" ]
 VOLUME [ "/tmp" ]
