@@ -1,5 +1,5 @@
 export const INITIAL_SEARCH_CONDITION = {
-  itemName: "",
+  name: "",
   jobs: {
     warrior: false,
     bowman: false,
