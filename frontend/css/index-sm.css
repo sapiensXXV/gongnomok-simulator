@@ -182,12 +182,7 @@
 
     color: rgb(53, 53, 53);
   }
-
-  .item-rank-text {
-    font-family: SOYOMapleBoldTTF;
-    width: 38px;
-  }
-
+  
   .single-ranking-item a {
     text-decoration: none;
     color: inherit;

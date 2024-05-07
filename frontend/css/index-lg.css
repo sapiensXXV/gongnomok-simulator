@@ -160,8 +160,7 @@
     align-items: center;
 
     font-family: Pretendard-Regular;
-
-    margin-bottom: 15px;
+    margin: 10px 0px 10px 0px;
     padding-top: 10px;
     padding-bottom: 15px;
 
@@ -215,11 +214,6 @@
     gap: 10px;
 
     color: rgb(53, 53, 53);
-  }
-
-  .item-rank-text {
-    font-family: SOYOMapleBoldTTF;
-    width: 38px;
   }
 
   .single-ranking-item a {

@@ -69,12 +69,7 @@ export default function ItemRanking() {
       <section className="item-ranking-container d-flex bg-light">
         <span className="item-ranking-title">인기 아이템</span>
         <div className="item-ranking-controller">
-          <button 
-            className="item-ranking-button"
-            onClick={handlePreviousButtonClicked}
-          >
-            <img src="/images/etc/previous.png"/>
-          </button>
+          
           <div className="ranking-items">
           {
             rankingItems != null && rankingItems?.length > 0 &&
@@ -95,14 +90,24 @@ export default function ItemRanking() {
             })
             }
           </div>
-          <button 
+          
+        </div>
+        <section className="item-ranking-page-controller-container">
+          <button
+            className="item-ranking-button"
+            onClick={handlePreviousButtonClicked}
+          >
+            <img src="/images/etc/previous.png" />
+          </button>
+          <span>{`${rankingPage + 1}/${MAXIMUM_RANKING_PAGE}`}</span>
+          <button
             className="item-ranking-button"
             onClick={handleNextButtonClicked}
           >
-            <img src="/images/etc/next.png"/>
+            <img src="/images/etc/next.png" />
           </button>
-        </div>
-        <span className="mt-2">{`${rankingPage+1}/${MAXIMUM_RANKING_PAGE}`}</span>
+        </section>
+        
         
       </section>
     </>

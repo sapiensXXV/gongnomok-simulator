@@ -594,3 +594,57 @@
   transform: scale(1.2);
   transform: rotate(-15deg);
 }
+
+/* 랭킹 페이지 공통 부분 */
+.item-rank-text {
+  font-family: SOYOMapleBoldTTF;
+  
+  width: 38px;
+} 
+
+.single-ranking-item > span {
+  font-size: 14px;
+}
+
+.single-ranking-item {
+  height: 32px;
+}
+
+.item-ranking-page-controller-container {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 7px;
+}
+
+.item-ranking-page-controller-container > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.item-ranking-page-controller-container > button:hover {
+  background-color: rgb(81, 118, 252);
+}
+
+.item-ranking-page-controller-container > button:hover > img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.item-ranking-page-controller-container img {
+  width: 12px;
+  height: 12px;
+}
+
+.item-list-button button:hover {
+  background-color: rgb(81, 118, 252);
+}
+
+.item-list-button button:hover > span {
+  color: white;
+}

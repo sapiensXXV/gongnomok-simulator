@@ -9,6 +9,7 @@ import { BASE_URI } from "../../global/uri";
 import FeedbackBanner from "../banner/FeedbackBanner";
 import InformBanner from "../banner/InformBanner";
 import { INITIAL_SEARCH_CONDITION } from "./condition/search";
+import ItemRanking from "./ItemRanking";
 
 export default function ItemMain() {
 
@@ -107,6 +108,7 @@ export default function ItemMain() {
   }
 
   function handleMinLevelChange(e) {
+    nextPage.current = 0;
     let copy = {...searchCondition};
     copy.minLevel = e.target.value;
     setSearchCondition(copy);
@@ -146,6 +148,7 @@ export default function ItemMain() {
                 doSearch={doSearch}
               />
             </section>
+            <ItemRanking/>
           </div>  
           <div className="col-lg-12 col-xl-8">
             <section>
