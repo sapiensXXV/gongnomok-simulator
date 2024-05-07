@@ -1,5 +1,6 @@
 package site.gongnomok.item.domain.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
@@ -9,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
-import site.gongnomok.item.dto.ItemRankingRepositoryDto;
-import site.gongnomok.item.dto.request.itemlist.ItemListServiceRequest;
-import site.gongnomok.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.enhanceditem.domain.EnhancedItem;
-import site.gongnomok.item.domain.Item;
 import site.gongnomok.item.domain.Category;
-import site.gongnomok.item.domain.Job;
+import site.gongnomok.item.domain.Item;
+import site.gongnomok.item.dto.ItemRankingRepositoryDto;
+import site.gongnomok.item.dto.api.itemlist.ItemResponse;
+import site.gongnomok.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.item.dto.request.itemlist.JobSearchDto;
 
 import java.util.List;
 import java.util.Objects;
@@ -39,7 +40,7 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     public List<ItemResponse> findItems(ItemListServiceRequest condition) {
 
         String name = condition.getName();
-        Job job = condition.getJob();
+        JobSearchDto jobs = condition.getJobs();
         Category category = condition.getCategory();
         int minLevel = condition.getMinLevel();
 
@@ -54,7 +55,7 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
                 .from(item)
                 .where(
                         nameContains(name),
-                        jobContain(job),
+                        jobContain(jobs),
                         categoryEqual(category),
                         levelGoe(minLevel)
                 )
@@ -112,7 +113,7 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
                 .from(item)
                 .where(
                         nameContains(condition.getName()),
-                        jobContain(condition.getJob()),
+                        jobContain(condition.getJobs()),
                         levelGoe(condition.getMinLevel()),
                         categoryEqual(condition.getCategory())
                 )
@@ -196,24 +197,29 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
         return item.name.contains(name);
     }
 
-    private BooleanExpression jobContain(Job job) {
+    private BooleanBuilder jobContain(JobSearchDto jobs) {
 
-        if (job == null) return null;
+        if (jobs.isAll()) return null;
 
-        String name = Job.jobToString(job);
-        if (name.equals("common")) {
-            return item.availableJob.common.isTrue();
-        } else if (name.equals("warrior")) {
-            return item.availableJob.warrior.isTrue();
-        } else if (name.equals("bowman")) {
-            return item.availableJob.bowman.isTrue();
-        } else if (name.equals("magician")) {
-            return item.availableJob.magician.isTrue();
-        } else if (name.equals("thief")) {
-            return item.availableJob.thief.isTrue();
+        BooleanBuilder builder = new BooleanBuilder();
+
+        if (jobs.isWarrior()) {
+            builder.or(item.availableJob.warrior.isTrue());
         }
 
-        return null;
+        if (jobs.isBowman()) {
+            builder.or(item.availableJob.bowman.isTrue());
+        }
+
+        if (jobs.isMagician()) {
+            builder.or(item.availableJob.magician.isTrue());
+        }
+
+        if (jobs.isThief()) {
+            builder.or(item.availableJob.thief.isTrue());
+        }
+
+        return builder;
     }
 
     private BooleanExpression categoryEqual(Category category) {

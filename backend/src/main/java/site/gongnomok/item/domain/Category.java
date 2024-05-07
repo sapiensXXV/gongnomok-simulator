@@ -31,13 +31,8 @@ public enum Category {
     WAND, // 완드
     STAFF; // 스태프
 
-    public static String makeString(Category category) {
-        return category.name().toLowerCase();
-    }
-
-    public static Category stringToCategory(String data) {
-        if (data == null) return null;
-//        log.info("{} 를 Category로 바꿉니다.", data);
+    public static Category parseFrom(String data) {
+        if (data == null || ALL.name().equals(data.toUpperCase())) return null;
         return Arrays.stream(values())
                 .filter(value -> {
                     return value.name().equals(data);

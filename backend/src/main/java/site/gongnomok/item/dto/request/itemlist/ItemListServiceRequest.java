@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import site.gongnomok.item.domain.Category;
-import site.gongnomok.item.domain.Job;
 
 
 @NoArgsConstructor
@@ -15,8 +14,7 @@ import site.gongnomok.item.domain.Job;
 public class ItemListServiceRequest {
 
     private Category category;
-    private Job job;
+    private JobSearchDto jobs;
     private int minLevel;
     private String name;
-
 }

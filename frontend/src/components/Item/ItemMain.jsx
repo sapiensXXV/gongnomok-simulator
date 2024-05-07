@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-import ItemCondition from "./ItemCondition";
+import ItemCondition from "./condition/ItemCondition";
 import ItemList from "./ItemList";
 import axios from "axios";
 
@@ -8,30 +8,23 @@ import { DEFAULT_FETCH_SIZE } from "../../global/item";
 import { BASE_URI } from "../../global/uri";
 import FeedbackBanner from "../banner/FeedbackBanner";
 import InformBanner from "../banner/InformBanner";
+import { INITIAL_SEARCH_CONDITION } from "./condition/search";
 
 export default function ItemMain() {
 
-  const [itemName, setItemName] = useState('');
-  const [job, setJob] = useState("NONE");
-  const [minLevel, setMinLevel] = useState(0);
-  const [category, setCategory] = useState("NONE")
-
   const [itemList, setItemList] = useState([]);  
   const [isItemLoaded, setIsItemLoaded] = useState(false);
-  // const searchCondition = useRef(DEFAULT_ITEM_CONDITION);
   const nextPage = useRef(0);
   const [hasNextPage, setHasNextPage] = useState(true);
   
-
-  // 화면에 접속하자마자 검색이 필요하다.
   useEffect(() => {
-    setIsItemLoaded(false)
-    // console.log(`GET ${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
+    searchItems();
+  }, []);
+
+  function searchItems() {
+    setIsItemLoaded(false);
     axios
-      .get(
-          `${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, 
-          { withCredentials: true }
-        )
+      .get(`${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
         const items = res?.data?.items;
         if (items === undefined || items === null) {
@@ -39,7 +32,6 @@ export default function ItemMain() {
         } else {
           setItemList(items);
         }
-        setItemList(res?.data?.items); // 조회 결과 아이템
         setIsItemLoaded(true);
 
         if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
@@ -51,46 +43,24 @@ export default function ItemMain() {
         console.log(err)
         setItemList([]); // 에러 발생시 아무런 아이템도 나타내지 않는다.
       });
-  }, []);
-
-  const handleItemName = (e) => {
-    setItemName(e.target.value);
   }
 
-  const handleJob = (e) => {
-
-    setJob(e.target.value)
-  }
-
-  const handleMinLevel = (e) => {
-    setMinLevel(e.target.value)
-  }
-
-  const handleCategory = (e) => {
-    setCategory(e.target.value);
-  }
-
-  function getSearchCondition() {
-    return {
-      name: itemName,
-      job: job === "NONE" ? null : job,
-      minLevel: minLevel,
-      category: category === "NONE" ? null : category
-    }
-  }
-
-  function handleConditionSearch(e) {
-    e.preventDefault();
-    setIsItemLoaded(false);
+  function searchItemsWithCondition(searchCondition) {
+    console.log(nextPage.current);
+    console.log(itemList)
     axios
-      .post(`${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition(), { withCredentials: true })
+      .post(`${BASE_URI}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, { withCredentials: true })
       .then((res) => {
-        setItemList([...res.data.items])
+        if (nextPage.current == 0) {
+          setItemList([...res.data.items])
+        } else {
+          setItemList([...itemList, ...res.data.items])
+        }
         setIsItemLoaded(true)
 
-        nextPage.current = 1
         if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
         else setHasNextPage(true);  
+        nextPage.current += 1
       })
       .catch((err) => {
         console.log(err)
@@ -98,24 +68,58 @@ export default function ItemMain() {
       })
   }
 
-  function handleMoreItemButton(e) {
+  function handleMoreItemButton(e, searchCondition) {
     e.preventDefault()
-    setIsItemLoaded(false);
-    axios
-      .post(`${BASE_URI}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, getSearchCondition(), { withCredentials: true })
-      .then((res) => {
-        setItemList([...itemList, ...res.data.items])
-        setIsItemLoaded(true);
+    console.log(searchCondition);
+    searchItemsWithCondition(searchCondition);
+  }
 
-        if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
-        else setHasNextPage(true);
+  const [searchCondition, setSearchCondition] = useState(INITIAL_SEARCH_CONDITION);
 
-        nextPage.current += 1;
-      })
-      .catch((err) => {
-        console.log(err);
-        setItemList([])
-      })
+  function handleItemNameChange(e) {
+    e.preventDefault();
+    let copy = {...searchCondition};
+    copy.name = e.target.value;
+    setSearchCondition(copy);
+  }
+
+  function handleJobsChange(e, jobName) {
+    e.preventDefault();
+    nextPage.current = 0;
+    // jobName에 따라서 올바른 속성을 true로 변경한 후 condition 값을 세팅한다.
+    let copy = {...searchCondition}
+    switch (jobName) {
+      case 'warrior':
+        copy.jobs.warrior = !copy.jobs.warrior; break;
+      case 'bowman':
+        copy.jobs.bowman = !copy.jobs.bowman; break;
+      case 'magician':
+        copy.jobs.magician = !copy.jobs.magician; break;
+      case 'thief':
+        copy.jobs.thief = !copy.jobs.thief; break;
+    }
+
+    setSearchCondition(copy)
+    searchItemsWithCondition(copy);
+  }
+
+  function handleMinLevelChange(e) {
+    let copy = {...searchCondition};
+    copy.minLevel = e.target.value;
+    setSearchCondition(copy);
+  }
+
+  function handleCategoryChange(e, category) {
+    e.preventDefault();
+    nextPage.current = 0;
+    let copy = {...searchCondition};
+    if (copy.category === category) {
+      copy.category = "ALL";
+    } else {
+      copy.category = category;
+    }
+    setSearchCondition(copy);
+    searchItemsWithCondition(copy);
   }
 
   return (
@@ -131,21 +135,19 @@ export default function ItemMain() {
           <div className="col-lg-12 col-xl-4">
             <section className="col-md-12">
               <ItemCondition
-                handleItemName={handleItemName}
-                handleJob={handleJob}
-                minLevel={minLevel}
-                handleMinLevel={handleMinLevel} 
-                handleCategory={handleCategory}
-                handleSubmitButton={handleConditionSearch}
+                searchCondition={searchCondition}
+                handleItemNameChange={handleItemNameChange}
+                handleJobsChange={handleJobsChange}
+                handleCategoryChange={handleCategoryChange}
+                handleMinLevelChange={handleMinLevelChange}
+                doSearch={searchItemsWithCondition}
               />
             </section>
           </div>  
-
-
           <div className="col-lg-12 col-xl-8">
-            
             <section>
               <ItemList 
+                searchCondition={searchCondition}
                 itemList={itemList} 
                 isItemLoaded={isItemLoaded}
                 hasNextPage={hasNextPage}

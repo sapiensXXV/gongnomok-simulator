@@ -477,3 +477,120 @@
 }
 
 
+.job-select-button-container {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  /* align-items: center; */
+  gap: 10px;
+}
+
+.job-select-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 50px;
+  height: 33px;
+  padding: 0px 7px 0px 7px;
+
+  /* background-color: #FFFFFF; */
+  border: none;
+  border-radius: 6px;
+
+}
+
+.job-select-button span {
+  font-family: 'Pretendard-Regular';
+  font-size: 14px;
+}
+
+.job-select-button img {
+  width: 13px;
+  height: 13px;
+  margin-right: 5px;
+}
+
+.job-select-button:hover  {
+  background-color: rgb(81, 118, 252);
+  color: white;
+} 
+
+.job-select-button:hover > img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.select-active {
+  background-color: rgb(81, 118, 252);
+  color: white;
+}
+
+.select-active > img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.select-active-text {
+  background-color: rgb(81, 118, 252);
+  color: white;
+}
+
+.condition-title {
+  font-size: 16px;
+  font-family: 'Pretendard SemiBold';
+}
+
+.category-select-button-container {
+  display: flex;
+  gap: 5px;
+  column-gap: 5px;
+  flex-wrap: wrap;
+  justify-content: start;
+
+  margin-top: .5rem;
+}
+
+
+.category-select-button {
+  /* display: flex; */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  
+  padding: 0px 7px 0px 7px;
+  min-width: 33px;
+  min-height: 33px;
+
+  /* background-color: #FFFFFF; */
+  border: none;
+  border-radius: 6px;
+}
+
+.category-select-button:hover {
+  background-color: rgb(81, 118, 252);
+  color: white;
+}
+
+.category-select-button span {
+  font-family: 'Pretendard-Regular';
+  font-size: 14px;
+}
+
+.category-select-button img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.item-list-button button > img {
+  -webkit-transition:
+    -webkit-transform 0.5s;
+  transition:
+    transform 0.5s;
+}
+
+.item-list-button button:hover > img {
+  transform: scale(1.2);
+  transform: rotate(-15deg);
+}
