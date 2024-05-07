@@ -41,10 +41,10 @@ public class ItemService {
 
     @Transactional(readOnly = true)
     public ItemListResponse findItemsWithCondition(
-        final ItemListServiceRequest dto,
+        final ItemListServiceRequest condition,
         final Pageable pageable
     ) {
-        final List<ItemResponse> items = itemRepository.paginationFindItemsWithCondition(dto, pageable);
+        final List<ItemResponse> items = itemRepository.paginationFindItemsWithCondition(condition, pageable);
         return ItemListResponse.of(items);
     }
 

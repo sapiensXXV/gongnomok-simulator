@@ -17,7 +17,7 @@ public class ItemFactory {
         String itemName = dto.getName();
         ItemRequiredJob requiredJob = dto.getRequiredJob();
         ItemRequiredDto required = dto.getRequired();
-        Category category = Category.stringToCategory(dto.getCategory());
+        Category category = Category.parseFrom(dto.getCategory());
         ItemStatusRequest status = dto.getStatus();
         int upgradableCount = dto.getUpgradableCount();
         AttackSpeed attackSpeed = AttackSpeed.stringToAttackSpeed(dto.getAttackSpeed());
