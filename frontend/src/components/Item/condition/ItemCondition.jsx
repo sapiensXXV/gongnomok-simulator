@@ -51,7 +51,7 @@ export default function ItemCondition({
     }
     console.log(copy.category)
     setSearchCondition(copy);
-    // doSearch(copy);
+    doSearch(copy);
   }
 
   return (
@@ -105,9 +105,9 @@ export default function ItemCondition({
             <span className="condition-title">카테고리</span>
             <div className="category-select-button-container">
               <CategorySelect category={`ONE_HANDED_SWORD`} condition={searchCondition.category} name={`한손검`} representationItemNumber={5} changeHandler={handleCategoryChange}/>
-              <CategorySelect category={`TWO_HANDED_SWORD`} condition={searchCondition.category} name={`두손검`} representationItemNumber={31} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`TWO_HANDED_SWORD`} condition={searchCondition.category} name={`두손검`} representationItemNumber={36} changeHandler={handleCategoryChange}/>
               <CategorySelect category={`ONE_HANDED_AXE`} condition={searchCondition.category} name={`한손 도끼`} representationItemNumber={58} changeHandler={handleCategoryChange}/>
-              <CategorySelect category={`TWO_HANDED_AXE`} condition={searchCondition.category} name={`두손 도끼`} representationItemNumber={72} changeHandler={handleCategoryChange}/>
+              <CategorySelect category={`TWO_HANDED_AXE`} condition={searchCondition.category} name={`두손 도끼`} representationItemNumber={73} changeHandler={handleCategoryChange}/>
               <CategorySelect category={`ONE_HANDED_BLUNT`} condition={searchCondition.category} name={`한손 둔기`} representationItemNumber={96} changeHandler={handleCategoryChange}/>
               <CategorySelect category={`TWO_HANDED_BLUNT`} condition={searchCondition.category} name={`두손 둔기`} representationItemNumber={106} changeHandler={handleCategoryChange}/>
               <CategorySelect category={`SPEAR`} condition={searchCondition.category} name={`창`} representationItemNumber={125} changeHandler={handleCategoryChange}/>

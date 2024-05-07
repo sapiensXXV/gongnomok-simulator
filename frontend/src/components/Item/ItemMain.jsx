@@ -8,11 +8,8 @@ import { DEFAULT_FETCH_SIZE } from "../../global/item";
 import { BASE_URI } from "../../global/uri";
 import FeedbackBanner from "../banner/FeedbackBanner";
 import InformBanner from "../banner/InformBanner";
-import { INITIAL_SEARCH_CONDITION } from "./condition/search";
 
 export default function ItemMain() {
-
-  // const [searchCondition, setSearchCondition] = useState(INITIAL_SEARCH_CONDITION)
 
   const [itemList, setItemList] = useState([]);  
   const [isItemLoaded, setIsItemLoaded] = useState(false);
@@ -64,8 +61,6 @@ export default function ItemMain() {
       })
   }
 
-
-
   function doSearchWithCondition(searchCondition) {
     // 바뀐 컨디션 데이터를 사용해서 검색 처리
     nextPage.current = 0; // 페이지 초기화
@@ -90,10 +85,6 @@ export default function ItemMain() {
           <div className="col-lg-12 col-xl-4">
             <section className="col-md-12">
               <ItemCondition
-                // handleItemNameChange={handleItemNameChange}
-                // handleMinLevelChange={handleMinLevelChange}
-                // handleJobsChange={handleJobsChange}
-                // handleCategoryChange={handleCategoryChange}
                 doSearch={doSearchWithCondition}
               />
             </section>
