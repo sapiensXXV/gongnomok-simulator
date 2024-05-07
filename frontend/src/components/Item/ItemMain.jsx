@@ -8,6 +8,7 @@ import { DEFAULT_FETCH_SIZE } from "../../global/item";
 import { BASE_URI } from "../../global/uri";
 import FeedbackBanner from "../banner/FeedbackBanner";
 import InformBanner from "../banner/InformBanner";
+import { INITIAL_SEARCH_CONDITION } from "./condition/search";
 
 export default function ItemMain() {
 
@@ -45,10 +46,16 @@ export default function ItemMain() {
   }
 
   function searchItemsWithCondition(searchCondition) {
+    console.log(nextPage.current);
+    console.log(itemList)
     axios
       .post(`${BASE_URI}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, { withCredentials: true })
       .then((res) => {
-        setItemList([...res.data.items])
+        if (nextPage.current == 0) {
+          setItemList([...res.data.items])
+        } else {
+          setItemList([...itemList, ...res.data.items])
+        }
         setIsItemLoaded(true)
 
         if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
@@ -61,15 +68,58 @@ export default function ItemMain() {
       })
   }
 
-  function doSearchWithCondition(searchCondition) {
-    // 바뀐 컨디션 데이터를 사용해서 검색 처리
-    nextPage.current = 0; // 페이지 초기화
+  function handleMoreItemButton(e, searchCondition) {
+    e.preventDefault()
+    console.log(searchCondition);
     searchItemsWithCondition(searchCondition);
   }
 
-  function handleMoreItemButton(e) {
-    e.preventDefault()
-    searchItemsWithCondition();
+  const [searchCondition, setSearchCondition] = useState(INITIAL_SEARCH_CONDITION);
+
+  function handleItemNameChange(e) {
+    e.preventDefault();
+    let copy = {...searchCondition};
+    copy.name = e.target.value;
+    setSearchCondition(copy);
+  }
+
+  function handleJobsChange(e, jobName) {
+    e.preventDefault();
+    nextPage.current = 0;
+    // jobName에 따라서 올바른 속성을 true로 변경한 후 condition 값을 세팅한다.
+    let copy = {...searchCondition}
+    switch (jobName) {
+      case 'warrior':
+        copy.jobs.warrior = !copy.jobs.warrior; break;
+      case 'bowman':
+        copy.jobs.bowman = !copy.jobs.bowman; break;
+      case 'magician':
+        copy.jobs.magician = !copy.jobs.magician; break;
+      case 'thief':
+        copy.jobs.thief = !copy.jobs.thief; break;
+    }
+
+    setSearchCondition(copy)
+    searchItemsWithCondition(copy);
+  }
+
+  function handleMinLevelChange(e) {
+    let copy = {...searchCondition};
+    copy.minLevel = e.target.value;
+    setSearchCondition(copy);
+  }
+
+  function handleCategoryChange(e, category) {
+    e.preventDefault();
+    nextPage.current = 0;
+    let copy = {...searchCondition};
+    if (copy.category === category) {
+      copy.category = "ALL";
+    } else {
+      copy.category = category;
+    }
+    setSearchCondition(copy);
+    searchItemsWithCondition(copy);
   }
 
   return (
@@ -85,13 +135,19 @@ export default function ItemMain() {
           <div className="col-lg-12 col-xl-4">
             <section className="col-md-12">
               <ItemCondition
-                doSearch={doSearchWithCondition}
+                searchCondition={searchCondition}
+                handleItemNameChange={handleItemNameChange}
+                handleJobsChange={handleJobsChange}
+                handleCategoryChange={handleCategoryChange}
+                handleMinLevelChange={handleMinLevelChange}
+                doSearch={searchItemsWithCondition}
               />
             </section>
           </div>  
           <div className="col-lg-12 col-xl-8">
             <section>
               <ItemList 
+                searchCondition={searchCondition}
                 itemList={itemList} 
                 isItemLoaded={isItemLoaded}
                 hasNextPage={hasNextPage}

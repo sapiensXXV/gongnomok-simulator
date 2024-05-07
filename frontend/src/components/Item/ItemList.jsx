@@ -2,6 +2,7 @@ import SingleItem from "./SingleItem";
 import ItemRanking from "./ItemRanking";
 
 export default function ItemList({
+  searchCondition,
   itemList,
   isItemLoaded,
   hasNextPage,
@@ -11,7 +12,7 @@ export default function ItemList({
   return (
     <>
       <ItemRanking/>
-      <section className="bg-light rounded py-2 px-1">
+      <section className="bg-light rounded py-3 px-1">
         <h2 className="item-list-title text-center">아이템 목록</h2>
         <section className="col-md-12 bg-light rounded item-list-container px-2 py-2">
           {/* <div className="row row-cols-xs-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-auto row-cols-xl-6 g-3 d-flex justify-content-start"> */}
@@ -39,7 +40,7 @@ export default function ItemList({
 
           {
             hasNextPage &&
-            <button className="btn btn-light more-item-button" onClick={(e) => handleMoreItemButton(e)}>
+            <button className="btn btn-light more-item-button" onClick={(e) => handleMoreItemButton(e, searchCondition)}>
               더보기
             </button>
           }
