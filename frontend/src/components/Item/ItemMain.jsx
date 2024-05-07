@@ -46,8 +46,6 @@ export default function ItemMain() {
   }
 
   function searchItemsWithCondition(searchCondition) {
-    console.log(nextPage.current);
-    console.log(itemList)
     axios
       .post(`${BASE_URI}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, { withCredentials: true })
       .then((res) => {
@@ -68,9 +66,13 @@ export default function ItemMain() {
       })
   }
 
+  function doSearch(e, searchCondition) {
+    e.preventDefault();
+    searchItemsWithCondition(searchCondition);
+  }
+
   function handleMoreItemButton(e, searchCondition) {
     e.preventDefault()
-    console.log(searchCondition);
     searchItemsWithCondition(searchCondition);
   }
 
@@ -78,6 +80,7 @@ export default function ItemMain() {
 
   function handleItemNameChange(e) {
     e.preventDefault();
+    nextPage.current = 0
     let copy = {...searchCondition};
     copy.name = e.target.value;
     setSearchCondition(copy);
@@ -140,7 +143,7 @@ export default function ItemMain() {
                 handleJobsChange={handleJobsChange}
                 handleCategoryChange={handleCategoryChange}
                 handleMinLevelChange={handleMinLevelChange}
-                doSearch={searchItemsWithCondition}
+                doSearch={doSearch}
               />
             </section>
           </div>  
