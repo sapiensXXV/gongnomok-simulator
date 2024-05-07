@@ -673,7 +673,7 @@ export default function ItemSimulator() {
                 className="item-record-challenge-btn"
                 onClick={challengeRecordButtonClicked}
                 onMouseUp={() => document.activeElement.blur()}
-              >기록에 도전하기</button>
+              >기록 도전</button>
             </section>
           </section>
 

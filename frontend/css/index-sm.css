@@ -590,13 +590,6 @@
     justify-content: center;
   }
 
-  .item-record-challenge-section {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: center;
-  }
-
   .item-record-challenge-btn {
     padding: 3px 7px 3px 7px;
     border: none;
