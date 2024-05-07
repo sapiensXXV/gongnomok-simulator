@@ -14,7 +14,7 @@ export default function ItemCondition({
 
   return (
     <>
-      <section className="bg-light rounded py-2">
+      <section className="bg-light rounded py-3">
         <h2 className="text-center item-condition-title">아이템 찾기</h2>
         <form onSubmit={(e) => doSearch(e, searchCondition)}>
           <section id="item-name-condition" className="d-flex bd-highlight">

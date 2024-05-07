@@ -127,17 +127,10 @@
     overflow-x: hidden;
     overflow-y: auto;
   }
-  
-  .item-list-title {
-    font-size: 24px;
-    font-family: SOYOMapleBoldTTF;
-  }
-  
-
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 12vw;
+    width: 14.5vw;
     height: 12vw;
   
     border: none;
@@ -145,11 +138,6 @@
   
     padding: 2px
   
-  }
-
-  .item-condition-title {
-    font-size: 24px;
-    font-family: SOYOMapleBoldTTF;
   }
 
   /********************* 랭킹 ************************/
@@ -169,12 +157,6 @@
 
   .item-ranking-container img {
     width: 30px;
-  }
-
-  .item-ranking-title {
-    font-family: SOYOMapleBoldTTF;
-    font-size: 24px;
-    margin-bottom: 8px;
   }
 
   .item-ranking-controller {
@@ -229,7 +211,7 @@
   /* 아이템 리스트 아이템 이름 */
   .item-list-button span {
     display: block;
-    font-family: Pretendard-SemiBold;
+    font-family: SejonghospitalBold;
     font-size: 13px;
     margin-top: 6px;
 
@@ -617,8 +599,8 @@
     column-gap: 10px;
     row-gap:10px;
   
-    /* grid-template-columns: repeat(6, 1fr); */
-    grid-template-columns: repeat(auto-fill, minmax(15%, auto));
+    grid-template-columns: repeat(6, 1fr);
+    /* grid-template-columns: repeat(auto-fill, minmax(15%, auto)); */
   }
 
 

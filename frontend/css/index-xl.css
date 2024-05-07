@@ -191,14 +191,9 @@
     overflow-y: auto;
   }
 
-  .item-list-title {
-    font-family: SOYOMapleBoldTTF;
-    font-size: 24px;
-  }
-
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 8.8vw;
+    width: 11.6vw;
     height: 8.8vw;
   
     border: none;
@@ -206,11 +201,6 @@
   
     padding: 2px
   
-  }
-
-  .item-condition-title {
-    font-size: 24px;
-    font-family: SOYOMapleBoldTTF;
   }
 
   /* 아이템 리스트 이미지 */
@@ -222,7 +212,7 @@
   .item-list-button span {
     display: block;
     font-family: Pretendard-SemiBold;
-    font-size: 12px;
+    font-size: 15px;
     margin-top: 11px;
 
     text-overflow: ellipsis;
@@ -621,7 +611,7 @@
     column-gap: 10px;
     row-gap:10px;
   
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
 

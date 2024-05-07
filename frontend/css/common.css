@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: 'Pretendard-Thin';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
@@ -308,7 +307,7 @@
 .modal-input {
   box-sizing: border-box;
   margin: 0;
-  
+
   position: relative;
   display: inline-block;
   width: 100%;
@@ -357,7 +356,7 @@
 }
 
 .delete-modal-delete-button {
-  background-color: #303030; 
+  background-color: #303030;
   color: #FFF;
 }
 
@@ -368,8 +367,9 @@
 
 @keyframes blink {
   40% {
-    opacity:.5;
+    opacity: .5;
   }
+
   80% {
     opacity: 1;
   }
@@ -416,6 +416,7 @@
 .pink {
   color: rgb(255, 129, 221)
 }
+
 .item-best-record-root {
   text-align: center;
   justify-content: flex-start;
@@ -512,12 +513,12 @@
   margin-right: 5px;
 }
 
-.job-select-button:hover  {
+.job-select-button:hover {
   background-color: rgb(81, 118, 252);
   color: white;
-} 
+}
 
-.job-select-button:hover > img {
+.job-select-button:hover>img {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
@@ -526,7 +527,7 @@
   color: white;
 }
 
-.select-active > img {
+.select-active>img {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
@@ -557,7 +558,7 @@
   align-items: center;
   justify-content: center;
 
-  
+
   padding: 0px 7px 0px 7px;
   min-width: 33px;
   min-height: 33px;
@@ -574,23 +575,25 @@
 
 .category-select-button span {
   font-family: 'Pretendard-Regular';
-  font-size: 14px;
+  font-size: 15px;
+  /* font-size: 1.1vw; */
 }
 
 .category-select-button img {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   margin-right: 5px;
+  object-fit: contain;
 }
 
-.item-list-button button > img {
+.item-list-button button>img {
   -webkit-transition:
     -webkit-transform 0.5s;
   transition:
     transform 0.5s;
 }
 
-.item-list-button button:hover > img {
+.item-list-button button:hover>img {
   transform: scale(1.2);
   transform: rotate(-15deg);
 }
@@ -598,12 +601,12 @@
 /* 랭킹 페이지 공통 부분 */
 .item-rank-text {
   font-family: SOYOMapleBoldTTF;
-  
+
   width: 38px;
-} 
+}
 
 .single-ranking-item > span {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .single-ranking-item {
@@ -620,7 +623,7 @@
   margin-top: 7px;
 }
 
-.item-ranking-page-controller-container > button {
+.item-ranking-page-controller-container>button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -628,11 +631,11 @@
   height: 24px;
 }
 
-.item-ranking-page-controller-container > button:hover {
+.item-ranking-page-controller-container>button:hover {
   background-color: rgb(81, 118, 252);
 }
 
-.item-ranking-page-controller-container > button:hover > img {
+.item-ranking-page-controller-container>button:hover>img {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
@@ -645,7 +648,7 @@
   background-color: rgb(81, 118, 252);
 }
 
-.item-list-button button:hover > span {
+.item-list-button button:hover>span {
   color: white;
 }
 
@@ -656,7 +659,23 @@
   justify-content: center;
 }
 
-.item-record-challenge-section > button:hover {
+.item-record-challenge-section>button:hover {
   background-color: rgb(81, 118, 252);
   color: white;
+}
+
+.item-list-title {
+  font-size: 20px;
+  font-family: NPSfontBold;
+}
+
+.item-condition-title {
+  font-size: 20px;
+  font-family: NPSfontBold;
+}
+
+.item-ranking-title {
+  font-family: NPSfontBold;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
