@@ -98,8 +98,8 @@
   }
 
   .header-title img {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     margin: 10px;
   }
 
@@ -113,7 +113,7 @@
     display: block;
     color: black;
     
-    font-size: 19px;
+    font-size: 18px;
   }
 
   .header-title a {

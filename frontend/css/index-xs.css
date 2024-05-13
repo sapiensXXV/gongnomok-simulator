@@ -99,22 +99,22 @@
   }
 
   .header-title img {
-    width: 6vw;
-    height: 6vw;
+    width: 24px;
+    height: 24px;
     margin: 10px;
   }
 
   .header-item-nav {
     margin-left: 14px;
     font-family: NPSfontBold;
-    font-size: 2.5vw;
+    font-size: 16px;
   }
 
   .header-title span {
     display: block;
     color: black;
     
-    font-size: 22px;
+    font-size: 18px;
   }
 
 
@@ -127,7 +127,7 @@
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 24vw;
+    width: 27vw;
     height: 24vw;
   
     border: none;
