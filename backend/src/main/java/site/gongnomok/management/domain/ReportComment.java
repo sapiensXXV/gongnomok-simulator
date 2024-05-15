@@ -16,7 +16,7 @@ import site.gongnomok.comment.domain.Comment;
 public class ReportComment {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_report_id")
+    @Column(name = "report_id")
     private Long id;
 
     @OneToOne(cascade = CascadeType.REMOVE)
