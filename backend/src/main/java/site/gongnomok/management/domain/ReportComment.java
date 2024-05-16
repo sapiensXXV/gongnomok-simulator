@@ -20,8 +20,8 @@ public class ReportComment {
     private Long id;
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @Column(name = "comment_id")
-    private Comment commentId;
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
     private int count;
 }

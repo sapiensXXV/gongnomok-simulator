@@ -34,6 +34,8 @@ public class QComment extends EntityPathBase<Comment> {
 
     public final StringPath password = createString("password");
 
+    public final site.gongnomok.management.domain.QReportComment reportComment;
+
     public QComment(String variable) {
         this(Comment.class, forVariable(variable), INITS);
     }
@@ -53,6 +55,7 @@ public class QComment extends EntityPathBase<Comment> {
     public QComment(Class<? extends Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.item = inits.isInitialized("item") ? new site.gongnomok.item.domain.QItem(forProperty("item"), inits.get("item")) : null;
+        this.reportComment = inits.isInitialized("reportComment") ? new site.gongnomok.management.domain.QReportComment(forProperty("reportComment"), inits.get("reportComment")) : null;
     }
 
 }

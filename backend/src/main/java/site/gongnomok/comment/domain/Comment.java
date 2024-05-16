@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import site.gongnomok.item.domain.Item;
+import site.gongnomok.management.domain.ReportComment;
 
 import java.time.LocalDateTime;
 
@@ -30,6 +31,9 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
+
+    @OneToOne(mappedBy = "comment", fetch = FetchType.LAZY, orphanRemoval = true)
+    private ReportComment reportComment;
 
     private Comment(String name, String password, String content) {
         this.name = name;
