@@ -94,13 +94,11 @@ export default function NewItem() {
     //공격속도
     const [attackSpeed, setAttackSpeed] = useState('NORMAL')
 
-
     //업그레이드 가능 횟수
     const [upgradableCount, setUpgradableCount] = useState(7);
 
     //넉백 확률
     const [knockBackPercent, setKnockBackPercent] = useState(0);
-
 
     useEffect(() => {
         axios.get(`${BASE_URI}/api/auth`, { withCredentials: true })
