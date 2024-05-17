@@ -50,7 +50,6 @@ public class AuthController {
         if (member == null) {
             return ResponseEntity.ok(new AuthCheckResponse(Role.GUEST.name()));
         }
-
         return ResponseEntity.ok(new AuthCheckResponse(member.getRole()));
     }
 }

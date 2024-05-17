@@ -34,5 +34,19 @@ public class MemberController {
         return ResponseEntity.ok().body(member);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(
+        HttpServletRequest request
+    ) {
+        HttpSession session = request.getSession();
+
+        if (session == null) {
+            throw new RuntimeException("There are no sessions to expire.");
+        }
+
+        session.invalidate();
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

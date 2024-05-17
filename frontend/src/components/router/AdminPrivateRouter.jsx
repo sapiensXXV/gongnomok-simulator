@@ -8,6 +8,6 @@ export default function AdminPrivateRoutes() {
   const memberState = useRecoilValue(MemberState)
 
   return (
-    memberState === "ADMIN" ? <Outlet/> : <Navigate to='/login' />
+    memberState === "ADMIN" ? <Outlet/> : <Navigate to='/' />
   )
 }
