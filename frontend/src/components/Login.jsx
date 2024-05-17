@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { BASE_URI } from "../global/uri";
+import { useRecoilState } from "recoil";
+import { LoginState, MemberState } from "./global-state/State";
 
 
 
@@ -11,6 +13,8 @@ export default function Login () {
   const [inputId, setInputId] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [hasError, setHasError] = useState(false);
+  const [loginState, setLoginState] = useRecoilState(LoginState)
+  const [memberState, setMemberState] = useRecoilState(MemberState)
 
   const handleIdChange = (e) => {
     e.preventDefault();
@@ -32,11 +36,12 @@ export default function Login () {
     }, { withCredentials: true })
       .then((res) => {
         console.log(res);
-        setHasError(false)
-        navigate('/')
+        setHasError(false);
+        setLoginState(true);
+        setMemberState(res.data.role);
+        navigate('/');
       })
       .catch((err) => {
-        console.log(err)
         setHasError(true)
       })
   }
