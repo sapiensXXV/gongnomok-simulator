@@ -34,6 +34,5 @@ public class MemberController {
         return ResponseEntity.ok().body(member);
     }
 
-    @PostMapping("/logout")
 
 }

@@ -33,7 +33,7 @@ export default function Header() {
                   <li className="nav-item">
                     <a className="nav-link" href="/login">관리자 로그인</a>
                   </li>
-                ) : <></>
+                ) : null
               }
 
               {
@@ -41,7 +41,7 @@ export default function Header() {
                   <li className="nav-item">
                     <a className="nav-link" href="/item/new">아이템 등록</a>
                   </li>
-                ) : <></>
+                ) : null
               }
 
             </ul>
@@ -55,7 +55,7 @@ export default function Header() {
                     onClick={handleLogoutButtonClicked}
                   >로그아웃</button>
                 </form>
-              ) : <></>
+              ) : null
             }
 
           </div>
