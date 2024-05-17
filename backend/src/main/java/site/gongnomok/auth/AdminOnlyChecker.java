@@ -20,7 +20,7 @@ public class AdminOnlyChecker {
 
     @Before("@annotation(site.gongnomok.auth.AdminOnly)")
     public void check(JoinPoint joinPoint) {
-        log.info("args={}", joinPoint.getArgs());
+//        log.info("args={}", joinPoint.getArgs());
         Arrays.stream(joinPoint.getArgs())
             .filter(Accessor.class::isInstance)
             .map(Accessor.class::cast)

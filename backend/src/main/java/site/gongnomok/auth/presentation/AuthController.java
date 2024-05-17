@@ -38,6 +38,6 @@ public class AuthController {
     @GetMapping("/auth/admin")
     @AdminOnly
     public ResponseEntity<AdminConfirmResponse> authAdmin(@AdminAuth Accessor accessor) {
-        return ResponseEntity.ok().body(AdminConfirmResponse.of("admin confirm"));
+        return ResponseEntity.ok().body(new AdminConfirmResponse("admin confirm"));
     }
 }

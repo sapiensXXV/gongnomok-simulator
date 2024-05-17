@@ -1,27 +1,14 @@
 package site.gongnomok.exhandler.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public final class ErrorResponse {
 
     private final int code;
     private final String message;
-
-    private ErrorResponse(
-        final int code,
-        final String message
-    ) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public static ErrorResponse of(
-        final int code,
-        final String message
-    ) {
-        return new ErrorResponse(code, message);
-    }
 
 }

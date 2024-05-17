@@ -1,38 +1,42 @@
 
 import Header from './components/Header';
-import { Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import CustomRouter from './components/router/CustomRouter';
 
-import ItemMain from './components/Item/ItemMain';
-import Login from './components/Login';
-import Test from './components/Test';
-import NewItem from './components/NewItem';
-import ItemSimulator from './components/Item/ItemSimulator';
-import axios from 'axios';
+// function authAdmin() {
+//   return new Promise(function (resolve, reject) {
+//     axios
+//       .get(`${BASE_URI}/api/auth/admin`, { withCredentials: true })
+//       .then((response) => {
+//         resolve(response);
+//       })
+//       .catch((err) => {
+//         // reject(new Error("Admin authentication failed"));
+//         reject(err);
+//       })
+//   })
+// }
 
-const isAdmin = () => {
-  axios.get(`${BASE_URI}/api/auth`, { withCredentials: true })
-    .then((response) => {
-    })
-    .catch((err) => {
-      console.log(err)
-      navigate('/login')
-    })
-}
+// function isAdmin() {
+//   authAdmin()
+//     .then(function (response) {
+//       console.log(response);
+//       return true;
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//       return false;
+//     })
+// }
 
 function App() {
 
   return (
     <>
-
-      <Header />
-      <Routes>
-        <Route path='/' element={<ItemMain />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/test' element={<Test />} />
-        <Route path='/item/new' element={<NewItem />} />
-        <Route path='/item/:itemId' element={<ItemSimulator />} />
-
-      </Routes>
+      <RecoilRoot>
+        <Header />
+        <CustomRouter/>
+      </RecoilRoot>
     </>
   );
 }
