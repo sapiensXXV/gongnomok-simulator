@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import site.gongnomok.auth.AdminAuth;
 import site.gongnomok.auth.AdminOnly;
 import site.gongnomok.auth.domain.Accessor;
-import site.gongnomok.comment.service.CommentService;
 import site.gongnomok.management.dto.response.ReportCommentDeleteResponse;
 import site.gongnomok.management.dto.response.ReportCommentResponse;
+import site.gongnomok.management.service.ManagementService;
 
 import java.awt.print.Pageable;
 
@@ -21,7 +21,7 @@ import java.awt.print.Pageable;
 @RequiredArgsConstructor
 public class ManagementController {
 
-    private final CommentService commentService;
+    private final ManagementService managementService;
 
     /**
      * 신고된 댓글 리스트 요청
@@ -57,4 +57,5 @@ public class ManagementController {
 
         return ResponseEntity.ok(ReportCommentDeleteResponse.fromList());
     }
+
 }
