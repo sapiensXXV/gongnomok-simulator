@@ -1,4 +1,4 @@
-package site.gongnomok.comment.dto.request;
+package site.gongnomok.management.dto;
 
 import lombok.Setter;
 
