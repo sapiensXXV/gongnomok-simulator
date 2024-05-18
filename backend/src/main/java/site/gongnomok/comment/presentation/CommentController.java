@@ -60,4 +60,12 @@ public class CommentController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * 댓글신고
+     */
+    @PostMapping("/item/comment/report")
+    public ResponseEntity<Void> reportComment() {
+        return ResponseEntity.ok().build();
+    }
+
 }
