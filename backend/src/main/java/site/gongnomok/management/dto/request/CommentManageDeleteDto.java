@@ -1,4 +1,4 @@
-package site.gongnomok.management.dto;
+package site.gongnomok.management.dto.request;
 
 
 import lombok.AllArgsConstructor;
@@ -8,6 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CommentManageDeleteDto {
 
-    private final CommentIdCollection commentIds;
+    private final CommentIdList commentIds;
 
 }

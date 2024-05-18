@@ -1,4 +1,4 @@
-package site.gongnomok.management.dto;
+package site.gongnomok.management.dto.request;
 
 import lombok.Setter;
 
@@ -11,11 +11,11 @@ import java.util.List;
  * commentId 목록을 저장하고 있는 List를 감싸는 일급 컬렉션이다.
  */
 @Setter
-public class CommentIdCollection {
+public class CommentIdList {
 
     private final List<Long> commentIdList;
 
-    public CommentIdCollection(List<Long> commentIdList) {
+    public CommentIdList(List<Long> commentIdList) {
         this.commentIdList = commentIdList;
     }
 

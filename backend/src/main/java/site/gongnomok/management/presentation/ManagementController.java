@@ -23,6 +23,9 @@ public class ManagementController {
 
     private final CommentService commentService;
 
+    /**
+     * 신고된 댓글 리스트 요청
+     */
     @GetMapping("/manage/report-comments")
     @AdminOnly
     public ResponseEntity<ReportCommentResponse> reportCommentList(
@@ -32,15 +35,26 @@ public class ManagementController {
         return null;
     }
 
+    /**
+     * 신고된 댓글 삭제 요청
+     */
     @DeleteMapping("/manage/report-comments")
     @AdminOnly
-    public ResponseEntity<ReportCommentDeleteResponse> deleteReportComment() {
+    public ResponseEntity<ReportCommentDeleteResponse> deleteReportComment(
+        @AdminAuth Accessor accessor
+    ) {
         return ResponseEntity.ok(ReportCommentDeleteResponse.comment());
     }
 
+    /**
+     * 신고된 댓글을 리스트에서 제거 요청
+     */
     @DeleteMapping("/manage/report-comments/list")
     @AdminOnly
-    public ResponseEntity<ReportCommentDeleteResponse> deleteReportCommentFromList() {
+    public ResponseEntity<ReportCommentDeleteResponse> deleteReportCommentFromList(
+        @AdminAuth Accessor accessor
+    ) {
+
         return ResponseEntity.ok(ReportCommentDeleteResponse.fromList());
     }
 }
