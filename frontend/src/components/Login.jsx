@@ -35,7 +35,6 @@ export default function Login () {
       password: inputPassword
     }, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         setHasError(false);
         setLoginState(true);
         setMemberState(res.data.role);

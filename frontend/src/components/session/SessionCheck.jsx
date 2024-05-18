@@ -12,7 +12,6 @@ function SessionCheck() {
 
   useEffect(() => {
     const checkSession = async () => {
-      console.log('요청을 보내요~~')
       try {
         const response = await axios.get(`${BASE_URI}/api/auth/check`)
         setMemberState(response.data.role);

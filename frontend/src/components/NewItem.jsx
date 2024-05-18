@@ -102,16 +102,6 @@ export default function NewItem() {
   //넉백 확률
   const [knockBackPercent, setKnockBackPercent] = useState(0);
 
-  // useEffect(() => {
-  //     axios.get(`${BASE_URI}/api/auth`, { withCredentials: true })
-  //         .then((response) => {
-  //         })
-  //         .catch((err) => {
-  //             console.log(err)
-  //             navigate('/login')
-  //         })
-  // }, [])
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const itemForm = {
