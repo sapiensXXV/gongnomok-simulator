@@ -13,13 +13,13 @@ import java.util.List;
 @Setter
 public class CommentIdList {
 
-    private final List<Long> commentIdList;
+    private final List<Long> ids;
 
-    public CommentIdList(List<Long> commentIdList) {
-        this.commentIdList = commentIdList;
+    public CommentIdList(List<Long> ids) {
+        this.ids = ids;
     }
 
-    public List<Long> getCommentIdList() {
-        return Collections.unmodifiableList(commentIdList);
+    public List<Long> getIds() {
+        return Collections.unmodifiableList(ids);
     }
 }

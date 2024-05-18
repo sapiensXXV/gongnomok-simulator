@@ -29,10 +29,10 @@ public interface ManagementService {
 
     /**
      * 리스트로 전달받은 댓글 ID에 해당하는 댓글을 신고리스트에서 삭제한다. 실제 댓글의 삭제가 이루어지지는 않는다.
-     * @param commentIdList  삭제한 댓글의 ID를 담은 일급 컬렉션
+     * @param reportIdList  삭제할 신고 댓글의 신고 ID
      * @return 댓글 삭제결과 인스턴스
      */
-    public ReportCommentDeleteResponse deleteReportCommentFromList(CommentIdList commentIdList);
+    public ReportCommentDeleteResponse deleteReportCommentFromList(CommentIdList reportIdList);
 
     /**
      * @param commentId 삭제할 댓글 ID
@@ -41,9 +41,9 @@ public interface ManagementService {
     public Long deleteReportComment(Long commentId);
 
     /**
-     * @param commentId 신고리스트에서 삭제할 댓글 ID
+     * @param commentId 신고리스트에서 삭제할 댓글 신고ID
      * @return 리스트에서 삭제한 댓글 ID
      */
-    public Long deleteReportCommentFromList(Long commentId);
+    public Long deleteReportCommentFromList(Long reportId);
 
 }

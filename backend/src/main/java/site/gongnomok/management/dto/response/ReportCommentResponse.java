@@ -1,13 +1,19 @@
 package site.gongnomok.management.dto.response;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class ReportCommentResponse {
 
     private final ReportCommentList reports;
+
+    private ReportCommentResponse(ReportCommentList reports) {
+        this.reports = reports;
+    }
+
+    public static ReportCommentResponse of(ReportCommentList reports) {
+        return new ReportCommentResponse(reports);
+    }
 
 }
