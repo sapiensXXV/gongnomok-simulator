@@ -12,6 +12,7 @@ function SessionCheck() {
 
   useEffect(() => {
     const checkSession = async () => {
+      console.log('session check')
       try {
         const response = await axios.get(`${BASE_URI}/api/auth/check`)
         setMemberState(response.data.role);

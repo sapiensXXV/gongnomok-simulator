@@ -13,7 +13,7 @@ export default function CustomRouter() {
         <Route path='/login' element={ <Login/>} />
         <Route path='/item/:itemId' element={ <ItemSimulator/>} />
         <Route element={ <AdminPrivateRoutes/> }>
-          <Route element={ <NewItem/> } path="/item/new" exact/>
+          <Route element={ <NewItem/> } path="/manage/item/new" exact/>
         </Route>
       </Routes>
     </>

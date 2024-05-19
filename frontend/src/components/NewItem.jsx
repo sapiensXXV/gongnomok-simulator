@@ -451,7 +451,7 @@ export default function NewItem() {
 
   return (
     <>
-      <h1 className="text-center mt-3">아이템 등록 페이지</h1>
+      <h1 className="text-center mt-3 mb-3">아이템 등록</h1>
       <form onSubmit={handleSubmit}>
         <div className="container d-grid gap-2">
 

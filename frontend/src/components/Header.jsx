@@ -34,7 +34,7 @@ export default function Header() {
         <div className="container-fluid">
           <div className="header-title">
             <a className="navbar-brand" href="/">
-              <img src="/images/logo.png" alt="gongnomok-home" />메이플 주문서 시뮬레이터
+              <img src="/images/logo.png" alt="gongnomok-home" /><span>메이플 주문서 시뮬레이터</span>
             </a>
           </div>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,26 +43,31 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {
+                memberState === ADMIN ? (
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      관리
+                    </a>
+
+                    <ul className="dropdown-menu">
+                      <li><a className="dropdown-item" href="/manage/item/new">아이템 등록</a></li>
+                      <li><a className="dropdown-item" href="/manage/item">아이템 관리</a></li>
+                      <li><a className="dropdown-item" href="/manage/comment">댓글 관리</a></li>
+                    </ul>
+                  </li>
+                ) : null
+              }
+              {
                 !loginState ? (
                   <li className="nav-item">
                     <a className="nav-link" href="/login">관리자 로그인</a>
                   </li>
                 ) : null
               }
-
-              {
-                memberState === ADMIN ? (
-                  <li className="nav-item">
-                    <a className="nav-link" href="/item/new">아이템 등록</a>
-                  </li>
-                ) : null
-              }
-
             </ul>
             {
               loginState ? (
                 <form className="d-flex" role="logout">
-                  {/* <button className="btn btn-outline-success" type="button">Search</button> */}
                   <button
                     className="btn btn-outline-danger btn-sm"
                     type="button"
