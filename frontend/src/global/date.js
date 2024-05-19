@@ -4,3 +4,8 @@ export default function isoDateToFormatString(isoDate) {
 
   return date + " " + time;
 }
+
+export function isoDateToFormatStringOnlyDate(isoData) {
+  const date = isoData.substring(0, 10);
+  return date;
+}
