@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import site.gongnomok.auth.AdminAuth;
 import site.gongnomok.auth.AdminOnly;
 import site.gongnomok.auth.domain.Accessor;
@@ -36,7 +33,6 @@ public class ManagementController {
 //        @AdminAuth Accessor accessor,
         final Pageable pageable
     ) {
-        log.info("reportCommentList");
         ReportCommentResponse result = managementService.reportCommentList(pageable);
         return ResponseEntity.ok(result);
     }
@@ -48,8 +44,8 @@ public class ManagementController {
     @AdminOnly
     public ResponseEntity<ReportCommentDeleteResponse> deleteReportComment(
         @AdminAuth Accessor accessor,
-        final CommentDeleteRequest request
-        ) {
+        @RequestBody final CommentDeleteRequest request
+    ) {
         return ResponseEntity.ok(ReportCommentDeleteResponse.comment());
     }
 
@@ -60,9 +56,8 @@ public class ManagementController {
     @AdminOnly
     public ResponseEntity<ReportCommentDeleteResponse> deleteReportCommentFromList(
         @AdminAuth Accessor accessor,
-        final CommentReportListDeleteRequest request
-        ) {
-
+        @RequestBody final CommentReportListDeleteRequest request
+    ) {
         return ResponseEntity.ok(ReportCommentDeleteResponse.fromList());
     }
 
