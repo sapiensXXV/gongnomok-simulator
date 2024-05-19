@@ -4,20 +4,22 @@ package site.gongnomok.comment.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.gongnomok.comment.domain.Comment;
+import site.gongnomok.comment.domain.repository.CommentJpaRepository;
+import site.gongnomok.comment.domain.repository.CommentQueryRepository;
 import site.gongnomok.comment.dto.request.CommentCreateServiceDto;
 import site.gongnomok.comment.dto.request.CommentDeleteServiceDto;
 import site.gongnomok.comment.dto.response.CommentCountResponse;
 import site.gongnomok.comment.dto.response.CommentCreateResponse;
 import site.gongnomok.comment.dto.response.CommentResponse;
-import site.gongnomok.comment.domain.repository.CommentJpaRepository;
-import site.gongnomok.comment.domain.repository.CommentQueryRepository;
 import site.gongnomok.global.exception.CommentException;
 import site.gongnomok.global.exception.ExceptionCode;
 import site.gongnomok.global.exception.ItemException;
-import site.gongnomok.item.domain.repository.ItemRepository;
-import site.gongnomok.comment.domain.Comment;
-import site.gongnomok.item.domain.Item;
 import site.gongnomok.global.util.SecurityUtil;
+import site.gongnomok.item.domain.Item;
+import site.gongnomok.item.domain.repository.ItemRepository;
+import site.gongnomok.management.domain.ReportComment;
+import site.gongnomok.management.domain.repository.ReportCommentJpaRepository;
 
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class CommentService {
     private final ItemRepository itemRepository;
     private final CommentQueryRepository commentQueryRepository;
     private final CommentJpaRepository commentJpaRepository;
+    private final ReportCommentJpaRepository reportCommentJpaRepository;
 
     public CommentCreateResponse createComment(
         final CommentCreateServiceDto createDto,
@@ -78,5 +81,18 @@ public class CommentService {
         }
 
         commentJpaRepository.delete(findComment);
+    }
+
+    public void reportComment(final Long commentId) {
+        Comment findComment = commentJpaRepository
+            .findById(commentId)
+            .orElseThrow(() -> new CommentException(NOT_FOUND_COMMENT_ID));
+
+        reportCommentJpaRepository
+            .findReportCommentByCommentId(commentId)
+            .ifPresentOrElse((ReportComment::addCount), () -> {
+                ReportComment newReport = ReportComment.from(findComment);
+                reportCommentJpaRepository.save(newReport);
+            });
     }
 }

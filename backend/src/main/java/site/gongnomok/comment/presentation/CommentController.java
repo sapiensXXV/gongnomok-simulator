@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.comment.dto.request.CommentCreateDto;
 import site.gongnomok.comment.dto.request.CommentDeleteDto;
+import site.gongnomok.comment.dto.request.CommentReportDto;
 import site.gongnomok.comment.dto.response.CommentCountResponse;
 import site.gongnomok.comment.dto.response.CommentCreateResponse;
 import site.gongnomok.comment.dto.response.CommentResponse;
@@ -64,8 +65,11 @@ public class CommentController {
      * 댓글신고
      */
     @PostMapping("/item/comment/report")
-    public ResponseEntity<Void> reportComment() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> reportComment(
+        @RequestBody CommentReportDto reportDto
+    ) {
+        commentService.reportComment(reportDto.getCommentId());
+        return ResponseEntity.noContent().build();
     }
 
 }

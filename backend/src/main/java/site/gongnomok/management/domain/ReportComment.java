@@ -24,4 +24,18 @@ public class ReportComment {
     private Comment comment;
 
     private int count;
+
+    // 생성자
+    public ReportComment(Comment comment) {
+        this.comment = comment;
+        this.count = 1;
+    }
+
+    public void addCount() {
+        count++;
+    }
+
+    public static ReportComment from(Comment comment) {
+        return new ReportComment(comment);
+    }
 }
