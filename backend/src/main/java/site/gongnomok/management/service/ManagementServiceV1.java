@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.management.domain.repository.ReportCommentJpaRepository;
 import site.gongnomok.management.dto.request.CommentIdList;
+import site.gongnomok.management.dto.request.CommentReportIdList;
 import site.gongnomok.management.dto.response.ReportCommentDeleteResponse;
 import site.gongnomok.management.dto.response.ReportCommentDto;
 import site.gongnomok.management.dto.response.ReportCommentList;
@@ -41,8 +42,9 @@ public class ManagementServiceV1 implements ManagementService {
 
     @Override
     @Transactional(readOnly = false)
-    public ReportCommentDeleteResponse deleteReportCommentFromList(CommentIdList reportIdList) {
-        return null;
+    public ReportCommentDeleteResponse deleteReportCommentFromList(CommentReportIdList reportIdList) {
+        reportCommentJpaRepository.deleteByIdIn(reportIdList.getIds());
+        return ReportCommentDeleteResponse.fromList();
     }
 
     @Override

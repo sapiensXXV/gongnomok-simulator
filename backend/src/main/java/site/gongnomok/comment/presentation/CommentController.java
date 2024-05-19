@@ -70,7 +70,6 @@ public class CommentController {
     public ResponseEntity<Void> reportComment(
         @RequestBody CommentReportDto reportDto
     ) {
-        log.info("Report comment: {}", reportDto);
         commentService.reportComment(reportDto.getCommentId());
         return ResponseEntity.noContent().build();
     }

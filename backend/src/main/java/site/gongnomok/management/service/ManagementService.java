@@ -3,6 +3,7 @@ package site.gongnomok.management.service;
 
 import org.springframework.data.domain.Pageable;
 import site.gongnomok.management.dto.request.CommentIdList;
+import site.gongnomok.management.dto.request.CommentReportIdList;
 import site.gongnomok.management.dto.response.ReportCommentDeleteResponse;
 import site.gongnomok.management.dto.response.ReportCommentResponse;
 
@@ -32,7 +33,7 @@ public interface ManagementService {
      * @param reportIdList  삭제할 신고 댓글의 신고 ID
      * @return 댓글 삭제결과 인스턴스
      */
-    public ReportCommentDeleteResponse deleteReportCommentFromList(CommentIdList reportIdList);
+    public ReportCommentDeleteResponse deleteReportCommentFromList(CommentReportIdList reportIdList);
 
     /**
      * @param commentId 삭제할 댓글 ID
