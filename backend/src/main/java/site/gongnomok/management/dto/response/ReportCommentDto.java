@@ -4,16 +4,16 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@RequiredArgsConstructor
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class ReportCommentDto {
 
-    private final Long reportId;
-    private final Long commentId;
-    private final String name;
-    private final LocalDateTime createdDate;
-    private final String content;
-    private final int count;
+    private Long reportId;
+    private Long commentId;
+    private String name;
+    private LocalDateTime createdDate;
+    private String content;
+    private int count;
 
 }
