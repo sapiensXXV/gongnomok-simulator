@@ -6,9 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.auth.AdminAuth;
-import site.gongnomok.auth.AdminOnly;
-import site.gongnomok.auth.domain.Accessor;
 import site.gongnomok.management.dto.request.CommentDeleteRequest;
 import site.gongnomok.management.dto.request.CommentReportListDeleteRequest;
 import site.gongnomok.management.dto.response.ReportCommentDeleteResponse;
@@ -41,11 +38,12 @@ public class ManagementController {
      * 신고된 댓글 삭제 요청
      */
     @DeleteMapping("/manage/report-comments")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<ReportCommentDeleteResponse> deleteReportComment(
-        @AdminAuth Accessor accessor,
+//        @AdminAuth Accessor accessor,
         @RequestBody final CommentDeleteRequest request
     ) {
+        managementService.deleteReportComment(request.getComments());
         return ResponseEntity.ok(ReportCommentDeleteResponse.comment());
     }
 
@@ -53,9 +51,9 @@ public class ManagementController {
      * 신고된 댓글을 리스트에서 제거 요청
      */
     @DeleteMapping("/manage/report-comments/list")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<ReportCommentDeleteResponse> deleteReportCommentFromList(
-        @AdminAuth Accessor accessor,
+//        @AdminAuth Accessor accessor,
         @RequestBody final CommentReportListDeleteRequest request
     ) {
         return ResponseEntity.ok(ReportCommentDeleteResponse.fromList());

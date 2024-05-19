@@ -2,12 +2,12 @@ package site.gongnomok.management.dto.request;
 
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class CommentDeleteRequest {
 
-    private final CommentIdList comments;
+    private CommentIdList comments;
 
 }
