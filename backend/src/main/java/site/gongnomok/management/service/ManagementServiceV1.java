@@ -23,7 +23,7 @@ public class ManagementServiceV1 implements ManagementService {
 
     @Override
     public ReportCommentResponse reportCommentList(Pageable pageable) {
-        List<ReportCommentDto> reportList = reportCommentJpaRepository.findReportList(pageable);
+        List<ReportCommentDto> reportList = reportCommentJpaRepository.findReportListRecentDesc(pageable);
         ReportCommentList reportCommentList = ReportCommentList.of(reportList);
         return ReportCommentResponse.of(reportCommentList);
     }

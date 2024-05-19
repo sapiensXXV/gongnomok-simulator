@@ -2,6 +2,8 @@ package site.gongnomok.management.presentation;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,11 @@ import site.gongnomok.management.dto.response.ReportCommentDeleteResponse;
 import site.gongnomok.management.dto.response.ReportCommentResponse;
 import site.gongnomok.management.service.ManagementService;
 
-import java.awt.print.Pageable;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Slf4j
 public class ManagementController {
 
     private final ManagementService managementService;
@@ -29,12 +31,14 @@ public class ManagementController {
      * 신고된 댓글 리스트 요청
      */
     @GetMapping("/manage/report-comments")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<ReportCommentResponse> reportCommentList(
-        @AdminAuth Accessor accessor,
+//        @AdminAuth Accessor accessor,
         final Pageable pageable
     ) {
-        return null;
+        log.info("reportCommentList");
+        ReportCommentResponse result = managementService.reportCommentList(pageable);
+        return ResponseEntity.ok(result);
     }
 
     /**
