@@ -21,7 +21,6 @@ export default function BestRecordItem({ itemId, info }) {
     axios
       .get(`${BASE_URI}/api/item/${itemId}/enhanced`, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         setEnhanced(res.data);
       })
       .catch((err) => {
