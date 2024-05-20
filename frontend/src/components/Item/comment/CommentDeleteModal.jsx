@@ -1,6 +1,5 @@
 function CommentDeleteModal({
-  deleteModalOpen,
-  modalBackground,
+  isOpen,
   passwordInputHandler,
   okBtnHandler,
   cancelBtnHandler,
@@ -8,16 +7,11 @@ function CommentDeleteModal({
   errorMsg,
   deleteForm
 }) {
-  console.log(deleteModalOpen);
-
   return (
     <>
       {
-        deleteModalOpen &&
-        <div
-          className="custom-modal-container"
-          ref={modalBackground}
-        >
+        isOpen &&
+        <section className="custom-modal-container">
           <div className="custom-modal-root">
             <div className="custom-modal-header">
               <div className="custom-modal-title">댓글 삭제하기</div>
@@ -56,7 +50,7 @@ function CommentDeleteModal({
               </div>
             </div>
           </div>
-        </div>
+        </section>
         
       }
       

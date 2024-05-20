@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react"
-import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM } from "../../../global/comment";
+import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM, INIT_COMMENT_REPORT_FORM } from "../../../global/comment";
 import axios from "axios";
 import { BASE_URI } from "../../../global/uri";
 import SingleComment from "./SingleComment";
 import { useInView } from "react-intersection-observer";
 import CommentDeleteModal from "./CommentDeleteModal";
+import CommentReportModal from "./CommentReportModal";
 
 export default function Comment({ itemId }) {
 
@@ -23,9 +24,10 @@ export default function Comment({ itemId }) {
   const hasMoreComment = useRef(true);
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const modalBackground = useRef();
+  const [reportModalOpen, setReportModalOpen] = useState(false);
 
   const [commentDeleteForm, setCommentDeleteForm] = useState(INIT_COMMENT_DELETE_FORM)
+  const [reportForm, setReportForm] = useState(INIT_COMMENT_REPORT_FORM);
 
   const [isDeleteRequestValid, setIsDeleteRequestValid] = useState(true);
   const [modalErrorMessage, setModalErrorMessage] = useState("");
@@ -162,10 +164,6 @@ export default function Comment({ itemId }) {
     setCommentForm(copy);
   }
 
-  function handleReport() {
-    // 신고기능 나중에 추가
-  }
-
   function handleDelete(commentId) {
     // 모달창을 띄우고 패스워드를 입력받는다.
     setDeleteModalOpen(true);
@@ -197,7 +195,7 @@ export default function Comment({ itemId }) {
       setDeleteModalOpen(false);
 
       filterDeleteComment(commentDeleteForm.commentId);
-      alert('댓글이 삭제되었습니다')
+      alert('댓글이 삭제되었습니다.')
     })
     .catch((err) => {
       const message = err.response.data.message;
@@ -221,6 +219,45 @@ export default function Comment({ itemId }) {
     copy.password = e.target.value;
     setCommentDeleteForm(copy)
   }
+
+  /******************************************************************/
+  /**************************** 댓글 신고 *****************************/
+  /******************************************************************/
+
+  function reportComment() {
+    axios
+      .post(
+        `${BASE_URI}/api/item/comment/report`,
+        reportForm
+      )
+      .then((response) => {
+        setReportModalOpen(false);
+        alert('댓글이 신고되었습니다.')
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('요청에 실패하였습니다.')
+      })
+  }
+
+  function handleReportBtnClicked(commentId) {
+    const copy = {...reportForm};
+    copy.commentId = commentId;
+
+    setReportModalOpen(true);
+    setReportForm(copy);
+  }
+
+  function handleReportOkBtnClicked(e) {
+    e.preventDefault();
+    reportComment()
+  }
+
+  function handleReportCancelBtnClicked(e) {
+    e.preventDefault();
+    setReportModalOpen(false);
+  }
+
 
   return (
     <>
@@ -269,7 +306,7 @@ export default function Comment({ itemId }) {
                 <SingleComment
                   key={`comment_${itemId}_${comment.commentId}`}
                   info={comment}
-                  handleReport={handleReport}
+                  handleReport={() => handleReportBtnClicked(comment.commentId)}
                   handleDelete={() => handleDelete(comment.commentId)}
                 />
               )
@@ -280,14 +317,18 @@ export default function Comment({ itemId }) {
 
       </section>
       <CommentDeleteModal
-        deleteModalOpen={deleteModalOpen}
-        modalBackground={modalBackground}
+        isOpen={deleteModalOpen}
         passwordInputHandler={handleCommentDeletePasswordInput}
         okBtnHandler={handleModalDeleteButtonClicked}
         cancelBtnHandler={handleModalCloseButtonClicked}
         isDeleteRequestValid={isDeleteRequestValid}
         errorMsg={modalErrorMessage}
         deleteForm={commentDeleteForm}
+      />
+      <CommentReportModal
+        isOpen={reportModalOpen}
+        okBtnHandler={handleReportOkBtnClicked}
+        cancelBtnHandler={handleReportCancelBtnClicked}
       />
       <input></input>
     </>
