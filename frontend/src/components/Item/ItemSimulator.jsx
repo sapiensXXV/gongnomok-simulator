@@ -18,7 +18,6 @@ import PriceCalculator from "./PriceCalculator";
 import Comment from "./comment/Comment";
 import BestRecordItem from "./BestRecordItem";
 
-
 let timer = null;
 
 export default function ItemSimulator() {
@@ -597,6 +596,7 @@ export default function ItemSimulator() {
           <ShortcutInfo description='R-아이템 리셋' />
           <ShortcutInfo description='F-구매기록 리셋' />
         </div>
+        
       </section>
       <section className="item-simulator-root">
         <main className="item-simulator-section bg-light  my-3 mx-3 py-3 px-3">

@@ -9,6 +9,7 @@ import '../css/index-lg.css'
 import '../css/index-xl.css'
 import '../css/index-xxl.css'
 import '../css/common.css'
+import '../css/font.css'
 import axios from 'axios'
 
 axios.defaults.withCredentials = true

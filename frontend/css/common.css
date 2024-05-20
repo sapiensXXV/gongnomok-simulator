@@ -1,88 +1,3 @@
-@font-face {
-  font-family: 'Pretendard-Thin';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-ExtraLight';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-Light';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-Medium';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-SemiBold';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-ExtraBold';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-Black';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-
-
-@font-face {
-  font-family: 'NPSfontBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SOYOMapleBoldTTF';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SejonghospitalBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SejonghospitalBold.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-}
-
 .feedback-banner-root {
   background-color: rgb(2, 151, 41);
   padding: 8px;
@@ -108,6 +23,11 @@
   color: white;
 
   font-family: Pretendard-Regular;
+}
+
+.banner {
+  font-family: KCC-Hanbit;
+  font-size: 14px;
 }
 
 .comment-container {
@@ -430,9 +350,9 @@
 .item-record-comment {
   margin-top: 3px;
   font-size: 13px;
-  font-family: Pretendard-SemiBold;
+  font-family: KCC-Hanbit;
   color: rgb(255, 100, 100);
-}
+} 
 
 
 .option-select-container {
@@ -508,7 +428,7 @@
 }
 
 .job-select-button span {
-  font-family: 'Pretendard-Regular';
+  font-family: KCC-Hanbit;
   font-size: 14px;
 }
 
@@ -579,9 +499,8 @@
 }
 
 .category-select-button span {
-  font-family: 'Pretendard-Regular';
-  font-size: 15px;
-  /* font-size: 1.1vw; */
+  font-family: KCC-Hanbit;
+  font-size: 14px;
 }
 
 .category-select-button img {
@@ -611,6 +530,7 @@
 }
 
 .single-ranking-item > span {
+  font-family: KCC-Hanbit;
   font-size: 15px;
 }
 
@@ -621,7 +541,7 @@
 .item-ranking-page-controller-container {
   display: flex;
   flex-direction: row;
-  gap: 7px;
+  gap: 9px;
   justify-content: center;
   align-items: center;
 
@@ -647,6 +567,10 @@
 .item-ranking-page-controller-container img {
   width: 12px;
   height: 12px;
+}
+
+.rank-item-name :hover {
+  color: rgb(81, 118, 252);
 }
 
 .item-list-button button:hover {
@@ -676,21 +600,37 @@
 
 .item-condition-title {
   font-size: 20px;
-  font-family: NPSfontBold;
+  font-family: KCC-Hanbit;
 }
 
 .item-ranking-title {
-  font-family: NPSfontBold;
+  font-family: KCC-Hanbit;
   font-size: 20px;
   margin-bottom: 10px;
 }
 
 .item-controller-section select {
-  font-size: 14px;
+  font-size: 13px;
+  font-family: KCC-Hanbit;
 }
 
 .big-checkbox {width: 30px; height: 30px;}
 
 .nowrap {
   white-space: nowrap;
+}
+
+.shortcut-img-container {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  row-gap: 10px;
+
+  flex-wrap: wrap; */
+}
+
+.shortcut-img-container > img {
+  /* width: 200px; */
 }
