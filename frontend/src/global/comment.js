@@ -9,4 +9,8 @@ export const INIT_COMMENT_DELETE_FORM = {
   password: ""
 }
 
+export const INIT_COMMENT_REPORT_FORM = {
+  commentId: null
+}
+
 export const DEFAULT_COMMENT_FETCH_SIZE = 20;

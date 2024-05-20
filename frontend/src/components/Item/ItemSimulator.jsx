@@ -18,7 +18,6 @@ import PriceCalculator from "./PriceCalculator";
 import Comment from "./comment/Comment";
 import BestRecordItem from "./BestRecordItem";
 
-
 let timer = null;
 
 export default function ItemSimulator() {
@@ -597,6 +596,7 @@ export default function ItemSimulator() {
           <ShortcutInfo description='R-아이템 리셋' />
           <ShortcutInfo description='F-구매기록 리셋' />
         </div>
+        
       </section>
       <section className="item-simulator-root">
         <main className="item-simulator-section bg-light  my-3 mx-3 py-3 px-3">
@@ -780,18 +780,18 @@ export default function ItemSimulator() {
       {
         challengeModalOpen &&
         <div
-          className="delete-modal-container"
+          className="custom-modal-container"
         >
-          <div className="delete-modal-root">
-            <div className="delete-modal-header">
-              <div className="delete-modal-title text-center">기록으로 등록하시겠습니까?</div>
+          <div className="custom-modal-root">
+            <div className="custom-modal-header">
+              <div className="custom-modal-title text-center">기록으로 등록하시겠습니까?</div>
             </div>
-            <div className="delete-modal-body">
-              <div className="delete-modal-content">
-                <div className="delete-modal-dialog">
-                  <article className="modal-title">이름<span className="red"> (※ 부적절한 이름 입력 시 삭제처리 됩니다.)</span></article>
+            <div className="custom-modal-body">
+              <div className="custom-modal-content">
+                <div className="custom-modal-dialog">
+                  <article className="custom-modal-menu-title">이름<span className="red"> (※ 부적절한 이름 입력 시 삭제처리 됩니다.)</span></article>
                   <input
-                    className="modal-input"
+                    className="custom-modal-input-element"
                     type="text"
                     placeholder="이름을 입력하세요."
                     defaultValue=""
@@ -804,15 +804,15 @@ export default function ItemSimulator() {
                   }
                 </div>
               </div>
-              <div className="delete-modal-button-container">
+              <div className="custom-modal-button-container">
                 <button
-                  className="delete-modal-button delete-modal-delete-button"
+                  className="custom-modal-button custom-modal-ok-button"
                   onClick={handleChallengeAcceptButtonClicked}
                 >
                   예
                 </button>
                 <button
-                  className="delete-modal-button delete-modal-cancel-button"
+                  className="custom-modal-button custom-modal-cancel-button"
                   onClick={handleChallengeCancelButtonClicked}
                 >
                   아니오
@@ -826,23 +826,23 @@ export default function ItemSimulator() {
       {
         challengeResultModalOpen &&
         <div
-          className="delete-modal-container"
+          className="custom-modal-container"
         >
-          <div className="delete-modal-root">
-            <div className="delete-modal-header">
-              <div className="delete-modal-title text-center">
+          <div className="custom-modal-root">
+            <div className="custom-modal-header">
+              <div className="custom-modal-title text-center">
                 도전 결과
               </div>
             </div>
-            <div className="delete-modal-body">
-              <div className="delete-modal-content">
+            <div className="custom-modal-body">
+              <div className="custom-modal-content">
                 <div className="text-center">
                   { isChallengeSuccess ? `등록에 성공하였습니다!` : `등록에 실패했습니다. 더 좋은 아이템을 만들어보세요!` }
                 </div>
               </div>
-              <div className="delete-modal-button-container">
+              <div className="custom-modal-button-container">
                 <button
-                  className="delete-modal-button delete-modal-delete-button"
+                  className="custom-modal-button custom-modal-ok-button"
                   onClick={handleChallengeResultOkButton}
                 >
                   예
@@ -857,8 +857,6 @@ export default function ItemSimulator() {
       {/******************************** 댓글 **********************************/}
       {/***********************************************************************/}
       <Comment itemId={itemId} />
-
-
     </>
   )
 }

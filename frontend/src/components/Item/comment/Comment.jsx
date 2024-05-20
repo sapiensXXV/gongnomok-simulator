@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react"
-import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM } from "../../../global/comment";
+import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM, INIT_COMMENT_REPORT_FORM } from "../../../global/comment";
 import axios from "axios";
 import { BASE_URI } from "../../../global/uri";
 import SingleComment from "./SingleComment";
 import { useInView } from "react-intersection-observer";
+import CommentDeleteModal from "./CommentDeleteModal";
+import CommentReportModal from "./CommentReportModal";
 
 export default function Comment({ itemId }) {
 
@@ -21,10 +23,11 @@ export default function Comment({ itemId }) {
   
   const hasMoreComment = useRef(true);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const modalBackground = useRef();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [reportModalOpen, setReportModalOpen] = useState(false);
 
   const [commentDeleteForm, setCommentDeleteForm] = useState(INIT_COMMENT_DELETE_FORM)
+  const [reportForm, setReportForm] = useState(INIT_COMMENT_REPORT_FORM);
 
   const [isDeleteRequestValid, setIsDeleteRequestValid] = useState(true);
   const [modalErrorMessage, setModalErrorMessage] = useState("");
@@ -161,16 +164,11 @@ export default function Comment({ itemId }) {
     setCommentForm(copy);
   }
 
-  function handleReport() {
-    // 신고기능 나중에 추가
-  }
-
   function handleDelete(commentId) {
     // 모달창을 띄우고 패스워드를 입력받는다.
-    setModalOpen(true);
+    setDeleteModalOpen(true);
     const copy = { ...commentDeleteForm };
     copy.commentId = commentId;
-
 
     setCommentDeleteForm(copy);
   }
@@ -194,9 +192,10 @@ export default function Comment({ itemId }) {
     )
     .then((res) => {
       setIsDeleteRequestValid(true);
-      setModalOpen(false);
+      setDeleteModalOpen(false);
 
       filterDeleteComment(commentDeleteForm.commentId);
+      alert('댓글이 삭제되었습니다.')
     })
     .catch((err) => {
       const message = err.response.data.message;
@@ -207,15 +206,12 @@ export default function Comment({ itemId }) {
 
   function handleModalDeleteButtonClicked(e) {
     e.preventDefault();
-    // 댓글을 지울 수 있으면 모달창을 닫는다.
-    // 댓글을 지울 수 없다면 에러 메세지를 출력한다.
-
     deleteComment();
   }
 
   function handleModalCloseButtonClicked(e) {
     e.preventDefault();
-    setModalOpen(false);
+    setDeleteModalOpen(false);
   }
 
   function handleCommentDeletePasswordInput(e) {
@@ -223,6 +219,45 @@ export default function Comment({ itemId }) {
     copy.password = e.target.value;
     setCommentDeleteForm(copy)
   }
+
+  /******************************************************************/
+  /**************************** 댓글 신고 *****************************/
+  /******************************************************************/
+
+  function reportComment() {
+    axios
+      .post(
+        `${BASE_URI}/api/item/comment/report`,
+        reportForm
+      )
+      .then((response) => {
+        setReportModalOpen(false);
+        alert('댓글이 신고되었습니다.')
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('요청에 실패하였습니다.')
+      })
+  }
+
+  function handleReportBtnClicked(commentId) {
+    const copy = {...reportForm};
+    copy.commentId = commentId;
+
+    setReportModalOpen(true);
+    setReportForm(copy);
+  }
+
+  function handleReportOkBtnClicked(e) {
+    e.preventDefault();
+    reportComment()
+  }
+
+  function handleReportCancelBtnClicked(e) {
+    e.preventDefault();
+    setReportModalOpen(false);
+  }
+
 
   return (
     <>
@@ -271,7 +306,7 @@ export default function Comment({ itemId }) {
                 <SingleComment
                   key={`comment_${itemId}_${comment.commentId}`}
                   info={comment}
-                  handleReport={handleReport}
+                  handleReport={() => handleReportBtnClicked(comment.commentId)}
                   handleDelete={() => handleDelete(comment.commentId)}
                 />
               )
@@ -281,54 +316,20 @@ export default function Comment({ itemId }) {
         </section>
 
       </section>
-
-      {
-        modalOpen &&
-        <div
-          className="delete-modal-container"
-          ref={modalBackground}
-        >
-          <div className="delete-modal-root">
-            <div className="delete-modal-header">
-              <div className="delete-modal-title">댓글 삭제하기</div>
-            </div>
-            <div className="delete-modal-body">
-              <div className="delete-modal-content">
-                <div className="delete-modal-dialog">
-                  <article className="modal-title">비밀번호</article>
-                  <input
-                    className="modal-input"
-                    type="password"
-                    placeholder="비밀번호를 입력하세요."
-                    defaultValue=""
-                    value={commentDeleteForm.password}
-                    onChange={handleCommentDeletePasswordInput}
-                  ></input>
-                  { 
-                    !isDeleteRequestValid &&
-                    <span className="red">{modalErrorMessage}</span>
-                  }
-                  
-                </div>
-              </div>
-              <div className="delete-modal-button-container">
-                <button
-                  className="delete-modal-button delete-modal-delete-button"
-                  onClick={handleModalDeleteButtonClicked}
-                >
-                  확인
-                </button>
-                <button
-                  className="delete-modal-button delete-modal-cancel-button"
-                  onClick={handleModalCloseButtonClicked}
-                >
-                  취소
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
+      <CommentDeleteModal
+        isOpen={deleteModalOpen}
+        passwordInputHandler={handleCommentDeletePasswordInput}
+        okBtnHandler={handleModalDeleteButtonClicked}
+        cancelBtnHandler={handleModalCloseButtonClicked}
+        isDeleteRequestValid={isDeleteRequestValid}
+        errorMsg={modalErrorMessage}
+        deleteForm={commentDeleteForm}
+      />
+      <CommentReportModal
+        isOpen={reportModalOpen}
+        okBtnHandler={handleReportOkBtnClicked}
+        cancelBtnHandler={handleReportCancelBtnClicked}
+      />
     </>
   )
 }
