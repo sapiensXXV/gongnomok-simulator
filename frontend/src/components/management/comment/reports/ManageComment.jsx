@@ -10,7 +10,10 @@ function ManageComment() {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URI}/api/manage/report-comments`)
+      .get(
+        `${BASE_URI}/api/manage/report-comments`,
+        { withCredentials: true }
+      )
       .then((response) => {
 
         setComments(response.data.reports.comments);
@@ -36,7 +39,8 @@ function ManageComment() {
               ids: ids
             }
           }
-        }
+        },
+        { withCredentials: true }
       )
       .then((response) => {
         const copy = [...comments]
@@ -70,7 +74,8 @@ function ManageComment() {
               ids: ids
             }
           }
-        }
+        },
+        { withCredentials: true }
       )
       .then((response) => {
         const copy = [...comments]

@@ -330,7 +330,6 @@ export default function Comment({ itemId }) {
         okBtnHandler={handleReportOkBtnClicked}
         cancelBtnHandler={handleReportCancelBtnClicked}
       />
-      <input></input>
     </>
   )
 }
