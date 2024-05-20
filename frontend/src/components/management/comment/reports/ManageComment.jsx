@@ -142,7 +142,7 @@ function ManageComment() {
                 comments?.map((comment) => {
                   return (
                     <tr key={`${comment.reportId}_${comment.commentId}`}>
-                      <td className="text-center">
+                      <td className="text-center text-nowrap">
                         <input className="form-check-input checkbox-lg" type="checkbox" aria-label="..."
                           defaultChecked={false}
                           onChange={(e) => commentCheckboxChanged(e.target.checked, comment.commentId, comment.reportId)}

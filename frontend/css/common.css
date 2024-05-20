@@ -240,7 +240,8 @@
   cursor: pointer;
 }
 
-.delete-modal-container {
+
+.custom-modal-container {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -252,22 +253,22 @@
   background: rgba(95, 95, 95, 0.5);
 }
 
-.delete-modal-root {
+.custom-modal-root {
   background-color: #FFFFFF;
   width: 320px;
-  /* padding: 10px; */
   border-radius: 10px;
 }
 
-.delete-modal-header {
+.custom-modal-header {
   padding: 16px 24px;
   color: rgba(0, 0, 0, 0.85);
   background: #FFFFFF;
   border-bottom: 1px solid #f0f0f0;
   border-radius: 10px;
+  justify-content: center;
 }
 
-.delete-modal-title {
+.custom-modal-title {
   margin: 0;
   color: rgba(0, 0, 0, 0.85);
   font-family: Pretendard-Medium;
@@ -276,25 +277,25 @@
   word-wrap: break-word;
 }
 
-.delete-modal-body {
+.custom-modal-body {
   padding: 24px;
   font-size: 14px;
   line-height: 1.5715;
   word-wrap: break-word;
 }
 
-.delete-modal-content {
+.custom-modal-content {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.delete-modal-dialog {
+.custom-modal-dialog {
   width: 100%;
   margin-bottom: 16px;
 }
 
-.modal-title {
+.custom-modal-menu-title {
   color: rgba(0, 0, 0, 0.85);
   word-break: break-word;
 
@@ -304,7 +305,7 @@
 
 }
 
-.modal-input {
+.custom-modal-input-element {
   box-sizing: border-box;
   margin: 0;
 
@@ -323,16 +324,19 @@
   border-radius: 2px;
   transition: all .3s;
 
+  z-index: 1000;
+
 }
 
-.delete-modal-button-container {
+.custom-modal-button-container {
   display: flex;
   justify-content: center;
   padding-top: 24px;
   gap: 8px;
+
 }
 
-.delete-modal-button {
+.custom-modal-button {
   line-height: 1.5717;
   position: relative;
   display: inline-block;
@@ -355,15 +359,16 @@
   border: 1px solid #303030;
 }
 
-.delete-modal-delete-button {
+.custom-modal-ok-button {
   background-color: #303030;
   color: #FFF;
 }
 
-.delete-modal-cancel-button {
+.custom-modal-cancel-button {
   background-color: #FFF;
   color: #303030;
 }
+
 
 @keyframes blink {
   40% {
@@ -682,4 +687,10 @@
 
 .item-controller-section select {
   font-size: 14px;
+}
+
+.big-checkbox {width: 30px; height: 30px;}
+
+.nowrap {
+  white-space: nowrap;
 }
