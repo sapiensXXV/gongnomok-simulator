@@ -25,6 +25,7 @@ public class ManagementServiceV1 implements ManagementService {
     private final ReportCommentJpaRepository reportCommentJpaRepository;
 
     @Override
+    @Transactional
     public ReportCommentResponse reportCommentList(Pageable pageable) {
         List<ReportCommentDto> reportList = reportCommentJpaRepository.findReportListRecentDesc(pageable);
         ReportCommentList reportCommentList = ReportCommentList.of(reportList);
@@ -32,7 +33,6 @@ public class ManagementServiceV1 implements ManagementService {
     }
 
     @Override
-    @Transactional(readOnly = false)
     public ReportCommentDeleteResponse deleteReportComment(CommentIdList commentIdList) {
         List<Long> idList = commentIdList.getIds();
         commentJpaRepository.deleteByIdIn(idList);
@@ -41,21 +41,18 @@ public class ManagementServiceV1 implements ManagementService {
     }
 
     @Override
-    @Transactional(readOnly = false)
     public ReportCommentDeleteResponse deleteReportCommentFromList(CommentReportIdList reportIdList) {
         reportCommentJpaRepository.deleteByIdIn(reportIdList.getIds());
         return ReportCommentDeleteResponse.fromList();
     }
 
     @Override
-    @Transactional(readOnly = false)
     public Long deleteReportComment(Long commentId) {
         commentJpaRepository.deleteById(commentId);
         return commentId;
     }
 
     @Override
-    @Transactional(readOnly = false)
     public Long deleteReportCommentFromList(Long reportId) {
         reportCommentJpaRepository.deleteById(reportId);
         return 0L;
