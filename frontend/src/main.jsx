@@ -15,18 +15,18 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
+  <BrowserRouter>
 
-      <div className='row gongnomok-global'>
-        <div className='col col-lg-0 col-xxl-2'></div>
-        <div className='col-lg-12 col-xxl-8'>
+    <div className='row gongnomok-global'>
+      <div className='col col-lg-0 col-xxl-2'></div>
+      <div className='col-lg-12 col-xxl-8'>
 
-          <App />
+        <App />
 
-        </div>
-        <div className='col-lg-0 col-xxl-2'></div>
       </div>
+      <div className='col-lg-0 col-xxl-2'></div>
+    </div>
 
 
-    </BrowserRouter>
+  </BrowserRouter>
 )

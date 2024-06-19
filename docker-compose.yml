@@ -1,11 +1,11 @@
-version: "1.2.0"
+version: "1.2.3"
 services:
   back:
     platform: linux/amd64
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: sjhn/gongnomok-backend:prod-1.2.0
+    image: sjhn/gongnomok-backend:prod-1.2.3
     restart: always
     ports:
       - 8080:8080
