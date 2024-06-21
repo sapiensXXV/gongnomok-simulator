@@ -3,7 +3,6 @@ export const DEFAULT_RANKING_FETCH_SIZE = 5;
 export const MAXIMUM_RANKING_PAGE = 4;
 
 export const ITEM_CATEGORIES = [
-
   "ONE_HANDED_SWORD",
   "TWO_HANDED_SWORD",
   "ONE_HANDED_AXE",

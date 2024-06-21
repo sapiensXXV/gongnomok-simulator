@@ -63,7 +63,7 @@ class CommentServiceTest {
     }
 
     @Test
-    @DisplayName("댓글 생성")
+    @DisplayName("새로운 댓글 등록")
     public void createCommentTest() {
 
         String USERNAME = "test username";
@@ -113,7 +113,7 @@ class CommentServiceTest {
     }
 
     @Test
-    @DisplayName("댓글 비밀번호 불일치 삭제 실패")
+    @DisplayName("댓글 삭제 실패 - 비밀번호 불일치")
     void comment_delete_fail_password_mismatch() {
         //given
         String PASSWORD = "1234321";
@@ -139,7 +139,7 @@ class CommentServiceTest {
     }
 
     @Test
-    @DisplayName("댓글 ID 불일치 삭제 실패")
+    @DisplayName("댓글 삭제 실패 - 존재하지 않는 댓글 ID")
     void comment_delete_fail_comment_id_mismatch() {
         CommentDeleteServiceDto deleteDto = CommentDeleteServiceDto.builder()
             .commentId(Long.MAX_VALUE)
