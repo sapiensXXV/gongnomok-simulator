@@ -4,9 +4,9 @@ import jakarta.annotation.PostConstruct;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
 import site.gongnomok.core.banword.provider.BanWordProvider;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 금칙어 목록을 메모리 내에 List로 관리하는 클래스<br>
@@ -17,12 +17,12 @@ import java.util.List;
  */
 public class ListBanWordStorage implements BanWordStorage {
 
-    private final List<String> banWords;
+    private BanWords banWords;
     private final BanWordProvider wordProvider;
 
     public ListBanWordStorage(BanWordProvider wordProvider) {
         this.wordProvider = wordProvider;
-        this.banWords = new ArrayList<>();
+        this.banWords = BanWords.with(wordProvider.provideBanWords());
     }
 
     @PostConstruct
@@ -44,18 +44,20 @@ public class ListBanWordStorage implements BanWordStorage {
 
     @Override
     public void addBanWord(String word) {
-        banWords.add(word);
-    }
-
-    @Override
-    public void addBanWords(String[] words) {
-        List<String> newWords = List.of(words);
-        banWords.addAll(newWords);
+        List<String> addedList = Stream.concat(banWords.getList().stream(), Stream.of(word)).toList();
+        banWords = BanWords.with(addedList);
     }
 
     @Override
     public void addBanWords(List<String> words) {
-        banWords.addAll(words);
+        List<String> addedList = Stream.concat(banWords.getList().stream(), words.stream()).toList();
+        banWords = BanWords.with(addedList);
+    }
+
+    @Override
+    public void addBanWords(String[] words) {
+        List<String> addedList = Stream.concat(banWords.getList().stream(), Arrays.stream(words)).toList();
+        banWords = BanWords.with(addedList);
     }
 
     @Override
@@ -64,11 +66,7 @@ public class ListBanWordStorage implements BanWordStorage {
     }
 
     private void replaceWords(List<String> words) {
-        banWords.clear();
-        banWords.addAll(words);
+        this.banWords = BanWords.with(words);
     }
 
-    public List<String> getBanWords() {
-        return Collections.unmodifiableList(banWords);
-    }
 }

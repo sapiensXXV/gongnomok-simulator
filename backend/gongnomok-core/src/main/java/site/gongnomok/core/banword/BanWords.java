@@ -1,8 +1,11 @@
 package site.gongnomok.core.banword;
 
+import lombok.Getter;
+
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 public class BanWords {
 
     private final List<String> list;
@@ -12,15 +15,10 @@ public class BanWords {
     }
 
     public static BanWords with(List<String> list) {
-        return new BanWords(list);
+        return new BanWords(Collections.unmodifiableList(list));
     }
 
     public static BanWords empty() {
-        return new BanWords(List.of());
+        return new BanWords(Collections.unmodifiableList(List.of()));
     }
-
-    public List<String> getList() {
-        return Collections.unmodifiableList(list);
-    }
-
 }
