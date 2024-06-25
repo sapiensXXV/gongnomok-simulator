@@ -2,6 +2,7 @@ package site.gongnomok.core.banword;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import site.gongnomok.core.banword.conf.BanWordConfiguration;
 
 /**
  * String.contains 메서드를 사용해 문장내 금칙어가 포함되어 있는지 판단하는 클래스.

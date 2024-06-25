@@ -40,4 +40,9 @@ public interface BanWordStorage {
      */
     public void addBanWords(List<String> words);
 
+    /**
+     * 금칙어 정보를 가져온다.
+     */
+    public void fetchBanWords();
+
 }

@@ -1,10 +1,16 @@
 package site.gongnomok.core.banword;
 
+import jakarta.annotation.PostConstruct;
+import site.gongnomok.core.banword.conf.BanWordConfiguration;
+import site.gongnomok.core.banword.provider.BanWordProvider;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * 금칙어 목록을 메모리 내에 List로 관리하는 클래스
- * {@link BanWordFilter}의 구현체에서 사용할 수 있다. <br>
+ * 금칙어 목록을 메모리 내에 List로 관리하는 클래스<br>
+ * {@link BanWordFilter}의 구현체에서 사용할 수 있다<br>
  * {@link BanWordConfiguration} 에서 빈으로 등록할 수 있습니다.
  * @author Jaehoon So
  * @version 1.0.0
@@ -12,16 +18,17 @@ import java.util.List;
 public class ListBanWordStorage implements BanWordStorage {
 
     private final List<String> banWords;
+    private final BanWordProvider wordProvider;
 
-    public ListBanWordStorage() {
-        this.banWords = fetchBanWords();
+    public ListBanWordStorage(BanWordProvider wordProvider) {
+        this.wordProvider = wordProvider;
+        this.banWords = new ArrayList<>();
     }
 
-    /**
-     * 데이터베이스에 등록된 금칙어 목록을 가져온다.
-     */
-    private List<String> fetchBanWords() {
-        return List.of();
+    @PostConstruct
+    public void init() {
+        List<String> words = wordProvider.provideBanWords();
+        registerBanWords(words);
     }
 
     @Override
@@ -51,8 +58,17 @@ public class ListBanWordStorage implements BanWordStorage {
         banWords.addAll(words);
     }
 
+    @Override
+    public void fetchBanWords() {
+
+    }
+
     private void replaceWords(List<String> words) {
         banWords.clear();
         banWords.addAll(words);
+    }
+
+    public List<String> getBanWords() {
+        return Collections.unmodifiableList(banWords);
     }
 }
