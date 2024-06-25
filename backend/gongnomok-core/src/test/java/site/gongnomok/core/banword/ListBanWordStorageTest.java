@@ -24,14 +24,38 @@ class ListBanWordStorageTest {
     }
 
     @Test
+    @DisplayName("금칙어 초기화")
+    public void initBanWordByProvider() {
+        
+    }
+
+    @Test
     @DisplayName("리스트로 금칙어 등록")
     public void registerBanWordsWithList() {
-        banWordStorage.registerBanWords();
+//        banWordStorage.registerBanWords();
     }
 
     @Test
     @DisplayName("문자열 배열로 금칙어 등록")
     public void registerBanWordsWithArray() {
+
+    }
+
+    @Test
+    @DisplayName("단일 단어 금칙어 추가등록")
+    public void addSingleBanWord() {
+
+    }
+
+    @Test
+    @DisplayName("리스트로 금칙어 추가 등록")
+    public void addBanWordsWithList() {
+
+    }
+
+    @Test
+    @DisplayName("문자열 배열로 금칙어 추가 등록")
+    public void addBanWordsWithArray() {
 
     }
 
