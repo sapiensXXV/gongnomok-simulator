@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 금칙어 정보 저장, 관리 인터페이스.
- * @author jaehoon so
+ * @author Jaehoon So
  * @version 1.0.0
  * @see site.gongnomok.core.banword.BanWordFilter
  */
