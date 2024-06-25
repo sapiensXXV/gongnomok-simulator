@@ -14,6 +14,6 @@ public class BanWordConfiguration {
 
     @Bean
     public BanWordFilter banWordFilter() {
-        return new StringContainsBanWordFilter(banWordStorage());
+        return new BruteForceBanWordFilter(banWordStorage());
     }
 }
