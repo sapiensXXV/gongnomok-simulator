@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class StringContainsBanWordFilter implements BanWordFilter {
+public class BruteForceBanWordFilter implements BanWordFilter {
 
     private final BanWordStorage storage;
 
