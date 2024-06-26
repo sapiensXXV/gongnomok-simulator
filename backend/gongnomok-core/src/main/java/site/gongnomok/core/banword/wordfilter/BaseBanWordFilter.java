@@ -15,7 +15,7 @@ import site.gongnomok.core.banword.conf.BanWordConfiguration;
 
 @Service
 @RequiredArgsConstructor
-public class BruteForceBanWordFilter implements BanWordFilter {
+public class BaseBanWordFilter implements BanWordFilter {
 
     private final BanWordStorage storage;
 
