@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface BanWordFetcher {
 
-    public List<String> provideBanWords();
+    public List<String> fetchBanWords();
 
 }

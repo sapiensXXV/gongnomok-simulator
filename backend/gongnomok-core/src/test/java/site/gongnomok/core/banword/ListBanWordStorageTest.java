@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import site.gongnomok.core.banword.provider.BanWordFetcher;
+import site.gongnomok.core.banword.storage.BanWordStorage;
+import site.gongnomok.core.banword.storage.ListBanWordStorage;
 
 import java.util.List;
 
@@ -86,7 +88,7 @@ class ListBanWordStorageTest {
 
     public static class TestBanWordFetcher implements BanWordFetcher {
         @Override
-        public List<String> provideBanWords() {
+        public List<String> fetchBanWords() {
             return List.of("금칙어1", "금칙어2", "금칙어3", "금칙어4");
         }
     }

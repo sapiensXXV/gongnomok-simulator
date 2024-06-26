@@ -1,4 +1,6 @@
-package site.gongnomok.core.banword;
+package site.gongnomok.core.banword.wordfilter;
+
+import site.gongnomok.core.banword.storage.BanWordStorage;
 
 /**
  * 금칙어 검사 인터페이스
