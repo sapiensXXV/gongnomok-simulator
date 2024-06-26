@@ -26,12 +26,12 @@ public class ListBanWordStorage implements BanWordStorage {
 
     public ListBanWordStorage(BanWordFetcher wordProvider) {
         this.wordProvider = wordProvider;
-        this.banWords = BanWords.with(wordProvider.provideBanWords());
+        this.banWords = BanWords.with(wordProvider.fetchBanWords());
     }
 
     @PostConstruct
     public void init() {
-        List<String> words = wordProvider.provideBanWords();
+        List<String> words = wordProvider.fetchBanWords();
         registerBanWords(words);
     }
 

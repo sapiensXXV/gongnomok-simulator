@@ -88,7 +88,7 @@ class ListBanWordStorageTest {
 
     public static class TestBanWordFetcher implements BanWordFetcher {
         @Override
-        public List<String> provideBanWords() {
+        public List<String> fetchBanWords() {
             return List.of("금칙어1", "금칙어2", "금칙어3", "금칙어4");
         }
     }

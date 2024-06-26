@@ -18,7 +18,7 @@ public class ListBanWordFetcher implements BanWordFetcher {
     private final BanWordRepository repository;
 
     @Override
-    public List<String> provideBanWords() {
+    public List<String> fetchBanWords() {
         return repository.findAll()
             .stream()
             .map(BanWord::getWord)
