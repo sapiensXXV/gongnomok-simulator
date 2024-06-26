@@ -1,1 +1,3 @@
 rootProject.name = 'gongnomok'
+include 'gongnomok-core'
+include 'gongnomok-data'
