@@ -22,6 +22,6 @@ public class BruteForceBanWordValidator implements BanWordValidator {
             .filter(sentence::contains)
             .findAny();
 
-        return findBanWord.isEmpty();
+        return findBanWord.isPresent();
     }
 }
