@@ -22,16 +22,16 @@ import java.util.stream.Stream;
 public class ListBanWordStorage implements BanWordStorage {
 
     private BanWords banWords;
-    private final BanWordFetcher wordProvider;
+    private final BanWordFetcher wordFetcher;
 
-    public ListBanWordStorage(BanWordFetcher wordProvider) {
-        this.wordProvider = wordProvider;
-        this.banWords = BanWords.with(wordProvider.fetchBanWords());
+    public ListBanWordStorage(BanWordFetcher wordFetcher) {
+        this.wordFetcher = wordFetcher;
+        this.banWords = BanWords.with(wordFetcher.fetchBanWords());
     }
 
     @PostConstruct
     public void init() {
-        List<String> words = wordProvider.fetchBanWords();
+        List<String> words = wordFetcher.fetchBanWords();
         registerBanWords(words);
     }
 
