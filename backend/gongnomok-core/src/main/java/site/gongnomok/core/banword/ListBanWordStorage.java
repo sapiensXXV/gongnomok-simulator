@@ -1,6 +1,7 @@
 package site.gongnomok.core.banword;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Component;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
 import site.gongnomok.core.banword.provider.BanWordProvider;
 
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
  * @author Jaehoon So
  * @version 1.0.0
  */
+@Component
 public class ListBanWordStorage implements BanWordStorage {
 
     private BanWords banWords;
