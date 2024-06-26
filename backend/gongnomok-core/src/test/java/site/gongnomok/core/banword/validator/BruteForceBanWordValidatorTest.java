@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import site.gongnomok.core.banword.provider.BanWordFetcher;
+import site.gongnomok.core.banword.fetcher.BanWordFetcher;
 import site.gongnomok.core.banword.storage.ListBanWordStorage;
 
 import java.util.List;

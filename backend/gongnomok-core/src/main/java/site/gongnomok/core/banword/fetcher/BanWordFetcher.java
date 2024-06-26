@@ -1,4 +1,4 @@
-package site.gongnomok.core.banword.provider;
+package site.gongnomok.core.banword.fetcher;
 
 import java.util.List;
 
