@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class ListBanWordProvider implements BanWordProvider {
+public class ListBanWordFetcher implements BanWordFetcher {
 
     private final BanWordRepository repository;
 

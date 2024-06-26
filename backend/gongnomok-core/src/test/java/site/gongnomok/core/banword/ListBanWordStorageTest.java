@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import site.gongnomok.core.banword.provider.BanWordProvider;
+import site.gongnomok.core.banword.provider.BanWordFetcher;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ class ListBanWordStorageTest {
 
     @BeforeEach
     void init() {
-        banWordStorage = new ListBanWordStorage(new TestBanWordProvider());
+        banWordStorage = new ListBanWordStorage(new TestBanWordFetcher());
     }
 
     @Test
@@ -84,7 +84,7 @@ class ListBanWordStorageTest {
             .containsSequence("금칙어1", "금칙어2", "금칙어3", "금칙어4", "새로운 금칙어1", "새로운 금칙어2");
     }
 
-    public static class TestBanWordProvider implements BanWordProvider {
+    public static class TestBanWordFetcher implements BanWordFetcher {
         @Override
         public List<String> provideBanWords() {
             return List.of("금칙어1", "금칙어2", "금칙어3", "금칙어4");

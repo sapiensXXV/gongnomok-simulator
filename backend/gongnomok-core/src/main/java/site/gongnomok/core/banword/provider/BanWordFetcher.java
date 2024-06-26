@@ -7,7 +7,7 @@ import java.util.List;
  * @author Jaehoon So
  * @version 1.0.0
  */
-public interface BanWordProvider {
+public interface BanWordFetcher {
 
     public List<String> provideBanWords();
 

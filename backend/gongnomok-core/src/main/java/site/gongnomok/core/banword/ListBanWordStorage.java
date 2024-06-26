@@ -3,7 +3,7 @@ package site.gongnomok.core.banword;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
-import site.gongnomok.core.banword.provider.BanWordProvider;
+import site.gongnomok.core.banword.provider.BanWordFetcher;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.stream.Stream;
 public class ListBanWordStorage implements BanWordStorage {
 
     private BanWords banWords;
-    private final BanWordProvider wordProvider;
+    private final BanWordFetcher wordProvider;
 
-    public ListBanWordStorage(BanWordProvider wordProvider) {
+    public ListBanWordStorage(BanWordFetcher wordProvider) {
         this.wordProvider = wordProvider;
         this.banWords = BanWords.with(wordProvider.provideBanWords());
     }
