@@ -1,4 +1,4 @@
-package site.gongnomok.core.banword;
+package site.gongnomok.core.banword.wordfilter;
 
 import org.springframework.stereotype.Service;
 

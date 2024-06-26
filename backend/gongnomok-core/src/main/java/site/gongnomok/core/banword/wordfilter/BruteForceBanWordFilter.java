@@ -1,7 +1,8 @@
-package site.gongnomok.core.banword;
+package site.gongnomok.core.banword.wordfilter;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import site.gongnomok.core.banword.storage.BanWordStorage;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
 
 /**

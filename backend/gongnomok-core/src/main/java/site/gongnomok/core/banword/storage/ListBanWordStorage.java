@@ -1,7 +1,9 @@
-package site.gongnomok.core.banword;
+package site.gongnomok.core.banword.storage;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
+import site.gongnomok.core.banword.wordfilter.BanWordFilter;
+import site.gongnomok.core.banword.BanWords;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
 import site.gongnomok.core.banword.provider.BanWordFetcher;
 
