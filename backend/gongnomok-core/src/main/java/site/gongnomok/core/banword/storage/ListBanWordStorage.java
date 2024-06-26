@@ -65,8 +65,8 @@ public class ListBanWordStorage implements BanWordStorage {
     }
 
     @Override
-    public void fetchBanWords() {
-
+    public List<String> getBanWords() {
+        return banWords.getList();
     }
 
     private void replaceWords(List<String> words) {

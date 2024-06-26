@@ -2,7 +2,7 @@ package site.gongnomok.core.banword.wordfilter;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import site.gongnomok.core.banword.storage.BanWordStorage;
+import org.springframework.util.StringUtils;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
 import site.gongnomok.core.banword.validator.BanWordValidator;
 
@@ -18,11 +18,14 @@ import site.gongnomok.core.banword.validator.BanWordValidator;
 @RequiredArgsConstructor
 public class BaseBanWordFilter implements BanWordFilter {
 
-    private final BanWordStorage storage;
     private final BanWordValidator validator;
 
     @Override
     public boolean checkContainBanWord(String sentence) {
-        return false;
+        if (!StringUtils.hasText(sentence)) {
+            throw new IllegalArgumentException("빈 문자열은 금칙어 검사를 수행할 수 없습니다.");
+        }
+
+        return validator.containsBannedWord(sentence);
     }
 }
