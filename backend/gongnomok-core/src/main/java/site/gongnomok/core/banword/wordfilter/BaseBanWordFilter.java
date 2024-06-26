@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import site.gongnomok.core.banword.storage.BanWordStorage;
 import site.gongnomok.core.banword.conf.BanWordConfiguration;
+import site.gongnomok.core.banword.validator.BanWordValidator;
 
 /**
  * String.contains 메서드를 사용해 문장내 금칙어가 포함되어 있는지 판단하는 클래스.
@@ -18,6 +19,7 @@ import site.gongnomok.core.banword.conf.BanWordConfiguration;
 public class BaseBanWordFilter implements BanWordFilter {
 
     private final BanWordStorage storage;
+    private final BanWordValidator validator;
 
     @Override
     public boolean checkContainBanWord(String sentence) {
