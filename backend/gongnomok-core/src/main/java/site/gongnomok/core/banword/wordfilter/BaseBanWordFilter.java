@@ -13,7 +13,6 @@ import site.gongnomok.core.banword.validator.BanWordValidator;
  * @author Jaehoon So
  * @version 1.0.0
  */
-
 @Service
 @RequiredArgsConstructor
 public class BaseBanWordFilter implements BanWordFilter {
@@ -26,6 +25,6 @@ public class BaseBanWordFilter implements BanWordFilter {
             throw new IllegalArgumentException("빈 문자열은 금칙어 검사를 수행할 수 없습니다.");
         }
 
-        return validator.containsBannedWord(sentence);
+        return validator.containsBanWord(sentence);
     }
 }

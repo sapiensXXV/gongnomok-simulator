@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'gongnomok'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '1.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator' //액츄에이터
+    implementation 'io.micrometer:micrometer-registry-prometheus' //프로메테우스
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation(project(":gongnomok-core"))
+    implementation(project(":gongnomok-common"))
+    implementation(project(":gongnomok-data"))
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}

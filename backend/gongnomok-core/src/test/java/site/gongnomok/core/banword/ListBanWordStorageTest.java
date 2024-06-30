@@ -3,8 +3,7 @@ package site.gongnomok.core.banword;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import site.gongnomok.core.banword.provider.BanWordFetcher;
+import site.gongnomok.core.banword.fetcher.BanWordFetcher;
 import site.gongnomok.core.banword.storage.BanWordStorage;
 import site.gongnomok.core.banword.storage.ListBanWordStorage;
 
@@ -17,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Jaehoon So
  * @version 1.0.0
  */
-@SpringBootTest
+//@SpringBootTest
 class ListBanWordStorageTest {
 
     BanWordStorage banWordStorage;

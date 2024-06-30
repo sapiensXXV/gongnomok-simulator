@@ -2,14 +2,16 @@ package site.gongnomok.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import site.gongnomok.data.GongnomokDataApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(
-    scanBasePackageClasses = {
-        GongnomokCoreApplication.class,
-        GongnomokDataApplication.class
+    scanBasePackages = {
+        "site.gongnomok.core",
+        "site.gongnomok.data",
+        "site.gongnomok.common"
     }
 )
+@EnableScheduling
 public class GongnomokCoreApplication {
 
     public static void main(String[] args) {
