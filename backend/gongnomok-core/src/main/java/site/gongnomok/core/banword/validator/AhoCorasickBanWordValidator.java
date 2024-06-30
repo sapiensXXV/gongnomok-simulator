@@ -1,10 +1,14 @@
 package site.gongnomok.core.banword.validator;
 
 
-//@Component
+/**
+ * @author Jaehoon So
+ * @version 1.0.0
+ * @date 2024-06-28
+ */
 public class AhoCorasickBanWordValidator implements BanWordValidator {
     @Override
-    public boolean containsBannedWord(String sentence) {
+    public boolean containsBanWord(String sentence) {
         return false;
     }
 }

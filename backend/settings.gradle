@@ -1,3 +1,5 @@
 rootProject.name = 'gongnomok'
 include 'gongnomok-core'
 include 'gongnomok-data'
+include 'gongnomok-api'
+include 'gongnomok-common'

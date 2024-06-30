@@ -3,7 +3,6 @@ package site.gongnomok.core.banword.validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import site.gongnomok.core.banword.fetcher.BanWordFetcher;
 import site.gongnomok.core.banword.storage.ListBanWordStorage;
@@ -13,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@SpringBootTest
+//@SpringBootTest
 @ActiveProfiles("test")
 class BruteForceBanWordValidatorTest {
 
@@ -30,7 +29,7 @@ class BruteForceBanWordValidatorTest {
     @DisplayName("금칙어가 포함되었을 때")
     void banWordIncluded() {
         String exampleSentence = "금칙어1이 포함된 문장입니다.";
-        boolean result = validator.containsBannedWord(exampleSentence);
+        boolean result = validator.containsBanWord(exampleSentence);
         assertThat(result).isTrue();
     }
 
@@ -38,7 +37,7 @@ class BruteForceBanWordValidatorTest {
     @DisplayName("금칙어가 포함되지 않았을 때")
     void banWordNotIncluded() {
         String exampleSentence = "문제 없는 문장입니다.";
-        boolean result = validator.containsBannedWord(exampleSentence);
+        boolean result = validator.containsBanWord(exampleSentence);
         assertThat(result).isFalse();
     }
     

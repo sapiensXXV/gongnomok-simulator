@@ -7,5 +7,5 @@ package site.gongnomok.core.banword.validator;
  */
 public interface BanWordValidator {
 
-    public boolean containsBannedWord(String sentence);
+    public boolean containsBanWord(String sentence);
 }

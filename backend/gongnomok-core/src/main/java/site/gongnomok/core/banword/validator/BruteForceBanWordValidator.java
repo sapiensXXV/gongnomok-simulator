@@ -15,7 +15,7 @@ public class BruteForceBanWordValidator implements BanWordValidator {
     private final BanWordStorage storage;
 
     @Override
-    public boolean containsBannedWord(String sentence) {
+    public boolean containsBanWord(String sentence) {
         List<String> banWords = storage.getBanWords();
 
         Optional<String> findBanWord = banWords.stream()
