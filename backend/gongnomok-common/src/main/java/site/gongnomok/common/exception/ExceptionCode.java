@@ -20,7 +20,9 @@ public enum ExceptionCode {
     INVALID_PASSWORD(2001, "비밀번호가 일치하지 않습니다."),
     INVALID_ENHANCED_SUCCESS_REQUEST(2002, "강화 성공 횟수는 10회를 넘을 수 없습니다."),
     INVALID_ENHANCED_SCORE_REQUEST(2003, "강화 점수가 최대치를 넘어섰습니다."),
-    INVALID_ADMIN_AUTHORITY(2004, "해당 관리자 기능에 접근권한이 없습니다.");
+    INVALID_ADMIN_AUTHORITY(2004, "해당 관리자 기능에 접근권한이 없습니다."),
+
+    INCLUDE_BAN_WORD(3000, "금칙어가 포함되어 있습니다.");
 
     private final int code;
     private final String message;
