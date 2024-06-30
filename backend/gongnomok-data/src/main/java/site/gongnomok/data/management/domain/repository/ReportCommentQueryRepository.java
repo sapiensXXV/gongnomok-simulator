@@ -1,7 +1,7 @@
 package site.gongnomok.data.management.domain.repository;
 
 import org.springframework.data.domain.Pageable;
-import site.gongnomok.common.management.dto.response.ReportCommentDto;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentDto;
 
 import java.util.List;
 

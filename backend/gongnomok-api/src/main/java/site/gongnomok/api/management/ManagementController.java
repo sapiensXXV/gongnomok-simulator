@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import site.gongnomok.common.management.dto.request.CommentDeleteRequest;
-import site.gongnomok.common.management.dto.request.CommentReportListDeleteRequest;
-import site.gongnomok.common.management.dto.response.ReportCommentDeleteResponse;
-import site.gongnomok.common.management.dto.response.ReportCommentResponse;
+import site.gongnomok.common.management.dto.request.comment.CommentDeleteRequest;
+import site.gongnomok.common.management.dto.request.comment.CommentReportListDeleteRequest;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentDeleteResponse;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentResponse;
 import site.gongnomok.core.auth.AdminAuth;
 import site.gongnomok.core.auth.AdminOnly;
 import site.gongnomok.core.auth.domain.Accessor;
@@ -61,6 +61,16 @@ public class ManagementController {
     ) {
         managementService.deleteReportCommentFromList(request.getReports());
         return ResponseEntity.ok(ReportCommentDeleteResponse.fromList());
+    }
+
+    // 금칙어 관리
+
+    @GetMapping("/manage/banword")
+    public ResponseEntity<BanwordResponse> banwordList(
+        @AdminAuth Accessor accessor,
+        @RequestBody final BanWordListRequest request
+    ) {
+
     }
 
 }

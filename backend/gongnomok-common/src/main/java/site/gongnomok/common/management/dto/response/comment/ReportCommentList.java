@@ -1,4 +1,4 @@
-package site.gongnomok.common.management.dto.response;
+package site.gongnomok.common.management.dto.response.comment;
 
 
 import java.util.Collections;

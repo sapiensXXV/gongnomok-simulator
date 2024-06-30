@@ -5,12 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.common.management.dto.request.CommentIdList;
-import site.gongnomok.common.management.dto.request.CommentReportIdList;
-import site.gongnomok.common.management.dto.response.ReportCommentDeleteResponse;
-import site.gongnomok.common.management.dto.response.ReportCommentDto;
-import site.gongnomok.common.management.dto.response.ReportCommentList;
-import site.gongnomok.common.management.dto.response.ReportCommentResponse;
+import site.gongnomok.common.management.dto.request.comment.CommentIdList;
+import site.gongnomok.common.management.dto.request.comment.CommentReportIdList;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentDeleteResponse;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentDto;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentList;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentResponse;
 import site.gongnomok.data.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.data.management.domain.repository.ReportCommentJpaRepository;
 

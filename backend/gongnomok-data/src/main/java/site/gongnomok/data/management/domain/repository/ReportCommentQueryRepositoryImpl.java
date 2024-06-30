@@ -6,7 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import site.gongnomok.common.management.dto.response.ReportCommentDto;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentDto;
 
 import java.util.List;
 
