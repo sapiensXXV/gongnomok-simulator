@@ -33,6 +33,7 @@ public class ManagementServiceV1 implements ManagementService {
     }
 
     @Override
+    @Transactional
     public ReportCommentDeleteResponse deleteReportComment(CommentIdList commentIdList) {
         List<Long> idList = commentIdList.getIds();
         commentJpaRepository.deleteByIdIn(idList);
@@ -48,6 +49,7 @@ public class ManagementServiceV1 implements ManagementService {
     }
 
     @Override
+    @Transactional
     public Long deleteReportComment(Long commentId) {
         commentJpaRepository.deleteById(commentId);
         return commentId;
