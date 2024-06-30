@@ -1,6 +1,8 @@
 package site.gongnomok.data.management.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import site.gongnomok.data.management.domain.ReportComment;
 
 import java.util.List;
@@ -10,5 +12,7 @@ public interface ReportCommentJpaRepository extends JpaRepository<ReportComment,
 
     public Optional<ReportComment> findReportCommentByCommentId(Long comment_id);
 
-    void deleteByIdIn(List<Long> ids);
+    @Modifying
+    @Query("delete from ReportComment rc where rc.id in :ids")
+    void deleteAllByReportId(List<Long> ids);
 }

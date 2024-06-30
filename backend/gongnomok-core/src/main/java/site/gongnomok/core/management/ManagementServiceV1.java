@@ -41,8 +41,9 @@ public class ManagementServiceV1 implements ManagementService {
     }
 
     @Override
+    @Transactional
     public ReportCommentDeleteResponse deleteReportCommentFromList(CommentReportIdList reportIdList) {
-        reportCommentJpaRepository.deleteByIdIn(reportIdList.getIds());
+        reportCommentJpaRepository.deleteAllByReportId(reportIdList.getIds());
         return ReportCommentDeleteResponse.fromList();
     }
 
