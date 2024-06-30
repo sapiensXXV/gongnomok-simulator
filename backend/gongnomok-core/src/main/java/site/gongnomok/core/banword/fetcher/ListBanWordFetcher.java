@@ -28,13 +28,13 @@ public class ListBanWordFetcher implements BanWordFetcher {
 
     public List<String> fetchBanWords() {
 
-        log.info("fetchBanWords 메서드 실행");
+        log.info("Run fetchBanWords()");
 
         List<String> list = repository.findAll()
             .stream()
             .map(BanWord::getWord)
             .toList();
-        log.info("금칙어 목록모음: {}", String.join(",", list));
+//        log.info("금칙어 목록모음: {}", String.join(",", list));
         return list;
     }
 
