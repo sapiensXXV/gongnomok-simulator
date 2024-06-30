@@ -32,7 +32,11 @@ public class Comment {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @OneToOne(mappedBy = "comment", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(
+        mappedBy = "comment",
+        fetch = FetchType.LAZY,
+        orphanRemoval = true,
+        cascade = CascadeType.ALL)
     private ReportComment reportComment;
 
     private Comment(String name, String password, String content) {
