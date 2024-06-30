@@ -91,6 +91,7 @@ export default function ItemSimulator() {
   async function fetchData() {
     try {
       const response = await axios.get(`${BASE_URI}/api/item/${itemId}`, { withCredentials: true })
+
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
       setInfoCopy({...response.data});
@@ -613,12 +614,12 @@ export default function ItemSimulator() {
                     <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation" id="scroll-animation"></img>
                   </div>
                   <div className="item-info-required">
-                    <RequiredStatus name="LEV" value={info?.required.level} />
-                    <RequiredStatus name="STR" value={info?.required.str} />
-                    <RequiredStatus name="DEX" value={info?.required.dex} />
-                    <RequiredStatus name="INT" value={info?.required.intel} />
-                    <RequiredStatus name="LUK" value={info?.required.luk} />
-                    <RequiredStatus name="POP" value={info?.required.pop} />
+                    <RequiredStatus name="LEV" value={info?.requiredStatus.level} />
+                    <RequiredStatus name="STR" value={info?.requiredStatus.str} />
+                    <RequiredStatus name="DEX" value={info?.requiredStatus.dex} />
+                    <RequiredStatus name="INT" value={info?.requiredStatus.intel} />
+                    <RequiredStatus name="LUK" value={info?.requiredStatus.luk} />
+                    <RequiredStatus name="POP" value={info?.requiredStatus.pop} />
 
                     <span className="item-useless-info">ITEM LEV : -</span>
                     <span className="item-useless-info">ITEM EXP : -</span>
@@ -626,12 +627,12 @@ export default function ItemSimulator() {
                   </div>
                 </div>
                 <div className="item-info-job">
-                  <span className={info?.job.common ? '' : 'red'}>초보자</span>
-                  <span className={info?.job.warrior || info?.job.common ? '' : 'red'}>전사</span>
-                  <span className={info?.job.magician || info?.job.common ? '' : 'red'}>마법사</span>
-                  <span className={info?.job.bowman || info?.job.common ? '' : 'red'} >궁수</span>
-                  <span className={info?.job.thief || info?.job.common ? '' : 'red'}>도적</span>
-                  <span className={info?.job.common ? '' : 'red'}>해적</span>
+                  <span className={info?.availableJob.common ? '' : 'red'}>초보자</span>
+                  <span className={info?.availableJob.warrior || info?.availableJob.common ? '' : 'red'}>전사</span>
+                  <span className={info?.availableJob.magician || info?.availableJob.common ? '' : 'red'}>마법사</span>
+                  <span className={info?.availableJob.bowman || info?.availableJob.common ? '' : 'red'} >궁수</span>
+                  <span className={info?.availableJob.thief || info?.availableJob.common ? '' : 'red'}>도적</span>
+                  <span className={info?.availableJob.common ? '' : 'red'}>해적</span>
                 </div>
                 <hr />
 
