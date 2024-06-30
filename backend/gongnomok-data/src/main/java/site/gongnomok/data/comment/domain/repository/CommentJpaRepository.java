@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CommentJpaRepository extends JpaRepository<Comment, Long> {
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("delete from Comment c where c.id in :ids")
     void deleteByIdIn(List<Long> ids);
 }

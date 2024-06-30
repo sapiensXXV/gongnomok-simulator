@@ -12,7 +12,7 @@ public interface ReportCommentJpaRepository extends JpaRepository<ReportComment,
 
     public Optional<ReportComment> findReportCommentByCommentId(Long comment_id);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("delete from ReportComment rc where rc.id in :ids")
     void deleteAllByReportId(List<Long> ids);
 }
