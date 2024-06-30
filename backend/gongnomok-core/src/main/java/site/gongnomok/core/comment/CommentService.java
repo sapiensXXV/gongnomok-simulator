@@ -10,8 +10,10 @@ import site.gongnomok.common.comment.dto.response.CommentCountResponse;
 import site.gongnomok.common.comment.dto.response.CommentDto;
 import site.gongnomok.common.exception.CommentException;
 import site.gongnomok.common.exception.ExceptionCode;
+import site.gongnomok.common.exception.IncludeBanWordException;
 import site.gongnomok.common.exception.ItemException;
 import site.gongnomok.common.global.util.SecurityUtil;
+import site.gongnomok.core.banword.wordfilter.BanWordFilter;
 import site.gongnomok.data.comment.domain.Comment;
 import site.gongnomok.data.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.data.comment.domain.repository.CommentQueryRepository;
@@ -32,6 +34,7 @@ public class CommentService {
     private final CommentQueryRepository commentQueryRepository;
     private final CommentJpaRepository commentJpaRepository;
     private final ReportCommentJpaRepository reportCommentJpaRepository;
+    private final BanWordFilter banWordFilter;
 
     public CommentDto createComment(
         final CommentCreateServiceDto createDto,
@@ -39,6 +42,12 @@ public class CommentService {
     ) {
 
         String encryptedPassword = SecurityUtil.encryptSha256(createDto.getPassword());
+        boolean result = banWordFilter.checkContainBanWord(createDto.getContent());
+
+        if (result) {
+            // 금칙어가 포함되어 있는 경우 예외를 던진다.
+            throw new IncludeBanWordException(ExceptionCode.INCLUDE_BAN_WORD);
+        }
 
         Item findItem = itemRepository
             .findById(itemId)
