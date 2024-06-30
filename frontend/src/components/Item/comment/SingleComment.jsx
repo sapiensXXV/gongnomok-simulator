@@ -6,10 +6,6 @@ export default function SingleComment({
   handleDelete
 }) {
 
-  function dateFormatting() {
-
-  }
-
   return (
     <>
       <div className="comment-item-root">
