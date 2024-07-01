@@ -2,6 +2,7 @@ package site.gongnomok.core.banword;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,7 @@ import java.util.List;
  * @version 1.0.0
  */
 @Service
+@Slf4j
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class BaseBanWordService implements BanWordService {
@@ -48,7 +50,7 @@ public class BaseBanWordService implements BanWordService {
 
     @Override
     public PaginatedBanWordResponse fetchBanWordList(Pageable pageable) {
-        Page<BanWord> result = banWordRepository.findAll(pageable);
+        Page<BanWord> result = banWordRepository.findAllByOrderByIdDesc(pageable);
         List<BanWordDto> content = banWordConverter.toDtoList(result.getContent());
 
         return PaginatedBanWordResponse.builder()
@@ -64,6 +66,7 @@ public class BaseBanWordService implements BanWordService {
     @Override
     @Transactional
     public Long addBanWord(String word) {
+        log.info("새로운 금칙어 등록={}", word);
         BanWord banWord = new BanWord(word);
         banWordRepository.save(banWord);
 

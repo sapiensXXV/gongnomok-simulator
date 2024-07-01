@@ -1,10 +1,10 @@
 package site.gongnomok.common.banword.dto.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class BanWordAddRequest {
-    final String word;
+    private String word;
 }

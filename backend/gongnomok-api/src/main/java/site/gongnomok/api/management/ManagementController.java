@@ -131,7 +131,7 @@ public class ManagementController {
     @PostMapping("/manage/banword")
     public ResponseEntity<Void> addBanWord(
         @AdminAuth Accessor accessor,
-        final BanWordAddRequest request
+        @RequestBody final BanWordAddRequest request
     ) {
         Long createdId = banWordService.addBanWord(request.getWord());
         return ResponseEntity
