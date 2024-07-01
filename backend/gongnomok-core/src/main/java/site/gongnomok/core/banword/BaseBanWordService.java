@@ -48,7 +48,7 @@ public class BaseBanWordService implements BanWordService {
 
     @Override
     public PaginatedBanWordResponse fetchBanWordList(Pageable pageable) {
-        Page<BanWord> result = banWordRepository.findAll(pageable);
+        Page<BanWord> result = banWordRepository.findAllByOrderByIdDesc(pageable);
         List<BanWordDto> content = banWordConverter.toDtoList(result.getContent());
 
         return PaginatedBanWordResponse.builder()

@@ -8,6 +8,9 @@ import site.gongnomok.common.exception.BanWordException;
  * <h2>금칙어 서비스 인터페이스</h2>
  * 금칙어 관리를 위한 서비스 인터페이스 입니다.<br>
  * 이 인터페이스는 금칙어 목록 조회, 추가 및 삭제 기능을 제공합니다.
+ *
+ * @see BaseBanWordService
+ *
  * @author Jaehoon So
  * @version 1.0.0
  */

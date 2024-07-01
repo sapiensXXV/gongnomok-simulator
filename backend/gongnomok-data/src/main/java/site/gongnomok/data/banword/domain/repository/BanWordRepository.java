@@ -24,5 +24,5 @@ import site.gongnomok.data.banword.domain.BanWord;
  */
 public interface BanWordRepository extends JpaRepository<BanWord, Long> {
 
-    Page<BanWord> findAll(Pageable pageable);
+    Page<BanWord> findAllByOrderByIdDesc(Pageable pageable);
 }
