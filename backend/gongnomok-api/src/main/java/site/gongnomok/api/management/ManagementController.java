@@ -90,5 +90,6 @@ public class ManagementController {
             .created(URI.create("/manage/banword/" + id))
             .build();
     }
+    
 
 }
