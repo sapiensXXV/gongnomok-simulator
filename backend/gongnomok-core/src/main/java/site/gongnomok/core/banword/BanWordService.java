@@ -25,8 +25,9 @@ public interface BanWordService {
      *
      * @param word 추가할 금칙어 문자열
      * @throws BanWordException 이미 존재하는 금칙어를 추가하려 할 경우
+     * @return 추가된 금칙어의 고유 id
      */
-    public void addBanWord(String word);
+    public Long addBanWord(String word);
 
 
     /**

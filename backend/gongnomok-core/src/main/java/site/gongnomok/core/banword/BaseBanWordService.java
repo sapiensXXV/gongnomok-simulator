@@ -63,9 +63,11 @@ public class BaseBanWordService implements BanWordService {
 
     @Override
     @Transactional
-    public void addBanWord(String word) {
+    public Long addBanWord(String word) {
         BanWord banWord = new BanWord(word);
         banWordRepository.save(banWord);
+
+        return banWord.getId();
     }
 
     @Override

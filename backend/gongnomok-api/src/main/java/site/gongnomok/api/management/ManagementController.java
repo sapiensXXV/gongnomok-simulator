@@ -15,6 +15,7 @@ import site.gongnomok.common.management.dto.response.comment.ReportCommentRespon
 import site.gongnomok.core.auth.AdminAuth;
 import site.gongnomok.core.auth.AdminOnly;
 import site.gongnomok.core.auth.domain.Accessor;
+import site.gongnomok.core.banword.BaseBanWordService;
 import site.gongnomok.core.management.ManagementService;
 
 import java.net.URI;
@@ -27,6 +28,7 @@ import java.net.URI;
 public class ManagementController {
 
     private final ManagementService managementService;
+    private final BaseBanWordService baseBanWordService;
 
     /**
      * 신고된 댓글 리스트 요청
@@ -84,12 +86,22 @@ public class ManagementController {
         @AdminAuth Accessor accessor,
         final BanWordAddRequest request
     ) {
-        Long id = 0L;
-
+        Long createdId = baseBanWordService.addBanWord(request.getWord());
         return ResponseEntity
-            .created(URI.create("/manage/banword/" + id))
+            .created(URI.create("/manage/banword/" + createdId))
             .build();
     }
-    
+
+    @DeleteMapping("/manage/banword/{word_id}")
+    public ResponseEntity<Void> deleteBanWord(
+        @AdminAuth Accessor accessor,
+        @RequestParam("word_id") Long id
+    ) {
+        baseBanWordService.deleteBanWord(id);
+        return ResponseEntity
+            .noContent()
+            .build();
+    }
+
 
 }
