@@ -1,7 +1,7 @@
 package site.gongnomok.core.banword;
 
 import org.springframework.data.domain.Pageable;
-import site.gongnomok.common.banword.dto.response.BanWordResponse;
+import site.gongnomok.common.banword.dto.response.PaginatedBanWordResponse;
 import site.gongnomok.common.exception.BanWordException;
 
 /**
@@ -18,7 +18,7 @@ public interface BanWordService {
      *
      * @return 금칙어 목록이 포함된 BanWordResponse 객체
      */
-    public BanWordResponse fetchBanWordList(Pageable pageable);
+    public PaginatedBanWordResponse fetchBanWordList(Pageable pageable);
 
     /**
      * 새로운 금칙어를 목록에 추가합니다.

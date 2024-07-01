@@ -1,2 +1,12 @@
-package site.gongnomok.common.banword.dto;public class BanWordDto {
+package site.gongnomok.common.banword.dto;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
+public class BanWordDto {
+    private Long id;
+    private String word;
 }

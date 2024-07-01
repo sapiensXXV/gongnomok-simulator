@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.common.banword.dto.request.BanWordAddRequest;
+import site.gongnomok.common.banword.dto.response.PaginatedBanWordResponse;
 import site.gongnomok.common.management.dto.request.comment.CommentDeleteRequest;
 import site.gongnomok.common.management.dto.request.comment.CommentReportListDeleteRequest;
 import site.gongnomok.common.management.dto.response.comment.ReportCommentDeleteResponse;
@@ -14,6 +16,8 @@ import site.gongnomok.core.auth.AdminAuth;
 import site.gongnomok.core.auth.AdminOnly;
 import site.gongnomok.core.auth.domain.Accessor;
 import site.gongnomok.core.management.ManagementService;
+
+import java.net.URI;
 
 
 @RestController
@@ -66,11 +70,25 @@ public class ManagementController {
     // 금칙어 관리
 
     @GetMapping("/manage/banword")
-    public ResponseEntity<BanwordResponse> banwordList(
+    public ResponseEntity<PaginatedBanWordResponse> banwordList(
         @AdminAuth Accessor accessor,
-        @RequestBody final BanWordListRequest request
+        final Pageable pageable
     ) {
 
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PostMapping("/manage/banword")
+    public ResponseEntity<Void> addBanWord(
+        @AdminAuth Accessor accessor,
+        final BanWordAddRequest request
+    ) {
+        Long id = 0L;
+
+        return ResponseEntity
+            .created(URI.create("/manage/banword/" + id))
+            .build();
     }
 
 }
