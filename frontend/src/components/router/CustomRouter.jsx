@@ -5,6 +5,7 @@ import ItemSimulator from "../Item/ItemSimulator";
 import NewItem from "../NewItem";
 import AdminPrivateRoutes from "./AdminPrivateRouter";
 import ManageComment from "../management/comment/reports/ManageComment";
+import ManageBanWord from "../management/banword/ManageBanWord";
 
 export default function CustomRouter() {
   return (
@@ -16,6 +17,7 @@ export default function CustomRouter() {
         <Route element={ <AdminPrivateRoutes/> }>
           <Route element={ <NewItem/> } path="/manage/item/new" exact/>
           <Route element={ <ManageComment/> } path="/manage/comment" exact/>
+          <Route element={ <ManageBanWord/> } path="/manage/banword" exact/>
         </Route>
       </Routes>
     </>
