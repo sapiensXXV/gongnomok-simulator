@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BASE_URI } from '../../../global/uri';
 import BanWordPagination from './BanWordPagination';
 import BanWordList from './BanWordList';
+import BanWordForm from './BanWordForm';
 
 export default function ManageBanWord() {
 
@@ -40,9 +41,8 @@ export default function ManageBanWord() {
         { word: newWordInput }
       )
       .then((response) => {
-
         const copy = { ...banWordData }
-        copy.words = [newWordInput, ...copy.words];
+        copy.words = [{word: newWordInput}, ...copy.words];
         setBanWordData(copy);
       })
       .catch((error) => {
@@ -70,17 +70,10 @@ export default function ManageBanWord() {
   return (
     <>
       <h1 className={style.title}>금칙어 관리 페이지</h1>
-      <form className={`${style.add_form} mt-3`}>
-        <div className="row g-3 align-items-center">
-          <div className="col-auto">
-            <input type="text" className="form-control input-sm" aria-describedby="passwordHelpInline" onChange={(e) => handleNewWordInput(e)} />
-          </div>
-          <div className="col-auto">
-            <button className='btn btn-primary btn-sm' type='button' onClick={(e) => addBanWord(e)}>추가</button>
-          </div>
-        </div>
-      </form>
-
+      <BanWordForm
+        inputChangeHandler={handleNewWordInput}
+        addBanWordBtnClickedHandler={addBanWord}
+      />
       <BanWordList
         words={banWordData?.words}
       />
