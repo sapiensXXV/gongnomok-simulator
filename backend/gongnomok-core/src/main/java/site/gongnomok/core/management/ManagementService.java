@@ -2,10 +2,10 @@ package site.gongnomok.core.management;
 
 
 import org.springframework.data.domain.Pageable;
-import site.gongnomok.common.management.dto.request.CommentIdList;
-import site.gongnomok.common.management.dto.request.CommentReportIdList;
-import site.gongnomok.common.management.dto.response.ReportCommentDeleteResponse;
-import site.gongnomok.common.management.dto.response.ReportCommentResponse;
+import site.gongnomok.common.management.dto.request.comment.CommentIdList;
+import site.gongnomok.common.management.dto.request.comment.CommentReportIdList;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentDeleteResponse;
+import site.gongnomok.common.management.dto.response.comment.ReportCommentResponse;
 
 /**
  * 1. pageable을 이용해서 댓글을 조회해오는 기능

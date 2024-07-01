@@ -1,4 +1,4 @@
-package site.gongnomok.common.management.dto.request;
+package site.gongnomok.common.management.dto.request.comment;
 
 import lombok.NoArgsConstructor;
 

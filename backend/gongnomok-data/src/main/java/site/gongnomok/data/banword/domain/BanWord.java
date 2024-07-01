@@ -18,4 +18,8 @@ public class BanWord {
 
     private String word;
 
+    public BanWord(String word) {
+        this.word = word;
+    }
+
 }
