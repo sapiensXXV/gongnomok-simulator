@@ -53,6 +53,7 @@ export default function Header() {
                       <li><a className="dropdown-item" href="/manage/item/new">아이템 등록</a></li>
                       <li><a className="dropdown-item" href="/manage/item">아이템 관리</a></li>
                       <li><a className="dropdown-item" href="/manage/comment">신고댓글 관리</a></li>
+                      <li><a className="dropdown-item" href="/manage/banword">금칙어 관리</a></li>
                     </ul>
                   </li>
                 ) : null
