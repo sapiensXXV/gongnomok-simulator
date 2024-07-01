@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import style from './ManageBanWord.module.css'
 import axios from 'axios';
 import { BASE_URI } from '../../../global/uri';
+import BanWordPagination from './BanWordPagination';
 
 export default function ManageBanWord() {
 
   const [banWordData, setBanWordData] = useState([]);
-  const [page, setPage] = useState(0);
-  const [newWordInput, setNewWordInput] = useState({word: ''});
+  const [page, setPage] = useState(1);
+  const [newWordInput, setNewWordInput] = useState({ word: '' });
 
   useEffect(() => {
     fetchBanWords();
@@ -15,9 +16,8 @@ export default function ManageBanWord() {
 
   function fetchBanWords() {
     axios
-      .get(`${BASE_URI}/api/manage/banword?page=${page}&size=20`)
+      .get(`${BASE_URI}/api/manage/banword?page=${page-1}&size=20`)
       .then((response) => {
-        console.log(response.data);
         setBanWordData(response.data);
       })
       .catch((error) => {
@@ -27,22 +27,20 @@ export default function ManageBanWord() {
 
   function handleNewWordInput(e) {
     e.preventDefault();
-    console.log(`단어 추가 input=${e.target.value}`);
     setNewWordInput(e.target.value);
-    
+
   }
 
-  function addBanWord(e) { 
+  function addBanWord(e) {
     e.preventDefault();
-    console.log(`추가할 단어=${newWordInput}`);
     axios
       .post(
         `${BASE_URI}/api/manage/banword`,
         { word: newWordInput }
       )
       .then((response) => {
-        console.log(response);
-        const copy = {...banWordData}
+
+        const copy = { ...banWordData }
         copy.words = [newWordInput, ...copy.words];
         setBanWordData(copy);
       })
@@ -52,13 +50,29 @@ export default function ManageBanWord() {
       })
   }
 
+  function handlePageClicked(e, clickedPage) {
+    e.preventDefault();
+    axios
+      .get(`${BASE_URI}/api/manage/banword?page=${clickedPage-1}&size=20`)
+      .then((response) => {
+        const newBanWordData = response.data;
+        setBanWordData(newBanWordData);
+        setPage(clickedPage);
+      })
+      .catch((error) => {
+        console.log(error)
+        alert('불러오기 실패');
+      })
+
+  }
+
   return (
     <>
       <h1 className={style.title}>금칙어 관리 페이지</h1>
       <form className={`${style.add_form} mt-3`}>
         <div className="row g-3 align-items-center">
           <div className="col-auto">
-            <input type="text" className="form-control input-sm" aria-describedby="passwordHelpInline" onChange={(e) => handleNewWordInput(e)}/>
+            <input type="text" className="form-control input-sm" aria-describedby="passwordHelpInline" onChange={(e) => handleNewWordInput(e)} />
           </div>
           <div className="col-auto">
             <button className='btn btn-primary btn-sm' type='button' onClick={(e) => addBanWord(e)}>추가</button>
@@ -90,6 +104,12 @@ export default function ManageBanWord() {
           </table>
         </div>
       </div>
+
+      <BanWordPagination
+        currentPage={page}
+        totalPage={banWordData.totalPage}
+        pageClickHandler={handlePageClicked}
+      />
 
     </>
   )
