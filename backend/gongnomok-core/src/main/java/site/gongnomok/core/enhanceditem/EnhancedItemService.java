@@ -83,7 +83,7 @@ public class EnhancedItemService {
         Item item = itemRepository
             .findById(itemId)
             .orElseThrow(() -> new ItemException(ExceptionCode.NOT_FOUND_ITEM_ID));
-        int score = EnhanceScroll.calculateScore(enhanceDto.getSuccess(), enhanceDto.getName());
+        int score = EnhanceScroll.calculateScore(enhanceDto.getSuccess(), enhanceDto.getScroll());
         EnhancedItem enhancedItem = EnhancedItem.from(enhanceDto, score);
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);

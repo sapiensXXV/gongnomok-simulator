@@ -12,8 +12,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-#        dialect: org.hi
-        show_sql: true
-        format_sql: true
-        use_sql_comments: true
+#        show_sql: true
+#        format_sql: true
+#        use_sql_comments: true
     open-in-view: false

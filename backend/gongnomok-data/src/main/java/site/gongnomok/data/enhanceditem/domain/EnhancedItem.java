@@ -67,6 +67,7 @@ public class EnhancedItem {
             .name(dto.getName())
             .iev(dto.getIev())
             .score(score)
+            .success(EnhanceSuccess.from(dto.getSuccess()))
             .status(EnhanceStatus.from(dto.getStatus()))
             .build();
     }
