@@ -1,14 +1,15 @@
-package site.gongnomok.data.enhanceditem.domain;
+package site.gongnomok.core.enhanceditem;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceSuccessDto;
 import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.common.exception.EnhancedItemException;
+import site.gongnomok.data.enhanceditem.domain.EnhanceScroll;
 
 import static site.gongnomok.common.exception.ExceptionCode.INVALID_ENHANCED_SCORE_REQUEST;
 import static site.gongnomok.common.exception.ExceptionCode.INVALID_ENHANCED_SUCCESS_REQUEST;
 
-@Component
+@Service
 public class EnhanceItemValidator {
 
     public void validateRequest(final ItemEnhanceServiceRequest request) {

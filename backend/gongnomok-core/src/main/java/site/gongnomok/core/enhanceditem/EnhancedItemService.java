@@ -13,7 +13,6 @@ import site.gongnomok.common.enhanceditem.dto.response.UpdateEnhancementResponse
 import site.gongnomok.common.exception.EnhancedItemException;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
-import site.gongnomok.data.enhanceditem.domain.EnhanceItemValidator;
 import site.gongnomok.data.enhanceditem.domain.EnhanceScroll;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
