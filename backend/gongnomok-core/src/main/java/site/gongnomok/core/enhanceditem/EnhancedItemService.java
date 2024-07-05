@@ -56,7 +56,7 @@ public class EnhancedItemService {
         final Long itemId,
         final ItemEnhanceServiceRequest request
     ) {
-        validator.validateRequest(request);
+        validator.validateRequest(itemId, request);
 
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
