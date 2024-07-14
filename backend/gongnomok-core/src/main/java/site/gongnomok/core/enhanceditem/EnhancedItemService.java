@@ -29,7 +29,7 @@ public class EnhancedItemService {
 
     private final ItemRepository itemRepository;
     private final EnhancedItemRepository enhancedItemRepository;
-    private final EnhanceItemValidator validator;
+    private final BaseEnhancedItemValidator validator;
 
     /**
      * @param itemId 특정 아이템의 기록을 읽어온다.

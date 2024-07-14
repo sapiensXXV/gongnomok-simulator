@@ -10,7 +10,6 @@ import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
 import site.gongnomok.core.scroll.Scroll;
 import site.gongnomok.data.enhanceditem.domain.EnhanceScroll;
-import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.data.item.domain.Item;
 import site.gongnomok.data.item.domain.repository.ItemRepository;
 
@@ -29,10 +28,9 @@ import static site.gongnomok.core.scroll.Scroll.isEqualWith;
  */
 @Service
 @RequiredArgsConstructor
-public class EnhanceItemValidator {
+public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
     private final ItemRepository itemRepository;
-    private final EnhancedItemRepository enhancedItemRepository;
 
     public void validateRequest(
         final Long itemId,
@@ -43,8 +41,8 @@ public class EnhanceItemValidator {
 
         validateSuccessCount(request.getSuccess(), findItem.getUpgradable());
         validateScore(request.getSuccess(), request.getScroll(), request.getUpgradable());
-        validateUpgradable(request.getUpgradable(), findItem.getUpgradable());
-        validateUpgradeStatus(request.getStatus(), request.getSuccess(), request.getScroll());
+//        validateUpgradable(request.getUpgradable(), findItem.getUpgradable());
+//        validateUpgradeStatus(request.getStatus(), request.getSuccess(), request.getScroll());
     }
 
     /**

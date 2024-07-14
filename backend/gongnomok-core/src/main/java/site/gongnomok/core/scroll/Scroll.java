@@ -365,7 +365,7 @@ public enum Scroll {
             .collect(Collectors.toMap(Scroll::getProbability, scroll -> scroll));
     }
 
-    public static void isEqualWith(
+    public static int isEqualWith(
         final ItemStat statCategory,
         final int actualStat,
         final Map<Integer, Scroll> scrolls,
@@ -414,6 +414,8 @@ public enum Scroll {
         if (calculatedStat != actualStat) {
             throw new EnhancedItemException(ExceptionCode.INVALID_UPGRADED_STATUS);
         }
+
+        return calculatedStat;
     }
 
 }
