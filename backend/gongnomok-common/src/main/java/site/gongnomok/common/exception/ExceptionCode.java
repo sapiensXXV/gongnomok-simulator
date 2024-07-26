@@ -24,7 +24,8 @@ public enum ExceptionCode {
     INVALID_UPGRADABLE_COUNT(2005, "잘못된 강화 횟수입니다."),
     INVALID_UPGRADED_STATUS(2006, "잘못된 강화 수치입니다."),
 
-    INCLUDE_BAN_WORD(3000, "금칙어가 포함되어 있습니다.");
+    INCLUDE_BAN_WORD(3000, "금칙어가 포함되어 있습니다."),
+    COMMENT_RATE_LIMIT(3001, "댓글을 너무 자주 작성할 수 없습니다.");
 
     private final int code;
     private final String message;
