@@ -6,7 +6,6 @@ ads.txt
 
 HELP.md
 .gradle
-*.properties
 *.pem
 build/
 logs/
