@@ -1,10 +1,12 @@
 name: Our Steps
 on: push
 jobs:
-  notify:
-    runs-on: ubuntu-latest
+  backup:
+    runs-on: ubuntu-lastest
     steps:
-      - id: random
-        run: exit $(($RANDOM % 2 == 0))
-      - if: always()
-        run: echo ${{ steps.random.outcome }}
+      - name: original
+        run: exit 1
+      - name: backup
+        if: failure()
+        run: echo backup
+
