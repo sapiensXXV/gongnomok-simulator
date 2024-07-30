@@ -25,7 +25,7 @@ jobs:
       - name: JDK17 세팅
         uses: actions/setup-java@v4
         with:
-          distribution: 'correto'
+          distribution: 'corretto'
           java-version: 17
       
       - name: Gradle 세팅
@@ -69,10 +69,10 @@ jobs:
       - name: SSH 접속 후 배포
         uses: appleboy/ssh-action@1.0.3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           script: |
             cd gongnomok-simulator
             git pull
