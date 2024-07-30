@@ -30,7 +30,7 @@ jobs:
           echo "ARTIFACT_DIRECTORY is: ${{ env.ARTIFACT_DIRECTORY }}"
           echo "DATABASE_URL is set: ${{ env.DATABASE_URL != '' }}"
           echo "DATABASE_USERNAME is set: ${{ env.DATABASE_USERNAME != '' }}"
-          echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD }}"
+          echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD != '' }}"
 
   build:  
     name: .jar 빌드하고 아티팩트 업로드
