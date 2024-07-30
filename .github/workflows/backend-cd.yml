@@ -74,11 +74,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: 도커 이미지 빌드
         run: |
-          docker compose -f ./docker-compose.yml build
+          docker compose -f ./backend/docker/docker-compose.yml build
 
       - name: 도커 
         run: |
-          docker compose -f ./docker-compose.yml push
+          docker compose -f ./backend/docker/docker-compose.yml push
 
   deploy:
     needs: [ build, docker-image ]
