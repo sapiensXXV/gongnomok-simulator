@@ -32,6 +32,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Gradle 빌드
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: |
           cd backend
           ./gradlew build

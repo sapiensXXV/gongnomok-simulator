@@ -45,6 +45,10 @@ jobs:
       - name: Test with Gradle
         continue-on-error: true
         id: gradle_test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: |
           cd backend
           ./gradlew test
