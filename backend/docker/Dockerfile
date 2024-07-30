@@ -1,7 +1,7 @@
 # version dev:1.1.4
 
-FROM openjdk:17-oracle as builder
-WORKDIR /backend
+# FROM openjdk:17-oracle as builder
+# WORKDIR /backend
 
 # COPY gradlew .
 # COPY gradle gradle

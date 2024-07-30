@@ -21,7 +21,7 @@ RUN sed -i 's/profiler.collector.ip=127.0.0.1/profiler.collector.ip=175.197.202.
 ARG JAR_PATH=build/libs/gongnomok-app.jar
 COPY ${JAR_PATH} app.jar
 
-COPY ./script/run-dev.sh ./
+COPY ../../script/run-dev.sh ./
 RUN chmod +x ./run-dev.sh
 
 ENTRYPOINT [ "./run-dev.sh" ]

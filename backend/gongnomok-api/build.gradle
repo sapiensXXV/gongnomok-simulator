@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'gongnomok-api'
-version = '1.0.0'
+version = ''
 
 java {
     toolchain {
