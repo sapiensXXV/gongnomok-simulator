@@ -33,7 +33,7 @@ jobs:
           echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD != '' }}"
 
   build:  
-    name: .jar 빌드하고 아티팩트 업로드
+    name: .jar 빌드 -> 아티팩트 업로드
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

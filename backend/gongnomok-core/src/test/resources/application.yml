@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: test
+    include:
+      - core
+
+comment:
+  constant:
+    max-count: 1
+    expire-seconds: 60
