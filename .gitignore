@@ -3,7 +3,7 @@ ads.txt
 
 .env
 *.env
-
+backend/build.sh
 HELP.md
 .gradle
 *.pem
