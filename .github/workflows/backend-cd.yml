@@ -15,8 +15,23 @@ on:
 env:
   ARTIFACT_NAME: 'gongnomok-api'
   ARTIFACT_DIRECTORY: './backend/gongnomok-api/build/libs'
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
 
 jobs:
+  debug:
+    name: 디버그
+    runs-on: ubuntu-latest
+    steps:
+      - name: 환경변수 설정
+        run: |
+          echo "ARTIFACT_NAME is: ${{ env.ARTIFACT_NAME }}"
+          echo "ARTIFACT_DIRECTORY is: ${{ env.ARTIFACT_DIRECTORY }}"
+          echo "DATABASE_URL is set: ${{ env.DATABASE_URL != '' }}"
+          echo "DATABASE_USERNAME is set: ${{ env.DATABASE_USERNAME != '' }}"
+          echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD }}"
+
   build:  
     name: .jar 빌드하고 아티팩트 업로드
     runs-on: ubuntu-latest
