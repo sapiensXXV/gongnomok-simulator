@@ -105,8 +105,14 @@ jobs:
           port: ${{ secrets.SERVER_SSH_PORT }}
           private-key: 
           script: |
+            whoami
             cd gongnomok-simulator
             git pull
+
+            echo "DATABASE_URL=${{ env.DATABASE_URL }}" > .env
+            echo "DATABASE_USERNAME=${{ env.DATABASE_USERNAME }}" >> .env
+            echo "DATABASE_PASSWORD=${{ env.DATABASE_PASSWORD }}" >> .env
+
             sudo docker compose -f ./backend/docker/docker-compose.yml pull
             sudo docker compose -f ./backend/docker/docker-compose.yml down
-            sudo docker compose -f ./backend/docker/docker-compose.yml up -d
+            sudo docker compose -f ./backend/docker/docker-compose.yml --env-file .env up -d
