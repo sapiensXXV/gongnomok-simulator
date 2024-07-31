@@ -2,7 +2,7 @@ services:
   back:
     platform: linux/amd64
     build:
-      # context: .
+      context: .
       dockerfile: Dockerfile
     image: sjhn/gongnomok-backend:prod-1.2.3
     restart: always
