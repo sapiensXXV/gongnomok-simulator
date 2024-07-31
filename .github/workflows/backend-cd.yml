@@ -82,7 +82,7 @@ jobs:
           ls -al
       - name: 도커 이미지 빌드
         run: |
-          docker compose -f ./backend/docker/docker-compose.yml build
+          docker compose -f ./backend/docker/docker-compose.yml build --no-cache
 
       - name: 도커 이미지 푸시
         run: |
