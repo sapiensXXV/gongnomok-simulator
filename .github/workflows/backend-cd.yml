@@ -76,6 +76,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
+      - name: 경로 확인
+        run: |
+          pwd
+          ls -al
       - name: 도커 이미지 빌드
         run: |
           docker compose -f ./backend/docker/docker-compose.yml build
