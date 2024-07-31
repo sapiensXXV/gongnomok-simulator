@@ -78,7 +78,7 @@ jobs:
           name: ${{ env.ARTIFACT_NAME }}
           # path: backend/docker/build
       - name: 경로 확인
-        run: |
+        run: |s
           pwd
           ls -al
       - name: 도커 이미지 빌드
