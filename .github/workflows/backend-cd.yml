@@ -76,7 +76,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: backend/docker/build
+          # path: backend/docker/build
       - name: 경로 확인
         run: |
           pwd
