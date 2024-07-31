@@ -3,7 +3,7 @@ services:
     platform: linux/amd64
     build:
       context: ../..
-      dockerfile: Dockerfile
+      dockerfile: backend/docker/Dockerfile
     image: sjhn/gongnomok-backend:prod-1.2.3
     restart: always
     ports:
