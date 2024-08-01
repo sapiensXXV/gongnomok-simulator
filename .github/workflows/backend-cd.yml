@@ -13,8 +13,8 @@ on:
     paths: backend/**
 
 env:
-  ARTIFACT_NAME: 'gongnomok-api'
-  ARTIFACT_DIRECTORY: './artifact'
+  JAR_PATH: './backend/build/libs'
+  JAR_NAME: 'gongnomok-api'
   DOCKER_DIRECTORY: './backend/docker'
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
@@ -27,8 +27,8 @@ jobs:
     steps:
       - name: 환경변수 설정
         run: |
-          echo "ARTIFACT_NAME is: ${{ env.ARTIFACT_NAME }}"
-          echo "ARTIFACT_DIRECTORY is: ${{ env.ARTIFACT_DIRECTORY }}"
+          echo "JAR_NAME is: ${{ env.JAR_NAME }}"
+          echo "JAR_PATH is: ${{ env.JAR_PATH }}"
           echo "DATABASE_URL is set: ${{ env.DATABASE_URL != '' }}"
           echo "DATABASE_USERNAME is set: ${{ env.DATABASE_USERNAME != '' }}"
           echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD != '' }}"
@@ -55,8 +55,8 @@ jobs:
       - name: 아티팩트 파일 업로드
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: ${{ env.ARTIFACT_DIRECTORY }}/${{ env.ARTIFACT_NAME }}.jar
+          name: ${{ env.JAR_NAME }}
+          path: ${{ env.JAR_PATH }}/${{ env.JAR_NAME }}.jar
 
   docker-image:
     needs: build
@@ -72,7 +72,7 @@ jobs:
       - name: 빌드 jar 아티팩트 다운로드
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.ARTIFACT_NAME }}
+          name: ${{ env.JAR_NAME }}
       - name: 경로 확인
         run: |
           pwd
