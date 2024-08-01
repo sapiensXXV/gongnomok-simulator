@@ -1,7 +1,7 @@
 spring:
-  config:
-    import: optional:file:.env[.properties]
-  #    import: optionalL:file:.env[.properties]
+#  config:
+#    import: optional:file:.env[.properties]
+#  #    import: optionalL:file:.env[.properties]
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}

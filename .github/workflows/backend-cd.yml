@@ -115,4 +115,4 @@ jobs:
 
             sudo docker compose -f ./backend/docker/docker-compose.yml pull
             sudo docker compose -f ./backend/docker/docker-compose.yml down
-            sudo docker compose -f ./backend/docker/docker-compose.yml --env-file .env up -d
+            sudo docker compose -f ./backend/docker/docker-compose.yml up -d
