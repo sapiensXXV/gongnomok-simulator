@@ -2,16 +2,14 @@ FROM openjdk:17-oracle as builder
 WORKDIR /backend
 
 ARG JAR_PATH=gongnomok-api.jar
+COPY ${JAR_PATH} app.jar
+
 ARG DATABASE_URL
 ARG DATABASE_USERNAME
 ARG DATABASE_PASSWORD
 
-COPY ${JAR_PATH} app.jar
+ENV DATABASE_URL=${DATABASE_URL}
+ENV DATABASE_USERNAME=${DATABASE_USERNAME}
+ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
-
-# ENTRYPOINT [ "java", \
-# "-Dspring.datasource.url=${DATABASE_URL}", \
-# "-Dspring.datasource.username=${DATABASE_USERNAME}", \
-# "-Dspring.datasource.password=${DATABASE_PASSWORD}", \
-# "-jar", "app.jar"]
