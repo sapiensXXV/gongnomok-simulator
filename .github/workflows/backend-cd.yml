@@ -13,7 +13,7 @@ on:
     paths: backend/**
 
 env:
-  JAR_PATH: './backend/build/libs'
+  JAR_PATH: './backend/gongonomok-api/build/libs'
   JAR_NAME: 'gongnomok-api'
   DOCKER_DIRECTORY: './backend/docker'
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
