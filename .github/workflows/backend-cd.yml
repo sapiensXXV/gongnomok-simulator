@@ -47,10 +47,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Gradle 빌드
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        # env:
+        #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        #   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+        #   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: |
           cd backend
           ./gradlew build
@@ -108,10 +108,6 @@ jobs:
             whoami
             cd gongnomok-simulator
             git pull
-
-            echo "DATABASE_URL=${{ env.DATABASE_URL }}" > .env
-            echo "DATABASE_USERNAME=${{ env.DATABASE_USERNAME }}" >> .env
-            echo "DATABASE_PASSWORD=${{ env.DATABASE_PASSWORD }}" >> .env
 
             sudo docker compose -f ./backend/docker/docker-compose.yml pull
             sudo docker compose -f ./backend/docker/docker-compose.yml down
