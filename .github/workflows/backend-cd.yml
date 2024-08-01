@@ -47,10 +47,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Gradle 빌드
-        # env:
-        #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        #   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-        #   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: |
           cd backend
           ./gradlew build
@@ -81,11 +77,11 @@ jobs:
         run: |
           pwd
           ls -al
-      - name: .env 파일 생성
-        run: |
-          echo "DATABASE_URL=${{ env.DATABASE_URL }}" > ./backend/docker/.env
-          echo "DATABASE_USERNAME=${{ env.DATABASE_USERNAME }}" >> ./backend/docker/.env
-          echo "DATABASE_PASSWORD=${{ env.DATABASE_PASSWORD }}" >> ./backend/docker/.env
+      # - name: .env 파일 생성
+      #   run: |
+      #     echo "DATABASE_URL=${{ env.DATABASE_URL }}" > ./backend/docker/.env
+      #     echo "DATABASE_USERNAME=${{ env.DATABASE_USERNAME }}" >> ./backend/docker/.env
+      #     echo "DATABASE_PASSWORD=${{ env.DATABASE_PASSWORD }}" >> ./backend/docker/.env
       - name: 도커 이미지 빌드
         run: |
           docker compose -f ./backend/docker/docker-compose.yml build --no-cache
