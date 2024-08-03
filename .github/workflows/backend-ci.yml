@@ -83,7 +83,28 @@ jobs:
         uses: slackapi/slack-github-action@v1.26.0
         with: 
           channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
-          slack-message: "backend ci service success"
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "메이플 주문서  backend CI 결과에 대해서 안내드립니다."
+                  }
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "🟢 *CI SUCCESS*"
+                  }
+                }
+              ]
+            }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
 
