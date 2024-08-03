@@ -8,6 +8,21 @@ permissions:
   contents: read
 
 jobs:
+
+  debug:
+    name: 디버그
+    runs-on: ubuntu-latest
+    steps:
+      - name: 환경변수 확인
+        run: |
+          echo "DATABASE_URL is set: ${{ secrets.DATABASE_URL != '' }}"
+          echo "DATABASE_USERNAME is set: ${{ secrets.DATABASE_USERNAME != '' }}"
+          echo "DATABASE_PASSWORD is set: ${{ secrets.DATABASE_PASSWORD != '' }}"
+          echo "SLACK_CICD_WEBHOOK is set: ${{ secrets.SLACK_CICD_WEBHOOK }}"
+          echo "SLACK_CICD_CHANNEL_ID is set: ${{ secrets.SLACK_CICD_CHANNEL_ID }}"
+          echo "SLACK_CICD_BOT_TOKEN is set: ${{ secrets.SLACK_CICD_BOT_TOKEN }}"
+
+
   PATH_CHANGES:
     runs-on: ubuntu-latest
     permissions:
