@@ -54,7 +54,7 @@ jobs:
           ./gradlew test
 
   slack_notify_success:
-    name: 슬랙 성공 메세지
+    name: 슬랙 - CI 성공 메세지 전송
     runs-on: ubuntu-latest
     needs: 
       - BACKEND_CI
@@ -67,7 +67,7 @@ jobs:
       - name: 빌드 성공 메세지 전송
         uses: slackapi/slack-github-action@v1.26.0
         with: 
-          channel_id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
           slack-message: "backend ci service success"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
