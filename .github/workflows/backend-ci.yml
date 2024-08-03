@@ -79,6 +79,10 @@ jobs:
         run: |
           COMMIT_TITLE=$(echo "${{ github.event.head_commit.message}}" | head -n 1)
           echo "COMMIT_TITLE=$COMMIT_TITLE" >> $GITHUB_ENV
+      - name: 멤버 조회
+        id: member
+        run: |
+          echo "SENDER_SLACK_ID=${{ env[github.event.sender.login] }}" >> $GITHUB_ENV
       - name: 빌드 성공 메세지 전송
         uses: slackapi/slack-github-action@v1.26.0
         with: 
@@ -87,11 +91,21 @@ jobs:
             {
               "blocks": [
                 {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "메이플 주문서  backend CI 결과에 대해서 안내드립니다."
-                  }
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "메이플 주문서 시뮬레이터 백엔드 CI 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "divider"
@@ -100,7 +114,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "🟢 *CI SUCCESS*"
+                    "text": "메이플 주문서 시뮬레이터 CI 결과에 대해서 안내드립니다.\n- CI결과: 🟢 성공\n- 링크: <${{ github.event.pull_request.html_url }}|${{ github.event.pull_request.title }}> \n- PR 담당자: <@${{ env.SENDER_SLACK_ID }}"
                   }
                 }
               ]
