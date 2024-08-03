@@ -98,7 +98,7 @@ jobs:
                       "elements": [
                         {
                           "type": "text",
-                          "text": "메이플 주문서 시뮬레이터 백엔드 CI 안내 ",
+                          "text": "메이플 주문서 시뮬레이터 통합 안내 ",
                           "style": {
                             "bold": true
                           }
@@ -113,14 +113,12 @@ jobs:
                 {
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
-                    "text": "메이플 주문서 시뮬레이터 CI 결과에 대해서 안내드립니다.\n- CI결과: 🟢 성공\n- 링크: <${{ github.event.pull_request.html_url }}|${{ github.event.pull_request.title }}> \n- PR 담당자: <@${{ env.SENDER_SLACK_ID }}"
+                    "type": "plain_text",
+                    "text": "🟢 통합 성공",
+                    "emoji": true
                   }
                 }
               ]
             }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
-
-
-

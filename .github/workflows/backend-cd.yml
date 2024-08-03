@@ -107,3 +107,94 @@ jobs:
             sudo docker compose -f ./backend/docker/docker-compose.yml pull
             sudo docker compose -f ./backend/docker/docker-compose.yml down
             sudo docker compose -f ./backend/docker/docker-compose.yml up -d
+
+  slack_notify_success:
+    needs: deploy
+    name: 슬랙 배포성공 알림
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "메이플 주문서 시뮬레이터 배포 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🟢 배포 성공",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
+
+
+  slack_notify_failure:
+    needs: deploy
+    name: 슬랙 배포실패 알림
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "메이플 주문서 시뮬레이터 배포 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🔴 배포 실패",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
