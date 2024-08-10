@@ -16,7 +16,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
-    image: sjhn/gongnomok-frontend:dev-1.3.0
+    image: sjhn/gongnomok-frontend:dev-1.2.1
     restart: always
     ports:
       - 80:80 # http
