@@ -1,0 +1,11 @@
+services:
+  front:
+    platform: linux/amd64
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: sjhn/gongnomok-frontend:prod-1.2.0
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
