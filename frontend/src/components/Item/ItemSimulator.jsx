@@ -671,6 +671,9 @@ export default function ItemSimulator() {
                 onMouseUp={() => document.activeElement.blur()}
               >기록 도전</button>
             </section>
+            {/* <div className="temp-message">
+              <span className="text-center">업데이트 이후 다시 사용가능 합니다</span>
+            </div> */}
           </section>
 
 

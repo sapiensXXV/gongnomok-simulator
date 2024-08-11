@@ -112,7 +112,6 @@ public class CommentService {
         if (!encryptedPassword.equals(findComment.getPassword())) {
             throw new CommentException(ExceptionCode.INVALID_PASSWORD);
         }
-
         commentJpaRepository.delete(findComment);
     }
 

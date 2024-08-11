@@ -1,0 +1,199 @@
+name: 백엔드 빌드-배포
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - backend/**
+  pull_request:
+    branches:
+      - main
+    paths: backend/**
+
+env:
+  JAR_PATH: './backend/gongnomok-api/build/libs'
+  JAR_NAME: 'gongnomok-api'
+  DOCKER_DIRECTORY: './backend/docker'
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+
+jobs:
+  debug:
+    name: 디버그
+    runs-on: ubuntu-latest
+    steps:
+      - name: 환경변수 설정
+        run: |
+          echo "JAR_NAME is: ${{ env.JAR_NAME }}"
+          echo "JAR_PATH is: ${{ env.JAR_PATH }}"
+          echo "DATABASE_URL is set: ${{ env.DATABASE_URL != '' }}"
+          echo "DATABASE_USERNAME is set: ${{ env.DATABASE_USERNAME != '' }}"
+          echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD != '' }}"
+
+  build:  
+    name: .jar 빌드 -> 아티팩트 업로드
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: JDK17 세팅
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: 17
+      
+      - name: Gradle 세팅
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Gradle 빌드
+        run: |
+          cd backend
+          ./gradlew build
+      
+      - name: 아티팩트 파일 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.JAR_NAME }}
+          path: ${{ env.JAR_PATH }}/${{ env.JAR_NAME }}.jar
+
+  docker-image:
+    needs: build
+    runs-on: ubuntu-latest
+    name: 도커 이미지 생성, 푸시
+    steps:
+      - uses: actions/checkout@v4
+      - name: 도커 로그인
+        uses: docker/login-action@v3
+        with: 
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: 빌드 jar 아티팩트 다운로드
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.JAR_NAME }}
+      - name: 경로 확인
+        run: |
+          pwd
+          ls -al
+      - name: 도커 이미지 빌드
+        run: |
+          docker compose -f ./backend/docker/docker-compose.yml build --no-cache
+      - name: 도커 이미지 푸시
+        run: |
+          docker compose -f ./backend/docker/docker-compose.yml push
+
+  deploy:
+    needs: [ build, docker-image ]
+    name: 배포
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SSH 접속 후 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
+          # password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
+          script: |
+            whoami
+            cd gongnomok-simulator
+            git pull
+
+            sudo docker compose -f ./backend/docker/docker-compose.yml pull
+            sudo docker compose -f ./backend/docker/docker-compose.yml down
+            sudo docker compose -f ./backend/docker/docker-compose.yml up -d
+
+  slack_notify_success:
+    needs: deploy
+    name: 슬랙 배포성공 알림
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "메이플 주문서 시뮬레이터 배포 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🟢 배포 성공",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
+
+
+  slack_notify_failure:
+    needs: deploy
+    name: 슬랙 배포실패 알림
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "메이플 주문서 시뮬레이터 배포 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🔴 배포 실패",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}

@@ -1,0 +1,117 @@
+name: 프론트엔드 CI
+
+on:
+  push:
+    branches:
+      - dev
+    paths: frontend/**
+  pull_request:
+    branches:
+      - dev
+    paths: frontend/**
+
+env:
+  DOCKER_DIRECTORY: './frontend/docker'
+
+jobs:
+  check_path_changes:
+    name: 경로 확인
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      frontend: ${{ steps.changes.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            frontend:
+              - 'frontend/**'
+
+  frontend_ci:
+    name: 프론트엔드 통합
+    runs-on: ubuntu-latest
+    needs: check_path_changes
+    if: ${{ needs.check_path_changes.outputs.frontend == 'true' }}
+    permissions:
+      contents: read
+      packages: write
+      actions: write
+
+    steps:
+      - name: 레포지토리 체크아웃
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+        
+      - name: NodeJS 세팅
+        uses: actions/setup-node@v4
+        with: 
+          node-version: '20'
+      
+      - name: 의존관계 설치
+        run: |
+          cd frontend
+          npm install
+      
+      - name: npm 빌드 확인
+        continue-on-error: true
+        id: npm_run_build
+        run: |
+          pwd
+          cd frontend
+          npm run build
+      
+
+  fe_ci_success_slack_message:
+    name: 프론트엔드 통합 슬랙메세지 전송
+    runs-on: ubuntu-latest
+    needs: frontend_ci
+    if: success()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "프론트엔드 CI 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🟢 통합 성공",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
+        
+
+
+
+
+

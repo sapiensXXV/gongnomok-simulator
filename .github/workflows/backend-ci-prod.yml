@@ -1,0 +1,124 @@
+name: 백엔드 CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+
+permissions:
+  contents: read
+
+jobs:
+
+  debug:
+    name: 디버그
+    runs-on: ubuntu-latest
+    steps:
+      - name: 시크릿 값 설정 확인
+        run: |
+          echo "DATABASE_URL is set: ${{ secrets.DATABASE_URL != '' }}"
+          echo "DATABASE_USERNAME is set: ${{ secrets.DATABASE_USERNAME != '' }}"
+          echo "DATABASE_PASSWORD is set: ${{ secrets.DATABASE_PASSWORD != '' }}"
+          echo "SLACK_CICD_WEBHOOK is set: ${{ secrets.SLACK_CICD_WEBHOOK != ''}}"
+          echo "SLACK_CICD_CHANNEL_ID is set: ${{ secrets.SLACK_CICD_CHANNEL_ID != ''}}"
+          echo "SLACK_CICD_BOT_TOKEN is set: ${{ secrets.SLACK_CICD_BOT_TOKEN != ''}}"
+
+
+  PATH_CHANGES:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      backend: ${{ steps.changes.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+
+  BACKEND_CI:
+    runs-on: ubuntu-latest
+    needs: PATH_CHANGES
+    if: ${{ needs.PATH_CHANGES.outputs.backend == 'true' }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+      
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Test with Gradle
+        continue-on-error: true
+        id: gradle_test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        run: |
+          cd backend
+          ./gradlew test
+
+  slack_notify_success:
+    name: 슬랙 - CI 성공 메세지 전송
+    runs-on: ubuntu-latest
+    needs: 
+      - BACKEND_CI
+    if: success()
+    steps:
+      - name: 커밋 타이틀 추출
+        run: |
+          COMMIT_TITLE=$(echo "${{ github.event.head_commit.message}}" | head -n 1)
+          echo "COMMIT_TITLE=$COMMIT_TITLE" >> $GITHUB_ENV
+      - name: 멤버 조회
+        id: member
+        run: |
+          echo "SENDER_SLACK_ID=${{ env[github.event.sender.login] }}" >> $GITHUB_ENV
+      - name: 빌드 성공 메세지 전송
+        uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "메이플 주문서 시뮬레이터 통합 안내 ",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🟢 통합 성공",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}

@@ -1,0 +1,14 @@
+services:
+  back:
+    platform: linux/amd64
+    build:
+      context: ../..
+      dockerfile: backend/docker/Dockerfile
+      args:
+        - DATABASE_URL=${DATABASE_URL}
+        - DATABASE_USERNAME=${DATABASE_USERNAME}
+        - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    image: sjhn/gongnomok-backend:prod-1.2.3
+    restart: always
+    ports:
+      - 8080:8080

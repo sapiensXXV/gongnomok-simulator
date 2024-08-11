@@ -3,11 +3,9 @@ ads.txt
 
 .env
 *.env
-
+backend/build.sh
 HELP.md
 .gradle
-*.properties
-*.yml
 *.pem
 build/
 logs/
@@ -19,13 +17,6 @@ frontend/secret/
 
 !docker-compose.yml
 
-application.properties
-application-gcp.properties
-application.yml
-application-gcp.yml
-application-dev.yml
-application-prod.yml
-application-local.yml
 keystore.p12
 
 

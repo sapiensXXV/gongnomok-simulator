@@ -40,7 +40,7 @@ public class AdminLoginArgumentResolver implements HandlerMethodArgumentResolver
         if (member == null || !member.getRole().equals(Role.ADMIN.name())) {
             return null;
         }
-
+        
         return Accessor.admin(member.getMemberId());
     }
 

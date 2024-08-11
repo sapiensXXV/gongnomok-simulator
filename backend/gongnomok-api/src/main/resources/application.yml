@@ -1,0 +1,60 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    include:
+      - api
+      - data
+      - common
+      - core
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        domain: gongnomok.site
+        secure: true
+      timeout: 30m
+  tomcat:
+    mbeanregistry:
+      enabled: true # ?? ??? ??
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+  endpoint:
+    health:
+      show-components: always
+    metrics:
+      enabled: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
+        domain: localhost
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
+        domain: dev.gongnomok.site

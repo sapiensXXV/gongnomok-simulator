@@ -65,6 +65,7 @@ public class ItemService {
     private List<ItemRankingResponse> convertItemListRankingResponse(
         final List<ItemRankingRepositoryDto> items
     ) {
+        
         final List<ItemRankingResponse> ranking = new ArrayList<>();
         for (int i = 1; i <= items.size(); i++) {
             final ItemRankingRepositoryDto item = items.get(i - 1);
