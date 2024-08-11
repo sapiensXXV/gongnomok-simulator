@@ -28,6 +28,6 @@ RUN echo ${OPTIONS_SSL_NGINX} > /etc/secret/options-ssl-nginx.conf
 # COPY ./secret/options-ssl-nginx.conf /etc/secret/
 # COPY ./secret/privkey-dev.pem /etc/secret/
 
-COPY --from=builder ./dist/ /usr/share/nginx/html/
+COPY --from=builder dist /usr/share/nginx/html
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]  

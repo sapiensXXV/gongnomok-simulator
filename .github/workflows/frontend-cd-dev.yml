@@ -19,37 +19,37 @@ env:
   DEV_SERVER_PRIVKEY_PEM: ${{ secrets.DEV_SERVER_PRIVKEY_PEM }}
   SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
 jobs:
-  build:
-    name: npm 빌드
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: NodeJS 설치
-        uses: actions/setup-node@v4
-        with: 
-          node-version: '20'
+  # build:
+  #   name: npm 빌드
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: NodeJS 설치
+  #       uses: actions/setup-node@v4
+  #       with: 
+  #         node-version: '20'
 
-      - name: 의존관계 설치
-        run: |
-          cd frontend
-          npm install
+  #     - name: 의존관계 설치
+  #       run: |
+  #         cd frontend
+  #         npm install
         
-      - name: npm 빌드
-        id: npm_run_build
-        run: |
-          pwd
-          cd frontend
-          npm run build
+  #     - name: npm 빌드
+  #       id: npm_run_build
+  #       run: |
+  #         pwd
+  #         cd frontend
+  #         npm run build
 
-      - name: 아티팩트 파일 업로드
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-dist-files
-          path: ${{ env.ARTIFACT_DIRECTORY }}
+  #     - name: 아티팩트 파일 업로드
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: react-dist-files
+  #         path: ${{ env.ARTIFACT_DIRECTORY }}
 
   docker-image-build-push:
     name: 도커 이미지 빌드 -> 푸시
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: react-dist-files
-          path: ./frontend/dist
+          path: ./frontend/dist/
           merge-multiple: true
       - name: ls
         run: ls -arlth
