@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: react-dist-files
-          path: ./frontend/dist/
+          path: ./frontend/dist
           merge-multiple: true
       - name: ls
         run: ls -arlth
