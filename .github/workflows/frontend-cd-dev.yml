@@ -148,6 +148,7 @@ jobs:
     needs: deploy
     name: 슬랙 실패 메세지 전송
     runs-on: ubuntu-latest
+    if: failure()
     steps:
       - uses: slackapi/slack-github-action@v1.26.0
         with: 
