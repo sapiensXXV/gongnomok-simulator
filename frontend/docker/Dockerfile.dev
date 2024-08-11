@@ -19,15 +19,17 @@ ARG DEV_SERVER_FULLCHAIN_PEM
 ARG DEV_SERVER_PRIVKEY_PEM
 ARG SERVER_OPTION_SSL_NGINX
 
-ENV FULLCHAIN_PEM=${DEV_SERVER_FULLCHAIN_PEM}
+ENV FULLCHAIN=${DEV_SERVER_FULLCHAIN_PEM}
 ENV PRIVKEY=${DEV_SERVER_PRIVKEY_PEM}
 ENV OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
 
-RUN echo ${FULLCHAIN_PEM} > /etc/secret/fullchain-dev.pem
+RUN echo ${FULLCHAIN} > /etc/secret/fullchain-dev.pem
 RUN echo ${PRIVKEY} > /etc/secret/privkey-dev.pem
 RUN echo ${OPTIONS_SSL_NGINX} > /etc/secret/options-ssl-nginx.conf
 
-RUN ls -arlth
+RUN echo ${FULLCHAIN}
+RUN echo ${PRIVKEY}
+RUN echo ${OPTIONS_SSL_NGINX}
 
 # COPY ./secret/fullchain-dev.pem /etc/secret/
 # COPY ./secret/options-ssl-nginx.conf /etc/secret/
