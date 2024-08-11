@@ -98,7 +98,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           # password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_SSH_PORT }}
-          private-key: 
           script: |
             whoami
             cd gongnomok-simulator

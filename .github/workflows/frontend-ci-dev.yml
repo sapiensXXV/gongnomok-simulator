@@ -56,7 +56,7 @@ jobs:
           cd frontend
           npm install
       
-      - name: npm 빌드
+      - name: npm 빌드 확인
         continue-on-error: true
         id: npm_run_build
         run: |
