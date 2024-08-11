@@ -15,7 +15,9 @@ on:
 env:
   ARTIFACT_DIRECTORY: ./frontend/dist
   DOCKER_DIRECTORY: ./frontend/docker
-
+  DEV_SERVER_FULLCHAIN_PEM: ${{ secrets.DEV_SERVER_FULLCHAIN_PEM }}
+  DEV_SERVER_PRIVKEY_PEM: ${{ secrets.DEV_SERVER_PRIVKEY_PEM }}
+  SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
 jobs:
   build:
     name: npm 빌드

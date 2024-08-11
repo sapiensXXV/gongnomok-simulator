@@ -18,7 +18,7 @@ ARG SERVER_OPTION_SSL_NGINX
 
 ENV FULLCHAIN_PEM=${DEV_SERVER_FULLCHAIN_PEM}
 ENV PRIVKEY=${DEV_SERVER_PRIVKEY_PEM}
-ENV OPTIONS_SSL_NGINX=${SERVER_OPTION_SSL_NGINX}
+ENV OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
 
 RUN echo ${FULLCHAIN_PEM} > /etc/secret/fullchain-dev.pem
 RUN echo ${PRIVKEY} > /etc/secret/privkey-dev.pem
@@ -30,4 +30,4 @@ RUN echo ${OPTIONS_SSL_NGINX} > /etc/secret/options-ssl-nginx.conf
 
 COPY --from=builder ./dist /usr/share/nginx/html
 EXPOSE 80 443
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]  
