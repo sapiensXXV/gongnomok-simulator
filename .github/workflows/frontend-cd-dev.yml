@@ -62,7 +62,8 @@ jobs:
           name: react-dist-files
           path: ./frontend/dist/
           merge-multiple: true
-      
+      - name: ls
+        run: ls -arlth
       - name: 도커 로그인
         uses: docker/login-action@v3
         with: 
