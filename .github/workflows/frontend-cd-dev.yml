@@ -25,11 +25,11 @@ jobs:
     steps:
       - name: 출력
         run: |
-          echo "ARTIFACT_DIRECTORY is: ${{ env.ARTIFACT_DIRECTORY }}"
-          echo "DOCKER_DIRECTORY is: ${{ env.DOCKER_DIRECTORY }}"
-          echo "DEV_SERVER_FULLCHAIN_PEM is: ${{ env.DEV_SERVER_FULLCHAIN_PEM }}"
-          echo "DEV_SERVER_PRIVKEY_PEM is: ${{ env.DEV_SERVER_PRIVKEY_PEM }}"
-          echo "SERVER_OPTIONS_SSL_NGINX is: ${{ env.SERVER_OPTIONS_SSL_NGINX }}"
+          echo "ARTIFACT_DIRECTORY is: ${{ env.ARTIFACT_DIRECTORY != '' }}"
+          echo "DOCKER_DIRECTORY is: ${{ env.DOCKER_DIRECTORY != '' }}"
+          echo "DEV_SERVER_FULLCHAIN_PEM is: ${{ env.DEV_SERVER_FULLCHAIN_PEM != '' }}"
+          echo "DEV_SERVER_PRIVKEY_PEM is: ${{ env.DEV_SERVER_PRIVKEY_PEM != '' }}"
+          echo "SERVER_OPTIONS_SSL_NGINX is: ${{ env.SERVER_OPTIONS_SSL_NGINX != '' }}"
 
   docker-image-build-push:
     name: 도커 이미지 빌드 -> 푸시
