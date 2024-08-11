@@ -4,6 +4,7 @@ COPY . .
 RUN npm install
 RUN npm run build
 
+RUN pwd
 RUN ls -arlth
 
 FROM nginx:1.18.0-alpine
@@ -26,12 +27,12 @@ RUN echo ${FULLCHAIN_PEM} > /etc/secret/fullchain-dev.pem
 RUN echo ${PRIVKEY} > /etc/secret/privkey-dev.pem
 RUN echo ${OPTIONS_SSL_NGINX} > /etc/secret/options-ssl-nginx.conf
 
-RUN ls -arlth ./dist
+RUN ls -arlth
 
 # COPY ./secret/fullchain-dev.pem /etc/secret/
 # COPY ./secret/options-ssl-nginx.conf /etc/secret/
 # COPY ./secret/privkey-dev.pem /etc/secret/
 
-COPY --from=builder ./dist /usr/share/nginx/html
+COPY --from=builder /frontend/dist /usr/share/nginx/html
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]  
