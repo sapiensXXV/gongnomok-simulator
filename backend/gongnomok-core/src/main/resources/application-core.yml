@@ -2,3 +2,8 @@ gongnomok:
   banword:
     polling:
       refreshMinutes: 10
+      
+comment:
+  constant:
+    max-count: 1
+    expire-seconds: 60
