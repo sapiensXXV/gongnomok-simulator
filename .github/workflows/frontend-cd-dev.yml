@@ -70,9 +70,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: 도커 이미지 빌드
-        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose-dev.yml
+        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose-dev.yml build --no-cache
       - name: 도커 이미지 푸시
-        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose-dev.yml
+        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose-dev.yml push
 
   deploy: 
     name: 배포
