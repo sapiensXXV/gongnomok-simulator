@@ -6,6 +6,10 @@ services:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile.dev
+      args:
+        - DEV_SERVER_FULLCHAIN_PEM=${DEV_SERVER_FULLCHAIN_PEM}
+        - DEV_SERVER_PRIVKEY_PEM=${DEV_SERVER_PRIVKEY_PEM}
+        - SERVER_OPTION_SSL_NGINX=${SERVER_OPTION_SSL_NGINX}
     image: sjhn/gongnomok-frontend:dev-1.2.1
     restart: always
     ports:
