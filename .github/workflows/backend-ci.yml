@@ -2,10 +2,10 @@ name: 백엔드 CI
 
 on:
   push:
-    branches: main
+    branches: [ "main", "dev" ]
     paths: backend/**
   pull_request:
-    branches: main
+    branches: [ "main", "dev" ]
     paths: backend/**
 
 permissions:
