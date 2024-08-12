@@ -71,6 +71,9 @@ jobs:
             whoami
             cd gongnomok-simulator
             git pull
+            git fetch
+            git switch dev
+            
             sudo docker compose -f ./frontend/docker/docker-compose-dev.yml pull
             sudo docker compose -f ./frontend/docker/docker-compose-dev.yml down
             sudo docker compose -f ./frontend/docker/docker-compose-dev.yml up -d
