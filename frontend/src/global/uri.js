@@ -3,4 +3,3 @@
 export const BASE_URI = "https://dev.gongnomok.site" // 개발 서버 주소
 // export const BASE_URI = "http://35.216.38.200"
 // export const BASE_URI = "http://35.216.73.167:8080"
-// change
