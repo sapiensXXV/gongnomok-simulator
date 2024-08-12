@@ -23,17 +23,13 @@ ENV FULLCHAIN=${DEV_SERVER_FULLCHAIN_PEM}
 ENV PRIVKEY=${DEV_SERVER_PRIVKEY_PEM}
 ENV OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
 
-RUN echo ${FULLCHAIN} > /etc/secret/fullchain-dev.pem
-RUN echo ${PRIVKEY} > /etc/secret/privkey-dev.pem
-RUN echo ${OPTIONS_SSL_NGINX} > /etc/secret/options-ssl-nginx.conf
+RUN echo -n "${FULLCHAIN}" > /etc/secret/fullchain-dev.pem
+RUN echo -n "${PRIVKEY}" > /etc/secret/privkey-dev.pem
+RUN echo -n "${OPTIONS_SSL_NGINX}" > /etc/secret/options-ssl-nginx.conf
 
-RUN cat /etc/secret/fullchain-dev.pem
-RUN cat /etc/secret/privkey-dev.pem
-RUN cat /etc/secret/options-ssl-nginx.conf
-
-# COPY ./secret/fullchain-dev.pem /etc/secret/
-# COPY ./secret/options-ssl-nginx.conf /etc/secret/
-# COPY ./secret/privkey-dev.pem /etc/secret/
+COPY ./secret/fullchain-dev.pem /etc/secret/
+COPY ./secret/options-ssl-nginx.conf /etc/secret/
+COPY ./secret/privkey-dev.pem /etc/secret/
 
 COPY --from=builder /frontend/dist /usr/share/nginx/html
 EXPOSE 80 443

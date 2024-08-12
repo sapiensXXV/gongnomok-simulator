@@ -6,6 +6,7 @@ services:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile.dev
+      env:        
       args:
         - DEV_SERVER_FULLCHAIN_PEM=${DEV_SERVER_FULLCHAIN_PEM}
         - DEV_SERVER_PRIVKEY_PEM=${DEV_SERVER_PRIVKEY_PEM}
@@ -15,3 +16,4 @@ services:
     ports:
       - 80:80
       - 443:443
+
