@@ -5,8 +5,7 @@ services:
     platform: linux/amd64
     build:
       context: ..
-      dockerfile: ./docker/Dockerfile.dev
-      env:        
+      dockerfile: ./docker/Dockerfile.dev        
       args:
         - DEV_SERVER_FULLCHAIN_PEM=${DEV_SERVER_FULLCHAIN_PEM}
         - DEV_SERVER_PRIVKEY_PEM=${DEV_SERVER_PRIVKEY_PEM}
