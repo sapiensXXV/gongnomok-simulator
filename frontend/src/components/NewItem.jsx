@@ -25,7 +25,7 @@ export default function NewItem() {
   const [requiredPop, setRequiredPop] = useState(0);
 
   // 요구 직업
-  const [requiredJob, setRequiredJob] = useState({
+  const [availableJob, setAvailableJob] = useState({
     common: false,
     warrior: false,
     bowman: false,
@@ -107,7 +107,7 @@ export default function NewItem() {
     const itemForm = {
       id: itemId,
       name: itemName,
-      requiredJob: requiredJob,
+      availableJob: availableJob,
       required: {
         level: requiredLevel,
         str: requiredStr,
@@ -242,7 +242,7 @@ export default function NewItem() {
   const handleSelectJob = (e) => {
     const value = e.target.value
     const checked = e.target.checked
-    const newJob = { ...requiredJob }
+    const newJob = { ...availableJob }
 
     if (value === "common") {
       if (checked) newJob.common = true;
@@ -261,7 +261,7 @@ export default function NewItem() {
       else newJob.thief = false;
     }
 
-    setRequiredJob(newJob);
+    setAvailableJob(newJob);
   }
 
   // 무기 분류 선택

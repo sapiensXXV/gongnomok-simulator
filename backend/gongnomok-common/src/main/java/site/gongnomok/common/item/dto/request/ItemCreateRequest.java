@@ -16,7 +16,7 @@ public class ItemCreateRequest {
     private Long id;
     private String name;
     private AvailableJobDto availableJob;
-    private RequiredStatusDto requiredStatus;
+    private RequiredStatusDto required;
     private String category;
     private ItemStatusDto status;
     private int upgradableCount;
@@ -27,7 +27,8 @@ public class ItemCreateRequest {
         return ItemDto.builder()
             .name(name)
             .availableJob(availableJob)
-            .requiredStatus(requiredStatus)
+            .requiredStatus(required)
+            .status(status)
             .category(category)
             .upgradableCount(upgradableCount)
             .attackSpeed(attackSpeed)
