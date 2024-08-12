@@ -1,4 +1,4 @@
-import SingleItem from "./SingleItem";
+import SingleItem from "./SingleItem.jsx";
 
 export default function ItemList({
   searchCondition,

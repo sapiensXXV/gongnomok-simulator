@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import RequiredStatus from "./RequiredStatus";
+import RequiredStatus from "./RequiredStatus.jsx";
 import axios from "axios";
 
-import { BASE_URI } from "../../global/uri";
-import { ATTACK_SPEED, CATEGORY_NAME, DEFAULT_ITEM_RECORD } from "../../global/item";
+import { BASE_URI } from "../../../global/uri.js";
+import { ATTACK_SPEED, CATEGORY_NAME, DEFAULT_ITEM_RECORD } from "../../../global/item.js";
 
 export default function BestRecordItem({ itemId, info }) {
 

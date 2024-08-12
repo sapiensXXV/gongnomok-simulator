@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 import CommentDeleteModal from "./CommentDeleteModal";
 import CommentReportModal from "./CommentReportModal";
 
-export default function Comment({ itemId }) {
+export default function Comments({ itemId }) {
 
   const [commentList, setCommentList] = useState([]);
   const [lastCommentId, setLastCommentId] = useState(-1);

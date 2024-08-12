@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { STATUS_NAME } from "../../global/status";
+import { STATUS_NAME } from "../../../global/status.js";
 
 export default function OptionSelect({ statusInfo, optionSelectHandler }) {
 

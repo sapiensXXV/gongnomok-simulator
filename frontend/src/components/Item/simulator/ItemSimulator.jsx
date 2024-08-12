@@ -3,20 +3,22 @@ import axios from "axios";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
-import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../global/util/soundPlay";
+import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../../global/util/soundPlay.js";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { BASE_URI } from "../../global/uri";
-import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../global/item";
-import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../global/scroll";
+import { BASE_URI } from "../../../global/uri.js";
+import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../global/item.js";
+import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../global/scroll.js";
 
-import ShortcutInfo from "./ShortcutInfo";
-import OptionSelect from "./OptionSelect";
-import RequiredStatus from "./RequiredStatus";
-import Scroll from "./Scroll";
-import PriceCalculator from "./PriceCalculator";
-import Comment from "./comment/Comment";
-import BestRecordItem from "./BestRecordItem";
+import ShortcutInfo from "./ShortcutInfo.jsx";
+import OptionSelect from "./OptionSelect.jsx";
+import RequiredStatus from "./RequiredStatus.jsx";
+import Scroll from "./Scroll.jsx";
+import PriceCalculator from "./PriceCalculator.jsx";
+import Comments from "../comment/Comments.jsx";
+import BestRecordItem from "./BestRecordItem.jsx";
+import RecordChallengeModal from "./modal/RecordChallengeModal.jsx";
+import RecordChallengeResultModal from "./modal/RecordChallengeResultModal.jsx";
 
 let timer = null;
 
@@ -780,87 +782,23 @@ export default function ItemSimulator() {
         </main>
         <BestRecordItem itemId={itemId} info={infoCopy}/>
       </section>
-      
-      {
-        challengeModalOpen &&
-        <div
-          className="custom-modal-container"
-        >
-          <div className="custom-modal-root">
-            <div className="custom-modal-header">
-              <div className="custom-modal-title text-center">기록으로 등록하시겠습니까?</div>
-            </div>
-            <div className="custom-modal-body">
-              <div className="custom-modal-content">
-                <div className="custom-modal-dialog">
-                  <article className="custom-modal-menu-title">이름<span className="red"> (※ 부적절한 이름 입력 시 삭제처리 됩니다.)</span></article>
-                  <input
-                    className="custom-modal-input-element"
-                    type="text"
-                    placeholder="이름을 입력하세요."
-                    defaultValue=""
-                    value={challengerName}
-                    onChange={handleChallengeNameChanged}
-                  ></input>
-                  {
-                    isChallengerNameEmpty &&
-                    <span className="red">이름을 입력해주세요</span>
-                  }
-                </div>
-              </div>
-              <div className="custom-modal-button-container">
-                <button
-                  className="custom-modal-button custom-modal-ok-button"
-                  onClick={handleChallengeAcceptButtonClicked}
-                >
-                  예
-                </button>
-                <button
-                  className="custom-modal-button custom-modal-cancel-button"
-                  onClick={handleChallengeCancelButtonClicked}
-                >
-                  아니오
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
+      <RecordChallengeModal
+        isOpen={challengeModalOpen}
+        name={challengerName}
+        nameInputChangeHandler={handleChallengeNameChanged}
+        isNameInputEmpty={isChallengerNameEmpty}
+        acceptButtonClickedHandler={handleChallengeAcceptButtonClicked}
+        cancelButtonClickedHandler={handleChallengeCancelButtonClicked}
+      />
+      <RecordChallengeResultModal
+        isOpen={challengeResultModalOpen}
+        isSuccess={isChallengeSuccess}
+        okButtonClickedHandler={handleChallengeResultOkButton}
+      />
 
-      {
-        challengeResultModalOpen &&
-        <div
-          className="custom-modal-container"
-        >
-          <div className="custom-modal-root">
-            <div className="custom-modal-header">
-              <div className="custom-modal-title text-center">
-                도전 결과
-              </div>
-            </div>
-            <div className="custom-modal-body">
-              <div className="custom-modal-content">
-                <div className="text-center">
-                  { isChallengeSuccess ? `등록에 성공하였습니다!` : `등록에 실패했습니다. 더 좋은 아이템을 만들어보세요!` }
-                </div>
-              </div>
-              <div className="custom-modal-button-container">
-                <button
-                  className="custom-modal-button custom-modal-ok-button"
-                  onClick={handleChallengeResultOkButton}
-                >
-                  예
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
-
-      {/***********************************************************************/}
       {/******************************** 댓글 **********************************/}
-      {/***********************************************************************/}
-      <Comment itemId={itemId} />
+      
+      <Comments itemId={itemId} />
     </>
   )
 }

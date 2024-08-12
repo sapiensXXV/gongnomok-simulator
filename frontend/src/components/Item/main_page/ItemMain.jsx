@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 
-import ItemCondition from "./condition/ItemCondition";
-import ItemList from "./ItemList";
+import ItemCondition from "../condition/ItemCondition.jsx";
+import ItemList from "../item_list/ItemList.jsx";
 import axios from "axios";
 
-import { DEFAULT_FETCH_SIZE } from "../../global/item";
-import { BASE_URI } from "../../global/uri";
-import FeedbackBanner from "../banner/FeedbackBanner";
-import InformBanner from "../banner/InformBanner";
-import { INITIAL_SEARCH_CONDITION } from "./condition/search";
-import ItemRanking from "./ItemRanking";
+import { DEFAULT_FETCH_SIZE } from "../../../global/item.js";
+import { BASE_URI } from "../../../global/uri.js";
+import FeedbackBanner from "../../banner/FeedbackBanner.jsx";
+import InformBanner from "../../banner/InformBanner.jsx";
+import { INITIAL_SEARCH_CONDITION } from "../condition/search.js";
+import ItemRanking from "./ItemRanking.jsx";
 
 export default function ItemMain() {
 

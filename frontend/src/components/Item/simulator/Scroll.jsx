@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { STATUS_NAME } from "../../global/status" 
+import { STATUS_NAME } from "../../../global/status.js" 
 
 function Scroll({ 
   percent, 

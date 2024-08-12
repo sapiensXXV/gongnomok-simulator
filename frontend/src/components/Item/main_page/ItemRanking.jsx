@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BASE_URI } from "../../global/uri";
-import { DEFAULT_RANKING_FETCH_SIZE, MAXIMUM_RANKING_PAGE } from "../../global/item";
+import { BASE_URI } from "../../../global/uri.js";
+import { DEFAULT_RANKING_FETCH_SIZE, MAXIMUM_RANKING_PAGE } from "../../../global/item.js";
 
 export default function ItemRanking() {
 
