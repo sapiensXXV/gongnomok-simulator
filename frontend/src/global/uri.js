@@ -1,9 +1,1 @@
-// export const BASE_URI = "http://localhost:8080" // 로컬 HTTP주소
-// export const BASE_URI = "https://gongnomok.site" // 운영 서버 주소
-// export const BASE_URI = "https://dev.gongnomok.site" // 개발 서버 주소
-// export const BASE_URI = "http://35.216.38.200"
-// export const BASE_URI = "http://35.216.73.167:8080"
-
-import process from "../../.eslintrc.cjs";
-
-export const BASE_URL = process.env.REQUEST_API_URL;
+export const BASE_URL = import.meta.env.VITE_REQUEST_API_URL;
