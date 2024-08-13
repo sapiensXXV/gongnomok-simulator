@@ -657,11 +657,7 @@ export default function ItemSimulator() {
 
 
             <ChallengeScrollSuccessCount successInfo={successScroll}/>
-            <section className="overflow-message">
-              {
-                upgradable <= 0 && <span className="d-flex scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
-              }
-            </section>
+
             <section className="item-record-challenge-section">
               <button
                 className="item-record-challenge-btn"
@@ -669,6 +665,11 @@ export default function ItemSimulator() {
                 onMouseUp={() => document.activeElement.blur()}
               >기록 도전
               </button>
+            </section>
+            <section className="overflow-message">
+              {
+                upgradable <= 0 && <span className="d-flex scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+              }
             </section>
           </section>
 
