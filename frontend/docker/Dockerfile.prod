@@ -24,6 +24,6 @@ RUN echo -n "${FULLCHAIN}" > /etc/secret/fullchain-dev.pem
 RUN echo -n "${PRIVKEY}" > /etc/secret/privkey-dev.pem
 RUN echo -n "${OPTIONS_SSL_NGINX}" > /etc/secret/options-ssl-nginx.conf
 
-COPY --from=builder /frontend/dis /usr/share/nginx/html
+COPY --from=builder /frontend/dist /usr/share/nginx/html
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
