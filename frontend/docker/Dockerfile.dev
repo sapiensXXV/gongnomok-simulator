@@ -1,5 +1,8 @@
 FROM node:20.11.0-bullseye as builder
 WORKDIR /frontend
+
+ENV VITE_REQUEST_API_URL=https://dev.gongnomok.site
+
 COPY . .
 RUN npm install
 RUN npm run build
@@ -19,7 +22,6 @@ ARG SERVER_OPTIONS_SSL_NGINX
 ENV FULLCHAIN=${DEV_NGINX_FULLCHAIN}
 ENV PRIVKEY=${DEV_NGINX_PRIVKEY}
 ENV OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
-ENV VITE_REQUEST_API_URL=https://dev.gongnomok.site
 
 RUN echo -n "${FULLCHAIN}" > /etc/secret/fullchain-dev.pem
 RUN echo -n "${PRIVKEY}" > /etc/secret/privkey-dev.pem
