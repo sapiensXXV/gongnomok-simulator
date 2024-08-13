@@ -93,7 +93,7 @@ jobs:
         with:
           host: ${{ secrets.DEV_SERVER_HOST }}
           username: ${{ secrets.DEV_SERVER_USERNAME }}
-          key: ${{ secrets.DEV_SERVER_PRIVKEY_PEM }}
+          key: ${{ secrets.DEV_SERVER_SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
             whoami
