@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import RequiredStatus from "../controller/RequiredStatus.jsx";
+import RequiredStatus from "../controller/components/RequiredStatus.jsx";
 import axios from "axios";
 
 import { BASE_URI } from "../../../../global/uri.js";

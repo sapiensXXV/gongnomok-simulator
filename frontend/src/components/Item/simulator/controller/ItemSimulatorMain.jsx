@@ -11,20 +11,20 @@ import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../..
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../../global/scroll.js";
 
 import ShortcutInfo from "../shortcut/ShortcutInfo.jsx";
-import OptionSelect from "./OptionSelect.jsx";
-import RequiredStatus from "./RequiredStatus.jsx";
-import Scroll from "./Scroll.jsx";
-import PriceCalculator from "./PriceCalculator.jsx";
+import OptionSelect from "./components/OptionSelect.jsx";
+import RequiredStatus from "./components/RequiredStatus.jsx";
+import Scroll from "./components/Scroll.jsx";
+import PriceCalculator from "./components/PriceCalculator.jsx";
 import Comments from "../../comment/Comments.jsx";
 import BestRecordItem from "../record/BestRecordItem.jsx";
 import RecordChallengeModal from "../modal/RecordChallengeModal.jsx";
 import RecordChallengeResultModal from "../modal/RecordChallengeResultModal.jsx";
 import ShortcutBanner from "../shortcut/ShortcutBanner.jsx";
-import ChallengeScrollSuccessCount from "./ChallengeScrollSuccessCount.jsx";
+import ChallengeScrollSuccessCount from "./components/ChallengeScrollSuccessCount.jsx";
 
 let timer = null;
 
-export default function ItemSimulator() {
+export default function ItemSimulatorMain() {
   const { itemId } = useParams(); // item id
   const availableScroll = useRef([]);
 

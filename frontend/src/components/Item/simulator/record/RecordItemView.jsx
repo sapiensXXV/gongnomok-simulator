@@ -1,4 +1,4 @@
-import RequiredStatus from "../controller/RequiredStatus.jsx";
+import RequiredStatus from "../controller/components/RequiredStatus.jsx";
 import {ATTACK_SPEED, CATEGORY_NAME} from "../../../../global/item.js";
 
 function RecordItemView({ recordInfo, enhanceInfo, titleColorFunction, itemId }) {
