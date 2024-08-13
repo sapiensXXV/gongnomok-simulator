@@ -10,7 +10,6 @@ import { BASE_URI } from "../../../../global/uri.js";
 import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../../global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../../global/scroll.js";
 
-import ShortcutInfo from "../shortcut/ShortcutInfo.jsx";
 import OptionSelect from "./components/OptionSelect.jsx";
 import RequiredStatus from "./components/RequiredStatus.jsx";
 import Scroll from "./components/Scroll.jsx";
