@@ -47,11 +47,6 @@ jobs:
         with: 
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: 환경변수 파일 생성
-        run: |
-          echo "VITE_REQUEST_API_URL=${{ env.VITE_REQUEST_API_URL }}" > ./frontend/.env
-
       - name: 도커 이미지 빌드
         env: 
           VITE_REQUEST_API_URL: ${{ secrets.DEV_DOMAIN }}

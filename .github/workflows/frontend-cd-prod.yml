@@ -18,8 +18,6 @@ env:
   PROD_NGINX_FULLCHAIN: ${{ secrets.PROD_NGINX_FULLCHAIN }}
   PROD_NGINX_PRIVKEY: ${{ secrets.PROD_NGINX_PRIVKEY }}
   SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
-  VITE_REQUEST_API_URL: ${{ secrets.PROD_DOMAIN }}
-
 jobs:
   debug: 
     name: 환경변수 디버깅

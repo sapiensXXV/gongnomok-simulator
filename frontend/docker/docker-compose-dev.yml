@@ -10,8 +10,6 @@ services:
         - DEV_NGINX_FULLCHAIN=${DEV_NGINX_FULLCHAIN}
         - DEV_NGINX_PRIVKEY=${DEV_NGINX_PRIVKEY}
         - SERVER_OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
-    env_file:
-      - ../.env
     image: sjhn/gongnomok-frontend:dev-latest
     restart: always
     ports:
