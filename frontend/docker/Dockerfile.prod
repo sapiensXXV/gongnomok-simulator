@@ -19,7 +19,7 @@ ARG SERVER_OPTIONS_SSL_NGINX
 ENV FULLCHAIN=${PROD_NGINX_FULLCHAIN}
 ENV PRIVKEY=${PROD_NGINX_PRIVKEY}
 ENV OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
-ENV VITE_REQUEST_API_URL=https://gongnomok.site:8080
+ENV VITE_REQUEST_API_URL=https://gongnomok.site
 
 RUN echo -n "${FULLCHAIN}" > /etc/secret/fullchain-dev.pem
 RUN echo -n "${PRIVKEY}" > /etc/secret/privkey-dev.pem
