@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../../../global/util/soundPlay.js";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { BASE_URI } from "../../../../global/uri.js";
+import { BASE_URL } from "../../../../global/uri.js";
 import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../../global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../../global/scroll.js";
 
@@ -93,7 +93,7 @@ export default function ItemSimulatorMain() {
 
   async function fetchData() {
     try {
-      const response = await axios.get(`${BASE_URI}/api/item/${itemId}`, { withCredentials: true })
+      const response = await axios.get(`${BASE_URL}/api/item/${itemId}`, { withCredentials: true })
 
       const data = response.data;
       const copy = JSON.parse(JSON.stringify(data));
@@ -553,7 +553,7 @@ export default function ItemSimulatorMain() {
     const challengeForm = createChallengeForm();
     axios
       .post(
-        `${BASE_URI}/api/item/${itemId}/enhanced`,
+        `${BASE_URL}/api/item/${itemId}/enhanced`,
         challengeForm, { withCredentials: true }
       )
       .then((res) => {

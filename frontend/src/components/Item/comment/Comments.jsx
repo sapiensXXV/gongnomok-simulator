@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { DEFAULT_COMMENT_FETCH_SIZE, INIT_COMMENT_FORM, INIT_COMMENT_DELETE_FORM, INIT_COMMENT_REPORT_FORM } from "../../../global/comment";
 import axios from "axios";
-import { BASE_URI } from "../../../global/uri";
+import { BASE_URL } from "../../../global/uri";
 import SingleComment from "./SingleComment";
 import { useInView } from "react-intersection-observer";
 import CommentDeleteModal from "./CommentDeleteModal";
@@ -36,7 +36,7 @@ export default function Comments({ itemId }) {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URI}/api/item/${itemId}/comment/count`)
+      .get(`${BASE_URL}/api/item/${itemId}/comment/count`)
       .then((res) => {
         const count = res.data.count;
         setCommnetCount(count);
@@ -56,7 +56,7 @@ export default function Comments({ itemId }) {
 
     axios
       .get(
-        `${BASE_URI}/api/item/${itemId}/comment?lastId=${lastCommentId}&size=${DEFAULT_COMMENT_FETCH_SIZE}`,
+        `${BASE_URL}/api/item/${itemId}/comment?lastId=${lastCommentId}&size=${DEFAULT_COMMENT_FETCH_SIZE}`,
         { withCredentials: true }
       )
       .then((res) => {
@@ -124,7 +124,7 @@ export default function Comments({ itemId }) {
     }
     
     axios
-      .post(`${BASE_URI}/api/item/${itemId}/comment`, commentForm, { withCredentials: true })
+      .post(`${BASE_URL}/api/item/${itemId}/comment`, commentForm, { withCredentials: true })
       .then((res) => {
         const data = res.data;
         const newComment = {
@@ -186,7 +186,7 @@ export default function Comments({ itemId }) {
   function deleteComment() {
     axios
     .post(
-      `${BASE_URI}/api/item/comment/delete`,
+      `${BASE_URL}/api/item/comment/delete`,
       commentDeleteForm,
       { withCredentials: true }
     )
@@ -227,7 +227,7 @@ export default function Comments({ itemId }) {
   function reportComment() {
     axios
       .post(
-        `${BASE_URI}/api/item/comment/report`,
+        `${BASE_URL}/api/item/comment/report`,
         reportForm
       )
       .then((response) => {

@@ -5,7 +5,7 @@ import { LoginState, MemberState } from "./global-state/State"
 import { ADMIN, GUEST } from "./global-state/state-const"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { BASE_URI } from "../global/uri"
+import { BASE_URL } from "../global/uri"
 
 export default function Header() {
 
@@ -17,7 +17,7 @@ export default function Header() {
   async function handleLogoutButtonClicked(e) {
 
     try {
-      const response = await axios.post(`${BASE_URI}/api/logout`)
+      const response = await axios.post(`${BASE_URL}/api/logout`)
       if (response.status === 204) {
         setLoginState(false);
         setMemberState(GUEST)

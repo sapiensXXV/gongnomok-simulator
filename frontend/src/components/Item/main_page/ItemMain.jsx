@@ -5,7 +5,7 @@ import ItemList from "../item_list/ItemList.jsx";
 import axios from "axios";
 
 import { DEFAULT_FETCH_SIZE } from "../../../global/item.js";
-import { BASE_URI } from "../../../global/uri.js";
+import { BASE_URL } from "../../../global/uri.js";
 import FeedbackBanner from "../../banner/FeedbackBanner.jsx";
 import InformBanner from "../../banner/InformBanner.jsx";
 import { INITIAL_SEARCH_CONDITION } from "../condition/search.js";
@@ -25,7 +25,7 @@ export default function ItemMain() {
   function searchItems() {
     setIsItemLoaded(false);
     axios
-      .get(`${BASE_URI}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
+      .get(`${BASE_URL}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
         const items = res?.data?.items;
         if (items === undefined || items === null) {
@@ -48,7 +48,7 @@ export default function ItemMain() {
 
   function searchItemsWithCondition(searchCondition) {
     axios
-      .post(`${BASE_URI}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, { withCredentials: true })
+      .post(`${BASE_URL}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, { withCredentials: true })
       .then((res) => {
         if (nextPage.current == 0) {
           setItemList([...res.data.items])

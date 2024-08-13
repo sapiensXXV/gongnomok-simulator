@@ -1,7 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import { LoginState, MemberState } from "../global-state/State";
 import axios from "axios";
-import { BASE_URI } from "../../global/uri";
+import { BASE_URL } from "../../global/uri";
 import { GUEST } from "../global-state/state-const";
 import { useEffect } from "react";
 
@@ -14,7 +14,7 @@ function SessionCheck() {
     const checkSession = async () => {
       console.log('session check')
       try {
-        const response = await axios.get(`${BASE_URI}/api/auth/check`)
+        const response = await axios.get(`${BASE_URL}/api/auth/check`)
         setMemberState(response.data.role);
         if (response.data.role === GUEST) {
           setLoginState(false);

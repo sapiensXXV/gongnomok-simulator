@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import JobSelect from "./Item/form/JobSelect";
-import { BASE_URI } from "../global/uri";
+import { BASE_URL } from "../global/uri";
 import { useRecoilState } from "recoil";
 import { MemberState } from "./global-state/State";
 
@@ -195,7 +195,7 @@ export default function NewItem() {
     };
     // 폼 요청
     axios
-      .post(`${BASE_URI}/api/item/new`, itemForm, { withCredentials: true })
+      .post(`${BASE_URL}/api/item/new`, itemForm, { withCredentials: true })
       .then((response) => {
         alert('등록성공')
       })

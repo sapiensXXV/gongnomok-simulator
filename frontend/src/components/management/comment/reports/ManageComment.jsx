@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { BASE_URI } from "../../../../global/uri";
+import { BASE_URL } from "../../../../global/uri";
 import { isoDateToFormatStringOnlyDate } from "../../../../global/date";
 
 function ManageComment() {
@@ -11,7 +11,7 @@ function ManageComment() {
   useEffect(() => {
     axios
       .get(
-        `${BASE_URI}/api/manage/report-comments`,
+        `${BASE_URL}/api/manage/report-comments`,
         { withCredentials: true }
       )
       .then((response) => {
@@ -32,7 +32,7 @@ function ManageComment() {
     })
     axios
       .delete(
-        `${BASE_URI}/api/manage/report-comments`,
+        `${BASE_URL}/api/manage/report-comments`,
         {
           data: {
             comments: {
@@ -67,7 +67,7 @@ function ManageComment() {
 
     axios
       .delete(
-        `${BASE_URI}/api/manage/report-comments/list`,
+        `${BASE_URL}/api/manage/report-comments/list`,
         {
           data: {
             reports: {
