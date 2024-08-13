@@ -1,6 +1,7 @@
 package site.gongnomok.core.enhanceditem;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceStatusDto;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceSuccessDto;
@@ -26,6 +27,7 @@ import static site.gongnomok.core.scroll.ItemStat.*;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
     private final ItemRepository itemRepository;
@@ -43,11 +45,12 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
 
     /**
-     * 강화 성공 횟수의 유효성을 검증합니다.
-     * 10%, 60%, 100% 성공률의 총합이 10을 초과하면 안 됩니다.
+     * 강화 성공 횟수의 유효성을 검증하는 메서드입니다.
+     * 각 주문서 타입별 성공 횟수의 합과 총 성공 횟수가 아이템의 최대 강화 가능 횟수를 초과하지 않는지 확인합니다.
      *
-     * @param successDto 강화 성공 정보를 담고 있는 DTO
-     * @throws EnhancedItemException 총 성공 횟수가 10을 초과하는 경우
+     * @param successDto 주문서의 강화 성공 정보를 담고 있는 DTO
+     * @param itemUpgradable 아이템의 최대 강화 가능 횟수
+     * @throws EnhancedItemException 강화 성공 횟수가 유효하지 않을 경우 발생
      */
     private void validateSuccessCount(final EnhanceSuccessDto successDto, int itemUpgradable) {
         final int ten = successDto.getTen();
@@ -61,6 +64,15 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
         }
     }
     
+    /**
+     * 강화 결과의 상태값을 검증하는 메서드입니다.
+     * 사용자가 사용한 주문서 정보를 바탕으로 실제 강화 내용과 일치하는지 검사합니다.
+     *
+     * @param scrollName 사용된 주문서의 이름
+     * @param status 강화 후 아이템의 상승한 상태값을 담고 있는 DTO
+     * @param success 강화 성공 정보를 담고 있는 DTO
+     * @throws EnhancedItemException 강화된 아이템의 상태값이 유효하지 않을 경우 발생
+     */
     private void validateStatus (
         final String scrollName,
         final EnhanceStatusDto status,
@@ -69,7 +81,6 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
         // 사용자가 사용한 주문서 정보를 바탕으로 실제 강화 내용과 일치하는지 검사한다.
         Map<Integer, Scroll> scrolls = Scroll.findScrollFrom(scrollName);
         
-        // str 결과 계산
         if (!matchStatusValue(success, status, scrolls)) {
             throw new EnhancedItemException(ExceptionCode.INVALID_UPGRADED_STATUS); 
         }
