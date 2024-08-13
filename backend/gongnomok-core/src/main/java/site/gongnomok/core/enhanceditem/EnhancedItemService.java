@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.common.enhanceditem.dto.EnhancedItemDto;
+import site.gongnomok.common.enhanceditem.dto.request.EnhanceSuccessDto;
 import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.common.enhanceditem.dto.response.EnhanceResult;
 import site.gongnomok.common.enhanceditem.dto.response.ItemEnhanceResponse;
@@ -64,10 +65,11 @@ public class EnhancedItemService {
 
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(ExceptionCode.NOT_FOUND_ENHANCED_ID));
-        int score = EnhanceScroll.calculateScore(request.getSuccess(), request.getScroll());
+        EnhanceSuccessDto success = request.getSuccess();
+        int score = EnhanceScroll.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
         if (enhancedItem.getScore() <= score) {
             // 기록이 기존의 것과 같거나 높을 경우
-            return updateEnhancedRecord(enhancedItem, request);
+            return updateEnhancedRecord(enhancedItem, request, score);
         }
 
         // 기록이 기존의 것보다 낮을 경우
@@ -81,7 +83,8 @@ public class EnhancedItemService {
         Item item = itemRepository
             .findById(itemId)
             .orElseThrow(() -> new ItemException(ExceptionCode.NOT_FOUND_ITEM_ID));
-        int score = EnhanceScroll.calculateScore(enhanceDto.getSuccess(), enhanceDto.getScroll());
+        EnhanceSuccessDto success = enhanceDto.getSuccess();
+        int score = EnhanceScroll.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
         EnhancedItem enhancedItem = EnhancedItem.from(enhanceDto, score);
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
@@ -91,9 +94,9 @@ public class EnhancedItemService {
 
     private UpdateEnhancementResponse updateEnhancedRecord(
         final EnhancedItem enhancedItem,
-        final ItemEnhanceServiceRequest request
+        final ItemEnhanceServiceRequest request,
+        final int score
     ) {
-        int score = EnhanceScroll.calculateScore(request.getSuccess(), request.getScroll());
         enhancedItem.changeInfo(request, score);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
