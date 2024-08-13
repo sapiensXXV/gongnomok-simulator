@@ -2,8 +2,12 @@ services:
   back:
     platform: linux/amd64
     build:
-      # context: ./backend
-      dockerfile: Dockerfile.dev
+      context: ../..
+      dockerfile: backend/docker/Dockerfile.dev
+      args:
+        - DATABASE_URL=${DATABASE_URL}
+        - DATABASE_USERNAME=${DATABASE_USERNAME}
+        - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     image: sjhn/gongnomok-backend:dev-latest
     restart: always
     ports:
