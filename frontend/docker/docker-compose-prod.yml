@@ -6,7 +6,7 @@ services:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile.prod
-    image: sjhn/gongnomok-frontend:prod-1.2.1
+    image: sjhn/gongnomok-frontend:prod-latest
     restart: always
     ports:
       - 80:80

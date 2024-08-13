@@ -77,10 +77,10 @@ jobs:
           ls -al
       - name: 도커 이미지 빌드
         run: |
-          docker compose -f ./backend/docker/docker-compose.yml build --no-cache
+          docker compose -f ./backend/docker/docker-compose-dev.yml build --no-cache
       - name: 도커 이미지 푸시
         run: |
-          docker compose -f ./backend/docker/docker-compose.yml push
+          docker compose -f ./backend/docker/docker-compose-dev.yml push
 
   deploy:
     needs: [ build, docker-image ]
@@ -102,9 +102,9 @@ jobs:
             git fetch
             git switch dev
 
-            sudo docker compose -f ./backend/docker/docker-compose.yml pull
-            sudo docker compose -f ./backend/docker/docker-compose.yml down
-            sudo docker compose -f ./backend/docker/docker-compose.yml up -d
+            sudo docker compose -f ./backend/docker/docker-compose-dev.yml pull
+            sudo docker compose -f ./backend/docker/docker-compose-dev.yml down
+            sudo docker compose -f ./backend/docker/docker-compose-dev.yml up -d
 
   slack_notify_success:
     needs: deploy
