@@ -140,49 +140,18 @@
 
   /*********** 시뮬레이터 ***********/
 
-  .shorcut-guide-section {
+  .shortcut-guide-section {
     display: none;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-
-    border-radius: 8px;
-
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-
-    margin: 1vw 15px 1vw 15px;
-
-    font-family: SejonghospitalBold;
-    
-  }
-
-  .shortcut-info {
-    margin-top: 3px;
-    margin-bottom: 3px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    align-items: center;
-    text-align: center;
-
-    gap: 10px;
-
   }
 
   .shortcut-info span {
-  }
-
-  .shortcut-title {
-    font-size: 25px;
   }
 
   .shortcut-description {
     font-size: 19px
   }
 
-  .shorcut-guide-section span {
+  .shortcut-guide-section span {
     color: white;
   }
 

@@ -10,15 +10,16 @@ import { BASE_URI } from "../../../global/uri.js";
 import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../global/scroll.js";
 
-import ShortcutInfo from "./ShortcutInfo.jsx";
+import ShortcutInfo from "./shortcut/ShortcutInfo.jsx";
 import OptionSelect from "./OptionSelect.jsx";
 import RequiredStatus from "./RequiredStatus.jsx";
 import Scroll from "./Scroll.jsx";
 import PriceCalculator from "./PriceCalculator.jsx";
 import Comments from "../comment/Comments.jsx";
-import BestRecordItem from "./BestRecordItem.jsx";
+import BestRecordItem from "./record/BestRecordItem.jsx";
 import RecordChallengeModal from "./modal/RecordChallengeModal.jsx";
 import RecordChallengeResultModal from "./modal/RecordChallengeResultModal.jsx";
+import ShortcutBanner from "./shortcut/ShortcutBanner.jsx";
 
 let timer = null;
 
@@ -109,7 +110,6 @@ export default function ItemSimulator() {
       setMgDef(copy.status.mgDef.normal);
       setAcc(copy.status.acc.normal);
 
-
       setAvo(copy.status.avo.normal);
       setMove(copy.status.move.normal);
       setJump(copy.status.jump.normal);
@@ -134,8 +134,6 @@ export default function ItemSimulator() {
       defaultMp.current = copy.status.mp.normal;
       defaultUpgradable.current = copy.upgradableCount
 
-
-
       for (let i = 0; i < SCROLL_NAME_LIST?.length; i++) {
         const name = SCROLL_NAME_LIST[i];
         if (SCROLL_INFO.get(name).category === data.category) {
@@ -158,7 +156,6 @@ export default function ItemSimulator() {
   function handleScrollChange(e) {
     setCurrentScroll(() => SCROLL_INFO.get(e.target.value));
   }
-
 
   // 주문서 버튼 클릭 핸들러
   function handleScrollClicked(percent) {
@@ -568,6 +565,9 @@ export default function ItemSimulator() {
           setIsChallengeSuccess(false);
         }
         
+        // todo - 강화 아이템 정보 다시 불러오기
+        
+        
       })
       .catch((err) => {
         console.log(err);
@@ -590,17 +590,7 @@ export default function ItemSimulator() {
 
   return (
     <>
-      <section className="shorcut-guide-section bg-success">
-        <span className="shortcut-title">단축키</span>
-        <div className="shortcut-info">
-          <ShortcutInfo description='Q-10%적용' />
-          <ShortcutInfo description='W-60%적용' />
-          <ShortcutInfo description='E-100%적용' />
-          <ShortcutInfo description='R-아이템 리셋' />
-          <ShortcutInfo description='F-구매기록 리셋' />
-        </div>
-        
-      </section>
+      <ShortcutBanner />
       <section className="item-simulator-root">
         <main className="item-simulator-section bg-light  my-3 mx-3 py-3 px-3">
           <section className="item-info-and-overflow-message">
@@ -673,12 +663,8 @@ export default function ItemSimulator() {
                 onMouseUp={() => document.activeElement.blur()}
               >기록 도전</button>
             </section>
-            {/* <div className="temp-message">
-              <span className="text-center">업데이트 이후 다시 사용가능 합니다</span>
-            </div> */}
           </section>
-
-
+          
           {/********************* 가격관련 정보 ***********************/}
 
           <div>

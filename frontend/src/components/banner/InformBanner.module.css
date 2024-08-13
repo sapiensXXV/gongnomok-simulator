@@ -1,0 +1,13 @@
+.inform_banner {
+  margin-top: 5px;
+  background-color: rgb(245, 245, 245);
+  padding: 8px;
+  text-align: center;
+  border-radius: 8px;
+  color: black;
+}
+
+.banner {
+  font-family: KCC-Hanbit;
+  font-size: 14px;
+}

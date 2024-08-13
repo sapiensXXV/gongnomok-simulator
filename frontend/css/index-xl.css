@@ -156,7 +156,7 @@
 
   /*********** 시뮬레이터 ***********/
 
-  .shorcut-guide-section {
+  .shortcut-guide-section {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -198,7 +198,7 @@
     font-size: 19px
   }
 
-  .shorcut-guide-section span {
+  .shortcut-guide-section span {
     color: white;
   }
 

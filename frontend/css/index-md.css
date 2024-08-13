@@ -141,7 +141,7 @@
 
   /*********** 시뮬레이터 ***********/
 
-  .shorcut-guide-section {
+  .shortcut-guide-section {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -155,7 +155,6 @@
     margin: 1vw 15px 1vw 15px;
 
     font-family: SejonghospitalBold;
-    
   }
 
   .shortcut-info {
@@ -183,7 +182,7 @@
     font-size: 19px
   }
 
-  .shorcut-guide-section span {
+  .shortcut-guide-section span {
     color: white;
   }
 
