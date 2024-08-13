@@ -10,7 +10,6 @@ WORKDIR /backend
 # RUN sed -i 's/profiler.transport.grpc.collector.ip=127.0.0.1/profiler.transport.grpc.collector.ip=175.197.202.8/g' pinpoint-agent-2.5.4/pinpoint-root.config
 # RUN sed -i 's/profiler.collector.ip=127.0.0.1/profiler.collector.ip=175.197.202.8/g' pinpoint-agent-2.5.4/pinpoint-root.config
 
-# ARG JAR_PATH=build/libs/gongnomok-app.jar
 ARG JAR_PATH=gongnomok-api.jar
 COPY ${JAR_PATH} app.jar
 
