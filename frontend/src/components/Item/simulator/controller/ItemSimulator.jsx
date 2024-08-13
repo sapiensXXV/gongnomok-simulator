@@ -3,23 +3,24 @@ import axios from "axios";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom"
-import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../../global/util/soundPlay.js";
+import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../../../global/util/soundPlay.js";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { BASE_URI } from "../../../global/uri.js";
-import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../global/item.js";
-import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../global/scroll.js";
+import { BASE_URI } from "../../../../global/uri.js";
+import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../../global/item.js";
+import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../../global/scroll.js";
 
-import ShortcutInfo from "./shortcut/ShortcutInfo.jsx";
+import ShortcutInfo from "../shortcut/ShortcutInfo.jsx";
 import OptionSelect from "./OptionSelect.jsx";
 import RequiredStatus from "./RequiredStatus.jsx";
 import Scroll from "./Scroll.jsx";
 import PriceCalculator from "./PriceCalculator.jsx";
-import Comments from "../comment/Comments.jsx";
-import BestRecordItem from "./record/BestRecordItem.jsx";
-import RecordChallengeModal from "./modal/RecordChallengeModal.jsx";
-import RecordChallengeResultModal from "./modal/RecordChallengeResultModal.jsx";
-import ShortcutBanner from "./shortcut/ShortcutBanner.jsx";
+import Comments from "../../comment/Comments.jsx";
+import BestRecordItem from "../record/BestRecordItem.jsx";
+import RecordChallengeModal from "../modal/RecordChallengeModal.jsx";
+import RecordChallengeResultModal from "../modal/RecordChallengeResultModal.jsx";
+import ShortcutBanner from "../shortcut/ShortcutBanner.jsx";
+import ChallengeScrollSuccessCount from "./ChallengeScrollSuccessCount.jsx";
 
 let timer = null;
 
@@ -602,16 +603,17 @@ export default function ItemSimulator() {
                 </span>
                 <div className="item-info-basic">
                   <div className="item-img-container">
-                    <img className='item-img' src={`/images/item/${itemId}.png`} />
-                    <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation" id="scroll-animation"></img>
+                    <img className='item-img' src={`/images/item/${itemId}.png`}/>
+                    <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation"
+                         id="scroll-animation"></img>
                   </div>
                   <div className="item-info-required">
-                    <RequiredStatus name="LEV" value={info?.requiredStatus.level} />
-                    <RequiredStatus name="STR" value={info?.requiredStatus.str} />
-                    <RequiredStatus name="DEX" value={info?.requiredStatus.dex} />
-                    <RequiredStatus name="INT" value={info?.requiredStatus.intel} />
-                    <RequiredStatus name="LUK" value={info?.requiredStatus.luk} />
-                    <RequiredStatus name="POP" value={info?.requiredStatus.pop} />
+                    <RequiredStatus name="LEV" value={info?.requiredStatus.level}/>
+                    <RequiredStatus name="STR" value={info?.requiredStatus.str}/>
+                    <RequiredStatus name="DEX" value={info?.requiredStatus.dex}/>
+                    <RequiredStatus name="INT" value={info?.requiredStatus.intel}/>
+                    <RequiredStatus name="LUK" value={info?.requiredStatus.luk}/>
+                    <RequiredStatus name="POP" value={info?.requiredStatus.pop}/>
 
                     <span className="item-useless-info">ITEM LEV : -</span>
                     <span className="item-useless-info">ITEM EXP : -</span>
@@ -622,15 +624,16 @@ export default function ItemSimulator() {
                   <span className={info?.availableJob.common ? '' : 'red'}>초보자</span>
                   <span className={info?.availableJob.warrior || info?.availableJob.common ? '' : 'red'}>전사</span>
                   <span className={info?.availableJob.magician || info?.availableJob.common ? '' : 'red'}>마법사</span>
-                  <span className={info?.availableJob.bowman || info?.availableJob.common ? '' : 'red'} >궁수</span>
+                  <span className={info?.availableJob.bowman || info?.availableJob.common ? '' : 'red'}>궁수</span>
                   <span className={info?.availableJob.thief || info?.availableJob.common ? '' : 'red'}>도적</span>
                   <span className={info?.availableJob.common ? '' : 'red'}>해적</span>
                 </div>
-                <hr />
+                <hr/>
 
                 <div className="item-info-status">
                   <span>장비분류 : {CATEGORY_NAME.get(info?.category)}</span>
-                  {(info?.attackSpeed !== null && info?.attackSpeed !== 'NONE' ) && <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
+                  {(info?.attackSpeed !== null && info?.attackSpeed !== 'NONE') &&
+                    <span>공격속도 : {ATTACK_SPEED.get(info?.attackSpeed)}</span>}
                   {str > 0 && <span>STR : +{str}</span>}
                   {dex > 0 && <span>DEX : +{dex}</span>}
                   {intel > 0 && <span>INT : +{intel}</span>}
@@ -651,20 +654,24 @@ export default function ItemSimulator() {
               </section>
 
             </section>
+
+
+            <ChallengeScrollSuccessCount successInfo={successScroll}/>
             <section className="overflow-message">
               {
-                upgradable <= 0 && <span className="d-flex red scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
+                upgradable <= 0 && <span className="d-flex scroll-overflow-msg">강화 횟수를 초과하였습니다</span>
               }
             </section>
             <section className="item-record-challenge-section">
-              <button 
+              <button
                 className="item-record-challenge-btn"
                 onClick={challengeRecordButtonClicked}
                 onMouseUp={() => document.activeElement.blur()}
-              >기록 도전</button>
+              >기록 도전
+              </button>
             </section>
           </section>
-          
+
           {/********************* 가격관련 정보 ***********************/}
 
           <div>

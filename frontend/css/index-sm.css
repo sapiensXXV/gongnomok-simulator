@@ -251,11 +251,11 @@
   }
 
   .scroll-overflow-msg {
-    color: #ff3e3e;
+    color: rgb(255, 100, 100);;
     justify-content: center;
     margin-left: 3px;
-    font-size: 14px;
-    font-family: Pretendard-Regular;
+    font-size: 13px;
+    font-family: KCC-Hanbit;
   }
 
   .item-status-required-description {

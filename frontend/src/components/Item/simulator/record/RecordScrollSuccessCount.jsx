@@ -1,6 +1,4 @@
-function RecordSuccessCount({
-  successInfo
-}) {
+function RecordScrollSuccessCount({ successInfo }) {
   return (
     <>
       <section className="success-scroll-root">
@@ -23,4 +21,4 @@ function RecordSuccessCount({
   )
 }
 
-export default RecordSuccessCount;
+export default RecordScrollSuccessCount;

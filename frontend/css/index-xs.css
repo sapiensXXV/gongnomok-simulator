@@ -254,10 +254,10 @@
     display: block;
     justify-content: center;
 
-    color: #ff3e3e;
+    color: rgb(255, 100, 100);
     margin-left: 3px;
-    font-size: 14px;
-    font-family: Pretendard-Regular;
+    font-size: 13px;
+    font-family: KCC-Hanbit;
   }
 
   .item-status-required-description {

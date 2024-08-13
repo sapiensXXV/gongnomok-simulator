@@ -1,7 +1,7 @@
 import { Route, Router, Routes } from "react-router-dom";
 import ItemMain from "../Item/main_page/ItemMain.jsx";
 import Login from "../Login";
-import ItemSimulator from "../Item/simulator/ItemSimulator.jsx";
+import ItemSimulator from "../Item/simulator/controller/ItemSimulator.jsx";
 import NewItem from "../NewItem";
 import AdminPrivateRoutes from "./AdminPrivateRouter";
 import ManageComment from "../management/comment/reports/ManageComment";
