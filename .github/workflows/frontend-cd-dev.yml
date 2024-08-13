@@ -18,7 +18,6 @@ env:
   DEV_NGINX_FULLCHAIN: ${{ secrets.DEV_NGINX_FULLCHAIN }}
   DEV_NGINX_PRIVKEY: ${{ secrets.DEV_NGINX_PRIVKEY }}
   SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
-  # VITE_REQUEST_API_URL: ${{ secrets.DEV_DOMAIN }}
 jobs:
   debug:
     name: 환경변수 디버깅
@@ -49,11 +48,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: 환경변수 파일 생성
-      #   run: |
-      #     echo "VITE_REQUEST_API_URL=${{ env.VITE_REQUEST_API_URL }}" > ./frontend/.env
-      - name: 환경변수 설정
-        run: echo "VITE_REQUEST_API_URL=${{ secrets.DEV_DOMAIN }}" >> $GITHUB_ENV
+      - name: 환경변수 파일 생성
+        run: |
+          echo "VITE_REQUEST_API_URL=${{ env.VITE_REQUEST_API_URL }}" > ./frontend/.env
 
       - name: 도커 이미지 빌드
         env: 
