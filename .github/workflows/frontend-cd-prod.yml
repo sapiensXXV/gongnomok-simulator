@@ -1,4 +1,4 @@
-name: 운영서버 프론트엔드 배포
+name: 프론트엔드 운영서버 배포
 
 on:
   workflow_dispatch:
