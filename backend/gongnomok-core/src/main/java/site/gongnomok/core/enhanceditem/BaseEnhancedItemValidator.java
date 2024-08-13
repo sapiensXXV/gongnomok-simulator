@@ -42,8 +42,7 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
         validateSuccessCount(request.getSuccess(), findItem.getUpgradable()); // 성공횟수 검사
         validateStatus(request.getScroll(), request.getStatus(), request.getSuccess()); // 능력치 상태검사
     }
-
-
+    
     /**
      * 강화 성공 횟수의 유효성을 검증하는 메서드입니다.
      * 각 주문서 타입별 성공 횟수의 합과 총 성공 횟수가 아이템의 최대 강화 가능 횟수를 초과하지 않는지 확인합니다.
@@ -59,6 +58,9 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
         final int sumOfScrollSuccess = ten + sixty + hundred;
         final int totalSuccessAtRequest = successDto.getTotal();
+
+//        log.info("주문서 성공 합계: {}, 총 주문서 성공 횟수: {}, 업그레이드 가능 횟수: {}", sumOfScrollSuccess, totalSuccessAtRequest, itemUpgradable);
+        
         if (sumOfScrollSuccess > itemUpgradable || totalSuccessAtRequest > itemUpgradable) {
             throw new EnhancedItemException(INVALID_ENHANCED_SUCCESS_REQUEST);
         }
@@ -76,8 +78,8 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
     private void validateStatus (
         final String scrollName,
         final EnhanceStatusDto status,
-        final EnhanceSuccessDto success) {
-        
+        final EnhanceSuccessDto success
+    ) {
         // 사용자가 사용한 주문서 정보를 바탕으로 실제 강화 내용과 일치하는지 검사한다.
         Map<Integer, Scroll> scrolls = Scroll.findScrollFrom(scrollName);
         

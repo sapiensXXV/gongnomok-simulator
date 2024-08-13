@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.common.enhanceditem.dto.EnhancedItemDto;
+import site.gongnomok.common.enhanceditem.dto.ScrollProbability;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceSuccessDto;
 import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.common.enhanceditem.dto.response.EnhanceResult;
@@ -14,7 +15,6 @@ import site.gongnomok.common.enhanceditem.dto.response.UpdateEnhancementResponse
 import site.gongnomok.common.exception.EnhancedItemException;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
-import site.gongnomok.data.enhanceditem.domain.EnhanceScroll;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.data.item.domain.Item;
@@ -66,7 +66,7 @@ public class EnhancedItemService {
         EnhancedItem enhancedItem = enhancedItemOptional
             .orElseThrow(() -> new EnhancedItemException(ExceptionCode.NOT_FOUND_ENHANCED_ID));
         EnhanceSuccessDto success = request.getSuccess();
-        int score = EnhanceScroll.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
+        int score = ScrollProbability.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
         if (enhancedItem.getScore() <= score) {
             // 기록이 기존의 것과 같거나 높을 경우
             return updateEnhancedRecord(enhancedItem, request, score);
@@ -84,7 +84,7 @@ public class EnhancedItemService {
             .findById(itemId)
             .orElseThrow(() -> new ItemException(ExceptionCode.NOT_FOUND_ITEM_ID));
         EnhanceSuccessDto success = enhanceDto.getSuccess();
-        int score = EnhanceScroll.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
+        int score = ScrollProbability.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
         EnhancedItem enhancedItem = EnhancedItem.from(enhanceDto, score);
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
