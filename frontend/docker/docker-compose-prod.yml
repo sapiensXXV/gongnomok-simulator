@@ -6,6 +6,10 @@ services:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile.prod
+      args:
+        - PROD_SERVER_FULLCHAIN_PEM=${PROD_SERVER_FULLCHAIN_PEM}
+        - PROD_SERVER_PRIVKEY_PEM=${PROD_SERVER_PRIVKEY_PEM}
+        - SERVER_OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
     image: sjhn/gongnomok-frontend:prod-latest
     restart: always
     ports:

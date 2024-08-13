@@ -1,0 +1,167 @@
+name: 운영서버 프론트엔드 배포
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend/**
+  pull_request:
+    branches:
+      - main
+    paths: frontend/**
+
+env:
+  ARTIFACT_DIRECTORY: ./frontend/dist
+  DOCKER_DIRECTORY: ./frontend/docker
+  PROD_NGINX_FULLCHAIN: ${{ secrets.PROD_NGINX_FULLCHAIN }}
+  PROD_NGINX_PRIVKEY: ${{ secrets.PROD_NGINX_PRIVKEY }}
+  SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
+
+jobs:
+  debug: 
+    name: 환경변수 디버깅
+    runs-on: ubuntu-latest
+    steps:
+      - name: 출력
+        run: |
+          echo "ARTIFACT_DIRECTORY is: ${{ env.ARTIFACT_DIRECTORY != '' }}"
+          echo "DOCKER_DIRECTORY is: ${{ env.DOCKER_DIRECTORY != '' }}"
+          echo "PROD_NGINX_FULLCHAIN is: ${{ env.PROD_NGINX_FULLCHAIN != '' }}"
+          echo "PROD_NGINX_PRIVKEY is: ${{ env.PROD_NGINX_PRIVKEY != '' }}"
+          echo "SERVER_OPTIONS_SSL_NGINX is: ${{ env.SERVER_OPTIONS_SSL_NGINX != '' }}"
+
+  docker-image-build-push:
+    name: 도커 이미지 빌드 -> 푸시
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 체크아웃
+        uses: actions/checkout@v4
+      - name: ls
+        run: ls -arlth
+      - name: 도커 로그인
+        uses: docker/login-action@v3
+        with: 
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 도커 이미지 빌드
+        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose-prod.yml build --no-cache
+      - name: 도커 이미지 푸시
+        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose-prod.yml push
+
+  deploy: 
+    name: 배포
+    needs: docker-image-build-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: SSH 접속 후 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PROD_SERVER_HOST }}
+          username: ${{ secrets.PROD_SERVER_USERNAME }}
+          key: ${{ secrets.PROD_SERVER_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            whoami
+            cd gongnomok-simulator
+            git pull
+
+            sudo docker compose -f ./frontend/docker/docker-compose-prod.yml pull
+            sudo docker compose -f ./frontend/docker/docker-compose-prod.yml down
+            sudo docker compose -f ./frontend/docker/docker-compose-prod.yml up -d
+
+  slack_notify_success:
+    needs: deploy
+    name: 슬랙 성공 메세지 전송
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "프론트 배포 안내",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🟢 배포 성공",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
+
+
+  slack_notify_failure:
+    needs: deploy
+    name: 슬랙 실패 메세지 전송
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - uses: slackapi/slack-github-action@v1.26.0
+        with: 
+          channel-id: ${{ secrets.SLACK_CICD_CHANNEL_ID }}
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "rich_text",
+                  "elements": [
+                    {
+                      "type": "rich_text_section",
+                      "elements": [
+                        {
+                          "type": "text",
+                          "text": "프론트 배포 안내",
+                          "style": {
+                            "bold": true
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🔴 배포 실패",
+                    "emoji": true
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_CICD_BOT_TOKEN }}
