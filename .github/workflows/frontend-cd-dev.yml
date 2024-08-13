@@ -18,7 +18,7 @@ env:
   DEV_NGINX_FULLCHAIN: ${{ secrets.DEV_NGINX_FULLCHAIN }}
   DEV_NGINX_PRIVKEY: ${{ secrets.DEV_NGINX_PRIVKEY }}
   SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
-  REQUEST_API_URL: ${{ secrets.DEV_DOMAIN }}
+  VITE_REQUEST_API_URL: ${{ secrets.DEV_DOMAIN }}
 jobs:
   debug:
     name: 환경변수 디버깅
