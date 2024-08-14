@@ -59,7 +59,7 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
             throw new IllegalArgumentException("도전자 이름은 10자 이상이어야 합니다.");
         }
         if (banWordFilter.checkContainBanWord(name)) {
-            throw new IllegalArgumentException("도전자 이름에 부적적한 단어가 포함되어 있습니다.");
+            throw new IllegalArgumentException("도전자 이름에 부적절한 단어가 포함되어 있습니다.");
         }
     }
 

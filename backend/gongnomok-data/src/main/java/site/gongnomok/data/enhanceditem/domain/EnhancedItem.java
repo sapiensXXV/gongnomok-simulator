@@ -22,6 +22,7 @@ public class EnhancedItem {
     private String name;
     private int iev;
     private int score;
+    private int tries;
 
     @OneToOne
     @JoinColumn(name = "item_id")
@@ -66,6 +67,7 @@ public class EnhancedItem {
         return EnhancedItem.builder()
             .name(dto.getName())
             .iev(dto.getIev())
+            .tries(dto.getTries())
             .score(score)
             .scroll(EnhanceScroll.from(dto.getScroll()))
             .success(EnhanceSuccess.from(dto.getSuccess()))

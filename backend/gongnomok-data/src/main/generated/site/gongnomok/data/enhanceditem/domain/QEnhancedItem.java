@@ -38,6 +38,8 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public final QEnhanceSuccess success;
 
+    public final NumberPath<Integer> tries = createNumber("tries", Integer.class);
+
     public QEnhancedItem(String variable) {
         this(EnhancedItem.class, forVariable(variable), INITS);
     }

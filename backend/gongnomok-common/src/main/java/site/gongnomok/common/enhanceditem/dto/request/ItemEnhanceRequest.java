@@ -16,6 +16,7 @@ public class ItemEnhanceRequest {
     private String scroll;
     private EnhanceSuccessDto success;
     private EnhanceStatusDto status;
+    private int tries;
 
     public ItemEnhanceServiceRequest toServiceDto() {
         return ItemEnhanceServiceRequest.builder()
@@ -25,6 +26,7 @@ public class ItemEnhanceRequest {
             .scroll(scroll)
             .success(success)
             .status(status)
+            .tries(tries)
             .build();
     }
 }

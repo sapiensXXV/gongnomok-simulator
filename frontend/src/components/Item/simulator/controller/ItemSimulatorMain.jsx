@@ -86,6 +86,7 @@ export default function ItemSimulatorMain() {
   const scroll100Button = useRef();
   const resetButton = useRef();
   const purchaseResetButton = useRef();
+  const tries = useRef(1);
 
   const [challengeModalOpen, setChallengeModalOpen] = useState(false);
   const [challengerName, setChallengerName] = useState("");
@@ -370,6 +371,7 @@ export default function ItemSimulatorMain() {
   function resetItem() {
     resetStatus();
     refreshSuccessScroll();
+    tries.current = tries.current + 1;
     setItemBuyCount((prev) => prev + 1);
     setUpgradedCount(0);
   }
@@ -540,6 +542,7 @@ export default function ItemSimulatorMain() {
         hp: hp - defaultHp.current,
         mp: mp - defaultMp.current
       },
+      tries: tries.current
     }
   }
 
@@ -565,12 +568,10 @@ export default function ItemSimulatorMain() {
           setIsChallengeSuccess(false);
         }
         
-        // todo - 강화 아이템 정보 다시 불러오기
-        
-        
       })
       .catch((err) => {
         console.log(err);
+        alert(err.response.data.message);
       })
 
     setChallengeModalOpen(false);
