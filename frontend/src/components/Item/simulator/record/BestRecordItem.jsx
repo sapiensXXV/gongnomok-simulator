@@ -54,7 +54,7 @@ export default function BestRecordItem({ itemId, info }) {
   return (
     <>
       <main className="item-best-record-root bg-light mx-3 mb-3 py-2 px-3">
-        <RecordTitle name={enhanced?.name} />
+        <RecordTitle name={enhanced?.name} tries={enhanced?.tries} />
         <RecordItemView recordInfo={info} enhanceInfo={enhanced} titleColorFunction={getItemNameColor} itemId={itemId} />
         <RecordScrollSuccessCount successInfo={enhanced.success} />
         <span className="item-record-comment">※ 기록은 아이템 정옵 기준으로 등록됩니다</span>

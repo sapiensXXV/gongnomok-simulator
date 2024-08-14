@@ -21,5 +21,7 @@ spring:
 
   data:
     redis:
-      port: 6379
-      host: 35.216.52.199
+      host: 35.216.52.199  # Redis 호스트 주소
+      port: 6379           # Redis 포트
+      username: default         # Redis 사용자 이름
+      password: ${REDIS_PASSWORD} # Redis 비밀번호, 환경 변수를 통해 관리

@@ -9,7 +9,7 @@ import site.gongnomok.common.comment.dto.error.CommentError;
 import site.gongnomok.common.exception.CommentException;
 
 
-@RestControllerAdvice(basePackages = {"site.gongnomok.domain.comment"})
+@RestControllerAdvice(basePackages = {"site.gongnomok.api"})
 public class CommentExceptionHandler {
 
     @ExceptionHandler

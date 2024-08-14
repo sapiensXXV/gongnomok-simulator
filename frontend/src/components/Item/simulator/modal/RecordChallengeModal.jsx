@@ -27,7 +27,7 @@ function RecordChallengeModal({
                     className="custom-modal-input-element"
                     type="text"
                     placeholder="이름을 입력하세요."
-                    defaultValue=""
+                    // defaultValue=""
                     value={name}
                     onChange={nameInputChangeHandler}
                   ></input>

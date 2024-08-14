@@ -136,7 +136,8 @@ export default function Comments({ itemId }) {
         setCommentList([newComment, ...commentList])
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        alert(err.response.data.message);
       })
 
     const copy = { ...commentForm };

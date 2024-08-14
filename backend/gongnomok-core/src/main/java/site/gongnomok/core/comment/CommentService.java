@@ -2,6 +2,7 @@ package site.gongnomok.core.comment;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,8 @@ import site.gongnomok.common.exception.ItemException;
 import site.gongnomok.common.global.util.SecurityUtil;
 import site.gongnomok.core.banword.wordfilter.BanWordFilter;
 import site.gongnomok.data.comment.domain.Comment;
+import site.gongnomok.data.comment.domain.CommentCount;
+import site.gongnomok.data.comment.domain.repository.CommentCountRedisRepository;
 import site.gongnomok.data.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.data.comment.domain.repository.CommentQueryRepository;
 import site.gongnomok.data.item.domain.Item;
@@ -29,11 +32,13 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class CommentService {
 
     private final ItemRepository itemRepository;
     private final CommentQueryRepository commentQueryRepository;
     private final CommentJpaRepository commentJpaRepository;
+    private final CommentCountRedisRepository commentCountRedisRepository;
     private final ReportCommentJpaRepository reportCommentJpaRepository;
     private final BanWordFilter banWordFilter;
     
@@ -49,7 +54,7 @@ public class CommentService {
         final String address
     ) {
 
-//        checkAndUpdateCommentCount(address);
+        checkAndUpdateCommentCount(address);
 
         String encryptedPassword = SecurityUtil.encryptSha256(createDto.getPassword());
         boolean result = banWordFilter.checkContainBanWord(createDto.getContent());
@@ -71,18 +76,18 @@ public class CommentService {
 
     }
 
-//    private void checkAndUpdateCommentCount(String address) {
-//        CommentCount commentCount = commentCountRedisRepository
-//            .findById(address)
-//            .orElse(CommentCount.init(address));
-//
-//        if (commentCount.getCount() >= maxCount) {
-//            throw new CommentException(ExceptionCode.COMMENT_RATE_LIMIT);
-//        }
-//
-//        commentCount.increaseCount();
-//        commentCountRedisRepository.save(commentCount);
-//    }
+    private void checkAndUpdateCommentCount(String address) {
+        CommentCount commentCount = commentCountRedisRepository
+            .findById(address)
+            .orElse(CommentCount.init(address));
+//        log.info("address={}, 댓글을 {}번 작성 시도. 1분간 최대 작성가능 횟수는={}", address, commentCount.getCount(), maxCount);
+        if (commentCount.getCount() > maxCount) {
+            throw new CommentException(ExceptionCode.COMMENT_RATE_LIMIT);
+        }
+
+        commentCount.increaseCount();
+        commentCountRedisRepository.save(commentCount);
+    }
 
     @Transactional(readOnly = true)
     public CommentCountResponse countComment(final Long itemId) {
