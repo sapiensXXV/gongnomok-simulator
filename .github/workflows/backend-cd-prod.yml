@@ -7,10 +7,6 @@ on:
       - main
     paths:
       - backend/**
-  pull_request:
-    branches:
-      - main
-    paths: backend/**
 
 env:
   JAR_PATH: './backend/gongnomok-api/build/libs'
@@ -20,7 +16,7 @@ env:
   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
   REDIS_HOST: ${{ secrets.REDIS_HOST }}
-  REDIS_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
 
 jobs:
   debug:
