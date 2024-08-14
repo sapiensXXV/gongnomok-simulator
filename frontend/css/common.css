@@ -191,7 +191,7 @@
 .custom-modal-title {
   margin: 0;
   color: rgba(0, 0, 0, 0.85);
-  font-family: Pretendard-Medium;
+  font-family: KCC-Hanbit;
   font-size: 16px;
   line-height: 22px;
   word-wrap: break-word;
@@ -219,8 +219,8 @@
   color: rgba(0, 0, 0, 0.85);
   word-break: break-word;
 
-  font-family: Pretendard-Bold;
-  font-size: 14px;
+  font-family: KCC-Hanbit;
+  font-size: 13px;
   margin-bottom: 8px;
 
 }
@@ -311,7 +311,7 @@
 }
 
 .primary-red {
-  color: rgb(255, 83, 83)
+  color: rgb(255, 100, 100)
 }
 
 .whtie {
@@ -462,8 +462,8 @@
 }
 
 .condition-title {
-  font-size: 16px;
-  font-family: 'Pretendard SemiBold';
+  font-size: 15px;
+  font-family: KCC-Hanbit;
 }
 
 .category-select-button-container {
@@ -595,7 +595,7 @@
 
 .item-list-title {
   font-size: 20px;
-  font-family: NPSfontBold;
+  font-family: KCC-Hanbit;
 }
 
 .item-condition-title {

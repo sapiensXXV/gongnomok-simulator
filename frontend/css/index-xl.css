@@ -156,7 +156,7 @@
 
   /*********** 시뮬레이터 ***********/
 
-  .shorcut-guide-section {
+  .shortcut-guide-section {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -198,7 +198,7 @@
     font-size: 19px
   }
 
-  .shorcut-guide-section span {
+  .shortcut-guide-section span {
     color: white;
   }
 
@@ -301,13 +301,12 @@
   }
 
   .scroll-overflow-msg {
-    display: block;
     justify-content: center;
 
-    color: #ff3e3e;
+    color: rgb(255, 100, 100);
     margin-left: 3px;
-    font-size: 14px;
-    font-family: Pretendard-Regular;
+    font-size: 13px;
+    font-family: KCC-Hanbit;
   }
 
   .item-status-required-description {
@@ -499,14 +498,6 @@
 
     margin-top: 1rem;
 
-  }
-
-  .item-best-record-title {
-    font-size: 18px;
-    font-family: KCC-Hanbit;
-
-    text-align: center;
-    margin-bottom: 8px;
   }
 
   .best-record-container {

@@ -18,5 +18,6 @@ public class ItemEnhanceServiceRequest {
     private String scroll;
     private EnhanceSuccessDto success;
     private EnhanceStatusDto status;
+    private int tries;
 
 }

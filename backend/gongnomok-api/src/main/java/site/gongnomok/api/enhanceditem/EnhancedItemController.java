@@ -31,7 +31,6 @@ public class EnhancedItemController {
         @PathVariable("itemId") Long itemId,
         @RequestBody ItemEnhanceRequest enhanceDto
     ) {
-        log.info("enhanceDto: {}", enhanceDto);
         UpdateEnhancementResponse response = enhancedItemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto());
         return ResponseEntity.ok(response);
     }

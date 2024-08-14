@@ -1,12 +1,8 @@
 package site.gongnomok.core.scroll;
 
 import lombok.Getter;
-import site.gongnomok.common.enhanceditem.dto.request.EnhanceSuccessDto;
-import site.gongnomok.common.exception.EnhancedItemException;
-import site.gongnomok.common.exception.ExceptionCode;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -353,69 +349,11 @@ public enum Scroll {
         return scroll -> scroll.jump = value;
     }
 
-    public static List<Scroll> toListFrom(String name) {
+    public static Map<Integer, Scroll> findScrollFrom(final String name) {
         return Arrays.stream(Scroll.values())
-            .filter(scroll -> scroll.getName().equals(name))
-            .toList();
-    }
-
-    public static Map<Integer, Scroll> toProbabilityMapFrom(String name) {
-        return Arrays.stream(Scroll.values())
-            .filter(scroll -> scroll.getName().equals(name))
+            .filter(scroll -> scroll.getName().startsWith(name))
             .collect(Collectors.toMap(Scroll::getProbability, scroll -> scroll));
     }
-
-    public static int isEqualWith(
-        final ItemStat statCategory,
-        final int actualStat,
-        final Map<Integer, Scroll> scrolls,
-        final EnhanceSuccessDto success
-        ) {
-
-        Scroll tenPerScroll = scrolls.get(10);
-        Scroll sixtyPerScroll = scrolls.get(60);
-        Scroll hundredPerScroll = scrolls.get(100);
-
-        int ten = success.getTen();
-        int sixty = success.getSixty();
-        int hundred = success.getHundred();
-
-        Integer calculatedStat = switch (statCategory) {
-            case STR ->
-                tenPerScroll.getStr() * ten + sixtyPerScroll.getStr() * sixty + hundredPerScroll.getStr() * hundred;
-            case DEX ->
-                tenPerScroll.getDex() * ten + sixtyPerScroll.getDex() * sixty + hundredPerScroll.getDex() * hundred;
-            case INT ->
-                tenPerScroll.getIntel() * ten + sixtyPerScroll.getIntel() * sixty + hundredPerScroll.getIntel() * hundred;
-            case LUK ->
-                tenPerScroll.getLuk() * ten + sixtyPerScroll.getLuk() * sixty + hundredPerScroll.getLuk() * hundred;
-            case PHY_ATK ->
-                tenPerScroll.getPhyAtk() * ten + sixtyPerScroll.getPhyAtk() * sixty + hundredPerScroll.getPhyAtk() * hundred;
-            case MG_ATK ->
-                tenPerScroll.getMgAtk() * ten + sixtyPerScroll.getMgAtk() * sixty + hundredPerScroll.getMgAtk() * hundred;
-            case PHY_DEF ->
-                tenPerScroll.getPhyDef() * ten + sixtyPerScroll.getPhyDef() * sixty + hundredPerScroll.getPhyDef() * hundred;
-            case MG_DEF ->
-                tenPerScroll.getMgDef() * ten + sixtyPerScroll.getMgDef() * sixty + hundredPerScroll.getMgDef() * hundred;
-            case ACC ->
-                tenPerScroll.getAcc() * ten + sixtyPerScroll.getAcc() * sixty + hundredPerScroll.getAcc() * hundred;
-            case AVO ->
-                tenPerScroll.getAvo() * ten + sixtyPerScroll.getAvo() * sixty + hundredPerScroll.getAvo() * hundred;
-            case MOVE ->
-                tenPerScroll.getMove() * ten + sixtyPerScroll.getMove() * sixty + hundredPerScroll.getMove() * hundred;
-            case JUMP ->
-                tenPerScroll.getJump() * ten + sixtyPerScroll.getJump() * sixty + hundredPerScroll.getJump() * hundred;
-            case HP ->
-                tenPerScroll.getHp() * ten + sixtyPerScroll.getHp() * sixty + hundredPerScroll.getHp() * hundred;
-            case MP ->
-                tenPerScroll.getMp() * ten + sixtyPerScroll.getMp() * sixty + hundredPerScroll.getMp() * hundred;
-        };
-
-        if (calculatedStat != actualStat) {
-            throw new EnhancedItemException(ExceptionCode.INVALID_UPGRADED_STATUS);
-        }
-
-        return calculatedStat;
-    }
+    
 
 }

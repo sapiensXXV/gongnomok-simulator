@@ -43,7 +43,6 @@ public class ItemController {
 
         List<ItemRankingResponse> result = itemService.itemRankingPagination(pageable);
         return ResponseEntity.ok(result);
-
     }
 
     @GetMapping("/items")

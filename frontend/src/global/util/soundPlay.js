@@ -1,13 +1,13 @@
 export function playFailureSound() {
   let failMp3 = new Audio('/sound/fail.mp3');
-  failMp3.volume = 0.05;
+  failMp3.volume = 0.03;
   failMp3.currentTime = 0;
   failMp3.play();
 }
 
 export function playSuccessSound() {
   let failMp3 = new Audio('/sound/success.mp3');
-  failMp3.volume = 0.05;
+  failMp3.volume = 0.03;
   failMp3.currentTime = 0;
   failMp3.play();
 }

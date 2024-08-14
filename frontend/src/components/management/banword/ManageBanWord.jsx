@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import style from './ManageBanWord.module.css'
 import axios from 'axios';
-import { BASE_URI } from '../../../global/uri';
+import { BASE_URL } from '../../../global/uri';
 import BanWordPagination from './BanWordPagination';
 import BanWordList from './BanWordList';
 import BanWordForm from './BanWordForm';
@@ -18,7 +18,7 @@ export default function ManageBanWord() {
 
   function fetchBanWords() {
     axios
-      .get(`${BASE_URI}/api/manage/banword?page=${page-1}&size=20`)
+      .get(`${BASE_URL}/api/manage/banword?page=${page-1}&size=20`)
       .then((response) => {
         setBanWordData(response.data);
       })
@@ -37,7 +37,7 @@ export default function ManageBanWord() {
     e.preventDefault();
     axios
       .post(
-        `${BASE_URI}/api/manage/banword`,
+        `${BASE_URL}/api/manage/banword`,
         { word: newWordInput }
       )
       .then((response) => {
@@ -54,7 +54,7 @@ export default function ManageBanWord() {
   function handlePageClicked(e, clickedPage) {
     e.preventDefault();
     axios
-      .get(`${BASE_URI}/api/manage/banword?page=${clickedPage-1}&size=20`)
+      .get(`${BASE_URL}/api/manage/banword?page=${clickedPage-1}&size=20`)
       .then((response) => {
         const newBanWordData = response.data;
         setBanWordData(newBanWordData);

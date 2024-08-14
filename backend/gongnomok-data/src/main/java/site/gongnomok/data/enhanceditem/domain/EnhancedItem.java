@@ -22,6 +22,7 @@ public class EnhancedItem {
     private String name;
     private int iev;
     private int score;
+    private int tries;
 
     @OneToOne
     @JoinColumn(name = "item_id")
@@ -43,6 +44,7 @@ public class EnhancedItem {
         success = EnhanceSuccess.from(dto.getSuccess());
         scroll = EnhanceScroll.from(dto.getScroll());
         status = EnhanceStatus.from(dto.getStatus());
+        tries = dto.getTries();
     }
 
     public void changeItem(Item item) {
@@ -59,6 +61,7 @@ public class EnhancedItem {
             .success(success.toDto())
             .status(status.toDto())
             .scroll(scroll.name())
+            .tries(tries)
             .build();
     }
 
@@ -66,6 +69,7 @@ public class EnhancedItem {
         return EnhancedItem.builder()
             .name(dto.getName())
             .iev(dto.getIev())
+            .tries(dto.getTries())
             .score(score)
             .scroll(EnhanceScroll.from(dto.getScroll()))
             .success(EnhanceSuccess.from(dto.getSuccess()))

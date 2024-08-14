@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { BASE_URI } from "../global/uri";
+import { BASE_URL } from "../global/uri";
 import { useRecoilState } from "recoil";
 import { LoginState, MemberState } from "./global-state/State";
 
@@ -30,7 +30,7 @@ export default function Login () {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post(`${BASE_URI}/api/login`, {
+    axios.post(`${BASE_URL}/api/login`, {
       id: inputId,
       password: inputPassword
     }, { withCredentials: true })

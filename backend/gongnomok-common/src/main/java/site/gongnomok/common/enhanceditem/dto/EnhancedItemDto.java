@@ -21,5 +21,6 @@ public class EnhancedItemDto {
     private EnhanceSuccessDto success;
     private EnhanceStatusDto status;
     private String scroll;
+    private int tries;
 
 }

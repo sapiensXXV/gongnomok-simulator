@@ -7,3 +7,8 @@ comment:
   constant:
     max-count: 1
     expire-seconds: 60
+    
+item:
+  challenge:
+    name:
+      limit: 10

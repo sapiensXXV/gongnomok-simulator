@@ -20,6 +20,7 @@ public class ItemEnhanceResponse {
     private int iev; // item enhancement value
     private EnhanceSuccessDto success;
     private EnhanceStatusDto status;
+    private int tries;
 
     public static ItemEnhanceResponse getBasicEnhanceData() {
         return ItemEnhanceResponse.builder()
@@ -28,6 +29,7 @@ public class ItemEnhanceResponse {
             .iev(0)
             .success(EnhanceSuccessDto.base())
             .status(EnhanceStatusDto.base())
+            .tries(1)
             .build();
     }
 
@@ -38,6 +40,7 @@ public class ItemEnhanceResponse {
             .iev(dto.getIev())
             .success(dto.getSuccess())
             .status(dto.getStatus())
+            .tries(dto.getTries())
             .build();
     }
 

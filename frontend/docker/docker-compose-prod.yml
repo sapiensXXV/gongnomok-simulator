@@ -6,7 +6,11 @@ services:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile.prod
-    image: sjhn/gongnomok-frontend:prod-1.2.1
+      args:
+        - PROD_NGINX_FULLCHAIN=${PROD_NGINX_FULLCHAIN}
+        - PROD_NGINX_PRIVKEY=${PROD_NGINX_PRIVKEY}
+        - SERVER_OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
+    image: sjhn/gongnomok-frontend:prod-latest
     restart: always
     ports:
       - 80:80
