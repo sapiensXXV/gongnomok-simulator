@@ -25,6 +25,8 @@ jobs:
           echo "SLACK_CICD_WEBHOOK is set: ${{ secrets.SLACK_CICD_WEBHOOK != ''}}"
           echo "SLACK_CICD_CHANNEL_ID is set: ${{ secrets.SLACK_CICD_CHANNEL_ID != ''}}"
           echo "SLACK_CICD_BOT_TOKEN is set: ${{ secrets.SLACK_CICD_BOT_TOKEN != ''}}"
+          echo "REDIS_HOST is set: ${{ secrets.REDIS_HOST }}"
+          echo "REDIS_PASSWORD is set: ${{ secrets.REDIS_PASSWORD }}"
 
 
   PATH_CHANGES:
@@ -68,6 +70,8 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
         run: |
           cd backend
           ./gradlew test
