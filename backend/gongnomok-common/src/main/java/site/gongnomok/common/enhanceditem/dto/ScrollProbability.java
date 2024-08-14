@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 public enum ScrollProbability {
     TEN_PERCENT_SCROLL(1000),
     SIXTY_PERCENT_SCROLL(167),
-    HUNDRED_PERCENT_SCROLL(100);
+    HUNDRED_PERCENT_SCROLL(10);
     
     private final int score;
 
