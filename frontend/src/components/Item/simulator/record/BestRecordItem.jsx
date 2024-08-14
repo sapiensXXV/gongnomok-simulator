@@ -57,7 +57,8 @@ export default function BestRecordItem({ itemId, info }) {
         <RecordTitle name={enhanced?.name} tries={enhanced?.tries} />
         <RecordItemView recordInfo={info} enhanceInfo={enhanced} titleColorFunction={getItemNameColor} itemId={itemId} />
         <RecordScrollSuccessCount successInfo={enhanced.success} />
-        <span className="item-record-comment">※ 기록은 아이템 정옵 기준으로 등록됩니다</span>
+        <span className="item-record-comment">※ 기록은 아이템 정옵 기준으로 등록됩니다 ※</span>
+        <span className="item-record-comment">※ 제작 확률이 낮을수록 높은 우선순위를 가집니다 ※</span>
       </main>
     </>
   );
