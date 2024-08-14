@@ -147,14 +147,12 @@
     text-align: center;
     justify-content: center;
 
-    border-radius: 8px;
+    border-radius: 6px;
 
     padding-top: 15px;
     padding-bottom: 15px;
-
-    margin: 1vw 15px 1vw 15px;
-
-    font-family: SejonghospitalBold;
+    margin: 1vw 0px 0vw 0px;
+    font-family: KCC-Hanbit, serif;
   }
 
   .shortcut-info {
@@ -173,19 +171,7 @@
 
   .shortcut-info span {
   }
-
-  .shortcut-title {
-    font-size: 25px;
-  }
-
-  .shortcut-description {
-    font-size: 19px
-  }
-
-  .shortcut-guide-section span {
-    color: white;
-  }
-
+  
   .item-simulator-section {
     display: flex;
     align-items: top;

@@ -146,14 +146,6 @@
   .shortcut-info span {
   }
 
-  .shortcut-description {
-    font-size: 19px
-  }
-
-  .shortcut-guide-section span {
-    color: white;
-  }
-
   .item-simulator-section {
 
     display: flex;

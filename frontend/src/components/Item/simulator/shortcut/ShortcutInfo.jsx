@@ -1,10 +1,14 @@
 import { memo } from "react"
 import styles from "./ShortcutInfo.module.css"
 
-function ShortcutInfo({ description }) {
+function ShortcutInfo({ shortcutKey, description }) {
   return (
     <>
-        <span className={`shortcut-description ${styles.description}`}>{description}</span>
+      <main>
+        <span className={styles.key_color}>{shortcutKey}</span>
+        <span> - </span>
+        <span className={`${styles.description}`}>{description}</span>
+      </main>
     </>
   )
 }
