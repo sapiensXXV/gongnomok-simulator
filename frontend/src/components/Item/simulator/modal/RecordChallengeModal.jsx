@@ -16,12 +16,13 @@ function RecordChallengeModal({
         >
           <div className="custom-modal-root">
             <div className="custom-modal-header">
-              <div className="custom-modal-title text-center">기록으로 등록하시겠습니까?</div>
+              <div className="custom-modal-title text-center">기록 도전</div>
             </div>
             <div className="custom-modal-body">
               <div className="custom-modal-content">
                 <div className="custom-modal-dialog">
-                  <article className="custom-modal-menu-title">이름<span className="red"> (※ 부적절한 이름 입력 시 삭제처리 됩니다.)</span></article>
+                  <article className="custom-modal-menu-title">이름<span className="primary-red"> (※ 부적절한 이름 입력 시 삭제처리 됩니다.)</span></article>
+                  <article className="custom-modal-menu-title"><span className="primary-red">이름은 10자 이내로 입력해주세요.</span></article>
                   <input
                     className="custom-modal-input-element"
                     type="text"

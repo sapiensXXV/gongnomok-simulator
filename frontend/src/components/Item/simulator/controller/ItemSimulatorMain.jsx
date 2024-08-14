@@ -90,7 +90,7 @@ export default function ItemSimulatorMain() {
   const [challengeModalOpen, setChallengeModalOpen] = useState(false);
   const [challengerName, setChallengerName] = useState("");
   const [isChallengerNameEmpty, setIsChallengerNameEmpty] = useState(false);
-
+  
   async function fetchData() {
     try {
       const response = await axios.get(`${BASE_URL}/api/item/${itemId}`, { withCredentials: true })
@@ -581,6 +581,9 @@ export default function ItemSimulatorMain() {
   }
 
   function handleChallengeNameChanged(e) {
+    if (e.target.value.length > 10) {
+      return;
+    }
     setChallengerName(e.target.value);
   }
 
