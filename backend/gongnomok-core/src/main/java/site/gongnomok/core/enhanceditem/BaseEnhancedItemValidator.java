@@ -76,7 +76,7 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
 //        log.info("주문서 성공 합계: {}, 총 주문서 성공 횟수: {}, 업그레이드 가능 횟수: {}", sumOfScrollSuccess, totalSuccessAtRequest, itemUpgradable);
         
-        if (sumOfScrollSuccess > itemUpgradable || totalSuccessAtRequest > itemUpgradable || totalSuccessAtRequest != sumOfScrollSuccess) {
+        if (totalSuccessAtRequest > itemUpgradable || totalSuccessAtRequest != sumOfScrollSuccess) {
             throw new EnhancedItemException(INVALID_ENHANCED_SUCCESS_REQUEST);
         }
     }
