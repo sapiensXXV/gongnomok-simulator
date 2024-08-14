@@ -60,6 +60,7 @@ public class EnhancedItem {
             .success(success.toDto())
             .status(status.toDto())
             .scroll(scroll.name())
+            .tries(tries)
             .build();
     }
 
