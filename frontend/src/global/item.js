@@ -53,7 +53,8 @@ export const DEFAULT_ITEM_RECORD = {
     jump: 0,
     hp: 0,
     mp: 0,
-  }
+  },
+  tries: 0
 
 }
 

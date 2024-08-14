@@ -475,14 +475,6 @@
 
   }
 
-  .item-best-record-title {
-    font-size: 18px;
-    font-family: KCC-Hanbit;
-
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
   .best-record-container {
     display: flex;
     justify-content: center;
