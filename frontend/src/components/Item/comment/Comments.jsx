@@ -269,7 +269,7 @@ export default function Comments({ itemId }) {
               className="comment-content-area"
               placeholder="내용을 입력하세요. (최대 200자)"
               spellCheck="false"
-              defaultValue={commentForm.content}
+              // defaultValue={commentForm.content}
               value={commentForm.content}
               onChange={handleChangeContent}
             />
@@ -278,14 +278,14 @@ export default function Comments({ itemId }) {
                 <input
                   type="text"
                   placeholder="닉네임"
-                  defaultValue={commentForm.name}
+                  // defaultValue={commentForm.name}
                   value={commentForm.name}
                   onChange={handleChangeName}
                 />
                 <input
                   type="password"
                   placeholder="비밀번호"
-                  defaultValue={commentForm.password}
+                  // defaultValue={commentForm.password}
                   value={commentForm.password}
                   onChange={handleChangePassword}
                 />
