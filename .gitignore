@@ -1,6 +1,3 @@
-ads.txt
-
-
 .env
 *.env
 backend/build.sh
