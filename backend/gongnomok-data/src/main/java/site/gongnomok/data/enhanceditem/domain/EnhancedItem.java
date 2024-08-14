@@ -44,6 +44,7 @@ public class EnhancedItem {
         success = EnhanceSuccess.from(dto.getSuccess());
         scroll = EnhanceScroll.from(dto.getScroll());
         status = EnhanceStatus.from(dto.getStatus());
+        tries = dto.getTries();
     }
 
     public void changeItem(Item item) {
