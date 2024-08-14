@@ -34,7 +34,6 @@ public class CommentService {
     private final ItemRepository itemRepository;
     private final CommentQueryRepository commentQueryRepository;
     private final CommentJpaRepository commentJpaRepository;
-//    private final CommentCountRedisRepository commentCountRedisRepository;
     private final ReportCommentJpaRepository reportCommentJpaRepository;
     private final BanWordFilter banWordFilter;
     

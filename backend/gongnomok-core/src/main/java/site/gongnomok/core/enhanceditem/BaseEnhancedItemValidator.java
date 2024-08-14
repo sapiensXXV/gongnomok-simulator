@@ -11,6 +11,7 @@ import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.common.exception.EnhancedItemException;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
+import site.gongnomok.core.banword.wordfilter.BanWordFilter;
 import site.gongnomok.core.scroll.ItemStat;
 import site.gongnomok.core.scroll.Scroll;
 import site.gongnomok.data.item.domain.Item;
@@ -33,6 +34,7 @@ import static site.gongnomok.core.scroll.ItemStat.*;
 public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
     private final ItemRepository itemRepository;
+    private final BanWordFilter banWordFilter;
     
     @Value("${item.challenge.name.limit}")
     private int nameLengthLimit;
@@ -55,6 +57,9 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
         }
         if (name.length() > nameLengthLimit) {
             throw new IllegalArgumentException("도전자 이름은 10자 이상이어야 합니다.");
+        }
+        if (banWordFilter.checkContainBanWord(name)) {
+            throw new IllegalArgumentException("도전자 이름에 부적적한 단어가 포함되어 있습니다.");
         }
     }
 
