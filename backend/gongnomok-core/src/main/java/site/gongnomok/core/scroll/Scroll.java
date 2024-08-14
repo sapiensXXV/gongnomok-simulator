@@ -182,6 +182,11 @@ public enum Scroll {
     DAGGER_PHY_ATK_60("DAGGER_PHY_ATK", 60, phyAtk(2), luk(1)),
     DAGGER_PHY_ATK_100("DAGGER_PHY_ATK", 100, phyAtk(1)),
 
+    // BOW
+    BOW_PHY_ATK_10("BOW_PHY_ATK", 10, phyAtk(5), acc(3), dex(1)),
+    BOW_PHY_ATK_60("BOW_PHY_ATK", 60, phyAtk(2), acc(1)),
+    BOW_PHY_ATK_100("BOW_PHY_ATK", 100, phyAtk(1)),
+    
     // CROSSBOW
     CROSSBOW_PHY_ATK_10("CROSSBOW_PHY_ATK", 10, phyAtk(5), acc(3), dex(1)),
     CROSSBOW_PHY_ATK_60("CROSSBOW_PHY_ATK", 60, phyAtk(2), acc(1)),

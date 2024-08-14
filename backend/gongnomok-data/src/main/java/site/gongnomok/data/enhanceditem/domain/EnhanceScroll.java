@@ -88,7 +88,7 @@ public enum EnhanceScroll {
     SHIELD_STRENGTH;
 
     public static EnhanceScroll from(String name) {
-        log.info("scroll-name: {}", name);
+//        log.info("scroll-name: {}", name);
         return Arrays.stream(EnhanceScroll.values())
             .filter((scroll) -> name.equals(scroll.name()))
             .findFirst()
