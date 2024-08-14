@@ -3,7 +3,7 @@ services:
     platform: linux/amd64
     build:
       context: ../..
-      dockerfile: dev.dockerfile
+      dockerfile: ./backend/docker/dev.dockerfile
       args:
         - DATABASE_URL=${DATABASE_URL}
         - DATABASE_USERNAME=${DATABASE_USERNAME}
