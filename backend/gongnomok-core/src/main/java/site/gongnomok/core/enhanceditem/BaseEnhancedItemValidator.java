@@ -2,7 +2,9 @@ package site.gongnomok.core.enhanceditem;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceStatusDto;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceSuccessDto;
 import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
@@ -31,6 +33,9 @@ import static site.gongnomok.core.scroll.ItemStat.*;
 public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
     private final ItemRepository itemRepository;
+    
+    @Value("${item.challenge.name.limit}")
+    private int nameLengthLimit;
 
     public void validateRequest(
         final Long itemId,
@@ -38,11 +43,21 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
     ) {
         Item findItem = itemRepository.findById(itemId)
             .orElseThrow(() -> new ItemException(ExceptionCode.NOT_FOUND_ITEM_ID));
-        
+
+        validateNameLength(request.getName());
         validateSuccessCount(request.getSuccess(), findItem.getUpgradable()); // 성공횟수 검사
         validateStatus(request.getScroll(), request.getStatus(), request.getSuccess()); // 능력치 상태검사
     }
-    
+
+    private void validateNameLength(String name) {
+        if (!StringUtils.hasText(name)) {
+            throw new IllegalArgumentException("도전자 이름은 비어있을 수 없습니다.");
+        }
+        if (name.length() > nameLengthLimit) {
+            throw new IllegalArgumentException("도전자 이름은 10자 이상이어야 합니다.");
+        }
+    }
+
     /**
      * 강화 성공 횟수의 유효성을 검증하는 메서드입니다.
      * 각 주문서 타입별 성공 횟수의 합과 총 성공 횟수가 아이템의 최대 강화 가능 횟수를 초과하지 않는지 확인합니다.
