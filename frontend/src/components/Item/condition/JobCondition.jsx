@@ -1,4 +1,4 @@
-export default function JobSelect({
+export default function JobCondition({
   isSelected,
   jobName,
   jobNameEng,

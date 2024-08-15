@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  font-family: KCC-Hanbit, serif;
+  font-size: 14px;
+
+  background-color: rgb(2, 151, 41);
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+}
+
+.container a {
+  color: rgb(254, 70, 70);
+  text-decoration: none;
+}

@@ -1,4 +1,4 @@
-export default function CategorySelect({
+export default function CategoryCondition({
   category,
   condition,
   name,

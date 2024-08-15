@@ -1,18 +1,4 @@
-.feedback-banner-root {
-  background-color: rgb(2, 151, 41);
-  padding: 8px;
-  text-align: center;
-  border-radius: 8px;
-  color: white;
 
-  font-family: Pretendard-Regular;
-}
-
-.feedback-banner-root a {
-  color: rgb(254, 70, 70);
-  font-family: Pretendard-Bold;
-  text-decoration: none;
-}
 
 .inform-banner-root {
   margin-top: 3px;
@@ -23,11 +9,6 @@
   color: white;
 
   font-family: Pretendard-Regular;
-}
-
-.banner {
-  font-family: KCC-Hanbit;
-  font-size: 14px;
 }
 
 .comment-container {
@@ -462,6 +443,14 @@
   color: white;
 }
 
+.item-name-input {
+  width: 300px;
+}
+
+.category-select-container {
+  margin-top: 3px;
+}
+
 .condition-title {
   font-size: 15px;
   font-family: KCC-Hanbit;
@@ -474,7 +463,7 @@
   flex-wrap: wrap;
   justify-content: start;
 
-  margin-top: .5rem;
+  margin-top: 3px;
 }
 
 
@@ -593,6 +582,10 @@
 .item-record-challenge-section>button:hover {
   background-color: rgb(81, 118, 252);
   color: white;
+}
+
+.item-condition-root {
+  margin-top: 5px;
 }
 
 .item-list-title {

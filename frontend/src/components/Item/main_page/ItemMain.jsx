@@ -10,6 +10,7 @@ import FeedbackBanner from "../../banner/FeedbackBanner.jsx";
 import InformBanner from "../../banner/InformBanner.jsx";
 import { INITIAL_SEARCH_CONDITION } from "../condition/search.js";
 import ItemRanking from "./ItemRanking.jsx";
+import styles from './ItemMain.module.css'
 
 export default function ItemMain() {
 
@@ -132,22 +133,22 @@ export default function ItemMain() {
       <section className="mt-3">
         <div className="row mb-3">
           <section>
-            <FeedbackBanner/>
-            <InformBanner/>
+            <section className={styles.banner_container}>
+              <FeedbackBanner/>
+              <InformBanner/>
+            </section>
+            <ItemCondition
+              searchCondition={searchCondition}
+              handleItemNameChange={handleItemNameChange}
+              handleJobsChange={handleJobsChange}
+              handleCategoryChange={handleCategoryChange}
+              handleMinLevelChange={handleMinLevelChange}
+              doSearch={doSearch}
+            />
           </section>
         </div>
         <div className="row">
           <div className="col-lg-12 col-xl-4">
-            <section className="col-md-12">
-              <ItemCondition
-                searchCondition={searchCondition}
-                handleItemNameChange={handleItemNameChange}
-                handleJobsChange={handleJobsChange}
-                handleCategoryChange={handleCategoryChange}
-                handleMinLevelChange={handleMinLevelChange}
-                doSearch={doSearch}
-              />
-            </section>
             <ItemRanking/>
           </div>  
           <div className="col-lg-12 col-xl-8">

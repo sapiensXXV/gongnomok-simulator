@@ -1,0 +1,18 @@
+/*middle 사이즈 이하*/
+@media screen and (max-width: 991px) {
+  .banner_container {
+    display: grid;
+    row-gap: 5px;
+    grid-template-columns: 1fr;
+  }
+}
+
+/*large 사이즈 이상*/
+@media screen and (min-width: 992px) {
+  .banner_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20%, auto));
+    column-gap: 5px;
+  }  
+}
+
