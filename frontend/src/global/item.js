@@ -1,6 +1,6 @@
 export const DEFAULT_FETCH_SIZE = 30;
 export const DEFAULT_RANKING_FETCH_SIZE = 5;
-export const MAXIMUM_RANKING_PAGE = 4;
+export const MAXIMUM_RANKING_PAGE = 10;
 
 export const ITEM_CATEGORIES = [
   "ONE_HANDED_SWORD",
@@ -29,7 +29,7 @@ export const ITEM_CATEGORIES = [
 ]
 
 export const DEFAULT_ITEM_RECORD = {
-  name: "",
+  name: "default_user",
   score: 0,
   success: {
     total: 0,
@@ -55,7 +55,6 @@ export const DEFAULT_ITEM_RECORD = {
     mp: 0,
   },
   tries: 0
-
 }
 
 export const DEAFULT_SUCCESS_SCROLL = {

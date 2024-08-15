@@ -1,0 +1,19 @@
+.success_scroll_count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 3px;
+  
+  margin-left: 5px;
+}
+
+.success_scroll_count span {
+  font-family: KCC-Hanbit, serif;
+  font-size: 14px;
+  color: black;
+}
+
+.scroll_img {
+  width: 20px;
+  height: 20px;
+}

@@ -29,5 +29,12 @@
     grid-template-columns: 1fr;
     row-gap: 5px;
   }
+  
+  .popular_ranking_and_record_ranking_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    grid-auto-rows: min-content;
+    row-gap: 5px;
+  }
 }
 

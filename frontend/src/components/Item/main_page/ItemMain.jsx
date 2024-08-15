@@ -11,7 +11,7 @@ import InformBanner from "../../banner/InformBanner.jsx";
 import {INITIAL_SEARCH_CONDITION} from "../condition/search.js";
 import ItemRanking from "./ItemRanking.jsx";
 import styles from './ItemMain.module.css'
-import ItemScoreRanking from "./ItemScoreRanking.jsx";
+import RecordItemRanking from "./record_ranking/RecordItemRanking.jsx";
 
 export default function ItemMain() {
 
@@ -157,9 +157,9 @@ export default function ItemMain() {
             handleMoreItemButton={handleMoreItemButton}
           />
         </section>
-        <section>
+        <section className={styles.popular_ranking_and_record_ranking_container}>
           <ItemRanking/>
-          <ItemScoreRanking/>
+          <RecordItemRanking/>
         </section>
       </section>
     </>
