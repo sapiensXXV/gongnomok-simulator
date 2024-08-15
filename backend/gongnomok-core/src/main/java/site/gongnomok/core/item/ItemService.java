@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
 import site.gongnomok.common.item.dto.ItemDto;
-import site.gongnomok.common.item.dto.ItemRankingRepositoryDto;
+import site.gongnomok.common.item.dto.ItemViewRankingRepositoryDto;
 import site.gongnomok.common.item.dto.ItemViewRankingResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemResponse;
@@ -58,20 +58,21 @@ public class ItemService {
     public List<ItemViewRankingResponse> itemRankingPagination(
         final Pageable pageable
     ) {
-        final List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
+        final List<ItemViewRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
         return convertItemListRankingResponse(items);
     }
     
     @Transactional(readOnly = true)
+    public 
     
 
     private List<ItemViewRankingResponse> convertItemListRankingResponse(
-        final List<ItemRankingRepositoryDto> items
+        final List<ItemViewRankingRepositoryDto> items
     ) {
         
         final List<ItemViewRankingResponse> ranking = new ArrayList<>();
         for (int i = 1; i <= items.size(); i++) {
-            final ItemRankingRepositoryDto item = items.get(i - 1);
+            final ItemViewRankingRepositoryDto item = items.get(i - 1);
             ranking.add(ItemViewRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
         }
 

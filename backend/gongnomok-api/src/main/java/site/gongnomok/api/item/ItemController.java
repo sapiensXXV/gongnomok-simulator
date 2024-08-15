@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.common.item.dto.ItemDto;
-import site.gongnomok.common.item.dto.ItemRankingResponse;
+import site.gongnomok.common.item.dto.ItemViewRankingResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.common.item.dto.request.ItemCreateRequest;
 import site.gongnomok.common.item.dto.request.itemlist.ItemListRequest;
@@ -38,11 +38,17 @@ public class ItemController {
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
-    @GetMapping("/item/ranking")
-    public ResponseEntity<List<ItemRankingResponse>> itemRanking(Pageable pageable) {
+    @GetMapping("/item/ranking/view")
+    public ResponseEntity<List<ItemViewRankingResponse>> itemRanking(Pageable pageable) {
 
-        List<ItemRankingResponse> result = itemService.itemRankingPagination(pageable);
+        List<ItemViewRankingResponse> result = itemService.itemRankingPagination(pageable);
         return ResponseEntity.ok(result);
+    }
+    
+    @GetMapping("/item/ranking/record")
+    public ResponseEntity<Void> recordRanking() {
+        
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/items")
