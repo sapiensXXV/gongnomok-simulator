@@ -102,7 +102,7 @@
   .ranking-items {
     display: flex;
     flex-direction: column;
-    row-gap: 8px;
+    row-gap: 2px;
   }
 
   .ranking-items a {
@@ -113,7 +113,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
-
+    padding: 0px 10px 0px 10px;
+    border-radius: 6px;
     color: rgb(53, 53, 53);
   }
 

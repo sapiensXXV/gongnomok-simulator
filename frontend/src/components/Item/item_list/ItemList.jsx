@@ -11,9 +11,7 @@ export default function ItemList({
   return (
     <>
       <section className="bg-light rounded py-1 px-1">
-        {/*<h2 className="item-list-title text-center">아이템 목록</h2>*/}
-        <section className="col-md-12 bg-light rounded item-list-container px-2 py-2">
-          {/* <div className="row row-cols-xs-3 row-cols-sm-4 row-cols-md-6 row-cols-lg-auto row-cols-xl-6 g-3 d-flex justify-content-start"> */}
+        <section className="col-md-12 bg-light rounded item-list-container px-1 py-1">
           <div className="item-list-grid">
 
             {

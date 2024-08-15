@@ -6,6 +6,19 @@
     grid-template-columns: 1fr;
     margin-top: 5px;
   }
+  
+  .item_main_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 5px;
+    margin-top: 5px;
+  }
+  
+  .item_condition_and_list_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 5px;
+  }
 }
 
 /*large 사이즈 이상*/

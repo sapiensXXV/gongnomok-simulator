@@ -1,5 +1,5 @@
 .item_record_ranking_container {
-  margin-top: 5px;
+  /*margin-top: 5px;*/
   display: flex;
   flex-direction: column;
   background-color: rgb(248, 249, 250);
@@ -7,7 +7,7 @@
 
   justify-content: center;
   text-align: center;
-
+  font-family: KCC-Hanbit, serif;
   padding-bottom: 10px;
   padding-top: 10px;
   padding-right: 5px;

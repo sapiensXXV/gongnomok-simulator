@@ -1,8 +1,7 @@
-import { useState } from "react"
 import JobCondition from "./JobCondition.jsx"
-import { INITIAL_SEARCH_CONDITION } from "./search";
 import CategoryCondition from "./CategoryCondition.jsx";
 import NameCondition from "./NameCondition.jsx";
+import styles from "./ItemCondition.module.css";
 
 export default function ItemCondition({
   searchCondition,
@@ -15,7 +14,7 @@ export default function ItemCondition({
 
   return (
     <>
-      <section className="bg-light rounded py-3 item-condition-root">
+      <section className={`bg-light rounded ${styles.item_condition_root}`}>
         <h2 className="text-center item-condition-title">아이템 찾기</h2>
         <form onSubmit={(e) => doSearch(e, searchCondition)}>
           

@@ -521,11 +521,12 @@
 
 .single-ranking-item > span {
   font-family: KCC-Hanbit;
+  text-align: center;
   font-size: 15px;
 }
 
 .single-ranking-item {
-  height: 32px;
+  height: 37px;
 }
 
 .item-ranking-page-controller-container {
@@ -639,3 +640,7 @@
   font-family: KCC-Hanbit;
   color: rgb(255, 100, 100);
 } */
+
+.single-ranking-item:hover {
+  background-color: #eeeeee
+}
