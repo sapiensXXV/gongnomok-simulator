@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class ItemRankingRepositoryDto {
+public class ItemViewRankingRepositoryDto {
 
     private Long itemId;
     private String name;
