@@ -7,10 +7,10 @@ on:
       - dev
     paths:
       - frontend/**
-  pull_request:
-    branches:
-      - dev
-    paths: frontend/**
+  # pull_request:
+  #   branches:
+  #     - dev
+  #   paths: frontend/**
 
 env:
   ARTIFACT_DIRECTORY: ./frontend/dist

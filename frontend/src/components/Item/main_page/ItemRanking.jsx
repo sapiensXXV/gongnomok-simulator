@@ -11,7 +11,7 @@ export default function ItemRanking() {
   useEffect(() => {
     axios
       .get(
-        `${BASE_URL}/api/item/ranking?page=0&size=${DEFAULT_RANKING_FETCH_SIZE}`,
+        `${BASE_URL}/api/item/ranking/view_count?page=0&size=${DEFAULT_RANKING_FETCH_SIZE}`,
         { withCredentials: true }
       )
       .then((response) => {
@@ -29,7 +29,7 @@ export default function ItemRanking() {
     // 이전 페이지 요청 수행
     axios
       .get(
-        `${BASE_URL}/api/item/ranking/view?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`,
+        `${BASE_URL}/api/item/ranking/view_count?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`,
         { withCredentials: true }
       )
       .then((response) => {
@@ -48,7 +48,7 @@ export default function ItemRanking() {
 
     axios
       .get(
-        `${BASE_URL}/api/item/ranking/view?page=${rankingPage+1}&size=${DEFAULT_RANKING_FETCH_SIZE}`,
+        `${BASE_URL}/api/item/ranking/view_count?page=${rankingPage+1}&size=${DEFAULT_RANKING_FETCH_SIZE}`,
         { withCredentials: true }
       )
       .then((response) => {
