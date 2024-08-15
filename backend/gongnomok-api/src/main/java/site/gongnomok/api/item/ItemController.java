@@ -39,7 +39,7 @@ public class ItemController {
         return ResponseEntity.created(URI.create("/item/" + id)).build();
     }
 
-    @GetMapping("/item/ranking/view")
+    @GetMapping("/item/ranking/view_count")
     public ResponseEntity<List<ItemViewRankingResponse>> itemRanking(Pageable pageable) {
 
         List<ItemViewRankingResponse> result = itemService.itemRankingPagination(pageable);

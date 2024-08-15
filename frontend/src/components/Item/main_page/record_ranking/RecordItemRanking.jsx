@@ -29,7 +29,6 @@ function RecordItemRanking() {
     axios
       .get(`${BASE_URL}/api/item/ranking/record`, { withCredentials: true })
       .then((response) => {
-        console.log(response.data);
         setItems(response.data)
       })
       .catch((error) => {
