@@ -1,24 +1,25 @@
-import { useEffect, useState, useRef } from "react";
+import {useEffect, useState, useRef} from "react";
 
 import ItemCondition from "../condition/ItemCondition.jsx";
 import ItemList from "../item_list/ItemList.jsx";
 import axios from "axios";
 
-import { DEFAULT_FETCH_SIZE } from "../../../global/item.js";
-import { BASE_URL } from "../../../global/uri.js";
+import {DEFAULT_FETCH_SIZE} from "../../../global/item.js";
+import {BASE_URL} from "../../../global/uri.js";
 import FeedbackBanner from "../../banner/FeedbackBanner.jsx";
 import InformBanner from "../../banner/InformBanner.jsx";
-import { INITIAL_SEARCH_CONDITION } from "../condition/search.js";
+import {INITIAL_SEARCH_CONDITION} from "../condition/search.js";
 import ItemRanking from "./ItemRanking.jsx";
 import styles from './ItemMain.module.css'
+import ItemScoreRanking from "./ItemScoreRanking.jsx";
 
 export default function ItemMain() {
 
-  const [itemList, setItemList] = useState([]);  
+  const [itemList, setItemList] = useState([]);
   const [isItemLoaded, setIsItemLoaded] = useState(false);
   const nextPage = useRef(0);
   const [hasNextPage, setHasNextPage] = useState(true);
-  
+
   useEffect(() => {
     searchItems();
   }, []);
@@ -49,7 +50,7 @@ export default function ItemMain() {
 
   function searchItemsWithCondition(searchCondition) {
     axios
-      .post(`${BASE_URL}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, { withCredentials: true })
+      .post(`${BASE_URL}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, {withCredentials: true})
       .then((res) => {
         if (nextPage.current == 0) {
           setItemList([...res.data.items])
@@ -59,7 +60,7 @@ export default function ItemMain() {
         setIsItemLoaded(true)
 
         if (res.data.items?.length < DEFAULT_FETCH_SIZE) setHasNextPage(false);
-        else setHasNextPage(true);  
+        else setHasNextPage(true);
         nextPage.current += 1
       })
       .catch((err) => {
@@ -95,13 +96,17 @@ export default function ItemMain() {
     let copy = {...searchCondition}
     switch (jobName) {
       case 'warrior':
-        copy.jobs.warrior = !copy.jobs.warrior; break;
+        copy.jobs.warrior = !copy.jobs.warrior;
+        break;
       case 'bowman':
-        copy.jobs.bowman = !copy.jobs.bowman; break;
+        copy.jobs.bowman = !copy.jobs.bowman;
+        break;
       case 'magician':
-        copy.jobs.magician = !copy.jobs.magician; break;
+        copy.jobs.magician = !copy.jobs.magician;
+        break;
       case 'thief':
-        copy.jobs.thief = !copy.jobs.thief; break;
+        copy.jobs.thief = !copy.jobs.thief;
+        break;
     }
 
     setSearchCondition(copy)
@@ -130,41 +135,33 @@ export default function ItemMain() {
 
   return (
     <>
-      <section className="mt-3">
-        <div className="row mb-3">
-          <section>
-            <section className={styles.banner_container}>
-              <FeedbackBanner/>
-              <InformBanner/>
-            </section>
-            <ItemCondition
-              searchCondition={searchCondition}
-              handleItemNameChange={handleItemNameChange}
-              handleJobsChange={handleJobsChange}
-              handleCategoryChange={handleCategoryChange}
-              handleMinLevelChange={handleMinLevelChange}
-              doSearch={doSearch}
-            />
-          </section>
-        </div>
-        <div className="row">
-          <div className="col-lg-12 col-xl-4">
-            <ItemRanking/>
-          </div>  
-          <div className="col-lg-12 col-xl-8">
-            <section>
-              <ItemList 
-                searchCondition={searchCondition}
-                itemList={itemList} 
-                isItemLoaded={isItemLoaded}
-                hasNextPage={hasNextPage}
-                handleMoreItemButton={handleMoreItemButton}
-              />
-            </section>
-          </div>
-        </div>
+      <section className={styles.banner_container}>
+        <FeedbackBanner/>
+        <InformBanner/>
       </section>
-
+      <section className={styles.item_main_container}>
+        <section className={styles.item_condition_and_list_container}>
+          <ItemCondition
+            searchCondition={searchCondition}
+            handleItemNameChange={handleItemNameChange}
+            handleJobsChange={handleJobsChange}
+            handleCategoryChange={handleCategoryChange}
+            handleMinLevelChange={handleMinLevelChange}
+            doSearch={doSearch}
+          />
+          <ItemList
+            searchCondition={searchCondition}
+            itemList={itemList}
+            isItemLoaded={isItemLoaded}
+            hasNextPage={hasNextPage}
+            handleMoreItemButton={handleMoreItemButton}
+          />
+        </section>
+        <section>
+          <ItemRanking/>
+          <ItemScoreRanking/>
+        </section>
+      </section>
     </>
-  ) 
+  )
 }

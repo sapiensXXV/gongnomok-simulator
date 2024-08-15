@@ -4,6 +4,7 @@
     display: grid;
     row-gap: 5px;
     grid-template-columns: 1fr;
+    margin-top: 5px;
   }
 }
 
@@ -13,6 +14,20 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20%, auto));
     column-gap: 5px;
+    margin-top: 5px;
   }  
+  
+  .item_main_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+    margin-top: 5px;
+  }
+  
+  .item_condition_and_list_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 5px;
+  }
 }
 
