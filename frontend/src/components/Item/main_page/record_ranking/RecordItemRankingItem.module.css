@@ -59,6 +59,8 @@
   text-overflow: ellipsis;   /* 넘치는 부분을 '...'으로 표시 */
   max-width: 65px;          /* 최대 너비를 설정 (필요에 따라 조정) */
   display: inline-block;     /* ellipsis가 적용되기 위해 inline-block으로 설정 */
+  width: 65px;
+  text-align: start;
 }
 
 .ranking_text {

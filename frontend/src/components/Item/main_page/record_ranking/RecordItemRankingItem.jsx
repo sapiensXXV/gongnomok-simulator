@@ -5,7 +5,7 @@ function RecordItemRankingItem({info, rank}) {
   
   return (
     <>
-      <a className={styles.ranking_item_link} href={`/item/${info.item_id}`}>
+      <a className={styles.ranking_item_link} href={`/item/${info.itemId}`}>
         <main className={styles.ranking_item_container}>
           <div className={styles.ranking_expression_container}>
             {
@@ -24,14 +24,14 @@ function RecordItemRankingItem({info, rank}) {
 
           {/*<img className={styles.item_medal_img} src="/images/medals/gold_medal.png"/>*/}
           <span className={`${styles.ranking_item_challenger_name} ${styles.primary_red}`}>
-          {info.name}
+          {info.challengerName}
         </span>
           <span className={styles.ranking_text}>&ensp;님</span>
-          <img className={styles.ranking_item_img} src={`/images/item/${info.item_id}.png`}/>
+          <img className={styles.ranking_item_img} src={`/images/item/${info.itemId}.png`}/>
           <span className={styles.item_scroll_split_colon}>:</span>
-          <SuccessScrollCount percent={10} count={info?.scroll?.ten}/>
-          <SuccessScrollCount percent={60} count={info?.scroll?.sixty}/>
-          <SuccessScrollCount percent={100} count={info?.scroll?.hundred}/>
+          <SuccessScrollCount percent={10} count={info?.success?.ten}/>
+          <SuccessScrollCount percent={60} count={info?.success?.sixty}/>
+          <SuccessScrollCount percent={100} count={info?.success?.hundred}/>
         </main>
       </a>
 
