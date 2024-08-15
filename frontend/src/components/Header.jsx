@@ -1,11 +1,13 @@
 // import logo from "../assets/logo.png"
 
-import { useRecoilState, useRecoilValue } from "recoil"
+import { useRecoilState } from "recoil"
 import { LoginState, MemberState } from "./global-state/State"
 import { ADMIN, GUEST } from "./global-state/state-const"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { BASE_URL } from "../global/uri"
+
+import styles from "./Header.module.css";
 
 export default function Header() {
 
@@ -61,7 +63,7 @@ export default function Header() {
               {
                 !loginState ? (
                   <li className="nav-item">
-                    <a className="nav-link" href="/login">관리자 로그인</a>
+                    <a className="nav-link" href="/login"><span className={styles.login_text}>관리자 로그인</span></a>
                   </li>
                 ) : null
               }

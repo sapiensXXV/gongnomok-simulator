@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
-import site.gongnomok.common.item.dto.ItemRankingRepositoryDto;
+import site.gongnomok.common.item.dto.ItemViewRankingRepositoryDto;
 import site.gongnomok.common.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.common.item.dto.request.itemlist.ItemListServiceRequest;
 import site.gongnomok.common.item.dto.request.itemlist.JobSearchDto;
@@ -124,11 +124,11 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public List<ItemRankingRepositoryDto> findItemByViewCount(long findCount) {
+    public List<ItemViewRankingRepositoryDto> findItemByViewCount(long findCount) {
         return queryFactory
                 .select(
                         Projections.fields(
-                                ItemRankingRepositoryDto.class,
+                                ItemViewRankingRepositoryDto.class,
                                 item.id.as("itemId"),
                                 item.name,
                                 item.viewCount
@@ -141,11 +141,11 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
     }
 
     @Override
-    public List<ItemRankingRepositoryDto> findItemByViewCountPagination(Pageable pageable) {
+    public List<ItemViewRankingRepositoryDto> findItemByViewCountPagination(Pageable pageable) {
         return queryFactory
             .select(
                 Projections.fields(
-                    ItemRankingRepositoryDto.class,
+                    ItemViewRankingRepositoryDto.class,
                     item.id.as("itemId"),
                     item.name,
                     item.viewCount

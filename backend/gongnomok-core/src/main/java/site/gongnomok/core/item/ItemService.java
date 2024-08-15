@@ -8,12 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
 import site.gongnomok.common.item.dto.ItemDto;
-import site.gongnomok.common.item.dto.ItemRankingRepositoryDto;
-import site.gongnomok.common.item.dto.ItemRankingResponse;
+import site.gongnomok.common.item.dto.ItemViewRankingRepositoryDto;
+import site.gongnomok.common.item.dto.ItemViewRankingResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.common.item.dto.request.ItemCreateRequest;
 import site.gongnomok.common.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.common.item.dto.response.recordranking.ItemRecordRankingResponse;
+import site.gongnomok.common.item.dto.response.recordranking.RecordRankingSuccess;
+import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
+import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.data.item.domain.Item;
 import site.gongnomok.data.item.domain.repository.ItemRepository;
 
@@ -28,6 +32,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final EnhancedItemRepository enhancedItemRepository;
 
     public void createItem(
         final ItemCreateRequest request
@@ -55,21 +60,40 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public List<ItemRankingResponse> itemRankingPagination(
+    public List<ItemViewRankingResponse> itemRankingPagination(
         final Pageable pageable
     ) {
-        final List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
+        final List<ItemViewRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
         return convertItemListRankingResponse(items);
     }
+    
+    @Transactional(readOnly = true)
+    public List<ItemRecordRankingResponse> itemRecordRanking() {
+        List<EnhancedItem> enhancedItems = enhancedItemRepository.recordRankingItems();
+        List<ItemRecordRankingResponse> result = new ArrayList<>();
+        for (EnhancedItem enhancedItem : enhancedItems) {
+            Long itemId = enhancedItem.getItem().getId();
+            RecordRankingSuccess success = RecordRankingSuccess.builder()
+                .ten(enhancedItem.getSuccess().getTenSuccessCount())
+                .sixty(enhancedItem.getSuccess().getSixtySuccessCount())
+                .hundred(enhancedItem.getSuccess().getHundredSuccessCount())
+                .build();
 
-    private List<ItemRankingResponse> convertItemListRankingResponse(
-        final List<ItemRankingRepositoryDto> items
+            ItemRecordRankingResponse rankData = new ItemRecordRankingResponse(itemId, enhancedItem.getName(), success);
+            result.add(rankData);
+        }
+        return result;
+    }
+    
+
+    private List<ItemViewRankingResponse> convertItemListRankingResponse(
+        final List<ItemViewRankingRepositoryDto> items
     ) {
         
-        final List<ItemRankingResponse> ranking = new ArrayList<>();
+        final List<ItemViewRankingResponse> ranking = new ArrayList<>();
         for (int i = 1; i <= items.size(); i++) {
-            final ItemRankingRepositoryDto item = items.get(i - 1);
-            ranking.add(ItemRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
+            final ItemViewRankingRepositoryDto item = items.get(i - 1);
+            ranking.add(ItemViewRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
         }
 
         return ranking;

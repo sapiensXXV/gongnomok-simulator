@@ -1,0 +1,85 @@
+.ranking_item_link {
+  text-decoration: none;
+}
+
+.ranking_item_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2px;
+
+  border: solid;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: #eeeeee;
+
+  padding: 5px 3px 5px 3px;
+  
+}
+
+.ranking_expression_container {
+  width: 35px;
+  text-align: end;
+}
+
+.ranking_item_container:hover {
+  background-color: #eeeeee;
+}
+
+.item_medal_img {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+}
+
+.rank_text {
+  font-family: KCC-Hanbit, serif;
+  font-size: 14px;
+  margin-right: 5px;
+  color: black;
+}
+
+.challenger_name_container {
+  width: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.primary_red {
+  color: rgb(255, 100, 100);
+}
+
+.ranking_item_challenger_name {
+  font-family: KCC-Hanbit, serif;
+  font-size: 14px;
+  white-space: nowrap;       /* 텍스트가 한 줄로 표시되도록 설정 */
+  overflow: hidden;          /* 넘치는 텍스트는 숨김 */
+  text-overflow: ellipsis;   /* 넘치는 부분을 '...'으로 표시 */
+  max-width: 65px;          /* 최대 너비를 설정 (필요에 따라 조정) */
+  display: inline-block;     /* ellipsis가 적용되기 위해 inline-block으로 설정 */
+  width: 65px;
+  text-align: start;
+}
+
+.ranking_text {
+  text-align: center;
+  font-family: KCC-Hanbit, serif;
+  font-size: 14px;
+  color: black;
+}
+
+.item_scroll_split_colon {
+  font-family: KCC-Hanbit, serif;
+  font-size: 14px;
+  margin-left: 5px;
+  color: black;
+}
+
+/*아이템 이미지*/
+.ranking_item_img {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}

@@ -62,8 +62,7 @@
 
     font-family: KCC-Hanbit;
 
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-top: 0px;
     padding-top: 10px;
     padding-bottom: 15px;
 
@@ -98,7 +97,7 @@
   .ranking-items {
     display: flex;
     flex-direction: column;
-    row-gap: 8px;
+    row-gap: 2px;
   }
 
   .ranking-items a {
