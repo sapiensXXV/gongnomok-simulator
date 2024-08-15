@@ -9,7 +9,7 @@ import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
 import site.gongnomok.common.item.dto.ItemDto;
 import site.gongnomok.common.item.dto.ItemRankingRepositoryDto;
-import site.gongnomok.common.item.dto.ItemRankingResponse;
+import site.gongnomok.common.item.dto.ItemViewRankingResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.common.item.dto.request.ItemCreateRequest;
@@ -55,21 +55,24 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public List<ItemRankingResponse> itemRankingPagination(
+    public List<ItemViewRankingResponse> itemRankingPagination(
         final Pageable pageable
     ) {
         final List<ItemRankingRepositoryDto> items = itemRepository.findItemByViewCountPagination(pageable);
         return convertItemListRankingResponse(items);
     }
+    
+    @Transactional(readOnly = true)
+    
 
-    private List<ItemRankingResponse> convertItemListRankingResponse(
+    private List<ItemViewRankingResponse> convertItemListRankingResponse(
         final List<ItemRankingRepositoryDto> items
     ) {
         
-        final List<ItemRankingResponse> ranking = new ArrayList<>();
+        final List<ItemViewRankingResponse> ranking = new ArrayList<>();
         for (int i = 1; i <= items.size(); i++) {
             final ItemRankingRepositoryDto item = items.get(i - 1);
-            ranking.add(ItemRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
+            ranking.add(ItemViewRankingResponse.of(item.getItemId(), item.getName(), item.getViewCount(), i));
         }
 
         return ranking;
