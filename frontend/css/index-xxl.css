@@ -46,18 +46,12 @@
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 9.5vw;
+    width: 9.3vw;
     height: 6.4vw;
-
-    /* min-width: 15%; */
-    /* min-height: 15%; */
-
-  
     border: none;
     border-radius: 8px;
   
     padding: 2px
-  
   }
 
   /********************* 랭킹 ************************/
