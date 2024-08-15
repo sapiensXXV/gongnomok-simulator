@@ -14,20 +14,20 @@ export default function ItemCondition({
 
   return (
     <>
-      <section className="bg-light rounded py-3">
+      <section className="bg-light rounded py-3 item-condition-root">
         <h2 className="text-center item-condition-title">아이템 찾기</h2>
         <form onSubmit={(e) => doSearch(e, searchCondition)}>
-          <section id="item-name-condition" className="d-flex bd-highlight">
-            <div className="p-2 flex-grow-1 bd-highlight">
+          <section id="item-name-condition" className="d-flex bd-highlight item-name-input">
+            <div className="p-2 flex-grow-1 bd-highlight ">
               <input
-                className='form-control form-control-md'
+                className='form-control form-control-sm'
                 placeholder='아이템 이름'
                 onChange={handleItemNameChange}
               />
             </div>
             <div className="p-2 bd-highlight">
               <button
-                className='btn btn-primary btn-md'
+                className='btn btn-primary btn-sm'
                 type="submit"
               >
                 검색
@@ -47,6 +47,7 @@ export default function ItemCondition({
             </div>
           </section>
 
+{/*
           <section className='px-2 mt-3'>
             <label className='form-label condition-title' htmlFor='min-level-range'>최소 레벨<b> <span className="text-success">{searchCondition?.minLevel}</span></b></label>
             <input
@@ -58,6 +59,7 @@ export default function ItemCondition({
               onChange={handleMinLevelChange}
             />
           </section>
+*/}
 
           <section className="px-2 category-select-container">
             <span className="condition-title">카테고리</span>
