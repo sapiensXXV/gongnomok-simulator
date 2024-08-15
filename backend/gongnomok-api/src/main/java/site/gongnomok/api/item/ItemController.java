@@ -11,6 +11,7 @@ import site.gongnomok.common.item.dto.ItemViewRankingResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.common.item.dto.request.ItemCreateRequest;
 import site.gongnomok.common.item.dto.request.itemlist.ItemListRequest;
+import site.gongnomok.common.item.dto.response.recordranking.ItemRecordRankingResponse;
 import site.gongnomok.core.auth.AdminAuth;
 import site.gongnomok.core.auth.AdminOnly;
 import site.gongnomok.core.auth.domain.Accessor;
@@ -46,9 +47,9 @@ public class ItemController {
     }
     
     @GetMapping("/item/ranking/record")
-    public ResponseEntity<Void> recordRanking() {
-        
-        return ResponseEntity.ok(null);
+    public ResponseEntity<List<ItemRecordRankingResponse>> recordRanking() {
+        List<ItemRecordRankingResponse> result = itemService.itemRecordRanking();
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/items")

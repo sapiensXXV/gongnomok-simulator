@@ -1,15 +1,13 @@
 package site.gongnomok.common.item.dto.response.recordranking;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class ItemRecordRankingResponse {
     
     private Long itemId;

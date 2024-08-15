@@ -14,6 +14,10 @@ import site.gongnomok.common.item.dto.api.itemlist.ItemListResponse;
 import site.gongnomok.common.item.dto.api.itemlist.ItemResponse;
 import site.gongnomok.common.item.dto.request.ItemCreateRequest;
 import site.gongnomok.common.item.dto.request.itemlist.ItemListServiceRequest;
+import site.gongnomok.common.item.dto.response.recordranking.ItemRecordRankingResponse;
+import site.gongnomok.common.item.dto.response.recordranking.RecordRankingSuccess;
+import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
+import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.data.item.domain.Item;
 import site.gongnomok.data.item.domain.repository.ItemRepository;
 
@@ -28,6 +32,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final EnhancedItemRepository enhancedItemRepository;
 
     public void createItem(
         final ItemCreateRequest request
@@ -63,7 +68,22 @@ public class ItemService {
     }
     
     @Transactional(readOnly = true)
-    public 
+    public List<ItemRecordRankingResponse> itemRecordRanking() {
+        List<EnhancedItem> enhancedItems = enhancedItemRepository.recordRankingItems();
+        List<ItemRecordRankingResponse> result = new ArrayList<>();
+        for (EnhancedItem enhancedItem : enhancedItems) {
+            Long itemId = enhancedItem.getItem().getId();
+            RecordRankingSuccess success = RecordRankingSuccess.builder()
+                .ten(enhancedItem.getSuccess().getTenSuccessCount())
+                .sixty(enhancedItem.getSuccess().getSixtySuccessCount())
+                .hundred(enhancedItem.getSuccess().getHundredSuccessCount())
+                .build();
+
+            ItemRecordRankingResponse rankData = new ItemRecordRankingResponse(itemId, enhancedItem.getName(), success);
+            result.add(rankData);
+        }
+        return result;
+    }
     
 
     private List<ItemViewRankingResponse> convertItemListRankingResponse(
