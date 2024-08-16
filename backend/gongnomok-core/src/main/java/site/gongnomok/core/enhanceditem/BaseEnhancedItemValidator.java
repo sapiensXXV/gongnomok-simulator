@@ -20,6 +20,7 @@ import site.gongnomok.data.item.domain.repository.ItemRepository;
 import java.util.Map;
 
 import static site.gongnomok.common.exception.ExceptionCode.INVALID_ENHANCED_SUCCESS_REQUEST;
+import static site.gongnomok.common.exception.ExceptionCode.INVALID_SCROLL_ITEM_MATCH;
 import static site.gongnomok.core.scroll.ItemStat.*;
 
 /**
@@ -48,6 +49,7 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
 
         validateNameLength(request.getName());
         validateSuccessCount(request.getSuccess(), findItem.getUpgradable()); // 성공횟수 검사
+        validateScrollItemMatch(request.getScroll(), findItem.getCategory().name());
         validateStatus(request.getScroll(), request.getStatus(), request.getSuccess()); // 능력치 상태검사
     }
 
@@ -83,6 +85,12 @@ public class BaseEnhancedItemValidator implements EnhanceItemValidator {
         
         if (totalSuccessAtRequest > itemUpgradable || totalSuccessAtRequest != sumOfScrollSuccess) {
             throw new EnhancedItemException(INVALID_ENHANCED_SUCCESS_REQUEST);
+        }
+    }
+    
+    private void validateScrollItemMatch(final String scrollName, final String itemCategory) {
+        if (!scrollName.startsWith(itemCategory)) {
+            throw new EnhancedItemException(INVALID_SCROLL_ITEM_MATCH);
         }
     }
     

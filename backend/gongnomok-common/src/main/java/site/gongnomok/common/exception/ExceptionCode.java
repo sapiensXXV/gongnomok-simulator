@@ -23,6 +23,7 @@ public enum ExceptionCode {
     INVALID_ADMIN_AUTHORITY(2004, "해당 관리자 기능에 접근권한이 없습니다."),
     INVALID_UPGRADABLE_COUNT(2005, "잘못된 강화 횟수입니다."),
     INVALID_UPGRADED_STATUS(2006, "잘못된 강화 수치입니다."),
+    INVALID_SCROLL_ITEM_MATCH(2007, "아이템과 주문서의 종류가 맞지 않습니다."),
 
     INCLUDE_BAN_WORD(3000, "금칙어가 포함되어 있습니다."),
     COMMENT_RATE_LIMIT(3001, "댓글을 너무 자주 작성할 수 없습니다.");
