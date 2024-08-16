@@ -30,9 +30,7 @@ public class QEnhanceRecord extends EntityPathBase<EnhanceRecord> {
 
     public final NumberPath<Integer> iev = createNumber("iev", Integer.class);
 
-    public final NumberPath<Long> itemId = createNumber("itemId", Long.class);
-
-    public final StringPath itemName = createString("itemName");
+    public final site.gongnomok.data.item.domain.QItem item;
 
     public final NumberPath<Integer> score = createNumber("score", Integer.class);
 
@@ -62,6 +60,7 @@ public class QEnhanceRecord extends EntityPathBase<EnhanceRecord> {
 
     public QEnhanceRecord(Class<? extends EnhanceRecord> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.item = inits.isInitialized("item") ? new site.gongnomok.data.item.domain.QItem(forProperty("item"), inits.get("item")) : null;
         this.status = inits.isInitialized("status") ? new QEnhanceRecordStatus(forProperty("status")) : null;
         this.success = inits.isInitialized("success") ? new QEnhanceRecordSuccess(forProperty("success")) : null;
     }

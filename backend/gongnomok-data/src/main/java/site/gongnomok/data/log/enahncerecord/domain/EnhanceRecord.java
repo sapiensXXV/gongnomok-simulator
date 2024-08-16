@@ -2,9 +2,12 @@ package site.gongnomok.data.log.enahncerecord.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import site.gongnomok.data.item.domain.Item;
 
 import java.time.LocalDateTime;
 
@@ -14,17 +17,17 @@ import static lombok.AccessLevel.PROTECTED;
 @Entity
 @Getter
 @NoArgsConstructor(access = PROTECTED)
+@AllArgsConstructor
+@Builder
 public class EnhanceRecord {
     
     @Id @GeneratedValue(strategy = IDENTITY)
     @Column(name = "enhance_record_id")
     private Long id;
     
-    @Column(name = "item_id", nullable = false)
-    private Long itemId;
-    
-    @Column(name = "item_name", nullable = false)
-    private String itemName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "item_id")
+    private Item item;
 
     @Column(name = "challenger_name", nullable = false)
     private String challengerName;
