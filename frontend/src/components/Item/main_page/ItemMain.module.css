@@ -51,3 +51,24 @@
   }
 }
 
+@media screen and (min-width: 1200px) {
+  .item_main_container {
+    display: grid;
+    grid-template-columns: 1fr 345px;
+
+    column-gap: 5px;
+    margin-top: 5px;
+  }
+}
+
+@media screen and (min-width:1600px) {
+  .item_main_container {
+    display: grid;
+    grid-template-columns: 1fr 345px;
+    
+    column-gap: 5px;
+    margin-top: 5px;
+  }
+}
+
+
