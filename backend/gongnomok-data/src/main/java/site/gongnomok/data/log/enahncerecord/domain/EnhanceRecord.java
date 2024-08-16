@@ -2,13 +2,18 @@ package site.gongnomok.data.log.enahncerecord.domain;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = PROTECTED)
 public class EnhanceRecord {
     
     @Id @GeneratedValue(strategy = IDENTITY)
@@ -21,7 +26,7 @@ public class EnhanceRecord {
     @Column(name = "item_name", nullable = false)
     private String itemName;
 
-    @Column(name = "item_name", nullable = false)
+    @Column(name = "challenger_name", nullable = false)
     private String challengerName;
     
     @Column(name = "tries", nullable = false)
@@ -44,10 +49,4 @@ public class EnhanceRecord {
     
     @CreatedDate
     private LocalDateTime createdAt;
-    
-    
-    
-    
-    
-    
 }
