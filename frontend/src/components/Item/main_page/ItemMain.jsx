@@ -12,6 +12,7 @@ import {INITIAL_SEARCH_CONDITION} from "../condition/search.js";
 import ItemRanking from "./ItemRanking.jsx";
 import styles from './ItemMain.module.css'
 import RecordItemRanking from "./record_ranking/RecordItemRanking.jsx";
+import NoticeBanner from "../../banner/NoticeBanner.jsx";
 
 export default function ItemMain() {
 
@@ -137,7 +138,10 @@ export default function ItemMain() {
     <>
       <section className={styles.banner_container}>
         <FeedbackBanner/>
-        <InformBanner/>
+        <InformBanner />
+      </section>
+      <section className={styles.banner_container}>
+        <NoticeBanner />  
       </section>
       <section className={styles.item_main_container}>
         <section className={styles.item_condition_and_list_container}>
