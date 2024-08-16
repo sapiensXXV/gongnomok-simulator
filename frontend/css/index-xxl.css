@@ -37,7 +37,7 @@
 
   /* 아이템 리스트 컨테이너 */
   .item-list-container {
-    height: 76vh;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -495,4 +495,34 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
+}
+
+@media (min-width: 1650px) {
+  .item-list-grid {
+    display: grid;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap:10px;
+
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .item-list-button button {
+    width: 6.4vw;
+    height: 5vw;
+    border: none;
+    border-radius: 8px;
+    padding: 2px;
+  }
+
+  .item-list-button img {
+    height: 53%
+  }
+  
+  .item-list-button span {
+    display: block;
+    font-size: 13px;
+    margin-top: 12px;
+    text-overflow: ellipsis;
+  }
 }
