@@ -34,7 +34,7 @@
   
   .item_main_container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 375px;
     column-gap: 5px;
     margin-top: 5px;
   }
