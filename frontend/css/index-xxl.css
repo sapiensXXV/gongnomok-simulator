@@ -46,8 +46,8 @@
 
   /* 아이템 리스트 아이템 칸 버튼 */
   .item-list-button button {
-    width: 9.3vw;
-    height: 6.4vw;
+    width: 100%;
+    height: 5vw;
     border: none;
     border-radius: 8px;
   
@@ -488,28 +488,38 @@
 
   .item-list-grid {
     display: grid;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     column-gap: 10px;
-    row-gap:10px;
-  
-    grid-template-columns: repeat(4, 1fr);
+    row-gap: 10px;
+
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    /*grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));*/
+  }
+
+  .item-list-grid > div {
+    /*min-width: 300px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
   }
 
 }
 
-@media (min-width: 1650px) {
+@media (min-width: 1700px) {
   .item-list-grid {
     display: grid;
     flex-wrap: wrap;
     column-gap: 10px;
     row-gap:10px;
 
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   }
 
   .item-list-button button {
-    width: 6.4vw;
-    height: 5vw;
+    width: 7.3vw;
+    height: 5.4vw;
     border: none;
     border-radius: 8px;
     padding: 2px;

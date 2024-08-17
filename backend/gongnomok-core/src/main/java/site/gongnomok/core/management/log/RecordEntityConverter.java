@@ -1,4 +1,4 @@
-package site.gongnomok.core.log;
+package site.gongnomok.core.management.log;
 
 import org.springframework.stereotype.Component;
 import site.gongnomok.data.enhanceditem.domain.EnhanceStatus;
@@ -7,7 +7,7 @@ import site.gongnomok.data.log.enahncerecord.domain.EnhanceRecordStatus;
 import site.gongnomok.data.log.enahncerecord.domain.EnhanceRecordSuccess;
 
 @Component
-public class EnhanceRecordEntityConverter {
+public class RecordEntityConverter {
     
     public EnhanceRecordSuccess fromEntitySuccess(EnhanceSuccess success) {
         return EnhanceRecordSuccess.builder()

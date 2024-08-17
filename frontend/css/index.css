@@ -35,16 +35,16 @@ body {
   overflow-y: auto;
 }
 
-.item-list-button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
+/*.item-list-button {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*  align-items: flex-start;*/
+/*  text-align: center;*/
 
-  text-overflow: ellipsis;
+/*  text-overflow: ellipsis;*/
 
-}
+/*}*/
 
 .item-list-button button {
   width: 6vw;

@@ -113,6 +113,7 @@ public class ManagementController {
      * @return 금칙어 목록과 페이징 정보를 포함한 ResponseEntity
      */
     @GetMapping("/manage/banword")
+    @AdminOnly
     public ResponseEntity<PaginatedBanWordResponse> banwordList(
         @AdminAuth Accessor accessor,
         final Pageable pageable
@@ -129,6 +130,7 @@ public class ManagementController {
      * @return 생성된 금칙어의 URI를 포함한 ResponseEntity
      */
     @PostMapping("/manage/banword")
+    @AdminOnly
     public ResponseEntity<Void> addBanWord(
         @AdminAuth Accessor accessor,
         @RequestBody final BanWordAddRequest request
@@ -147,6 +149,7 @@ public class ManagementController {
      * @return 삭제 결과를 나타내는 ResponseEntity
      */
     @DeleteMapping("/manage/banword/{word_id}")
+    @AdminOnly
     public ResponseEntity<Void> deleteBanWord(
         @AdminAuth Accessor accessor,
         @RequestParam("word_id") Long id
@@ -156,6 +159,4 @@ public class ManagementController {
             .noContent()
             .build();
     }
-
-
 }
