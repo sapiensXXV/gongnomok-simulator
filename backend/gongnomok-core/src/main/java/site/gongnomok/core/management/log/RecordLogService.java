@@ -1,4 +1,4 @@
-package site.gongnomok.core.log;
+package site.gongnomok.core.management.log;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
@@ -8,15 +8,15 @@ import org.springframework.transaction.annotation.Transactional;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.data.item.domain.Item;
 import site.gongnomok.data.log.enahncerecord.domain.EnhanceRecord;
-import site.gongnomok.data.log.enahncerecord.repository.EnhanceRecordLogRepository;
+import site.gongnomok.data.log.enahncerecord.repository.RecordLogRepository;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class EnhanceLogService {
+public class RecordLogService {
     
-    private final EnhanceRecordLogRepository logRepository; 
-    private final EnhanceRecordEntityConverter entityConverter;
+    private final RecordLogRepository logRepository; 
+    private final RecordEntityConverter entityConverter;
     
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Async

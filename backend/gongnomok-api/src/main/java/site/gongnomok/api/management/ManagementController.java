@@ -156,6 +156,23 @@ public class ManagementController {
             .noContent()
             .build();
     }
+    
+    /* 강화 기록관리 API */
+    
+    @GetMapping("/manage/record/logs")
+    public ResponseEntity<Void> itemRecords() {
+        return null;
+    }
+    
+    @PatchMapping("/manage/record/logs")
+    public ResponseEntity<Void> replaceRecords() {
+        return null;
+    }
+    
+    @PostMapping("/manage/record/refresh")
+    public ResponseEntity<Void> restoreRecordsWithLog() {
+        return null;
+    }
 
 
 }

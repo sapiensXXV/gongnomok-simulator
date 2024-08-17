@@ -15,7 +15,7 @@ import site.gongnomok.common.enhanceditem.dto.response.UpdateEnhancementResponse
 import site.gongnomok.common.exception.EnhancedItemException;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
-import site.gongnomok.core.log.EnhanceLogService;
+import site.gongnomok.core.management.log.RecordLogService;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.data.item.domain.Item;
@@ -31,7 +31,7 @@ public class EnhancedItemService {
     private final ItemRepository itemRepository;
     private final EnhancedItemRepository enhancedItemRepository;
     private final BaseEnhancedItemValidator validator;
-    private final EnhanceLogService enhanceLogService;
+    private final RecordLogService recordLogService;
 
     /**
      * @param itemId 특정 아이템의 기록을 읽어온다.
@@ -91,7 +91,7 @@ public class EnhancedItemService {
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
         
-        enhanceLogService.logEnhanceItem(item, enhancedItem);
+        recordLogService.logEnhanceItem(item, enhancedItem);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 
@@ -101,7 +101,7 @@ public class EnhancedItemService {
         final int score
     ) {
         enhancedItem.changeInfo(request, score);
-        enhanceLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem);
+        recordLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 }
