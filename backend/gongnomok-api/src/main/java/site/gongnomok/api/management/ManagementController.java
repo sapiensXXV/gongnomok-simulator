@@ -18,7 +18,6 @@ import site.gongnomok.core.auth.domain.Accessor;
 import site.gongnomok.core.banword.BanWordService;
 import site.gongnomok.core.banword.BaseBanWordService;
 import site.gongnomok.core.management.ManagementService;
-import site.gongnomok.core.management.log.RecordLogService;
 
 import java.net.URI;
 
@@ -53,7 +52,6 @@ import java.net.URI;
 public class ManagementController {
 
     private final ManagementService managementService;
-    private final RecordLogService recordLogService;
     private final BanWordService banWordService;
 
     /**
@@ -161,32 +159,4 @@ public class ManagementController {
             .noContent()
             .build();
     }
-    
-    /* 강화 기록관리 API */
-    
-    @GetMapping("/manage/record/logs")
-    @AdminOnly
-    public ResponseEntity<Void> itemRecords(
-        final Accessor accessor
-    ) {
-        return null;
-    }
-    
-    @PatchMapping("/manage/record/logs")
-    @AdminOnly
-    public ResponseEntity<Void> replaceRecords(
-        final Accessor accessor
-    ) {
-        return null;
-    }
-    
-    @PostMapping("/manage/record/refresh")
-    @AdminOnly
-    public ResponseEntity<Void> restoreRecordsWithLog(
-        final Accessor accessor
-    ) {
-        return null;
-    }
-
-
 }
