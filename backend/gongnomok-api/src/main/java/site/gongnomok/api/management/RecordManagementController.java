@@ -3,8 +3,12 @@ package site.gongnomok.api.management;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.api.management.dto.record.request.RecordReplaceRequest;
 import site.gongnomok.core.auth.domain.Accessor;
 import site.gongnomok.core.management.log.RecordLogService;
+import site.gongnomok.core.management.log.response.RecordResponse;
+
+import java.util.List;
 
 
 @RestController
@@ -18,18 +22,19 @@ public class RecordManagementController {
 
     @GetMapping("/record/logs")
 //    @AdminOnly
-    public ResponseEntity<Void> itemRecords(
+    public ResponseEntity<List<RecordResponse>> itemRecords(
         final Accessor accessor
     ) {
-        return null;
+        return ResponseEntity.ok(null);
     }
 
     @PatchMapping("/record/logs")
 //    @AdminOnly
     public ResponseEntity<Void> replaceRecords(
-        final Accessor accessor
+        final Accessor accessor,
+        final RecordReplaceRequest request
     ) {
-        return null;
+        return ResponseEntity.ok(null);
     }
 
     @PostMapping("/record/refresh")
@@ -37,7 +42,7 @@ public class RecordManagementController {
     public ResponseEntity<Void> restoreRecordsWithLog(
         final Accessor accessor
     ) {
-        return null;
+        return ResponseEntity.ok(null);
     }
     
 }

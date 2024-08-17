@@ -1,4 +1,4 @@
-package site.gongnomok.api.management.dto.record;
+package site.gongnomok.api.management.dto.record.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
