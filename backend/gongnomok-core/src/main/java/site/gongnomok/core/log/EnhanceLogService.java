@@ -1,6 +1,7 @@
 package site.gongnomok.core.log;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,8 @@ public class EnhanceLogService {
     private final EnhanceRecordLogRepository logRepository; 
     private final EnhanceRecordEntityConverter entityConverter;
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW) 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Async
     public void logEnhanceItem(Item item, EnhancedItem enhancedItem) {
         EnhanceRecord record = EnhanceRecord.builder()
             .item(item)
