@@ -3,8 +3,8 @@ package site.gongnomok.core.management.log;
 import org.springframework.stereotype.Component;
 import site.gongnomok.data.enhanceditem.domain.EnhanceStatus;
 import site.gongnomok.data.enhanceditem.domain.EnhanceSuccess;
-import site.gongnomok.data.log.enahncerecord.domain.EnhanceRecordStatus;
-import site.gongnomok.data.log.enahncerecord.domain.EnhanceRecordSuccess;
+import site.gongnomok.data.management.record.domain.EnhanceRecordStatus;
+import site.gongnomok.data.management.record.domain.EnhanceRecordSuccess;
 
 @Component
 public class RecordEntityConverter {

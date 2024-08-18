@@ -4,10 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.api.management.dto.record.request.RecordReplaceRequest;
+import site.gongnomok.api.management.dto.record.request.RecordRequest;
 import site.gongnomok.core.auth.AdminOnly;
 import site.gongnomok.core.auth.domain.Accessor;
 import site.gongnomok.core.management.log.RecordLogService;
-import site.gongnomok.core.management.log.response.RecordResponse;
+import site.gongnomok.data.management.record.dto.response.RecordResponse;
 
 import java.util.List;
 
@@ -22,11 +23,15 @@ public class RecordManagementController {
     // TODO: 다시 @AdminOnly 애노테이션 붙일 것.
 
     @GetMapping("/record/logs")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<List<RecordResponse>> itemRecords(
-        final Accessor accessor
+        final Accessor accessor,
+        final RecordRequest request
     ) {
-        return ResponseEntity.ok(null);
+
+        List<RecordResponse> result = recordLogService.readRecordLog(request.getStartId(), request.getSize(), request.getItemName());
+
+        return ResponseEntity.ok(result);
     }
 
     @PatchMapping("/record/logs")

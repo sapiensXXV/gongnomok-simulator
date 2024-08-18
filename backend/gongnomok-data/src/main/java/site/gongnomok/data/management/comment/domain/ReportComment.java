@@ -1,4 +1,4 @@
-package site.gongnomok.data.management.domain;
+package site.gongnomok.data.management.comment.domain;
 
 
 import jakarta.persistence.*;

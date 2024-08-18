@@ -1,4 +1,4 @@
-package site.gongnomok.data.management.domain.repository;
+package site.gongnomok.data.management.comment.repository;
 
 import org.springframework.data.domain.Pageable;
 import site.gongnomok.common.management.dto.response.comment.ReportCommentDto;

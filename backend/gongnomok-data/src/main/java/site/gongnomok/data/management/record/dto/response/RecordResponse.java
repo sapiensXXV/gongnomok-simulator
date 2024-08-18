@@ -1,14 +1,17 @@
-package site.gongnomok.core.management.log.response;
+package site.gongnomok.data.management.record.dto.response;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+@Builder
 public class RecordResponse {
     
     private Long itemId;
+    private String itemName;
     private RecordStatus status;
     private RecordSuccess success;
     private int iev;

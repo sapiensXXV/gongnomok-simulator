@@ -1,4 +1,4 @@
-package site.gongnomok.data.log.enahncerecord.domain;
+package site.gongnomok.data.management.record.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEmbeddableSerializer")
 public class QEnhanceRecordSuccess extends BeanPath<EnhanceRecordSuccess> {
 
-    private static final long serialVersionUID = -101906031L;
+    private static final long serialVersionUID = -1703161722L;
 
     public static final QEnhanceRecordSuccess enhanceRecordSuccess = new QEnhanceRecordSuccess("enhanceRecordSuccess");
 

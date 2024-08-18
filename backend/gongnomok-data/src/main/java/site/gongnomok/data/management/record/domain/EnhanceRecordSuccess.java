@@ -1,4 +1,4 @@
-package site.gongnomok.data.log.enahncerecord.domain;
+package site.gongnomok.data.management.record.domain;
 
 
 import jakarta.persistence.Column;

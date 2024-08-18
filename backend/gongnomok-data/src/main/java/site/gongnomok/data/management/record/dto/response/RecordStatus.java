@@ -1,4 +1,4 @@
-package site.gongnomok.core.management.log.response;
+package site.gongnomok.data.management.record.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

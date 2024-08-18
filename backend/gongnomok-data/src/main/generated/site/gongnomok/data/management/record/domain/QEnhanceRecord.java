@@ -1,4 +1,4 @@
-package site.gongnomok.data.log.enahncerecord.domain;
+package site.gongnomok.data.management.record.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QEnhanceRecord extends EntityPathBase<EnhanceRecord> {
 
-    private static final long serialVersionUID = -626182638L;
+    private static final long serialVersionUID = 106113213L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

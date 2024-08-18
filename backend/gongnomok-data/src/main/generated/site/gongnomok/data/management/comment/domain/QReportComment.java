@@ -1,4 +1,4 @@
-package site.gongnomok.data.management.domain;
+package site.gongnomok.data.management.comment.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QReportComment extends EntityPathBase<ReportComment> {
 
-    private static final long serialVersionUID = 1062332086L;
+    private static final long serialVersionUID = -2066198043L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

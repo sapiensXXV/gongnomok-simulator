@@ -1,4 +1,4 @@
-package site.gongnomok.data.management.domain.repository;
+package site.gongnomok.data.management.comment.repository;
 
 
 import com.querydsl.core.types.Projections;
@@ -11,7 +11,7 @@ import site.gongnomok.common.management.dto.response.comment.ReportCommentDto;
 import java.util.List;
 
 import static site.gongnomok.data.comment.domain.QComment.comment;
-import static site.gongnomok.data.management.domain.QReportComment.reportComment;
+import static site.gongnomok.data.management.comment.domain.QReportComment.reportComment;
 
 @Repository
 @RequiredArgsConstructor

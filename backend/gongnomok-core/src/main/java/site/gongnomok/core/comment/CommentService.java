@@ -23,8 +23,8 @@ import site.gongnomok.data.comment.domain.repository.CommentJpaRepository;
 import site.gongnomok.data.comment.domain.repository.CommentQueryRepository;
 import site.gongnomok.data.item.domain.Item;
 import site.gongnomok.data.item.domain.repository.ItemRepository;
-import site.gongnomok.data.management.domain.ReportComment;
-import site.gongnomok.data.management.domain.repository.ReportCommentJpaRepository;
+import site.gongnomok.data.management.comment.domain.ReportComment;
+import site.gongnomok.data.management.comment.repository.ReportCommentJpaRepository;
 
 import java.util.List;
 

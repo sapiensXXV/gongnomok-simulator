@@ -1,9 +1,9 @@
-package site.gongnomok.data.management.domain.repository;
+package site.gongnomok.data.management.comment.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import site.gongnomok.data.management.domain.ReportComment;
+import site.gongnomok.data.management.comment.domain.ReportComment;
 
 import java.util.List;
 import java.util.Optional;
