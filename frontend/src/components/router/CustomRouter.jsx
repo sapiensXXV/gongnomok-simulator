@@ -6,6 +6,7 @@ import NewItem from "../NewItem";
 import AdminPrivateRoutes from "./AdminPrivateRouter";
 import ManageComment from "../management/comment/reports/ManageComment";
 import ManageBanWord from "../management/banword/ManageBanWord";
+import RecordManageMain from "../management/record/RecordManageMain.jsx";
 
 export default function CustomRouter() {
   return (
@@ -14,6 +15,7 @@ export default function CustomRouter() {
         <Route path='/' element={ <ItemMain/>} />
         <Route path='/login' element={ <Login/>} />
         <Route path='/item/:itemId' element={ <ItemSimulatorMain/>} />
+        <Route path='/manage/record' element={ <RecordManageMain/> } />
         <Route element={ <AdminPrivateRoutes/> }>
           <Route element={ <NewItem/> } path="/manage/item/new" exact/>
           <Route element={ <ManageComment/> } path="/manage/comment" exact/>
