@@ -2,12 +2,10 @@ package site.gongnomok.data.management.record.repository;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 import site.gongnomok.data.management.record.dto.response.RecordResponse;
 import site.gongnomok.data.management.record.dto.response.RecordStatus;
 import site.gongnomok.data.management.record.dto.response.RecordSuccess;
@@ -64,7 +62,7 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
             ))
             .from(enhanceRecord)
             .innerJoin(enhanceRecord.item, item)
-            .where(Expressions.TRUE, builder)
+            .where(builder)
             .orderBy(enhanceRecord.id.desc())
             .limit(size)
             .fetch();
