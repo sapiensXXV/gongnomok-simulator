@@ -1,10 +1,13 @@
 package site.gongnomok.data.management.record.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 import site.gongnomok.data.management.record.dto.response.RecordResponse;
 import site.gongnomok.data.management.record.dto.response.RecordStatus;
 import site.gongnomok.data.management.record.dto.response.RecordSuccess;
@@ -17,16 +20,22 @@ import static site.gongnomok.data.management.record.domain.QEnhanceRecord.enhanc
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
 
     private final JPAQueryFactory queryFactory;    
     
     @Override
-    public List<RecordResponse> readRecords(long startId, long size, String itemName) {
+    public List<RecordResponse> readRecords(Long lastId, Long size, String itemName) {
+        log.info("lastId={}, size={}, itemName={}", lastId, size, itemName);
+
+        BooleanBuilder builder = makeRecordBooleanBuilder(lastId, itemName);
+
         return queryFactory
             .select(Projections.fields(RecordResponse.class,
-                enhanceRecord.item.id,
-                enhanceRecord.item.name,
+                item.id.as("itemId"),
+                item.name.as("itemName"),
+                enhanceRecord.id.as("recordId"),
                 Projections.fields(RecordStatus.class,
                     enhanceRecord.status.str,
                     enhanceRecord.status.dex,
@@ -38,8 +47,8 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
                     enhanceRecord.status.mgDef,
                     enhanceRecord.status.acc,
                     enhanceRecord.status.avo,
-                    enhanceRecord.status.jump,
                     enhanceRecord.status.move,
+                    enhanceRecord.status.jump,
                     enhanceRecord.status.hp,
                     enhanceRecord.status.mp
                 ).as("status"),
@@ -55,15 +64,23 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
             ))
             .from(enhanceRecord)
             .innerJoin(enhanceRecord.item, item)
-            .where(enhanceRecord.id.loe(startId), itemNameEq(itemName))
+            .where(Expressions.TRUE, builder)
+            .orderBy(enhanceRecord.id.desc())
             .limit(size)
             .fetch();
     }
+
+    private BooleanBuilder makeRecordBooleanBuilder(Long lastId, String itemName) {
+        BooleanBuilder builder = new BooleanBuilder();
     
-    private BooleanExpression itemNameEq(String itemName) {
-        if (itemName != null) {
-            return enhanceRecord.item.name.eq(itemName);
+        if (itemName == null || itemName.isEmpty() || itemName.isBlank()) {
+//            log.info("itemName={} 인데 결과는 StringUtils.hasText(itemName)={} 조건이 포함되었습니다.", itemName, StringUtils.hasText(itemName));
+            builder.and(enhanceRecord.item.name.eq(itemName));
         }
-        return null;
+        
+        if (lastId != null) {
+            builder.and(enhanceRecord.id.lt(lastId));
+        }
+        return builder;
     }
 }

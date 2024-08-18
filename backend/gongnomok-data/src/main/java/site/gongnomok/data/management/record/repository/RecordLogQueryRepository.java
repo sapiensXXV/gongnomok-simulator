@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface RecordLogQueryRepository {
 
-    public List<RecordResponse> readRecords(long startId, long size, String itemName);
+    public List<RecordResponse> readRecords(Long startId, Long size, String itemName);
     
 }

@@ -40,13 +40,11 @@ public class RecordLogService {
     
     @Transactional(readOnly = true)
     public List<RecordResponse> readRecordLog(
-        final long startId,
+        final long lastId,
         final long size,
         final String itemName
     ) {
-        logRepository.readRecords(startId, size, itemName);
-        
-        return null;
+        return logRepository.readRecords(lastId == -1 ? null: lastId, size, itemName);
     }
     
 }
