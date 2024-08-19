@@ -1,0 +1,11 @@
+.main_flex {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  width: 155px;
+}
+
+.scroll_img {
+  width: 20px;
+  height: 20px;
+}

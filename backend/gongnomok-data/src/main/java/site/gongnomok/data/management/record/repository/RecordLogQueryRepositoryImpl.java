@@ -34,6 +34,7 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
                 item.id.as("itemId"),
                 item.name.as("itemName"),
                 enhanceRecord.id.as("recordId"),
+                enhanceRecord.challengerName,
                 Projections.fields(RecordStatus.class,
                     enhanceRecord.status.str,
                     enhanceRecord.status.dex,
@@ -58,7 +59,8 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
                 enhanceRecord.iev,
                 enhanceRecord.score,
                 enhanceRecord.tries,
-                enhanceRecord.scroll
+                enhanceRecord.scroll,
+                enhanceRecord.createdAt
             ))
             .from(enhanceRecord)
             .innerJoin(enhanceRecord.item, item)
@@ -72,7 +74,6 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
         BooleanBuilder builder = new BooleanBuilder();
     
         if (itemName == null || itemName.isEmpty() || itemName.isBlank()) {
-//            log.info("itemName={} 인데 결과는 StringUtils.hasText(itemName)={} 조건이 포함되었습니다.", itemName, StringUtils.hasText(itemName));
             builder.and(enhanceRecord.item.name.eq(itemName));
         }
         
