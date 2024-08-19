@@ -4,6 +4,8 @@ import RecordList from "./RecordList.jsx";
 import {useEffect, useRef, useState} from "react";
 import {BASE_URL} from "../../../global/uri.js";
 import axios from "axios";
+import {observe, useInView} from "react-intersection-observer";
+import RecordObserveTrigger from "./trigger/RecordObserveTrigger.jsx";
 
 function RecordManageMain() {
   
@@ -13,10 +15,11 @@ function RecordManageMain() {
     size: 20,
     name: null
   })
+  const [observeTrigger, inView] = useInView();
 
   useEffect(() => {
     fetchRecords()
-  }, []);
+  }, [inView]);
   
   const fetchRecords = () => {
     axios.get(`${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`)
@@ -59,10 +62,12 @@ function RecordManageMain() {
   return (
     <>
       <main className={styles.main_container}>
-        <section className={styles.main_title}> 도전 기록관리 </section>
+        <section className={styles.main_title}> 도전기록 관리 </section>
         <RecordSearchForm recordSearch={handleRecordSearch} inputChange={handleItemNameInput}/>
         <RecordList records={records} cellClicked={handleCellClicked}/>
+        <RecordObserveTrigger target={observeTrigger}/>
       </main>
+      
     </>
   )
 }
