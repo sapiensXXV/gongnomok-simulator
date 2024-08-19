@@ -23,9 +23,12 @@ function RecordManageMain() {
   useEffect(() => {
     fetchRecords()
   }, [inView]);
-  
+
   const fetchRecords = () => {
-    axios.get(`${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`, { withCredentials: true })
+    axios.get(
+      `${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`,
+      { withCredentials: true }
+    )
       .then(response => {
         console.log(response.data);
         refreshData(response.data);
