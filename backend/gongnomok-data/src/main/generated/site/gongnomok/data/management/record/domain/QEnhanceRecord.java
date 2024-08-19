@@ -30,6 +30,8 @@ public class QEnhanceRecord extends EntityPathBase<EnhanceRecord> {
 
     public final NumberPath<Integer> iev = createNumber("iev", Integer.class);
 
+    public final StringPath ip = createString("ip");
+
     public final site.gongnomok.data.item.domain.QItem item;
 
     public final NumberPath<Integer> score = createNumber("score", Integer.class);

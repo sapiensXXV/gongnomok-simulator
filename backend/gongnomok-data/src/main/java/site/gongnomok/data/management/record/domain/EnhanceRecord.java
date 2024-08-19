@@ -46,6 +46,9 @@ public class EnhanceRecord {
     @Column(name = "scroll", nullable = false)
     private String scroll;
     
+    @Column(name = "ip", nullable = false)
+    private String ip;
+    
     @Embedded
     private EnhanceRecordSuccess success;
     
