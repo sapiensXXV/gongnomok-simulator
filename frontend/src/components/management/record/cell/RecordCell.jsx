@@ -11,7 +11,7 @@ function RecordCell({
   
   return (
     <>
-      <main className={styles.main_flex} onClick={(e) => cellClickedHandler(e, record.recordId)}>
+      <main className={styles.main_flex} onClick={(e) => cellClickedHandler(e, record)}>
         <span className={styles.challenger_name}>{record.challengerName}</span>
         <img src={`/images/item/${record.itemId}.png`} />
         <span>&nbsp;:&nbsp;</span>

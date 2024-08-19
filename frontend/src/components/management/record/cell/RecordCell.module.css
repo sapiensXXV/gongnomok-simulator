@@ -10,12 +10,13 @@
   padding: 10px 10px 10px 10px;
   font-size: 14px;
   cursor: pointer;
+  
+  border-radius:5px;
 }
 
 .main_flex:hover {
   background-color: rgb(239, 239, 239);
 }
-
 
 .challenger_name {
   width: 100px;

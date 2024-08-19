@@ -15,11 +15,19 @@
   font-size: 14px;
 }
 
-.record_search_container > button {
+.item_search_btn {
   width: 65px;
   background-color: rgb(13, 110, 253);
   color: white;
 
+  border-radius: 6px;
+  border: none;
+}
+
+.all_clean_btn {
+  width: 100px;
+  background-color: rgb(255, 110, 110);
+  color: white;
   border-radius: 6px;
   border: none;
 }

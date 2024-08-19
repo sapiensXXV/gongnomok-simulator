@@ -9,7 +9,8 @@ function RecordSearchForm({
     <>
       <main className={styles.record_search_container}>
         <input placeholder='아이템 이름' onChange={inputChange}/>
-        <button type='submit' onClick={recordSearch}>검색</button>
+        <button className={styles.item_search_btn} onClick={recordSearch}>검색</button>
+        <button className={styles.all_clean_btn}>전체 클리너</button>
       </main>
     </>
   )
