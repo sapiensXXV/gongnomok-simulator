@@ -23,7 +23,11 @@ public class RecordLogService {
     
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Async
-    public void logEnhanceItem(Item item, EnhancedItem enhancedItem) {
+    public void logEnhanceItem(
+        final Item item, 
+        final EnhancedItem enhancedItem, 
+        final String address
+    ) {
         EnhanceRecord record = EnhanceRecord.builder()
             .item(item)
             .challengerName(enhancedItem.getName())
@@ -33,6 +37,7 @@ public class RecordLogService {
             .scroll(enhancedItem.getScroll().name())
             .success(entityConverter.fromEntitySuccess(enhancedItem.getSuccess()))
             .status(entityConverter.fromEntityStatus(enhancedItem.getStatus()))
+            .ip(address)
             .build();
 
         logRepository.save(record);

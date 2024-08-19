@@ -1,6 +1,7 @@
 package site.gongnomok.api.enhanceditem;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,11 @@ public class EnhancedItemController {
     @PostMapping("/item/{itemId}/enhanced")
     public ResponseEntity<UpdateEnhancementResponse> challengeEnhancedItem(
         @PathVariable("itemId") Long itemId,
-        @RequestBody ItemEnhanceRequest enhanceDto
+        @RequestBody ItemEnhanceRequest enhanceDto,
+        final HttpServletRequest request
     ) {
-        UpdateEnhancementResponse response = enhancedItemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto());
+        String address = request.getHeader("X-FORWARDED-FOR") != null ? request.getHeader("X-FORWARDED-FOR") : request.getRemoteAddr();
+        UpdateEnhancementResponse response = enhancedItemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto(), address);
         return ResponseEntity.ok(response);
     }
 

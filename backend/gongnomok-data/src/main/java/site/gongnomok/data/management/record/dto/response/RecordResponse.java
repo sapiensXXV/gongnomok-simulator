@@ -25,4 +25,5 @@ public class RecordResponse {
     private int tries;
     private String scroll;
     private LocalDateTime createdAt;
+    private String ip;
 }
