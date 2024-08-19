@@ -22,7 +22,7 @@ public class RecordManagementController {
     // TODO: 다시 @AdminOnly 애노테이션 붙일 것.
 
     @GetMapping("/record/logs")
-//    @AdminOnly
+    @AdminOnly
     public ResponseEntity<List<RecordResponse>> itemRecords(
         final Accessor accessor,
         @RequestParam("lastId") long lastId,

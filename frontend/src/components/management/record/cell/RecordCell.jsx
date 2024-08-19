@@ -27,7 +27,7 @@ function RecordCell({
         <div className={styles.score_block}>
           <span>점수: &nbsp;{record.score}</span>
         </div>
-        <span>{isoDateToFormatString(record.createdAt)}</span>
+        <span>{isoDateToFormatString(record.ip)}</span>
       </main>
     </>
   )
