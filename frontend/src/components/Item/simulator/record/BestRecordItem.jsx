@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 
-import RequiredStatus from "../controller/components/RequiredStatus.jsx";
-import axios from "axios";
-
-import { BASE_URL } from "../../../../global/uri.js";
-import { ATTACK_SPEED, CATEGORY_NAME, DEFAULT_ITEM_RECORD } from "../../../../global/item.js";
 import RecordScrollSuccessCount from "./RecordScrollSuccessCount.jsx";
 import RecordTitle from "./RecordTitle.jsx";
 import RecordItemView from "./RecordItemView.jsx";
 
+import { BASE_URL } from "../../../../global/uri.js";
+import { DEFAULT_ITEM_RECORD } from "../../../../global/item.js";
+import axiosInstance from "../../../../global/axiosInstance.js";
+
 export default function BestRecordItem({ itemId, info }) {
 
   const [enhanced, setEnhanced] = useState(DEFAULT_ITEM_RECORD);
-  const status = info?.status;
 
   useEffect(() => {
     // 기록 아이템 요청
@@ -21,8 +19,8 @@ export default function BestRecordItem({ itemId, info }) {
   }, [])
 
   function fetchRecordItem() {
-    axios
-      .get(`${BASE_URL}/api/item/${itemId}/enhanced`, { withCredentials: true })
+    axiosInstance
+      .get(`${BASE_URL}/api/item/${itemId}/enhanced`)
       .then((res) => {
         setEnhanced(res.data);
       })
@@ -49,7 +47,6 @@ export default function BestRecordItem({ itemId, info }) {
 
     return 'white';
   }
-
 
   return (
     <>

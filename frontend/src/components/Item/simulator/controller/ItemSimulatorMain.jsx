@@ -20,6 +20,7 @@ import RecordChallengeModal from "../modal/RecordChallengeModal.jsx";
 import RecordChallengeResultModal from "../modal/RecordChallengeResultModal.jsx";
 import ShortcutBanner from "../shortcut/ShortcutBanner.jsx";
 import ChallengeScrollSuccessCount from "./components/ChallengeScrollSuccessCount.jsx";
+import axiosInstance from "../../../../global/axiosInstance.js";
 
 let timer = null;
 
@@ -554,11 +555,8 @@ export default function ItemSimulatorMain() {
     }
 
     const challengeForm = createChallengeForm();
-    axios
-      .post(
-        `${BASE_URL}/api/item/${itemId}/enhanced`,
-        challengeForm, { withCredentials: true }
-      )
+    axiosInstance
+      .post(`${BASE_URL}/api/item/${itemId}/enhanced`, challengeForm)
       .then((res) => {
         const challengeResult = res.data.status;
         setChallengeResultModalOpen(true);

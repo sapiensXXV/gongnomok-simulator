@@ -6,7 +6,6 @@ function RecordTitle({ name, tries }) {
       <main className={styles.main_container}>
         <span className={styles.title}>최고기록</span>
         <section className={styles.bottom_margin_3}>
-          {/*<span className={styles.discription}>[</span>*/}
           <span className={`${styles.discription} ${styles.primary_red}`}>{name}</span>
           <span className={styles.discription}>{` 님이 `}</span>
           <span className={`${styles.discription} ${styles.primary_red}`}>{`${tries}`}</span>
