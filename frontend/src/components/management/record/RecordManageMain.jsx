@@ -73,7 +73,14 @@ function RecordManageMain() {
   
   const updateRecordAsFirst = (e) => {
     e.preventDefault();
-    console.log(`레코드ID가 ${selectedRecord.recordId}인 로그의 기록을 최고 기록으로 만든다.`)
+    axiosInstance
+      .patch(`${BASE_URL}/api/manage/record/logs`, makeUpdateRequest())
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
   
   const blockUserByIp = (e) => {
@@ -84,6 +91,20 @@ function RecordManageMain() {
   const selectModalCancel = (e) => {
     e.preventDefault();
     setSelectModalOpen(false);
+  }
+  
+  const makeUpdateRequest = () => {
+    return {
+      itemId: selectedRecord.id,
+      status: selectedRecord.status,
+      success: {
+        ...selectedRecord.success,
+        total: selectedRecord.success.ten + selectedRecord.success.sixty + selectedRecord.success.hundred,
+      },
+      iev: selectedRecord.iev,
+      score: selectedRecord.score,
+      tries: selectedRecord.tries
+    };
   }
   
   return (

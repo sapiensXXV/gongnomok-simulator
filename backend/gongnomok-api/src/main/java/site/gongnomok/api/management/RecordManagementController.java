@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.api.management.dto.record.request.RecordReplaceRequest;
-import site.gongnomok.core.auth.AdminAuth;
 import site.gongnomok.core.auth.AdminOnly;
-import site.gongnomok.core.auth.domain.Accessor;
 import site.gongnomok.core.management.log.RecordLogService;
 import site.gongnomok.data.management.record.dto.response.RecordResponse;
 
@@ -23,9 +21,9 @@ public class RecordManagementController {
     // TODO: 다시 @AdminOnly 애노테이션 붙일 것.
 
     @GetMapping("/record/logs")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<List<RecordResponse>> itemRecords(
-        @AdminAuth Accessor accessor,
+//        @AdminAuth Accessor accessor,
         @RequestParam("lastId") long lastId,
         @RequestParam("size") long size,
         @RequestParam("name") String name
@@ -36,9 +34,9 @@ public class RecordManagementController {
     
 
     @PatchMapping("/record/logs")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<Void> replaceRecords(
-        final Accessor accessor,
+//        @AdminAuth Accessor accessor,
         final RecordReplaceRequest request
     ) {
         return ResponseEntity.ok(null);
@@ -47,7 +45,7 @@ public class RecordManagementController {
     @PostMapping("/record/refresh")
     @AdminOnly
     public ResponseEntity<Void> restoreRecordsWithLog(
-        final Accessor accessor
+//        @AdminAuth Accessor accessor
     ) {
         return ResponseEntity.ok(null);
     }

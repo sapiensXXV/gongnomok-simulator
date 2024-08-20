@@ -8,6 +8,7 @@ function RecordCell({
   cellClickedHandler
 }) {
   
+  console.log(record.ip);
   
   return (
     <>
