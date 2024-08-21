@@ -47,7 +47,7 @@ public class EnhanceItemQueryRepositoryImpl implements EnhanceItemQueryRepositor
             .set(enhancedItem.status.jump, status.getJump())
             .set(enhancedItem.status.hp, status.getHp())
             .set(enhancedItem.status.mp, status.getMp())
-            .where(enhancedItem.id.eq(request.getItemId()))
+            .where(enhancedItem.item.id.eq(request.getItemId()))
             .execute();
 
     }

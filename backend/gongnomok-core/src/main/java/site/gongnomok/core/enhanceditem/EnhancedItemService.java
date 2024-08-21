@@ -27,6 +27,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class EnhancedItemService {
     
     private final ItemRepository itemRepository;
@@ -109,6 +110,7 @@ public class EnhancedItemService {
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
     
+    @Transactional
     public void replaceRecord(final RecordReplaceRequest request) {
         enhancedItemRepository.replaceEnhanceItem(request);
     }
