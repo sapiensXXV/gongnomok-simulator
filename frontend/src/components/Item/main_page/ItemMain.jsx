@@ -94,7 +94,6 @@ export default function ItemMain() {
   function handleJobsChange(e, jobName) {
     e.preventDefault();
     nextPage.current = 0;
-    // jobName에 따라서 올바른 속성을 true로 변경한 후 condition 값을 세팅한다.
     let copy = {...searchCondition}
     switch (jobName) {
       case 'warrior':

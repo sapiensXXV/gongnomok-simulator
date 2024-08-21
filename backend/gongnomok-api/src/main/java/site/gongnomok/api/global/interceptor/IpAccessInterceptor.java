@@ -26,10 +26,11 @@ public class IpAccessInterceptor implements HandlerInterceptor {
         final Object handler
     ) throws Exception {
 
-        String clientIp = request.getHeader("X-Forwarded-For");
-        log.info("client ip = {}", clientIp);
-        if (blackList.contains(clientIp)) {
-            log.warn("블랙리스트 사용자 접근 - IP Address: {}", clientIp);
+        String xForwardedFor = request.getHeader("X-Forwarded-For");
+        String realIPHeader = request.getHeader("X-Real-IP");
+        log.info("X-Forwarded-For: {}, X-Forwarded-For: {}", xForwardedFor, realIPHeader);
+        if (blackList.contains(realIPHeader)) {
+            log.warn("블랙리스트 사용자 접근 - IP Address: {}", realIPHeader);
             response.sendError(403);
             return false;
         }
