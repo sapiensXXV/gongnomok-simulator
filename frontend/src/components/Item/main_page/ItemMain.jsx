@@ -13,6 +13,7 @@ import ItemRanking from "./ItemRanking.jsx";
 import styles from './ItemMain.module.css'
 import RecordItemRanking from "./record_ranking/RecordItemRanking.jsx";
 import NoticeBanner from "../../banner/NoticeBanner.jsx";
+import axiosInstance from "../../../global/axiosInstance.js";
 
 export default function ItemMain() {
 
@@ -27,7 +28,7 @@ export default function ItemMain() {
 
   function searchItems() {
     setIsItemLoaded(false);
-    axios
+    axiosInstance
       .get(`${BASE_URL}/api/items?page=0&size=${DEFAULT_FETCH_SIZE}`)
       .then((res) => {
         const items = res?.data?.items;
@@ -50,8 +51,8 @@ export default function ItemMain() {
   }
 
   function searchItemsWithCondition(searchCondition) {
-    axios
-      .post(`${BASE_URL}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition, {withCredentials: true})
+    axiosInstance
+      .post(`${BASE_URL}/api/items?page=${nextPage.current}&size=${DEFAULT_FETCH_SIZE}`, searchCondition)
       .then((res) => {
         if (nextPage.current == 0) {
           setItemList([...res.data.items])

@@ -8,6 +8,7 @@ import axios from "axios"
 import { BASE_URL } from "../global/uri"
 
 import styles from "./Header.module.css";
+import axiosInstance from "../global/axiosInstance.js";
 
 export default function Header() {
 
@@ -19,7 +20,7 @@ export default function Header() {
   async function handleLogoutButtonClicked(e) {
 
     try {
-      const response = await axios.post(`${BASE_URL}/api/logout`)
+      const response = await axiosInstance.post(`${BASE_URL}/api/logout`)
       if (response.status === 204) {
         setLoginState(false);
         setMemberState(GUEST)
