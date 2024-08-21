@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.gongnomok.common.management.dto.record.request.RecordReplaceRequest;
-import site.gongnomok.core.auth.AdminOnly;
 import site.gongnomok.core.enhanceditem.EnhancedItemService;
 import site.gongnomok.core.management.log.RecordLogService;
 import site.gongnomok.data.management.record.dto.response.RecordResponse;
@@ -49,10 +48,23 @@ public class RecordManagementController {
     }
 
     @PostMapping("/record/refresh")
-    @AdminOnly
+//    @AdminOnly
     public ResponseEntity<Void> restoreRecordsWithLog(
 //        @AdminAuth Accessor accessor
+        
     ) {
+        return ResponseEntity.ok(null);
+    }
+
+    /**
+     * 사용자의 이름을 기반으로 실제 기록과 로그를 삭제한다.
+     * 
+     * @param name 삭제할 기록의 유저의 이름
+     * @return 200 OK
+     */
+    @DeleteMapping("/record/logs")
+    public ResponseEntity<Void> deleteRecord(final String name) {
+        recordLogService.deleteRecord(name);
         return ResponseEntity.ok(null);
     }
     
