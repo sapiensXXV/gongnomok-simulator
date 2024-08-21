@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { BASE_URL } from "../global/uri";
 import { useRecoilState } from "recoil";
 import { LoginState, MemberState } from "./global-state/State";
+import axiosInstance from "../global/axiosInstance.js";
 
 
 
@@ -30,10 +31,10 @@ export default function Login () {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post(`${BASE_URL}/api/login`, {
+    axiosInstance.post(`${BASE_URL}/api/login`, {
       id: inputId,
       password: inputPassword
-    }, { withCredentials: true })
+    })
       .then((res) => {
         setHasError(false);
         setLoginState(true);

@@ -4,6 +4,7 @@ import axios from "axios";
 import { BASE_URL } from "../../global/uri";
 import { GUEST } from "../global-state/state-const";
 import { useEffect } from "react";
+import axiosInstance from "../../global/axiosInstance.js";
 
 function SessionCheck() {
 
@@ -14,7 +15,7 @@ function SessionCheck() {
     const checkSession = async () => {
       console.log('session check')
       try {
-        const response = await axios.get(`${BASE_URL}/api/auth/check`)
+        const response = await axiosInstance.get(`${BASE_URL}/api/auth/check`)
         setMemberState(response.data.role);
         if (response.data.role === GUEST) {
           setLoginState(false);

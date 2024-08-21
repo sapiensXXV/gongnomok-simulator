@@ -27,6 +27,7 @@ public class IpAccessInterceptor implements HandlerInterceptor {
     ) throws Exception {
 
         String clientIp = request.getHeader("X-Forwarded-For");
+        log.info("client ip = {}", clientIp);
         if (blackList.contains(clientIp)) {
             log.warn("블랙리스트 사용자 접근 - IP Address: {}", clientIp);
             response.sendError(403);
