@@ -12,7 +12,6 @@ async function getIP() {
     const data = await response.json();
     return data.ip
   } catch (error) {
-    console.log(`error to get address`);
     return null;
   }
 }

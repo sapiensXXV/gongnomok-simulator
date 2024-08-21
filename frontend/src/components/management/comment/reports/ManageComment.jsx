@@ -23,7 +23,6 @@ function ManageComment() {
 
 
   function handleCommentDeleteClicked() {
-    console.log('handleCommentDeleteClicked')
     const ids = []
     checkedList.current.forEach((elem) => {
       ids.push(elem.commentId);
@@ -101,7 +100,6 @@ function ManageComment() {
       checkedList.current = checkedList.current.filter((elem) => {
         return elem.reportId != reportId
       })
-      console.log(checkedList.current);
     }
   }
 

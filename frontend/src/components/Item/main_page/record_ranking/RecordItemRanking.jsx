@@ -24,7 +24,6 @@ function RecordItemRanking() {
   }, [])
   
   const fetchScoreRanking = () => {
-    console.log('fetchScoreRanking');
     // todo - defaultItem 설정은 이후 삭제한다.
     // setItems([defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem])
     axiosInstance
