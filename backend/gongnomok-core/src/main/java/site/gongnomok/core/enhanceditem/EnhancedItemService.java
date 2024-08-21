@@ -15,6 +15,7 @@ import site.gongnomok.common.enhanceditem.dto.response.UpdateEnhancementResponse
 import site.gongnomok.common.exception.EnhancedItemException;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
+import site.gongnomok.common.management.dto.record.request.RecordReplaceRequest;
 import site.gongnomok.core.management.log.RecordLogService;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
@@ -106,5 +107,9 @@ public class EnhancedItemService {
         enhancedItem.changeInfo(request, score);
         recordLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem, address);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
+    }
+    
+    public void replaceRecord(final RecordReplaceRequest request) {
+        enhancedItemRepository.replaceEnhanceItem(request);
     }
 }

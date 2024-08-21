@@ -8,8 +8,6 @@ function RecordCell({
   cellClickedHandler
 }) {
   
-  console.log(record.ip);
-  
   return (
     <>
       <main className={styles.main_flex} onClick={(e) => cellClickedHandler(e, record)}>

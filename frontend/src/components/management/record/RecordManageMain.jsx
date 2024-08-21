@@ -1,10 +1,9 @@
 import styles from './RecordManageMain.module.css';
 import RecordController from "./RecordSearchForm.jsx";
 import RecordList from "./RecordList.jsx";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useState } from "react";
 import {BASE_URL} from "../../../global/uri.js";
-import axios from "axios";
-import {observe, useInView} from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import RecordObserveTrigger from "./trigger/RecordObserveTrigger.jsx";
 import SelectOptionModal from "./modal/SelectOptionModal.jsx";
 import axiosInstance from "../../../global/axiosInstance.js";
@@ -73,8 +72,10 @@ function RecordManageMain() {
   
   const updateRecordAsFirst = (e) => {
     e.preventDefault();
+    let requestDto = makeUpdateRequest();
+    console.log(requestDto);
     axiosInstance
-      .patch(`${BASE_URL}/api/manage/record/logs`, makeUpdateRequest())
+      .patch(`${BASE_URL}/api/manage/record/logs`, requestDto)
       .then((response) => {
         console.log(response);
       })
@@ -94,13 +95,16 @@ function RecordManageMain() {
   }
   
   const makeUpdateRequest = () => {
+    console.log(selectedRecord);
     return {
-      itemId: selectedRecord.id,
+      itemId: selectedRecord.itemId ,
+      name: selectedRecord.challengerName,
       status: selectedRecord.status,
       success: {
         ...selectedRecord.success,
         total: selectedRecord.success.ten + selectedRecord.success.sixty + selectedRecord.success.hundred,
       },
+      scroll: selectedRecord.scroll,
       iev: selectedRecord.iev,
       score: selectedRecord.score,
       tries: selectedRecord.tries
