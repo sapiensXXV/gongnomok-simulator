@@ -28,7 +28,7 @@ public class IpAccessInterceptor implements HandlerInterceptor {
 
         String xForwardedFor = request.getHeader("X-Forwarded-For");
         String realIPHeader = request.getHeader("X-Real-IP");
-        log.info("X-Forwarded-For: {}, X-Forwarded-For: {}", xForwardedFor, realIPHeader);
+        log.info("X-Forwarded-For: {}, X-Real-IP: {}", xForwardedFor, realIPHeader);
         if (blackList.contains(realIPHeader)) {
             log.warn("블랙리스트 사용자 접근 - IP Address: {}", realIPHeader);
             response.sendError(403);
