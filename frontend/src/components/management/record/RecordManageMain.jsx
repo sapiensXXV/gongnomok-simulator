@@ -26,12 +26,10 @@ function RecordManageMain() {
   }, [inView]);
 
   const fetchRecords = () => {
-    console.log(condition);
     axiosInstance.get(
       `${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`,
     )
       .then(response => {
-        console.log(response.data);
         refreshData(response.data);
       })
       .catch(err => {
@@ -68,7 +66,6 @@ function RecordManageMain() {
   
   const handleCellClicked = (e, record) => {
     e.preventDefault();
-    console.log(`레코드 ID가 ${record.recordId}인 레코드를 선택`);
     setSelectedRecord(record);
     setSelectModalOpen(true);
   }
@@ -89,7 +86,6 @@ function RecordManageMain() {
   const updateRecordAsFirst = (e) => {
     e.preventDefault();
     let requestDto = makeUpdateRequest();
-    console.log(requestDto);
     axiosInstance
       .patch(`${BASE_URL}/api/manage/record/logs`, requestDto)
       .then((response) => {
@@ -103,7 +99,6 @@ function RecordManageMain() {
   
   const blockUserByIp = (e) => {
     e.preventDefault();
-    console.log(`레코드 ID가 ${selectedRecord.recordId}인 로그를 기록한 유저의 IP주소를 차단한다`);
   } 
   
   const selectModalCancel = (e) => {
@@ -112,7 +107,6 @@ function RecordManageMain() {
   }
   
   const makeUpdateRequest = () => {
-    console.log(selectedRecord);
     return {
       itemId: selectedRecord.itemId ,
       name: selectedRecord.challengerName,
