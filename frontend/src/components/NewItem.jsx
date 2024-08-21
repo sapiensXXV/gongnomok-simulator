@@ -6,6 +6,7 @@ import JobSelect from "./Item/form/JobSelect";
 import { BASE_URL } from "../global/uri";
 import { useRecoilState } from "recoil";
 import { MemberState } from "./global-state/State";
+import axiosInstance from "../global/axiosInstance.js";
 
 
 export default function NewItem() {
@@ -194,8 +195,8 @@ export default function NewItem() {
       knockBackPercent: knockBackPercent
     };
     // 폼 요청
-    axios
-      .post(`${BASE_URL}/api/item/new`, itemForm, { withCredentials: true })
+    axiosInstance
+      .post(`${BASE_URL}/api/item/new`, itemForm)
       .then((response) => {
         alert('등록성공')
       })

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../global/uri.js";
 import { DEFAULT_RANKING_FETCH_SIZE, MAXIMUM_RANKING_PAGE } from "../../../global/item.js";
+import axiosInstance from "../../../global/axiosInstance.js";
 
 export default function ItemRanking() {
 
@@ -9,11 +10,8 @@ export default function ItemRanking() {
   const [rankingPage, setRankingPage] = useState(0);
 
   useEffect(() => {
-    axios
-      .get(
-        `${BASE_URL}/api/item/ranking/view_count?page=0&size=${DEFAULT_RANKING_FETCH_SIZE}`,
-        { withCredentials: true }
-      )
+    axiosInstance
+      .get(`${BASE_URL}/api/item/ranking/view_count?page=0&size=${DEFAULT_RANKING_FETCH_SIZE}`)
       .then((response) => {
         setRankingItems(response?.data);
       })
@@ -27,11 +25,8 @@ export default function ItemRanking() {
     if (rankingPage <= 0) return; //현재 페이지가 0 이하일 경우 수행하지 않고 반환
     
     // 이전 페이지 요청 수행
-    axios
-      .get(
-        `${BASE_URL}/api/item/ranking/view_count?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`,
-        { withCredentials: true }
-      )
+    axiosInstance
+      .get(`${BASE_URL}/api/item/ranking/view_count?page=${rankingPage-1}&size=${DEFAULT_RANKING_FETCH_SIZE}`)
       .then((response) => {
         setRankingItems(response?.data);
       })
@@ -46,11 +41,8 @@ export default function ItemRanking() {
   function handleNextButtonClicked() {
     if (rankingPage >= MAXIMUM_RANKING_PAGE-1) return; //현재 페이지가 최대 페이지 이상일 경우 수행하지 않고 반환
 
-    axios
-      .get(
-        `${BASE_URL}/api/item/ranking/view_count?page=${rankingPage+1}&size=${DEFAULT_RANKING_FETCH_SIZE}`,
-        { withCredentials: true }
-      )
+    axiosInstance
+      .get(`${BASE_URL}/api/item/ranking/view_count?page=${rankingPage+1}&size=${DEFAULT_RANKING_FETCH_SIZE}`)
       .then((response) => {
         setRankingItems(response?.data);
       })

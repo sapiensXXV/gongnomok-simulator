@@ -6,6 +6,7 @@ import SingleComment from "./SingleComment";
 import { useInView } from "react-intersection-observer";
 import CommentDeleteModal from "./CommentDeleteModal";
 import CommentReportModal from "./CommentReportModal";
+import axiosInstance from "../../../global/axiosInstance.js";
 
 export default function Comments({ itemId }) {
 
@@ -35,7 +36,7 @@ export default function Comments({ itemId }) {
   const [observeTarget, inView] = useInView();
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get(`${BASE_URL}/api/item/${itemId}/comment/count`)
       .then((res) => {
         const count = res.data.count;
@@ -54,11 +55,8 @@ export default function Comments({ itemId }) {
     if (!hasMoreComment.current || isLoading.current) return;
     isLoading.current = true;
 
-    axios
-      .get(
-        `${BASE_URL}/api/item/${itemId}/comment?lastId=${lastCommentId}&size=${DEFAULT_COMMENT_FETCH_SIZE}`,
-        { withCredentials: true }
-      )
+    axiosInstance
+      .get(`${BASE_URL}/api/item/${itemId}/comment?lastId=${lastCommentId}&size=${DEFAULT_COMMENT_FETCH_SIZE}`)
       .then((res) => {
         const newComments = res.data
         const newCommentList = [...commentList, ...newComments];
@@ -122,9 +120,9 @@ export default function Comments({ itemId }) {
     if (!validateForm()) {
       return;
     }
-    
-    axios
-      .post(`${BASE_URL}/api/item/${itemId}/comment`, commentForm, { withCredentials: true })
+
+    axiosInstance
+      .post(`${BASE_URL}/api/item/${itemId}/comment`, commentForm)
       .then((res) => {
         const data = res.data;
         const newComment = {
@@ -185,12 +183,8 @@ export default function Comments({ itemId }) {
   }
 
   function deleteComment() {
-    axios
-    .post(
-      `${BASE_URL}/api/item/comment/delete`,
-      commentDeleteForm,
-      { withCredentials: true }
-    )
+    axiosInstance
+    .post(`${BASE_URL}/api/item/comment/delete`, commentDeleteForm)
     .then((res) => {
       setIsDeleteRequestValid(true);
       setDeleteModalOpen(false);
@@ -226,11 +220,8 @@ export default function Comments({ itemId }) {
   /******************************************************************/
 
   function reportComment() {
-    axios
-      .post(
-        `${BASE_URL}/api/item/comment/report`,
-        reportForm
-      )
+    axiosInstance
+      .post(`${BASE_URL}/api/item/comment/report`, reportForm)
       .then((response) => {
         setReportModalOpen(false);
         alert('댓글이 신고되었습니다.')

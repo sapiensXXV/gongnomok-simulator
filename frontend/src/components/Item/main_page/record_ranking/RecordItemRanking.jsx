@@ -4,6 +4,7 @@ import RecordItemRankingItem from "./RecordItemRankingItem.jsx";
 import {DEFAULT_ITEM_RECORD} from "../../../../global/item.js";
 import axios from "axios";
 import {BASE_URL} from "../../../../global/uri.js";
+import axiosInstance from "../../../../global/axiosInstance.js";
 
 function RecordItemRanking() {
 
@@ -23,11 +24,10 @@ function RecordItemRanking() {
   }, [])
   
   const fetchScoreRanking = () => {
-    console.log('fetchScoreRanking');
     // todo - defaultItem 설정은 이후 삭제한다.
     // setItems([defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem, defaultItem])
-    axios
-      .get(`${BASE_URL}/api/item/ranking/record`, { withCredentials: true })
+    axiosInstance
+      .get(`${BASE_URL}/api/item/ranking/record`)
       .then((response) => {
         setItems(response.data)
       })

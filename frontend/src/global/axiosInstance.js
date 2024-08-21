@@ -12,16 +12,15 @@ async function getIP() {
     const data = await response.json();
     return data.ip
   } catch (error) {
-    console.log(`error to get address`);
     return null;
   }
 }
 
 axiosInstance.interceptors.request.use(async config => {
-  const ip = await getIP();
-  if (ip) {
-    config.headers['X-FORWARDED-FOR'] = ip;
-  }
+  // const ip = await getIP();
+  // if (ip) {
+  //   config.headers['X-FORWARDED-FOR'] = ip;
+  // }
   return config; 
 }, error => {
   return Promise.reject(error); 
