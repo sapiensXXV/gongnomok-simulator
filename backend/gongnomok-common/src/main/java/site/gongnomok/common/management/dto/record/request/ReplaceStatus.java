@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import site.gongnomok.core.management.log.dto.RecordReplaceServiceStatus;
 
 @Getter
 @AllArgsConstructor
@@ -27,22 +26,4 @@ public class ReplaceStatus {
     private int hp;
     private int mp;
 
-    public RecordReplaceServiceStatus toServiceDto() {
-        return new RecordReplaceServiceStatus(
-            str,
-            dex,
-            intel,
-            luk,
-            phyAtk,
-            mgAtk,
-            phyDef,
-            mgDef,
-            acc,
-            avo,
-            move,
-            jump,
-            hp,
-            mp
-        );
-    }
 }

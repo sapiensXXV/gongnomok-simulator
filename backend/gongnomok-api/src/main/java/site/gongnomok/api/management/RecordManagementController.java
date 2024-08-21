@@ -21,7 +21,6 @@ public class RecordManagementController {
 
     private final RecordLogService recordLogService;
     private final EnhancedItemService enhancedItemService;
-    private final EnhancedItemEntityConverter enhancedItemEntityConverter;
 
     // TODO: 다시 @AdminOnly 애노테이션 붙일 것.
 
