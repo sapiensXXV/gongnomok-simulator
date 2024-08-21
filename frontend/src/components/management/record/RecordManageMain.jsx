@@ -27,8 +27,7 @@ function RecordManageMain() {
 
   const fetchRecords = () => {
     axiosInstance.get(
-      `${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`,
-    )
+      `${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`)
       .then(response => {
         refreshData(response.data);
       })

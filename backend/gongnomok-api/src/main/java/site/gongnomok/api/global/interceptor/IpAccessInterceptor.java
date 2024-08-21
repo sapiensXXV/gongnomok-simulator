@@ -17,7 +17,7 @@ import java.util.Set;
 @Slf4j
 public class IpAccessInterceptor implements HandlerInterceptor {
 
-    public static Set<String> blackList = new HashSet<>(List.of("35.216.60.60", "175.197.202.8"));
+    public static Set<String> blackList = new HashSet<>(List.of("35.216.60.60"));
     
     @Override
     public boolean preHandle(
@@ -27,7 +27,7 @@ public class IpAccessInterceptor implements HandlerInterceptor {
     ) throws Exception {
 
         String clientIp = request.getHeader("X-Forwarded-For");
-//        log.info("client ip = {}", clientIp);
+        log.info("client ip = {}", clientIp);
         if (blackList.contains(clientIp)) {
             log.warn("블랙리스트 사용자 접근 - IP Address: {}", clientIp);
             response.sendError(403);

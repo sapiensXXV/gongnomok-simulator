@@ -5,6 +5,7 @@ import { BASE_URL } from '../../../global/uri';
 import BanWordPagination from './BanWordPagination';
 import BanWordList from './BanWordList';
 import BanWordForm from './BanWordForm';
+import axiosInstance from "../../../global/axiosInstance.js";
 
 export default function ManageBanWord() {
 
@@ -17,7 +18,7 @@ export default function ManageBanWord() {
   }, [])
 
   function fetchBanWords() {
-    axios
+    axiosInstance
       .get(`${BASE_URL}/api/manage/banword?page=${page-1}&size=20`)
       .then((response) => {
         setBanWordData(response.data);
@@ -35,7 +36,7 @@ export default function ManageBanWord() {
 
   function addBanWord(e) {
     e.preventDefault();
-    axios
+    axiosInstance
       .post(
         `${BASE_URL}/api/manage/banword`,
         { word: newWordInput }
@@ -53,7 +54,7 @@ export default function ManageBanWord() {
 
   function handlePageClicked(e, clickedPage) {
     e.preventDefault();
-    axios
+    axiosInstance
       .get(`${BASE_URL}/api/manage/banword?page=${clickedPage-1}&size=20`)
       .then((response) => {
         const newBanWordData = response.data;
