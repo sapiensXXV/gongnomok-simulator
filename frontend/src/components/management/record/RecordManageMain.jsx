@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import RecordObserveTrigger from "./trigger/RecordObserveTrigger.jsx";
 import SelectOptionModal from "./modal/SelectOptionModal.jsx";
 import axiosInstance from "../../../global/axiosInstance.js";
+import axios from "axios";
 
 function RecordManageMain() {
   
@@ -25,6 +26,7 @@ function RecordManageMain() {
   }, [inView]);
 
   const fetchRecords = () => {
+    console.log(condition);
     axiosInstance.get(
       `${BASE_URL}/api/manage/record/logs?lastId=${condition.lastId}&size=${condition.size}&name=${condition.name}`,
     )
@@ -50,12 +52,18 @@ function RecordManageMain() {
   
   const handleRecordSearch = (e) => {
     e.preventDefault();
-    // console.log("handleRecordSearch");
+    setRecords([]);
+    let copy = {...condition}
+    copy.lastId = -1;
+    setCondition((prev) => copy);
+    fetchRecords()
   }
   
   const handleItemNameInput = (e) => {
     e.preventDefault();
-    // console.log(`handleItemNameInput: ${e.target.value}`);
+    let copy = {...condition}
+    copy.name = e.target.value;
+    setCondition(copy);
   }
   
   const handleCellClicked = (e, record) => {

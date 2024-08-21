@@ -51,7 +51,7 @@ public class RecordLogService {
     ) {
         return logRepository.readRecords(lastId == -1 ? null: lastId, size, itemName);
     }
-
+    
     /**
      * 사용자 이름을 기반으로 기록 로그를 삭제한다.
      * 
@@ -59,5 +59,6 @@ public class RecordLogService {
      */
     public void deleteRecord(final String name) {
         logRepository.deleteByName(name);
+        
     }
 }
