@@ -105,7 +105,6 @@ function ManageComment() {
       console.log(checkedList.current);
     } else {
       checkedList.current = checkedList.current.filter((elem) => {
-        console.log(`elem.reportId = ${elem.reportId}, reportId = ${reportId}`)
         return elem.reportId != reportId
       })
       console.log(checkedList.current);

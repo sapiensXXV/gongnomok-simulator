@@ -1,0 +1,5 @@
+.main_flex {
+  display: flex;
+  column-gap: 5px;
+  width: 225px;
+}

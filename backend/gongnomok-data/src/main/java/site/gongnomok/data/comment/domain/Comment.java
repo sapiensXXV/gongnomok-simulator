@@ -6,7 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import site.gongnomok.common.comment.dto.response.CommentDto;
 import site.gongnomok.data.item.domain.Item;
-import site.gongnomok.data.management.domain.ReportComment;
+import site.gongnomok.data.management.comment.domain.ReportComment;
 
 import java.time.LocalDateTime;
 

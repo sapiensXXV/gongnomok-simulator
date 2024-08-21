@@ -15,6 +15,7 @@ import site.gongnomok.common.enhanceditem.dto.response.UpdateEnhancementResponse
 import site.gongnomok.common.exception.EnhancedItemException;
 import site.gongnomok.common.exception.ExceptionCode;
 import site.gongnomok.common.exception.ItemException;
+import site.gongnomok.common.management.dto.record.request.RecordReplaceRequest;
 import site.gongnomok.core.management.log.RecordLogService;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
 import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
@@ -56,13 +57,14 @@ public class EnhancedItemService {
     @Transactional
     public UpdateEnhancementResponse updateEnhanceItem(
         final Long itemId,
-        final ItemEnhanceServiceRequest request
+        final ItemEnhanceServiceRequest request,
+        final String ipAddress
     ) {
         validator.validateRequest(itemId, request);
 
         Optional<EnhancedItem> enhancedItemOptional = itemRepository.findEnhanceItem(itemId);
         if (enhancedItemOptional.isEmpty()) {
-            return createEnhancedRecord(itemId, request);
+            return createEnhancedRecord(itemId, request, ipAddress);
         }
 
         EnhancedItem enhancedItem = enhancedItemOptional
@@ -71,7 +73,7 @@ public class EnhancedItemService {
         int score = ScrollProbability.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
         if (enhancedItem.getScore() <= score) {
             // 기록이 기존의 것과 같거나 높을 경우
-            return updateEnhancedRecord(enhancedItem, request, score);
+            return updateEnhancedRecord(enhancedItem, request, score, ipAddress);
         }
 
         // 기록이 기존의 것보다 낮을 경우
@@ -80,7 +82,8 @@ public class EnhancedItemService {
 
     private UpdateEnhancementResponse createEnhancedRecord(
         final Long itemId,
-        final ItemEnhanceServiceRequest enhanceDto
+        final ItemEnhanceServiceRequest enhanceDto,
+        final String address
     ) {
         Item item = itemRepository
             .findById(itemId)
@@ -91,17 +94,22 @@ public class EnhancedItemService {
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
         
-        recordLogService.logEnhanceItem(item, enhancedItem);
+        recordLogService.logEnhanceItem(item, enhancedItem, address);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 
     private UpdateEnhancementResponse updateEnhancedRecord(
         final EnhancedItem enhancedItem,
         final ItemEnhanceServiceRequest request,
-        final int score
+        final int score,
+        final String address
     ) {
         enhancedItem.changeInfo(request, score);
-        recordLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem);
+        recordLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem, address);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
+    }
+    
+    public void replaceRecord(final RecordReplaceRequest request) {
+//        enhancedItemRepository.replaceEnhanceItem(request);
     }
 }

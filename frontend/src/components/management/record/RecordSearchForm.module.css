@@ -1,0 +1,33 @@
+.record_search_container {
+  display: flex;
+  column-gap: 5px;
+}
+
+.record_search_container > input {
+  width: 300px;
+  height: 35px;
+
+  border: solid;
+  border-color: rgb(239, 239, 239);
+  border-radius: 6px;
+  
+  padding: 8px;
+  font-size: 14px;
+}
+
+.item_search_btn {
+  width: 65px;
+  background-color: rgb(13, 110, 253);
+  color: white;
+
+  border-radius: 6px;
+  border: none;
+}
+
+.all_clean_btn {
+  width: 100px;
+  background-color: rgb(255, 110, 110);
+  color: white;
+  border-radius: 6px;
+  border: none;
+}

@@ -12,7 +12,7 @@ import site.gongnomok.common.management.dto.response.comment.ReportCommentDto;
 import site.gongnomok.common.management.dto.response.comment.ReportCommentList;
 import site.gongnomok.common.management.dto.response.comment.ReportCommentResponse;
 import site.gongnomok.data.comment.domain.repository.CommentJpaRepository;
-import site.gongnomok.data.management.domain.repository.ReportCommentJpaRepository;
+import site.gongnomok.data.management.comment.repository.ReportCommentJpaRepository;
 
 import java.util.List;
 
