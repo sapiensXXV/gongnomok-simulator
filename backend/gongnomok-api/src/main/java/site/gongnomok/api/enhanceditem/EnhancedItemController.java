@@ -33,7 +33,7 @@ public class EnhancedItemController {
         @RequestBody ItemEnhanceRequest enhanceDto,
         final HttpServletRequest request
     ) {
-        String address = request.getHeader("X-FORWARDED-FOR") != null ? request.getHeader("X-FORWARDED-FOR") : request.getRemoteAddr();
+        String address = request.getHeader("X-Real-IP") != null ? request.getHeader("X-Real-IP") : request.getRemoteAddr();
         UpdateEnhancementResponse response = enhancedItemService.updateEnhanceItem(itemId, enhanceDto.toServiceDto(), address);
         return ResponseEntity.ok(response);
     }
