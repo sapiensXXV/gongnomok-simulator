@@ -67,7 +67,15 @@ function RecordManageMain() {
   
   const deleteRecordByName = (e) => {
     e.preventDefault();
-    console.log(`레코드 ID가 ${selectedRecord.recordId}인 기록을 삭제한다.`);
+    axiosInstance
+      .delete(`${BASE_URL}/api/manage/record/logs?name=${selectedRecord.challengerName}`)
+      .then((response) => {
+        alert(`삭제 성공`)
+        setSelectModalOpen(false);
+      })
+      .catch((error) => {
+        alert(`삭제 실패`)
+      })
   }
   
   const updateRecordAsFirst = (e) => {
@@ -77,7 +85,8 @@ function RecordManageMain() {
     axiosInstance
       .patch(`${BASE_URL}/api/manage/record/logs`, requestDto)
       .then((response) => {
-        console.log(response);
+        alert(`교체 완료`)
+        setSelectModalOpen(false);
       })
       .catch((error) => {
         console.log(error);
