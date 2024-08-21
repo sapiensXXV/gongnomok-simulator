@@ -110,6 +110,6 @@ public class EnhancedItemService {
     }
     
     public void replaceRecord(final RecordReplaceRequest request) {
-//        enhancedItemRepository.replaceEnhanceItem(request);
+        enhancedItemRepository.replaceEnhanceItem(request);
     }
 }
