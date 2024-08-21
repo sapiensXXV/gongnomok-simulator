@@ -34,7 +34,7 @@ public class RecordManagementController {
         @RequestParam("size") long size,
         @RequestParam("name") String name
     ) {
-        log.info("lastId={}, size={}, name={}", lastId, size, name);
+//        log.info("lastId={}, size={}, name={}", lastId, size, name);
         List<RecordResponse> result = recordLogService.readRecordLog(lastId, size, name);
         return ResponseEntity.ok(result);
     }
