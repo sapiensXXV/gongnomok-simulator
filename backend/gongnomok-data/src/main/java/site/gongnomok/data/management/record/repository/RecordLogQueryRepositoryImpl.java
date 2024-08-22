@@ -25,7 +25,7 @@ public class RecordLogQueryRepositoryImpl implements RecordLogQueryRepository {
     
     @Override
     public List<RecordResponse> readRecords(Long lastId, Long size, String itemName) {
-        log.info("lastId={}, size={}, itemName={}", lastId, size, itemName);
+//        log.info("lastId={}, size={}, itemName={}", lastId, size, itemName);
 
         BooleanBuilder builder = makeRecordBooleanBuilder(lastId, itemName);
 
