@@ -17,7 +17,7 @@ import java.util.Set;
 @Slf4j
 public class IpAccessInterceptor implements HandlerInterceptor {
 
-    public static Set<String> blackList = new HashSet<>(List.of("35.216.60.60", "1.229.57.160"));
+    public static Set<String> blackList = new HashSet<>(List.of("35.216.60.60", "1.229.57.160", "118.221.17.198"));
     
     @Override
     public boolean preHandle(
