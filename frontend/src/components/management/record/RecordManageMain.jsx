@@ -96,8 +96,17 @@ function RecordManageMain() {
       })
   }
   
-  const blockUserByIp = (e) => {
+  const blockUserByIp = async (e) => {
     e.preventDefault();
+    try {
+      console.log(`IP Address = [${selectedRecord.ip}] 차단`)
+      const response = await axiosInstance.post(`${BASE_URL}/api/block`, {
+        ip: selectedRecord.ip,
+        description: "기록 조작"
+      })
+    } catch (e) {
+      console.log(e);
+    }
   } 
   
   const selectModalCancel = (e) => {
