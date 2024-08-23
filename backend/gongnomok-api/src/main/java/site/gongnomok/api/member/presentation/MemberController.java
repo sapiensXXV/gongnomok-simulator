@@ -53,8 +53,7 @@ public class MemberController {
     public ResponseEntity<Void> block(
         @RequestBody final IpBlockRequest request
     ) {
-        
-        
+        memberService.block(request.getIp(), request.getDescription());
         return ResponseEntity.ok().build();
     }
 
