@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import site.gongnomok.api.member.dto.IpBlockRequest;
 import site.gongnomok.common.member.constant.MemberConst;
 import site.gongnomok.common.member.dto.request.LoginDto;
 import site.gongnomok.common.member.dto.request.MemberDto;
@@ -46,6 +47,15 @@ public class MemberController {
 
         session.invalidate();
         return ResponseEntity.noContent().build();
+    }
+    
+    @PostMapping("/block")
+    public ResponseEntity<Void> block(
+        @RequestBody final IpBlockRequest request
+    ) {
+        
+        
+        return ResponseEntity.ok().build();
     }
 
 
