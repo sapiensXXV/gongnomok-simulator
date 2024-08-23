@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface EnhancedItemRepository extends JpaRepository<EnhancedItem, Long>, EnhanceItemQueryRepository {
     
-    @Query("select e from EnhancedItem e order by e.score desc limit 10")
+    @Query("select e from EnhancedItem e order by e.score desc limit 15")
     public List<EnhancedItem> recordRankingItems();
     
 }
