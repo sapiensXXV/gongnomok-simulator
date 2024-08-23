@@ -20,6 +20,7 @@ export default function CustomRouter() {
           <Route element={ <NewItem/> } path="/manage/item/new" exact/>
           <Route element={ <ManageComment/> } path="/manage/comment" exact/>
           <Route element={ <ManageBanWord/> } path="/manage/banword" exact/>
+          <Route element={ <RecordManageMain/> } path="/manage/record" exact/>
         </Route>
       </Routes>
     </>
