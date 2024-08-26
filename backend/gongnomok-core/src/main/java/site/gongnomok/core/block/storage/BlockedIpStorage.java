@@ -31,7 +31,7 @@ public class BlockedIpStorage {
     public void fetchBlockedIp() {
         //todo: 차단된 아이피 목록을 특정 시간마다 페치해온다.
         log.info("차단 IP 페치");
-
+        
         List<String> blockedIpList = blockedIpRepository.findAll().stream()
             .map(BlockedIp::getIp)
             .toList();

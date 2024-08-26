@@ -11,7 +11,7 @@ logs/
 !**/src/test/**
 
 frontend/secret/
-
+generated/*
 !docker-compose.yml
 
 keystore.p12
