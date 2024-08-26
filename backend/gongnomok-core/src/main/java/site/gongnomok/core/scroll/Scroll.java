@@ -108,6 +108,10 @@ public enum Scroll {
     SHOES_MOVE_60("SHOES_MOVE", 60, move(2)),
     SHOES_MOVE_100("SHOES_MOVE", 100, move(1)),
 
+    SHOES_JUMP_10("SHOES_JUMP", 10, jump(5), dex(3), move(1)),
+    SHOES_JUMP_60("SHOES_JUMP", 60, jump(2), dex(1)),
+    SHOES_JUMP_100("SHOES_JUMP", 100, jump(1)),
+
     // WEAPONS
     ONE_HANDED_SWORD_PHY_ATK_10("ONE_HANDED_SWORD_PHY_ATK", 10, phyAtk(5), str(3), phyDef(1)),
     ONE_HANDED_SWORD_PHY_ATK_60("ONE_HANDED_SWORD_PHY_ATK", 60, phyAtk(2), str(1)),
