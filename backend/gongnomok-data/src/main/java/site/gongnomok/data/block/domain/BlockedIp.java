@@ -1,4 +1,4 @@
-package site.gongnomok.data.member;
+package site.gongnomok.data.block.domain;
 
 
 import jakarta.persistence.*;
