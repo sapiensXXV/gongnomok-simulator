@@ -594,7 +594,7 @@ export default function ItemSimulatorMain() {
     <>
       <ShortcutBanner />
       <section className="item-simulator-root">
-        <main className="item-simulator-section bg-light  my-3 mx-3 py-3 px-3">
+        <f className="item-simulator-section bg-light  my-3 mx-3 py-3 px-3">
           <section className="item-info-and-overflow-message">
             <section className="item-info-section-container">
               <section className="item-info-section mx-1">
@@ -774,7 +774,7 @@ export default function ItemSimulatorMain() {
             </section>
           </div>
 
-        </main>
+        </f>
         <BestRecordItem itemId={itemId} info={infoCopy}/>
       </section>
       <RecordChallengeModal
