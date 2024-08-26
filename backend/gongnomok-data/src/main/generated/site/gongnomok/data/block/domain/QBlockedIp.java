@@ -1,4 +1,4 @@
-package site.gongnomok.data.member;
+package site.gongnomok.data.block.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QBlockedIp extends EntityPathBase<BlockedIp> {
 
-    private static final long serialVersionUID = 1987138517L;
+    private static final long serialVersionUID = -955632576L;
 
     public static final QBlockedIp blockedIp = new QBlockedIp("blockedIp");
 

@@ -12,3 +12,8 @@ item:
   challenge:
     name:
       limit: 10
+      
+security:
+  blocked-ip:
+    schedule:
+      polling: 5

@@ -8,9 +8,9 @@ import site.gongnomok.common.global.util.SecurityUtil;
 import site.gongnomok.common.member.dto.MemberLoginServiceDto;
 import site.gongnomok.common.member.dto.request.MemberDto;
 import site.gongnomok.core.member.exception.CannotFindMemberException;
-import site.gongnomok.data.member.BlockedIp;
+import site.gongnomok.data.block.domain.BlockedIp;
 import site.gongnomok.data.member.Member;
-import site.gongnomok.data.member.repository.BlockedIpRepository;
+import site.gongnomok.data.block.domain.repository.BlockedIpRepository;
 import site.gongnomok.data.member.repository.MemberRepository;
 
 import java.util.Optional;
