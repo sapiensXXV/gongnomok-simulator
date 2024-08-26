@@ -22,7 +22,6 @@ class BlockedIpValidatorTest {
         blockedIpValidator.validate(rightIp);
         Assertions.assertThatThrownBy(() -> blockedIpValidator.validate(wrongIp))
             .isInstanceOf(IllegalArgumentException.class);
-        
     }
     
 

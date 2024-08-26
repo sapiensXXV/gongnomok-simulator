@@ -33,6 +33,7 @@ public class MemberService {
         return findedMember.toDto();
     }
     
+    @Transactional
     public void block(final String ip, final String description) {
         blockedIpValidator.validate(ip);
         blockedIpRepository.save(new BlockedIp(ip, description));        
