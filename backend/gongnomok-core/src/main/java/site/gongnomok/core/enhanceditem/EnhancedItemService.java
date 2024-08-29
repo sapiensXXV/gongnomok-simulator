@@ -103,10 +103,10 @@ public class EnhancedItemService {
         final EnhancedItem enhancedItem,
         final ItemEnhanceServiceRequest request,
         final int score,
-        final String address
+        final String ipAddress
     ) {
-        enhancedItem.changeInfo(request, score);
-        recordLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem, address);
+        enhancedItem.changeInfo(request, score, ipAddress);
+        recordLogService.logEnhanceItem(enhancedItem.getItem(), enhancedItem, ipAddress);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
     

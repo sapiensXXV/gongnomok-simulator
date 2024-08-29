@@ -8,6 +8,7 @@ import site.gongnomok.common.item.dto.domain.RequiredStatusDto;
 import site.gongnomok.common.item.dto.response.ItemStatusDto;
 
 @Entity
+@EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @AllArgsConstructor

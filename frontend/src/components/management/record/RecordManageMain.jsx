@@ -129,12 +129,31 @@ function RecordManageMain() {
       tries: selectedRecord.tries
     };
   }
+
+  const cleanRecord = (e) => {
+    e.preventDefault();
+    console.log('클리너 요청');
+    axiosInstance
+      .post(`${BASE_URL}/api/manage/record/clean`)
+      .then((response) => {
+        if (response.status === 200) {
+          alert('정상 처리 되었습니다.');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
   
   return (
     <>
       <main className={styles.main_container}>
         <section className={styles.main_title}> 도전기록 관리 </section>
-        <RecordController recordSearch={handleRecordSearch} inputChange={handleItemNameInput}/>
+        <RecordController
+          recordSearch={handleRecordSearch}
+          inputChange={handleItemNameInput}
+          cleanRecord={cleanRecord}
+        />
         <RecordList records={records} cellClicked={handleCellClicked}/>
         <RecordObserveTrigger target={observeTrigger}/>
       </main>

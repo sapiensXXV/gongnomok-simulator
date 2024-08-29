@@ -41,6 +41,9 @@ dependencies {
     implementation(project(":gongnomok-core"))
     implementation(project(":gongnomok-common"))
     implementation(project(":gongnomok-data"))
+
+//    implementation 'p6spy:p6spy:3.9.1'
+//    implementation 'com.github.gavlyukovskiy:datasource-decorator-spring-boot-autoconfigure:1.9.0'
 }
 
 tasks.named('test') {
