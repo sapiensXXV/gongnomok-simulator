@@ -26,6 +26,8 @@ public class QEnhancedItem extends EntityPathBase<EnhancedItem> {
 
     public final NumberPath<Integer> iev = createNumber("iev", Integer.class);
 
+    public final StringPath ip = createString("ip");
+
     public final site.gongnomok.data.item.domain.QItem item;
 
     public final StringPath name = createString("name");

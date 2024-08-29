@@ -84,18 +84,18 @@ public class EnhancedItemService {
     private UpdateEnhancementResponse createEnhancedRecord(
         final Long itemId,
         final ItemEnhanceServiceRequest enhanceDto,
-        final String address
+        final String ipAddress
     ) {
         Item item = itemRepository
             .findById(itemId)
             .orElseThrow(() -> new ItemException(ExceptionCode.NOT_FOUND_ITEM_ID));
         EnhanceSuccessDto success = enhanceDto.getSuccess();
         int score = ScrollProbability.calculateScore(success.getTen(), success.getSixty(), success.getHundred());
-        EnhancedItem enhancedItem = EnhancedItem.from(enhanceDto, score);
+        EnhancedItem enhancedItem = EnhancedItem.from(enhanceDto, score, ipAddress);
         enhancedItem.changeItem(item);
         enhancedItemRepository.save(enhancedItem);
         
-        recordLogService.logEnhanceItem(item, enhancedItem, address);
+        recordLogService.logEnhanceItem(item, enhancedItem, ipAddress);
         return new UpdateEnhancementResponse(EnhanceResult.SUCCESS);
     }
 

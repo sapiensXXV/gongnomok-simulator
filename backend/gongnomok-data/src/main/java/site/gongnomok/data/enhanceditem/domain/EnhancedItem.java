@@ -23,6 +23,7 @@ public class EnhancedItem {
     private int iev;
     private int score;
     private int tries;
+    private String ip;
 
     @OneToOne
     @JoinColumn(name = "item_id")
@@ -65,7 +66,7 @@ public class EnhancedItem {
             .build();
     }
 
-    public static EnhancedItem from(ItemEnhanceServiceRequest dto, int score) {
+    public static EnhancedItem from(ItemEnhanceServiceRequest dto, int score, String ipAddress) {
         return EnhancedItem.builder()
             .name(dto.getName())
             .iev(dto.getIev())
@@ -74,6 +75,8 @@ public class EnhancedItem {
             .scroll(EnhanceScroll.from(dto.getScroll()))
             .success(EnhanceSuccess.from(dto.getSuccess()))
             .status(EnhanceStatus.from(dto.getStatus()))
+            .ip(ipAddress)
             .build();
     }
+    
 }
