@@ -1,7 +1,6 @@
 import styles from './RecordCell.module.css';
 import ScrollSuccess from "./ScrollSuccess.jsx";
 import StatusUpgrade from "./StatusUpgrade.jsx";
-import isoDateToFormatString from "../../../../global/date.js";
 
 function RecordCell({ 
   record,
@@ -26,7 +25,7 @@ function RecordCell({
         <div className={styles.score_block}>
           <span>점수: &nbsp;{record.score}</span>
         </div>
-        <span>{isoDateToFormatString(record.ip)}</span>
+        <span>{record.ip}</span>
       </main>
     </>
   )
