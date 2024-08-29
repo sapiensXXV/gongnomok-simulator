@@ -5,6 +5,7 @@ import lombok.*;
 import site.gongnomok.common.enhanceditem.dto.EnhancedItemDto;
 import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.data.item.domain.Item;
+import site.gongnomok.data.management.record.domain.EnhanceRecord;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -38,7 +39,7 @@ public class EnhancedItem {
     @Enumerated(EnumType.STRING)
     private EnhanceScroll scroll;
 
-    public void changeInfo(ItemEnhanceServiceRequest dto, int newScore) {
+    public void changeInfo(ItemEnhanceServiceRequest dto, int newScore, String ipAddress) {
         name = dto.getName();
         iev = dto.getIev();
         score = newScore;
@@ -46,6 +47,18 @@ public class EnhancedItem {
         scroll = EnhanceScroll.from(dto.getScroll());
         status = EnhanceStatus.from(dto.getStatus());
         tries = dto.getTries();
+        ip = ipAddress;
+    }
+
+    public void changeInfo(EnhanceRecord record) {
+        name = record.getChallengerName();
+        iev = record.getIev();
+        score = record.getScore();
+        tries = record.getTries();
+        ip = record.getIp();
+        success = EnhanceSuccess.from(record.getSuccess());
+        scroll = EnhanceScroll.from(record.getScroll());
+        status = EnhanceStatus.from(record.getStatus());
     }
 
     public void changeItem(Item item) {
@@ -78,5 +91,7 @@ public class EnhancedItem {
             .ip(ipAddress)
             .build();
     }
+    
+    
     
 }

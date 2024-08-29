@@ -4,6 +4,7 @@ package site.gongnomok.data.enhanceditem.domain;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 import site.gongnomok.common.enhanceditem.dto.request.EnhanceStatusDto;
+import site.gongnomok.data.management.record.domain.EnhanceRecordStatus;
 
 @Embeddable
 @Getter
@@ -62,6 +63,25 @@ public class EnhanceStatus {
             .jump(dto.getJump())
             .hp(dto.getHp())
             .mp(dto.getMp())
+            .build();
+    }
+    
+    public static EnhanceStatus from(EnhanceRecordStatus record) {
+        return EnhanceStatus.builder()
+            .str(record.getStr())
+            .dex(record.getDex())
+            .intel(record.getIntel())
+            .luk(record.getLuk())
+            .phyAtk(record.getPhyAtk())
+            .mgAtk(record.getMgAtk())
+            .phyDef(record.getPhyDef())
+            .mgDef(record.getMgDef())
+            .acc(record.getAcc())
+            .avo(record.getAvo())
+            .move(record.getMove())
+            .jump(record.getJump())
+            .hp(record.getHp())
+            .mp(record.getMp())
             .build();
     }
 }

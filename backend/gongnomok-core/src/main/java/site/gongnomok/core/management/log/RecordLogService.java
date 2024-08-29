@@ -5,21 +5,26 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import site.gongnomok.data.management.record.dto.response.RecordResponse;
 import site.gongnomok.data.enhanceditem.domain.EnhancedItem;
+import site.gongnomok.data.enhanceditem.domain.repository.EnhancedItemRepository;
 import site.gongnomok.data.item.domain.Item;
+import site.gongnomok.data.item.domain.repository.ItemRepository;
 import site.gongnomok.data.management.record.domain.EnhanceRecord;
+import site.gongnomok.data.management.record.dto.response.RecordResponse;
 import site.gongnomok.data.management.record.repository.RecordLogRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class RecordLogService {
     
-    private final RecordLogRepository logRepository; 
     private final RecordEntityConverter entityConverter;
+    private final ItemRepository itemRepository;
+    private final RecordLogRepository recordLogRepository; 
+    private final EnhancedItemRepository enhancedItemRepository;
     
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Async
@@ -40,7 +45,7 @@ public class RecordLogService {
             .ip(address)
             .build();
 
-        logRepository.save(record);
+        recordLogRepository.save(record);
     }
     
     @Transactional(readOnly = true)
@@ -49,7 +54,7 @@ public class RecordLogService {
         final long size,
         final String itemName
     ) {
-        return logRepository.readRecords(lastId == -1 ? null: lastId, size, itemName);
+        return recordLogRepository.readRecords(lastId == -1 ? null: lastId, size, itemName);
     }
     
     /**
@@ -58,7 +63,23 @@ public class RecordLogService {
      * @param name 삭제할 로그의 사용자 이름
      */
     public void deleteRecord(final String name) {
-        logRepository.deleteByName(name);
+        recordLogRepository.deleteByName(name);
         
+    }
+    
+    public void clean() {
+        List<Item> allItems = itemRepository.findAll();
+        for (Item item: allItems) {
+            Long itemId = item.getId();
+            Optional<EnhanceRecord> findItem = recordLogRepository.findBestRecordOf(itemId);
+            Optional<EnhancedItem> findRecord = enhancedItemRepository.findByItemId(itemId);
+            if (findItem.isEmpty()) { continue; }
+            if (findRecord.isEmpty()) { continue; }
+
+            EnhanceRecord log = findItem.orElseThrow(IllegalStateException::new);
+            EnhancedItem record = findRecord.orElseThrow(IllegalStateException::new);
+            
+            record.changeInfo(log);
+        }
     }
 }

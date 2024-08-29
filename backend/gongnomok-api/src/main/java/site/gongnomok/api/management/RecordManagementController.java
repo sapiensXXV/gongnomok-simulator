@@ -73,4 +73,13 @@ public class RecordManagementController {
         return ResponseEntity.ok(null);
     }
     
+    @PostMapping("/record/clean")
+    @AdminOnly
+    public ResponseEntity<Void> cleanRecords(
+        final @AdminAuth Accessor accessor) {
+        recordLogService.clean();
+        
+        return ResponseEntity.ok().build();
+    }
+    
 }
