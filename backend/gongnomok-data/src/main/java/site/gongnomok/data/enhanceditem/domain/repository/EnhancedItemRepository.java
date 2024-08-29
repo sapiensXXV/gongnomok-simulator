@@ -13,6 +13,7 @@ public interface EnhancedItemRepository extends JpaRepository<EnhancedItem, Long
     @Query("select e from EnhancedItem e order by e.score desc limit 15")
     public List<EnhancedItem> recordRankingItems();
     
+    @Query("select e from EnhancedItem e where e.item.id = :itemId")
     public Optional<EnhancedItem> findByItemId(Long itemId);
     
 }

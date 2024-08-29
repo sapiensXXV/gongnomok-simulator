@@ -2,17 +2,19 @@ package site.gongnomok.data.enhanceditem.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import site.gongnomok.common.enhanceditem.dto.EnhancedItemDto;
 import site.gongnomok.common.enhanceditem.dto.request.ItemEnhanceServiceRequest;
 import site.gongnomok.data.item.domain.Item;
-import site.gongnomok.data.management.record.domain.EnhanceRecord;
 
 @Entity
+@EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Getter
 @ToString
+@Slf4j
 public class EnhancedItem {
 
     @Id
@@ -50,16 +52,17 @@ public class EnhancedItem {
         ip = ipAddress;
     }
 
-    public void changeInfo(EnhanceRecord record) {
-        name = record.getChallengerName();
-        iev = record.getIev();
-        score = record.getScore();
-        tries = record.getTries();
-        ip = record.getIp();
-        success = EnhanceSuccess.from(record.getSuccess());
-        scroll = EnhanceScroll.from(record.getScroll());
-        status = EnhanceStatus.from(record.getStatus());
-    }
+//    public void changeInfo(EnhanceRecord record) {
+//        log.info("changeInfo 호출!!");
+//        name = record.getChallengerName();
+//        iev = record.getIev();
+//        score = record.getScore();
+//        tries = record.getTries();
+//        ip = record.getIp();
+//        success = EnhanceSuccess.from(record.getSuccess());
+//        scroll = EnhanceScroll.from(record.getScroll());
+//        status = EnhanceStatus.from(record.getStatus());
+//    }
 
     public void changeItem(Item item) {
         this.item = item;

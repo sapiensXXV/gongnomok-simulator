@@ -2,10 +2,7 @@ package site.gongnomok.data.management.record.domain;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import site.gongnomok.data.item.domain.Item;
@@ -16,6 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
+@EqualsAndHashCode
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = PROTECTED)

@@ -132,6 +132,7 @@ function RecordManageMain() {
 
   const cleanRecord = (e) => {
     e.preventDefault();
+    console.log('클리너 요청');
     axiosInstance
       .post(`${BASE_URL}/api/manage/record/clean`)
       .then((response) => {
