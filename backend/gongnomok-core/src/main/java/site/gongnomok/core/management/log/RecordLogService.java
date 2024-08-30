@@ -70,6 +70,7 @@ public class RecordLogService {
     public void deleteRecord(final String ip) {
         List<EnhanceRecord> findLogs = recordLogRepository.findByIp(ip); // 지정된 IP로 저장된 로그 조회
         recordLogRepository.deleteByIp(ip); // 지정된 IP로 저장된 로그 삭제
+//        enhancedItemRepository.deleteByIp(ip); // 지정된 IP로 저장된 기록 삭제. 로그가 있으면 UPDATE 쿼리가 전달 되기 때문에 굳이 삭제할 필요는 없다.
         findLogs
                 .forEach((log) -> {
                     Item item = itemRepository.findById(log.getItem().getId())
