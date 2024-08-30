@@ -15,5 +15,7 @@ public interface EnhancedItemRepository extends JpaRepository<EnhancedItem, Long
     
     @Query("select e from EnhancedItem e where e.item.id = :itemId")
     public Optional<EnhancedItem> findByItemId(Long itemId);
+
+    public void deleteByIp(String ip);
     
 }

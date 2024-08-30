@@ -65,43 +65,54 @@ public class RecordLogService {
     /**
      * 사용자 이름을 기반으로 기록 로그를 삭제한다.
      * 
-     * @param name 삭제할 로그의 사용자 이름
+     * @param ip 삭제할 로그를 만든 IP주소
      */
-    public void deleteRecord(final String name) {
-        recordLogRepository.deleteByName(name);
-        
+    public void deleteRecord(final String ip) {
+        List<EnhanceRecord> findLogs = recordLogRepository.findByIp(ip); // 지정된 IP로 저장된 로그 조회
+        recordLogRepository.deleteByIp(ip); // 지정된 IP로 저장된 로그 삭제
+//        enhancedItemRepository.deleteByIp(ip); // 지정된 IP로 저장된 기록 삭제. 로그가 있으면 UPDATE 쿼리가 전달 되기 때문에 굳이 삭제할 필요는 없다.
+        findLogs
+                .forEach((log) -> {
+                    Item item = itemRepository.findById(log.getItem().getId())
+                        .orElseThrow(() -> new IllegalArgumentException(String.format("item_id=[%d]인 아이템을 찾을 수 없습니다.", log.getItem().getId())));
+                    restoreSingleRecord(item.getId());
+                });
     }
     
     public void clean() {
-        List<Item> allItems = itemRepository.findAll();
-        log.info("찾아온 아이템 [{}]개", allItems.size());
-        
-        for (Item item: allItems) {
-            Long itemId = item.getId();
-            log.info("item_id={}에 대해 복구 작업을 진행", itemId);
-            Optional<EnhanceRecord> recordLog = recordLogRepository.findBestRecordOf(itemId);
-            Optional<EnhancedItem> record = enhancedItemRepository.findByItemId(itemId);
+        List<Item> items = itemRepository.findAll();
+        log.info("찾아온 아이템 [{}]개", items.size());
 
-            boolean isRecordExist = record.isPresent();
-            boolean isLogExist = recordLog.isPresent();
-            
-            if (!isRecordExist && !isLogExist) {
-                // 둘 다 존재하지 않은 경우 pass
-                continue;
-            } else if (isRecordExist && !isLogExist) {
-                // 기록만 존재하고 로그가 존재하지 않는 경우 delete
-                enhancedItemRepository.delete(record.get());
-            } else if (!isRecordExist && isLogExist) {
-                // 기록은 존재하지 않고 로그만 존재하는 경우 새로운 로그를 바탕으로 EnhancedItem 엔티티 만들어 저장
-                EnhancedItem newRecord = createEnhancedItemBy(recordLog.get(), itemId);
-                enhancedItemRepository.save(newRecord);
-            } else {
-                // 둘다 존재하는 경우 로그로 기존 기록을 대체
-                enhancedItemRepository.replaceEnhanceItem(recordLog.get(), itemId);
-            }
+        items
+            .forEach((item) -> {
+                restoreSingleRecord(item.getId());
+            });
+    }
+
+    private void restoreSingleRecord(Long itemId) {
+        log.info("item_id={} 복구", itemId);
+        Optional<EnhanceRecord> recordLog = recordLogRepository.findBestRecordOf(itemId);
+        Optional<EnhancedItem> record = enhancedItemRepository.findByItemId(itemId);
+
+        boolean isRecordExist = record.isPresent();
+        boolean isLogExist = recordLog.isPresent();
+
+        if (!isRecordExist && !isLogExist) {
+            // 둘 다 존재하지 않은 경우 pass
+            return;
+        } else if (isRecordExist && !isLogExist) {
+            // 기록만 존재하고 로그가 존재하지 않는 경우 delete
+            enhancedItemRepository.delete(record.get());
+        } else if (!isRecordExist && isLogExist) {
+            // 기록은 존재하지 않고 로그만 존재하는 경우 새로운 로그를 바탕으로 EnhancedItem 엔티티 만들어 저장
+            EnhancedItem newRecord = createEnhancedItemBy(recordLog.get(), itemId);
+            enhancedItemRepository.save(newRecord);
+        } else {
+            // 둘다 존재하는 경우 로그로 기존 기록을 대체
+            enhancedItemRepository.replaceEnhanceItem(recordLog.get(), itemId);
         }
     }
-    
+
     private EnhancedItem createEnhancedItemBy(final EnhanceRecord record, final Long itemId) {
 
         Item findItem = itemRepository.findById(itemId)
