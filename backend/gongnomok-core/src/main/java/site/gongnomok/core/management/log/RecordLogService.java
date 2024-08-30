@@ -70,7 +70,7 @@ public class RecordLogService {
     public void deleteRecord(final String ip) {
         List<EnhanceRecord> findLogs = recordLogRepository.findByIp(ip); // 지정된 IP로 저장된 로그 조회
         recordLogRepository.deleteByIp(ip); // 지정된 IP로 저장된 로그 삭제
-        findLogs.stream()
+        findLogs
                 .forEach((log) -> {
                     Item item = itemRepository.findById(log.getItem().getId())
                         .orElseThrow(() -> new IllegalArgumentException(String.format("item_id=[%d]인 아이템을 찾을 수 없습니다.", log.getItem().getId())));
@@ -79,13 +79,13 @@ public class RecordLogService {
     }
     
     public void clean() {
-        List<Item> allItems = itemRepository.findAll();
-        log.info("찾아온 아이템 [{}]개", allItems.size());
-        
-        for (Item item: allItems) {
-            Long itemId = item.getId();
-            restoreSingleRecord(itemId);
-        }
+        List<Item> items = itemRepository.findAll();
+        log.info("찾아온 아이템 [{}]개", items.size());
+
+        items
+            .forEach((item) -> {
+                restoreSingleRecord(item.getId());
+            });
     }
 
     private void restoreSingleRecord(Long itemId) {
