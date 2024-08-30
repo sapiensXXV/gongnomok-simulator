@@ -68,8 +68,8 @@ public class RecordManagementController {
      */
     @DeleteMapping("/record/logs")
     @AdminOnly
-    public ResponseEntity<Void> deleteRecord(@AdminAuth Accessor accessor, final String name) {
-        recordLogService.deleteRecord(name);
+    public ResponseEntity<Void> deleteRecord(@AdminAuth Accessor accessor, final String ip) {
+        recordLogService.deleteRecord(ip);
         return ResponseEntity.ok(null);
     }
     
