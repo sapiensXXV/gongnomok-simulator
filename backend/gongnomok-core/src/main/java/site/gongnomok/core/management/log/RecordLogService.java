@@ -78,7 +78,8 @@ public class RecordLogService {
         
         for (Item item: allItems) {
             Long itemId = item.getId();
-            log.info("item_id={}에 대해 복구 작업을 진행", itemId);
+            
+            log.info("item_id={}, item_name={} 복구", itemId, item.getName());
             Optional<EnhanceRecord> recordLog = recordLogRepository.findBestRecordOf(itemId);
             Optional<EnhancedItem> record = enhancedItemRepository.findByItemId(itemId);
 

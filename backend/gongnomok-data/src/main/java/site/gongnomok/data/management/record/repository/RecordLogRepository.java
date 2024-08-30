@@ -15,6 +15,6 @@ public interface RecordLogRepository extends JpaRepository<EnhanceRecord, Long>,
     @Query("delete from EnhanceRecord er where er.challengerName = :name")
     public void deleteByName(String name);
 
-    @Query("select er1 from EnhanceRecord er1 where er1.score = (select max(er2.score) from EnhanceRecord er2 where er2.item.id = :itemId) order by er1.id desc limit 1")
+    @Query("select er1 from EnhanceRecord er1 where er1.score = (select max(er2.score) from EnhanceRecord er2 where er2.item.id = :itemId) and er1.item.id = :itemId order by er1.id desc limit 1")
     public Optional<EnhanceRecord> findBestRecordOf(Long itemId);
 }
