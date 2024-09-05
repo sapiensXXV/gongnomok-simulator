@@ -14,11 +14,11 @@
 - **프레임워크** `Spring Boot 3.2.2`
 - **DB** `MySQL 8.0`, `Redis 7.4.0`
 
-- **모니터링** `Grafana`, `PINPOINT`
+- **모니터링** `Prometheus`, `Grafana`, `PINPOINT`
 - **부하테스트** `nGrinder`
 
 ### 프로젝트 구조
-![](https://github.com/mynameisjaehoon/mynameisjaehoon.github.io/assets/76734067/779f515a-e58e-4550-8b8f-f951bc0339db)
+![](https://github.com/user-attachments/assets/1a10acc1-426b-4cd3-9e2c-328a91990cb2)
 
 ### 배포 흐름
 ![image](https://github.com/user-attachments/assets/b6a370df-a674-4f29-bcba-e74f295c3ed3)
