@@ -1,8 +1,9 @@
 import styles from './RecordItemRankingItem.module.css';
 import SuccessScrollCount from "./SuccessScrollCount.jsx";
+import {useState} from "react";
 
 function RecordItemRankingItem({info, rank}) {
-  
+
   return (
     <>
       <a className={styles.ranking_item_link} href={`/item/${info.itemId}`}>
