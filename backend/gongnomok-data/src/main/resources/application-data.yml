@@ -9,6 +9,9 @@ spring:
     hikari:
       maximum-pool-size: 20
       minimum-idle: 20
+    slaves:
+      slave1:
+        url: ---
     
   jpa:
     hibernate:
