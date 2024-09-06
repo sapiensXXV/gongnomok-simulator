@@ -62,7 +62,7 @@ public class DatasourceConfig {
     
     @Bean
     public DataSource routingDataSource(
-        @Qualifier(SOURCE_SERVER) DataSource sourceDataSource,
+        @Qualifier(SOURCE_SERVER)   DataSource sourceDataSource,
         @Qualifier(REPLICA_SERVER1) DataSource replicaDataSourceOne,
         @Qualifier(REPLICA_SERVER2) DataSource replicaDataSourceTwo
     ) {

@@ -11,7 +11,10 @@ env:
   JAR_PATH: './backend/gongnomok-api/build/libs'
   JAR_NAME: 'gongnomok-api'
   DOCKER_DIRECTORY: './backend/docker'
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  # DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  MASTER_DB_URL: ${{ secrets.MASTER_DB_URL }}
+  SLAVE1_DB_URL: ${{ secrets.SLAVE1_DB_URL }}
+  SLAVE2_DB_URL: ${{ secrets.SLAVE2_DB_URL }}
   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
   REDIS_HOST: ${{ secrets.REDIS_HOST }}

@@ -12,7 +12,10 @@ env:
   JAR_PATH: './backend/gongnomok-api/build/libs'
   JAR_NAME: 'gongnomok-api'
   DOCKER_DIRECTORY: './backend/docker'
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  # DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  MASTER_DB_URL: ${{ secrets.MASTER_DB_URL }}
+  SLAVE1_DB_URL: ${{ secrets.SLAVE1_DB_URL }}
+  SLAVE2_DB_URL: ${{ secrets.SLAVE2_DB_URL }}
   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
   REDIS_HOST: ${{ secrets.REDIS_HOST }}
@@ -27,7 +30,9 @@ jobs:
         run: |
           echo "JAR_NAME is: ${{ env.JAR_NAME }}"
           echo "JAR_PATH is: ${{ env.JAR_PATH }}"
-          echo "DATABASE_URL is set: ${{ env.DATABASE_URL != '' }}"
+          echo "MASTER_DB_URL is set: ${{ env.MASTER_DB_URL != '' }}"
+          echo "SLAVE1_DB_URL is set: ${{ env.SLAVE1_DB_URL != '' }}"
+          echo "SLAVE2_DB_URL is set: ${{ env.SLAVE2_DB_URL != '' }}"
           echo "DATABASE_USERNAME is set: ${{ env.DATABASE_USERNAME != '' }}"
           echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD != '' }}"
           echo "REDIS_HOST is set: ${{ secrets.REDIS_HOST }}"
