@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: 시크릿 값 설정 확인
         run: |
-          echo "DATABASE_URL is set: ${{ secrets.DATABASE_URL != '' }}"
           echo "DATABASE_USERNAME is set: ${{ secrets.DATABASE_USERNAME != '' }}"
           echo "DATABASE_PASSWORD is set: ${{ secrets.DATABASE_PASSWORD != '' }}"
           echo "SLACK_CICD_WEBHOOK is set: ${{ secrets.SLACK_CICD_WEBHOOK != ''}}"
@@ -27,7 +26,6 @@ jobs:
           echo "SLACK_CICD_BOT_TOKEN is set: ${{ secrets.SLACK_CICD_BOT_TOKEN != ''}}"
           echo "REDIS_HOST is set: ${{ secrets.REDIS_HOST }}"
           echo "REDIS_PASSWORD is set: ${{ secrets.REDIS_PASSWORD }}"
-
 
   PATH_CHANGES:
     runs-on: ubuntu-latest
@@ -67,7 +65,9 @@ jobs:
         continue-on-error: true
         id: gradle_test
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          MASTER_DB_URL: ${{ secrets.MASTER_DB_URL }}
+          SLAVE1_DB_URL: ${{ secrets.SLAVE1_DB_URL }}
+          SLAVE2_DB_URL: ${{ secrets.SLAVE2_DB_URL }}
           DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           REDIS_HOST: ${{ secrets.REDIS_HOST }}
