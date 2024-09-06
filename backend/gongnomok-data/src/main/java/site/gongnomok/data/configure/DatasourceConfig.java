@@ -26,6 +26,7 @@ public class DatasourceConfig {
     
     @Bean
     @Profile("test")
+    @Primary // 테스트 환경에서 우선적으로 사용
     public DataSource testDataSource() {
         log.info("테스트 데이터소스 초기화");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -81,6 +82,7 @@ public class DatasourceConfig {
     
     @Bean
     @Primary
+    @Profile("!test") // 프로필이 test가 아닌 환경에서 사용
     public DataSource dataSource() {
         DataSource determinedDataSource = routingDataSource(
             sourceDataSource(), 
@@ -89,6 +91,5 @@ public class DatasourceConfig {
         );
         return new LazyConnectionDataSourceProxy(determinedDataSource);
     }
-    
     
 }
