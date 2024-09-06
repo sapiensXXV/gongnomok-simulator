@@ -3,8 +3,23 @@ spring:
     active: test
     include:
       - core
+    
+gongnomok:
+  banword:
+    polling:
+      refreshMinutes: 10
 
 comment:
   constant:
     max-count: 1
     expire-seconds: 60
+
+item:
+  challenge:
+    name:
+      limit: 10
+
+security:
+  blocked-ip:
+    schedule:
+      polling: 5

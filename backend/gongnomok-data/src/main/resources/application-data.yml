@@ -2,16 +2,21 @@ spring:
   config:
     import: optional:file:.env[.properties]
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 20
-      minimum-idle: 20
-    slaves:
-      slave1:
-        url: ---
+    source:
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${MASTER_DB_URL}
+    replica1:
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${SLAVE1_DB_URL}
+    replica2:
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${SLAVE2_DB_URL}
     
   jpa:
     hibernate:
