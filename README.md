@@ -18,7 +18,7 @@
 - **부하테스트** `nGrinder`
 
 ### 프로젝트 구조
-![](https://github.com/user-attachments/assets/1a10acc1-426b-4cd3-9e2c-328a91990cb2)
+![](https://github.com/user-attachments/assets/26d292e0-b4e8-4ceb-9941-ac58e850ee8e)
 
 ### 배포 흐름
 ![image](https://github.com/user-attachments/assets/b6a370df-a674-4f29-bcba-e74f295c3ed3)
