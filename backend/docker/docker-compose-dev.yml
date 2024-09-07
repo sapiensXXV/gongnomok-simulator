@@ -5,7 +5,6 @@ services:
       context: ../..
       dockerfile: ./backend/docker/dev.dockerfile
       args:
-#        - DATABASE_URL=${DATABASE_URL}
         - MASTER_DB_URL=${MASTER_DB_URL}
         - SLAVE1_DB_URL=${SLAVE1_DB_URL}
         - SLAVE2_DB_URL=${SLAVE2_DB_URL}
