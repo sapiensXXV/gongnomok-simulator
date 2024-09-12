@@ -53,8 +53,11 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public ResponseEntity<ItemListResponse> findItems(Pageable pageable) {
-        ItemListResponse paginationItems = itemService.findPaginationItems(pageable);
+    public ResponseEntity<ItemListResponse> findItems(
+        @RequestParam("page") Integer pageNum,
+        @RequestParam("size") Integer size
+    ) {
+        ItemListResponse paginationItems = itemService.findPaginationItems(pageNum, size);
         return ResponseEntity.ok(paginationItems);
     }
 

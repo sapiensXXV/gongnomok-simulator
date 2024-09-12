@@ -2,6 +2,8 @@ package site.gongnomok.core.item;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,10 +54,12 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
+    @Cacheable("items")
     public ItemListResponse findPaginationItems(
-        final Pageable pageable
+        final int page,
+        final int size
     ) {
-        final List<ItemResponse> items = itemRepository.paginationFindItems(pageable);
+        final List<ItemResponse> items = itemRepository.paginationFindItems(PageRequest.of(page, size));
         return ItemListResponse.of(items);
     }
 
