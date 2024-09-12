@@ -54,7 +54,7 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    @Cacheable("items")
+    @Cacheable(cacheNames = "items", condition = "#page == 0") // 첫페이지 일 경우에 한해서 캐시 적용
     public ItemListResponse findPaginationItems(
         final int page,
         final int size
