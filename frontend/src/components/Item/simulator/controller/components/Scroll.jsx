@@ -1,5 +1,6 @@
 import { forwardRef } from "react"
-import { STATUS_NAME } from "../../../../../global/status.js" 
+import { STATUS_NAME } from "../../../../../global/status.js"
+import {CDN_URL} from "../../../../../global/uri.js";
 
 function Scroll({ 
   percent, 
@@ -26,7 +27,7 @@ function Scroll({
           onClick={() => onClick(percent)}
           onMouseUp={() => document.activeElement.blur()}
         >
-          <img src={`/images/scroll/${percent}.png`}></img>
+          <img src={`${CDN_URL}/images/scroll/${percent}.png`}></img>
         </button>
         <span>{currentScroll?.shortcut}{percent}%</span>
         {
