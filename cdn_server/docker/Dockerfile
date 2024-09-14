@@ -27,7 +27,3 @@ COPY ./static/sound /etc/static/sound
 
 RUN chmod 755 /etc/static/images
 RUN chmod 755 /etc/static/sound
-
-
-
-
