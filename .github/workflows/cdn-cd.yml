@@ -1,0 +1,66 @@
+name: CDN 서버 배포
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - cdn_server/**
+
+env:
+  SSL_FULLCHAIN: ${{ secrets.SSL_FULLCHAIN }}
+  SSL_PRIVKEY: ${{ secrets.SSL_PRIVKEY }}
+  SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
+
+  DOCKER_DIRECTORY: ./cdn_server/docker
+
+jobs:
+  debug: 
+    name: 환경변수 디버깅
+    runs-on: ubuntu-latest
+    steps:
+      - name: 출력
+        run: |
+          echo "SSL_FULLCHAIN is set: ${{ env.SSL_FULLCHAIN != '' }}"
+          echo "SSL_PRIVKEY is set: ${{ env.SSL_PRIVKEY != '' }}"
+          echo "SERVER_OPTIONS_SSL_NGINX is set: ${{ env.SERVER_OPTIONS_SSL_NGINX != '' }}"
+  docker_image_build:
+    name: 도커 이미지 빌드 -> 업로드
+    runs-on: ubuntu-latest
+    steps:
+      - name: 체크아웃
+        uses: actions/checkout@v4
+      - name: 도커 로그인
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+      - name: 이미지 빌드
+        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose.yml build --no-cache
+      - name: 이미지 푸시
+        run: docker compose -f ${{ env.DOCKER_DIRECTORY }}/docker-compose.yml push
+  deploy:
+    name: 배포
+    needs: docker_image_build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ssh 접속 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with: 
+          host: ${{ secrets.CDN_SERVER_HOST }}
+          username: ${{ secrets.CDN_SERVER_USERNAME }}
+          key: ${{ secrets.CDN_SERVER_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            whoami
+            cd gongnomok-simulator
+            git pull
+            git fetch
+            git switch dev
+
+            sudo docker compose -f ./cdn_server/docker/docker-compose.yml pull
+            sudo docker compose -f ./cdn_server/docker/docker-compose.yml down
+            sudo docker compose -f ./cdn_server/docker/docker-compose.yml up -d
