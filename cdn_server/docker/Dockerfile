@@ -18,7 +18,7 @@ ENV SERVER_OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
 
 RUN echo -n "${SSL_FULLCHAIN}" > /etc/secret/fullchain.pem
 RUN echo -n "${SSL_PRIVKEY}" > /etc/secret/privkey.pem
-RUN echo -n "${SERVER_OPTIONS_SSL_NGINX}}" > /etc/secret/options-ssl-nginx.conf
+RUN echo -n "${SERVER_OPTIONS_SSL_NGINX}" > /etc/secret/options-ssl-nginx.conf
 
 #----------- 정적 데이터 복사 -----------
 RUN mkdir /etc/static
