@@ -1,7 +1,7 @@
 FROM nginx:1.18.0-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 RUN rm -rf /etc/nginx/conf.d/*
-COPY ./nginx/dev/default.conf /etc/nginx/conf.d
+COPY ./nginx/default.conf /etc/nginx/conf.d
 
 #------------ SSH 키 설정 ------------- 
 
