@@ -22,8 +22,8 @@ RUN echo -n "${SERVER_OPTIONS_SSL_NGINX}}" > /etc/secret/options-ssl-nginx.conf
 
 #----------- 정적 데이터 복사 -----------
 
-COPY ./static/images /etc/static/images
-COPY ./static/sound /etc/static/sound
+COPY ./static /etc/static
+RUN chmod 755 /etc/static
 
-RUN chmod 755 /etc/static/images
-RUN chmod 755 /etc/static/sound
+EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
