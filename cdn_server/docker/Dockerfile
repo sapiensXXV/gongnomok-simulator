@@ -21,9 +21,9 @@ RUN echo -n "${SSL_PRIVKEY}" > /etc/secret/privkey.pem
 RUN echo -n "${SERVER_OPTIONS_SSL_NGINX}}" > /etc/secret/options-ssl-nginx.conf
 
 #----------- 정적 데이터 복사 -----------
-
-COPY ./static /etc/static
+RUN mkdir /etc/static
 RUN chmod 755 /etc/static
+COPY ./static /etc/static
 
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
