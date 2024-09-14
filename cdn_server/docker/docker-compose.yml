@@ -1,0 +1,16 @@
+# CDN 서버 도커 컴포즈
+services:
+  cdn:
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+      args:
+        - CDN_NGINX_FULLCHAIN=${DEV_NGINX_FULLCHAIN}
+        - CDN_NGINX_PRIVKEY=${DEV_NGINX_PRIVKEY}
+        - CDN_OPTIONS_SSL_NGINX=${SERVER_OPTIONS_SSL_NGINX}
+    image: sjhn/gongnomok-cdn:latest
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
