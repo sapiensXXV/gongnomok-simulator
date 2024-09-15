@@ -1,11 +1,8 @@
-// import logo from "../assets/logo.png"
-
 import { useRecoilState } from "recoil"
 import { LoginState, MemberState } from "./global-state/State"
 import { ADMIN, GUEST } from "./global-state/state-const"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { BASE_URL } from "../global/uri"
+import { BASE_URL, CDN_URL } from "../global/uri"
 
 import styles from "./Header.module.css";
 import axiosInstance from "../global/axiosInstance.js";
@@ -24,7 +21,7 @@ export default function Header() {
       if (response.status === 204) {
         setLoginState(false);
         setMemberState(GUEST)
-        navigate('/') // goto root
+        navigate('/') // 루트 경로로 이동
       }
     } catch (err) {
       console.log(err);
@@ -37,7 +34,7 @@ export default function Header() {
         <div className="container-fluid">
           <div className="header-title">
             <a className="navbar-brand" href="/">
-              <img src="/images/logo.png" alt="gongnomok-home" /><span>메이플 주문서 시뮬레이터</span>
+              <img src={`${CDN_URL}/images/logo.png`} alt="gongnomok-home" /><span>메이플 주문서 시뮬레이터</span>
             </a>
           </div>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

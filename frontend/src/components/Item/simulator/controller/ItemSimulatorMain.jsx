@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 import { playFailureSound, playSuccessSound, playPurchaseSound, playDiceSound } from "../../../../global/util/soundPlay.js";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { BASE_URL } from "../../../../global/uri.js";
+import {BASE_URL, CDN_URL} from "../../../../global/uri.js";
 import { ATTACK_SPEED, CATEGORY_NAME, DEAFULT_SUCCESS_SCROLL } from "../../../../global/item.js";
 import { SCROLL_NAME_LIST, SCROLL_INFO } from "../../../../global/scroll.js";
 
@@ -476,9 +476,9 @@ export default function ItemSimulatorMain() {
   }, { keyup: true, keydown: false });
 
   const scrollAnimation = useRef();
-  const transParentImgPath = '/images/etc/empty.png';
-  const successGifPath = '/images/etc/gif/success-150.gif';
-  const failGifPath = '/images/etc/gif/failure-150.gif'
+  const transParentImgPath = `${CDN_URL}/images/etc/empty.png`;
+  const successGifPath = `${CDN_URL}/images/etc/gif/success-150.gif`;
+  const failGifPath = `${CDN_URL}/images/etc/gif/failure-150.gif`;
 
   function playSuccessGif() {
     clearTimeout(timer);
@@ -604,8 +604,8 @@ export default function ItemSimulatorMain() {
                 </span>
                 <div className="item-info-basic">
                   <div className="item-img-container">
-                    <img className='item-img' src={`/images/item/${itemId}.png`}/>
-                    <img ref={scrollAnimation} src={`/images/etc/empty.png`} className="scroll-animation"
+                    <img className='item-img' src={`${CDN_URL}/images/item/${itemId}.png`}/>
+                    <img ref={scrollAnimation} src={`${CDN_URL}/images/etc/empty.png`} className="scroll-animation"
                          id="scroll-animation"></img>
                   </div>
                   <div className="item-info-required">
@@ -705,7 +705,7 @@ export default function ItemSimulatorMain() {
                   <Scroll ref={scroll100Button} percent={100} currentScroll={currentScroll} onClick={handleScrollClicked} />
                   <div className="scroll-info">
                     <button ref={resetButton} onClick={handleResetClicked} id="reset-button" onMouseUp={() => document.activeElement.blur()}>
-                      <img src="/images/etc/reset.png"></img>
+                      <img src={`${CDN_URL}/images/etc/reset.png`}></img>
                     </button>
                   </div>
                 </div>
@@ -747,7 +747,7 @@ export default function ItemSimulatorMain() {
 
                   <section className="total-price-info-section">
                     <div className="total-price-info">
-                      <img src="/images/etc/meso.png"></img>
+                      <img src={`${CDN_URL}/images/etc/meso.png`}></img>
                       <span>
                         {
                           (itemBuyCount * itemPrice +

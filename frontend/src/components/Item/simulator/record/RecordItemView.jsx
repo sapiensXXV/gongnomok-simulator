@@ -1,5 +1,6 @@
 import RequiredStatus from "../controller/components/RequiredStatus.jsx";
 import {ATTACK_SPEED, CATEGORY_NAME} from "../../../../global/item.js";
+import {CDN_URL} from "../../../../global/uri.js";
 
 function RecordItemView({ recordInfo, enhanceInfo, titleColorFunction, itemId }) {
   return (
@@ -13,7 +14,7 @@ function RecordItemView({ recordInfo, enhanceInfo, titleColorFunction, itemId })
               </span>
             <div className="item-info-basic">
               <div className="item-img-container">
-                <img className='item-img' src={`/images/item/${itemId}.png`}/>
+                <img className='item-img' src={`${CDN_URL}/images/item/${itemId}.png`}/>
               </div>
               <div className="item-info-required">
                 <RequiredStatus name="LEV" value={recordInfo?.requiredStatus.level}/>
