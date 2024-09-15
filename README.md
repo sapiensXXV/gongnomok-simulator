@@ -18,7 +18,7 @@
 - **부하테스트** `nGrinder`
 
 ### 프로젝트 구조
-![프로젝트 구조](https://github.com/user-attachments/assets/26d292e0-b4e8-4ceb-9941-ac58e850ee8e)
+![프로젝트 구조](https://github.com/user-attachments/assets/eebc6a3a-2200-4287-a687-3885e578cfa9)
 
 ### 배포 흐름
 ![ci-cd 흐름](https://github.com/user-attachments/assets/b6a370df-a674-4f29-bcba-e74f295c3ed3)
