@@ -1,6 +1,5 @@
 import styles from './RecordItemRankingItem.module.css';
 import SuccessScrollCount from "./SuccessScrollCount.jsx";
-import {useState} from "react";
 import {CDN_URL} from "../../../../global/uri.js";
 
 function RecordItemRankingItem({info, rank}) {

@@ -1,6 +1,7 @@
 import styles from './RecordCell.module.css';
 import ScrollSuccess from "./ScrollSuccess.jsx";
 import StatusUpgrade from "./StatusUpgrade.jsx";
+import {CDN_URL} from "../../../../global/uri.js";
 
 function RecordCell({ 
   record,
