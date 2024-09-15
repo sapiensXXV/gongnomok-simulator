@@ -16,7 +16,7 @@
 - **부하테스트** `nGrinder`
 
 ### 프로젝트 구조
-![프로젝트 구조](https://github.com/user-attachments/assets/26d292e0-b4e8-4ceb-9941-ac58e850ee8e)
+![프로젝트 구조](https://github.com/user-attachments/assets/eebc6a3a-2200-4287-a687-3885e578cfa9)
 
 - 브라우저의 요청은 로드밸런서 역할을 하고 있는 nginx 서버로 전달된다. 
 - nginx 서버는 들어오는 트래픽을 두개의 WAS로 분산시킨다. 
