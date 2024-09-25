@@ -77,5 +77,5 @@ public class ItemController {
         final ItemDto findItem = itemService.findItemById(itemId);
         return ResponseEntity.ok(findItem);
     }
-
+    
 }
