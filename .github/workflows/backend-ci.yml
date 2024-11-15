@@ -1,6 +1,7 @@
 name: 백엔드 CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main", "dev" ]
     paths: backend/**
