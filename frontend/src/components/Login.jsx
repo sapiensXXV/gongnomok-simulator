@@ -1,12 +1,10 @@
-
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../global/uri";
 import { useRecoilState } from "recoil";
 import { LoginState, MemberState } from "./global-state/State";
 import axiosInstance from "../global/axiosInstance.js";
-
+import styled from "styled-components";
 
 
 export default function Login () {

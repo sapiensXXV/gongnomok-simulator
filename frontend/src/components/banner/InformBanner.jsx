@@ -6,7 +6,7 @@ export default function InformBanner() {
       <div className={`${styles.container} ${styles.banner}`}>
         {/*<div>8/14 ~ 기록 초기화</div>*/}
         {/*<div>8/14 ~ 인기 아이템 초기화</div>*/}
-        <div>10/1 기록 초기화 예정</div>
+        <div>11/15 ~ 기록이 초기화되었습니다</div>
       </div>
     </>
   )
