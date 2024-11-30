@@ -53,6 +53,7 @@ jobs:
 
       - name: Gradle 빌드
         run: |
+          printenv
           cd backend
           ./gradlew build
       
