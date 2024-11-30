@@ -1,4 +1,4 @@
-name: CDN 서버 배포
+name: Assets 서버 배포
 
 on:
   workflow_dispatch:
@@ -6,14 +6,14 @@ on:
     branches:
       - dev
     paths:
-      - cdn_server/**
+      - assets_server/**
 
 env:
   SSL_FULLCHAIN: ${{ secrets.SSL_FULLCHAIN }}
   SSL_PRIVKEY: ${{ secrets.SSL_PRIVKEY }}
   SERVER_OPTIONS_SSL_NGINX: ${{ secrets.SERVER_OPTIONS_SSL_NGINX }}
 
-  DOCKER_DIRECTORY: ./cdn_server/docker
+  DOCKER_DIRECTORY: ./assets_server/docker
 
 jobs:
   debug: 
