@@ -5,12 +5,12 @@ services:
       context: ../..
       dockerfile: ./backend/docker/dev.dockerfile
       args:
-        - MASTER_DB_URL=${MASTER_DB_URL}
-        - SLAVE1_DB_URL=${SLAVE1_DB_URL}
-        - SLAVE2_DB_URL=${SLAVE2_DB_URL}
+        - HOST_MASTER_DB=${HOST_MASTER_DB}
+        - HOST_REPLICA_DB_1=${HOST_REPLICA_DB_1}
+        - HOST_REPLICA_DB_2=${HOST_REPLICA_DB_2}
         - DATABASE_USERNAME=${DATABASE_USERNAME}
         - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-        - REDIS_HOST=${REDIS_HOST}
+        - HOST_REDIS_DB=${HOST_REDIS_DB}
         - REDIS_PASSWORD=${REDIS_PASSWORD}
     image: sjhn/gongnomok-backend:dev-latest
     restart: always

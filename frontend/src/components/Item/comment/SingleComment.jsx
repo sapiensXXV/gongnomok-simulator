@@ -1,5 +1,5 @@
 import isoDateToFormatString from "../../../global/date";
-import {CDN_URL} from "../../../global/uri.js";
+import {ASSETS_URL} from "../../../global/uri.js";
 
 export default function SingleComment({ 
   info,
@@ -19,10 +19,10 @@ export default function SingleComment({
         </div>
         <div className="comment-item-menu-container">
           <div className="comment-item-siren-container" onClick={handleReport}>
-            <img className="comment-item-siren-icon" src={`${CDN_URL}/images/etc/siren.png`}></img>
+            <img className="comment-item-siren-icon" src={`${ASSETS_URL}/images/etc/siren.png`}></img>
           </div>
           <div className="comment-item-delete-container" onClick={handleDelete}>
-            <img className="comment-item-delete-icon" src={`${CDN_URL}/images/etc/trashcan.png`}></img>
+            <img className="comment-item-delete-icon" src={`${ASSETS_URL}/images/etc/trashcan.png`}></img>
           </div>
         </div>
       </div>

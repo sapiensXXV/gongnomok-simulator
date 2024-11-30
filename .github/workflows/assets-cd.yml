@@ -50,9 +50,9 @@ jobs:
       - name: ssh 접속 배포
         uses: appleboy/ssh-action@v1.0.3
         with: 
-          host: ${{ secrets.CDN_SERVER_HOST }}
-          username: ${{ secrets.CDN_SERVER_USERNAME }}
-          key: ${{ secrets.CDN_SERVER_SSH_KEY }}
+          host: ${{ secrets.HOST_ASSETS_SERVER }}
+          username: ${{ secrets.HOST_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             whoami

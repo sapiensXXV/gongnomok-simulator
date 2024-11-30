@@ -1,6 +1,6 @@
 import styles from './RecordItemRankingItem.module.css';
 import SuccessScrollCount from "./SuccessScrollCount.jsx";
-import {CDN_URL} from "../../../../global/uri.js";
+import {ASSETS_URL} from "../../../../global/uri.js";
 
 function RecordItemRankingItem({info, rank}) {
 
@@ -11,11 +11,11 @@ function RecordItemRankingItem({info, rank}) {
           <div className={styles.ranking_expression_container}>
             {
               rank === 1 ? (
-                <img className={styles.item_medal_img} src={`${CDN_URL}/images/medals/gold_medal.png`}/>
+                <img className={styles.item_medal_img} src={`${ASSETS_URL}/images/medals/gold_medal.png`}/>
               ) : rank === 2 ? (
-                <img className={styles.item_medal_img} src={`${CDN_URL}/images/medals/silver_medal.png`}/>
+                <img className={styles.item_medal_img} src={`${ASSETS_URL}/images/medals/silver_medal.png`}/>
               ) : rank === 3 ? (
-                <img className={styles.item_medal_img} src={`${CDN_URL}/images/medals/bronze_medal.png`}/>
+                <img className={styles.item_medal_img} src={`${ASSETS_URL}/images/medals/bronze_medal.png`}/>
               ) : (
                 <span className={styles.rank_text}>{rank}위</span>
               )
@@ -27,7 +27,7 @@ function RecordItemRankingItem({info, rank}) {
           {info.challengerName}
         </span>
           <span className={styles.ranking_text}>&ensp;님</span>
-          <img className={styles.ranking_item_img} src={`${CDN_URL}/images/item/${info.itemId}.png`}/>
+          <img className={styles.ranking_item_img} src={`${ASSETS_URL}/images/item/${info.itemId}.png`}/>
           <span className={styles.item_scroll_split_colon}>:</span>
           <SuccessScrollCount percent={10} count={info?.success?.ten}/>
           <SuccessScrollCount percent={60} count={info?.success?.sixty}/>

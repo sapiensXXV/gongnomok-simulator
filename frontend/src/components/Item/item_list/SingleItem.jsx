@@ -1,5 +1,5 @@
 import styles from './SingleItem.module.css';
-import {CDN_URL} from "../../../global/uri.js";
+import {ASSETS_URL} from "../../../global/uri.js";
 
 export default function SingleItem({id, name}) {
 
@@ -7,7 +7,7 @@ export default function SingleItem({id, name}) {
     <>
       <button className={`${styles.item_button} ${styles.select}`} onClick={() => window.location.href = `/item/${id}`}>
         <section className={styles.item_container}>
-          <img src={`${CDN_URL}/images/item/${id}.png`}></img>
+          <img src={`${ASSETS_URL}/images/item/${id}.png`}></img>
           <span>{name}</span>
         </section>
       </button>

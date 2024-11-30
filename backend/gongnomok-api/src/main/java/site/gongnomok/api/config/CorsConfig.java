@@ -22,7 +22,8 @@ public class CorsConfig implements WebMvcConfigurer {
                         "http://www.gongnomok.site",
                         "https://gongnomok.site",
                         "https://www.gongnomok.site",
-                        "https://dev.gongnomok.site"
+                        "https://dev.gongnomok.site",
+                        "https://gongnomok.com"
                 )
                 .allowCredentials(true)
                 .maxAge(3000);

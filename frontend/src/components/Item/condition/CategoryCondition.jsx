@@ -1,4 +1,4 @@
-import {CDN_URL} from "../../../global/uri.js";
+import {ASSETS_URL} from "../../../global/uri.js";
 
 export default function CategoryCondition({
   category,
@@ -13,7 +13,7 @@ export default function CategoryCondition({
         className={`category-select-button ${condition === category ? 'select-active-text' : ''}`}
         onClick={(e) => changeHandler(e, category)}
       >
-        <img src={`${CDN_URL}/images/item/${representationItemNumber}.png`}/>
+        <img src={`${ASSETS_URL}/images/item/${representationItemNumber}.png`}/>
         <span>{name}</span>
       </button>
     </>

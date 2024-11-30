@@ -6,17 +6,17 @@ spring:
       username: ${DATABASE_USERNAME}
       password: ${DATABASE_PASSWORD}
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: ${MASTER_DB_URL}
+      jdbc-url: ${HOST_MASTER_DB}
     replica1:
       username: ${DATABASE_USERNAME}
       password: ${DATABASE_PASSWORD}
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: ${SLAVE1_DB_URL}
+      jdbc-url: ${HOST_REPLICA_DB_1}
     replica2:
       username: ${DATABASE_USERNAME}
       password: ${DATABASE_PASSWORD}
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: ${SLAVE2_DB_URL}
+      jdbc-url: ${HOST_REPLICA_DB_2}
     
   jpa:
     hibernate:
@@ -30,7 +30,7 @@ spring:
 
   data:
     redis:
-      host: ${REDIS_HOST}  # Redis 호스트 주소
+      host: ${HOST_REDIS_DB}  # Redis 호스트 주소
       port: 6379           # Redis 포트
       username: default         # Redis 사용자 이름
       password: ${REDIS_PASSWORD} # Redis 비밀번호, 환경 변수를 통해 관리

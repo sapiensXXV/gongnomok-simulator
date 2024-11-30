@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {BASE_URL, CDN_URL} from "../../../global/uri.js";
+import {BASE_URL, ASSETS_URL} from "../../../global/uri.js";
 import { DEFAULT_RANKING_FETCH_SIZE, MAXIMUM_RANKING_PAGE } from "../../../global/item.js";
 import axiosInstance from "../../../global/axiosInstance.js";
 
@@ -70,7 +70,7 @@ export default function ItemRanking() {
                     <div className="single-ranking-item" >
 
                       <span className="item-rank-text">{`${item.rank + rankingPage * DEFAULT_RANKING_FETCH_SIZE}위 `}</span>
-                      <img src={`${CDN_URL}/images/item/${item.itemId}.png`}></img>
+                      <img src={`${ASSETS_URL}/images/item/${item.itemId}.png`}></img>
                       <span>{`${item.name}`}</span><span>{` (${item.viewCount}회)`}</span>
 
                     </div>
@@ -87,14 +87,14 @@ export default function ItemRanking() {
             className="item-ranking-button"
             onClick={handlePreviousButtonClicked}
           >
-            <img src={`${CDN_URL}/images/etc/previous.png`} />
+            <img src={`${ASSETS_URL}/images/etc/previous.png`} />
           </button>
           <span>{`${rankingPage + 1}/${MAXIMUM_RANKING_PAGE}`}</span>
           <button
             className="item-ranking-button"
             onClick={handleNextButtonClicked}
           >
-            <img src={`${CDN_URL}/images/etc/next.png`} />
+            <img src={`${ASSETS_URL}/images/etc/next.png`} />
           </button>
         </section>
         

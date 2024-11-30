@@ -12,12 +12,12 @@ env:
   JAR_PATH: './backend/gongnomok-api/build/libs'
   JAR_NAME: 'gongnomok-api'
   DOCKER_DIRECTORY: './backend/docker'
-  MASTER_DB_URL: ${{ secrets.MASTER_DB_URL }}
-  SLAVE1_DB_URL: ${{ secrets.SLAVE1_DB_URL }}
-  SLAVE2_DB_URL: ${{ secrets.SLAVE2_DB_URL }}
+  HOST_MASTER_DB: ${{ secrets.HOST_MASTER_DB }}
+  HOST_REPLICA_DB_1: ${{ secrets.HOST_REPLICA_DB_1 }}
+  HOST_REPLICA_DB_2: ${{ secrets.HOST_REPLICA_DB_2 }}
   DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
   DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-  REDIS_HOST: ${{ secrets.REDIS_HOST }}
+  HOST_REDIS_DB: ${{ secrets.HOST_REDIS_DB }}
   REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
 
 jobs:
@@ -29,12 +29,12 @@ jobs:
         run: |
           echo "JAR_NAME is: ${{ env.JAR_NAME }}"
           echo "JAR_PATH is: ${{ env.JAR_PATH }}"
-          echo "MASTER_DB_URL is set: ${{ env.MASTER_DB_URL != '' }}"
-          echo "SLAVE1_DB_URL is set: ${{ env.SLAVE1_DB_URL != '' }}"
-          echo "SLAVE2_DB_URL is set: ${{ env.SLAVE2_DB_URL != '' }}"
+          echo "HOST_MASTER_DB is set: ${{ env.HOST_MASTER_DB != '' }}"
+          echo "HOST_REPLICA_DB_1 is set: ${{ env.HOST_REPLICA_DB_1 != '' }}"
+          echo "HOST_REPLICA_DB_2 is set: ${{ env.HOST_REPLICA_DB_2 != '' }}"
           echo "DATABASE_USERNAME is set: ${{ env.DATABASE_USERNAME != '' }}"
           echo "DATABASE_PASSWORD is set: ${{ env.DATABASE_PASSWORD != '' }}"
-          echo "REDIS_HOST is set: ${{ secrets.REDIS_HOST != '' }}"
+          echo "HOST_REDIS_DB is set: ${{ secrets.HOST_REDIS_DB != '' }}"
           echo "REDIS_PASSWORD is set: ${{ secrets.REDIS_PASSWORD != '' }}"
 
   build:  
@@ -97,9 +97,9 @@ jobs:
       - name: SSH 접속 후 배포
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.PROD_SERVER_HOST }}
+          host: ${{ secrets.HOST_PROD_SERVER }}
           username: ${{ secrets.PROD_SERVER_USERNAME }}
-          key: ${{ secrets.PROD_SERVER_SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
             whoami

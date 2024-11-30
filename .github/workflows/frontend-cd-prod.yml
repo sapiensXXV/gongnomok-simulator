@@ -13,7 +13,7 @@ on:
   #   paths: frontend/**
 
 env:
-  ARTIFACT_DIRECTORY: ./frontend/dist
+  ARTIFACT_DIRECTORY: ./frontend/dist 
   DOCKER_DIRECTORY: ./frontend/docker
   SSL_FULLCHAIN: ${{ secrets.SSL_FULLCHAIN }}
   SSL_PRIVKEY: ${{ secrets.SSL_PRIVKEY }}
@@ -61,9 +61,9 @@ jobs:
       - name: SSH 접속 후 배포
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.PROD_SERVER_HOST }}
-          username: ${{ secrets.PROD_SERVER_USERNAME }}
-          key: ${{ secrets.PROD_SERVER_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.HOST_PROD_SERVER }}
+          username: ${{ secrets.HOST_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             whoami

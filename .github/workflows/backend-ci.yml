@@ -66,9 +66,9 @@ jobs:
         continue-on-error: true
         id: gradle_test
         env:
-          MASTER_DB_URL: ${{ secrets.MASTER_DB_URL }}
-          SLAVE1_DB_URL: ${{ secrets.SLAVE1_DB_URL }}
-          SLAVE2_DB_URL: ${{ secrets.SLAVE2_DB_URL }}
+          HOST_MASTER_DB: ${{ secrets.HOST_MASTER_DB }}
+          HOST_REPLICA_DB_1: ${{ secrets.HOST_REPLICA_DB_1 }}
+          HOST_REPLICA_DB_2: ${{ secrets.HOST_REPLICA_DB_2 }}
           DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           REDIS_HOST: ${{ secrets.REDIS_HOST }}

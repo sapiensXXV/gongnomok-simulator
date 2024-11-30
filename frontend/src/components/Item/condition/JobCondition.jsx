@@ -1,4 +1,4 @@
-import {CDN_URL} from "../../../global/uri.js";
+import {ASSETS_URL} from "../../../global/uri.js";
 
 export default function JobCondition({
   isSelected,
@@ -12,7 +12,7 @@ export default function JobCondition({
         className={`job-select-button ${isSelected ? 'select-active' : ''}`}
         onClick={(e) => changeHandler(e, jobNameEng)}
       >
-        <img src={`${CDN_URL}/images/jobs/${jobNameEng}.png`} />
+        <img src={`${ASSETS_URL}/images/jobs/${jobNameEng}.png`} />
         <span>{jobName}</span>
       </button>
     </>
