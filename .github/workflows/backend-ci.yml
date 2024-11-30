@@ -25,7 +25,7 @@ jobs:
           echo "SLACK_CICD_WEBHOOK is set: ${{ secrets.SLACK_CICD_WEBHOOK != ''}}"
           echo "SLACK_CICD_CHANNEL_ID is set: ${{ secrets.SLACK_CICD_CHANNEL_ID != ''}}"
           echo "SLACK_CICD_BOT_TOKEN is set: ${{ secrets.SLACK_CICD_BOT_TOKEN != ''}}"
-          echo "REDIS_HOST is set: ${{ secrets.REDIS_HOST }}"
+          echo "HOST_REDIS_DB is set: ${{ secrets.HOST_REDIS_DB }}"
           echo "REDIS_PASSWORD is set: ${{ secrets.REDIS_PASSWORD }}"
 
   PATH_CHANGES:
@@ -71,7 +71,7 @@ jobs:
           HOST_REPLICA_DB_2: ${{ secrets.HOST_REPLICA_DB_2 }}
           DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          HOST_REDIS_DB: ${{ secrets.HOST_REDIS_DB }}
           REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
         run: |
           cd backend

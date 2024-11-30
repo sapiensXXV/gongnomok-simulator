@@ -1,8 +1,8 @@
 FROM node:20.11.0-bullseye as builder
 WORKDIR /frontend
 
-ENV VITE_REQUEST_API_URL=https://gongnomok.site
-ENV VITE_CDN_URL=https://cdn.gongnomok.site
+ENV VITE_REQUEST_API_URL=https://gongnomok.com
+ENV VITE_ASSETS_URL=https://assets.gongnomok.com
 
 COPY . .
 RUN npm install
