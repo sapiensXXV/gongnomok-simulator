@@ -6,9 +6,9 @@ COPY ./nginx/prod/default-gongnomok.site.conf /etc/nginx/conf.d/default.conf
 RUN mkdir /etc/secret
 RUN chmod 755 /etc/secret
 
-RUN echo -n ./secret/fullchain.pem > /etc/secret/fullchain.pem
-RUN echo -n ./secret/privkey.pem > /etc/secret/privkey.pem
-RUN echo -n ./secret/options-ssl-nginx.conf > /etc/secret/options-ssl-nginx.conf
+COPY ./secret/fullchain.pem  /etc/secret/fullchain.pem
+COPY ./secret/privkey.pem  /etc/secret/privkey.pem
+COPY ./secret/options-ssl-nginx.conf  /etc/secret/options-ssl-nginx.conf
 
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
