@@ -1,0 +1,12 @@
+# 이전 도메인 gongnomok.site 컴포즈 파일
+services:
+  front: 
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile.gongnomok.site.prod
+    image: sjhn/gongnomok-frontend:prod-legacy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
