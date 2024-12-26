@@ -12,7 +12,7 @@ server:
     session:
       cookie:
         same-site: none
-        domain: gongnomok.site
+        domain: gongnomok.com
         secure: true
       timeout: 30m
   tomcat:
@@ -57,4 +57,4 @@ server:
       cookie:
         same-site: none
         secure: true
-        domain: dev.gongnomok.site
+        domain: dev.gongnomok.com
