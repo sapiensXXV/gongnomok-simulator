@@ -140,9 +140,9 @@ export default function ItemMain() {
         <FeedbackBanner/>
         <InformBanner />
       </section>
-      <section className={styles.banner_container}>
+      {/* <section className={styles.banner_container}>
         <NoticeBanner />  
-      </section>
+      </section> */}
       <section className={styles.item_main_container}>
         <section className={styles.item_condition_and_list_container}>
           <ItemCondition
