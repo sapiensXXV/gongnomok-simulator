@@ -100,7 +100,7 @@ jobs:
           host: ${{ secrets.HOST_PROD_SERVER }}
           username: ${{ secrets.PROD_SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SERVER_SSH_PORT }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             whoami
             cd gongnomok-simulator
