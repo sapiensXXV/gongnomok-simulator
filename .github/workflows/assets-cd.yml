@@ -52,7 +52,7 @@ jobs:
         with: 
           host: ${{ secrets.HOST_ASSETS_SERVER }}
           username: ${{ secrets.HOST_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_ASSETS_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             whoami
