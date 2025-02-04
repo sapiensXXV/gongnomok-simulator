@@ -2,7 +2,6 @@ package site.gongnomok.core.item;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -54,7 +53,7 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    @Cacheable(cacheNames = "items", condition = "#page == 0") // 첫페이지 일 경우에 한해서 캐시 적용
+//    @Cacheable(cacheNames = "items", condition = "#page == 0") // 첫페이지 일 경우에 한해서 캐시 적용
     public ItemListResponse findPaginationItems(
         final int page,
         final int size
