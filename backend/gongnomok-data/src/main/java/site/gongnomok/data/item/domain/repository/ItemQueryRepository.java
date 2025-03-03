@@ -13,7 +13,7 @@ public interface ItemQueryRepository {
 
     public List<ItemResponse> findItems(ItemListServiceRequest condition);
 
-    public List<ItemResponse> findAllOrderById();
+    public List<ItemResponse> findAllOrderById();   
 
     public List<ItemResponse> paginationFindItems(Pageable pageable);
 
