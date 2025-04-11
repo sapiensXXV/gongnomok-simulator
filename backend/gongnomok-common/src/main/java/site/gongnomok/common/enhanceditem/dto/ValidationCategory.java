@@ -29,7 +29,8 @@ public enum ValidationCategory {
     CLAW(7, 9), // 아대
     DAGGER(7, 9), // 단검
     WAND(7, 9), // 완드
-    STAFF(7, 9); // 스태프
+    STAFF(7, 9), // 스태프
+    PENDANT(3, 9); // 펜던트
 
     private final int upgradableCount;
     private final int singleUpgradableValue;
