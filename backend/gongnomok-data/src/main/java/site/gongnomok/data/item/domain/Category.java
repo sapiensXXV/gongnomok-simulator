@@ -29,7 +29,8 @@ public enum Category {
     CLAW, // 아대
     DAGGER, // 단검
     WAND, // 완드
-    STAFF; // 스태프
+    STAFF, // 스태프
+    PENDANT; // 펜던트
 
     public static Category from(String data) {
         if (data == null || ALL.name().equals(data.toUpperCase())) return null;
