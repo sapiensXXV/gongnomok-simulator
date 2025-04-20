@@ -56,6 +56,7 @@ export default function ItemCondition({
               <CategoryCondition category={`SHIELD`} condition={searchCondition?.category} name={`방패`} representationItemNumber={2203} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`EARRING`} condition={searchCondition.category} name={`귀고리`} representationItemNumber={2031} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`CAPE`} condition={searchCondition?.category} name={`망토`} representationItemNumber={2109} changeHandler={handleCategoryChange}/>
+              <CategoryCondition category={`PENDANT`} condition={searchCondition?.category} name={`펜던트`} representationItemNumber={2401} changeHandler={handleCategoryChange}/>
             </div>
           </section>
         </form>

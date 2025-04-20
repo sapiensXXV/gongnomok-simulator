@@ -533,6 +533,7 @@ export default function NewItem() {
                 <option value="SHIELD">방패</option>
                 <option value="EARRING">귀고리</option>
                 <option value="CAPE">망토</option>
+                <option value="PENDANT">펜던트</option>
 
               </select>
 

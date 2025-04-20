@@ -26,6 +26,7 @@ export const ITEM_CATEGORIES = [
   "SHIELD",
   "EARRING",
   "CAPE",
+  "PENDANT"
 ]
 
 export const DEFAULT_ITEM_RECORD = {
@@ -171,6 +172,7 @@ export const CATEGORY_NAME = new Map([
   ["SHIELD", "방패"],
   ["EARRING", "귀고리"],
   ["CAPE", "망토"],
+  ["PENDANT", "펜던트"]
 ]);
 
 export const ATTACK_SPEED = new Map([
