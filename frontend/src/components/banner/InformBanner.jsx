@@ -4,7 +4,7 @@ export default function InformBanner() {
   return (
     <>
       <div className={`${styles.container} ${styles.banner}`}>
-        <div>2/6 ~ 기록이 초기화되었습니다</div>
+        <div>4/23 ~ 기록이 초기화되었습니다</div>
       </div>
     </>
   )
