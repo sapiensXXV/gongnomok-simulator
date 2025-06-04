@@ -20,4 +20,4 @@ ENV DATABASE_PASSWORD=${DATABASE_PASSWORD}
 ENV HOST_REDIS_DB=${HOST_REDIS_DB}
 ENV REDIS_PASSWORD=${REDIS_PASSWORD}
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+ENTRYPOINT [ "java", "-XX:-UseContainerSupport", "-jar", "app.jar" ]
