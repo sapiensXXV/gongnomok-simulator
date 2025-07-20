@@ -30,7 +30,9 @@ dependencies {
     implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '1.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-actuator' //액츄에이터
     implementation 'io.micrometer:micrometer-registry-prometheus' //프로메테우스
-
+    implementation 'org.jolokia:jolokia-core:1.7.2' // jolokia - ELK 스택
+    implementation 'net.logstash.logback:logstash-logback-encoder:8.1' // logstash logback encoder. JSON 로그 출력을 위한 엔코더
+    
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
