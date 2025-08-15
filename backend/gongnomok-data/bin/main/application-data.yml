@@ -1,0 +1,36 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    source:
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${HOST_MASTER_DB}
+    replica1:
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${HOST_REPLICA_DB_1}
+    replica2:
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${HOST_REPLICA_DB_2}
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+#        show_sql: true
+#        format_sql: true
+#        use_sql_comments: true
+    open-in-view: false
+
+  data:
+    redis:
+      host: ${HOST_REDIS_DB}  # Redis 호스트 주소
+      port: 6379           # Redis 포트
+      username: default         # Redis 사용자 이름
+      password: ${REDIS_PASSWORD} # Redis 비밀번호, 환경 변수를 통해 관리
