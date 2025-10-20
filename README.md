@@ -16,10 +16,12 @@
 - **부하테스트** `nGrinder`
 
 ### 프로젝트 구조
-![프로젝트 구조](https://github.com/user-attachments/assets/eebc6a3a-2200-4287-a687-3885e578cfa9)
+<!-- ![프로젝트 구조](https://github.com/user-attachments/assets/eebc6a3a-2200-4287-a687-3885e578cfa9) -->
+![](./img/메이플%20주문서%20시뮬레이터%20아키텍쳐.png)
 
 - 브라우저의 요청은 로드밸런서 역할을 하고 있는 nginx 서버로 전달된다. 
-- nginx 서버는 들어오는 트래픽을 두개의 WAS로 분산시킨다. 
+- nginx 서버는 들어오는 트래픽을 WAS로 분산시킨다. 
+- WAS로 요청이 들어오기 전에 [gate-limiter](https://github.com/sapiensXXV/gate-limiter) 미들웨어에서 요청을 허용할지 검사한다.
 - 도착한 요청은 도커 컨테이너로 실행되고 있는 스프링 프레임워크 기반의 WAS 로 전달된다.
 - WAS 에서는 필요에 따라 MySQL 서버나 Redis 서버에 접근해 필요한 데이터를 읽거나 쓴다.
 - MySQL 서버는 하나의 소스 서버와 두개의 레플리카 서버로 이루어져있다.

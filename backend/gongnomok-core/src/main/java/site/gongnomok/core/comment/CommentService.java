@@ -54,8 +54,9 @@ public class CommentService {
         final String address
     ) {
 
-        checkAndUpdateCommentCount(address);
-
+        // 댓글 작성 횟수 제한 방식을 rate-limiter 방식으로 변경할 것임
+//        checkAndUpdateCommentCount(address);
+ 
         String encryptedPassword = SecurityUtil.encryptSha256(createDto.getPassword());
         boolean result = banWordFilter.checkContainBanWord(createDto.getContent());
 
@@ -76,6 +77,7 @@ public class CommentService {
 
     }
 
+    @Deprecated
     private void checkAndUpdateCommentCount(String address) {
         CommentCount commentCount = commentCountRedisRepository
             .findById(address)
