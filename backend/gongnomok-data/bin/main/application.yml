@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: gongnomok-data
+  profiles:
+    include:
+      - data
