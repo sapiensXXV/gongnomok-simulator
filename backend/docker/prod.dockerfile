@@ -1,5 +1,5 @@
 # FROM openjdk:17-oracle as builder
-FROM openjdk:17-jdk-slim AS builder
+FROM eclipse-temurin:17-jdk-jammy AS builder
 WORKDIR /backend
 
 ARG JAR_PATH=gongnomok-api.jar
