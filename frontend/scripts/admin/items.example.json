@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1482000,
+    "name": "너클아이언",
+    "level": 10,
+    "category": "KNUCKLE",
+    "jobs": ["pirate"],
+    "attackSpeed": "FAST",
+    "upgradableCount": 7,
+    "knockBackPercent": 60,
+    "stats": {
+      "phyAtk": [17, 1],
+      "phyDef": [3, 1]
+    },
+    "required": {
+      "dex": 25
+    }
+  },
+  {
+    "id": 1492000,
+    "name": "피스톨",
+    "level": 18,
+    "category": "GUN",
+    "jobs": ["pirate"],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 70,
+    "stats": {
+      "phyAtk": [29, 1]
+    },
+    "required": {
+      "dex": 35
+    }
+  }
+]

@@ -1223,6 +1223,172 @@ const shield_strength: ScrollInfo = {
   }
 }
 
+const knuckle_phy_atk: ScrollInfo = {
+  keyword: "KNUCKLE_PHY_ATK",
+  name: "너클 공격력 주문서",
+  shortcut: "너공",
+  category: "KNUCKLE",
+  upgradeValue: {
+    _10: [
+      { name: "phyAtk", value: 5 },
+    ],
+    _60: [
+      { name: "phyAtk", value: 2 },
+    ],
+    _100: [
+      { name: "phyAtk", value: 1 },
+    ]
+  }
+}
+
+const knuckle_acc: ScrollInfo = {
+  keyword: "KNUCKLE_ACC",
+  name: "너클 명중률 주문서",
+  shortcut: "너명",
+  category: "KNUCKLE",
+  upgradeValue: {
+    _10: [
+      { name: "acc", value: 5 },
+      { name: "dex", value: 3 },
+      { name: "phyAtk", value: 3 },
+    ],
+    _60: [
+      { name: "acc", value: 3 },
+      { name: "dex", value: 2 },
+      { name: "phyAtk", value: 1 },
+    ],
+    _100: [
+      { name: "acc", value: 1 },
+    ]
+  }
+}
+
+const gun_phy_atk: ScrollInfo = {
+  keyword: "GUN_PHY_ATK",
+  name: "총 공격력 주문서",
+  shortcut: "총공",
+  category: "GUN",
+  upgradeValue: {
+    _10: [
+      { name: "phyAtk", value: 5 },
+    ],
+    _60: [
+      { name: "phyAtk", value: 2 },
+    ],
+    _100: [
+      { name: "phyAtk", value: 1 },
+    ]
+  }
+}
+
+const pirate_overall_swift: ScrollInfo = {
+  keyword: "PIRATE_OVERALL_SWIFT",
+  name: "해적 전신 갑옷 민첩성 주문서",
+  shortcut: "해전민",
+  category: "PIRATE_OVERALL",
+  upgradeValue: {
+    _10: [
+      { name: "dex", value: 5 },
+    ],
+    _60: [
+      { name: "dex", value: 2 },
+    ],
+    _100: [
+      { name: "dex", value: 1 },
+    ]
+  }
+}
+
+const pirate_overall_strength: ScrollInfo = {
+  keyword: "PIRATE_OVERALL_STRENGTH",
+  name: "해적 전신 갑옷 힘 주문서",
+  shortcut: "해전힘",
+  category: "PIRATE_OVERALL",
+  upgradeValue: {
+    _10: [
+      { name: "str", value: 5 },
+    ],
+    _60: [
+      { name: "str", value: 2 },
+    ],
+    _100: [
+      { name: "str", value: 1 },
+    ]
+  }
+}
+
+const pirate_top_swift: ScrollInfo = {
+  keyword: "PIRATE_TOP_SWIFT",
+  name: "해적 상의 민첩성 주문서",
+  shortcut: "해상민",
+  category: "PIRATE_TOP",
+  upgradeValue: {
+    _10: [
+      { name: "dex", value: 5 },
+    ],
+    _60: [
+      { name: "dex", value: 2 },
+    ],
+    _100: [
+      { name: "dex", value: 1 },
+    ]
+  }
+}
+
+const pirate_top_strength: ScrollInfo = {
+  keyword: "PIRATE_TOP_STRENGTH",
+  name: "해적 상의 힘 주문서",
+  shortcut: "해상힘",
+  category: "PIRATE_TOP",
+  upgradeValue: {
+    _10: [
+      { name: "str", value: 5 },
+    ],
+    _60: [
+      { name: "str", value: 2 },
+    ],
+    _100: [
+      { name: "str", value: 1 },
+    ]
+  }
+}
+
+const pirate_bottom_swift: ScrollInfo = {
+  keyword: "PIRATE_BOTTOM_SWIFT",
+  name: "해적 하의 민첩성 주문서",
+  shortcut: "해하민",
+  category: "PIRATE_BOTTOM",
+  upgradeValue: {
+    _10: [
+      { name: "dex", value: 5 },
+    ],
+    _60: [
+      { name: "dex", value: 2 },
+    ],
+    _100: [
+      { name: "dex", value: 1 },
+    ]
+  }
+}
+
+const pirate_bottom_strength: ScrollInfo = {
+  keyword: "PIRATE_BOTTOM_STRENGTH",
+  name: "해적 하의 힘 주문서",
+  shortcut: "해하힘",
+  category: "PIRATE_BOTTOM",
+  upgradeValue: {
+    _10: [
+      { name: "str", value: 5 },
+    ],
+    _60: [
+      { name: "str", value: 2 },
+    ],
+    _100: [
+      { name: "str", value: 1 },
+    ]
+  }
+}
+
 export const SCROLL_NAME_LIST: string[] = [
   "GLOVES_PHY_ATK",
   "GLOVES_SWIFT",
@@ -1304,6 +1470,19 @@ export const SCROLL_NAME_LIST: string[] = [
   "SHIELD_HEALTH",
   "SHIELD_LUCKY",
   "SHIELD_STRENGTH",
+
+  "KNUCKLE_PHY_ATK",
+  "KNUCKLE_ACC",
+  "GUN_PHY_ATK",
+
+  "PIRATE_OVERALL_SWIFT",
+  "PIRATE_OVERALL_STRENGTH",
+
+  "PIRATE_TOP_SWIFT",
+  "PIRATE_TOP_STRENGTH",
+
+  "PIRATE_BOTTOM_SWIFT",
+  "PIRATE_BOTTOM_STRENGTH",
 ]
 
 
@@ -1389,5 +1568,17 @@ export const SCROLL_INFO = new Map<string, ScrollInfo>([
   ["SHIELD_HEALTH", shield_health],
   ["SHIELD_STRENGTH", shield_strength],
   ["SHIELD_LUCKY", shield_lucky],
-  
+
+  ["KNUCKLE_PHY_ATK", knuckle_phy_atk],
+  ["KNUCKLE_ACC", knuckle_acc],
+  ["GUN_PHY_ATK", gun_phy_atk],
+
+  ["PIRATE_OVERALL_SWIFT", pirate_overall_swift],
+  ["PIRATE_OVERALL_STRENGTH", pirate_overall_strength],
+
+  ["PIRATE_TOP_SWIFT", pirate_top_swift],
+  ["PIRATE_TOP_STRENGTH", pirate_top_strength],
+
+  ["PIRATE_BOTTOM_SWIFT", pirate_bottom_swift],
+  ["PIRATE_BOTTOM_STRENGTH", pirate_bottom_strength],
 ])

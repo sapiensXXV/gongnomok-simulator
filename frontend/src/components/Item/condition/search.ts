@@ -8,6 +8,7 @@ export interface SearchCondition {
     bowman: boolean
     magician: boolean
     thief: boolean
+    pirate: boolean
   }
   minLevel: number
   category: ItemCategory | 'ALL'
@@ -20,6 +21,7 @@ export const INITIAL_SEARCH_CONDITION: SearchCondition = {
     bowman: false,
     magician: false,
     thief: false,
+    pirate: false,
   },
   minLevel: 0,
   category: 'ALL',

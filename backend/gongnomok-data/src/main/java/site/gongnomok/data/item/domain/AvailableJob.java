@@ -20,6 +20,7 @@ public class AvailableJob {
     private boolean bowman;
     private boolean magician;
     private boolean thief;
+    private boolean pirate;
 
     public static AvailableJob from(AvailableJobDto dto) {
         return AvailableJob.builder()
@@ -28,6 +29,7 @@ public class AvailableJob {
             .bowman(dto.isBowman())
             .magician(dto.isMagician())
             .thief(dto.isThief())
+            .pirate(dto.isPirate())
             .build();
     }
 
@@ -38,6 +40,7 @@ public class AvailableJob {
             .bowman(isBowman())
             .magician(isMagician())
             .thief(isThief())
+            .pirate(isPirate())
             .build();
     }
 
@@ -48,6 +51,7 @@ public class AvailableJob {
             .bowman(false)
             .magician(false)
             .thief(false)
+            .pirate(false)
             .build();
     }
 

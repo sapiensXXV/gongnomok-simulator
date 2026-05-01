@@ -13,6 +13,9 @@ public enum Category {
     OVERALL, // 전신
     TOP, // 상의
     BOTTOM, // 하의
+    PIRATE_OVERALL, // 해적 전신
+    PIRATE_TOP, // 해적 상의
+    PIRATE_BOTTOM, // 해적 하의
     SHIELD, // 방패
     EARRING, // 귀고리
     CAPE, // 망토
@@ -28,6 +31,8 @@ public enum Category {
     CROSSBOW, // 석궁
     CLAW, // 아대
     DAGGER, // 단검
+    KNUCKLE, // 너클
+    GUN, // 총
     WAND, // 완드
     STAFF, // 스태프
     PENDANT; // 펜던트

@@ -11,6 +11,7 @@ public class JobSearchDto {
     private boolean bowman;
     private boolean magician;
     private boolean thief;
+    private boolean pirate;
 
     public boolean isWarrior() {
         return warrior;
@@ -28,15 +29,19 @@ public class JobSearchDto {
         return thief;
     }
 
+    public boolean isPirate() {
+        return pirate;
+    }
+
     public boolean isAll() {
-        return !isWarrior() && !isBowman() && !isMagician() && !isThief();
+        return !isWarrior() && !isBowman() && !isMagician() && !isThief() && !isPirate();
     }
 
     public static JobSearchDto allFalse() {
-        return new JobSearchDto(false, false, false, false);
+        return new JobSearchDto(false, false, false, false, false);
     }
 
     public static JobSearchDto allTrue() {
-        return new JobSearchDto(true, true, true, true);
+        return new JobSearchDto(true, true, true, true, true);
     }
 }

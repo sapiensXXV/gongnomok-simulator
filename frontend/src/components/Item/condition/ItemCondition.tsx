@@ -24,6 +24,7 @@ export default function ItemCondition({
               <JobCondition isSelected={searchCondition?.jobs?.bowman} jobName={`궁수`} jobNameEng={`bowman`} changeHandler={handleJobsChange} />
               <JobCondition isSelected={searchCondition?.jobs?.magician} jobName={`마법사`} jobNameEng={`magician`} changeHandler={handleJobsChange} />
               <JobCondition isSelected={searchCondition?.jobs?.thief} jobName={`도적`} jobNameEng={`thief`} changeHandler={handleJobsChange} />
+              <JobCondition isSelected={searchCondition?.jobs?.pirate} jobName={`해적`} jobNameEng={`pirate`} changeHandler={handleJobsChange} />
             </div>
           </section>
 
@@ -44,6 +45,8 @@ export default function ItemCondition({
               <CategoryCondition category={`STAFF`} condition={searchCondition?.category} name={`스태프`} representationItemNumber={181} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`DAGGER`} condition={searchCondition?.category} name={`단검`} representationItemNumber={278} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`CLAW`} condition={searchCondition?.category} name={`아대`} representationItemNumber={254} changeHandler={handleCategoryChange}/>
+              <CategoryCondition category={`KNUCKLE`} condition={searchCondition?.category} name={`너클`} representationItemNumber={1482000} changeHandler={handleCategoryChange}/>
+              <CategoryCondition category={`GUN`} condition={searchCondition?.category} name={`총`} representationItemNumber={1492000} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`HAT`} condition={searchCondition?.category} name={`모자`} representationItemNumber={330} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`GLOVES`} condition={searchCondition?.category} name={`장갑`} representationItemNumber={2060} changeHandler={handleCategoryChange}/>
               <CategoryCondition category={`SHOES`} condition={searchCondition?.category} name={`신발`} representationItemNumber={847} changeHandler={handleCategoryChange}/>

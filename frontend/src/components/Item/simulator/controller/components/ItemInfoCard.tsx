@@ -162,7 +162,7 @@ export default function ItemInfoCard({
           <span className={info?.availableJob.magician || info?.availableJob.common ? '' : 'red'}>마법사</span>
           <span className={info?.availableJob.bowman || info?.availableJob.common ? '' : 'red'}>궁수</span>
           <span className={info?.availableJob.thief || info?.availableJob.common ? '' : 'red'}>도적</span>
-          <span className={info?.availableJob.common ? '' : 'red'}>해적</span>
+          <span className={info?.availableJob.pirate || info?.availableJob.common ? '' : 'red'}>해적</span>
         </div>
 
         <hr />

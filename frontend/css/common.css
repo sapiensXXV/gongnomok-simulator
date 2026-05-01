@@ -409,6 +409,11 @@
   border: none;
   border-radius: 6px;
 
+  transition: transform 80ms ease-out, background-color 120ms ease-out;
+}
+
+.job-select-button:active {
+  transform: scale(0.92);
 }
 
 .job-select-button span {
@@ -483,6 +488,12 @@
   /* background-color: #FFFFFF; */
   border: none;
   border-radius: 6px;
+
+  transition: transform 80ms ease-out, background-color 120ms ease-out;
+}
+
+.category-select-button:active {
+  transform: scale(0.92);
 }
 
 .category-select-button:hover {

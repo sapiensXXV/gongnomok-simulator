@@ -219,6 +219,10 @@ public class ItemQueryRepositoryImpl extends QuerydslRepositorySupport implement
             builder.or(item.availableJob.thief.isTrue());
         }
 
+        if (jobs.isPirate()) {
+            builder.or(item.availableJob.pirate.isTrue());
+        }
+
         return builder;
     }
 

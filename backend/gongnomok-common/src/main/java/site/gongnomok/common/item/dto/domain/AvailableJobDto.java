@@ -14,5 +14,6 @@ public class AvailableJobDto {
     private boolean bowman;
     private boolean magician;
     private boolean thief;
+    private boolean pirate;
 
 }

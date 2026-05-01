@@ -1,0 +1,3054 @@
+[
+  {
+    "id": 1482000,
+    "name": "스틸 너클",
+    "level": 10,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 18
+    }
+  },
+  {
+    "id": 1482001,
+    "name": "레더 암즈",
+    "level": 15,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 22
+    }
+  },
+  {
+    "id": 1482002,
+    "name": "더블테일 너클",
+    "level": 20,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 26
+    }
+  },
+  {
+    "id": 1482003,
+    "name": "노만 그립",
+    "level": 25,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 30
+    }
+  },
+  {
+    "id": 1482004,
+    "name": "프라임 핸즈",
+    "level": 30,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 34
+    }
+  },
+  {
+    "id": 1482005,
+    "name": "실버 메이든",
+    "level": 35,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 38
+    }
+  },
+  {
+    "id": 1482006,
+    "name": "네오자드",
+    "level": 40,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 42
+    }
+  },
+  {
+    "id": 1482007,
+    "name": "데빌클로",
+    "level": 50,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 50
+    }
+  },
+  {
+    "id": 1482008,
+    "name": "세라핌즈",
+    "level": 60,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 58
+    }
+  },
+  {
+    "id": 1482009,
+    "name": "베이아 크래쉬",
+    "level": 70,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 62
+    }
+  },
+  {
+    "id": 1482010,
+    "name": "스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66
+    }
+  },
+  {
+    "id": 1482011,
+    "name": "백혈귀",
+    "level": 90,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 70
+    }
+  },
+  {
+    "id": 1482012,
+    "name": "킹 센트",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    }
+  },
+  {
+    "id": 1482013,
+    "name": "용아주조",
+    "level": 110,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 78
+    }
+  },
+  {
+    "id": 1482014,
+    "name": "초보 해적의 너클",
+    "level": 10,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 20
+    }
+  },
+  {
+    "id": 1482020,
+    "name": "메이플 너클",
+    "level": 35,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 38,
+      "acc": 10
+    }
+  },
+  {
+    "id": 1482021,
+    "name": "메이플 스톰 핑거",
+    "level": 43,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 3,
+      "phyAtk": 46,
+      "acc": 20
+    }
+  },
+  {
+    "id": 1482022,
+    "name": "메이플 골든 크로",
+    "level": 64,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "phyAtk": 60,
+      "acc": 30,
+      "hp": 100
+    }
+  },
+  {
+    "id": 1482023,
+    "name": "타임리스 에퀴녹스",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 84
+    }
+  },
+  {
+    "id": 1482024,
+    "name": "리버스 에퀴녹스",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1482025,
+    "name": "분홍색 꽃무늬 튜브",
+    "level": 30,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 3,
+      "dex": 3,
+      "intel": 3,
+      "luk": 3,
+      "phyAtk": 67,
+      "acc": 5
+    }
+  },
+  {
+    "id": 1482031,
+    "name": "발록의 스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66
+    }
+  },
+  {
+    "id": 1482032,
+    "name": "발록의 백혈귀",
+    "level": 90,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 70
+    }
+  },
+  {
+    "id": 1482037,
+    "name": "페페킹의 실버 메이든",
+    "level": 35,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 42
+    }
+  },
+  {
+    "id": 1482051,
+    "name": "크루시오",
+    "level": 105,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyAtk": 76,
+      "acc": 1
+    }
+  },
+  {
+    "id": 1482052,
+    "name": "네오 스틸르노",
+    "level": 85,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 68
+    }
+  },
+  {
+    "id": 1482063,
+    "name": "해적의 더블테일 너클",
+    "level": 10,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 2,
+      "phyAtk": 26
+    }
+  },
+  {
+    "id": 1482064,
+    "name": "모험가의 네오자드",
+    "level": 30,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 4,
+      "phyAtk": 42
+    }
+  },
+  {
+    "id": 1482065,
+    "name": "뽀삐발 너클",
+    "level": 10,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 40
+    }
+  },
+  {
+    "id": 1482073,
+    "name": "메이플 파이롭 너클",
+    "level": 77,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "phyAtk": 65,
+      "acc": 40,
+      "hp": 150
+    }
+  },
+  {
+    "id": 1482080,
+    "name": "코라 반 레온 클로",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 88
+    }
+  },
+  {
+    "id": 1482081,
+    "name": "여제의 쓸만한 세라핌즈",
+    "level": 60,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 58
+    }
+  },
+  {
+    "id": 1482082,
+    "name": "여제의 훌륭한 스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66
+    }
+  },
+  {
+    "id": 1482083,
+    "name": "크세르크세스의 베이아 크래쉬",
+    "level": 70,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 65
+    }
+  },
+  {
+    "id": 1482084,
+    "name": "샤크투스 와일드탈론",
+    "level": 140,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 35,
+      "dex": 20,
+      "phyAtk": 102,
+      "acc": 100
+    },
+    "required": {
+      "str": 420
+    }
+  },
+  {
+    "id": 1482085,
+    "name": "베파르 블러디 핸즈",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 4,
+      "phyAtk": 89,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1482088,
+    "name": "광포한 해적의 너클",
+    "level": 60,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 62
+    }
+  },
+  {
+    "id": 1482089,
+    "name": "분노한 해적의 너클",
+    "level": 90,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 75
+    }
+  },
+  {
+    "id": 1482090,
+    "name": "카오스 프라임 핸즈",
+    "level": 35,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 58
+    }
+  },
+  {
+    "id": 1482092,
+    "name": "카오스 백혈귀",
+    "level": 95,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1482098,
+    "name": "메이플 베릴 퀘이커",
+    "level": 45,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 52
+    }
+  },
+  {
+    "id": 1482099,
+    "name": "메이플 래티넘 퀘이커",
+    "level": 70,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 64
+    }
+  },
+  {
+    "id": 1482102,
+    "name": "어비스 에퀴녹스",
+    "level": 125,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 9,
+      "dex": 4,
+      "phyAtk": 86
+    }
+  },
+  {
+    "id": 1482103,
+    "name": "피어리스 에퀴녹스",
+    "level": 125,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 11,
+      "dex": 4,
+      "phyAtk": 88
+    }
+  },
+  {
+    "id": 1482104,
+    "name": "메르 반 레온 클로",
+    "level": 125,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 6,
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1482105,
+    "name": "드래고닉 크루시오",
+    "level": 110,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 5,
+      "phyAtk": 84,
+      "acc": 30,
+      "hp": 80
+    }
+  },
+  {
+    "id": 1482106,
+    "name": "레전드 스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 69
+    }
+  },
+  {
+    "id": 1482107,
+    "name": "레전드 백혈귀",
+    "level": 90,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    }
+  },
+  {
+    "id": 1482108,
+    "name": "레전드 킹 센트",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 78
+    }
+  },
+  {
+    "id": 1482109,
+    "name": "레전드 용아주조",
+    "level": 110,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1482117,
+    "name": "데빌 클로",
+    "level": 50,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 50
+    }
+  },
+  {
+    "id": 1482120,
+    "name": "레전드 메이플 퀘이커",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 67
+    }
+  },
+  {
+    "id": 1482124,
+    "name": "<저스티스> 베이아 크래쉬",
+    "level": 70,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 65
+    }
+  },
+  {
+    "id": 1482125,
+    "name": "<저스티스> 스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 69
+    }
+  },
+  {
+    "id": 1482126,
+    "name": "<저스티스> 백혈귀",
+    "level": 90,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    }
+  },
+  {
+    "id": 1482127,
+    "name": "<저스티스> 킹 센트",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 78
+    }
+  },
+  {
+    "id": 1482128,
+    "name": "<저스티스> 용아주조",
+    "level": 110,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1482129,
+    "name": "<저스티스> 메이플 퀘이커",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 87
+    }
+  },
+  {
+    "id": 1482135,
+    "name": "엠퍼러스 울프",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 4,
+      "phyAtk": 89,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1482136,
+    "name": "네크로 울프",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1482138,
+    "name": "메이플 이올렛 블러디 클로",
+    "level": 79,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 9,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 69
+    }
+  },
+  {
+    "id": 1482140,
+    "name": "프리미엄 메이플 이올렛 블러디 클로",
+    "level": 99,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 9,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 80
+    }
+  },
+  {
+    "id": 1482141,
+    "name": "그랜드 베파르  울프",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 4,
+      "phyAtk": 94,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1482151,
+    "name": "러브리스 에퀴녹스",
+    "level": 135,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 38,
+      "dex": 22,
+      "phyAtk": 109,
+      "acc": 100
+    },
+    "required": {
+      "str": 400
+    }
+  },
+  {
+    "id": 1482152,
+    "name": "템페스트 블러디 클로",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 79
+    }
+  },
+  {
+    "id": 1482158,
+    "name": "브로드 베이아크래쉬",
+    "level": 75,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66,
+      "acc": 10,
+      "hp": 100,
+      "mp": 100
+    }
+  },
+  {
+    "id": 1482160,
+    "name": "스텔라 블러디 클로",
+    "level": 75,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 80
+    }
+  },
+  {
+    "id": 1482161,
+    "name": "얼티밋 블러디 클로",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 79
+    }
+  },
+  {
+    "id": 1482162,
+    "name": "프로스티 스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyAtk": 72,
+      "acc": 5
+    }
+  },
+  {
+    "id": 1482165,
+    "name": "임페리얼 울프",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 4,
+      "phyAtk": 89,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1482167,
+    "name": "요정의 프로스티 스틸르노",
+    "level": 80,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyAtk": 72,
+      "acc": 5
+    }
+  },
+  {
+    "id": 1482168,
+    "name": "파프니르 펜리르탈론",
+    "level": 150,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 40,
+      "dex": 40,
+      "phyAtk": 128,
+      "acc": 120
+    },
+    "required": {
+      "str": 450
+    }
+  },
+  {
+    "id": 1482169,
+    "name": "스칼렛 그리폰클로",
+    "level": 145,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 35,
+      "dex": 20,
+      "phyAtk": 112,
+      "acc": 100
+    },
+    "required": {
+      "str": 420
+    }
+  },
+  {
+    "id": 1482170,
+    "name": "10주년 블랙 그립",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 92
+    }
+  },
+  {
+    "id": 1482171,
+    "name": "10주년 화이트 그립",
+    "level": 30,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 72
+    }
+  },
+  {
+    "id": 1482173,
+    "name": "혼돈의 포션",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 15,
+      "phyAtk": 83
+    }
+  },
+  {
+    "id": 1482177,
+    "name": "마이스터 그리폰클로",
+    "level": 145,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 40,
+      "dex": 25,
+      "phyAtk": 118,
+      "acc": 100
+    },
+    "required": {
+      "str": 420
+    }
+  },
+  {
+    "id": 1482178,
+    "name": "행복 화이트 그립",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 35,
+      "phyAtk": 84
+    }
+  },
+  {
+    "id": 1482179,
+    "name": "레볼루션 그립",
+    "level": 105,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 5,
+      "intel": 5,
+      "luk": 5,
+      "phyAtk": 97,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1482181,
+    "name": "선구자의 너클",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 92
+    }
+  },
+  {
+    "id": 1482182,
+    "name": "승리의 날개",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 12,
+      "phyAtk": 98
+    }
+  },
+  {
+    "id": 1482183,
+    "name": "레드 너클",
+    "level": 75,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 64
+    }
+  },
+  {
+    "id": 1482184,
+    "name": "꽃분홍 튜브",
+    "level": 50,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 2,
+      "dex": 2,
+      "intel": 2,
+      "luk": 2,
+      "phyAtk": 67,
+      "acc": 7
+    }
+  },
+  {
+    "id": 1482185,
+    "name": "특제 프라임 핸즈",
+    "level": 10,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 3,
+      "dex": 3,
+      "intel": 3,
+      "luk": 3,
+      "phyAtk": 38
+    }
+  },
+  {
+    "id": 1482187,
+    "name": "특제 백혈귀",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 10,
+      "dex": 10,
+      "intel": 10,
+      "luk": 10,
+      "phyAtk": 91
+    }
+  },
+  {
+    "id": 1482191,
+    "name": "녹슨 스틸 너클",
+    "level": 0,
+    "category": "KNUCKLE",
+    "jobs": [
+      "common"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 15
+    }
+  },
+  {
+    "id": 1482196,
+    "name": "11주년 세인트 그립",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 3,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 46
+    }
+  },
+  {
+    "id": 1482199,
+    "name": "자쿰의 포이즈닉 너클",
+    "level": 110,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 80
+    }
+  },
+  {
+    "id": 1482200,
+    "name": "브히제르 너클",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1482201,
+    "name": "쟈이힌 클로",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 86
+    }
+  },
+  {
+    "id": 1482202,
+    "name": "우트가르드 클로",
+    "level": 140,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1482203,
+    "name": "로얄 반 레온 클로",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 6,
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1482216,
+    "name": "앱솔랩스 블로우너클",
+    "level": 160,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 60,
+      "dex": 60,
+      "phyAtk": 154,
+      "acc": 140
+    },
+    "required": {
+      "str": 480
+    }
+  },
+  {
+    "id": 1482217,
+    "name": "블랙 그립",
+    "level": 100,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 92
+    }
+  },
+  {
+    "id": 1482218,
+    "name": "메이플 트레져 그립",
+    "level": 120,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 100
+    }
+  },
+  {
+    "id": 1482221,
+    "name": "아케인셰이드 클로",
+    "level": 200,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 100,
+      "dex": 100,
+      "phyAtk": 221
+    },
+    "required": {
+      "str": 600
+    }
+  },
+  {
+    "id": 1482223,
+    "name": "특제 샤크투스 와일드탈론",
+    "level": 130,
+    "category": "KNUCKLE",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 35,
+      "dex": 20,
+      "phyAtk": 102,
+      "acc": 100
+    }
+  },
+  {
+    "id": 1492000,
+    "name": "피스톨",
+    "level": 10,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 13
+    }
+  },
+  {
+    "id": 1492001,
+    "name": "델린져",
+    "level": 15,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 18
+    }
+  },
+  {
+    "id": 1492002,
+    "name": "개런드 피스톨",
+    "level": 20,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 22
+    }
+  },
+  {
+    "id": 1492003,
+    "name": "골든훅",
+    "level": 25,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 27
+    }
+  },
+  {
+    "id": 1492004,
+    "name": "콜드마인드",
+    "level": 30,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 31
+    }
+  },
+  {
+    "id": 1492005,
+    "name": "슈팅 스타",
+    "level": 35,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 36
+    }
+  },
+  {
+    "id": 1492006,
+    "name": "루나 슈터",
+    "level": 40,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 40
+    }
+  },
+  {
+    "id": 1492007,
+    "name": "라스펠트건",
+    "level": 50,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 49
+    }
+  },
+  {
+    "id": 1492008,
+    "name": "버닝헬",
+    "level": 60,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 58
+    }
+  },
+  {
+    "id": 1492009,
+    "name": "어비스 슈터",
+    "level": 70,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 62
+    }
+  },
+  {
+    "id": 1492010,
+    "name": "인피티니",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66
+    }
+  },
+  {
+    "id": 1492011,
+    "name": "피스메이커",
+    "level": 90,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 70
+    }
+  },
+  {
+    "id": 1492012,
+    "name": "콘체르토",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    }
+  },
+  {
+    "id": 1492013,
+    "name": "드래곤 세인트",
+    "level": 110,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 78
+    }
+  },
+  {
+    "id": 1492014,
+    "name": "초보 해적의 건",
+    "level": 10,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 16
+    }
+  },
+  {
+    "id": 1492023,
+    "name": "타임리스 블라인드니스",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 84
+    }
+  },
+  {
+    "id": 1492024,
+    "name": "템페스트",
+    "level": 105,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyAtk": 76,
+      "acc": 1
+    }
+  },
+  {
+    "id": 1492025,
+    "name": "리버스 블라인드니스",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1492035,
+    "name": "발록의 인피티니",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66
+    }
+  },
+  {
+    "id": 1492036,
+    "name": "발록의 피스메이커",
+    "level": 90,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 70
+    }
+  },
+  {
+    "id": 1492037,
+    "name": "베인 슈터",
+    "level": 58,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "FAST",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 6,
+      "phyAtk": 61
+    }
+  },
+  {
+    "id": 1492038,
+    "name": "페페킹의 슈팅스타",
+    "level": 35,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 40
+    }
+  },
+  {
+    "id": 1492063,
+    "name": "해적의 개런드 피스톨",
+    "level": 10,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 2,
+      "phyAtk": 22
+    }
+  },
+  {
+    "id": 1492064,
+    "name": "모험가의 루나 슈터",
+    "level": 30,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 5,
+      "phyAtk": 40,
+      "avo": 30
+    }
+  },
+  {
+    "id": 1492065,
+    "name": "데저트 이글",
+    "level": 10,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 38
+    }
+  },
+  {
+    "id": 1492073,
+    "name": "메이플 파이롭 슈터",
+    "level": 77,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 6,
+      "phyAtk": 65,
+      "avo": 30,
+      "hp": 150
+    }
+  },
+  {
+    "id": 1492080,
+    "name": "레볼루션 건",
+    "level": 30,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 33
+    }
+  },
+  {
+    "id": 1492081,
+    "name": "코라 반 레온 피스톨",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 86
+    }
+  },
+  {
+    "id": 1492082,
+    "name": "여제의 쓸만한 버닝헬",
+    "level": 60,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 58
+    }
+  },
+  {
+    "id": 1492083,
+    "name": "여제의 훌륭한 인피티니",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66
+    }
+  },
+  {
+    "id": 1492084,
+    "name": "크세르크세스의 어비스 슈터",
+    "level": 70,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 65
+    }
+  },
+  {
+    "id": 1492085,
+    "name": "샤크투스 샤프슈터",
+    "level": 140,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 20,
+      "dex": 35,
+      "phyAtk": 100,
+      "acc": 100
+    },
+    "required": {
+      "dex": 420
+    }
+  },
+  {
+    "id": 1492086,
+    "name": "베파르 블러디 이글",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 8,
+      "phyAtk": 87,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1492088,
+    "name": "카오스 콜드마인드",
+    "level": 35,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 58
+    }
+  },
+  {
+    "id": 1492089,
+    "name": "카오스 버닝헬",
+    "level": 65,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 70
+    }
+  },
+  {
+    "id": 1492090,
+    "name": "카오스 피스메이커",
+    "level": 95,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1492097,
+    "name": "메이플 베릴 윈체스터",
+    "level": 45,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 50
+    }
+  },
+  {
+    "id": 1492098,
+    "name": "메이플 래티넘 윈체스터",
+    "level": 70,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 64
+    }
+  },
+  {
+    "id": 1492101,
+    "name": "어비스 블라인드니스",
+    "level": 125,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 9,
+      "phyAtk": 86
+    }
+  },
+  {
+    "id": 1492102,
+    "name": "피어리스 블라인드니스",
+    "level": 125,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 11,
+      "phyAtk": 88
+    }
+  },
+  {
+    "id": 1492103,
+    "name": "메르 반 레온 피스톨",
+    "level": 125,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 6,
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1492104,
+    "name": "드래고닉 템페스트",
+    "level": 110,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 5,
+      "phyAtk": 84,
+      "acc": 30,
+      "hp": 50,
+      "mp": 20
+    }
+  },
+  {
+    "id": 1492105,
+    "name": "레전드 인피티니",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 69
+    }
+  },
+  {
+    "id": 1492106,
+    "name": "레전드 피스메이커",
+    "level": 90,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    }
+  },
+  {
+    "id": 1492107,
+    "name": "레전드 콘체르토",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 78
+    }
+  },
+  {
+    "id": 1492108,
+    "name": "레전드 드래곤 세인트",
+    "level": 110,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1492114,
+    "name": "슈팅스타",
+    "level": 35,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 36
+    }
+  },
+  {
+    "id": 1492119,
+    "name": "레전드 메이플 윈체스터",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 67
+    }
+  },
+  {
+    "id": 1492120,
+    "name": "유니언 슈터",
+    "level": 75,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 70
+    }
+  },
+  {
+    "id": 1492124,
+    "name": "<저스티스> 어비스 슈터",
+    "level": 70,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 65
+    }
+  },
+  {
+    "id": 1492125,
+    "name": "<저스티스> 인피티니",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 69
+    }
+  },
+  {
+    "id": 1492126,
+    "name": "<저스티스> 피스메이커",
+    "level": 90,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    }
+  },
+  {
+    "id": 1492127,
+    "name": "<저스티스> 콘체르토",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 78
+    }
+  },
+  {
+    "id": 1492128,
+    "name": "<저스티스> 드래곤 세인트",
+    "level": 110,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1492129,
+    "name": "<저스티스> 메이플 윈체스터",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 85
+    }
+  },
+  {
+    "id": 1492135,
+    "name": "엠퍼러스 이글",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 8,
+      "phyAtk": 87,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1492136,
+    "name": "네크로 이글",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1492138,
+    "name": "메이플 이올렛 퀸즈핑거",
+    "level": 79,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 9,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 69
+    }
+  },
+  {
+    "id": 1492152,
+    "name": "프리미엄 메이플 이올렛 퀸즈핑거",
+    "level": 99,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 9,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 80
+    }
+  },
+  {
+    "id": 1492153,
+    "name": "그랜드 베파르 이글",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 8,
+      "phyAtk": 92,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1492161,
+    "name": "레지스탕스 건",
+    "level": 75,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 74
+    },
+    "required": {
+      "dex": 220
+    }
+  },
+  {
+    "id": 1492162,
+    "name": "러브리스 블라인드니스",
+    "level": 135,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 22,
+      "dex": 38,
+      "phyAtk": 107,
+      "acc": 100
+    },
+    "required": {
+      "dex": 400
+    }
+  },
+  {
+    "id": 1492163,
+    "name": "템페스트 퀸즈핑거",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 79
+    }
+  },
+  {
+    "id": 1492169,
+    "name": "브로드 어비스 슈터",
+    "level": 75,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 66,
+      "acc": 10,
+      "hp": 100,
+      "mp": 100
+    }
+  },
+  {
+    "id": 1492171,
+    "name": "스텔라 퀸즈 핑거",
+    "level": 75,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 80
+    }
+  },
+  {
+    "id": 1492172,
+    "name": "얼티밋 퀸즈핑거",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 79
+    }
+  },
+  {
+    "id": 1492173,
+    "name": "프로스티 인피티니",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 1,
+      "phyAtk": 72,
+      "acc": 5
+    }
+  },
+  {
+    "id": 1492176,
+    "name": "임페리얼 이글",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 8,
+      "phyAtk": 87,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1492178,
+    "name": "요정의 프로스티 인피니티",
+    "level": 80,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 1,
+      "phyAtk": 72,
+      "acc": 5
+    }
+  },
+  {
+    "id": 1492179,
+    "name": "파프니르 첼리스카",
+    "level": 150,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 40,
+      "dex": 40,
+      "phyAtk": 125,
+      "acc": 120
+    },
+    "required": {
+      "dex": 450
+    }
+  },
+  {
+    "id": 1492180,
+    "name": "스칼렛 인피니티",
+    "level": 145,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 20,
+      "dex": 35,
+      "phyAtk": 110,
+      "acc": 100
+    },
+    "required": {
+      "dex": 420
+    }
+  },
+  {
+    "id": 1492181,
+    "name": "10주년 블랙 슈터",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1492182,
+    "name": "10주년 화이트 슈터",
+    "level": 30,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 72
+    }
+  },
+  {
+    "id": 1492188,
+    "name": "마이스터 인피니티",
+    "level": 145,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 25,
+      "dex": 40,
+      "phyAtk": 116,
+      "acc": 100
+    },
+    "required": {
+      "dex": 420
+    }
+  },
+  {
+    "id": 1492189,
+    "name": "행복 화이트 슈터",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 35,
+      "phyAtk": 84
+    }
+  },
+  {
+    "id": 1492190,
+    "name": "레볼루션 슈팅스타",
+    "level": 105,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 5,
+      "intel": 5,
+      "luk": 5,
+      "phyAtk": 95,
+      "acc": 50
+    }
+  },
+  {
+    "id": 1492192,
+    "name": "선구자의 피스톨",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1492194,
+    "name": "레드 건",
+    "level": 75,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 64
+    }
+  },
+  {
+    "id": 1492196,
+    "name": "특제 콜드마인드",
+    "level": 10,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 3,
+      "dex": 3,
+      "intel": 3,
+      "luk": 3,
+      "phyAtk": 35
+    }
+  },
+  {
+    "id": 1492197,
+    "name": "특제 버닝헬",
+    "level": 50,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 5,
+      "intel": 5,
+      "luk": 5,
+      "phyAtk": 73
+    }
+  },
+  {
+    "id": 1492198,
+    "name": "특제 피스메이커",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 10,
+      "dex": 10,
+      "intel": 10,
+      "luk": 10,
+      "phyAtk": 91
+    }
+  },
+  {
+    "id": 1492205,
+    "name": "11주년 세인트 슈터",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 3,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 50
+    }
+  },
+  {
+    "id": 1492209,
+    "name": "자쿰의 포이즈닉 건",
+    "level": 110,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 80
+    }
+  },
+  {
+    "id": 1492210,
+    "name": "브히제르 건",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 82
+    }
+  },
+  {
+    "id": 1492211,
+    "name": "쟈이힌 피스톨",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 86
+    }
+  },
+  {
+    "id": 1492212,
+    "name": "우트가르드 피스톨",
+    "level": 140,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1492213,
+    "name": "로얄 반 레온 피스톨",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "dex": 6,
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1492231,
+    "name": "앱솔랩스 포인팅건",
+    "level": 160,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 60,
+      "dex": 60,
+      "phyAtk": 150,
+      "acc": 140
+    },
+    "required": {
+      "dex": 480
+    }
+  },
+  {
+    "id": 1492232,
+    "name": "블랙 슈터",
+    "level": 100,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 90
+    }
+  },
+  {
+    "id": 1492233,
+    "name": "메이플 트레져 슈터",
+    "level": 120,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyAtk": 98
+    }
+  },
+  {
+    "id": 1492235,
+    "name": "아케인셰이드 피스톨",
+    "level": 200,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 8,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 100,
+      "dex": 100,
+      "phyAtk": 216
+    },
+    "required": {
+      "dex": 600
+    }
+  },
+  {
+    "id": 1492237,
+    "name": "특제 샤크투스 샤프슈터",
+    "level": 130,
+    "category": "GUN",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NORMAL",
+    "upgradableCount": 0,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 20,
+      "dex": 35,
+      "phyAtk": 100,
+      "acc": 100
+    }
+  }
+]

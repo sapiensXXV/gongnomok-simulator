@@ -109,6 +109,9 @@ export default function ItemMain() {
       case 'thief':
         copy.jobs.thief = !copy.jobs.thief;
         break;
+      case 'pirate':
+        copy.jobs.pirate = !copy.jobs.pirate;
+        break;
     }
 
     setSearchCondition(copy)

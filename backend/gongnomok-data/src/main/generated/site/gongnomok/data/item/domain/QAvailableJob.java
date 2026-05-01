@@ -25,6 +25,8 @@ public class QAvailableJob extends BeanPath<AvailableJob> {
 
     public final BooleanPath magician = createBoolean("magician");
 
+    public final BooleanPath pirate = createBoolean("pirate");
+
     public final BooleanPath thief = createBoolean("thief");
 
     public final BooleanPath warrior = createBoolean("warrior");

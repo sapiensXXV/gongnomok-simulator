@@ -110,12 +110,17 @@ export function poolKeyFromCategory(category: ItemCategory): PotentialPoolKey {
     case 'STAFF':
     case 'DAGGER':
     case 'CLAW':
+    case 'KNUCKLE':
+    case 'GUN':
       return 'weapon'
     case 'HAT':
       return 'hat'
     case 'OVERALL':
     case 'TOP':
     case 'BOTTOM':
+    case 'PIRATE_OVERALL':
+    case 'PIRATE_TOP':
+    case 'PIRATE_BOTTOM':
       return 'armor_body'
     case 'GLOVES':
       return 'gloves'

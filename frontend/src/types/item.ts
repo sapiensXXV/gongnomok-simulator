@@ -20,12 +20,17 @@ export type ItemCategory =
   | 'STAFF'
   | 'DAGGER'
   | 'CLAW'
+  | 'KNUCKLE'
+  | 'GUN'
   | 'HAT'
   | 'GLOVES'
   | 'SHOES'
   | 'OVERALL'
   | 'TOP'
   | 'BOTTOM'
+  | 'PIRATE_OVERALL'
+  | 'PIRATE_TOP'
+  | 'PIRATE_BOTTOM'
   | 'SHIELD'
   | 'EARRING'
   | 'CAPE'
@@ -101,6 +106,7 @@ export interface AvailableJob {
   bowman: boolean
   magician: boolean
   thief: boolean
+  pirate: boolean
 }
 
 /** GET /api/item/{id} 응답. */

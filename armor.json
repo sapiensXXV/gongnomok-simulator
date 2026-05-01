@@ -1,0 +1,845 @@
+[
+  {
+    "id": 1042258,
+    "name": "이글아이 원더러코트",
+    "level": 150,
+    "category": "PIRATE_TOP",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 30,
+      "dex": 30,
+      "phyAtk": 2,
+      "phyDef": 135,
+      "mgDef": 135,
+      "acc": 30,
+      "avo": 30
+    }
+  },
+  {
+    "id": 1050269,
+    "name": "무한의 아토믹 슈트",
+    "level": 75,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "intel": 8,
+      "luk": 8,
+      "phyDef": 135,
+      "mgDef": 135,
+      "hp": 50,
+      "mp": 50
+    }
+  },
+  {
+    "id": 1050270,
+    "name": "무한의 이온 슈트",
+    "level": 75,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "intel": 8,
+      "luk": 8,
+      "phyDef": 135,
+      "mgDef": 135,
+      "hp": 50,
+      "mp": 50
+    }
+  },
+  {
+    "id": 1050271,
+    "name": "무한의 포톤 슈트",
+    "level": 75,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "intel": 8,
+      "luk": 8,
+      "phyDef": 135,
+      "mgDef": 135,
+      "hp": 50,
+      "mp": 50
+    }
+  },
+  {
+    "id": 1050277,
+    "name": "페어리 슈트",
+    "level": 75,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "intel": 8,
+      "luk": 8,
+      "phyDef": 135,
+      "mgDef": 135,
+      "hp": 50,
+      "mp": 50
+    }
+  },
+  {
+    "id": 1050282,
+    "name": "눈보라 갑주",
+    "level": 75,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "intel": 8,
+      "luk": 8,
+      "phyDef": 135,
+      "mgDef": 135,
+      "hp": 50,
+      "mp": 50
+    }
+  },
+  {
+    "id": 1050313,
+    "name": "블랙 로얄바롱",
+    "level": 60,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 1,
+      "phyDef": 65,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052095,
+    "name": "브라운 로키 슈트",
+    "level": 10,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "phyDef": 15
+    }
+  },
+  {
+    "id": 1052098,
+    "name": "브라운 코튼래거",
+    "level": 15,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyDef": 20,
+      "mp": 5
+    }
+  },
+  {
+    "id": 1052101,
+    "name": "베이지 카리브어",
+    "level": 20,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyDef": 25,
+      "mp": 10
+    }
+  },
+  {
+    "id": 1052104,
+    "name": "브라운 툴크갤리",
+    "level": 25,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 1,
+      "phyDef": 30,
+      "mp": 20
+    }
+  },
+  {
+    "id": 1052107,
+    "name": "브라운 폴라아드",
+    "level": 30,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 2,
+      "phyDef": 35,
+      "mp": 10
+    }
+  },
+  {
+    "id": 1052110,
+    "name": "블루 브레이스룩",
+    "level": 35,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 3,
+      "phyDef": 40,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052113,
+    "name": "레드 바르베이",
+    "level": 40,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "phyDef": 45,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052116,
+    "name": "그린 플레스티어",
+    "level": 50,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "phyDef": 55,
+      "avo": 1
+    }
+  },
+  {
+    "id": 1052122,
+    "name": "레드 비스카",
+    "level": 70,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 2,
+      "phyDef": 75,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052125,
+    "name": "화이트 피니얼",
+    "level": 80,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 6,
+      "dex": 2,
+      "phyDef": 85,
+      "hp": 15
+    }
+  },
+  {
+    "id": 1052128,
+    "name": "화이트 마르퀴니",
+    "level": 90,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 6,
+      "dex": 3,
+      "phyDef": 95,
+      "avo": 2
+    }
+  },
+  {
+    "id": 1052131,
+    "name": "레드 벨리듀크",
+    "level": 100,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 7,
+      "dex": 3,
+      "phyDef": 105,
+      "avo": 2
+    }
+  },
+  {
+    "id": 1052134,
+    "name": "카노푸스 슈트",
+    "level": 110,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 7,
+      "dex": 7,
+      "phyDef": 115,
+      "hp": 20
+    }
+  },
+  {
+    "id": 1052159,
+    "name": "타임리스 부르군트",
+    "level": 120,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "phyDef": 125,
+      "hp": 30
+    }
+  },
+  {
+    "id": 1052164,
+    "name": "리버스 부르군트",
+    "level": 120,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 7,
+      "dex": 7,
+      "phyDef": 125,
+      "hp": 30
+    }
+  },
+  {
+    "id": 1052208,
+    "name": "페페킹의 블루 브레이스룩",
+    "level": 35,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "phyDef": 45,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052235,
+    "name": "모험가의 브레이스룩",
+    "level": 30,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 3,
+      "dex": 3,
+      "phyDef": 40,
+      "mgDef": 18
+    }
+  },
+  {
+    "id": 1052303,
+    "name": "코라 반 레온 배틀슈트",
+    "level": 120,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "phyDef": 135,
+      "hp": 50
+    }
+  },
+  {
+    "id": 1052318,
+    "name": "샤크투스 스키퍼코트",
+    "level": 140,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 12,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 30,
+      "dex": 30,
+      "phyAtk": 2,
+      "phyDef": 225,
+      "mgDef": 225,
+      "acc": 50,
+      "avo": 50
+    }
+  },
+  {
+    "id": 1052323,
+    "name": "베파르 블러디 메일",
+    "level": 130,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 13,
+      "dex": 13,
+      "phyDef": 165,
+      "acc": 50,
+      "avo": 50
+    }
+  },
+  {
+    "id": 1052337,
+    "name": "포춘워커 플레이트메일",
+    "level": 70,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 5,
+      "dex": 2,
+      "phyDef": 75,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052378,
+    "name": "어비스 부르군트",
+    "level": 125,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 13,
+      "dex": 13,
+      "phyDef": 150,
+      "mgDef": 100,
+      "acc": 20,
+      "avo": 20
+    }
+  },
+  {
+    "id": 1052383,
+    "name": "피어리스 부르군트",
+    "level": 125,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 15,
+      "dex": 15,
+      "phyDef": 150,
+      "mgDef": 100,
+      "acc": 20,
+      "avo": 20
+    }
+  },
+  {
+    "id": 1052388,
+    "name": "메르 반 레온 배틀슈트",
+    "level": 125,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 11,
+      "dex": 11,
+      "phyDef": 190,
+      "hp": 100
+    }
+  },
+  {
+    "id": 1052433,
+    "name": "엠퍼러스 퍼번트 메일",
+    "level": 130,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 13,
+      "dex": 13,
+      "phyDef": 165,
+      "acc": 50,
+      "avo": 50
+    }
+  },
+  {
+    "id": 1052502,
+    "name": "그랜드 베파르 메일",
+    "level": 130,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 13,
+      "dex": 13,
+      "phyAtk": 2,
+      "phyDef": 165,
+      "acc": 50,
+      "avo": 50
+    }
+  },
+  {
+    "id": 1052520,
+    "name": "그린 제네럴 슈트",
+    "level": 30,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 2,
+      "dex": 2,
+      "phyDef": 35
+    }
+  },
+  {
+    "id": 1052525,
+    "name": "퍼플 시니어 슈트",
+    "level": 60,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 4,
+      "dex": 4,
+      "phyDef": 65,
+      "hp": 10
+    }
+  },
+  {
+    "id": 1052584,
+    "name": "임페리얼 퍼번트 메일",
+    "level": 130,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 13,
+      "dex": 13,
+      "phyDef": 165,
+      "acc": 50,
+      "avo": 50
+    }
+  },
+  {
+    "id": 1052652,
+    "name": "로얄 어드벤쳐 슈트",
+    "level": 80,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 10,
+      "dex": 10,
+      "intel": 10,
+      "luk": 10,
+      "phyAtk": 1,
+      "phyDef": 155,
+      "mgDef": 155,
+      "hp": 100
+    }
+  },
+  {
+    "id": 1052788,
+    "name": "네크로 스키퍼슈트",
+    "level": 120,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 7,
+      "dex": 7,
+      "phyDef": 130
+    }
+  },
+  {
+    "id": 1052793,
+    "name": "이클레틱 부르군트",
+    "level": 120,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 7,
+      "dex": 7,
+      "phyDef": 125,
+      "hp": 30
+    }
+  },
+  {
+    "id": 1052798,
+    "name": "무스펠 파이렛슈트",
+    "level": 130,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 8,
+      "dex": 8,
+      "phyDef": 160
+    }
+  },
+  {
+    "id": 1052803,
+    "name": "펜살리르 스키퍼코트",
+    "level": 140,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 20,
+      "dex": 20,
+      "phyAtk": 1,
+      "phyDef": 180,
+      "mgDef": 110
+    }
+  },
+  {
+    "id": 1052808,
+    "name": "로얄 반 레온 스키퍼슈트",
+    "level": 130,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 10,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 11,
+      "dex": 11,
+      "phyDef": 190,
+      "hp": 100
+    }
+  },
+  {
+    "id": 1052890,
+    "name": "앱솔랩스 파이렛슈트",
+    "level": 160,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 12,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 65,
+      "dex": 65,
+      "phyAtk": 5,
+      "phyDef": 300,
+      "mgDef": 300,
+      "acc": 70,
+      "avo": 70
+    }
+  },
+  {
+    "id": 1053067,
+    "name": "아케인셰이드 파이렛슈트",
+    "level": 200,
+    "category": "PIRATE_OVERALL",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 12,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 85,
+      "dex": 85,
+      "phyAtk": 9,
+      "phyDef": 500,
+      "mgDef": 500
+    }
+  },
+  {
+    "id": 1062169,
+    "name": "트릭스터 원더러팬츠",
+    "level": 150,
+    "category": "PIRATE_BOTTOM",
+    "jobs": [
+      "pirate"
+    ],
+    "attackSpeed": "NONE",
+    "upgradableCount": 7,
+    "knockBackPercent": 0,
+    "stats": {
+      "str": 30,
+      "dex": 30,
+      "phyAtk": 2,
+      "phyDef": 135,
+      "mgDef": 135,
+      "acc": 30,
+      "avo": 30
+    }
+  }
+]
