@@ -357,31 +357,33 @@
   width: 325px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  gap: 5px;
+  justify-content: space-between;
+  gap: 3px;
   background-color: white;
-  padding: 5px;
+  padding: 4px;
   border-radius: 8px;
 }
 
 .success-single-scroll-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
+  gap: 1px;
 }
 
 .success-single-scroll-container img {
-  padding: 5px;
+  padding: 3px;
   background-color: rgb(236, 236, 236);
-  border-radius: 8px;
-  width: 50px;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .success-single-scroll-container span {
   font-family: Pretendard-Medium;
-  font-size: 18px;
-  margin-left: 5px;
+  font-size: 13px;
+  margin-left: 2px;
 }
 
 
@@ -536,7 +538,9 @@
   justify-content: center;
   align-items: center;
 
-  margin-top: 7px;
+  /* ItemCondition 과 grid stretch 로 높이 일치 시 controller 가 하단에 고정되도록. */
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .item-ranking-page-controller-container>button {

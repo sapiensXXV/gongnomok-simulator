@@ -39,3 +39,50 @@ export interface SuccessScrollCount {
   sixty: number
   hundred: number
 }
+
+/* ============================================================
+ * 메이플 플래닛 신 주문서 — 혼돈 / 순백
+ * ============================================================ */
+
+/**
+ * 혼돈의 주문서.
+ * 성공 시 모든 능력치를 -5 ~ +5 범위 무작위 변동 (각 능력치 독립).
+ * 실패 시 능력치 변화 없음, 가능 횟수만 차감.
+ *
+ * 변형:
+ * - 'BASIC' = 표준 (-5~+5)
+ * - 'AMAZING' = 「놀라운」 (-6~+6)
+ * - 'POSITIVE' = 「긍정의」 (0~+5)
+ * - 'AMAZING_POSITIVE' = 「놀라운 긍정의」 (0~+6)
+ */
+export type ChaosScrollVariant = 'BASIC' | 'AMAZING' | 'POSITIVE' | 'AMAZING_POSITIVE'
+
+export interface ChaosScrollSpec {
+  variant: ChaosScrollVariant
+  successRate: number // 보통 0.6 (60%)
+  /** 변동 폭. ±range. POSITIVE 변형은 음수 절대 적용 안 함. */
+  range: number
+  /** 음수 변동 가능 여부 (POSITIVE 변형은 false). */
+  allowNegative: boolean
+}
+
+/**
+ * 순백의 주문서.
+ * 성공 시 강화 가능 횟수 +1, 복구 가능 횟수 -1.
+ * 실패 시 복구 가능 횟수 유지 (주문서만 소모).
+ * 사용 가능 조건: 복구 가능 횟수 > 0.
+ */
+export type WhiteScrollVariant = 'PERCENT_1' | 'PERCENT_3' | 'PERCENT_5' | 'PERCENT_10' | 'PERCENT_100'
+
+export interface WhiteScrollSpec {
+  variant: WhiteScrollVariant
+  successRate: number // 0.01 / 0.03 / 0.05 / 0.10 / 1.00
+}
+
+/** 강화에 사용된 신 주문서 카운터 — 기록 등록 시 페이로드. */
+export interface NewScrollUsageCount {
+  /** 혼돈의 주문서 사용 총횟수 (변형 합산). */
+  chaos: number
+  /** 순백의 주문서 사용 총횟수 (변형 합산). */
+  white: number
+}

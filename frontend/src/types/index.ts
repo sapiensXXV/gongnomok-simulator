@@ -1,3 +1,5 @@
 export * from './item'
 export * from './scroll'
 export * from './record'
+export * from './potential'
+export * from './cube'

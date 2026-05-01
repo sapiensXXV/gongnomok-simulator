@@ -14,6 +14,7 @@ import styles from './ItemMain.module.css'
 import RecordItemRanking from "./record_ranking/RecordItemRanking";
 import NoticeBanner from "../../banner/NoticeBanner";
 import axiosInstance from "../../../global/axiosInstance";
+import { RECORD_FEATURE_ENABLED } from "../../../global/featureFlags";
 
 export default function ItemMain() {
 
@@ -138,13 +139,15 @@ export default function ItemMain() {
     <>
       <section className={styles.banner_container}>
         <FeedbackBanner/>
-        <InformBanner />
       </section>
       {/* <section className={styles.banner_container}>
         <NoticeBanner />  
       </section> */}
-      <section className={styles.item_main_container}>
-        <section className={styles.item_condition_and_list_container}>
+      <section
+        className={styles.item_main_container}
+        style={{ gridTemplateColumns: '1fr' }}
+      >
+        <section className={styles.item_condition_and_ranking}>
           <ItemCondition
             searchCondition={searchCondition}
             handleItemNameChange={handleItemNameChange}
@@ -153,18 +156,16 @@ export default function ItemMain() {
             handleMinLevelChange={handleMinLevelChange}
             doSearch={doSearch}
           />
-          <ItemList
-            searchCondition={searchCondition}
-            itemList={itemList}
-            isItemLoaded={isItemLoaded}
-            hasNextPage={hasNextPage}
-            handleMoreItemButton={handleMoreItemButton}
-          />
+          <ItemRanking />
         </section>
-        <section className={styles.popular_ranking_and_record_ranking_container}>
-          <ItemRanking/>
-          <RecordItemRanking/>
-        </section>
+        <ItemList
+          searchCondition={searchCondition}
+          itemList={itemList}
+          isItemLoaded={isItemLoaded}
+          hasNextPage={hasNextPage}
+          handleMoreItemButton={handleMoreItemButton}
+        />
+        {RECORD_FEATURE_ENABLED && <RecordItemRanking />}
       </section>
     </>
   )

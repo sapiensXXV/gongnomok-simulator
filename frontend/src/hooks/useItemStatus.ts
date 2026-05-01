@@ -9,6 +9,14 @@ const STATUS_KEYS: StatusKey[] = [
   'hp', 'mp',
 ]
 
+/** 혼돈의 주문서 변동 대상 (도메인 5.6.1). 능력치 13개 (acc 제외). */
+const CHAOS_TARGETS: StatusKey[] = [
+  'str', 'dex', 'intel', 'luk',
+  'phyAtk', 'mgAtk', 'phyDef', 'mgDef',
+  'avo', 'move', 'jump',
+  'hp', 'mp',
+]
+
 type StatusValues = Record<StatusKey, number>
 
 const ZERO_STATUS: StatusValues = STATUS_KEYS.reduce(
@@ -25,15 +33,28 @@ interface State {
   upgradable: number
   /** 처음 받았던 upgradable 값 (리셋 시 복원). */
   baseUpgradable: number
-  /** 적용된 강화 횟수 (성공 + 실패 = 시도 횟수가 아니라 *성공* 횟수). */
+  /** 적용된 강화 *성공* 횟수. */
   upgradedCount: number
   /** 넉백 확률 (정보 표시용, 강화 영향 없음). */
   knockBackPercent: number
+  /**
+   * 복구 가능 횟수 — 강화 실패가 누적될 때마다 +1, 순백 성공 시 -1.
+   * 도메인 5.7.2 메커닉.
+   */
+  recoverableSlots: number
 }
 
 type Action =
   | { type: 'init'; detail: ItemDetail }
   | { type: 'apply-upgrade'; effects: ScrollUpgradeEffect[] }
+  | { type: 'fail-upgrade' }
+  | {
+      type: 'apply-chaos'
+      isSuccess: boolean
+      /** 성공 시 각 능력치에 적용할 -range~+range 범위의 random delta. */
+      deltas?: Partial<Record<StatusKey, number>>
+    }
+  | { type: 'recover-slot'; isSuccess: boolean }
   | { type: 'set-base'; key: StatusKey; value: number }
   | { type: 'reset' }
 
@@ -44,6 +65,7 @@ const INITIAL: State = {
   baseUpgradable: 0,
   upgradedCount: 0,
   knockBackPercent: 0,
+  recoverableSlots: 0,
 }
 
 function reducer(state: State, action: Action): State {
@@ -58,6 +80,7 @@ function reducer(state: State, action: Action): State {
         baseUpgradable: action.detail.upgradableCount,
         upgradedCount: 0,
         knockBackPercent: action.detail.knockBackPercent,
+        recoverableSlots: 0,
       }
     }
 
@@ -72,13 +95,53 @@ function reducer(state: State, action: Action): State {
       }
     }
 
-    case 'set-base': {
-      // 옵션 선택은 base 만 바꾸고, 호출 측에서 reset() 까지 보통 함께 호출함.
+    case 'fail-upgrade':
+      // 일반 주문서 실패 — 능력치 변화 없음, 가능 횟수 -1, 복구 가능 횟수 +1
+      return {
+        ...state,
+        upgradable: state.upgradable - 1,
+        recoverableSlots: state.recoverableSlots + 1,
+      }
+
+    case 'apply-chaos': {
+      // 혼돈의 주문서 — 성공: 능력치 변동, 실패: 변화 없음. 양쪽 다 가능 횟수 -1.
+      if (action.isSuccess && action.deltas) {
+        const next = { ...state.current }
+        for (const key of Object.keys(action.deltas) as StatusKey[]) {
+          const delta = action.deltas[key] ?? 0
+          next[key] = Math.max(0, next[key] + delta) // 음수로 떨어지지 않게 0 floor
+        }
+        return {
+          ...state,
+          current: next,
+          upgradable: state.upgradable - 1,
+          upgradedCount: state.upgradedCount + 1,
+        }
+      }
+      // 실패 — 일반 주문서 실패와 동일하게 복구 가능 횟수 누적
+      return {
+        ...state,
+        upgradable: state.upgradable - 1,
+        recoverableSlots: state.recoverableSlots + 1,
+      }
+    }
+
+    case 'recover-slot':
+      // 순백의 주문서 — 성공: 가능 횟수 +1, 복구 가능 횟수 -1. 실패: 변화 없음.
+      if (action.isSuccess) {
+        return {
+          ...state,
+          upgradable: state.upgradable + 1,
+          recoverableSlots: state.recoverableSlots - 1,
+        }
+      }
+      return state
+
+    case 'set-base':
       return {
         ...state,
         base: { ...state.base, [action.key]: action.value },
       }
-    }
 
     case 'reset':
       return {
@@ -86,14 +149,15 @@ function reducer(state: State, action: Action): State {
         current: { ...state.base },
         upgradable: state.baseUpgradable,
         upgradedCount: 0,
+        recoverableSlots: 0,
       }
   }
 }
 
 /**
- * 시뮬레이터의 능력치(현재값/정옵/upgradable/upgradedCount) 묶음 reducer hook.
+ * 시뮬레이터 능력치 reducer hook.
  *
- * 기존에 16개의 useState + 15개의 useRef 로 흩어져 있던 상태를 하나로 통합.
+ * 기본 주문서(10/60/100), 혼돈의 주문서, 순백의 주문서, 옵션 선택, 리셋을 모두 지원.
  */
 export function useItemStatus() {
   const [state, dispatch] = useReducer(reducer, INITIAL)
@@ -105,6 +169,19 @@ export function useItemStatus() {
     [],
   )
 
+  const failUpgrade = useCallback(() => dispatch({ type: 'fail-upgrade' }), [])
+
+  const applyChaos = useCallback(
+    (isSuccess: boolean, deltas?: Partial<Record<StatusKey, number>>) =>
+      dispatch({ type: 'apply-chaos', isSuccess, deltas }),
+    [],
+  )
+
+  const recoverSlot = useCallback(
+    (isSuccess: boolean) => dispatch({ type: 'recover-slot', isSuccess }),
+    [],
+  )
+
   const setBase = useCallback(
     (key: StatusKey, value: number) => dispatch({ type: 'set-base', key, value }),
     [],
@@ -112,8 +189,8 @@ export function useItemStatus() {
 
   const reset = useCallback(() => dispatch({ type: 'reset' }), [])
 
-  return { state, init, applyUpgrade, setBase, reset }
+  return { state, init, applyUpgrade, failUpgrade, applyChaos, recoverSlot, setBase, reset }
 }
 
 export type { State as ItemStatusState }
-export { STATUS_KEYS }
+export { STATUS_KEYS, CHAOS_TARGETS }

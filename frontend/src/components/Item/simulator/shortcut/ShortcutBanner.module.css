@@ -1,8 +1,76 @@
+/*
+ * 단축키 안내 — 좌측 타이틀 + 우측 4열 그리드 키보드.
+ * 부모(.shortcut-guide-section)는 글로벌 css 에서 padding/border-radius 등 처리.
+ */
 .main {
   background-color: #F8F9FA;
   color: black;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  text-align: left !important;
+  gap: 28px !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
 }
 
+/* 좌측 "단축키" 타이틀 */
 .title {
-  font-size: 23px;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Pretendard-SemiBold', sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.2px;
+  flex-shrink: 0;
+}
+
+/* 키보드 — 4열 그리드 3행 */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Pretendard-Regular', sans-serif);
+}
+
+.kbd_row {
+  display: grid;
+  grid-template-columns: repeat(4, 48px);
+  gap: 6px;
+}
+
+/* V 는 F 아래 (4번째 열) */
+.kbd_row_3 > .kbd_cell {
+  grid-column: 4;
+}
+
+/* 단일 키 셀: 키 박스 + 설명 */
+.kbd_cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 48px;
+}
+
+/* 실제 키 박스 — 살짝 입체감 */
+.kbd_key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background: linear-gradient(180deg, #ffffff 0%, #e9e9eb 100%);
+  border: 1px solid #c4c4c8;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 #b8b8bc, 0 2px 3px rgba(0, 0, 0, 0.08);
+}
+
+.kbd_desc {
+  font-size: 11px;
+  color: #555;
+  white-space: nowrap;
 }

@@ -1,3 +1,24 @@
+/* 메인 컨테이너 — 행 사이 간격(검색+인기 ↔ 아이템 목록) */
+.item_main_container {
+  row-gap: 12px;
+}
+
+/*
+ * 아이템 검색(좌측) + 인기 아이템(우측) 한 행 — 두 박스 높이 자동 일치(grid stretch).
+ */
+.item_condition_and_ranking {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 12px;
+  align-items: stretch;
+}
+
+@media screen and (max-width: 767px) {
+  .item_condition_and_ranking {
+    grid-template-columns: 1fr;
+  }
+}
+
 /*middle 사이즈 이하*/
 @media screen and (max-width: 991px) {
   .banner_container {

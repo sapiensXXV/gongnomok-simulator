@@ -11,6 +11,8 @@ interface Props {
   onClick: (percent: ScrollPercent) => void
 }
 
+const KEY_LABEL: Record<ScrollPercent, string> = { 10: 'Q', 60: 'W', 100: 'E' }
+
 function Scroll({ percent, currentScroll, onClick }: Props, ref: Ref<HTMLButtonElement>) {
   const scrollObj = typeof currentScroll === 'object' ? currentScroll : undefined
 
@@ -28,6 +30,7 @@ function Scroll({ percent, currentScroll, onClick }: Props, ref: Ref<HTMLButtonE
         onClick={() => onClick(percent)}
         onMouseUp={() => (document.activeElement as HTMLElement | null)?.blur()}
       >
+        <span className="shortcut-key-label">{KEY_LABEL[percent]}</span>
         <img src={`${ASSETS_URL}/images/scroll/${percent}.png`} />
       </button>
       <span>

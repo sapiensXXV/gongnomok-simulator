@@ -62,7 +62,7 @@ export default function ItemRanking() {
                       <div className="single-ranking-item">
                         <span className="item-rank-text">{`${item.rank + rankingPage * DEFAULT_RANKING_FETCH_SIZE}위 `}</span>
                         <img src={`${ASSETS_URL}/images/item/${item.itemId}.png`}></img>
-                        <span>{`${item.name}`}</span><span>{` (${item.viewCount}회)`}</span>
+                        <span>{`${item.name}`}</span><span>{` (${item.viewCount.toLocaleString()}회)`}</span>
                       </div>
                     </a>
                   </div>

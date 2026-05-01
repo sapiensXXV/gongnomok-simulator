@@ -39,6 +39,20 @@ export type AttackSpeed =
   | 'VERY_FAST'
   | 'NONE'
 
+/**
+ * 아이템 등급 — 잠재능력 시스템의 등급 위계와 연동.
+ * 메이플 플래닛 사양상 LEGENDARY 는 도달 불가 (유니크가 상한).
+ */
+export type ItemGrade = 'NORMAL' | 'RARE' | 'EPIC' | 'UNIQUE'
+
+export const ITEM_GRADE_ORDER: ItemGrade[] = ['NORMAL', 'RARE', 'EPIC', 'UNIQUE']
+
+/** 한 단계 위 등급 반환. UNIQUE 는 그대로. */
+export function nextGrade(grade: ItemGrade): ItemGrade {
+  const idx = ITEM_GRADE_ORDER.indexOf(grade)
+  return idx < ITEM_GRADE_ORDER.length - 1 ? ITEM_GRADE_ORDER[idx + 1] : grade
+}
+
 export type JobName = 'warrior' | 'magician' | 'bowman' | 'thief'
 
 /**
