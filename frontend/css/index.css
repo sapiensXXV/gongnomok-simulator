@@ -1,78 +1,929 @@
-body {
-  font-family: Pretendard-Regular;
-}
+/* =============================================================================
+ * gongnomok-simulator 글로벌 스타일 (반응형 통합본)
+ *
+ * 구조:
+ *   1. Base       — 모든 breakpoint 공통 (no @media)
+ *   2. xs         — max-width: 575px
+ *   3. sm         — 576px ~ 767px
+ *   4. md         — 768px ~ 991px
+ *   5. lg         — 992px ~ 1199px
+ *   6. xl         — 1200px ~ 1399px
+ *   7. xxl        — 1400px+
+ *   8. wide       — 1700px+
+ *
+ * 각 @media 블록에는 해당 breakpoint 에서 base 와 다른 값을 갖는 속성만
+ * 선언합니다. 동일 셀렉터를 6번 정의하던 기존 구조를 base + 차이값으로
+ * 통합한 결과입니다.
+ *
+ * 컴포넌트 별 스타일은 점진적으로 *.module.css 로 이동 예정 (Step B2).
+ * ============================================================================= */
 
-.title {
-  font-family: NPSfontBold;
-}
 
-.item-condition-title {
-  font-family: NPSfontBold;
-}
+/* =========================================================
+ * 1. Base — 모든 breakpoint 공통
+ * ========================================================= */
 
-.item-card {
+/* ---------- 헤더 ---------- */
+.header-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-family: SOYOMapleBoldTTF;
-  font-size: small;
 }
 
-.item-card img {
-  width: 60%;
-  margin: auto;
+.header-title a {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+}
+
+.header-title img {
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+}
+
+.header-item-nav {
+  margin-left: 14px;
+  font-family: NPSfontBold;
+  font-size: 16px;
+}
+
+.header-title span {
   display: block;
+  color: black;
+  font-family: KCC-Hanbit;
+  font-size: 18px;
 }
 
-
-
-.col-centered {
-  float: none;
-  margin-right: auto;
-  margin-left: auto;
-}
-
+/* ---------- 아이템 리스트 ---------- */
 .item-list-container {
-  height: 85vh;
+  height: 58vh;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-/*.item-list-button {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  justify-content: center;*/
-/*  align-items: flex-start;*/
-/*  text-align: center;*/
-
-/*  text-overflow: ellipsis;*/
-
-/*}*/
-
 .item-list-button button {
-  width: 6vw;
-  height: 6vw;
-
   border: none;
-  border-radius: 8px;
-
-  padding: 2px
-
-}
-
-.item-condition-title {
-  font-family: NPSfontBold;
+  border-radius: 12px;
+  padding: 2px;
 }
 
 .item-list-button img {
-  height: 60%
+  height: 60%;
 }
 
 .item-list-button span {
   display: block;
   font-family: KCC-Hanbit;
-  font-size: 0.7vw;
-  margin-top: 4px;
+  text-overflow: ellipsis;
 }
 
-.item-list-button button:focus {
+.more-item-button {
+  width: 100%;
+  margin-top: 8px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* ---------- 랭킹 ---------- */
+.item-ranking-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: KCC-Hanbit;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.item-ranking-container img {
+  width: 30px;
+}
+
+.item-ranking-controller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.item-ranking-button {
+  border-radius: 8px;
+  border: none;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+}
+
+.item-ranking-button img {
+  width: 25px;
+  height: 25px;
+}
+
+.ranking-items {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+}
+
+.ranking-items a {
+  text-decoration: none;
+}
+
+.single-ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgb(53, 53, 53);
+  /* sm 이상에서 padding/border-radius 추가 */
+}
+
+.single-ranking-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- 시뮬레이터 - 단축키 안내 ---------- */
+.shortcut-guide-section {
+  display: none; /* xs/sm 에서 숨김. md+ 에서 노출 */
+}
+
+/* ---------- 시뮬레이터 - 메인 레이아웃 ---------- */
+.item-simulator-section {
+  display: flex;
+  border-radius: 8px;
+}
+
+.item-info-section-container {
+  display: flex;
+  justify-content: center;
+  /* md+ 에서 reset (직접 자식이 아이템 정보 + 가격 영역으로 좌우 분리됨) */
+}
+
+.item-simulator-root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* ---------- 아이템 정보 카드 (디자인 보존 영역) ---------- */
+.item-info-section {
+  font-family: Pretendard-Regular;
+  width: 325px;
+  text-align: center;
+  color: white;
+  background-color: #7175b5;
+  border-color: black;
   border-width: 2px;
-  border-color: blue;
+  padding: 4px;
+}
+
+.item-info-section hr {
+  height: 2px;
+  background-color: white;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.item-info-basic {
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 9px;
+}
+
+.item-img-container {
+  margin-left: 10px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  border: none;
+  width: 90px;
+  height: 90px;
+  align-items: center;
+  background-color: #C9C8D4;
+}
+
+.item-img {
+  height: 78%;
+}
+
+.scroll-animation {
+  position: absolute;
+  z-index: 2;
+  outline: 0;
+  border: none;
+  background-color: none;
+  width: 92px;
+  height: 115px;
+}
+
+.item-info-required {
+  margin-left: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+}
+
+.item-info-required span {
+  line-height: 19px;
+  font-size: 14px;
+  display: block;
+}
+
+.item-status-required {
+  text-align: justify;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.item-status-required-description {
+  display: block;
+  width: 63px;
+}
+
+.item-status-required-info {
+  display: block;
+}
+
+.scroll-overflow-msg {
+  color: rgb(255, 100, 100);
+  justify-content: center;
+  margin-left: 3px;
+  font-size: 13px;
+  font-family: KCC-Hanbit;
+}
+
+.item-useless-info {
+  color: #c0c0c0;
+}
+
+.item-info-name {
+  display: block;
+  font-size: 25px;
+  font-family: Pretendard-SemiBold;
+  margin-top: 1px;
+  margin-bottom: 5px;
+}
+
+.item-info-job {
+  font-size: 15px;
+}
+
+.item-info-job span {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.item-info-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard-Regular;
+  font-size: 15px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+/* ---------- 시뮬레이터 - 컨트롤러(주문서/가격) ---------- */
+.item-controller-section {
+  width: 330px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.scroll-select {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 9px;
+}
+
+.scroll-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.scroll-info span {
+  font-size: 12px;
+  font-family: KCC-Hanbit;
+}
+
+.scroll-select button {
+  width: 73px;
+  height: 73px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 2px;
+}
+
+.scroll-select button:focus {
+  outline: 0;
+  background-color: rgb(214, 214, 214);
+}
+
+.scroll-select img {
+  width: 90%;
+}
+
+.item-price-info {
+  font-size: 13px;
+  font-family: KCC-Hanbit;
+  gap: 2px;
+}
+
+.price-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.price-input-description {
+  display: block;
+  margin-right: 5px;
+  width: 76px;
+}
+
+.price-input-container input {
+  padding: 4px;
+  margin-right: 5px;
+  height: 25px;
+  border-radius: 5px;
+  border-width: 1px;
+  width: 150px;
+}
+
+.total-price-info-section {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total-price-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.total-price-info img {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+.total-price-info span {
+  width: 170px;
+  overflow: hidden;
+  font-size: 18px;
+}
+
+.total-price-reset-btn {
+  padding: 3px 7px 3px 7px;
+  border: none;
+  border-radius: 3px;
+}
+
+.total-price-reset-btn:focus {
+  border: none;
+  outline: 0;
+  background-color: rgb(214, 214, 214);
+}
+
+/* ---------- 최고기록 ---------- */
+.item-best-record-root {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.best-record-container {
+  display: flex;
+  justify-content: center;
+}
+
+.item-record-challenge-btn {
+  padding: 3px 7px 3px 7px;
+  border: none;
+  border-radius: 3px;
+  font-family: SejonghospitalBold;
+  font-size: 14px;
+  width: 325px;
+}
+
+.item-record-challenge-btn:focus {
+  border: none;
+  outline: 0;
+  background-color: rgb(214, 214, 214);
+}
+
+/* ---------- 아이템 그리드 ---------- */
+.item-list-grid {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+/* =========================================================
+ * 2. xs — max-width: 575px
+ *   (모바일)
+ * ========================================================= */
+@media screen and (max-width: 575px) {
+  .item-list-button button {
+    width: 27vw;
+    height: 24vw;
+  }
+
+  .item-list-button span {
+    font-size: 2.7vw;
+    margin-top: 7px;
+  }
+
+  .item-ranking-container {
+    margin-top: 0;
+  }
+
+  .item-simulator-section {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .item-simulator-section,
+  .item-info-section-container {
+    /* xs 에서 좌우 배치 대신 세로 스택 */
+  }
+
+  .scroll-animation {
+    width: 85px;
+    height: 120px;
+  }
+
+  .scroll-overflow-msg {
+    display: block;
+  }
+
+  .item-info-required span {
+    line-height: 18px;
+  }
+
+  .item-info-name {
+    font-size: 23px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .item-info-job {
+    font-size: 16px;
+  }
+
+  .item-info-job span {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .item-controller-section {
+    width: 350px;
+  }
+
+  .scroll-info span {
+    font-size: 11px;
+  }
+
+  .scroll-select button {
+    width: 75px;
+    height: 75px;
+  }
+
+  .price-input-description {
+    width: 70px;
+  }
+
+  .price-input-container input {
+    height: 24px;
+  }
+
+  .total-price-info span {
+    width: 180px;
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+ * 3. sm — 576px ~ 767px
+ * ========================================================= */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .item-list-button button {
+    width: 21vw;
+    height: 18vw;
+  }
+
+  .item-list-button span {
+    font-size: 2.1vw;
+    margin-top: 11px;
+  }
+
+  .item-ranking-container {
+    margin-top: 15px;
+  }
+
+  .single-ranking-item {
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+
+  .item-list-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .item-simulator-section {
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+  }
+
+  .item-controller-section {
+    /* width 는 base(330px) 사용 */
+  }
+
+  .total-price-info-section {
+    margin-top: 13px;
+  }
+
+  .total-price-info img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .total-price-info span {
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+ * 4. md — 768px ~ 991px
+ * ========================================================= */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .item-list-button img {
+    height: 55%;
+  }
+
+  .item-list-button button {
+    width: 17vw;
+    height: 14vw;
+  }
+
+  .item-list-button span {
+    font-size: 13px;
+    margin-top: 11px;
+  }
+
+  .item-ranking-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .single-ranking-item {
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+
+  .item-list-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* md+ 부터 시뮬레이터 좌우 배치 */
+  .item-info-section-container {
+    display: block;
+    justify-content: unset;
+  }
+
+  .item-simulator-section {
+    align-items: top;
+    justify-content: center;
+  }
+
+  /* md+ 부터 단축키 가이드 노출 */
+  .shortcut-guide-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 1vw 0 0 0;
+    font-family: KCC-Hanbit, serif;
+  }
+
+  .shortcut-info {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .scroll-overflow-msg {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+ * 5. lg — 992px ~ 1199px
+ * ========================================================= */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .item-list-button img {
+    height: 55%;
+  }
+
+  .item-list-button button {
+    width: 11.5vw;
+    height: 10vw;
+  }
+
+  .item-list-button span {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .item-ranking-container {
+    padding-bottom: 0;
+  }
+
+  .single-ranking-item {
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+
+  .item-list-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .item-info-section-container {
+    display: block;
+    justify-content: unset;
+  }
+
+  .item-simulator-section {
+    align-items: top;
+    justify-content: center;
+  }
+
+  .shortcut-guide-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 1vw 0 0 0;
+    font-family: KCC-Hanbit, serif;
+  }
+
+  .shortcut-info {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+
+/* =========================================================
+ * 6. xl — 1200px ~ 1399px
+ * ========================================================= */
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .item-list-container {
+    height: 75vh;
+  }
+
+  .item-list-button img {
+    height: 55%;
+  }
+
+  .item-list-button button {
+    width: 11.6vw;
+    height: 8.8vw;
+    border-radius: 8px;
+  }
+
+  .item-list-button span {
+    font-size: 14px;
+    margin-top: 11px;
+  }
+
+  .item-ranking-container {
+    padding: 10px 5px;
+  }
+
+  .ranking-items {
+    width: 275px;
+  }
+
+  .ranking-items-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .single-ranking-item {
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+
+  .item-list-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .item-info-section-container {
+    display: block;
+    justify-content: unset;
+  }
+
+  .item-simulator-section {
+    align-items: top;
+    justify-content: center;
+  }
+
+  .item-simulator-root {
+    /* xl+ 에서 좌우 배치. space-between 으로 자식 좌우 끝이 wrapper 가장자리와 일치. */
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .item-best-record-root {
+    margin-top: 1rem;
+  }
+
+  .shortcut-guide-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 1vw 0;
+    font-family: SejonghospitalBold;
+  }
+
+  .shortcut-info {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+
+/* =========================================================
+ * 7. xxl — 1400px+
+ * ========================================================= */
+@media screen and (min-width: 1400px) {
+  .header-item-nav {
+    margin-left: 0;
+  }
+
+  .header-title span {
+    margin-right: 10px;
+  }
+
+  .item-list-container {
+    height: 100%;
+    font-family: NPSfontBold;
+  }
+
+  .item-list-button img {
+    height: 55%;
+  }
+
+  .item-list-button button {
+    width: 100%;
+    height: 5vw;
+    border-radius: 8px;
+  }
+
+  .item-list-button span {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .item-ranking-container {
+    padding: 10px;
+    border-radius: 6px;
+    padding-bottom: 10px;
+  }
+
+  .single-ranking-item {
+    padding: 0 10px;
+    border-radius: 6px;
+  }
+
+  .item-list-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+  }
+
+  .item-list-grid > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item-info-section-container {
+    display: block;
+    justify-content: unset;
+  }
+
+  .item-simulator-section {
+    align-items: top;
+    justify-content: center;
+  }
+
+  .item-simulator-root {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .item-best-record-root {
+    margin-top: 1rem;
+  }
+
+  .shortcut-guide-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border-radius: 6px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 1vw 0 0 0;
+    font-family: KCC-Hanbit, serif;
+  }
+
+  .shortcut-info {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+
+/* =========================================================
+ * 8. wide — 1700px+
+ * ========================================================= */
+@media (min-width: 1700px) {
+  .item-list-grid {
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  }
+
+  .item-list-button button {
+    width: 7.3vw;
+    height: 5.4vw;
+  }
+
+  .item-list-button img {
+    height: 53%;
+  }
+
+  .item-list-button span {
+    font-size: 13px;
+    margin-top: 12px;
+  }
 }

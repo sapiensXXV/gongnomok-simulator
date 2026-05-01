@@ -2,7 +2,8 @@ FROM node:20.11.0-bullseye as builder
 WORKDIR /frontend
 
 ENV VITE_REQUEST_API_URL=https://dev.gongnomok.com
-ENV VITE_ASSETS_URL=https://assets.gongnomok.com
+# 자산은 같은 origin 의 frontend/public/* 에서 직접 서빙 (assets.gongnomok.com 더이상 사용 안함).
+ENV VITE_ASSETS_URL=
 
 COPY . .
 RUN npm install

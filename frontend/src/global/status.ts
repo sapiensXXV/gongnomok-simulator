@@ -1,0 +1,18 @@
+import type { StatusKey } from '../types/item'
+
+export const STATUS_NAME: Map<StatusKey, string> = new Map([
+  ['str', 'STR'],
+  ['dex', 'DEX'],
+  ['intel', 'INT'],
+  ['luk', 'LUK'],
+  ['phyAtk', '물리공격력'],
+  ['mgAtk', '마법공격력'],
+  ['phyDef', '물리방어력'],
+  ['mgDef', '마법방어력'],
+  ['acc', '명중률'],
+  ['avo', '회피율'],
+  ['move', '이동속도'],
+  ['jump', '점프력'],
+  ['hp', 'MaxHP'],
+  ['mp', 'MaxMP'],
+])

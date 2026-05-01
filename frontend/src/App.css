@@ -1,45 +1,30 @@
-#root {
-  max-width: 1280px;
+/*
+ * 모든 페이지 콘텐츠를 동일한 좌우 인셋으로 정렬하는 wrapper.
+ * 헤더, 단축키 안내, 시뮬레이터, 댓글이 같은 가로 폭에 그려지도록 통일.
+ */
+.page-layout {
+  width: 100%;
+  /* 시뮬레이터 row(아이템 박스 + 최고기록 박스 ≈ 1150px)에 맞춰 폭 제한.
+     헤더/단축키/댓글이 시뮬레이터와 같은 가로 폭에 정렬됩니다. */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* 헤더 nav 안의 .container-fluid 자체 padding 을 0 으로 (wrapper padding 과 중복 방지). */
+.page-layout > nav.navbar > .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* 자식 박스의 horizontal margin 을 wrapper 에 일임 (자체 mx-3, 1vw 등 무력화). */
+.page-layout .item-simulator-section,
+.page-layout .item-best-record-root,
+.page-layout .comment-container,
+.page-layout .shortcut-guide-section {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }

@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:5173/)",
+      "Bash(curl -sS http://localhost:5173/)",
+      "Bash(grep -oE '\\\\.[a-z][a-z0-9-]+\\(\\\\s|,|\\\\{|:|>\\)')",
+      "Bash(grep -oE '\\\\.[a-z][a-z0-9-]+\\(\\\\s|,|\\\\{|:|>\\)' css/index.css)",
+      "Bash(curl -sS -o /dev/null -w \"App: HTTP %{http_code}\\\\n\" http://localhost:5173/)",
+      "Bash(curl -sS -o /dev/null -w \"CSS: HTTP %{http_code}\\\\n\" \"http://localhost:5173/css/index.css\")",
+      "Bash(curl -sS -L -o /tmp/gongnomok_index.html https://gongnomok.com/ -w \"HTTP %{http_code} -> final URL: %{url_effective}\\\\n\")",
+      "Read(//tmp/**)",
+      "Bash(curl -sS -o /dev/null -w \"assets root: HTTP %{http_code}\\\\n\" https://assets.gongnomok.com/)",
+      "Bash(curl -sS -o /dev/null -w \"logo:        HTTP %{http_code}\\\\n\" https://assets.gongnomok.com/images/logo.png)",
+      "Bash(curl -sS -o /dev/null -w \"etc/empty:   HTTP %{http_code}\\\\n\" https://assets.gongnomok.com/images/etc/empty.png)",
+      "Bash(curl -sS -o /dev/null -w \"scroll:      HTTP %{http_code}\\\\n\" https://assets.gongnomok.com/images/etc/reset.png)",
+      "Bash(curl -sS -I -o /dev/null -w \"  CORS hdr: %header{access-control-allow-origin}\\\\n\" https://assets.gongnomok.com/images/logo.png)",
+      "Bash(curl -sS -L --max-time 15 https://gongnomok.com/)",
+      "Bash(curl -sS -L --max-time 15 https://gongnomok.com/assets/index-D_8cbunI.js)",
+      "Bash(grep -oE 'gongnomok[^\"]{0,80}')",
+      "Bash(curl -sS -o /dev/null -w \"  /images/logo.png: %{http_code}\\\\n\" https://gongnomok.com/images/logo.png)",
+      "Bash(curl -sS -o /dev/null -w \"  /images/etc/reset.png: %{http_code}\\\\n\" https://gongnomok.com/images/etc/reset.png)",
+      "Bash(curl -sS -o /dev/null -w \"  /images/etc/empty.png: %{http_code}\\\\n\" https://gongnomok.com/images/etc/empty.png)",
+      "Bash(curl -sS -w \"\\\\nHTTP %{http_code}\\\\n\" \"http://localhost:5173/api/items?page=0&size=5\")",
+      "Bash(curl -sS -w \"\\\\nHTTP %{http_code} | %{content_type}\\\\n\" \"http://localhost:5173/api/items?page=0&size=2\")",
+      "Bash(curl -sS -w \"\\\\nHTTP %{http_code} | %{content_type}\\\\n\" \"http://localhost:5173/api/item/ranking/view_count?page=0&size=3\")"
+    ]
+  }
+}
