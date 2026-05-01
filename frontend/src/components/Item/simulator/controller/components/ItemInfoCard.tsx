@@ -31,6 +31,8 @@ interface Props {
    * 이 값이 변경되면 다음 current 변경은 flash 없이 prev 만 동기화.
    */
   resetSignal?: number
+  /** 보라 박스(.item-info-section) DOM ref — 이미지 캡쳐 대상. */
+  captureRef?: RefObject<HTMLElement | null>
   /** 복구 가능 횟수 — 능력치 영역 마지막 줄에 노출. */
   recoverableSlots?: number
 }
@@ -49,6 +51,7 @@ export default function ItemInfoCard({
   potential,
   recoverableSlots = 0,
   resetSignal = 0,
+  captureRef,
 }: Props) {
   const itemGrade: ItemGrade = potential?.itemGrade ?? 'NORMAL'
   const sectionGradeClass = GRADE_COLOR_CLASS[itemGrade]
@@ -118,6 +121,7 @@ export default function ItemInfoCard({
   return (
     <section className="item-info-section-container">
       <section
+        ref={captureRef}
         className={`item-info-section mx-1 ${sectionGradeClass} ${
           isGradeFlashing ? 'flash-grade-up' : ''
         }`}

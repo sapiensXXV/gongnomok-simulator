@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.0",
     "axios": "^1.6.7",
+    "html2canvas": "^1.4.1",
     "open-color": "^1.9.1",
     "range": "^0.0.3",
     "react": "^18.2.0",

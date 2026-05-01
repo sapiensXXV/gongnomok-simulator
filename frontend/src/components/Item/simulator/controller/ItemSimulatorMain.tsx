@@ -18,6 +18,7 @@ import {
   useScrollHotkeys,
   useChallengeRecord,
   usePotential,
+  useItemImageDownload,
   STATUS_KEYS,
 } from '../../../../hooks'
 import { poolKeyFromCategory } from '../../../../types/potential'
@@ -141,6 +142,16 @@ export default function ItemSimulatorMain() {
   // 리셋·옵션변경 시 ItemInfoCard 의 능력치 flash 를 스킵하기 위한 카운터.
   const [resetSignal, setResetSignal] = useState(0)
   const bumpResetSignal = () => setResetSignal((s) => s + 1)
+
+  // 이미지 다운로드 — 보라 박스만 캡쳐
+  const itemCaptureRef = useRef<HTMLElement>(null)
+  const downloadImage = useItemImageDownload()
+  const onDownloadImage = useCallback(() => {
+    const itemName = info?.name ?? 'item'
+    const upgradeText = status.upgradedCount > 0 ? `_+${status.upgradedCount}` : ''
+    const fileName = `${itemName}${upgradeText}.png`
+    void downloadImage(itemCaptureRef.current, fileName)
+  }, [info, status.upgradedCount, downloadImage])
 
   useEffect(() => {
     if (info) {
@@ -385,6 +396,7 @@ export default function ItemSimulatorMain() {
               potential={potential}
               recoverableSlots={status.recoverableSlots}
               resetSignal={resetSignal}
+              captureRef={itemCaptureRef}
             />
 
             <ChallengeScrollSuccessCount
@@ -392,6 +404,17 @@ export default function ItemSimulatorMain() {
               chaosSuccessCount={purchase.state.extras.chaos.successCount}
               whiteSuccessCount={purchase.state.extras.white.successCount}
             />
+
+            <div className="item-image-download-row">
+              <button
+                type="button"
+                className="item-image-download-btn"
+                onClick={onDownloadImage}
+                title="아이템 박스를 PNG 이미지로 저장"
+              >
+                📥 이미지 저장
+              </button>
+            </div>
 
             <p className="planet-spec-note">※ 본 시뮬레이터의 사양은 메이플 플래닛을 따릅니다 ※</p>
 

@@ -249,6 +249,35 @@
 .item-potential-line.grade-unique { color: #ffe07a; }
 .item-potential-line.grade-normal { color: #c0c0c0; }
 
+/* 아이템 박스 이미지 저장 버튼 */
+.item-image-download-row {
+  display: flex;
+  margin-top: 10px;
+}
+
+.item-image-download-btn {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d8d3c3;
+  border-radius: 6px;
+  padding: 5px 16px;
+  font-family: KCC-Hanbit, serif;
+  font-size: 13px;
+  color: #444;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.item-image-download-btn:hover {
+  background-color: rgba(113, 117, 181, 0.08);
+  border-color: #7175b5;
+  color: #5a5e9a;
+}
+
+.item-image-download-btn:active {
+  background-color: rgba(113, 117, 181, 0.16);
+}
+
 /* "본 시뮬레이터의 사양은 메이플 플래닛을 따릅니다" 안내 */
 .planet-spec-note {
   margin: 8px 0 0;
