@@ -17,6 +17,17 @@ export function useItemImageDownload() {
         scale: 2,
         useCORS: true,
         logging: false,
+        // 잠재 줄 fade-in / 능력치 flash 등 진행 중 애니메이션이 캡쳐에서
+        // opacity 중간값으로 잡히는 문제 방지 — 캡쳐 직전 클론 DOM 에서 강제 해제.
+        onclone: (clonedDoc) => {
+          const animated = clonedDoc.querySelectorAll<HTMLElement>(
+            '.potential-fade-in, .stat-flash-up, .stat-flash-down, .flash-grade-up',
+          )
+          animated.forEach((el) => {
+            el.style.animation = 'none'
+            el.style.opacity = '1'
+          })
+        },
       })
       canvas.toBlob((blob) => {
         if (!blob) return
